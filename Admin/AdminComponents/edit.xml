@@ -4,11 +4,11 @@
 		<SwatForm name="editform">
 
 			<SwatFormField title="Title">
-				<SwatEntry name="title" required="bool:true" />
+				<SwatEntry name="title" required="boolean:true" />
 			</SwatFormField>
 			
 			<SwatFormField title="Short Name">
-				<SwatEntry name="shortname" required="bool:true" />
+				<SwatEntry name="shortname" required="boolean:true" />
 			</SwatFormField>
 			
 			<SwatFormField title="Section">
@@ -16,11 +16,11 @@
 			</SwatFormField>
 			
 			<SwatFormField title="Show in menu?">
-				<SwatCheckbox name="show" value="bool:true" />
+				<SwatCheckbox name="show" value="boolean:true" />
 			</SwatFormField>
 
 			<SwatFormField title="Enabled?">
-				<SwatCheckbox name="enabled" value="bool:true" />
+				<SwatCheckbox name="enabled" value="boolean:true" />
 			</SwatFormField>
 
 			<SwatFormField title="Description">

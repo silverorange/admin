@@ -3,11 +3,11 @@
 	<SwatFrame name="frame" title="Section Edit">
 		<SwatForm name="editform">
 			<SwatFormField title="Title">
-				<SwatEntry name="title" required="bool:true" />
+				<SwatEntry name="title" required="boolean:true" />
 			</SwatFormField>
 			
 			<SwatFormField title="Show in Menu?">
-				<SwatCheckbox name="show" value="bool:true" />
+				<SwatCheckbox name="show" value="boolean:true" />
 			</SwatFormField>
 
 			<SwatFormField title="Description">

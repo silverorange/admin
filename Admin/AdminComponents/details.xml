@@ -10,7 +10,7 @@
 				<SwatTableView name="view">
 
 					<SwatTableViewColumn name="controls">
-						<SwatControlCellRenderer src="admin/images/b_edit.png" height="int:22" width="int:28" title="Edit" alt="Edit" href="AdminSubComponents/Edit?id=%s" value="data:subcomponentid" />
+						<SwatControlCellRenderer src="admin/images/b_edit.png" height="integer:22" width="integer:28" title="Edit" alt="Edit" href="AdminSubComponents/Edit?id=%s" value="data:subcomponentid" />
 					</SwatTableViewColumn>
 
 					<SwatTableViewCheckboxColumn name="checkbox">
