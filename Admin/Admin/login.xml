@@ -1,19 +1,26 @@
 <?xml version='1.0' standalone='yes'?>
-<SwatLayout>
-	<SwatFrame name="login_frame" title="Login">
-		<SwatForm name="login_form">
-			<SwatFormField title="Username">
-				<SwatEntry name="username" required="bool:true" />
-			</SwatFormField>
-			
-			<SwatFormField title="Password">
-				<SwatPasswordEntry name="password" required="bool:true" />
-			</SwatFormField>
-
-			<SwatFormField class="swat-form-footer">
-				<SwatButton name="login_button" title="Login &#187;" />
-			</SwatFormField>
-
-		</SwatForm>
-	</SwatFrame>
-</SwatLayout>
+<swat-interface>
+	<widget class="SwatFrame" name="login_frame">
+		<property name="title" value="Login" translatable="yes" />
+		<widget class="SwatForm" name="login_form">
+			<widget class="SwatFormField">
+				<property name="title" value="Username" translatable="yes" />
+				<widget class="SwatEntry" name="username">
+					<property name="required" value="true" type="boolean" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Password" translatable="yes" />
+				<widget class="SwatPasswordEntry" name="password">
+					<property name="required" value="true" type="boolean" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="class" value="swat-form-footer" />
+				<widget class="SwatButton" name="login_button">
+					<property name="title" value="Login »" translatable="yes" />
+				</widget>
+			</widget>
+		</widget>
+	</widget>
+</swat-interface>

@@ -1,15 +1,18 @@
 <?xml version='1.0' standalone='yes'?>
-<SwatUI>
-	<SwatFrame title="Confirmation">
-		<SwatForm name="confirmation_form">
-
-			<SwatContentBlock name="confirmation_message" />
-
-			<SwatFormField class="swat-form-footer">
-				<SwatButton name="yes_button" title="Yes" />
-				<SwatButton name="no_button" title="No" />
-			</SwatFormField>
-
-		</SwatForm>
-	</SwatFrame>
-</SwatUI>
+<swat-interface>
+	<widget class="SwatFrame">
+		<property name="title" value="Confirmation" translatable="yes" />
+		<widget class="SwatForm" name="confirmation_form">
+			<widget class="SwatContentBlock" name="confirmation_message" />
+			<widget class="SwatFormField">
+				<property name="class" value="swat-form-footer" />
+				<widget class="SwatButton" name="yes_button">
+					<property name="title" value="Yes" translatable="yes" />
+				</widget>
+				<widget class="SwatButton" name="no_button">
+					<property name="title" value="No" translatable="yes" />
+				</widget>
+			</widget>
+		</widget>
+	</widget>
+</swat-interface>

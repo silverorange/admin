@@ -1,53 +1,82 @@
 <?xml version='1.0' standalone='yes'?>
-<SwatUI>
-	<SwatFrame title="Sections">
-		<SwatToolLink title="Create a New Section" href="AdminSections/Edit" />
-		<SwatForm name="index_form">
-			<SwatTableView name="index_view">
-
-				<SwatTableViewColumn name="controls">
-					<SwatControlCellRenderer src="admin/images/b_details.png" height="int:22" width="int:28" title="View Details" alt="Details" href="AdminSections/Details?id=%s" value="data:sectionid" />
-					<SwatControlCellRenderer src="admin/images/b_edit.png" height="int:22" width="int:28" title="Edit" alt="Edit" href="AdminSections/Edit?id=%s" value="data:sectionid" />
-				</SwatTableViewColumn>
-
-				<SwatTableViewCheckboxColumn name="checkbox">
-					<SwatCheckboxCellRenderer name="items" value="data:sectionid" />
-				</SwatTableViewCheckboxColumn>
-
-				<SwatTableViewColumn name="title" title="Title">
-					<SwatLinkCellRenderer title="data:title" href="AdminSections/Edit?id=%s" value="data:sectionid" />
-				</SwatTableViewColumn>
-
-				<SwatTableViewColumn name="title2" title="Title">
-					<SwatTextCellRenderer value="data:title" />
-				</SwatTableViewColumn>
-
-				<SwatTableViewColumn name="show" title="Show in Menu">
-					<SwatCheckCellRenderer value="data:show" />
-				</SwatTableViewColumn>
-
-			</SwatTableView>
-			<SwatActions name="index_actions">
-			<!--SwatActions name="actions" auto_reset="boolean:true" show_blank_option="boolean:false"-->
-
-				<SwatActionItem name="delete" title="delete..." />
-
-				<SwatActionItem name="defibulate" title="defibulate...">
-					<SwatEntry name="title" />
-				</SwatActionItem>
-
-				<SwatActionItem name="show" title="show" />
-				<SwatActionItem name="hide" title="hide" />
-
-				<SwatActionItem name="setdate" title="set date...">
-					<SwatDateEntry name="date" />
-				</SwatActionItem>
-
-				<SwatActionItem name="setcolor" title="set color...">
-					<SwatFlydown name="color" />
-				</SwatActionItem>
-
-			</SwatActions>
-		</SwatForm>
-	</SwatFrame>
-</SwatUI>
+<swat-interface>
+	<widget class="SwatFrame">
+		<property name="title" value="Sections" translatable="yes" />
+		<widget class="SwatToolLink">
+			<property name="title" value="Create a New Section" translatable="yes" />
+			<property name="href" value="AdminSections/Edit" />
+		</widget>
+		<widget class="SwatForm" name="index_form">
+			<widget class="SwatTableView" name="index_view">
+				<widget class="SwatTableViewColumn" name="controls">
+					<widget class="SwatControlCellRenderer">
+						<property name="src" value="admin/images/b_details.png" />
+						<property name="height" value="22" type="int" />
+						<property name="width" value="28" type="int" />
+						<property name="title" value="View Details" translatable="yes" />
+						<property name="alt" value="Details" />
+						<property name="href" value="AdminSections/Details?id=%s" />
+						<property name="value" value="sectionid" type="data" />
+					</widget>
+					<widget class="SwatControlCellRenderer">
+						<property name="src" value="admin/images/b_edit.png" />
+						<property name="height" value="22" type="int" />
+						<property name="width" value="28" type="int" />
+						<property name="title" value="Edit" translatable="yes" />
+						<property name="alt" value="Edit" />
+						<property name="href" value="AdminSections/Edit?id=%s" />
+						<property name="value" value="sectionid" type="data" />
+					</widget>
+				</widget>
+				<widget class="SwatTableViewCheckboxColumn" name="checkbox">
+					<widget class="SwatCheckboxCellRenderer" name="items">
+						<property name="value" value="sectionid" type="data" />
+					</widget>
+				</widget>
+				<widget class="SwatTableViewColumn" name="title">
+					<property name="title" value="Title" translatable="yes" />
+					<widget class="SwatLinkCellRenderer">
+						<property name="title" value="title" type="data" translatable="yes" />
+						<property name="href" value="AdminSections/Edit?id=%s" />
+						<property name="value" value="sectionid" type="data" />
+					</widget>
+				</widget>
+				<widget class="SwatTableViewColumn" name="title2">
+					<property name="title" value="Title" translatable="yes" />
+					<widget class="SwatTextCellRenderer">
+						<property name="value" value="title" type="data" />
+					</widget>
+				</widget>
+				<widget class="SwatTableViewColumn" name="show">
+					<property name="title" value="Show in Menu" translatable="yes" />
+					<widget class="SwatCheckCellRenderer">
+						<property name="value" value="show" type="data" />
+					</widget>
+				</widget>
+			</widget>
+			<widget class="SwatActions" name="index_actions">
+				<widget class="SwatActionItem" name="delete">
+					<property name="title" value="delete..." translatable="yes" />
+				</widget>
+				<widget class="SwatActionItem" name="defibulate">
+					<property name="title" value="defibulate..." translatable="yes" />
+					<widget class="SwatEntry" name="title" />
+				</widget>
+				<widget class="SwatActionItem" name="show">
+					<property name="title" value="show" translatable="yes" />
+				</widget>
+				<widget class="SwatActionItem" name="hide">
+					<property name="title" value="hide" translatable="yes" />
+				</widget>
+				<widget class="SwatActionItem" name="setdate">
+					<property name="title" value="set date..." translatable="yes" />
+					<widget class="SwatDateEntry" name="date" />
+				</widget>
+				<widget class="SwatActionItem" name="setcolor">
+					<property name="title" value="set color..." translatable="yes" />
+					<widget class="SwatFlydown" name="color" />
+				</widget>
+			</widget>
+		</widget>
+	</widget>
+</swat-interface>

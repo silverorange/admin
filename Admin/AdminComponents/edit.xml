@@ -1,41 +1,51 @@
 <?xml version='1.0' standalone='yes'?>
-<SwatUI>
-	<SwatMessageBox name="message_box" />
-	<SwatFrame name="edit_frame" title="Component">
-		<SwatForm name="edit_form">
-
-			<SwatFormField title="Title">
-				<SwatEntry name="title" required="boolean:true" />
-			</SwatFormField>
-			
-			<SwatFormField title="Short Name">
-				<SwatEntry name="shortname" required="boolean:true" />
-			</SwatFormField>
-			
-			<SwatFormField title="Section">
-				<SwatFlydown name="section" required="boolean:true" />
-			</SwatFormField>
-			
-			<SwatFormField title="Show in menu?">
-				<SwatCheckbox name="show" value="boolean:true" />
-			</SwatFormField>
-
-			<SwatFormField title="Enabled?">
-				<SwatCheckbox name="enabled" value="boolean:true" />
-			</SwatFormField>
-
-			<SwatFormField title="Description">
-				<SwatTextarea name="description" />
-			</SwatFormField>
-
-			<SwatFormField title="Groups">
-				<SwatCheckboxList name="groups" />
-			</SwatFormField>
-
-			<SwatFormField class="swat-form-footer">
-				<SwatButton name="submit_button" />
-			</SwatFormField>
-
-		</SwatForm>
-	</SwatFrame>
-</SwatUI>
+<swat-interface>
+	<widget class="SwatMessageBox" name="message_box" />
+	<widget class="SwatFrame" name="edit_frame">
+		<property name="title" value="Component" translatable="yes" />
+		<widget class="SwatForm" name="edit_form">
+			<widget class="SwatFormField">
+				<property name="title" value="Title" translatable="yes" />
+				<widget class="SwatEntry" name="title">
+					<property name="required" value="true" type="boolean" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Short Name" translatable="yes" />
+				<widget class="SwatEntry" name="shortname">
+					<property name="required" value="true" type="boolean" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Section" translatable="yes" />
+				<widget class="SwatFlydown" name="section">
+					<property name="required" value="true" type="boolean" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Show in menu?" translatable="yes" />
+				<widget class="SwatCheckbox" name="show">
+					<property name="value" value="true" type="boolean" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Enabled?" translatable="yes" />
+				<widget class="SwatCheckbox" name="enabled">
+					<property name="value" value="true" type="boolean" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Description" translatable="yes" />
+				<widget class="SwatTextarea" name="description" />
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Groups" translatable="yes" />
+				<widget class="SwatCheckboxList" name="groups" />
+			</widget>
+			<widget class="SwatFormField">
+				<property name="class" value="swat-form-footer" />
+				<widget class="SwatButton" name="submit_button" />
+			</widget>
+		</widget>
+	</widget>
+</swat-interface>

@@ -1,25 +1,32 @@
 <?xml version='1.0' standalone='yes'?>
-<SwatUI>
-	<SwatMessageBox name="message_box" />
-	<SwatFrame name="edit_frame" title="Edit User Profile">
-		<SwatForm name="edit_form">
-
-			<SwatFormField title="Name">
-				<SwatEntry name="name" required="boolean:true" />
-			</SwatFormField>
-			
-			<SwatFormField title="Password">
-				<SwatPasswordEntry name="password" minlength="integer:4" />
-			</SwatFormField>
-			
-			<SwatFormField title="Confirm Password" note="Leave Password fields blank for them to remain the same.">
-				<SwatConfirmPasswordEntry name="confirmpassword" />
-			</SwatFormField>
-			
-			<SwatFormField class="swat-form-footer">
-				<SwatButton name="submit_button" title="Update Profile" />
-			</SwatFormField>
-
-		</SwatForm>
-	</SwatFrame>
-</SwatUI>
+<swat-interface>
+	<widget class="SwatMessageBox" name="message_box" />
+	<widget class="SwatFrame" name="edit_frame">
+		<property name="title" value="Edit User Profile" translatable="yes" />
+		<widget class="SwatForm" name="edit_form">
+			<widget class="SwatFormField">
+				<property name="title" value="Name" translatable="yes" />
+				<widget class="SwatEntry" name="name">
+					<property name="required" value="true" type="boolean" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Password" translatable="yes" />
+				<widget class="SwatPasswordEntry" name="password">
+					<property name="minlength" value="4" type="integer" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Confirm Password" translatable="yes" />
+				<property name="note" value="Leave Password fields blank for them to remain the same." />
+				<widget class="SwatConfirmPasswordEntry" name="confirmpassword" />
+			</widget>
+			<widget class="SwatFormField">
+				<property name="class" value="swat-form-footer" />
+				<widget class="SwatButton" name="submit_button">
+					<property name="title" value="Update Profile" translatable="yes" />
+				</widget>
+			</widget>
+		</widget>
+	</widget>
+</swat-interface>

@@ -1,49 +1,68 @@
 <?xml version='1.0' standalone='yes'?>
-<SwatUI>
-	<SwatMessageBox name="message_box" />
-	<SwatFrame name="index_frame">
-
-		<SwatFrame name="sub_frame" title="Sub-Components">
-			<SwatToolLink title="Create a New Sub-Component" href="AdminSubComponents/Edit?parent=%s" />
-			<SwatToolLink title="Change Sub-Component Order" href="AdminSubComponents/Order?parent=%s" />
-
-			<SwatForm name="index_form">
-				<SwatTableView name="index_view">
-
-					<SwatTableViewColumn name="controls">
-						<SwatControlCellRenderer title="Edit" alt="Edit" href="AdminSubComponents/Edit?id=%s" 
-							value="data:subcomponentid" src="admin/images/b_edit.png" 
-							height="integer:22" width="integer:28" />
-
-					</SwatTableViewColumn>
-
-					<SwatTableViewCheckboxColumn name="checkbox">
-						<SwatCheckboxCellRenderer name="items" value="data:subcomponentid" />
-					</SwatTableViewCheckboxColumn>
-
-					<SwatTableViewColumn name="title" title="Title">
-						<SwatLinkCellRenderer title="data:title" href="AdminSubComponents/Edit?id=%s" 
-							value="data:subcomponentid" />
-
-					</SwatTableViewColumn>
-
-					<SwatTableViewColumn name="shortname" title="Short Name">
-						<SwatTextCellRenderer value="data:shortname" />
-					</SwatTableViewColumn>
-
-					<SwatTableViewColumn name="show" title="Show in Menu">
-						<SwatCheckCellRenderer value="data:show" />
-					</SwatTableViewColumn>
-
-				</SwatTableView>
-				<SwatActions name="index_actions">
-
-					<SwatActionItem name="delete" title="delete..." />
-					<SwatActionItem name="show" title="show" />
-					<SwatActionItem name="hide" title="hide" />
-
-				</SwatActions>
-			</SwatForm>
-		</SwatFrame>
-	</SwatFrame>
-</SwatUI>
+<swat-interface>
+	<widget class="SwatMessageBox" name="message_box" />
+	<widget class="SwatFrame" name="index_frame">
+		<widget class="SwatFrame" name="sub_frame">
+			<property name="title" value="Sub-Components" translatable="yes" />
+			<widget class="SwatToolLink">
+				<property name="title" value="Create a New Sub-Component" translatable="yes" />
+				<property name="href" value="AdminSubComponents/Edit?parent=%s" />
+			</widget>
+			<widget class="SwatToolLink">
+				<property name="title" value="Change Sub-Component Order" translatable="yes" />
+				<property name="href" value="AdminSubComponents/Order?parent=%s" />
+			</widget>
+			<widget class="SwatForm" name="index_form">
+				<widget class="SwatTableView" name="index_view">
+					<widget class="SwatTableViewColumn" name="controls">
+						<widget class="SwatControlCellRenderer">
+							<property name="title" value="Edit" translatable="yes" />
+							<property name="alt" value="Edit" />
+							<property name="href" value="AdminSubComponents/Edit?id=%s" />
+							<property name="value" value="subcomponentid" type="data" />
+							<property name="src" value="admin/images/b_edit.png" />
+							<property name="height" value="22" type="integer" />
+							<property name="width" value="28" type="integer" />
+						</widget>
+					</widget>
+					<widget class="SwatTableViewCheckboxColumn" name="checkbox">
+						<widget class="SwatCheckboxCellRenderer" name="items">
+							<property name="value" value="subcomponentid" type="data" />
+						</widget>
+					</widget>
+					<widget class="SwatTableViewColumn" name="title">
+						<property name="title" value="Title" translatable="yes" />
+						<widget class="SwatLinkCellRenderer">
+							<property name="title" value="title" type="data" translatable="yes" />
+							<property name="href" value="AdminSubComponents/Edit?id=%s" />
+							<property name="value" value="subcomponentid" type="data" />
+						</widget>
+					</widget>
+					<widget class="SwatTableViewColumn" name="shortname">
+						<property name="title" value="Short Name" translatable="yes" />
+						<widget class="SwatTextCellRenderer">
+							<property name="value" value="shortname" type="data" />
+						</widget>
+					</widget>
+					<widget class="SwatTableViewColumn" name="show">
+						<property name="title" value="Show in Menu" translatable="yes" />
+						<widget class="SwatCheckCellRenderer">
+							<property name="value" value="show" type="data" />
+						</widget>
+					</widget>
+				</widget>
+				<widget class="SwatActions" name="index_actions">
+					<widget class="SwatActionItem" name="delete">
+						<property name="title" value="delete..." translatable="yes" />
+					</widget>
+					<widget class="SwatActionItem" name="show">
+						<property name="title" value="show" translatable="yes" />
+					</widget>
+					<widget class="SwatActionItem" name="hide">
+						<property name="title" value="hide" translatable="yes" />
+					</widget>
+				</widget>
+			</widget>
+		</widget>
+	</widget>
+</swat-interface>
