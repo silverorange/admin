@@ -25,7 +25,7 @@ abstract class AdminEdit extends AdminPage {
 			$button->setTitleFromStock('create');
 			$frame->title = 'New '.$frame->title;
 		} else {
-			if (!$form->processed)
+			if (!$form->hasBeenProcessed())
 				$this->loadData($id);
 
 			$button->setTitleFromStock('apply');
