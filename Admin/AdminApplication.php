@@ -142,7 +142,7 @@ class AdminApplication extends SwatApplication {
 
 			if ($component == 'Admin') {
 				$admin_titles = array(
-					'Profile' => _S("Edit Profile"),
+					'Profile' => _S("Edit User Profile"),
 					'Logout'  => _S("Logout"),
 					'Login'   => _S("Login"),
 					'Front'   => _S("Index"));

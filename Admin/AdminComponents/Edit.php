@@ -39,7 +39,7 @@ class AdminComponentsEdit extends AdminDBEdit {
 				$values, 'integer:componentid');
 		else
 			SwatDB::updateRow($this->app->db, 'admincomponents', $this->fields,
-				$values, 'integer:componenti', $id);
+				$values, 'integer:componentid', $id);
 
 		$group_list = $this->ui->getWidget('groups');
 
