@@ -23,13 +23,20 @@ class AdminLogin extends AdminPage {
 	}
 
 	public function process() {
-		$root = $this->layout->getRoot();
-		$root->process();
+		$form = $this->layout->getWidget('loginform');
 
-		$username = $this->layout->getWidget('username');
-		$password = $this->layout->getWidget('password');
+		if ($form->process()) {
+			if (!$form->hasErrorMessage()) {
+				$username = $this->layout->getWidget('username');
+				$password = $this->layout->getWidget('password');
 
-		$this->app->login($username, $password);
+				$this->app->login($username, $password);
+
+				// TODO: use a relocate function here
+				header('Location: '.$_SERVER['REQUEST_URI']);
+				exit();
+			}
+		}
 	}
 
 	public function getLayout() {

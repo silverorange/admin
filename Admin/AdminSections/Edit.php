@@ -13,30 +13,13 @@ class AdminSectionsEdit extends AdminPage {
 	}
 
 	public function display() {
-		/*
-		$sql = 'select sectionid, title, hidden from adminsections';
-		$types = array('integer', 'text', 'boolean');
-		$result = $this->app->db->query($sql, $types);
-
-		if (MDB2::isError($result)) 
-			throw new Exception($result->getMessage());
-		*/
-		/*
-		$store = new SwatTableStore();
-
-		while ($row = $result->fetchRow(MDB2_FETCHMODE_OBJECT))
-			$store->addRow($row, $row->sectionid);
-
-		$view = $this->layout->getWidget('view');
-		$view->model = $store;
-		*/
 		$root = $this->layout->getRoot();
-		$root->displayTidy();
+		$root->display();
 	}
 
 	public function process() {
-		$root = $this->layout->getRoot();
-		$root->process();
+		$form = $this->layout->getWidget('editform');
+		$form->process();
 	}
 }
 ?>

@@ -30,7 +30,7 @@ class AdminSectionsIndex extends AdminPage {
 		$view->model = $store;
 
 		$root = $this->layout->getRoot();
-		$root->displayTidy();
+		$root->display();
 	}
 
 	public function process() {
