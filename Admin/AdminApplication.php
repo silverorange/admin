@@ -47,9 +47,12 @@ class AdminApplication extends SwatApplication {
 		$this->initDatabase();
 		$this->initSession();
 
-		$uriArray = explode('/', $_SERVER['REQUEST_URI']);
-		$this->uri = implode('/', array_slice($uriArray, 0, 5)).'/';
-		$this->basehref = 'http://'.$_SERVER['SERVER_NAME'].$this->uri;
+		$uri_array = explode('/', $_SERVER['REQUEST_URI']);
+		$this->uri = implode('/', array_slice($uri_array, 0, 5)).'/';
+
+		// TODO: Once we have a SITE_LIVE equivalent, we should use HTTP_HOST
+		//       on stage and SERVER_NAME on live.
+		$this->basehref = 'http://'.$_SERVER['HTTP_HOST'].$this->uri;
 	}
 
 	/**
