@@ -2,7 +2,7 @@
 <SwatUI>
 	<SwatFrame title="Sections">
 		<SwatForm name="indexform">
-			<AdminTableView name="view">
+			<SwatTableView name="view">
 
 				<SwatTableViewColumn name="controls">
 					<SwatCellRendererControl src="admin/images/b_details.png" height="int:22" width="int:28" title="View Details" alt="Details" href="AdminSections/Details?id=%s" value="data:sectionid" />
@@ -27,7 +27,7 @@
 					<SwatCellRendererCheck value="data:hidden" />
 				</SwatTableViewColumn>
 
-			</AdminTableView>
+			</SwatTableView>
 			<AdminActions name="actions">
 
 				<AdminActionItem name="delete" title="delete" />

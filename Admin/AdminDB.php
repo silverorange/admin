@@ -10,7 +10,7 @@ require_once("MDB2.php");
  */
 class AdminDB {
 	
-	public static function update($db, $table, $field, $type, $value, $id_field, $ids) {
+	public static function update($db, $table, $field, $value, $type, $id_field, $ids, $id_type = 'integer') {
 
 			if (count($ids) == 0)
 				return;
