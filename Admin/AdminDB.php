@@ -45,7 +45,7 @@ class AdminDB {
 		$rs = $db->query($sql, array($id_type, $title_type));
 
 		if (MDB2::isError($rs))
-            throw new Exception($rs->getMessage());
+			throw new Exception($rs->getMessage());
 
 		$options = array();
 
