@@ -204,6 +204,9 @@ class AdminApplication extends SwatApplication {
 
 	public function storeHistory($url) {
 		$history = &$_SESSION['history'];
+
+		if (!is_array($history))
+			$history = array();
 	
 		if (count($history) > 0) {
 			end($history);
