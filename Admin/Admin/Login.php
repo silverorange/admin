@@ -14,7 +14,7 @@ class AdminLogin extends AdminPage {
 		$frame->title = $this->app->title;
 
 		$form = $this->layout->getWidget('loginform');
-		$form->action = $_SERVER['REQUEST_URI'];
+		$form->action = $this->app->uri;
 	}
 
 	public function display() {
@@ -31,10 +31,7 @@ class AdminLogin extends AdminPage {
 				$password = $this->layout->getWidget('password');
 
 				$this->app->login($username, $password);
-
-				// TODO: use a relocate function here
-				header('Location: '.$_SERVER['REQUEST_URI']);
-				exit();
+				$this->app->relocate($this->app->uri);
 			}
 		}
 	}
