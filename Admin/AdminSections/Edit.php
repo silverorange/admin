@@ -13,6 +13,16 @@ class AdminSectionsEdit extends AdminPage {
 	}
 
 	public function display() {
+		$id = intval(SwatApplication::initVar('id'));
+		$btn_submit = $this->layout->getWidget('btn_submit');
+
+		if ($id == 0) {
+			$btn_submit->title = $btn_submit->getStockTitle('create');
+		} else {
+			$this->loadFromDB($id);
+			$btn_submit->title = $btn_submit->getStockTitle('apply');
+		}
+
 		$root = $this->layout->getRoot();
 		$root->display();
 	}
@@ -20,6 +30,21 @@ class AdminSectionsEdit extends AdminPage {
 	public function process() {
 		$form = $this->layout->getWidget('editform');
 		$form->process();
+	}
+
+	private function loadFromDB($id) {
+		$sql = 'SELECT title, hidden, description
+			FROM adminsections WHERE sectionid = %s';
+
+		$sql = sprintf($sql,
+			$this->app->db->quote($id, 'integer'));
+
+		$rs = $this->app->db->query($sql, array('text', 'boolean', 'text'));
+		$row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT);
+
+		$this->layout->getWidget('title')->value = $row->title;
+		$this->layout->getWidget('hidden')->value = $row->hidden;
+		$this->layout->getWidget('description')->value = $row->description;
 	}
 }
 ?>
