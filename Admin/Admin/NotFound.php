@@ -1,6 +1,7 @@
 <?php
 
 require_once('Admin/AdminPage.php');
+require_once('Swat/SwatMessageBox.php');
 
 /**
  * Administrator Not Found page
@@ -10,16 +11,27 @@ require_once('Admin/AdminPage.php');
  */
 class AdminNotFound extends AdminPage {
 
+	private $message = null;
+
 	public function init() {
 
 	}
 
 	public function display() {
-		echo 'Not Found';
+		$box = new SwatMessageBox();
+		$box->title = 'Not Found';
+		if ($this->message !== null) {
+			$box->messages = array($this->message); 
+		}
+		$box->display();
 	}
 
 	public function process() {
 
+	}
+
+	public function setMessage($msg) {
+		$this->message = $msg;
 	}
 }
 
