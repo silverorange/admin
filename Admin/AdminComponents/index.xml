@@ -18,9 +18,9 @@
 					<AdminCellRendererEditControl href="AdminComponents/Edit?id=%s" value="data:componentid" />
 				</SwatTableViewColumn>
 
-				<SwatTableViewColumn name="checkbox">
+				<SwatTableViewCheckboxColumn name="checkbox">
 					<SwatCellRendererCheckbox name="items" value="data:componentid" />
-				</SwatTableViewColumn>
+				</SwatTableViewCheckboxColumn>
 
 				<AdminTableViewOrderableColumn name="title" title="Title">
 					<SwatCellRendererLink href="AdminComponents/Details?id=%s" value="data:componentid">
