@@ -128,8 +128,7 @@ SQL;
 
 	private function initDatabase() {
 		// TODO: change to array form of DSN and move parts to a secure include file.
-		//$dsn = "pgsql://php:test@zest/".$this->dbname;
-		$dsn = "pgsql://so@192.168.1.102/".$this->dbname;
+		$dsn = "pgsql://php:test@zest/".$this->dbname;
 		$this->db = MDB2::connect($dsn);
 
 		if (MDB2::isError($this->db))
@@ -138,8 +137,7 @@ SQL;
 
 	private function initSession() {
 		session_cache_limiter('');
-		//session_save_path('/so/phpsessions/'.$this->name);
-		session_save_path('/home/so/phpsessions');
+		session_save_path('/so/phpsessions/'.$this->name);
 		session_name($this->name);
 		session_start();
 
