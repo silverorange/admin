@@ -13,8 +13,8 @@
 				</SwatTableViewGroup>
 
 				<SwatTableViewColumn name="controls">
-					<AdminCellRendererControlDetails href="AdminComponents/Details?id=%s" value="data:componentid" />
-					<AdminCellRendererControlEdit href="AdminComponents/Edit?id=%s" value="data:componentid" />
+					<AdminCellRendererDetailsControl href="AdminComponents/Details?id=%s" value="data:componentid" />
+					<AdminCellRendererEditControl href="AdminComponents/Edit?id=%s" value="data:componentid" />
 				</SwatTableViewColumn>
 
 				<SwatTableViewColumn name="checkbox">

@@ -9,7 +9,7 @@ require_once('Swat/SwatCellRendererControl.php');
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminCellRendererControlTreeDetails extends SwatCellRendererControl {
+class AdminCellRendererTreeControl extends SwatCellRendererControl {
 	
 	public $childcount = 0;
 	
