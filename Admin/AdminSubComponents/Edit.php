@@ -18,10 +18,15 @@ class AdminSubComponentsEdit extends AdminEdit {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminSubComponents/edit.xml');
 
+		$this->parent = SwatApplication::initVar('parent');
+
+		//rebuild the navbar
+		$this->navbar->replace(1, 'Admin Components', 'AdminComponents');
+		//$this->navbar->add('Parent Component','AdminComponents/Details?id='.$this->parent);
+
 		$this->fields = array('title', 'shortname', 'boolean:show', 'integer:component');
 
-		$this->parent = SwatApplication::initVar('parent');
-		$form = $this->ui->getWidget('editform');
+		$form = $this->ui->getWidget('edit_form');
 		$form->addHiddenField('parent', $this->parent);
 	}
 
@@ -49,7 +54,7 @@ class AdminSubComponentsEdit extends AdminEdit {
 		$this->ui->setValues(get_object_vars($row));
 
 		$this->parent = intval($row->component);
-		$form = $this->ui->getWidget('editform');
+		$form = $this->ui->getWidget('edit_form');
 		$form->addHiddenField('parent', $this->parent);
 	}
 }

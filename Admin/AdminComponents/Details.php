@@ -61,26 +61,39 @@ class AdminComponentsDetails extends AdminIndex {
 	protected function processActions() {
 		$view = $this->ui->getWidget('index_view');
 		$actions = $this->ui->getWidget('index_actions');
+		$num = count($view->checked_items);
+		$msg = null;
 
 		switch ($actions->selected->name) {
 			case 'delete':
 				$this->app->replacePage('AdminSubComponents/Delete');
-				$this->app->page->items = $view->checked_items;
+				$this->app->page->setItems($view->checked_items);
 				break;
 
 			case 'show':
 				SwatDB::updateColumn($this->app->db, 'adminsubcomponents', 
 					'boolean:show', true, 'subcomponentid', 
 					$view->checked_items);
+				
+				$msg = new SwatMessage(sprintf(_nS("%d sub-component has been shown.", 
+					"%d sub-components have been shown.", $num), $num));
+				
 				break;
 
 			case 'hide':
 				SwatDB::updateColumn($this->app->db, 'adminsubcomponents', 
 					'boolean:show', false, 'subcomponentid', 
 					$view->checked_items);
+				
+				$msg = new SwatMessage(sprintf(_nS("%d sub-component has been hidden.", 
+					"%d sub-components have been hidden.", $num), $num));
+				
 				break;
-
 		}
+		
+		if ($msg !== null)
+			$this->app->addMessage($msg);
+
 	}
 }
 

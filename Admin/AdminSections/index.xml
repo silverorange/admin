@@ -30,20 +30,20 @@
 			<SwatActions name="index_actions">
 			<!--SwatActions name="actions" auto_reset="boolean:true" show_blank_option="boolean:false"-->
 
-				<SwatActionItem name="delete" title="delete" />
+				<SwatActionItem name="delete" title="delete..." />
 
-				<SwatActionItem name="defibulate" title="defibulate">
+				<SwatActionItem name="defibulate" title="defibulate...">
 					<SwatEntry name="title" />
 				</SwatActionItem>
 
 				<SwatActionItem name="show" title="show" />
 				<SwatActionItem name="hide" title="hide" />
 
-				<SwatActionItem name="setdate" title="set date">
+				<SwatActionItem name="setdate" title="set date...">
 					<SwatDateEntry name="date" />
 				</SwatActionItem>
 
-				<SwatActionItem name="setcolor" title="set color">
+				<SwatActionItem name="setcolor" title="set color...">
 					<SwatFlydown name="color" />
 				</SwatActionItem>
 

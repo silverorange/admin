@@ -9,59 +9,42 @@ require_once('Admin/AdminDependency.php');
  * @package Admin
  * @copyright silverorange 2005
  */
-class AdminSubComponentsDelete extends AdminConfirmation {
-
-	public $items = null;
+class AdminSubComponentsDelete extends AdminDBDelete {
 
 	public function display() {
-		$form = $this->ui->getWidget('confirmform');
-		$form->addHiddenField('items', $this->items);
-		
-		foreach ($items as &$id)
-			$id = $this->app->db->quote($id, 'integer');
-
-		$where_items = implode(', ', $this->items);
+		$item_list = $this->getItemList('integer');
 		
 		$dep = new AdminDependency();
 		$dep->title = 'subcomponent';
+		$dep->status_level = AdminDependency::DELETE;
 
 		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'adminsubcomponents',
 			'integer:subcomponentid', null, 'text:title', 'displayorder, title', 
-			'subcomponentid in ('.$where_items.')');
+			'subcomponentid in ('.$item_list.')');
 
 		$message = $this->ui->getWidget('message');
 		$message->content = $dep->getMessage();
 		
-		if ($dep->getStatusLevelCount(AdminDependency::DELETE) == 0) {
-			$btn_yes = $this->ui->getWidget('btn_yes');
-			$btn_yes->visible = false;
-
-			$btn_no = $this->ui->getWidget('btn_no');
-			$btn_no->title = _S("Cancel");
-		}
+		if ($dep->getStatusLevelCount(AdminDependency::DELETE) == 0)
+			$this->displayCancelButton();
 
 		parent::display();
 	}
 
-	protected function processResponse() {
-		$form = $this->ui->getWidget('confirmform');
+	protected function processDBData() {
+		parent::processDBData();
+		
+		$item_list = $this->getItemList('integer');
+		
+		$sql = 'delete from adminsubcomponents where subcomponentid in (%s)';
 
-		if ($form->button->name == 'btn_yes') {
+		$sql = sprintf($sql, $item_list);
+		$this->app->db->query($sql);
 
-			$sql = 'delete from adminsubcomponents where subcomponentid in (%s)';
-			$items = $form->getHiddenField('items');
+		$msg = new SwatMessage(sprintf(_nS("%d sub-component has been deleted.", 
+			"%d sub-components have been deleted.", count($items)), count($items)), SwatMessage::INFO);
 
-			foreach ($items as &$id)
-				$id = $this->app->db->quote($id, 'integer');
-
-			$sql = sprintf($sql, implode(',', $items));
-			$this->app->db->query($sql);
-
-			$msg = new SwatMessage(sprintf(_nS("%d sub-component has been deleted.", 
-				"%d sub-components have been deleted.", count($items)), count($items)), SwatMessage::INFO);
-
-			$this->app->addMessage($msg);
-		}
+		$this->app->addMessage($msg);
 	}
 }
 
