@@ -16,7 +16,10 @@ class AdminSectionsIndex extends AdminPage {
 		$this->ui->loadFromXML('Admin/AdminSections/index.xml');
 
 		$colorfly = $this->ui->getWidget('color');
-		$colorfly->options = array(0 => _('red'), 1 => _('yellow'), 2 => _('blue'));
+		//$colorfly->options = 
+		//	array(0 => _('red'), 1 => _('yellow'), 2 => _('blue'));
+		$colorfly->options = AdminDB::getOptionArray($this->app->db, 
+			'adminsections', 'title', 'text', 'sectionid');
 	}
 
 	public function display() {

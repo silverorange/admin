@@ -10,7 +10,8 @@ require_once("MDB2.php");
  */
 class AdminDB {
 	
-	public static function update($db, $table, $field, $value, $type, $id_field, $ids, $id_type = 'integer') {
+	public static function update($db, $table, $field, $value, $type, 
+		$id_field, $ids, $id_type = 'integer') {
 
 			if (count($ids) == 0)
 				return;
@@ -31,5 +32,28 @@ class AdminDB {
 
 			$db->query($sql);
 	}
+
+	public static function getOptionArray($db, $table, $title_field, $title_type, 
+		$id_field, $id_type = 'integer', $where_clause = '') {
+
+		$sql = 'SELECT %s, %s FROM %s';
+		$sql = sprintf($sql, $id_field, $title_field, $table);
+
+		if (strlen($where_clause))
+			$sql .= ' WHERE '.$where_clause;
+
+		$rs = $db->query($sql, array($id_type, $title_type));
+
+		if (MDB2::isError($rs))
+            throw new Exception($rs->getMessage());
+
+		$options = array();
+
+		while ($row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT))
+			$options[$row->$id_field] = $row->$title_field;
+
+		return $options;
+	}
+
 }
 
