@@ -29,7 +29,7 @@
 
 			</SwatTableView>
 			<SwatActions name="actions">
-			<!--SwatActions name="actions" auto_reset="bool:false" selected="defibulate"-->
+			<!--SwatActions name="actions" auto_reset="bool:true" show_blank_option="bool:false"-->
 
 				<SwatActionItem name="delete" title="delete" />
 
