@@ -4,7 +4,6 @@ require_once('Admin/AdminUI.php');
 require_once('Admin/AdminDB.php');
 require_once("Admin/AdminPage.php");
 require_once('Admin/AdminTableStore.php');
-require_once("MDB2.php");
 
 class AdminSectionsIndex extends AdminPage {
 
