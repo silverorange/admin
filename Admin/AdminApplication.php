@@ -155,8 +155,8 @@ class AdminApplication extends SwatApplication {
 			$classname = $component.$subcomponent;
 			$title = _S("Page Not Found");	
 		}
-	
-		$page = eval(sprintf("return new %s();", $classname));
+
+		$page = new $classname();
 		$page->title = $title;
 		$page->source = $source;
 		$page->component = $component;
