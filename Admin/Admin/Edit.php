@@ -15,7 +15,7 @@ abstract class AdminEdit extends AdminPage {
 
 	protected $ui;
 
-	public function display() {
+	public function displayInit() {
 		$id = SwatApplication::initVar('id');
 		$form = $this->ui->getWidget('edit_form');
 
@@ -23,18 +23,15 @@ abstract class AdminEdit extends AdminPage {
 			if (!$form->hasBeenProcessed())
 				$this->loadData($id);
 
-		$this->displayFrame($id);
-		$this->displayButton($id);
-		$this->displayMessages();
+		$this->displayInitFrame($id);
+		$this->displayInitButton($id);
+		$this->displayInitMessages();
 
 		$form->action = $this->source;
 		$form->addHiddenField('id', $id);
-
-		$root = $this->ui->getRoot();
-		$root->display();
 	}
 
-	protected function displayButton($id) {
+	protected function displayInitButton($id) {
 		$button = $this->ui->getWidget('submit_button');
 
 		if ($id === null)
@@ -43,7 +40,7 @@ abstract class AdminEdit extends AdminPage {
 			$button->setTitleFromStock('apply');
 	}
 
-	protected function displayFrame($id) {
+	protected function displayInitFrame($id) {
 		$frame = $this->ui->getWidget('edit_frame');
 
 		if ($id === null)

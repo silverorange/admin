@@ -11,7 +11,7 @@ require_once('Admin/AdminDependency.php');
  */
 class AdminSubComponentsDelete extends AdminDBDelete {
 
-	public function display() {
+	public function displayInit() {
 		$item_list = $this->getItemList('integer');
 		
 		$dep = new AdminDependency();
@@ -28,7 +28,7 @@ class AdminSubComponentsDelete extends AdminDBDelete {
 		if ($dep->getStatusLevelCount(AdminDependency::DELETE) == 0)
 			$this->displayCancelButton();
 
-		parent::display();
+		parent::displayInit();
 	}
 
 	protected function processDBData() {

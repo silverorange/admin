@@ -21,10 +21,10 @@ class AdminComponentsOrder extends AdminOrder {
 		$form->addHiddenField('parent', $this->parent);
 	}
 
-	public function display() {
+	public function displayInit() {
 		$frame = $this->ui->getWidget('order_frame');
 		$frame->title = _S("Order Components");
-		parent::display();
+		parent::displayInit();
 	}
 
 	public function loadData() {

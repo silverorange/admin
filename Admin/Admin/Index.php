@@ -15,17 +15,14 @@ abstract class AdminIndex extends AdminPage {
 
 	protected $ui;
 
-	public function display() {
+	public function displayInit() {
 		$view = $this->ui->getWidget('index_view');
 		$view->model = $this->getTableStore();
 
 		$form = $this->ui->getWidget('index_form');
 		$form->action = $this->source;
 
-		$this->displayMessages();
-
-		$root = $this->ui->getRoot();
-		$root->display();
+		$this->displayInitMessages();
 	}
 
 	/**

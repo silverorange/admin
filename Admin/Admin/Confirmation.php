@@ -25,14 +25,11 @@ abstract class AdminConfirmation extends AdminPage {
 	 * Display the page
 	 *
 	 * Sub-classes should override this method to do whatever is necessary 
-	 * to generate the confirmation message and then call parent::display().
+	 * to generate the confirmation message and then call parent::displayInit().
 	 */
-	public function display() {
+	public function displayInit() {
 		$form = $this->ui->getWidget('confirmation_form');
 		$form->action = $this->source;
-
-		$root = $this->ui->getRoot();
-		$root->displayTidy();
 	}
 
 	/**

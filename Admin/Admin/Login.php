@@ -27,15 +27,12 @@ class AdminLogin extends AdminPage {
 		if (isset($_COOKIE[$this->app->name.'_username']))
 			$username->value = $_COOKIE[$this->app->name.'_username'];
 		
-		
 		$form = $this->ui->getWidget('login_form');
 		$form->action = $this->app->uri;
 	}
 
 	public function display() {
-		$root = $this->ui->getRoot();
-		$root->display();
-
+		parent::display();
 		$this->displayJavascript();
 	}
 

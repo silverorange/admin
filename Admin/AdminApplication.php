@@ -77,7 +77,7 @@ class AdminApplication extends SwatApplication {
 			if (isset($_GET['source']))
 				$source = $_GET['source'];
 			else
-				$source = 'Front';
+				$source = 'Admin/Front';
 		}
 
 		$found = true;
