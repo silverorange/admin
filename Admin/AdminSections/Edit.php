@@ -4,6 +4,11 @@ require_once("Admin/AdminPage.php");
 require_once('Admin/AdminUI.php');
 require_once("MDB2.php");
 
+/**
+ * Edit page for AdminSections
+ * @package Admin
+ * @copyright silverorange 2004
+ */
 class AdminSectionsEdit extends AdminPage {
 
 	private $ui;

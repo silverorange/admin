@@ -5,6 +5,11 @@ require_once('Admin/AdminDB.php');
 require_once("Admin/AdminPage.php");
 require_once('Admin/AdminTableStore.php');
 
+/**
+ * Index page for AdminSections
+ * @package Admin
+ * @copyright silverorange 2004
+ */
 class AdminSectionsIndex extends AdminPage {
 
 	private $ui;
@@ -14,10 +19,8 @@ class AdminSectionsIndex extends AdminPage {
 		$this->ui->loadFromXML('Admin/AdminSections/index.xml');
 
 		$colorfly = $this->ui->getWidget('color');
-		//$colorfly->options = 
-		//	array(0 => _('red'), 1 => _('yellow'), 2 => _('blue'));
-		$colorfly->options = AdminDB::getOptionArray($this->app->db, 
-			'adminsections', 'title', 'sectionid');
+		$colorfly->options = 
+			array(0 => _('red'), 1 => _('yellow'), 2 => _('blue'));
 	}
 
 	public function display() {

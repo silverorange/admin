@@ -3,6 +3,11 @@
 require_once('Admin/AdminPage.php');
 require_once('Admin/AdminUI.php');
 
+/**
+ * Administrator login page
+ * @package Admin
+ * @copyright silverorange 2004
+ */
 class AdminLogin extends AdminPage {
 
 	private $ui;

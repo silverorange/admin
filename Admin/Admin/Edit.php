@@ -1,14 +1,15 @@
 <?php
-/**
- * @package Admin
- * @copyright silverorange 2004
- */
+
 require_once("Admin/AdminPage.php");
 
 /**
- * Base class for a standard admin edit page.
- * This class is intended to be a convenience class. For a fully custom page
- * inherit from AdminPage directly instead.
+ * Generic admin edit page
+ *
+ * This class is intended to be a convenience base class. For a fully custom 
+ * edit page, inherit directly from AdminPage instead.
+ *
+ * @package Admin
+ * @copyright silverorange 2004
  */
 abstract class AdminEdit extends AdminPage {
 
@@ -49,21 +50,25 @@ abstract class AdminEdit extends AdminPage {
 	}
 
 	/**
-	 * Save the data.
+	 * Save the data
+	 *
 	 * This method is called to save data from the widgets after processing.
 	 * Sub-classes should implement this method and perform whatever actions
 	 * are necessary to store the data. Widgets can be accessed through the
 	 * $ui class variable.
+	 *
 	 * @param integer $id An integer identifier of the data to store.
 	 */
 	abstract protected function saveData($id);
 
 	/**
-	 * Load the data.
+	 * Load the data
+	 *
 	 * This method is called to load data to be edited into the widgets.
 	 * Sub-classes should implement this method and perform whatever actions
 	 * are necessary to obtain the data. Widgets can be accessed through the
 	 * $ui class variable.
+	 *
 	 * @param integer $id An integer identifier of the data to retrieve.
 	 */
 	abstract protected function loadData($id);

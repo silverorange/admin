@@ -1,12 +1,14 @@
 <?php
-/**
- * @package Admin
- * @copyright silverorange 2004
- */
+
 require_once('Swat/SwatTableStore.php');
 
 /**
- * Subclass of SwatTableStore that can be used as an MDB2 results wrappper.
+ * AdminTableStore
+ *
+ * A subclass of SwatTableStore that can be used as an MDB2 results wrappper.
+ *
+ * @package Admin
+ * @copyright silverorange 2004
  */
 class AdminTableStore extends SwatTableStore {
 
