@@ -40,6 +40,9 @@ class AdminApplication extends SwatApplication {
 	function init() {
 		$this->initDatabase();
 		$this->initSession();
+
+		$this->uri = implode('/', array_slice(explode('/', $_SERVER['REQUEST_URI']), 0, 5)).'/';
+		$this->basehref = 'http://'.$_SERVER['SERVER_NAME'].$this->uri;
 	}
 
 	/**
@@ -69,7 +72,7 @@ class AdminApplication extends SwatApplication {
 			$subcomponent = 'Index';
 		}
 
-		echo "$component/$subcomponent<br>";
+		//echo "$component/$subcomponent<br>";
 		//if ($component == 'login')
 		//	$class = 'Admin/Login/Index';
 
