@@ -1,12 +1,11 @@
 <?php
 
-require_once("Admin/AdminPage.php");
-require_once('Swat/SwatLayout.php');
+require_once('Admin/AdminPage.php');
 
 class AdminLogout extends AdminPage {
 
 	public function init() {
-
+		$this->layout = 'login';
 	}
 
 	public function display() {
@@ -18,9 +17,6 @@ class AdminLogout extends AdminPage {
 		$this->app->relocate($this->app->basehref);
 	}
 
-	public function getLayout() {
-		return 'login';
-	}
 }
 
 ?>

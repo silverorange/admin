@@ -1,6 +1,6 @@
 <?php
 
-require_once("Admin/AdminPage.php");
+require_once('Admin/AdminPage.php');
 
 class AdminNotFound extends AdminPage {
 
