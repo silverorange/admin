@@ -1,20 +1,21 @@
 <?php
 
 require_once("Admin/AdminPage.php");
-require_once('Swat/SwatLayout.php');
+require_once('Admin/AdminUI.php');
 require_once("MDB2.php");
 
 class AdminSectionsEdit extends AdminPage {
 
-	private $layout;
+	private $ui;
 
 	public function init() {
-		$this->layout = new SwatLayout('Admin/AdminSections/edit.xml');
+		$this->ui = new AdminUI();
+		$this->ui->loadFromXML('Admin/AdminSections/edit.xml');
 	}
 
 	public function display() {
 		$id = intval(SwatApplication::initVar('id'));
-		$btn_submit = $this->layout->getWidget('btn_submit');
+		$btn_submit = $this->ui->getWidget('btn_submit');
 
 		if ($id == 0) {
 			$btn_submit->setTitleFromStock('create');
@@ -23,16 +24,16 @@ class AdminSectionsEdit extends AdminPage {
 			$btn_submit->setTitleFromStock('apply');
 		}
 
-		$form = $this->layout->getWidget('editform');
+		$form = $this->ui->getWidget('editform');
 		$form->action = $this->source;
 		$form->addHiddenField('id', $id);
 
-		$root = $this->layout->getRoot();
+		$root = $this->ui->getRoot();
 		$root->display();
 	}
 
 	public function process() {
-		$form = $this->layout->getWidget('editform');
+		$form = $this->ui->getWidget('editform');
 		$id = intval(SwatApplication::initVar('id'));
 
 		if ($form->process()) {
@@ -57,9 +58,9 @@ class AdminSectionsEdit extends AdminPage {
 				WHERE sectionid = %s';
 
 		$sql = sprintf($sql,
-			$db->quote($this->layout->getWidget('title')->value, 'text'),
-			$db->quote($this->layout->getWidget('hidden')->value, 'boolean'),
-			$db->quote($this->layout->getWidget('description')->value, 'text'),
+			$db->quote($this->ui->getWidget('title')->value, 'text'),
+			$db->quote($this->ui->getWidget('hidden')->value, 'boolean'),
+			$db->quote($this->ui->getWidget('description')->value, 'text'),
 			$db->quote($id, 'integer'));
 
 		$db->query($sql);
@@ -75,9 +76,9 @@ class AdminSectionsEdit extends AdminPage {
 		$rs = $this->app->db->query($sql, array('text', 'boolean', 'text'));
 		$row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT);
 
-		$this->layout->getWidget('title')->value = $row->title;
-		$this->layout->getWidget('hidden')->value = $row->hidden;
-		$this->layout->getWidget('description')->value = $row->description;
+		$this->ui->getWidget('title')->value = $row->title;
+		$this->ui->getWidget('hidden')->value = $row->hidden;
+		$this->ui->getWidget('description')->value = $row->description;
 	}
 }
 ?>
