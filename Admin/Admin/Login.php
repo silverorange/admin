@@ -37,6 +37,8 @@ class AdminLogin extends AdminPage {
 		
 		$root = $this->ui->getRoot();
 		$root->display();
+
+		$this->displayJavascript();
 	}
 
 	public function process() {
@@ -58,6 +60,17 @@ class AdminLogin extends AdminPage {
 		}
 	}
 
+	private function displayJavascript() {
+		if (isset($_COOKIE[$this->app->name.'_username']))
+			$username = $_COOKIE[$this->app->name.'_username'];
+		else
+			$username = '';
+		
+		echo '<script type="text/javascript">';
+		require_once('Admin/javascript/admin-login.js');
+		echo "\n adminLogin('username', 'password', '{$username}');";
+		echo '</script>';
+	}
 }
 
 ?>
