@@ -1,8 +1,8 @@
 <?xml version='1.0' standalone='yes'?>
-<SwatLayout>
+<SwatUI>
 	<SwatFrame title="Sections">
 		<SwatForm name="indexform">
-			<SwatTableView name="view">
+			<AdminTableView name="view">
 
 				<SwatTableViewColumn name="controls">
 					<SwatCellRendererControl src="admin/images/b_details.png" height="int:22" width="int:28" title="View Details" alt="Details" href="AdminSections/Details?id=%s" value="data:sectionid" />
@@ -27,7 +27,25 @@
 					<SwatCellRendererCheck value="data:hidden" />
 				</SwatTableViewColumn>
 
-			</SwatTableView>
+			</AdminTableView>
+			<AdminActions name="actions">
+
+				<AdminActionItem name="defibulate" title="defibulate">
+					<SwatEntry name="title" />
+				</AdminActionItem>
+
+				<AdminActionItem name="show" title="show" />
+				<AdminActionItem name="hide" title="hide" />
+
+				<AdminActionItem name="setdate" title="set date">
+					<SwatDate name="date" />
+				</AdminActionItem>
+
+				<AdminActionItem name="setcolor" title="set color">
+					<SwatFlydown name="color" />
+				</AdminActionItem>
+
+			</AdminActions>
 		</SwatForm>
 	</SwatFrame>
-</SwatLayout>
+</SwatUI>

@@ -1,5 +1,5 @@
 <?xml version='1.0' standalone='yes'?>
-<SwatLayout>
+<SwatUI>
 	<SwatFrame title="Sections Edit">
 		<SwatForm name="editform">
 			<SwatFormField title="Title">
@@ -20,4 +20,4 @@
 
 		</SwatForm>
 	</SwatFrame>
-</SwatLayout>
+</SwatUI>

@@ -1,17 +1,21 @@
 <?php
 
+require_once('Admin/AdminUI.php');
 require_once("Admin/AdminPage.php");
 require_once('Admin/AdminTableStore.php');
 require_once('Admin/AdminTableViewRowCheckAll.php');
-require_once('Swat/SwatLayout.php');
 require_once("MDB2.php");
 
 class AdminSectionsIndex extends AdminPage {
 
-	private $layout;
+	private $ui;
 
 	public function init() {
-		$this->layout = new SwatLayout('Admin/AdminSections/index.xml');
+		$this->ui = new AdminUI();
+		$this->ui->loadFromXML('Admin/AdminSections/index.xml');
+
+		$colorfly = $this->ui->getWidget('color');
+		$colorfly->options = array(0 => _('red'), 1 => _('yellow'), 2 => _('blue'));
 	}
 
 	public function display() {
@@ -22,20 +26,28 @@ class AdminSectionsIndex extends AdminPage {
 		$types = array('integer', 'text', 'boolean');
 		$store = $this->app->db->query($sql, $types, true, 'AdminTableStore');
 
-		$view = $this->layout->getWidget('view');
+		$view = $this->ui->getWidget('view');
 		$view->model = $store;
 		$view->appendRow(new AdminTableViewRowCheckAll());
 
-		$form = $this->layout->getWidget('indexform');
+		$form = $this->ui->getWidget('indexform');
 		$form->action = $this->source;
 
-		$root = $this->layout->getRoot();
-		$root->display();
+		$root = $this->ui->getRoot();
+		$root->displayTidy();
 	}
 
 	public function process() {
-		$form = $this->layout->getWidget('indexform');
-		$form->process();
+		$form = $this->ui->getWidget('indexform');
+
+		if ($form->process()) {
+
+			$actions = $this->ui->getWidget('actions');
+			echo 'action = ', $actions->selected->name, '<br />';
+
+			if ($actions->selected->widget != null)
+				echo 'value = ', $actions->selected->widget->value;
+		}
 	}
 }
 
