@@ -58,7 +58,7 @@ class AdminApplication extends SwatApplication {
 		else
 			$source = 'front';
 
-		//$this->queryForPage($source);
+		$this->queryForPage($source);
 
 		/*
 		if (!$this->isLoggedIn()) {
@@ -85,38 +85,42 @@ class AdminApplication extends SwatApplication {
 	}
 
 	private function queryForPage($source) {
-		$sql = <<<SQL
-			SELECT adminarticles.*,
+		$source_exp = explode('/', $source);
+		$shortname = $this->db->quote($source_exp[0], 'text');
+
+		$sql = "SELECT admincomponents.title, admincomponents.shortname,
 				adminsections.title AS section_title
 			FROM adminarticles
-				INNER JOIN adminsections ON section = sectionid
-			WHERE adminarticles.hidden = 0
-				AND shortname = '$source'
-				AND articleID IN (
-					SELECT article
-					FROM adminarticle_admingroup
+				INNER JOIN adminsections ON admincomponents.section = adminsections.sectionid
+			WHERE adminarticles.hidden = ".$this->db->quote(0,'bit')."
+				AND admincomponents.shortname = {$shortname}
+				AND componentid IN (
+					SELECT componenet
+					FROM admincomponent_admingroup
 					INNER JOIN adminuser_admingroup
-						ON adminarticle_admingroup.groupnum = adminuser_admingroup.groupnum
+						ON admincomponent_admingroup.groupnum = adminuser_admingroup.groupnum
 					WHERE adminuser_admingroup.usernum = {$_SESSION['userID']}
-				)
-SQL;
-
+				)";
+		//echo $sql;
+		return;
+		
 		$result = $this->db->query($sql);
+		print_r($result);
+		return;
 
 		if ($result->size() == 0) {
-			$sql = <<<SQL
+			$sql = "
 				SELECT adminarticles.*, adminsections.title AS section_title
 				FROM adminarticles
 				INNER JOIN adminsections ON section = sectionID
-				WHERE shortname = '$source_exp[0]'
+				WHERE shortname = '{$shortname}'
 					AND articleID IN (
 						SELECT article
 						FROM adminarticle_admingroup
 						INNER JOIN adminuser_admingroup 
 							ON adminarticle_admingroup.groupnum = adminuser_admingroup.groupnum
 						WHERE adminuser_admingroup.usernum = {$_SESSION['userID']}
-					)
-SQL;
+					)";
 			$result = $this->db->query($sql);
 
 			if ($result->numrows() == 0)
