@@ -5,8 +5,8 @@
 			<SwatTableView name="view">
 
 				<SwatTableViewColumn name="controls">
-					<SwatCellRendererControl src="admin/images/b_details.png" height="int:22" width="int:28" title="View Details" alt="Details" href="SwatSections/Details?id=%s" value="data:sectionid" />
-					<SwatCellRendererControl src="admin/images/b_edit.png" height="int:22" width="int:28" title="Edit" alt="Edit" href="SwatSections/Edit?id=%s" value="data:sectionid" />
+					<SwatCellRendererControl src="admin/images/b_details.png" height="int:22" width="int:28" title="View Details" alt="Details" href=i"AdminSections/Details?id=%s" value="data:sectionid" />
+					<SwatCellRendererControl src="admin/images/b_edit.png" height="int:22" width="int:28" title="Edit" alt="Edit" href="AdminSections/Edit?id=%s" value="data:sectionid" />
 				</SwatTableViewColumn>
 
 				<SwatTableViewColumn name="checkbox">
