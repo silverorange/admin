@@ -6,12 +6,16 @@
 				<SwatEntry name="title" required="bool:true" />
 			</SwatFormField>
 			
-			<SwatFormField title="Shortname">
-				<SwatEntry name="shortname" required="bool:true" />
+			<SwatFormField title="Hidden?">
+				<SwatCheckbox name="hidden" />
+			</SwatFormField>
+
+			<SwatFormField title="Description">
+				<SwatTextarea name="description" />
 			</SwatFormField>
 
 			<SwatFormField class="swat-form-footer">
-				<SwatButton name="btn_create" title="Create" />
+				<SwatButton name="btn_submit" />
 			</SwatFormField>
 
 		</SwatForm>
