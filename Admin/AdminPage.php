@@ -37,6 +37,8 @@ abstract class AdminPage extends SwatPage {
 	 * @var SwatNavBar
 	 */
 	public $navbar;
+
+	protected $ui = null;
 	 
 	public function __construct() {
 		parent::__construct();
@@ -71,8 +73,10 @@ abstract class AdminPage extends SwatPage {
 	 * the page. Called after {@link AdminPage::init()}
 	 */
 	public function display() {
-		$root = $this->ui->getRoot();
-		$root->display();
+		if ($this->ui !== null) {
+			$root = $this->ui->getRoot();
+			$root->display();
+		}
 	}
 	
 	/**

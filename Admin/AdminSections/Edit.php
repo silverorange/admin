@@ -11,8 +11,6 @@ require_once("MDB2.php");
  */
 class AdminSectionsEdit extends AdminPage {
 
-	private $ui;
-
 	public function init() {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminSections/edit.xml');

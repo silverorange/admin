@@ -12,8 +12,6 @@ require_once('Swat/SwatMessage.php');
  */
 class AdminLogin extends AdminPage {
 
-	private $ui;
-
 	public function init() {
 		$this->layout = 'login';
 

@@ -18,8 +18,6 @@ class AdminSectionsDelete extends AdminPage {
 	 */
 	public $items = null;
 
-	private $ui;
-
 	public function init() {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/confirmation.xml');
