@@ -143,13 +143,17 @@ class AdminDB {
 class AdminDBField {
 
 	/**
-	 * @var string The name of the database field.
+	 * The name of the database field
+	 * @var string
 	 */
 	public $name;
 
 	/**
-	 * @var string The type of the database field. Any standard MDB2 datatype
-	 *      is valid here.
+	 * The type of the database field
+	 *
+	 * Any standard MDB2 datatype is valid here.
+	 *
+	 * @var string
 	 */
 	public $type;
 
