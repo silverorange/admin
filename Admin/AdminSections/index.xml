@@ -1,6 +1,6 @@
 <?xml version='1.0' standalone='yes'?>
 <SwatLayout>
-	<SwatFrame name="frame" title="Sections">
+	<SwatFrame title="Sections">
 		<SwatForm name="indexform">
 			<SwatTableView name="view">
 

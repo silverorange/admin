@@ -1,6 +1,6 @@
 <?xml version='1.0' standalone='yes'?>
 <SwatLayout>
-	<SwatFrame name="frame" title="Sections Edit">
+	<SwatFrame title="Sections Edit">
 		<SwatForm name="editform">
 			<SwatFormField title="Title">
 				<SwatEntry name="title" required="bool:true" />
