@@ -27,9 +27,9 @@ abstract class AdminPage extends SwatPage {
 		 */
 		echo '<h1>Example Admin</h1>';
 		echo '<div id="admin-syslinks">';
-		echo 'Welcome <a href="#">Buckminster Fuller</a> &nbsp;|&nbsp;';
-		echo '<a href="#">Customize</a> &nbsp;|&nbsp;';
-		echo '<a href="#"><strong>Logout</strong></a>';
+		echo 'Welcome <a href="Admin/Profile">Buckminster Fuller</a> &nbsp;|&nbsp;';
+		echo '<a href="Admin/Profile">Customize</a> &nbsp;|&nbsp;';
+		echo '<a href="Admin/Logout"><strong>Logout</strong></a>';
 		echo '</div>';
 	}
 
