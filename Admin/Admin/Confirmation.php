@@ -17,7 +17,7 @@ abstract class AdminConfirmation extends AdminPage {
 
 	public function init() {
 		$this->ui = new AdminUI();
-		$this->ui->loadFromXML('Admin/confirmation.xml');
+		$this->ui->loadFromXML('Admin/Admin/confirmation.xml');
 	}
 
 	public function display() {
