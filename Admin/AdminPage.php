@@ -20,20 +20,28 @@ abstract class AdminPage extends SwatPage {
 	}
 
 	public function displayMenu($app) {
-		$sql="SELECT adminarticles.shortname, adminarticles.title, adminarticles.section, adminsections.title AS sectiontitle
+		$sql="SELECT adminarticles.shortname, adminarticles.title,
+					adminarticles.section, adminsections.title AS sectiontitle
 				FROM adminarticles 
-					INNER JOIN adminsections ON adminarticles.section = adminsections.sectionid
-				WHERE adminsections.hidden='0' AND adminarticles.hidden='0' 
-					/*
-					AND adminarticles.articleid IN (
-							SELECT article
-							FROM adminarticle_admingroup
-							INNER JOIN adminuser_admingroup ON adminarticle_admingroup.groupnum = adminuser_admingroup.groupnum
-							WHERE adminuser_admingroup.usernum = ".$_SESSION['userID']."
-						)
-					*/
-				ORDER BY adminsections.displayorder,adminsections.title,adminarticles.section, adminarticles.displayorder, adminarticles.title";
-		$types = array('text', 'text', 'integer', 'boolean','text');
+				INNER JOIN adminsections ON
+					adminarticles.section = adminsections.sectionid
+				WHERE adminsections.hidden='0' --$app->db->quote(0,'bit')
+				
+				AND adminarticles.hidden='0' --$app->db->quote(0,'bit')
+				/*
+				AND adminarticles.articleid IN (
+					SELECT article
+					FROM adminarticle_admingroup
+					INNER JOIN adminuser_admingroup ON
+						adminarticle_admingroup.groupnum = adminuser_admingroup.groupnum
+					WHERE adminuser_admingroup.usernum = ".$_SESSION['userID']."
+				)
+				*/
+				ORDER BY adminsections.displayorder, adminsections.title,
+				adminarticles.section, adminarticles.displayorder,
+				adminarticles.title";
+		
+		$types = array('text', 'text', 'integer','text');
 		$result = $app->db->query($sql, $types);
 		
 		if (MDB2::isError($result)) 
@@ -42,15 +50,15 @@ abstract class AdminPage extends SwatPage {
 		$section_out=0;
 		$currentrow=0;			
 		
-		while ($row = $result->fetchRow(MDB2_FETCHMODE_OBJECT)) {
 		
+		while ($row = $result->fetchRow(MDB2_FETCHMODE_OBJECT)) {
 			$currentrow++;
 			if ($row->section != $section_out) {
 				if ($currentrow!=1) echo "</table></DIV>";
 				?>
 				<div ID="el<?=$currentrow?>Parent" class="parent"><table border="0" cellpadding="0" cellspacing="0"><tr><td valign="top"><a href="#" onClick="expandIt('el<?=$currentrow?>'); return false;"><img name="imEx" src="images/m_open.gif" border="0" alt="Expand/Collapse Item" height="20" width="20"></a></td>
 				<td class="titles"><img src="images/block.gif" height="8" width="1"><br><b><a href="sub.php?section=<?=$row->section?>" class="sectionlinks"><?=$row->sectiontitle?></a></b></td></tr></table></DIV>
-				<div ID="el<?=$currentrow?>Child" class="child">
+				<div ID="el<?=$currentrow?>Child" class="child"
 				<table border="0" cellpadding="1" cellspacing="1">
 				<tr><td colspan="2"><img src="images/block.gif" height="1" width="1"></td></tr>
 				<?
