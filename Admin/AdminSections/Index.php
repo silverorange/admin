@@ -25,7 +25,7 @@ class AdminSectionsIndex extends AdminPage {
 	public function display() {
 		if ($this->confirmation != null) {
 			$root = $this->confirmation->getRoot();
-			$root->displayTidy();
+			$root->display();
 			return;
 		}
 
@@ -36,7 +36,7 @@ class AdminSectionsIndex extends AdminPage {
 		$form->action = $this->source;
 
 		$root = $this->ui->getRoot();
-		$root->displayTidy();
+		$root->display();
 	}
 
 	private function getTableStore() {
