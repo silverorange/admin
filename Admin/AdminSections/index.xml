@@ -1,0 +1,15 @@
+<?xml version='1.0' standalone='yes'?>
+<SwatLayout>
+	<SwatFrame name="frame" title="Sections">
+		<SwatTableView name="view">
+			<SwatTableViewColumn name="title" title="Title">
+				<SwatCellRendererLink text="data:title" href="?source=AdminSections/Edit&amp;amp;id=%s" href_value="data:sectionid" />
+			</SwatTableViewColumn>
+
+			<SwatTableViewColumn name="hidden" title="Hidden">
+				<SwatCellRendererCheck value="data:hidden" />
+			</SwatTableViewColumn>
+
+		</SwatTableView>
+	</SwatFrame>
+</SwatLayout>
