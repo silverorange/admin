@@ -8,17 +8,39 @@ require_once("MDB2.php");
 require_once('AdminPage.php');
 
 class AdminApplication extends SwatApplication {
-
+	
+	/**
+	 * The database object.
+	 * @var MDB2 connection object
+	 */
 	public $db = null;
+	
+	/**
+	 * The name of the application
+	 * @var string
+	 */
 	public $name;
+	
+	/**
+	 * The name of the database to connect to.
+	 * @var string
+	 */
+	public $dbname;
 
 	function __construct($name) {
 		$this->name = $name;
-		$this->initDatabase();
-		$this->initSession();
-
+		
 	}
 
+	/**
+	 * Initialize the application.
+	 * Initalize the database connection to the database named in $dbname, and
+	 * the sessions for the application.
+	 */
+	function init() {
+		$this->initDatabase();
+		$this->initSession();
+	}
 
 	/**
 	 * Get the page object.
@@ -101,7 +123,7 @@ SQL;
 
 	private function initDatabase() {
 		// TODO: change to array form of DSN and move parts to a secure include file.
-		$dsn = "pgsql://php:test@zest/silverorange2";
+		$dsn = "pgsql://php:test@zest/".$this->dbname;
 		$this->db = MDB2::connect($dsn);
 
 		if (MDB2::isError($this->db))
