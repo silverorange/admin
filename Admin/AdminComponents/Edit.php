@@ -22,6 +22,10 @@ class AdminComponentsEdit extends AdminEdit {
 		$sectionfly->options = AdminDB::getOptionArray($this->app->db, 
 			'adminsections', 'title', 'sectionid', 'displayorder');
 
+		$grouplist = $this->ui->getWidget('groups');
+		$grouplist->options = AdminDB::getOptionArray($this->app->db, 
+			'admingroups', 'title', 'groupid', 'title');
+
 		$this->fields = array('title', 'shortname', 'integer:section', 
 			'boolean:hidden', 'description');
 	}
@@ -31,13 +35,23 @@ class AdminComponentsEdit extends AdminEdit {
 		$values = $this->ui->getValues(array('title', 'shortname', 'section', 
 			'hidden', 'description'));
 
+		$this->app->db->beginTransaction();
+
 		if ($id == 0)
-			AdminDB::rowInsert($this->app->db, 'admincomponents', $this->fields,
-				$values);
+			$id = AdminDB::rowInsert($this->app->db, 'admincomponents', $this->fields,
+				$values, 'integer:componentid');
 		else
 			AdminDB::rowUpdate($this->app->db, 'admincomponents', $this->fields,
 				$values, 'integer:componentid', $id);
 
+		$grouplist = $this->ui->getWidget('groups');
+
+		AdminDB::bindingUpdate($this->app->db, 'admincomponent_admingroup', 
+			'component', $id, 'groupnum', $grouplist->values, 'admingroups', 'groupid');
+		
+		//bindingUpdate($db, $table, $id_field, $id, $value_field, $values, $other_table, $other_field);
+
+		$this->app->db->commit();
 	}
 
 	protected function loadData($id) {
@@ -46,6 +60,10 @@ class AdminComponentsEdit extends AdminEdit {
 			$this->fields, 'integer:componentid', $id);
 
 		$this->ui->setValues(get_object_vars($row));
+
+		$grouplist = $this->ui->getWidget('groups');
+		$grouplist->values = AdminDB::bindingQuery($this->app->db, 
+			'admincomponent_admingroup', 'component', $id, 'groupnum');
 	}
 }
 ?>

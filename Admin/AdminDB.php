@@ -50,7 +50,7 @@ class AdminDB {
 		$field = new AdminDBField($field, 'integer');
 		$id_field = new AdminDBField($id_field, 'integer');
 
-		$sql = 'UPDATE %s SET %s = %s WHERE %s IN (%s)';
+		$sql = 'update %s set %s = %s where %s in (%s)';
 
 		foreach ($ids as &$id)
 			$id = $db->quote($id, $id_field->type);
@@ -66,6 +66,115 @@ class AdminDB {
 
 		$db->query($sql);
 	}
+
+	/**
+	 * Update a binding table
+	 *
+ 	 * Convenience method to update rows in a binding table. It will delete 
+	 * and insert rows as necessary.
+	 *
+	 * @param MDB2_Driver_Common $db The database connection.
+	 *
+	 * @param string $table The binding table to update.
+	 *
+	 * @param string $id_field The name of the binding table field that contains 
+	 *        the fixed value.  Can be given in the form type:name where type is 
+	 *        a standard MDB2 datatype. If type is ommitted, then integer is 
+	 *        assummed for this field.
+	 *
+	 * @param mixed $id The value to store in the $id_field. The type should 
+	 *        correspond to the type of $id_field.
+	 *
+	 * @param string $value_field The name of the binding table field that contains 
+	 *        the values from the bound table.  Can be given in the form type:name 
+	 *        where type is a standard MDB2 datatype. If type is ommitted, then 
+	 *        integer is assummed for this field.
+	 *
+	 * @param array $values An array of values that should be stored in the 
+	 *        $value_field. The type of the individual values should 
+	 *        correspond to the type of $value_field.
+	 *
+	 * @param string $table The table bound through the binding table.
+	 *
+	 * @param string $id_field The database field in the bound table that the 
+	 *        binding table references.
+	 */
+	public static function bindingUpdate($db, $table, $id_field, $id, $value_field, 
+		$values, $bound_table, $bound_field) {
+
+		$id_field = new AdminDBField($id_field, 'integer');
+		$value_field = new AdminDBField($value_field, 'integer');
+		$bound_field = new AdminDBField($bound_field, 'integer');
+
+		$delete_sql = 'delete from %s where %s = %s';
+
+		$delete_sql = sprintf($delete_sql, 
+			$table,
+			$id_field->name,
+			$db->quote($id, $id_field->type));
+
+		if (count($values)) {
+
+			foreach ($values as &$value)
+				$value = $db->quote($value, $value_field->type);
+
+			$value_list = implode(',', $values);
+
+			$insert_sql = 'insert into %s (%s, %s) select %s, %s from %s '.
+				'where %s not in (select %s from %s where %s = %s) and %s in (%s)';
+
+			$insert_sql = sprintf($insert_sql, 
+				$table,
+				$id_field->name,
+				$value_field->name,
+				$db->quote($id, $id_field->type),
+				$bound_field->name,
+				$bound_table,
+				$bound_field->name,
+				$value_field->name,
+				$table,
+				$id_field->name,
+				$db->quote($id, $id_field->type),
+				$bound_field->name,
+				$value_list);
+
+			$delete_sql .= sprintf(' and %s not in (%s)',
+				$value_field->name,
+				$value_list);
+		}
+
+		$db->beginTransaction();
+
+		if (count($values))
+			$db->query($insert_sql);
+
+		$db->query($delete_sql);
+		$db->commit();
+
+	}
+
+	public static function bindingQuery($db, $table, $id_field, $id, $value_field) {
+		$id_field = new AdminDBField($id_field, 'integer');
+		$value_field = new AdminDBField($value_field, 'integer');
+
+		$sql = 'select %s from %s where %s = %s';
+		$sql = sprintf($sql, $value_field->name, $table, $id_field->name, $id);
+
+		$rs = $db->query($sql, array($value_field->type));
+
+		if (MDB2::isError($rs))
+			throw new Exception($rs->getMessage());
+
+		$values = array();
+
+		while ($row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT)) {
+			$value_field_name = $value_field->name;
+			$values[] = $row->$value_field_name;
+		}
+
+		return $values;
+	}
+
 
 	/**
 	 * Query for an option array
@@ -418,6 +527,7 @@ class AdminDB {
 			$field->name, $field->name, $table);
 
 		$rs = $db->query($sql, array($field->type));
+		
 		$row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT);
 		$field_name = $field->name;
 		return $row->$field_name;
