@@ -1,0 +1,19 @@
+<?xml version='1.0' standalone='yes'?>
+<SwatLayout>
+	<SwatFrame name="frame" title="Login">
+		<SwatForm name="loginform">
+			<SwatFormField title="Username">
+				<SwatEntry name="username" required="bool:true" />
+			</SwatFormField>
+			
+			<SwatFormField title="Password">
+				<SwatEntry name="password" required="bool:true" />
+			</SwatFormField>
+
+			<SwatFormField class="swat-form-footer">
+				<SwatButton name="btn_login" title="Login &#187;" />
+			</SwatFormField>
+
+		</SwatForm>
+	</SwatFrame>
+</SwatLayout>

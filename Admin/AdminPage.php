@@ -20,12 +20,16 @@ abstract class AdminPage extends SwatPage {
 
 	}
 
+	public function getLayout() {
+		return 'default';
+	}
+
 	public function displayHeader($app) {
 		/**
 		 * TODO: pull in the real admin title, admin user name,
 		 * and make these links work
 		 */
-		echo '<h1>Example Admin</h1>';
+		echo '<h1>', $app->title, '</h1>';
 		echo '<div id="admin-syslinks">';
 		echo 'Welcome <a href="Admin/Profile">Buckminster Fuller</a> &nbsp;|&nbsp;';
 		echo '<a href="Admin/Profile">Customize</a> &nbsp;|&nbsp;';
