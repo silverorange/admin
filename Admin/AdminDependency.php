@@ -85,10 +85,10 @@ class AdminDependency {
 	 */
 	public function getMessage() {
 
-		if ($this->entries == null)
+		if ($this->entries === null)
 			return '';
 
-		if ($this->status_levels == null) {
+		if ($this->status_levels === null) {
 			$this->status_levels = array();
 			$this->status_levels[AdminDependency::DELETE] = _S("The following %s(s) will be deleted:");
 			$this->status_levels[AdminDependency::NODELETE] = _S("The following %s(s) can not be deleted:");
@@ -124,10 +124,10 @@ class AdminDependency {
 		$ret = 0;
 		
 		foreach ($this->entries as $entry) {
-			if ($entry->status_level == null);
+			if ($entry->status_level === null);
 				$entry->status_level = $this->status_level;
 
-			if ($parent == null || $entry->parent == $parent) {
+			if ($parent === null || $entry->parent == $parent) {
 				foreach ($this->dependencies as $dep) {
 					$entry->status_level = 
 						max($entry->status_level, $dep->processDependencies($entry->id));
@@ -194,7 +194,7 @@ class AdminDependency {
 				if ($first) {
 					echo '<br />';
 					
-					if ($this->title != null)
+					if ($this->title !== null)
 						printf(_S("Dependent %s(s):"), $this->title);
 					else
 						echo _S("Dependent items(s):");
@@ -226,7 +226,7 @@ class AdminDependency {
 		
 		if ($count != 0) {
 			echo '<ul><li>';
-			if ($this->title != null)
+			if ($this->title !== null)
 				printf(_S("%d Dependent %s(s)"), $count, $this->title);
 			else
 				printf(_S("%d Dependent item(s)"), $count);
@@ -298,18 +298,18 @@ class AdminDependency {
 		$entries = array();
 		$items = SwatDB::getOptionArray($db, $table, $title_field, $id_field, $order_by_clause, $where_clause);
 
-		if ($parent_field == null)
+		if ($parent_field === null)
 			$parents = null;
 		else
 			$parents = SwatDB::getOptionArray($db, $table, $parent_field, $id_field, $order_by_clause, $where_clause);
 		
 		foreach ($items as $id => $title) {
-			if ($parents == null || array_key_exists($id, $parents)) {
+			if ($parents === null || array_key_exists($id, $parents)) {
 				
 				$entry = new AdminDependencyEntry();
 				$entry->id = $id;
 				$entry->title = $title;
-				$entry->parent = ($parents == null) ? null : $parents[$id];
+				$entry->parent = ($parents === null) ? null : $parents[$id];
 				
 				$entries[] = $entry;
 				

@@ -59,7 +59,7 @@ class AdminUI extends SwatUI {
 		foreach ($values as $name => $value) {
 			$widget = $this->getWidget($name, true);
 
-			if ($widget != null)
+			if ($widget !== null)
 				$widget->value = $values[$name];
 		}
 	}
