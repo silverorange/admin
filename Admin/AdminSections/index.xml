@@ -1,25 +1,27 @@
 <?xml version='1.0' standalone='yes'?>
 <SwatLayout>
 	<SwatFrame name="frame" title="Sections">
-		<SwatTableView name="view">
+		<SwatForm name="indexform">
+			<SwatTableView name="view" show_check_all="bool:true">
 
-			<SwatTableViewColumn name="controls">
-				<SwatCellRendererControl src="XXX" alt="Details" href="AdminSections/Details?id=%s" id="data:sectionid" />
-				<SwatCellRendererControl src="XXX" alt="Edit" href="AdminSections/Edit?id=%s" id="data:sectionid" />
-			</SwatTableViewColumn>
+				<SwatTableViewColumn name="controls">
+					<SwatCellRendererControl src="XXX" alt="Details" href="AdminSections/Details?id=%s" id="data:sectionid" />
+					<SwatCellRendererControl src="XXX" alt="Edit" href="AdminSections/Edit?id=%s" id="data:sectionid" />
+				</SwatTableViewColumn>
 
-			<SwatTableViewColumn name="checkbox">
-				<SwatCellRendererCheckbox name="items[]" id="data:sectionid" />
-			</SwatTableViewColumn>
+				<SwatTableViewColumn name="checkbox">
+					<SwatCellRendererCheckbox name="items[]" id="data:sectionid" />
+				</SwatTableViewColumn>
 
-			<SwatTableViewColumn name="title" title="Title">
-				<SwatCellRendererLink text="data:title" href="AdminSections/Edit?id=%s" href_value="data:sectionid" />
-			</SwatTableViewColumn>
+				<SwatTableViewColumn name="title" title="Title">
+					<SwatCellRendererLink text="data:title" href="AdminSections/Edit?id=%s" href_value="data:sectionid" />
+				</SwatTableViewColumn>
 
-			<SwatTableViewColumn name="hidden" title="Hidden">
-				<SwatCellRendererCheck value="data:hidden" />
-			</SwatTableViewColumn>
+				<SwatTableViewColumn name="hidden" title="Hidden">
+					<SwatCellRendererCheck value="data:hidden" />
+				</SwatTableViewColumn>
 
-		</SwatTableView>
+			</SwatTableView>
+		</SwatForm>
 	</SwatFrame>
 </SwatLayout>
