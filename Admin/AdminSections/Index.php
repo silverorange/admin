@@ -2,6 +2,7 @@
 
 require_once("Admin/AdminPage.php");
 require_once('Admin/AdminTableStore.php');
+require_once('Admin/AdminTableViewRowCheckAll.php');
 require_once('Swat/SwatLayout.php');
 require_once("MDB2.php");
 
@@ -23,6 +24,10 @@ class AdminSectionsIndex extends AdminPage {
 
 		$view = $this->layout->getWidget('view');
 		$view->model = $store;
+		$view->appendRow(new AdminTableViewRowCheckAll());
+
+		$form = $this->layout->getWidget('indexform');
+		$form->action = $this->source;
 
 		$root = $this->layout->getRoot();
 		$root->display();
