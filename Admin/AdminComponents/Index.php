@@ -44,6 +44,7 @@ class AdminComponentsIndex extends AdminIndex {
 	protected function processActions() {
 		$view = $this->ui->getWidget('view');
 		$actions = $this->ui->getWidget('actions');
+		$num = count($view->checked_items);
 
 		switch ($actions->selected->name) {
 			case 'delete':
@@ -56,12 +57,18 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:show', true, 'componentid', 
 					$view->checked_items);
 
+					$this->app->addMessage(sprintf(_nS('%d admin component has been shown.', 
+						'%d admin components have been shown.', $num), $num));
+
 				break;
 
 			case 'hide':
 				SwatDB::updateField($this->app->db, 'admincomponents', 
 					'boolean:show', false, 'componentid', 
 					$view->checked_items);
+
+					$this->app->addMessage(sprintf(_nS('%d admin component has been hidden.', 
+						'%d admin components have been hidden.', $num), $num));
 
 				break;
 
@@ -70,12 +77,18 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:enabled', true, 'componentid', 
 					$view->checked_items);
 
+					$this->app->addMessage(sprintf(_nS('%d admin component has been enabled.', 
+						'%d admin components have been enabled.', $num), $num));
+
 				break;
 
 			case 'disable':
 				SwatDB::updateField($this->app->db, 'admincomponents', 
 					'boolean:enabled', false, 'componentid', 
 					$view->checked_items);
+
+					$this->app->addMessage(sprintf(_nS('%d admin component has been disabled.', 
+						'%d admin components have been disabled.', $num), $num));
 
 				break;
 
@@ -85,6 +98,12 @@ class AdminComponentsIndex extends AdminIndex {
 				SwatDB::updateField($this->app->db, 'admincomponents', 
 					'integer:section', $new_section, 'componentid', 
 					$view->checked_items);
+
+				$title = current(SwatDB::queryField($this->app->db, 'adminsections', 'text:title',
+					'sectionid', $new_section));
+
+				$this->app->addMessage(sprintf(_nS('%d admin component has been moved to section "%s".', 
+					'%d admin components have been moved to section "%s".', $num), $num, $title));
 
 				break;
 		}
