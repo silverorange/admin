@@ -1,8 +1,8 @@
 <?php
 
 require_once("Admin/AdminPage.php");
+require_once('Admin/AdminTableStore.php');
 require_once('Swat/SwatLayout.php');
-require_once('Swat/SwatTableStore.php');
 require_once("MDB2.php");
 
 class AdminSectionsIndex extends AdminPage {
@@ -19,15 +19,7 @@ class AdminSectionsIndex extends AdminPage {
 				ORDER BY displayorder';
 
 		$types = array('integer', 'text', 'boolean');
-		$result = $this->app->db->query($sql, $types);
-
-		if (MDB2::isError($result)) 
-			throw new Exception($result->getMessage());
-
-		$store = new SwatTableStore();
-
-		while ($row = $result->fetchRow(MDB2_FETCHMODE_OBJECT))
-			$store->addRow($row, $row->sectionid);
+		$store = $this->app->db->query($sql, $types, true, 'AdminTableStore');
 
 		$view = $this->layout->getWidget('view');
 		$view->model = $store;
@@ -37,8 +29,8 @@ class AdminSectionsIndex extends AdminPage {
 	}
 
 	public function process() {
-		$root = $this->layout->getRoot();
-		$root->process();
+		$form = $this->layout->getWidget('indexform');
+		$form->process();
 	}
 }
 
