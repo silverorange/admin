@@ -138,7 +138,7 @@ class AdminApplication extends SwatApplication {
 		$rs = $this->db->query($sql, array('text', 'text'));
 		
 		if (MDB2::isError($rs))
-            throw new Exception($rs->getMessage());
+			throw new Exception($rs->getMessage());
 			
 		return $rs;
 
