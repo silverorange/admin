@@ -34,6 +34,9 @@ class AdminProfile extends AdminDBEdit {
 	}
 
 
+	protected function relocate() {
+		$this->app->relocate('');
+	}
 
 	protected function saveDBData($id) {
 		$name = $this->ui->getWidget('name');
