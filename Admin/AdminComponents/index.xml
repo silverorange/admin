@@ -22,23 +22,23 @@
 					<SwatCellRendererCheckbox name="items" value="data:componentid" />
 				</SwatTableViewColumn>
 
-				<SwatTableViewColumn name="title" title="Title">
+				<AdminTableViewOrderableColumn name="title" title="Title">
 					<SwatCellRendererLink href="AdminComponents/Details?id=%s" value="data:componentid">
 						data:title
 					</SwatCellRendererLink>
-				</SwatTableViewColumn>
+				</AdminTableViewOrderableColumn>
 
-				<SwatTableViewColumn name="shortname" title="Short Name">
+				<AdminTableViewOrderableColumn name="shortname" title="Short Name">
 					<SwatCellRendererText>data:shortname</SwatCellRendererText>
-				</SwatTableViewColumn>
+				</AdminTableViewOrderableColumn>
 
-				<SwatTableViewColumn name="show" title="Show in Menu">
+				<AdminTableViewOrderableColumn name="show" title="Show in Menu">
 					<SwatCellRendererCheck value="data:show" />
-				</SwatTableViewColumn>
+				</AdminTableViewOrderableColumn>
 
-				<SwatTableViewColumn name="enabled" title="Enabled">
+				<AdminTableViewOrderableColumn name="enabled" title="Enabled">
 					<SwatCellRendererCheck value="data:enabled" />
-				</SwatTableViewColumn>
+				</AdminTableViewOrderableColumn>
 
 			</SwatTableView>
 			<SwatActions name="actions">

@@ -35,9 +35,11 @@ class AdminSectionsIndex extends AdminPage {
 	}
 
 	private function getTableStore() {
-		$sql = 'SELECT sectionid, title, show 
-				FROM adminsections 
-				ORDER BY displayorder';
+		$view = $this->ui->getWidget('view');
+
+		$sql = 'select sectionid, title, show 
+				from adminsections 
+				order by displayorder';
 
 		$types = array('integer', 'text', 'boolean');
 		$store = $this->app->db->query($sql, $types, true, 'AdminTableStore');

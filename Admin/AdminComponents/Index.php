@@ -32,8 +32,12 @@ class AdminComponentsIndex extends AdminIndex {
 				from admincomponents 
 				inner join adminsections 
 					on adminsections.sectionid = admincomponents.section
-				order by adminsections.displayorder, adminsections.sectionid, 
-					admincomponents.displayorder';
+				order by adminsections.displayorder, adminsections.sectionid, %s';
+
+		$sql = sprintf($sql,
+			$this->getOrderByClause('admincomponents.displayorder, admincomponents.title', 'admincomponents'));
+
+		echo $sql;
 
 		$types = array('integer', 'text', 'text', 'integer', 'boolean', 'text');
 		$store = $this->app->db->query($sql, $types, true, 'AdminTableStore');
