@@ -50,7 +50,7 @@
 				<SwatActionItem name="disable" title="disable" />
 
 				<SwatActionItem name="changesection" title="change section...">
-					<SwatFlydown name="section" />
+					<SwatFlydown name="section" show_blank="bool:false" />
 				</SwatActionItem>
 
 			</SwatActions>
