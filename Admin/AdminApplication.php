@@ -10,50 +10,31 @@ require_once('AdminPage.php');
 class AdminApplication extends SwatApplication {
 	
 	/**
-	 * The database object.
-	 * @var MDB2 connection object
-	 */
-	public $db = null;
-	
-	/**
-	 * The name of the application
+	 * A visble title for this admin.
 	 * @var string
 	 */
-	public $name;
-	
+	public $title;
+
 	/**
-	 * The name of the database to connect to.
+	 * The name of the database to connect to.  Set this before calling
+	 * AdminApplication::init(), afterwords consider it readonly.
 	 * @var string
 	 */
 	public $dbname;
 
 	/**
-	 * The title used for display
-	 * @var $title
+	 * The database object.
+	 * @var MDB2 connection object (readonly)
 	 */
-	public $title;
-
-	function __construct($name) {
-		$this->name = $name;
-		
-	}
-
+	public $db = null;
+	
 	/**
 	 * Initialize the application.
-	 * Initalize the database connection to the database named in $dbname, and
-	 * the sessions for the application.
 	 */
-	function init() {
+	public function init() {
 		$this->initDatabase();
 		$this->initSession();
-
-		$this->uri = $_SERVER['REQUEST_URI'];
-		$uri_array = explode('/', $this->uri);
-		$this->baseuri = implode('/', array_slice($uri_array, 0, 5)).'/';
-
-		// TODO: Once we have a SITE_LIVE equivalent, we should use HTTP_HOST
-		//       on stage and SERVER_NAME on live.
-		$this->basehref = 'http://'.$_SERVER['HTTP_HOST'].$this->baseuri;
+		$this->initUriVars(4);
 	}
 
 	/**
@@ -126,6 +107,7 @@ class AdminApplication extends SwatApplication {
 	
 		$page = eval(sprintf("return new %s();", $classname));
 		$page->title = $title;
+		$page->source = $source;
 		$page->app = $this;
 
 		return $page;
