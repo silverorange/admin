@@ -19,7 +19,7 @@ class AdminApplication extends SwatApplication {
 	public $title;
 
 	/**
-	 * The name of the database
+	 * Name of the database
 	 *
 	 * This is the name of the database to connect to.  Set this before calling
 	 * {@link AdminApplication::init()}, afterwords consider it readonly.
