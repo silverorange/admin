@@ -84,6 +84,12 @@ a:active { color: #000; }
 	padding: 3px 3px 3px 2em;
 }
 
+#admin-menu ul ul ul a {
+	padding-left: 2.5em;
+	font-weight: bold;
+	font-size: 85%;
+}
+
 #admin-menu ul {
 	margin: 0;
 	padding: 0;
@@ -93,11 +99,6 @@ a:active { color: #000; }
 #admin-menu ul ul {
 	padding: 0;
 	margin: 0;
-}
-
-#admin-menu ul ul ul {
-	margin-left: 100px;
-	font-size: 4px;
 }
 
 /* Content Styles */
