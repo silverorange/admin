@@ -7,24 +7,29 @@ class AdminLogin extends AdminPage {
 
 	private $layout;
 
-	public function init($app) {
+	public function init() {
 		$this->layout = new SwatLayout('Admin/Admin/login.xml');
 
 		$frame = $this->layout->getWidget('frame');
-		$frame->title = $app->title;
+		$frame->title = $this->app->title;
 
 		$form = $this->layout->getWidget('loginform');
 		$form->action = $_SERVER['REQUEST_URI'];
 	}
 
-	public function display($app) {
+	public function display() {
 		$root = $this->layout->getRoot();
 		$root->display();
 	}
 
-	public function process($app) {
+	public function process() {
 		$root = $this->layout->getRoot();
 		$root->process();
+
+		$username = $this->layout->getWidget('username');
+		$password = $this->layout->getWidget('password');
+
+		$this->app->login($username, $password);
 	}
 
 	public function getLayout() {

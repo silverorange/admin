@@ -84,6 +84,7 @@ class AdminApplication extends SwatApplication {
 				$title = $row->component_title;
 			} else {
 				$found = false;
+				$title = '';
 			}
 		
 		} else {
@@ -112,6 +113,7 @@ class AdminApplication extends SwatApplication {
 	
 		$page = eval(sprintf("return new %s();", $classname));
 		$page->title = $title;
+		$page->app = $this;
 
 		return $page;
 	}
@@ -172,6 +174,15 @@ class AdminApplication extends SwatApplication {
 			$_SESSION['userID'] = 0;
 			$_SESSION['name'] = '';
 		}
+	}
+
+	public function login($username, $password) {
+		// TODO: authenticate against adminusers table here
+		$_SESSION['userID'] = 2;
+	}
+
+	public function logout() {
+		$_SESSION['userID'] = 0;
 	}
 
 	public function isLoggedIn() {
