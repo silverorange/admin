@@ -49,8 +49,6 @@ class AdminComponentsEdit extends AdminEdit {
 		AdminDB::updateBinding($this->app->db, 'admincomponent_admingroup', 
 			'component', $id, 'groupnum', $grouplist->values, 'admingroups', 'groupid');
 		
-		//bindingUpdate($db, $table, $id_field, $id, $value_field, $values, $other_table, $other_field);
-
 		$this->app->db->commit();
 	}
 
