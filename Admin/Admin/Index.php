@@ -22,10 +22,7 @@ abstract class AdminIndex extends AdminPage {
 		$form = $this->ui->getWidget('index_form');
 		$form->action = $this->source;
 
-		$mb = $this->ui->getWidget('message_box', true);
-
-		if ($mb !== null)
-			$mb->content = $this->app->getMessage();
+		$this->displayMessages();
 
 		$root = $this->ui->getRoot();
 		$root->display();

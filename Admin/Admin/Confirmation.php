@@ -43,7 +43,7 @@ abstract class AdminConfirmation extends AdminPage {
 
 		$this->processResponse();
 
-		$this->app->relocate($this->app->getHistory());
+		$this->app->relocate($this->app->getHistory(0));
 	}
 
 	/**

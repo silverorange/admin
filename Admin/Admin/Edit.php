@@ -32,6 +32,8 @@ abstract class AdminEdit extends AdminPage {
 			$frame->title .= ' Edit';
 		}
 
+		$this->displayMessages();
+
 		$form->action = $this->source;
 		$form->addHiddenField('id', $id);
 
@@ -45,8 +47,9 @@ abstract class AdminEdit extends AdminPage {
 
 		if ($form->process()) {
 			if (!$form->hasErrorMessage()) {
-				$this->saveData($id);
-				$this->app->relocate($this->app->getHistory());
+				if ($this->saveData($id)) {
+					$this->app->relocate($this->app->getHistory());
+				}
 			}
 		}
 	}
@@ -60,6 +63,7 @@ abstract class AdminEdit extends AdminPage {
 	 * $ui class variable.
 	 *
 	 * @param integer $id An integer identifier of the data to store.
+	 * @return boolean True if save was successful.
 	 */
 	abstract protected function saveData($id);
 
@@ -72,6 +76,7 @@ abstract class AdminEdit extends AdminPage {
 	 * $ui class variable.
 	 *
 	 * @param integer $id An integer identifier of the data to retrieve.
+	 * @return boolean True if load was successful.
 	 */
 	abstract protected function loadData($id);
 }

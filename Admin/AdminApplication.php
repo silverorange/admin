@@ -1,6 +1,7 @@
 <?
 
 require_once('Swat/SwatApplication.php');
+require_once('Swat/SwatMessage.php');
 require_once('MDB2.php');
 require_once('AdminPage.php');
 
@@ -181,9 +182,10 @@ class AdminApplication extends SwatApplication {
 	}
 
 	private function initDatabase() {
-		// TODO: change to array form of DSN and move parts to a secure include file.
+		// TODO: change to array /form of DSN and move parts to a secure include file.
 		$dsn = "pgsql://php:test@zest/".$this->dbname;
 		$this->db = MDB2::connect($dsn);
+		$this->db->options['debug'] = true;
 
 		if (MDB2::isError($this->db))
 			throw new Exception('Unable to connect to database.');
@@ -247,22 +249,21 @@ class AdminApplication extends SwatApplication {
 		return $url;
 	}
 
-	public function addMessage($message) {
+	public function addMessage(SwatMessage $message) {
 
-		if (isset($_SESSION['message']))
-			$_SESSION['message'] .= '<br />'.$message;
-		else
-			$_SESSION['message'] = $message;
+		if (!isset($_SESSION['messages']) || !is_array($_SESSION['messages']))
+			$_SESSION['messages'] = array();
+
+		$_SESSION['messages'][] = $message;
 	}
 
-	public function getMessage() {
-		$ret = null;
+	public function getMessages() {
 
-		if (isset($_SESSION['message'])) {
-			$ret = $_SESSION['message'];
-			unset($_SESSION['message']);
-		}
+		if (!isset($_SESSION['messages']) || !is_array($_SESSION['messages']))
+			$_SESSION['messages'] = array();
 
+		$ret = $_SESSION['messages'];
+		$_SESSION['messages'] = array();
 		return $ret;
 	}
 

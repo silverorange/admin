@@ -1,6 +1,6 @@
 <?php
 
-require_once('Admin/Admin/Edit.php');
+require_once('Admin/Admin/DBEdit.php');
 require_once('Admin/AdminUI.php');
 require_once('SwatDB/SwatDB.php');
 
@@ -9,7 +9,7 @@ require_once('SwatDB/SwatDB.php');
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminComponentsEdit extends AdminEdit {
+class AdminComponentsEdit extends AdminDBEdit {
 
 	private $fields;
 
@@ -29,31 +29,28 @@ class AdminComponentsEdit extends AdminEdit {
 			'boolean:show', 'boolean:enabled', 'description');
 	}
 
-	protected function saveData($id) {
+	protected function saveDBData($id) {
 
 		$values = $this->ui->getValues(array('title', 'shortname', 'section', 
 			'show', 'enabled', 'description'));
-
-		$this->app->db->beginTransaction();
 
 		if ($id == 0)
 			$id = SwatDB::insertRow($this->app->db, 'admincomponents', $this->fields,
 				$values, 'integer:componentid');
 		else
 			SwatDB::updateRow($this->app->db, 'admincomponents', $this->fields,
-				$values, 'integer:componentid', $id);
+				$values, 'integer:componenti', $id);
 
 		$group_list = $this->ui->getWidget('groups');
 
 		SwatDB::updateBinding($this->app->db, 'admincomponent_admingroup', 
 			'component', $id, 'groupnum', $group_list->values, 'admingroups', 'groupid');
 		
-		$this->app->db->commit();
-
-		$this->app->addMessage(sprintf(_S('Component "%s" has been saved.'), $values['title']));
+		$msg = new SwatMessage(sprintf(_S("Component \"%s\" has been saved."), $values['title']), SwatMessage::INFO);
+		$this->app->addMessage($msg);
 	}
 
-	protected function loadData($id) {
+	protected function loadDBData($id) {
 
 		$row = SwatDB::queryRow($this->app->db, 'admincomponents', 
 			$this->fields, 'integer:componentid', $id);

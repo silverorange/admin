@@ -1,5 +1,6 @@
 <?xml version='1.0' standalone='yes'?>
 <SwatUI>
+	<SwatMessageBox name="message_box" />
 	<SwatFrame name="edit_frame" title="Component">
 		<SwatForm name="edit_form">
 
