@@ -17,10 +17,6 @@ abstract class AdminPage extends SwatPage {
 	
 	abstract public function process();
 
-	public function getLayout() {
-		return 'default';
-	}
-
 	public function displayHeader() {
 		/**
 		 * TODO: pull in the real admin title, admin user name,
