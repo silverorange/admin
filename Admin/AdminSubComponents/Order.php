@@ -20,6 +20,12 @@ class AdminSubComponentsOrder extends AdminOrder {
 		$form->addHiddenField('parent', $this->parent);
 	}
 
+	public function display() {
+		$frame = $this->ui->getWidget('frame');
+		$frame->title = _S("Order Sub-Components");
+		parent::display();
+	}
+
 	public function loadData() {
 		$where_clause = sprintf('component = %s',
 			$this->app->db->quote($this->parent, 'integer'));

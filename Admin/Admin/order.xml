@@ -1,6 +1,6 @@
 <?xml version='1.0' standalone='yes'?>
 <SwatUI>
-	<SwatFrame name="frame" title="Order Components">
+	<SwatFrame name="frame">
 		<SwatForm name="orderform">
 
 			<SwatFormField title="Order Options">
