@@ -17,12 +17,12 @@ class AdminComponentsOrder extends AdminOrder {
 		parent::init();
 
 		$this->parent = SwatApplication::initVar('parent');
-		$form = $this->ui->getWidget('orderform');
+		$form = $this->ui->getWidget('order_form');
 		$form->addHiddenField('parent', $this->parent);
 	}
 
 	public function display() {
-		$frame = $this->ui->getWidget('frame');
+		$frame = $this->ui->getWidget('order_frame');
 		$frame->title = _S("Order Components");
 		parent::display();
 	}
@@ -31,14 +31,14 @@ class AdminComponentsOrder extends AdminOrder {
 		$where_clause = sprintf('section = %s',
 			$this->app->db->quote($this->parent, 'integer'));
 
-		$order_list = $this->ui->getWidget('order');
-		$order_list->options = SwatDB::getOptionArray($this->app->db, 
+		$order_widget = $this->ui->getWidget('order');
+		$order_widget->options = SwatDB::getOptionArray($this->app->db, 
 			'admincomponents', 'title', 'componentid', 'displayorder, title', $where_clause);
 
 		$sql = 'select sum(displayorder) from admincomponents where '.$where_clause;
 		$sum = $this->app->db->queryOne($sql, 'integer');
-		$radio_list = $this->ui->getWidget('options');
-		$radio_list->value = ($sum == 0) ? 'auto' : 'custom';
+		$options_list = $this->ui->getWidget('options');
+		$options_list->value = ($sum == 0) ? 'auto' : 'custom';
 	}
 	
 	public function saveIndex($id, $index) {

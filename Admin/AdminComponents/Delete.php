@@ -14,7 +14,7 @@ class AdminComponentsDelete extends AdminConfirmation {
 	public $items = null;
 
 	public function display() {
-		$form = $this->ui->getWidget('confirmform');
+		$form = $this->ui->getWidget('confirmation_form');
 		$form->addHiddenField('items', $this->items);
 		
 		$where_items = implode(', ', $this->items);
@@ -36,22 +36,19 @@ class AdminComponentsDelete extends AdminConfirmation {
 
 		$dep->addDependency($dep_subcomponents);
 
-		$message = $this->ui->getWidget('message');
+		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = $dep->getMessage();
 		
 		if ($dep->getStatusLevelCount(AdminDependency::DELETE) == 0) {
-			$btn_yes = $this->ui->getWidget('btn_yes');
-			$btn_yes->visible = false;
-
-			$btn_no = $this->ui->getWidget('btn_no');
-			$btn_no->title = _S("Cancel");
+			$this->ui->getWidget('yes_button')->visible = false;
+			$this->ui->getWidget('no_button')->title = _S("Cancel");
 		}
 
 		parent::display();
 	}
 
 	protected function processResponse() {
-		$form = $this->ui->getWidget('confirmform');
+		$form = $this->ui->getWidget('confirmation_form');
 
 		if ($form->button->name == 'btn_yes') {
 

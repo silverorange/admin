@@ -1,7 +1,7 @@
 <?xml version='1.0' standalone='yes'?>
 <SwatUI>
-	<SwatFrame name="frame" title="Component">
-		<SwatForm name="editform">
+	<SwatFrame name="edit_frame" title="Component">
+		<SwatForm name="edit_form">
 
 			<SwatFormField title="Title">
 				<SwatEntry name="title" required="boolean:true" />
@@ -12,7 +12,7 @@
 			</SwatFormField>
 			
 			<SwatFormField title="Section">
-				<SwatFlydown name="section" />
+				<SwatFlydown name="section" required="boolean:true" />
 			</SwatFormField>
 			
 			<SwatFormField title="Show in menu?">
@@ -32,7 +32,7 @@
 			</SwatFormField>
 
 			<SwatFormField class="swat-form-footer">
-				<SwatButton name="btn_submit" />
+				<SwatButton name="submit_button" />
 			</SwatFormField>
 
 		</SwatForm>

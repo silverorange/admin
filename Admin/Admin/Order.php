@@ -20,7 +20,7 @@ abstract class AdminOrder extends AdminPage {
 	}
 
 	public function process() {
-		$form = $this->ui->getWidget('orderform');
+		$form = $this->ui->getWidget('order_form');
 		if ($form->process()) {
 			$this->saveData();
 			$this->app->relocate($this->app->getHistory());
@@ -28,18 +28,18 @@ abstract class AdminOrder extends AdminPage {
 	}
 
 	public function display() {
-		$radio_list = $this->ui->getWidget('options');
-		$radio_list->options = array('auto'=>_S("Automatically"), 'custom'=>_("Custom"));
+		$options_list = $this->ui->getWidget('options');
+		$options_list->options = array('auto'=>_S("Automatically"), 'custom'=>_("Custom"));
 			
-		$order_list = $this->ui->getWidget('order');
-		$order_list->onclick = 'document.getElementById(\'options_custom\').checked = true;';
+		$order_widget = $this->ui->getWidget('order');
+		$order_widget->onclick = 'document.getElementById(\'options_custom\').checked = true;';
 		
 		$this->loadData();
 	
-		$btn_submit = $this->ui->getWidget('btn_submit');
-		$btn_submit->title = _S("Update Order");
+		$button = $this->ui->getWidget('submit_button');
+		$button->title = _S("Update Order");
 		
-		$form = $this->ui->getWidget('orderform');
+		$form = $this->ui->getWidget('order_form');
 		$form->action = $this->source;
 
 		$root = $this->ui->getRoot();
@@ -48,11 +48,11 @@ abstract class AdminOrder extends AdminPage {
 	
 	protected function saveData() {
 		$count = 0;
-		$order_list = $this->ui->getWidget('order');
-		$radio_list = $this->ui->getWidget('options');
+		$order_widget = $this->ui->getWidget('order');
+		$options_list = $this->ui->getWidget('options');
 
-		foreach ($order_list->values as $id) {
-			if ($radio_list->value == 'custom')
+		foreach ($order_widget->values as $id) {
+			if ($options_list->value == 'custom')
 				$count++;
 
 			$this->saveIndex($id, $count);

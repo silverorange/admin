@@ -19,7 +19,7 @@ class AdminLogin extends AdminPage {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/login.xml');
 
-		$frame = $this->ui->getWidget('frame');
+		$frame = $this->ui->getWidget('login_frame');
 		$frame->title = $this->app->title;
 
 		$username = $this->ui->getWidget('username');
@@ -27,14 +27,11 @@ class AdminLogin extends AdminPage {
 			$username->value = $_COOKIE[$this->app->name.'_username'];
 		
 		
-		$form = $this->ui->getWidget('loginform');
+		$form = $this->ui->getWidget('login_form');
 		$form->action = $this->app->uri;
 	}
 
 	public function display() {
-		//$form = $this->ui->getWidget('loginform');
-		//$error_messages = $form->gatherErrorMessages();
-		
 		$root = $this->ui->getRoot();
 		$root->display();
 
@@ -42,7 +39,7 @@ class AdminLogin extends AdminPage {
 	}
 
 	public function process() {
-		$form = $this->ui->getWidget('loginform');
+		$form = $this->ui->getWidget('login_form');
 
 		if ($form->process()) {
 			if (!$form->hasErrorMessage()) {
@@ -53,7 +50,7 @@ class AdminLogin extends AdminPage {
 				if ($logged_in)
 					$this->app->relocate($this->app->uri);
 				else {
-					$frame = $this->ui->getWidget('frame');
+					$frame = $this->ui->getWidget('login_frame');
 					$frame->addErrorMessage(_S("Login failed"));
 				}
 			}

@@ -1,14 +1,16 @@
 <?xml version='1.0' standalone='yes'?>
 <SwatUI>
-	<SwatMessageBox name="messagebox" />
+	<SwatMessageBox name="message_box" />
 	<SwatFrame title="Components">
 		<SwatToolLink title="Create a New Component" href="AdminComponents/Edit" />
 
-		<SwatForm name="indexform">
-			<SwatTableView name="view">
+		<SwatForm name="index_form">
+			<SwatTableView name="index_view">
 
 				<SwatTableViewGroup group_by="section">
-					<AdminGroupHeaderCellRenderer title="data:section_title" order_href="AdminComponents/Order?parent=%s" order_value="data:section" />
+					<AdminGroupHeaderCellRenderer title="data:section_title" 
+						order_href="AdminComponents/Order?parent=%s" order_value="data:section" />
+
 				</SwatTableViewGroup>
 
 				<SwatTableViewColumn name="controls">
@@ -21,7 +23,9 @@
 				</SwatTableViewCheckboxColumn>
 
 				<AdminTableViewOrderableColumn name="title" title="Title">
-					<SwatLinkCellRenderer href="AdminComponents/Details?id=%s" value="data:componentid" title="data:title" />
+					<SwatLinkCellRenderer title="data:title"
+						href="AdminComponents/Details?id=%s" value="data:componentid" />
+
 				</AdminTableViewOrderableColumn>
 
 				<AdminTableViewOrderableColumn name="shortname" title="Short Name">
@@ -37,7 +41,7 @@
 				</AdminTableViewOrderableColumn>
 
 			</SwatTableView>
-			<SwatActions name="actions">
+			<SwatActions name="index_actions">
 
 				<SwatActionItem name="delete" title="delete" />
 				<SwatActionItem name="show" title="show" />
@@ -45,7 +49,7 @@
 				<SwatActionItem name="enable" title="enable" />
 				<SwatActionItem name="disable" title="disable" />
 
-				<SwatActionItem name="changesection" title="change section...">
+				<SwatActionItem name="change_section" title="change section...">
 					<SwatFlydown name="section" show_blank="boolean:false" />
 				</SwatActionItem>
 

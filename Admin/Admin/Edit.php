@@ -17,18 +17,18 @@ abstract class AdminEdit extends AdminPage {
 
 	public function display() {
 		$id = intval(SwatApplication::initVar('id'));
-		$btn_submit = $this->ui->getWidget('btn_submit');
-		$frame = $this->ui->getWidget('frame');
-		$form = $this->ui->getWidget('editform');
+		$button = $this->ui->getWidget('submit_button');
+		$frame = $this->ui->getWidget('edit_frame');
+		$form = $this->ui->getWidget('edit_form');
 
 		if ($id == 0) {
-			$btn_submit->setTitleFromStock('create');
+			$button->setTitleFromStock('create');
 			$frame->title = 'New '.$frame->title;
 		} else {
 			if (!$form->processed)
 				$this->loadData($id);
 
-			$btn_submit->setTitleFromStock('apply');
+			$button->setTitleFromStock('apply');
 			$frame->title .= ' Edit';
 		}
 
@@ -40,7 +40,7 @@ abstract class AdminEdit extends AdminPage {
 	}
 
 	public function process() {
-		$form = $this->ui->getWidget('editform');
+		$form = $this->ui->getWidget('edit_form');
 		$id = intval(SwatApplication::initVar('id'));
 
 		if ($form->process()) {

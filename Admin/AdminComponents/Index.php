@@ -16,8 +16,8 @@ class AdminComponentsIndex extends AdminIndex {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminComponents/index.xml');
 
-		$sectionfly = $this->ui->getWidget('section');
-		$sectionfly->options = SwatDB::getOptionArray($this->app->db, 
+		$section_flydown = $this->ui->getWidget('section');
+		$section_flydown->options = SwatDB::getOptionArray($this->app->db, 
 			'adminsections', 'title', 'sectionid', 'displayorder');
 	}
 
@@ -44,8 +44,8 @@ class AdminComponentsIndex extends AdminIndex {
 	}
 
 	protected function processActions() {
-		$view = $this->ui->getWidget('view');
-		$actions = $this->ui->getWidget('actions');
+		$view = $this->ui->getWidget('index_view');
+		$actions = $this->ui->getWidget('index_actions');
 		$num = count($view->checked_items);
 
 		switch ($actions->selected->name) {
@@ -94,7 +94,7 @@ class AdminComponentsIndex extends AdminIndex {
 
 				break;
 
-			case 'changesection':
+			case 'change_section':
 				$new_section = $actions->selected->widget->value;
 
 				SwatDB::updateColumn($this->app->db, 'admincomponents', 

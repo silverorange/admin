@@ -26,7 +26,7 @@ class AdminSectionsDelete extends AdminPage {
 	}
 
 	public function display() {
-		$form = $this->ui->getWidget('confirmform');
+		$form = $this->ui->getWidget('confirmation_form');
 		$form->action = $this->source;
 		$form->addHiddenField('items', $this->items);
 
@@ -35,7 +35,7 @@ class AdminSectionsDelete extends AdminPage {
 		$items = SwatDB::getOptionArray($this->app->db, 'adminsections', 
 			'title', 'sectionid', null, $where_clause);
 
-		$message = $this->ui->getWidget('message');
+		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = '<ul><li>';
 		$message->content .= implode('</li><li>', $items);
 		$message->content .= '</li></ul>';
@@ -45,12 +45,12 @@ class AdminSectionsDelete extends AdminPage {
 	}
 
 	public function process() {
-		$form = $this->ui->getWidget('confirmform');
+		$form = $this->ui->getWidget('confirmation_form');
 
 		if (!$form->process())
 			return;
 
-		if ($form->button->name == 'btn_yes') {
+		if ($form->button->name == 'yes_button') {
 			$items = $form->getHiddenField('items');
 
 			$sql = 'delete from adminsections where sectionid in (%s)';

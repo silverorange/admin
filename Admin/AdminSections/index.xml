@@ -2,8 +2,8 @@
 <SwatUI>
 	<SwatFrame title="Sections">
 		<SwatToolLink title="Create a New Section" href="AdminSections/Edit" />
-		<SwatForm name="indexform">
-			<SwatTableView name="view">
+		<SwatForm name="index_form">
+			<SwatTableView name="index_view">
 
 				<SwatTableViewColumn name="controls">
 					<SwatControlCellRenderer src="admin/images/b_details.png" height="int:22" width="int:28" title="View Details" alt="Details" href="AdminSections/Details?id=%s" value="data:sectionid" />
@@ -27,7 +27,7 @@
 				</SwatTableViewColumn>
 
 			</SwatTableView>
-			<SwatActions name="actions">
+			<SwatActions name="index_actions">
 			<!--SwatActions name="actions" auto_reset="boolean:true" show_blank_option="boolean:false"-->
 
 				<SwatActionItem name="delete" title="delete" />
