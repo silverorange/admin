@@ -3,7 +3,6 @@
 require_once('Admin/AdminUI.php');
 require_once('Admin/AdminDB.php');
 require_once('Admin/AdminPage.php');
-require_once('MDB2.php');
 
 class AdminSectionsDelete extends AdminPage {
 
@@ -19,9 +18,16 @@ class AdminSectionsDelete extends AdminPage {
 	public function display() {
 		$form = $this->ui->getWidget('confirmform');
 		$form->action = $this->source;
+		$form->addHiddenField('items', $this->items);
+
+		$where_clause = 'sectionid in ('.implode(', ', $this->items).')';
+		$items = AdminDB::getOptionArray($this->app->db, 'adminsections', 
+			'title', 'text', 'sectionid', 'integer', $where_clause);
 
 		$message = $this->ui->getWidget('message');
-		$message->content = implode(', ', $this->items);
+		$message->content = '<ul><li>';
+		$message->content .= implode('</li><li>', $items);
+		$message->content .= '</li></ul>';
 
 		$root = $this->ui->getRoot();
 		$root->displayTidy();
@@ -34,7 +40,15 @@ class AdminSectionsDelete extends AdminPage {
 			return;
 
 		if ($form->button->name == 'btn_yes') {
-			
+			$items = $form->getHiddenField('items');
+
+			$sql = 'delete from adminsections where sectionid in (%s)';
+
+			foreach ($items as &$id)
+				$id = $this->app->db->quote($id, 'integer');
+
+			$sql = sprintf($sql, implode(',', $items));
+			$this->app->db->query($sql);
 		}
 
 		$this->app->relocate($this->component);
