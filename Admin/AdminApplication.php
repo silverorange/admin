@@ -24,10 +24,21 @@ class AdminApplication extends SwatApplication {
 
 	/**
 	 * The database object.
-	 * @var MDB2 connection object (readonly)
+	 * @var MDB2_Connection Database connection object (readonly)
 	 */
 	public $db = null;
 	
+	/**
+	 * The page object.
+	 * @var AdminPage Current page object (readonly)
+	 */
+	public $page = null;
+
+	public function replacePage() {
+		$this->page = $this->getPage('AdminSections/Delete');
+		$this->page->init();
+	}
+
 	/**
 	 * Initialize the application.
 	 */
@@ -42,12 +53,14 @@ class AdminApplication extends SwatApplication {
 	 * Uses the $_GET variables to decide which page subclass to instantiate.
 	 * @return AdminPage A subclass of AdminPage is returned.
 	 */
-	public function getPage() {
+	public function getPage($source = null) {
 
-		if (isset($_GET['source']))
-			$source = $_GET['source'];
-		else
-			$source = 'Front';
+		if ($source == null) {
+			if (isset($_GET['source']))
+				$source = $_GET['source'];
+			else
+				$source = 'Front';
+		}
 
 		$found = true;
 
