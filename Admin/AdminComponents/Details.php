@@ -1,9 +1,9 @@
 <?php
 
 require_once('Admin/AdminUI.php');
-require_once('SwatDB/SwatDB.php');
-require_once("Admin/Admin/Index.php");
+require_once('Admin/Admin/Index.php');
 require_once('Admin/AdminTableStore.php');
+require_once('SwatDB/SwatDB.php');
 
 /**
  * Details page for AdminComponents
@@ -12,23 +12,36 @@ require_once('Admin/AdminTableStore.php');
  */
 class AdminComponentsDetails extends AdminIndex {
 
+	private $id;
+
 	public function init() {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminComponents/details.xml');
+
+		$this->id = intval(SwatApplication::initVar('id'));
+	}
+
+	public function display() {
+		$fields = array('title'); 
+		$row = SwatDB::queryRow($this->app->db, 'admincomponents', $fields, 'componentid', $this->id);
+
+		$frame = $this->ui->getWidget('frame');
+		$frame->title = $row->title;
+
+		parent::display();
 	}
 
 	protected function getTableStore() {
-		$sql = 'select admincomponents.componentid, 
-					admincomponents.title, 
-					admincomponents.shortname, 
-					admincomponents.section, 
-					admincomponents.hidden,
-					adminsections.title as section_title
-				from admincomponents 
-				inner join adminsections 
-					on adminsections.sectionid = admincomponents.section
-				order by adminsections.displayorder, adminsections.sectionid, 
-					admincomponents.displayorder';
+
+		$sql = 'select adminsubcomponents.subcomponentid, 
+					adminsubcomponents.title, 
+					adminsubcomponents.shortname, 
+					adminsubcomponents.hidden
+				from adminsubcomponents 
+				where component = %s
+				order by adminsubcomponents.displayorder';
+
+		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
 
 		$types = array('integer', 'text', 'text', 'integer', 'boolean', 'text');
 		$store = $this->app->db->query($sql, $types, true, 'AdminTableStore');
