@@ -145,7 +145,8 @@ class AdminApplication extends SwatApplication {
 		$page->subcomponent = $subcomponent;
 		$page->app = $this;
 
-		$this->storeHistory($_SERVER['REQUEST_URI']);
+		if (isset($_SERVER['HTTP_REFERER']))
+			$this->storeHistory($_SERVER['HTTP_REFERER']);
 
 		return $page;
 	}
@@ -207,6 +208,8 @@ class AdminApplication extends SwatApplication {
 
 		if (!is_array($history))
 			$history = array();
+
+		$has_querystring = strpos($url, '?');
 	
 		if (count($history) > 0) {
 			end($history);
@@ -226,7 +229,7 @@ class AdminApplication extends SwatApplication {
 		else
 			$base = $url;
 
-		if (strcmp($last, $base) != 0) {
+		if ($has_querystring || strcmp($last, $base) != 0) {
 			array_push($history, $url);
 		}
 
