@@ -39,7 +39,7 @@ class AdminLogin extends AdminPage {
 				$username = $this->ui->getWidget('username');
 				$password = $this->ui->getWidget('password');
 
-				$this->app->login($username, $password);
+				$this->app->login($username->value, $password->value);
 				$this->app->relocate($this->app->uri);
 			}
 		}

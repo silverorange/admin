@@ -203,17 +203,16 @@ class AdminApplication extends SwatApplication {
 	 * @return bool True if login is successful.
 	 */
 	public function login($username, $password) {
-		$chk_username = $username->value;
-		$chk_password = md5($password->value);
-		
-		$chk_username = $this->db->quote($chk_username, 'text');
-		$chk_password = $this->db->quote($chk_password, 'text');
-		$enabled = $this->db->quote(true, 'boolean');
+		$md5_password = md5($password);
 		
 		$sql = "select userid,name from adminusers
-				where username = {$chk_username}
-					and password = {$chk_password}
-					and enabled = {$enabled}";
+				where username = %s and password = %s and enabled = %s";
+
+		$sql = sprintf($sql, 
+			$this->db->quote($username, 'text'),
+			$this->db->quote($md5_password, 'text'),
+			$this->db->quote(true, 'boolean'));
+
 		$rs = $this->db->query($sql, array('integer', 'text'));
 		
 		if ($rs->numRows()) {
