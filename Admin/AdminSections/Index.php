@@ -1,9 +1,9 @@
 <?php
 
 require_once('Admin/AdminUI.php');
+require_once('Admin/AdminDB.php');
 require_once("Admin/AdminPage.php");
 require_once('Admin/AdminTableStore.php');
-require_once('Admin/AdminTableViewRowCheckAll.php');
 require_once("MDB2.php");
 
 class AdminSectionsIndex extends AdminPage {
@@ -28,7 +28,6 @@ class AdminSectionsIndex extends AdminPage {
 
 		$view = $this->ui->getWidget('view');
 		$view->model = $store;
-		$view->appendRow(new AdminTableViewRowCheckAll());
 
 		$form = $this->ui->getWidget('indexform');
 		$form->action = $this->source;
@@ -39,14 +38,34 @@ class AdminSectionsIndex extends AdminPage {
 
 	public function process() {
 		$form = $this->ui->getWidget('indexform');
+		$view = $this->ui->getWidget('view');
+		$actions = $this->ui->getWidget('actions');
 
-		if ($form->process()) {
+		if (!$form->process())
+			return;
 
-			$actions = $this->ui->getWidget('actions');
-			echo 'action = ', $actions->selected->name, '<br />';
+		if ($actions->selected == null)
+			return;
 
-			if ($actions->selected->widget != null)
-				echo 'value = ', $actions->selected->widget->value;
+		switch ($actions->selected->name) {
+			case 'show':
+				AdminDB::update($this->app->db, 'adminsections', 'hidden',
+					'boolean', false, 'sectionid', $view->checked_items);
+				break;
+
+			case 'hide':
+				AdminDB::update($this->app->db, 'adminsections', 'hidden',
+					'boolean', true, 'sectionid', $view->checked_items);
+				break;
+
+			default:
+				echo 'action = ', $actions->selected->name, '<br />';
+				echo 'items = ';
+				print_r($view->checked_items);
+				echo '<br />';
+
+				if ($actions->selected->widget != null)
+					echo 'value = ', $actions->selected->widget->value;
 		}
 	}
 }
