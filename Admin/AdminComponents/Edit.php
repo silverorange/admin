@@ -2,7 +2,7 @@
 
 require_once("Admin/Admin/Edit.php");
 require_once('Admin/AdminUI.php');
-require_once('Admin/AdminDB.php');
+require_once('SwatDB/SwatDB.php');
 require_once("MDB2.php");
 
 /**
@@ -19,11 +19,11 @@ class AdminComponentsEdit extends AdminEdit {
 		$this->ui->loadFromXML('Admin/AdminComponents/edit.xml');
 
 		$sectionfly = $this->ui->getWidget('section');
-		$sectionfly->options = AdminDB::getOptionArray($this->app->db, 
+		$sectionfly->options = SwatDB::getOptionArray($this->app->db, 
 			'adminsections', 'title', 'sectionid', 'displayorder');
 
 		$grouplist = $this->ui->getWidget('groups');
-		$grouplist->options = AdminDB::getOptionArray($this->app->db, 
+		$grouplist->options = SwatDB::getOptionArray($this->app->db, 
 			'admingroups', 'title', 'groupid', 'title');
 
 		$this->fields = array('title', 'shortname', 'integer:section', 
@@ -38,15 +38,15 @@ class AdminComponentsEdit extends AdminEdit {
 		$this->app->db->beginTransaction();
 
 		if ($id == 0)
-			$id = AdminDB::insertRow($this->app->db, 'admincomponents', $this->fields,
+			$id = SwatDB::insertRow($this->app->db, 'admincomponents', $this->fields,
 				$values, 'integer:componentid');
 		else
-			AdminDB::updateRow($this->app->db, 'admincomponents', $this->fields,
+			SwatDB::updateRow($this->app->db, 'admincomponents', $this->fields,
 				$values, 'integer:componentid', $id);
 
 		$grouplist = $this->ui->getWidget('groups');
 
-		AdminDB::updateBinding($this->app->db, 'admincomponent_admingroup', 
+		SwatDB::updateBinding($this->app->db, 'admincomponent_admingroup', 
 			'component', $id, 'groupnum', $grouplist->values, 'admingroups', 'groupid');
 		
 		$this->app->db->commit();
@@ -54,13 +54,13 @@ class AdminComponentsEdit extends AdminEdit {
 
 	protected function loadData($id) {
 
-		$row = AdminDB::queryRow($this->app->db, 'admincomponents', 
+		$row = SwatDB::queryRow($this->app->db, 'admincomponents', 
 			$this->fields, 'integer:componentid', $id);
 
 		$this->ui->setValues(get_object_vars($row));
 
 		$grouplist = $this->ui->getWidget('groups');
-		$grouplist->values = AdminDB::queryField($this->app->db, 
+		$grouplist->values = SwatDB::queryField($this->app->db, 
 			'admincomponent_admingroup', 'groupnum', 'component', $id);
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 
 require_once('Admin/AdminUI.php');
-require_once('Admin/AdminDB.php');
+require_once('SwatDB/SwatDB.php');
 require_once('Admin/Admin/Confirmation.php');
 
 /**
@@ -18,7 +18,7 @@ class AdminComponentsDelete extends AdminConfirmation {
 		$form->addHiddenField('items', $this->items);
 
 		$where_clause = 'componentid in ('.implode(', ', $this->items).')';
-		$items = AdminDB::getOptionArray($this->app->db, 'admincomponents',
+		$items = SwatDB::getOptionArray($this->app->db, 'admincomponents',
 			'text:title', 'integer:componentid', '', $where_clause);
 
 		$message = $this->ui->getWidget('message');

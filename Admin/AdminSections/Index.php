@@ -1,7 +1,7 @@
 <?php
 
 require_once('Admin/AdminUI.php');
-require_once('Admin/AdminDB.php');
+require_once('SwatDB/SwatDB.php');
 require_once("Admin/AdminPage.php");
 require_once('Admin/AdminTableStore.php');
 
@@ -66,13 +66,13 @@ class AdminSectionsIndex extends AdminPage {
 				break;
 
 			case 'show':
-				AdminDB::updateField($this->app->db, 'adminsections', 
+				SwatDB::updateField($this->app->db, 'adminsections', 
 					'boolean:hidden', false, 'sectionid', 
 					$view->checked_items);
 				break;
 
 			case 'hide':
-				AdminDB::updateField($this->app->db, 'adminsections', 
+				SwatDB::updateField($this->app->db, 'adminsections', 
 					'boolean:hidden', true, 'sectionid', 
 					$view->checked_items);
 				break;
