@@ -11,12 +11,26 @@ require_once('SwatDB/SwatDB.php');
  */
 class AdminComponentsOrder extends AdminOrder {
 
+	private $parent;
+
+	public function init() {
+		parent::init();
+
+		$this->parent = SwatApplication::initVar('parent');
+		$form = $this->ui->getWidget('orderform');
+		$form->addHiddenField('parent', $this->parent);
+	}
+
 	public function loadData() {
+		$where_clause = sprintf('section = %s',
+			$this->app->db->quote($this->parent, 'integer'));
+
 		$order_list = $this->ui->getWidget('order');
 		$order_list->options = SwatDB::getOptionArray($this->app->db, 
-			'admincomponents', 'title', 'componentid', 'displayorder, title');
+			'admincomponents', 'title', 'componentid', 'displayorder, title', $where_clause);
 
-		$sum = $this->app->db->queryOne('select sum(displayorder) from admincomponents', 'integer');
+		$sql = 'select sum(displayorder) from admincomponents where '.$where_clause;
+		$sum = $this->app->db->queryOne($sql, 'integer');
 		$radio_list = $this->ui->getWidget('options');
 		$radio_list->value = ($sum == 0) ? 'auto' : 'custom';
 	}
