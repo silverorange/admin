@@ -21,7 +21,8 @@ class AdminSectionsIndex extends AdminPage {
 
 	public function display() {
 		if ($this->confirmation != null) {
-			$this->displayConfirmation($this->confirmation);
+			$root = $this->confirmation->getRoot();
+			$root->displayTidy();
 			return;
 		}
 
@@ -62,17 +63,20 @@ class AdminSectionsIndex extends AdminPage {
 
 		switch ($actions->selected->name) {
 			case 'delete':
-				$this->confirmation = 'delete';
+				$this->confirmation = new AdminUI();
+				$this->confirmation->loadFromXML('Admin/confirmation.xml');
+
+				//$colorfly = $this->ui->getWidget('color');
 				break;
 
 			case 'show':
-				AdminDB::update($this->app->db, 'adminsections', 'hidden',
-					'boolean', false, 'sectionid', $view->checked_items);
+				AdminDB::update($this->app->db, 'adminsections', 'boolean',
+					'hidden', false, 'sectionid', $view->checked_items);
 				break;
 
 			case 'hide':
-				AdminDB::update($this->app->db, 'adminsections', 'hidden',
-					'boolean', true, 'sectionid', $view->checked_items);
+				AdminDB::update($this->app->db, 'adminsections', 'boolean',
+					'hidden', true, 'sectionid', $view->checked_items);
 				break;
 
 			default:
@@ -86,17 +90,13 @@ class AdminSectionsIndex extends AdminPage {
 		}
 	}
 
-	public function displayConfirmation($type) {
+	public function displayConfirmation($confirmui) {
 		$view = $this->ui->getWidget('view');
 
-		switch ($type) {
-			case 'delete':
-				echo 'confirm<br />';
-				echo 'items = ';
-				print_r($view->checked_items);
-				echo '<br />';
-				break;
-		}
+		echo 'confirm<br />';
+		echo 'items = ';
+		print_r($view->checked_items);
+		echo '<br />';
 	}
 }
 
