@@ -38,7 +38,7 @@ class AdminDB {
 	 *        standard MDB2 datatype. If type is ommitted, then integer is 
 	 *        assummed for this field.
 	 *
-	 * @param Array $ids An array of identifiers corresponding to the database
+	 * @param array $ids An array of identifiers corresponding to the database
 	 *        rows to be updated. The type of the individual identifiers should 
 	 *        correspond to the type of $id_field.
 	 */
@@ -98,7 +98,7 @@ class AdminDB {
 	 *        returned results.  Do not include "where" in the string; only 
 	 *        include the conditionals.
 	 *
-	 * @return Array An array in the form of $id => $title.
+	 * @return array An array in the form of $id => $title.
 	 */
 	public static function getOptionArray($db, $table, $title_field, $id_field, 
 		$order_by_clause = null, $where_clause = null) {
@@ -206,3 +206,220 @@ class AdminDB {
 		return $base_parent;
 	}
 
+	private static function getFieldNameArray($fields) {
+
+		if (count($fields) == 0)
+			return;
+
+		$names = array();
+
+		foreach ($fields as &$field)
+			$names[] = $field->name;
+
+		return $names;
+	}
+
+	private static function getFieldTypeArray($fields) {
+
+		if (count($fields) == 0)
+			return;
+
+		$types = array();
+
+		foreach ($fields as &$field)
+			$types[] = $field->type;
+
+		return $types;
+	}
+
+	private function initFields(&$fields) {
+		/* Transforms and array of text field identifiers ('text:title') into
+		 * an array of AdminDBField objects.
+		 */
+		if (count($fields) == 0)
+			// TODO: throw exception instead of returning
+			return;
+
+		foreach ($fields as &$field)
+			$field = new AdminDBField($field, 'text');
+	}
+
+	/**
+	 * Query a single row
+	 *
+ 	 * Convenience method to query for a single row from a database table.
+	 * One convenient use of this method is for loading data on an edit page.
+	 *
+	 * @param MDB2_Driver_Common $db The database connection.
+	 *
+	 * @param string $table The database table to query.
+	 *
+	 * @param array $fields An array of fields to be queried. Can be 
+	 *        given in the form type:name where type is a standard MDB2 
+	 *        datatype. If type is ommitted, then text is assummed.
+	 *
+	 * @param string $id_field The name of the database field that contains the
+	 *        the id. Can be given in the form type:name where type is a
+	 *        standard MDB2 datatype. If type is ommitted, then integer is 
+	 *        assummed for this field.
+	 *
+	 * @param mixed $id The value to look for in the id field column. The 
+	 *        type should correspond to the type of $field.
+	 */
+	public static function rowQuery($db, $table, $fields, $id_field, $id) {
+
+		AdminDB::initFields($fields);
+		$id_field = new AdminDBField($id_field, 'integer');
+		$sql = 'select %s from %s where %s = %s';
+
+		$field_list = implode(',', AdminDB::getFieldNameArray($fields));
+
+		$sql = sprintf($sql,
+			$field_list,
+			$table,
+			$id_field->name,
+			$db->quote($id, $id_field->type));
+
+		$rs = $db->query($sql, AdminDB::getFieldTypeArray($fields));
+		$row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT);
+
+		return $row;
+	}
+
+	/**
+	 * Insert a row
+	 *
+ 	 * Convenience method to insert a single database row. One convenient use
+	 * of this method is for saving data on an edit page.
+	 *
+	 * @param MDB2_Driver_Common $db The database connection.
+	 *
+	 * @param string $table The database table to update.
+	 *
+	 * @param array $fields An array of fields to be updated. Can be 
+	 *        given in the form type:name where type is a standard MDB2 
+	 *        datatype. If type is ommitted, then text is assummed.
+	 *
+	 * @param array $values An associative array of values to store in the
+	 *        database.  The array keys should correspond to field names.
+	 *        The type of the individual values should correspond to the 
+	 *        field type.
+	 *
+	 * @param string $id_field The name of the database field that contains an
+	 *        identifier of row to be updated. Can be given in the form 
+	 *        type:name where type is a standard MDB2 datatype. If type is 
+	 *        ommitted, then integer is assummed for this field.
+	 *		  If $id_field is set, the value in the $id_field column of
+	 *        the inserted row is returned.
+	 *
+	 * @return mixed If $id_field is set, the value in the $id_field column of
+	 *        the inserted row is returned.
+	 */
+	public static function rowInsert($db, $table, $fields, $values, $id_field = NULL) {
+
+		AdminDB::initFields($fields);
+
+		$ret = null;
+
+		if ($id_field != NULL)
+			$db->beginTransaction();
+
+		$sql = 'insert into %s (%s) values (%s)';
+		$field_list = implode(',', AdminDB::getFieldNameArray($fields));
+
+		foreach ($fields as &$field)
+			$values[$field->name] = $db->quote($values[$field->name], $field->type);
+
+		$value_list = implode(',', $values);
+
+		$sql = sprintf($sql,
+			$table,
+			$field_list,
+			$value_list);
+
+		$rs = $db->query($sql);
+
+		if ($id_field != NULL) {
+			$ret = AdminDB::getFieldMax($db, $table, $id_field);						
+			$db->commit();
+		}
+
+		return $ret;
+	}
+
+	/**
+	 * Update a row
+	 *
+ 	 * Convenience method to update multiple fields of a single database row. 
+	 * One convenient use of this method is for save data on an edit page.
+	 *
+	 * @param MDB2_Driver_Common $db The database connection.
+	 *
+	 * @param string $table The database table to update.
+	 *
+	 * @param array $fields An array of fields to be updated. Can be 
+	 *        given in the form type:name where type is a standard MDB2 
+	 *        datatype. If type is ommitted, then text is assummed.
+	 *
+	 * @param array $values An associative array of values to store in the
+	 *        database.  The array keys should correspond to field names.
+	 *        The type of the individual values should correspond to the 
+	 *        field type.
+	 *
+	 * @param string $id_field The name of the database field that contains an
+	 *        identifier of row to be updated. Can be given in the form 
+	 *        type:name where type is a standard MDB2 datatype. If type is 
+	 *        ommitted, then integer is assummed for this field.
+	 *
+	 * @param mixed $id The value to look for in the $id_field column. The 
+	 *        type should correspond to the type of $field.
+	 */
+	public static function rowUpdate($db, $table, $fields, $values, $id_field, $id) {
+
+		AdminDB::initFields($fields);
+		$id_field = new AdminDBField($id_field, 'integer');
+		$sql = 'update %s set %s where %s = %s';
+		$updates = array();
+
+		foreach ($fields as &$field)
+			$updates[] = $field->name.' = '.$db->quote($values[$field->name], $field->type);
+
+		$update_list = implode(',', $updates);
+
+		$sql = sprintf($sql,
+			$table,
+			$update_list,
+			$id_field->name,
+			$db->quote($id, $id_field->type));
+
+		$rs = $db->query($sql);
+	}
+
+
+	/**
+	 * Get max field value
+	 *
+ 	 * Convenience method to grab the max value from a single field.
+	 *
+	 * @param MDB2_Driver_Common $db The database connection.
+	 *
+	 * @param string $table The database table to update.
+	 *
+	 * @param string $field The field to be return the max value of. Can be 
+	 *        given in the form type:name where type is a standard MDB2 
+	 *        datatype. If type is ommitted, then text is assummed.
+	 *
+	 * @return mixed The max value of field specified.
+	 */
+	public static function getFieldMax($db, $table, $field) {
+		$field = new AdminDBField($field, 'integer');
+			
+		$sql = sprintf('select max(%s) as %s from %s',
+			$field->name, $field->name, $table);
+
+		$rs = $db->query($sql, array($field->type));
+		$row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT);
+		$field_name = $field->name;
+		return $row->$field_name;
+	}
+}
