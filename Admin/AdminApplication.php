@@ -41,6 +41,12 @@ class AdminApplication extends SwatApplication {
 	 */
 	public $page = null;
 
+	protected function setIncludePath() {
+		$uri_array = explode('/', $_SERVER['REQUEST_URI']);
+		$work_dir = $uri_array[2];
+		ini_set('include_path', "../../include/admin:/so/packages/admin/{$work_dir}:/so/packages/swat/{$work_dir}:/so/packages/pear/pear/MDB2:/so/packages/pear/pear/Date:/usr/lib/php");
+	}
+
 	/**
 	 * Replace the page object
 	 *
@@ -93,7 +99,7 @@ class AdminApplication extends SwatApplication {
 				else {
 					$page = new $classname();
 					$page->title = $request->title;
-					$page->source = $source;
+					$page->source = $request->source;
 					$page->component = $request->component;
 					$page->subcomponent = $request->subcomponent;
 					$page->app = $this;
@@ -172,6 +178,8 @@ class AdminApplication extends SwatApplication {
 			$request->title = _S("Login");
 		}
 
+		$request->source = $source;
+
 		return $request;
 	}
 
@@ -195,7 +203,7 @@ class AdminApplication extends SwatApplication {
 					WHERE adminuser_admingroup.usernum = {$usernum}
 				)";
 
-		$rs = $this->db->query($sql, array('text', 'text'));
+		$rs = $this->db->query($sql);
 		
 		if (MDB2::isError($rs))
 			throw new Exception($rs->getMessage());
@@ -311,7 +319,7 @@ class AdminApplication extends SwatApplication {
 			$this->db->quote($md5_password, 'text'),
 			$this->db->quote(true, 'boolean'));
 
-		$rs = $this->db->query($sql, array('integer', 'text', 'text'));
+		$rs = $this->db->query($sql);
 		
 		if ($rs->numRows()) {
 			$result = $rs->fetchRow(MDB2_FETCHMODE_OBJECT); 
@@ -345,6 +353,7 @@ class AdminApplication extends SwatApplication {
 }
 
 class AdminPageRequest {
+	public $source;
 	public $component;
 	public $subcomponent;
 	public $title;
