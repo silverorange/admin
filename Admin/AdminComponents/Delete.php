@@ -2,6 +2,7 @@
 
 require_once('Admin/Admin/Confirmation.php');
 require_once('SwatDB/SwatDB.php');
+require_once('Admin/AdminDependency.php');
 
 /**
  * Delete confirmation page for AdminComponents
@@ -12,18 +13,37 @@ class AdminComponentsDelete extends AdminConfirmation {
 
 	public $items = null;
 
-	protected function displayMessage() {
+	public function display() {
 		$form = $this->ui->getWidget('confirmform');
 		$form->addHiddenField('items', $this->items);
 
 		$where_clause = 'componentid in ('.implode(', ', $this->items).')';
-		$items = SwatDB::getOptionArray($this->app->db, 'admincomponents',
-			'text:title', 'integer:componentid', '', $where_clause);
+		$components = SwatDB::getOptionArray($this->app->db, 'admincomponents',
+			'text:title', 'integer:componentid', 'displayorder, title', $where_clause);
 
 		$message = $this->ui->getWidget('message');
-		$message->content = '<ul><li>';
-		$message->content .= implode('</li><li>', $items);
-		$message->content .= '</li></ul>';
+
+		//$dep = new AdminDependency($components, AdminDependency::DELETE, _S("components"));
+		//$message->content .= $dep->getMessage(false);
+
+		$message->content = '<p>'._("The following components will be deleted:").'</p>';
+		$message->content .= '<ul>';
+
+		foreach ($components as $id => $title) {
+			$message->content .= '<li>'.$title;
+
+			$subcomponents = SwatDB::getOptionArray($this->app->db, 'adminsubcomponents',
+				'text:title', 'integer:subcomponentid', 'title', 'component = '.$id);
+
+			$dep = new AdminDependency($subcomponents, AdminDependency::DELETE, _S("sub-components"));
+			$message->content .= $dep->getMessage();
+
+			$message->content .= '</li>';
+		}
+
+		$message->content .= '</ul>';
+
+		parent::display();
 	}
 
 	protected function processResponse() {
@@ -39,6 +59,9 @@ class AdminComponentsDelete extends AdminConfirmation {
 
 			$sql = sprintf($sql, implode(',', $items));
 			$this->app->db->query($sql);
+
+			$this->app->addMessage(sprintf(_nS('%d admin component has been deleted.', 
+				'%d admin components have been deleted.', count($items)), count($items)));
 		}
 	}
 }

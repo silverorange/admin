@@ -16,11 +16,11 @@
 			</SwatFormField>
 			
 			<SwatFormField title="Show in menu?">
-				<SwatCheckbox name="show" />
+				<SwatCheckbox name="show" value="bool:true" />
 			</SwatFormField>
 
 			<SwatFormField title="Enabled?">
-				<SwatCheckbox name="enabled" />
+				<SwatCheckbox name="enabled" value="bool:true" />
 			</SwatFormField>
 
 			<SwatFormField title="Description">

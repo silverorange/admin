@@ -145,6 +145,8 @@ class AdminApplication extends SwatApplication {
 		$page->subcomponent = $subcomponent;
 		$page->app = $this;
 
+		$this->storeHistory($_SERVER['REQUEST_URI']);
+
 		return $page;
 	}
 
@@ -197,6 +199,65 @@ class AdminApplication extends SwatApplication {
 			$_SESSION['name'] = '';
 			$_SESSION['username'] = '';
 		}
+	}
+
+	public function storeHistory($url) {
+		$history = &$_SESSION['history'];
+	
+		if (count($history) > 0) {
+			end($history);
+			$last = current($history);
+			$pos = strpos($last, '?');
+
+			if ($pos)
+				$last = substr($last, 0, $pos);
+		} else {
+			$last = null;
+		}
+
+		$pos = strpos($url, '?');
+
+		if ($pos)
+			$base = substr($url, 0, $pos);
+		else
+			$base = $url;
+
+		if (strcmp($last, $base) != 0) {
+			array_push($history, $url);
+		}
+
+		// throw away old ones
+		while (count($history) > 10)
+			array_shift($history);
+
+	}
+
+	public function getHistory($index = 1) {
+
+		for ($i = 0; $i <= $index; $i++)
+			$url = array_pop($_SESSION['history']);
+
+		return $url;
+	}
+
+	public function addMessage($message) {
+
+		if (isset($_SESSION['message']))
+			$_SESSION['message'] .= '<br />'.$message;
+		else
+			$_SESSION['message'] = $message;
+	}
+
+	public function getMessage() {
+
+		if (isset($_SESSION['message'])) {
+			$ret = $_SESSION['message'];
+			unset($_SESSION['message']);
+		} else {
+			return null;
+		}
+
+		return $ret;
 	}
 
 	/**

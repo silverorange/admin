@@ -46,7 +46,7 @@ class AdminSectionsEdit extends AdminPage {
 		if ($form->process()) {
 			if (!$form->hasErrorMessage()) {
 				$this->saveData($id);
-				$this->app->relocate($this->component);
+				$this->app->relocate($this->app->getHistory());
 			}
 		}
 	}

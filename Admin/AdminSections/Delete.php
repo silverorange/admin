@@ -22,7 +22,7 @@ class AdminSectionsDelete extends AdminPage {
 
 	public function init() {
 		$this->ui = new AdminUI();
-		$this->ui->loadFromXML('Admin/confirmation.xml');
+		$this->ui->loadFromXML('Admin/Admin/confirmation.xml');
 	}
 
 	public function display() {
@@ -31,8 +31,9 @@ class AdminSectionsDelete extends AdminPage {
 		$form->addHiddenField('items', $this->items);
 
 		$where_clause = 'sectionid in ('.implode(', ', $this->items).')';
+
 		$items = SwatDB::getOptionArray($this->app->db, 'adminsections', 
-			'title', 'sectionid', $where_clause);
+			'title', 'sectionid', null, $where_clause);
 
 		$message = $this->ui->getWidget('message');
 		$message->content = '<ul><li>';
@@ -61,7 +62,7 @@ class AdminSectionsDelete extends AdminPage {
 			$this->app->db->query($sql);
 		}
 
-		$this->app->relocate($this->component);
+		$this->app->relocate($this->app->getHistory());
 	}
 }
 

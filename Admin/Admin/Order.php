@@ -23,7 +23,7 @@ abstract class AdminOrder extends AdminPage {
 		$form = $this->ui->getWidget('orderform');
 		if ($form->process()) {
 			$this->saveData();
-			$this->app->relocate($this->component);
+			$this->app->relocate($this->app->getHistory());
 		}
 	}
 
