@@ -57,8 +57,8 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:show', true, 'componentid', 
 					$view->checked_items);
 
-					$this->app->addMessage(sprintf(_nS('%d component has been shown.', 
-						'%d components have been shown.', $num), $num));
+				$this->app->addMessage(sprintf(_nS('%d component has been shown.', 
+					'%d components have been shown.', $num), $num));
 
 				break;
 
@@ -67,8 +67,8 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:show', false, 'componentid', 
 					$view->checked_items);
 
-					$this->app->addMessage(sprintf(_nS('%d component has been hidden.', 
-						'%d components have been hidden.', $num), $num));
+				$this->app->addMessage(sprintf(_nS('%d component has been hidden.', 
+					'%d components have been hidden.', $num), $num));
 
 				break;
 
@@ -77,8 +77,8 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:enabled', true, 'componentid', 
 					$view->checked_items);
 
-					$this->app->addMessage(sprintf(_nS('%d component has been enabled.', 
-						'%d components have been enabled.', $num), $num));
+				$this->app->addMessage(sprintf(_nS('%d component has been enabled.', 
+					'%d components have been enabled.', $num), $num));
 
 				break;
 
@@ -87,8 +87,8 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:enabled', false, 'componentid', 
 					$view->checked_items);
 
-					$this->app->addMessage(sprintf(_nS('%d component has been disabled.', 
-						'%d components have been disabled.', $num), $num));
+				$this->app->addMessage(sprintf(_nS('%d component has been disabled.', 
+					'%d components have been disabled.', $num), $num));
 
 				break;
 
