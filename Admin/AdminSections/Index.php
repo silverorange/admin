@@ -9,7 +9,6 @@ require_once("MDB2.php");
 class AdminSectionsIndex extends AdminPage {
 
 	private $ui;
-	private $confirmation = null;
 
 	public function init() {
 		$this->ui = new AdminUI();
@@ -23,12 +22,6 @@ class AdminSectionsIndex extends AdminPage {
 	}
 
 	public function display() {
-		if ($this->confirmation != null) {
-			$root = $this->confirmation->getRoot();
-			$root->display();
-			return;
-		}
-
 		$view = $this->ui->getWidget('view');
 		$view->model = $this->getTableStore();
 
@@ -66,10 +59,8 @@ class AdminSectionsIndex extends AdminPage {
 
 		switch ($actions->selected->name) {
 			case 'delete':
-				$this->confirmation = new AdminUI();
-				$this->confirmation->loadFromXML('Admin/confirmation.xml');
-
-				//$colorfly = $this->ui->getWidget('color');
+				$this->app->replacePage('AdminSections/Delete');
+				$this->app->page->items = $view->checked_items;
 				break;
 
 			case 'show':
@@ -91,15 +82,6 @@ class AdminSectionsIndex extends AdminPage {
 				if ($actions->selected->widget != null)
 					echo 'value = ', $actions->selected->widget->value;
 		}
-	}
-
-	public function displayConfirmation($confirmui) {
-		$view = $this->ui->getWidget('view');
-
-		echo 'confirm<br />';
-		echo 'items = ';
-		print_r($view->checked_items);
-		echo '<br />';
 	}
 }
 
