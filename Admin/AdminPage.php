@@ -4,6 +4,7 @@
  * @copyright silverorange 2004
  */
 require_once('Swat/SwatPage.php');
+require_once('Admin/AdminMenu.php');
 
 /**
  * Abstract base class for admin pages.
@@ -26,13 +27,15 @@ abstract class AdminPage extends SwatPage {
 		 */
 		echo '<h1>Example Admin</h1>';
 		echo '<div id="admin-syslinks">';
-		echo 'Welcome <a href="#">Buckminster Fuller</a> &nbsp;|&nbsp;
-			<a href="#">Customize</a> &nbsp;|&nbsp;
-			<a href="#"><strong>Logout</strong></a>
-			</div>';
+		echo 'Welcome <a href="#">Buckminster Fuller</a> &nbsp;|&nbsp;';
+		echo '<a href="#">Customize</a> &nbsp;|&nbsp;';
+		echo '<a href="#"><strong>Logout</strong></a>';
+		echo '</div>';
 	}
 
 	public function displayMenu($app) {
+		$sql_false = $app->db->quote(0, 'boolean');
+
 		$sql = "SELECT admincomponents.shortname, admincomponents.title,
 					admincomponents.section, adminsections.title AS sectiontitle,
 					admincomponents.componentid,
@@ -46,15 +49,14 @@ abstract class AdminPage extends SwatPage {
 				INNER JOIN adminsections ON
 					admincomponents.section = adminsections.sectionid
 
-				WHERE adminsections.hidden='0' --$app->db->quote(0,'bit')
+				WHERE adminsections.hidden = {$sql_false}
 				
-				AND admincomponents.hidden='0' --$app->db->quote(0,'bit')
+				AND admincomponents.hidden = {$sql_false}
 
 				AND (
-					adminsubcomponents.hidden='0' --$app->db->quote(0,'bit')
+					adminsubcomponents.hidden = {$sql_false}
 					OR adminsubcomponents.hidden is  null
-				)
-		";
+				)";
 		// TODO: make this work once sessions are working
 				/*
 				AND adminarticles.articleid IN (
@@ -65,68 +67,15 @@ abstract class AdminPage extends SwatPage {
 					WHERE adminuser_admingroup.usernum = ".$_SESSION['userID']."
 				)
 				*/
-		$sql.="
-				ORDER BY adminsections.displayorder, adminsections.title,
+		$sql.="	ORDER BY adminsections.displayorder, adminsections.title,
 				admincomponents.section, admincomponents.displayorder,
 				admincomponents.title, adminsubcomponents.displayorder,
 				adminsubcomponents.title";
 		
 		$types = array('text', 'text', 'integer', 'text', 'integer', 'text', 'text');
-		$result = $app->db->query($sql, $types);
-		
-		if (MDB2::isError($result)) 
-			throw new Exception($result->getMessage());
+		$menu = $app->db->query($sql, $types, true, 'AdminMenu');
+		$menu->display();	
 
-		$section_out = 0;
-		$component_out = 0;
-		$currentrow = 0;		
-		$subcomponents = false;		
-
-		echo '<ul>';
-		while ($row = $result->fetchRow(MDB2_FETCHMODE_OBJECT)) {
-			$currentrow++;
-			if ($row->section != $section_out) {
-				if ($subcomponents) {
-					echo '</ul></li>';
-					$subcomponents = false;
-				}
-				
-				if ($currentrow != 1) echo "</li></ul>";
-				echo '<li><span>'.$row->sectiontitle.'</span>';
-				echo '<ul>';
-				$section_out = $row->section;
-			}
-			
-			if ($row->componentid != $component_out) {
-				if ($subcomponents) {
-					echo '</ul></li>';
-					$subcomponents = false;
-				}
-
-				echo '<li><a href="a/'.$row->shortname.'">';
-				echo $row->title;
-				echo '</a>';
-
-				$component_out = $row->componentid;
-
-				if ($row->subcomponent_title != null) {
-					echo '<ul>';
-					$subcomponents = true;
-				} else {
-					echo '</li>';
-					$subcomponents = false;
-				}
-			}
-		
-			if ($row->subcomponent_title != null) {	
-				echo '<li><a href="a/'.$row->subcomponent_shortname.'">';
-				echo $row->subcomponent_title;
-				echo '</a></li>';
-			}
-		}
-		
-		if ($subcomponents) echo '</ul></li>';
-		echo '</ul></li></ul>';
 	}
 	
 	abstract public function init($app);
