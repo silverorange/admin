@@ -54,10 +54,17 @@ abstract class AdminEdit extends AdminPage {
 		if ($form->process()) {
 			if (!$form->hasMessage()) {
 				if ($this->saveData($id)) {
-					$this->app->relocate($this->app->getHistory());
+					$this->relocate();
 				}
 			}
 		}
+	}
+
+	/**
+	 * Relocate after process
+	 */
+	protected function relocate() {
+		$this->app->relocate($this->app->getHistory());
 	}
 
 	/**
