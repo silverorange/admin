@@ -33,7 +33,36 @@ class AdminSectionsEdit extends AdminPage {
 
 	public function process() {
 		$form = $this->layout->getWidget('editform');
-		$form->process();
+		$id = intval(SwatApplication::initVar('id'));
+
+		if ($form->process()) {
+			if (!$form->hasErrorMessage()) {
+				$this->saveToDB($id);
+				$this->app->relocate($this->component);
+			}
+		}
+	}
+
+	private function saveToDB($id) {
+		$db = $this->app->db;
+
+		if ($id == 0)
+			$sql = 'INSERT INTO adminsections(title, hidden, description)
+				VALUES (%s, %s, %s)';
+		else
+			$sql = 'UPDATE adminsections
+				SET title = %s,
+					hidden = %s,
+					description = %s
+				WHERE sectionid = %s';
+
+		$sql = sprintf($sql,
+			$db->quote($this->layout->getWidget('title')->value, 'text'),
+			$db->quote($this->layout->getWidget('hidden')->value, 'boolean'),
+			$db->quote($this->layout->getWidget('description')->value, 'text'),
+			$db->quote($id, 'integer'));
+
+		$db->query($sql);
 	}
 
 	private function loadFromDB($id) {

@@ -17,6 +17,18 @@ abstract class AdminPage extends SwatPage {
 	 */
 	public $source;
 
+	/**
+	 * The component name of this page.
+	 * @var string
+	 */
+	public $component;
+
+	/**
+	 * The subcomponent name of this page.
+	 * @var string
+	 */
+	public $subcomponent;
+
 	abstract public function init();
 
 	abstract public function display();

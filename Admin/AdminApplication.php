@@ -108,6 +108,8 @@ class AdminApplication extends SwatApplication {
 		$page = eval(sprintf("return new %s();", $classname));
 		$page->title = $title;
 		$page->source = $source;
+		$page->component = $component;
+		$page->subcomponent = $subcomponent;
 		$page->app = $this;
 
 		return $page;
