@@ -15,8 +15,12 @@
 				<SwatFlydown name="section" />
 			</SwatFormField>
 			
-			<SwatFormField title="Hidden?">
-				<SwatCheckbox name="hidden" />
+			<SwatFormField title="Show in menu?">
+				<SwatCheckbox name="show" />
+			</SwatFormField>
+
+			<SwatFormField title="Enabled?">
+				<SwatCheckbox name="enabled" />
 			</SwatFormField>
 
 			<SwatFormField title="Description">

@@ -36,7 +36,7 @@ class AdminComponentsDetails extends AdminIndex {
 		$sql = 'select adminsubcomponents.subcomponentid, 
 					adminsubcomponents.title, 
 					adminsubcomponents.shortname, 
-					adminsubcomponents.hidden
+					adminsubcomponents.show
 				from adminsubcomponents 
 				where component = %s
 				order by adminsubcomponents.displayorder';
@@ -61,13 +61,13 @@ class AdminComponentsDetails extends AdminIndex {
 
 			case 'show':
 				SwatDB::updateField($this->app->db, 'admincomponents', 
-					'boolean:hidden', false, 'componentid', 
+					'boolean:show', true, 'componentid', 
 					$view->checked_items);
 				break;
 
 			case 'hide':
 				SwatDB::updateField($this->app->db, 'admincomponents', 
-					'boolean:hidden', true, 'componentid', 
+					'boolean:show', false, 'componentid', 
 					$view->checked_items);
 				break;
 

@@ -35,7 +35,7 @@ class AdminSectionsIndex extends AdminPage {
 	}
 
 	private function getTableStore() {
-		$sql = 'SELECT sectionid, title, hidden 
+		$sql = 'SELECT sectionid, title, show 
 				FROM adminsections 
 				ORDER BY displayorder';
 
@@ -67,13 +67,13 @@ class AdminSectionsIndex extends AdminPage {
 
 			case 'show':
 				SwatDB::updateField($this->app->db, 'adminsections', 
-					'boolean:hidden', false, 'sectionid', 
+					'boolean:show', true, 'sectionid', 
 					$view->checked_items);
 				break;
 
 			case 'hide':
 				SwatDB::updateField($this->app->db, 'adminsections', 
-					'boolean:hidden', true, 'sectionid', 
+					'boolean:show', false, 'sectionid', 
 					$view->checked_items);
 				break;
 

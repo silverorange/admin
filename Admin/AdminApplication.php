@@ -150,7 +150,7 @@ class AdminApplication extends SwatApplication {
 
 	private function queryForPage($component) {
 		$shortname = $this->db->quote($component, 'text');
-		$hidden = $this->db->quote(false, 'boolean');
+		$enabled = $this->db->quote(true, 'boolean');
 		$usernum = $this->db->quote($_SESSION['userID'], 'integer');	
 
 		// TODO: move this page query into a stored procedure
@@ -158,7 +158,7 @@ class AdminApplication extends SwatApplication {
 				adminsections.title as section_title
 			FROM admincomponents
 				INNER JOIN adminsections ON admincomponents.section = adminsections.sectionid
-			WHERE admincomponents.hidden = {$hidden}
+			WHERE admincomponents.enabled = {$enabled}
 				AND admincomponents.shortname = {$shortname}
 				AND componentid IN (
 					SELECT component
