@@ -116,14 +116,11 @@ class AdminApplication extends SwatApplication {
 	}
 
 	private function queryForPage($component) {
-		// TODO: Figure out how MDB2 escaping boolean works
-		// also need to add proper session stuff
 		$shortname = $this->db->quote($component, 'text');
-		//$hidden = $this->db->quote('N','boolean');
-		$hidden = "'0'";
-		//$usernum = $this->db->quote($_SESSION['userID'], 'integer');	
-		$usernum = $this->db->quote(2, 'integer');		
-		
+		$hidden = $this->db->quote(false, 'boolean');
+		$usernum = $this->db->quote($_SESSION['userID'], 'integer');	
+
+		// TODO: move this page query into a stored procedure
 		$sql = "SELECT admincomponents.title as component_title, admincomponents.shortname,
 				adminsections.title as section_title
 			FROM admincomponents
@@ -138,7 +135,7 @@ class AdminApplication extends SwatApplication {
 					WHERE adminuser_admingroup.usernum = {$usernum}
 				)";
 
-		$rs = $this->db->query($sql, array('text','text'));
+		$rs = $this->db->query($sql, array('text', 'text'));
 		
 		if (MDB2::isError($rs))
             throw new Exception($rs->getMessage());
@@ -180,9 +177,9 @@ class AdminApplication extends SwatApplication {
 	}
 
 	public function isLoggedIn() {
-			if (isset($_SESSION['userID']))
-				return ($_SESSION['userID'] != 0);
+		if (isset($_SESSION['userID']))
+			return ($_SESSION['userID'] != 0);
 
-			return false;
+		return false;
 	}
 }
