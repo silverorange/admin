@@ -43,7 +43,7 @@ abstract class AdminConfirmation extends AdminPage {
 		if (!$form->process())
 			return;
 
-		$this->processConfirmation();
+		$this->processResponse();
 
 		$this->app->relocate($this->component);
 	}
