@@ -81,45 +81,9 @@ abstract class AdminPage extends SwatPage {
 	 * from their implementation of {@link AdminPage::display()}.
 	 */
 	public function displayMenu() {
-		$sql_false = $this->app->db->quote(0, 'boolean');
 		$sql_userid = $this->app->db->quote($_SESSION['userID'], 'integer');
 
-		$sql = "SELECT admincomponents.shortname, admincomponents.title,
-					admincomponents.section, adminsections.title AS sectiontitle,
-					admincomponents.componentid,
-					adminsubcomponents.title as subcomponent_title,
-					adminsubcomponents.shortname as subcomponent_shortname
-				FROM admincomponents 
-
-				LEFT OUTER JOIN adminsubcomponents on
-					adminsubcomponents.component = admincomponents.componentid
-
-				INNER JOIN adminsections ON
-					admincomponents.section = adminsections.sectionid
-
-				WHERE adminsections.hidden = {$sql_false}
-				
-				AND admincomponents.hidden = {$sql_false}
-
-				AND (
-					adminsubcomponents.hidden = {$sql_false}
-					OR adminsubcomponents.hidden is  null
-				)
-				
-				AND admincomponents.componentid IN (
-					SELECT component
-					FROM admincomponent_admingroup
-					INNER JOIN adminuser_admingroup ON
-						admincomponent_admingroup.groupnum = adminuser_admingroup.groupnum
-					WHERE adminuser_admingroup.usernum = {$sql_userid}
-				)
-				
-				ORDER BY adminsections.displayorder, adminsections.title,
-					admincomponents.section, admincomponents.displayorder,
-					admincomponents.title, adminsubcomponents.displayorder,
-					adminsubcomponents.title
-				";
-		
+		$sql = "select * from sp_admin_menu(".$_SESSION['userID'].");";
 		$types = array('text', 'text', 'integer', 'text', 'integer', 'text', 'text');
 		$menu = $this->app->db->query($sql, $types, true, 'AdminMenu');
 		$menu->display();	
