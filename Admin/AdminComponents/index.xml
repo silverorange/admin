@@ -39,7 +39,7 @@
 				<SwatActionItem name="show" title="show" />
 				<SwatActionItem name="hide" title="hide" />
 
-				<SwatActionItem name="changesection" title="change section">
+				<SwatActionItem name="changesection" title="change section...">
 					<SwatFlydown name="section" />
 				</SwatActionItem>
 
