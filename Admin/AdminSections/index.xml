@@ -5,8 +5,8 @@
 			<SwatTableView name="view">
 
 				<SwatTableViewColumn name="controls">
-					<SwatCellRendererControl src="admin/images/b_details.png" height="int:22" width="int:28" title="View Details" alt="Details" href="AdminSections/Details?id=%s" value="data:sectionid" />
-					<SwatCellRendererControl src="admin/images/b_edit.png" height="int:22" width="int:28" title="Edit" alt="Edit" href="AdminSections/Edit?id=%s" value="data:sectionid" />
+					<SwatCellRendererControl src="admin/images/b_details.png" height="int:22" width="int:28" title="View Details" alt="Details" href="SwatSections/Details?id=%s" value="data:sectionid" />
+					<SwatCellRendererControl src="admin/images/b_edit.png" height="int:22" width="int:28" title="Edit" alt="Edit" href="SwatSections/Edit?id=%s" value="data:sectionid" />
 				</SwatTableViewColumn>
 
 				<SwatTableViewColumn name="checkbox">
@@ -28,26 +28,26 @@
 				</SwatTableViewColumn>
 
 			</SwatTableView>
-			<AdminActions name="actions">
+			<SwatActions name="actions">
 
-				<AdminActionItem name="delete" title="delete" />
+				<SwatActionItem name="delete" title="delete" />
 
-				<AdminActionItem name="defibulate" title="defibulate">
+				<SwatActionItem name="defibulate" title="defibulate">
 					<SwatEntry name="title" />
-				</AdminActionItem>
+				</SwatActionItem>
 
-				<AdminActionItem name="show" title="show" />
-				<AdminActionItem name="hide" title="hide" />
+				<SwatActionItem name="show" title="show" />
+				<SwatActionItem name="hide" title="hide" />
 
-				<AdminActionItem name="setdate" title="set date">
+				<SwatActionItem name="setdate" title="set date">
 					<SwatDate name="date" />
-				</AdminActionItem>
+				</SwatActionItem>
 
-				<AdminActionItem name="setcolor" title="set color">
+				<SwatActionItem name="setcolor" title="set color">
 					<SwatFlydown name="color" />
-				</AdminActionItem>
+				</SwatActionItem>
 
-			</AdminActions>
+			</SwatActions>
 		</SwatForm>
 	</SwatFrame>
 </SwatUI>
