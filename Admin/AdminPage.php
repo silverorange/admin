@@ -81,12 +81,13 @@ abstract class AdminPage extends SwatPage {
 	 * from their implementation of {@link AdminPage::display()}.
 	 */
 	public function displayMenu() {
-		$sql_userid = $this->app->db->quote($_SESSION['userID'], 'integer');
-
-		$sql = "select * from sp_admin_menu(".$_SESSION['userID'].");";
+		$db = $this->app->db;
+		$sql_userid = $db->quote($_SESSION['userID'], 'integer');
+		
 		$types = array('text', 'text', 'integer', 'text', 'integer', 'text', 'text');
-		$menu = $this->app->db->query($sql, $types, true, 'AdminMenu');
-		$menu->display();	
+		$menu = $db->executeStoredProc('sp_admin_menu', array($sql_userid),
+					$types, true, 'AdminMenu');
+		$menu->display();
 
 	}
 	

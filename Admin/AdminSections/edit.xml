@@ -14,10 +14,6 @@
 				<SwatTextarea name="description" />
 			</SwatFormField>
 
-			<SwatFormField title="Change Order">
-				<SwatChangeOrder name="myorder" />
-			</SwatFormField>
-			
 			<SwatFormField class="swat-form-footer">
 				<SwatButton name="btn_submit" />
 			</SwatFormField>

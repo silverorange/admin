@@ -2,6 +2,7 @@
 
 require_once("Admin/AdminPage.php");
 require_once('Admin/AdminUI.php');
+require_once('Admin/AdminDB.php');
 require_once("MDB2.php");
 
 /**
@@ -35,33 +36,6 @@ class AdminSectionsEdit extends AdminPage {
 		$form->action = $this->source;
 		$form->addHiddenField('id', $id);
 		
-		$order = $this->ui->getWidget('myorder');
-		//$order->height = 500;
-		//$order->width = '150';
-		$myarray = array();
-		$myarray[1] = 'Element 1';
-		$myarray[2] = 'Element 2';
-		$myarray[3] = 'Element 3';
-		$myarray[4] = 'Element 4';
-		$myarray[5] = 'Element 5';
-		$myarray[6] = 'Element 6';
-		$myarray[7] = 'Element 7';
-		$myarray[8] = 'Element 8';
-		$myarray[9] = 'Element 9';
-		$myarray[10] = 'Element 10';
-		$myarray['a'] = 'Element String Key a';
-		$myarray['b'] = 'Element String Key b';
-		$myarray['c'] = 'Element String Key c';
-		$myarray['d'] = 'Element String Key d';
-		$myarray['e'] = 'Element String Key e';
-		$myarray['img1'] = '<img src="http://gallery.whitelands.com/files/tiny/photo7784.jpg"> Element Test Image 1';
-		$myarray['img2'] = '<img src="http://gallery.whitelands.com/files/tiny/photo142.jpg"> Element Test Image 2';
-		$myarray['img3'] = '<img src="http://gallery.whitelands.com/files/tiny/photo75.jpg"> Element Test Image 3';
-		$myarray['img4'] = '<img src="http://gallery.whitelands.com/files/tiny/photo33011.jpg"> Element Test Image 4';
-		$myarray['img5'] = '<img src="http://gallery.whitelands.com/files/tiny/photo32720.jpg"> Element Test Image 5';
-		
-		$order->value = $myarray;
-
 		$root = $this->ui->getRoot();
 		$root->display();
 	}
