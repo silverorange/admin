@@ -28,7 +28,7 @@
 
 			</SwatTableView>
 			<SwatActions name="actions">
-			<!--SwatActions name="actions" auto_reset="bool:true" show_blank_option="bool:false"-->
+			<!--SwatActions name="actions" auto_reset="boolean:true" show_blank_option="boolean:false"-->
 
 				<SwatActionItem name="delete" title="delete" />
 
