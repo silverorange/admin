@@ -28,6 +28,7 @@ abstract class AdminPage extends SwatPage {
 				WHERE adminsections.hidden='0' --$app->db->quote(0,'bit')
 				
 				AND adminarticles.hidden='0' --$app->db->quote(0,'bit')
+		";
 				/*
 				AND adminarticles.articleid IN (
 					SELECT article
@@ -37,6 +38,7 @@ abstract class AdminPage extends SwatPage {
 					WHERE adminuser_admingroup.usernum = ".$_SESSION['userID']."
 				)
 				*/
+		$sql.="
 				ORDER BY adminsections.displayorder, adminsections.title,
 				adminarticles.section, adminarticles.displayorder,
 				adminarticles.title";
