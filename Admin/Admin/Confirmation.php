@@ -54,7 +54,9 @@ abstract class AdminConfirmation extends AdminPage {
 	 * Process the response
 	 *
 	 * This method is called to perform whatever processing is required in 
-	 * response to the button clicked. Sub-classes should implement this method.
+	 * response to the button clicked.
+	 * Called by {@link AdminConfirmation::process}.
+	 * Sub-classes should implement this method.
 	 */
 	abstract protected function processResponse();
 }

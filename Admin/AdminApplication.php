@@ -6,6 +6,7 @@ require_once('AdminPage.php');
 
 /**
  * Web application class for an administrator
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -21,7 +22,7 @@ class AdminApplication extends SwatApplication {
 	 * The name of the database
 	 *
 	 * This is the name of the database to connect to.  Set this before calling
-	 * AdminApplication::init(), afterwords consider it readonly.
+	 * {@link AdminApplication::init()}, afterwords consider it readonly.
 	 *
 	 * @var string
 	 */
@@ -46,7 +47,7 @@ class AdminApplication extends SwatApplication {
 	 * page. For example, this is used to load a confirmation page when 
 	 * processing an admin index page.
 	 *
-	 * @return AdminPage A subclass of AdminPage is returned.
+	 * @return AdminPage A subclass of {@link AdminPage} is returned.
 	 */
 	public function replacePage($source) {
 		$this->page = $this->getPage($source);
@@ -67,7 +68,7 @@ class AdminApplication extends SwatApplication {
 	 *
 	 * Uses the $_GET variables to decide which page subclass to instantiate.
 	 *
-	 * @return AdminPage A subclass of AdminPage is returned.
+	 * @return AdminPage A subclass of {@link AdminPage} is returned.
 	 */
 	public function getPage($source = null) {
 
@@ -195,6 +196,12 @@ class AdminApplication extends SwatApplication {
 		}
 	}
 
+	/**
+	 * Authenticate user
+	 * @param string $username
+	 * @param string $password
+	 * @return bool True if login is successful.
+	 */
 	public function login($username, $password) {
 		// TODO: authenticate against adminusers table here
 		//       return true if login is successful
@@ -202,10 +209,17 @@ class AdminApplication extends SwatApplication {
 		return true;
 	}
 
+	/**
+	 * Set the user as logged-out 
+	 */
 	public function logout() {
 		$_SESSION['userID'] = 0;
 	}
 
+	/**
+	 * Check the user's logged-in status
+	 * @return bool True if user is logged in. 
+	 */
 	public function isLoggedIn() {
 		if (isset($_SESSION['userID']))
 			return ($_SESSION['userID'] != 0);

@@ -6,11 +6,16 @@ require_once('Admin/AdminPage.php');
 
 /**
  * Delete confirmation page for AdminSections
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
 class AdminSectionsDelete extends AdminPage {
 
+	/*
+	 * The items to delete.
+	 * @var Array
+	 */
 	public $items = null;
 
 	private $ui;

@@ -34,16 +34,17 @@ abstract class AdminPage extends SwatPage {
 	/**
 	 * Initialize the page
 	 *
-	 * Called to initialize the page before the
-	 * {@link AdminPage::display()} or {@link AdminPage::process()}.
+	 * Sub-classes should implement this method to initialize the page. This 
+	 * method should be called before either {@link AdminPage::display()} or 
+	 * {@link AdminPage::process()}.
 	 */
 	abstract public function init();
 
 	/**
 	 * Display the page
 	 *
-	 * Sub-classes should implement this method to display the
-	 * contents of the page. Called after {@link AdminPage::init()}
+	 * Sub-classes should implement this method to display the contents of 
+	 * the page. Called after {@link AdminPage::init()}
 	 */
 	abstract public function display();
 	
@@ -77,8 +78,8 @@ abstract class AdminPage extends SwatPage {
 	/**
 	 * Display admin page menu
 	 *
-	 * Display the menu of an admin page. Sub-classes
-	 * should call this from their implementation of {@link AdminPage::display()}.
+	 * Display the menu of an admin page. Sub-classes should call this 
+	 * from their implementation of {@link AdminPage::display()}.
 	 */
 	public function displayMenu() {
 		$sql_false = $this->app->db->quote(0, 'boolean');

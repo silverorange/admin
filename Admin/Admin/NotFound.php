@@ -4,6 +4,7 @@ require_once('Admin/AdminPage.php');
 
 /**
  * Administrator Not Found page
+ *
  * @package Admin
  * @copyright silverorange 2004
  */

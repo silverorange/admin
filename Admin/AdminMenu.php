@@ -2,6 +2,9 @@
 
 /**
  * Primary navigation menu
+ *
+ * Designed to be used as a MDB2 result wrapper class.
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -9,6 +12,12 @@ class AdminMenu {
 
 	private $sections;
 
+	/**
+	* @param MDB2_Result $rs A recordset containing the menu.
+	*        Requires the fields: section (integer), sectiontitle (text),
+	*        componentid (integer), shortname (text), title (text)
+	*        subcomponent_shortname (text), subcomponent_title (text)
+	*/
 	function __construct($rs) {
 
 		if (MDB2::isError($rs)) 
@@ -38,6 +47,11 @@ class AdminMenu {
 		}
 	}
 
+	/**
+	* Display the menu
+	*
+	* Outputs the HTML of the menu
+	*/
 	public function display() {
 		echo '<ul>';
 
@@ -50,7 +64,9 @@ class AdminMenu {
 }
 
 /**
- * Menu section (data class)
+ * Admin menu section
+ *
+ * Internal data/display class used internally within {@link AdminMenu}
  */
 class AdminMenuSection {
 
@@ -76,7 +92,9 @@ class AdminMenuSection {
 }
 
 /**
- * Menu component (data class)
+ * Admin menu component
+ *
+ * Internal data/display class used internally within {@link AdminMenu}
  */
 class AdminMenuComponent {
 
@@ -112,7 +130,9 @@ class AdminMenuComponent {
 }
 
 /**
- * Menu subcomponent (data class)
+ * Admin menu sub component
+ *
+ * Internal data/display class used internally within {@link AdminMenu}
  */
 class AdminMenuSubcomponent {
 
