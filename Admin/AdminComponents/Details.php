@@ -47,13 +47,13 @@ class AdminComponentsDetails extends AdminIndex {
 				break;
 
 			case 'show':
-				AdminDB::update($this->app->db, 'admincomponents', 
+				AdminDB::updateField($this->app->db, 'admincomponents', 
 					'boolean:hidden', false, 'componentid', 
 					$view->checked_items);
 				break;
 
 			case 'hide':
-				AdminDB::update($this->app->db, 'admincomponents', 
+				AdminDB::updateField($this->app->db, 'admincomponents', 
 					'boolean:hidden', true, 'componentid', 
 					$view->checked_items);
 				break;
@@ -61,7 +61,7 @@ class AdminComponentsDetails extends AdminIndex {
 			case 'changesection':
 				$new_section = $actions->selected->widget->value;
 
-				AdminDB::update($this->app->db, 'admincomponents', 
+				AdminDB::updateField($this->app->db, 'admincomponents', 
 					'integer:section', $new_section, 'componentid', 
 					$view->checked_items);
 

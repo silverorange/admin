@@ -66,13 +66,13 @@ class AdminSectionsIndex extends AdminPage {
 				break;
 
 			case 'show':
-				AdminDB::update($this->app->db, 'adminsections', 
+				AdminDB::updateField($this->app->db, 'adminsections', 
 					'boolean:hidden', false, 'sectionid', 
 					$view->checked_items);
 				break;
 
 			case 'hide':
-				AdminDB::update($this->app->db, 'adminsections', 
+				AdminDB::updateField($this->app->db, 'adminsections', 
 					'boolean:hidden', true, 'sectionid', 
 					$view->checked_items);
 				break;
