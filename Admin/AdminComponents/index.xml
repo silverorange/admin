@@ -1,0 +1,49 @@
+<?xml version='1.0' standalone='yes'?>
+<SwatUI>
+	<SwatFrame title="Components">
+		<SwatToolLink title="Create a New Component" href="AdminComponents/Edit" />
+		<SwatForm name="indexform">
+			<SwatTableView name="view">
+
+				<SwatTableViewGroup group_by="section">
+					<SwatCellRendererText>data:section_title</SwatCellRendererText>
+				</SwatTableViewGroup>
+
+				<SwatTableViewColumn name="controls">
+					<SwatCellRendererControl src="admin/images/b_details.png" height="int:22" width="int:28" title="View Details" alt="Details" href="AdminComponents/Details?id=%s" value="data:componentid" />
+					<SwatCellRendererControl src="admin/images/b_edit.png" height="int:22" width="int:28" title="Edit" alt="Edit" href="AdminComponents/Edit?id=%s" value="data:componentid" />
+				</SwatTableViewColumn>
+
+				<SwatTableViewColumn name="checkbox">
+					<SwatCellRendererCheckbox name="items" value="data:componentid" />
+				</SwatTableViewColumn>
+
+				<SwatTableViewColumn name="title" title="Title">
+					<SwatCellRendererLink href="AdminComponents/Details?id=%s" value="data:componentid">
+						data:title
+					</SwatCellRendererLink>
+				</SwatTableViewColumn>
+
+				<SwatTableViewColumn name="shortname" title="Short Name">
+					<SwatCellRendererText>data:shortname</SwatCellRendererText>
+				</SwatTableViewColumn>
+
+				<SwatTableViewColumn name="hidden" title="Hidden">
+					<SwatCellRendererCheck value="data:hidden" />
+				</SwatTableViewColumn>
+
+			</SwatTableView>
+			<SwatActions name="actions">
+
+				<SwatActionItem name="delete" title="delete" />
+				<SwatActionItem name="show" title="show" />
+				<SwatActionItem name="hide" title="hide" />
+
+				<SwatActionItem name="changesection" title="change section">
+					<SwatFlydown name="section" />
+				</SwatActionItem>
+
+			</SwatActions>
+		</SwatForm>
+	</SwatFrame>
+</SwatUI>
