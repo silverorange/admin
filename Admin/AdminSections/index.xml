@@ -2,7 +2,7 @@
 <SwatLayout>
 	<SwatFrame name="frame" title="Sections">
 		<SwatForm name="indexform">
-			<SwatTableView name="view" show_check_all="bool:true">
+			<SwatTableView name="view">
 
 				<SwatTableViewColumn name="controls">
 					<SwatCellRendererControl src="XXX" alt="Details" href="AdminSections/Details?id=%s" id="data:sectionid" />
