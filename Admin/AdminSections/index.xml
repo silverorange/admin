@@ -10,7 +10,7 @@
 				</SwatTableViewColumn>
 
 				<SwatTableViewColumn name="checkbox">
-					<SwatCellRendererCheckbox name="items[]" value="data:sectionid" />
+					<SwatCellRendererCheckbox name="items" value="data:sectionid" />
 				</SwatTableViewColumn>
 
 				<SwatTableViewColumn name="title" title="Title">
