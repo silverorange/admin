@@ -64,35 +64,47 @@ class AdminApplication extends SwatApplication {
 		else
 			$source = 'front';
 
-		/*
-		if (!$this->isLoggedIn()) {
-			$component = 'login';
-			$subcomponent = 'index';
-		} elseif (strpos($source, '/')) {
-		*/
-		if (strpos($source, '/')) {
-			list($component, $subcomponent) = explode('/', $source);
+
+		$found = true;
+
+		if (1 == 1 || $this->isLoggedIn()) {
+			if (strpos($source, '/')) {
+				list($component, $subcomponent) = explode('/', $source);
+			} else {
+				$component = $source;
+				$subcomponent = 'Index';
+			}
+			
+			$pagequery = $this->queryForPage($component);
+			
+			
+			//if ($pagequery->size()) {
+				$row = $pagequery->fetchRow(MDB2_FETCHMODE_OBJECT);
+				$page_title = $row->component_title;
+			//}
+			
+			/*
+			if (!$pagequery->size())
+				$found = false;
+			*/
+		
 		} else {
-			$component = $source;
-			$subcomponent = 'Index';
+			$component = 'Admin';
+			$subcomponent = 'Login';
+			$page_title = _S("Login");
 		}
 
-		$pagequery = $this->queryForPage($component);
+		$file = $component.'/'.$subcomponent.'.php';
+		/*if (!file_exists($file)) {
+				
+				$component = 'Admin';
+				$subcomponent = 'PageNotFound';
+				$page_title = _S("Page Not Found");	
+			
+		}*/
 		
-		//print_r($pagequery);
-		//if ($pagequery->size()) {
-			$row = $pagequery->fetchRow(MDB2_FETCHMODE_OBJECT);
-			$page_title = $row->title;
-
-		//} else {
-		//	$page_title = 'Login';
-		//}
-		
-		//echo "$component/$subcomponent<br>";
-		//if ($component == 'login')
-		//	$class = 'Admin/Login/Index';
-
-		require_once('Admin/'.$component.'/'.$subcomponent.'.php');
+		require_once($file);
+	
 		$classname = $component.$subcomponent;
 		$page = eval(sprintf("return new %s();", $classname));
 		$page->title = $page_title;
@@ -109,11 +121,8 @@ class AdminApplication extends SwatApplication {
 		//$usernum = $this->db->quote($_SESSION['userID'], 'integer');	
 		$usernum = $this->db->quote(2, 'integer');		
 		
-		//$shortname = 'adminsections';
-		//$usernum = 2;
-		//$hidden = 0;
-
-		$sql = "SELECT admincomponents.title, admincomponents.shortname
+		$sql = "SELECT admincomponents.title as component_title, admincomponents.shortname,
+				adminsections.title as section_title
 			FROM admincomponents
 				INNER JOIN adminsections ON admincomponents.section = adminsections.sectionid
 			WHERE admincomponents.hidden = {$hidden}
@@ -132,22 +141,6 @@ class AdminApplication extends SwatApplication {
             throw new Exception($result->getMessage());
 		else
 			return $result;
-
-		/*if ($result->size() == 0) {
-			$sql = "
-				SELECT adminarticles.*, adminsections.title AS section_title
-				FROM adminarticles
-				INNER JOIN adminsections ON section = sectionID
-				WHERE shortname = '{$shortname}'
-					AND articleID IN (
-						SELECT article
-						FROM adminarticle_admingroup
-						INNER JOIN adminuser_admingroup 
-							ON adminarticle_admingroup.groupnum = adminuser_admingroup.groupnum
-						WHERE adminuser_admingroup.usernum = {$_SESSION['userID']}
-					)";
-			$result = $this->db->query($sql);
-		*/
 
 		//if ($result->numrows() == 0)
 		//		$result = null;
