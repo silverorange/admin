@@ -295,13 +295,29 @@ class AdminDependency {
 	public static function queryDependencyEntries($db, $table, $id_field, $parent_field, $title_field, 
 		$order_by_clause = null, $where_clause = null) {
 
-		$entries = array();
 		$items = SwatDB::getOptionArray($db, $table, $title_field, $id_field, $order_by_clause, $where_clause);
-
 		if ($parent_field === null)
 			$parents = null;
 		else
 			$parents = SwatDB::getOptionArray($db, $table, $parent_field, $id_field, $order_by_clause, $where_clause);
+		
+		return self::buildDependencyArray($items, $parents);
+	}
+
+	/**
+	 * Build a dependency array.
+	 *
+ 	 * Convenience method to create an array for {@link AdminDependencyEntry} 
+	 * objects. The returned entry array can be directly assigned to the
+ 	 * {@link AdminDependency::$entries} property.
+	 *
+	 * @param array $items An associative array in the form of id=>title
+	 * @param array $parents An associative array in the form of id=>parent
+	 *
+	 * @return array An array of {@link AdminDependencyEntries}.
+	 */
+	public static function buildDependencyArray($items, $parents) {
+		$entries = array();
 		
 		foreach ($items as $id => $title) {
 			if ($parents === null || array_key_exists($id, $parents)) {
