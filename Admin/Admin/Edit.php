@@ -28,9 +28,7 @@ abstract class AdminEdit extends AdminPage {
 		$this->displayMessages();
 
 		$form->action = $this->source;
-
-		if ($id !== null)
-			$form->addHiddenField('id', $id);
+		$form->addHiddenField('id', $id);
 
 		$root = $this->ui->getRoot();
 		$root->display();
