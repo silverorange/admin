@@ -22,6 +22,11 @@ class AdminLogin extends AdminPage {
 		$frame = $this->ui->getWidget('frame');
 		$frame->title = $this->app->title;
 
+		$username = $this->ui->getWidget('username');
+		if (isset($_COOKIE[$this->app->name.'_username']))
+			$username->value = $_COOKIE[$this->app->name.'_username'];
+		
+		
 		$form = $this->ui->getWidget('loginform');
 		$form->action = $this->app->uri;
 	}
@@ -41,7 +46,6 @@ class AdminLogin extends AdminPage {
 			if (!$form->hasErrorMessage()) {
 				$username = $this->ui->getWidget('username');
 				$password = $this->ui->getWidget('password');
-
 				$logged_in = $this->app->login($username->value, $password->value);
 				
 				if ($logged_in)
