@@ -1,6 +1,6 @@
 <?php
 
-require_once('Admin/Admin/Confirmation.php');
+require_once('Admin/Admin/DBDelete.php');
 require_once('SwatDB/SwatDB.php');
 require_once('Admin/AdminDependency.php');
 
@@ -9,7 +9,7 @@ require_once('Admin/AdminDependency.php');
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminComponentsDelete extends AdminConfirmation {
+class AdminComponentsDelete extends AdminDBDelete {
 
 	public $items = null;
 
@@ -47,23 +47,23 @@ class AdminComponentsDelete extends AdminConfirmation {
 		parent::display();
 	}
 
-	protected function processResponse() {
+	protected function deleteDBData() {
 		$form = $this->ui->getWidget('confirmation_form');
+		
+		$sql = 'delete from admincomponents where componentid in (%s)';
+		$items = $form->getHiddenField('items');
 
-		if ($form->button->name == 'btn_yes') {
+		foreach ($items as &$id)
+			$id = $this->app->db->quote($id, 'integer');
 
-			$sql = 'delete from admincomponents where componentid in (%s)';
-			$items = $form->getHiddenField('items');
+		$sql = sprintf($sql, implode(',', $items));
+		//$this->app->db->query($sql);
+		SwatDB::query($this->app->db, $sql);
 
-			foreach ($items as &$id)
-				$id = $this->app->db->quote($id, 'integer');
+		$msg = new SwatMessage(sprintf(_nS("%d component has been deleted.", 
+			"%d components have been deleted.", count($items)), count($items)), SwatMessage::INFO);
 
-			$sql = sprintf($sql, implode(',', $items));
-			$this->app->db->query($sql);
-
-			$this->app->addMessage(sprintf(_nS('%d component has been deleted.', 
-				'%d components have been deleted.', count($items)), count($items)));
-		}
+		$this->app->addMessage($msg);	
 	}
 }
 

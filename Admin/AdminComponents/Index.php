@@ -37,7 +37,7 @@ class AdminComponentsIndex extends AdminIndex {
 		$sql = sprintf($sql,
 			$this->getOrderByClause('admincomponents.displayorder, admincomponents.title', 'admincomponents'));
 
-		$types = array('integer', 'text', 'text', 'integer', 'boolean', 'text');
+		$types = array('integer', 'text', 'text', 'integer', 'boolean', 'boolean', 'text');
 		$store = $this->app->db->query($sql, $types, true, 'AdminTableStore');
 
 		return $store;
@@ -47,6 +47,7 @@ class AdminComponentsIndex extends AdminIndex {
 		$view = $this->ui->getWidget('index_view');
 		$actions = $this->ui->getWidget('index_actions');
 		$num = count($view->checked_items);
+		$msg = null;
 
 		switch ($actions->selected->name) {
 			case 'delete':
@@ -59,8 +60,8 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:show', true, 'componentid', 
 					$view->checked_items);
 
-				$this->app->addMessage(sprintf(_nS('%d component has been shown.', 
-					'%d components have been shown.', $num), $num));
+				$msg = new SwatMessage(sprintf(_nS("%d component has been shown.", 
+					"%d components have been shown.", $num), $num));
 
 				break;
 
@@ -69,8 +70,8 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:show', false, 'componentid', 
 					$view->checked_items);
 
-				$this->app->addMessage(sprintf(_nS('%d component has been hidden.', 
-					'%d components have been hidden.', $num), $num));
+				$msg = new SwatMessage(sprintf(_nS("%d component has been hidden.", 
+					"%d components have been hidden.", $num), $num));
 
 				break;
 
@@ -79,8 +80,8 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:enabled', true, 'componentid', 
 					$view->checked_items);
 
-				$this->app->addMessage(sprintf(_nS('%d component has been enabled.', 
-					'%d components have been enabled.', $num), $num));
+				$msg = new SwatMessage(sprintf(_nS("%d component has been enabled.", 
+					"%d components have been enabled.", $num), $num));
 
 				break;
 
@@ -89,8 +90,8 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:enabled', false, 'componentid', 
 					$view->checked_items);
 
-				$this->app->addMessage(sprintf(_nS('%d component has been disabled.', 
-					'%d components have been disabled.', $num), $num));
+				$msg = new SwatMessage(sprintf(_nS("%d component has been disabled.", 
+					"%d components have been disabled.", $num), $num));
 
 				break;
 
@@ -104,11 +105,14 @@ class AdminComponentsIndex extends AdminIndex {
 				$title = SwatDB::queryOne($this->app->db, 'adminsections', 'text:title',
 					'sectionid', $new_section);
 
-				$this->app->addMessage(sprintf(_nS('%d component has been moved to section "%s".', 
-					'%d components have been moved to section "%s".', $num), $num, $title));
+				$msg = new SwatMessage(sprintf(_nS("%d component has been moved to section \"%s\".", 
+					"%d components have been moved to section \"%s\".", $num), $num, $title));
 
 				break;
 		}
+
+		if ($msg !== null)
+			$this->app->addMessage($msg);
 	}
 }
 

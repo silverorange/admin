@@ -54,8 +54,10 @@ class AdminSubComponentsDelete extends AdminConfirmation {
 			$sql = sprintf($sql, implode(',', $items));
 			$this->app->db->query($sql);
 
-			$this->app->addMessage(sprintf(_nS('%d sub-component has been deleted.', 
-				'%d sub-components have been deleted.', count($items)), count($items)));
+			$msg = new SwatMessage(sprintf(_nS("%d sub-component has been deleted.", 
+				"%d sub-components have been deleted.", count($items)), count($items)), SwatMessage::INFO);
+
+			$this->app->addMessage($msg);
 		}
 	}
 }

@@ -85,10 +85,18 @@ abstract class AdminPage extends SwatPage {
 		$sql_userid = $db->quote($_SESSION['userID'], 'integer');
 		
 		$types = array('text', 'text', 'integer', 'text', 'integer', 'text', 'text');
+
 		$menu = $db->executeStoredProc('sp_admin_menu', array($sql_userid),
 					$types, true, 'AdminMenu');
-		$menu->display();
 
+		$menu->display();
 	}
 	
+	protected function displayMessages() {
+		$message_box = $this->ui->getWidget('message_box', true);
+		$messages = $this->app->getMessages();
+
+		if ($message_box !== null)
+			$message_box->messages = $messages;
+	}
 }
