@@ -1,6 +1,7 @@
 <?php
 
 require_once('Admin/AdminPage.php');
+require_once('Admin/AdminUI.php');
 
 /**
  * Administrator Not Found page
@@ -11,13 +12,17 @@ require_once('Admin/AdminPage.php');
 class AdminFront extends AdminPage {
 
 	public function init() {
+		$this->ui = new AdminUI();
+		$this->ui->loadFromXML('Admin/Admin/front.xml');
+		
 		//clear the navbar
 		$this->navbar = new SwatNavBar();
 	}
 
-	public function display() {
-		echo 'Welcome to the front page. Please make me better.';
+	public function displayInit() {
+		$this->displayInitMessages();
 	}
+
 
 	public function process() {
 
