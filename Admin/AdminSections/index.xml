@@ -10,9 +10,9 @@
 					<SwatCellRendererControl src="admin/images/b_edit.png" height="int:22" width="int:28" title="Edit" alt="Edit" href="AdminSections/Edit?id=%s" value="data:sectionid" />
 				</SwatTableViewColumn>
 
-				<SwatTableViewColumn name="checkbox">
+				<SwatTableViewCheckboxColumn name="checkbox">
 					<SwatCellRendererCheckbox name="items" value="data:sectionid" />
-				</SwatTableViewColumn>
+				</SwatTableViewCheckboxColumn>
 
 				<SwatTableViewColumn name="title" title="Title">
 					<SwatCellRendererLink href="AdminSections/Edit?id=%s" value="data:sectionid">

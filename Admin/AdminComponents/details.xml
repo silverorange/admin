@@ -13,9 +13,9 @@
 						<SwatCellRendererControl src="admin/images/b_edit.png" height="int:22" width="int:28" title="Edit" alt="Edit" href="AdminSubComponents/Edit?id=%s" value="data:subcomponentid" />
 					</SwatTableViewColumn>
 
-					<SwatTableViewColumn name="checkbox">
+					<SwatTableViewCheckboxColumn name="checkbox">
 						<SwatCellRendererCheckbox name="items" value="data:subcomponentid" />
-					</SwatTableViewColumn>
+					</SwatTableViewCheckboxColumn>
 
 					<SwatTableViewColumn name="title" title="Title">
 						<SwatCellRendererLink href="AdminSubComponents/Edit?id=%s" value="data:subcomponentid">
