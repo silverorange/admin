@@ -11,6 +11,12 @@ require_once('Admin/AdminMenu.php');
  */
 abstract class AdminPage extends SwatPage {
 
+	/**
+	 * The source of this page, from the source GET variable.
+	 * @var string
+	 */
+	public $source;
+
 	abstract public function init();
 
 	abstract public function display();

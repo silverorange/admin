@@ -24,6 +24,7 @@ class AdminSectionsEdit extends AdminPage {
 		}
 
 		$form = $this->layout->getWidget('editform');
+		$form->action = $this->source;
 		$form->addHiddenField('id', $id);
 
 		$root = $this->layout->getRoot();
