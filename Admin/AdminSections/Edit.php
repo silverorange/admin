@@ -44,7 +44,7 @@ class AdminSectionsEdit extends AdminPage {
 		}
 	}
 
-	private function saveDate($id) {
+	private function saveData($id) {
 		$db = $this->app->db;
 
 		if ($id == 0)
