@@ -19,7 +19,7 @@ class AdminComponentsDetails extends AdminIndex {
 		$this->ui->loadFromXML('Admin/AdminComponents/details.xml');
 
 		$this->id = intval(SwatApplication::initVar('id'));
-		assert($this->id != null);
+		assert($this->id !== null);
 
 		$form = $this->ui->getWidget('indexform');
 		$form->addHiddenField('id', $this->id);

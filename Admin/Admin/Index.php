@@ -24,7 +24,7 @@ abstract class AdminIndex extends AdminPage {
 
 		$mb = $this->ui->getWidget('messagebox', true);
 
-		if ($mb != null)
+		if ($mb !== null)
 			$mb->content = $this->app->getMessage();
 
 		$root = $this->ui->getRoot();
@@ -72,8 +72,8 @@ abstract class AdminIndex extends AdminPage {
 		if (count($view->checked_items) == 0)
 			return;
 
-		if ($actions != null) {
-			if ($actions->selected == null)
+		if ($actions !== null) {
+			if ($actions->selected === null)
 				return;
 
 			$this->processActions();

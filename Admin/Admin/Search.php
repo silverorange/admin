@@ -18,7 +18,7 @@ abstract class AdminSearch extends AdminIndex {
 	public function process() {
 		$form = $this->ui->getWidget('searchform', true);
 
-		if ($form != null) {
+		if ($form !== null) {
 			if ($form->process()) {
 				$this->saveState();
 			}
@@ -30,7 +30,7 @@ abstract class AdminSearch extends AdminIndex {
 	public function display() {
 		$form = $this->ui->getWidget('searchform', true);
 
-		if ($form != null) {
+		if ($form !== null) {
 			if ($this->loadState()) {
 				$index = $this->ui->getWidget('resultsframe');
 				$index->visible = true;

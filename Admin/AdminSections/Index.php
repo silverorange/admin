@@ -55,7 +55,7 @@ class AdminSectionsIndex extends AdminPage {
 		if (!$form->process())
 			return;
 
-		if ($actions->selected == null)
+		if ($actions->selected === null)
 			return;
 
 		if (count($view->checked_items) == 0)
@@ -85,7 +85,7 @@ class AdminSectionsIndex extends AdminPage {
 				print_r($view->checked_items);
 				echo '<br />';
 
-				if ($actions->selected->widget != null)
+				if ($actions->selected->widget !== null)
 					echo 'value = ', $actions->selected->widget->value;
 		}
 	}

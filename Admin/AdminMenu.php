@@ -28,12 +28,12 @@ class AdminMenu {
 		$component = null;
 
 		while ($row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT)) {
-			if ($section == null || $row->section != $section->id) {
+			if ($section === null || $row->section != $section->id) {
 				$section = new AdminMenuSection($row->section, $row->sectiontitle);
 				$this->sections[] = $section;
 			}
 
-			if ($component == null || $row->componentid != $component->id) {
+			if ($component === null || $row->componentid != $component->id) {
 				$component = new AdminMenuComponent($row->componentid, 
 					$row->shortname, $row->title);
 				$section->components[] = $component;

@@ -72,7 +72,7 @@ class AdminApplication extends SwatApplication {
 	 */
 	public function getPage($source = null) {
 
-		if ($source == null) {
+		if ($source === null) {
 			if (isset($_GET['source']))
 				$source = $_GET['source'];
 			else
@@ -124,7 +124,7 @@ class AdminApplication extends SwatApplication {
 			}
 		}
 
-		if ($file != null)
+		if ($file !== null)
 			require_once($file);
 
 		$classname = $component.$subcomponent;
@@ -256,12 +256,11 @@ class AdminApplication extends SwatApplication {
 	}
 
 	public function getMessage() {
+		$ret = null;
 
 		if (isset($_SESSION['message'])) {
 			$ret = $_SESSION['message'];
 			unset($_SESSION['message']);
-		} else {
-			return null;
 		}
 
 		return $ret;
