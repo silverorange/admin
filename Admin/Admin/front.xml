@@ -1,4 +1,4 @@
 <?xml version='1.0' standalone='yes'?>
-<SwatUI>
-	<SwatMessageBox name="message_box" />
-</SwatUI>
+<swat-interface>
+	<widget class="SwatMessageBox" name="message_box" />
+</swat-interface>

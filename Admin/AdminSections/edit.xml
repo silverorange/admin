@@ -1,23 +1,28 @@
 <?xml version='1.0' standalone='yes'?>
-<SwatUI>
-	<SwatFrame name="edit_frame" title="Section Edit">
-		<SwatForm name="edit_form">
-			<SwatFormField title="Title">
-				<SwatEntry name="title" required="boolean:true" />
-			</SwatFormField>
-			
-			<SwatFormField title="Show in Menu?">
-				<SwatCheckbox name="show" value="boolean:true" />
-			</SwatFormField>
-
-			<SwatFormField title="Description">
-				<SwatTextarea name="description" />
-			</SwatFormField>
-
-			<SwatFormField class="swat-form-footer">
-				<SwatButton name="submit_button" />
-			</SwatFormField>
-
-		</SwatForm>
-	</SwatFrame>
-</SwatUI>
+<swat-interface>
+	<widget class="SwatFrame" name="edit_frame">
+		<property name="title" value="Section Edit" translatable="yes" />
+		<widget class="SwatForm" name="edit_form">
+			<widget class="SwatFormField">
+				<property name="title" value="Title" translatable="yes" />
+				<widget class="SwatEntry" name="title">
+					<property name="required" value="true" type="boolean" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Show in Menu?" translatable="yes" />
+				<widget class="SwatCheckbox" name="show">
+					<property name="value" value="true" type="boolean" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Description" translatable="yes" />
+				<widget class="SwatTextarea" name="description" />
+			</widget>
+			<widget class="SwatFormField">
+				<property name="class" value="swat-form-footer" />
+				<widget class="SwatButton" name="submit_button" />
+			</widget>
+		</widget>
+	</widget>
+</swat-interface>

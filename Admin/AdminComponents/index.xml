@@ -1,59 +1,87 @@
 <?xml version='1.0' standalone='yes'?>
-<SwatUI>
-	<SwatMessageBox name="message_box" />
-	<SwatFrame title="Components">
-		<SwatToolLink title="Create a New Component" href="AdminComponents/Edit" />
-
-		<SwatForm name="index_form">
-			<SwatTableView name="index_view">
-
-				<SwatTableViewGroup group_by="section">
-					<AdminGroupHeaderCellRenderer title="data:section_title" 
-						order_href="AdminComponents/Order?parent=%s" order_value="data:section" />
-
-				</SwatTableViewGroup>
-
-				<SwatTableViewColumn name="controls">
-					<AdminDetailsControlCellRenderer href="AdminComponents/Details?id=%s" value="data:componentid" />
-					<AdminEditControlCellRenderer href="AdminComponents/Edit?id=%s" value="data:componentid" />
-				</SwatTableViewColumn>
-
-				<SwatTableViewCheckboxColumn name="checkbox">
-					<SwatCheckboxCellRenderer name="items" value="data:componentid" />
-				</SwatTableViewCheckboxColumn>
-
-				<AdminTableViewOrderableColumn name="title" title="Title">
-					<SwatLinkCellRenderer title="data:title"
-						href="AdminComponents/Details?id=%s" value="data:componentid" />
-
-				</AdminTableViewOrderableColumn>
-
-				<AdminTableViewOrderableColumn name="shortname" title="Short Name">
-					<SwatTextCellRenderer value="data:shortname" />
-				</AdminTableViewOrderableColumn>
-
-				<AdminTableViewOrderableColumn name="show" title="Show in Menu">
-					<SwatCheckCellRenderer value="data:show" />
-				</AdminTableViewOrderableColumn>
-
-				<AdminTableViewOrderableColumn name="enabled" title="Enabled">
-					<SwatCheckCellRenderer value="data:enabled" />
-				</AdminTableViewOrderableColumn>
-
-			</SwatTableView>
-			<SwatActions name="index_actions">
-
-				<SwatActionItem name="delete" title="delete..." />
-				<SwatActionItem name="show" title="show" />
-				<SwatActionItem name="hide" title="hide" />
-				<SwatActionItem name="enable" title="enable" />
-				<SwatActionItem name="disable" title="disable" />
-
-				<SwatActionItem name="change_section" title="change section...">
-					<SwatFlydown name="section" show_blank="boolean:false" />
-				</SwatActionItem>
-
-			</SwatActions>
-		</SwatForm>
-	</SwatFrame>
-</SwatUI>
+<swat-interface>
+	<widget class="SwatMessageBox" name="message_box" />
+	<widget class="SwatFrame">
+		<property name="title" value="Components" translatable="yes" />
+		<widget class="SwatToolLink">
+			<property name="title" value="Create a New Component" translatable="yes" />
+			<property name="href" value="AdminComponents/Edit" />
+		</widget>
+		<widget class="SwatForm" name="index_form">
+			<widget class="SwatTableView" name="index_view">
+				<widget class="SwatTableViewGroup">
+					<property name="group_by" value="section" />
+					<widget class="AdminGroupHeaderCellRenderer">
+						<property name="title" value="section_title" type="data" translatable="yes" />
+						<property name="order_href" value="AdminComponents/Order?parent=%s" />
+						<property name="order_value" value="section" type="data" />
+					</widget>
+				</widget>
+				<widget class="SwatTableViewColumn" name="controls">
+					<widget class="AdminDetailsControlCellRenderer">
+						<property name="href" value="AdminComponents/Details?id=%s" />
+						<property name="value" value="componentid" type="data" />
+					</widget>
+					<widget class="AdminEditControlCellRenderer">
+						<property name="href" value="AdminComponents/Edit?id=%s" />
+						<property name="value" value="componentid" type="data" />
+					</widget>
+				</widget>
+				<widget class="SwatTableViewCheckboxColumn" name="checkbox">
+					<widget class="SwatCheckboxCellRenderer" name="items">
+						<property name="value" value="componentid" type="data" />
+					</widget>
+				</widget>
+				<widget class="AdminTableViewOrderableColumn" name="title">
+					<property name="title" value="Title" translatable="yes" />
+					<widget class="SwatLinkCellRenderer">
+						<property name="title" value="title" type="data" translatable="yes" />
+						<property name="href" value="AdminComponents/Details?id=%s" />
+						<property name="value" value="componentid" type="data" />
+					</widget>
+				</widget>
+				<widget class="AdminTableViewOrderableColumn" name="shortname">
+					<property name="title" value="Short Name" translatable="yes" />
+					<widget class="SwatTextCellRenderer">
+						<property name="value" value="shortname" type="data" />
+					</widget>
+				</widget>
+				<widget class="AdminTableViewOrderableColumn" name="show">
+					<property name="title" value="Show in Menu" translatable="yes" />
+					<widget class="SwatCheckCellRenderer">
+						<property name="value" value="show" type="data" />
+					</widget>
+				</widget>
+				<widget class="AdminTableViewOrderableColumn" name="enabled">
+					<property name="title" value="Enabled" translatable="yes" />
+					<widget class="SwatCheckCellRenderer">
+						<property name="value" value="enabled" type="data" />
+					</widget>
+				</widget>
+			</widget>
+			<widget class="SwatActions" name="index_actions">
+				<widget class="SwatActionItem" name="delete">
+					<property name="title" value="delete..." translatable="yes" />
+				</widget>
+				<widget class="SwatActionItem" name="show">
+					<property name="title" value="show" translatable="yes" />
+				</widget>
+				<widget class="SwatActionItem" name="hide">
+					<property name="title" value="hide" translatable="yes" />
+				</widget>
+				<widget class="SwatActionItem" name="enable">
+					<property name="title" value="enable" translatable="yes" />
+				</widget>
+				<widget class="SwatActionItem" name="disable">
+					<property name="title" value="disable" translatable="yes" />
+				</widget>
+				<widget class="SwatActionItem" name="change_section">
+					<property name="title" value="change section..." translatable="yes" />
+					<widget class="SwatFlydown" name="section">
+						<property name="show_blank" value="false" type="boolean" />
+					</widget>
+				</widget>
+			</widget>
+		</widget>
+	</widget>
+</swat-interface>
