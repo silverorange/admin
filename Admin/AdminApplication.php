@@ -27,6 +27,12 @@ class AdminApplication extends SwatApplication {
 	 */
 	public $dbname;
 
+	/**
+	 * The title used for display
+	 * @var $title
+	 */
+	public $title;
+
 	function __construct($name) {
 		$this->name = $name;
 		
@@ -58,8 +64,6 @@ class AdminApplication extends SwatApplication {
 		else
 			$source = 'front';
 
-		$this->queryForPage($source);
-
 		/*
 		if (!$this->isLoggedIn()) {
 			$component = 'login';
@@ -73,6 +77,17 @@ class AdminApplication extends SwatApplication {
 			$subcomponent = 'Index';
 		}
 
+		$pagequery = $this->queryForPage($component);
+		
+		//print_r($pagequery);
+		//if ($pagequery->size()) {
+			$row = $pagequery->fetchRow(MDB2_FETCHMODE_OBJECT);
+			$page_title = $row->title;
+
+		//} else {
+		//	$page_title = 'Login';
+		//}
+		
 		//echo "$component/$subcomponent<br>";
 		//if ($component == 'login')
 		//	$class = 'Admin/Login/Index';
@@ -80,35 +95,45 @@ class AdminApplication extends SwatApplication {
 		require_once('Admin/'.$component.'/'.$subcomponent.'.php');
 		$classname = $component.$subcomponent;
 		$page = eval(sprintf("return new %s();", $classname));
+		$page->title = $page_title;
 
 		return $page;
 	}
 
-	private function queryForPage($source) {
-		$source_exp = explode('/', $source);
-		$shortname = $this->db->quote($source_exp[0], 'text');
+	private function queryForPage($component) {
+		// TODO: Figure out how MDB2 escaping boolean works
+		// also need to add proper session stuff
+		$shortname = $this->db->quote($component, 'text');
+		//$hidden = $this->db->quote('N','boolean');
+		$hidden = "'0'";
+		//$usernum = $this->db->quote($_SESSION['userID'], 'integer');	
+		$usernum = $this->db->quote(2, 'integer');		
+		
+		//$shortname = 'adminsections';
+		//$usernum = 2;
+		//$hidden = 0;
 
-		$sql = "SELECT admincomponents.title, admincomponents.shortname,
-				adminsections.title AS section_title
-			FROM adminarticles
+		$sql = "SELECT admincomponents.title, admincomponents.shortname
+			FROM admincomponents
 				INNER JOIN adminsections ON admincomponents.section = adminsections.sectionid
-			WHERE adminarticles.hidden = ".$this->db->quote(0,'bit')."
+			WHERE admincomponents.hidden = {$hidden}
 				AND admincomponents.shortname = {$shortname}
 				AND componentid IN (
-					SELECT componenet
+					SELECT component
 					FROM admincomponent_admingroup
 					INNER JOIN adminuser_admingroup
 						ON admincomponent_admingroup.groupnum = adminuser_admingroup.groupnum
-					WHERE adminuser_admingroup.usernum = {$_SESSION['userID']}
+					WHERE adminuser_admingroup.usernum = {$usernum}
 				)";
-		//echo $sql;
-		return;
-		
-		$result = $this->db->query($sql);
-		print_r($result);
-		return;
 
-		if ($result->size() == 0) {
+		$result = $this->db->query($sql, array('text','text'));
+		
+		if (MDB2::isError($result))
+            throw new Exception($result->getMessage());
+		else
+			return $result;
+
+		/*if ($result->size() == 0) {
 			$sql = "
 				SELECT adminarticles.*, adminsections.title AS section_title
 				FROM adminarticles
@@ -122,12 +147,13 @@ class AdminApplication extends SwatApplication {
 						WHERE adminuser_admingroup.usernum = {$_SESSION['userID']}
 					)";
 			$result = $this->db->query($sql);
+		*/
 
-			if ($result->numrows() == 0)
-				$result = null;
-		}
+		//if ($result->numrows() == 0)
+		//		$result = null;
+		//}
 
-		return $result;
+		//return $result;
 	}
 
 	private function initDatabase() {
