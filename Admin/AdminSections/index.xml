@@ -30,6 +30,8 @@
 			</AdminTableView>
 			<AdminActions name="actions">
 
+				<AdminActionItem name="delete" title="delete" />
+
 				<AdminActionItem name="defibulate" title="defibulate">
 					<SwatEntry name="title" />
 				</AdminActionItem>
