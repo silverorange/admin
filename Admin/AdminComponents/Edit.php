@@ -38,15 +38,15 @@ class AdminComponentsEdit extends AdminEdit {
 		$this->app->db->beginTransaction();
 
 		if ($id == 0)
-			$id = AdminDB::rowInsert($this->app->db, 'admincomponents', $this->fields,
+			$id = AdminDB::insertRow($this->app->db, 'admincomponents', $this->fields,
 				$values, 'integer:componentid');
 		else
-			AdminDB::rowUpdate($this->app->db, 'admincomponents', $this->fields,
+			AdminDB::updateRow($this->app->db, 'admincomponents', $this->fields,
 				$values, 'integer:componentid', $id);
 
 		$grouplist = $this->ui->getWidget('groups');
 
-		AdminDB::bindingUpdate($this->app->db, 'admincomponent_admingroup', 
+		AdminDB::updateBinding($this->app->db, 'admincomponent_admingroup', 
 			'component', $id, 'groupnum', $grouplist->values, 'admingroups', 'groupid');
 		
 		//bindingUpdate($db, $table, $id_field, $id, $value_field, $values, $other_table, $other_field);
@@ -56,14 +56,14 @@ class AdminComponentsEdit extends AdminEdit {
 
 	protected function loadData($id) {
 
-		$row = AdminDB::rowQuery($this->app->db, 'admincomponents', 
+		$row = AdminDB::queryRow($this->app->db, 'admincomponents', 
 			$this->fields, 'integer:componentid', $id);
 
 		$this->ui->setValues(get_object_vars($row));
 
 		$grouplist = $this->ui->getWidget('groups');
-		$grouplist->values = AdminDB::bindingQuery($this->app->db, 
-			'admincomponent_admingroup', 'component', $id, 'groupnum');
+		$grouplist->values = AdminDB::queryField($this->app->db, 
+			'admincomponent_admingroup', 'groupnum', 'component', $id);
 	}
 }
 ?>

@@ -42,7 +42,7 @@ class AdminDB {
 	 *        rows to be updated. The type of the individual identifiers should 
 	 *        correspond to the type of $id_field.
 	 */
-	public static function update($db, $table, $field, $value, $id_field, $ids) {
+	public static function updateField($db, $table, $field, $value, $id_field, $ids) {
 
 		if (count($ids) == 0)
 			return;
@@ -66,6 +66,60 @@ class AdminDB {
 
 		$db->query($sql);
 	}
+
+
+	/**
+	 * Query a field
+	 *
+ 	 * Convenience method to query for values in a single database column.
+	 * One convenient use of this method is for loading values from a binding 
+	 * table.
+	 *
+	 * @param MDB2_Driver_Common $db The database connection.
+	 *
+	 * @param string $table The database table to query.
+	 *
+	 * @param string $field The name of the database field to query. Can be 
+	 *        given in the form type:name where type is a standard MDB2 
+	 *        datatype. If type is ommitted, then integer is assummed for this 
+	 *        field.
+	 *
+	 * @param string $id_field The name of the database field that contains the
+	 *        the id.  If not null this will be used to construct a where clause
+	 *        to limit results. Can be given in the form type:name where type is
+	 *        a standard MDB2 datatype. If type is ommitted, then integer is 
+	 *        assummed for this field.
+	 *
+	 * @param mixed $id The value to look for in the $id_field. The type should 
+	 *        correspond to the type of $id_field.
+	 */
+	public static function queryField($db, $table, $field, $id_field = NULL, $id = 0) {
+		$field = new AdminDBField($field, 'integer');
+
+		if ($id_field == NULL) {
+			$sql = 'select %s from %s';
+			$sql = sprintf($sql, $field->name, $table);
+		} else {
+			$id_field = new AdminDBField($id_field, 'integer');
+			$sql = 'select %s from %s where %s = %s';
+			$sql = sprintf($sql, $field->name, $table, $id_field->name, $id);
+		}
+
+		$rs = $db->query($sql, array($field->type));
+
+		if (MDB2::isError($rs))
+			throw new Exception($rs->getMessage());
+
+		$values = array();
+
+		while ($row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT)) {
+			$field_name = $field->name;
+			$values[] = $row->$field_name;
+		}
+
+		return $values;
+	}
+
 
 	/**
 	 * Update a binding table
@@ -99,7 +153,7 @@ class AdminDB {
 	 * @param string $id_field The database field in the bound table that the 
 	 *        binding table references.
 	 */
-	public static function bindingUpdate($db, $table, $id_field, $id, $value_field, 
+	public static function updateBinding($db, $table, $id_field, $id, $value_field, 
 		$values, $bound_table, $bound_field) {
 
 		$id_field = new AdminDBField($id_field, 'integer');
@@ -151,28 +205,6 @@ class AdminDB {
 		$db->query($delete_sql);
 		$db->commit();
 
-	}
-
-	public static function bindingQuery($db, $table, $id_field, $id, $value_field) {
-		$id_field = new AdminDBField($id_field, 'integer');
-		$value_field = new AdminDBField($value_field, 'integer');
-
-		$sql = 'select %s from %s where %s = %s';
-		$sql = sprintf($sql, $value_field->name, $table, $id_field->name, $id);
-
-		$rs = $db->query($sql, array($value_field->type));
-
-		if (MDB2::isError($rs))
-			throw new Exception($rs->getMessage());
-
-		$values = array();
-
-		while ($row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT)) {
-			$value_field_name = $value_field->name;
-			$values[] = $row->$value_field_name;
-		}
-
-		return $values;
 	}
 
 
@@ -375,7 +407,7 @@ class AdminDB {
 	 * @param mixed $id The value to look for in the id field column. The 
 	 *        type should correspond to the type of $field.
 	 */
-	public static function rowQuery($db, $table, $fields, $id_field, $id) {
+	public static function queryRow($db, $table, $fields, $id_field, $id) {
 
 		AdminDB::initFields($fields);
 		$id_field = new AdminDBField($id_field, 'integer');
@@ -424,7 +456,7 @@ class AdminDB {
 	 * @return mixed If $id_field is set, the value in the $id_field column of
 	 *        the inserted row is returned.
 	 */
-	public static function rowInsert($db, $table, $fields, $values, $id_field = NULL) {
+	public static function insertRow($db, $table, $fields, $values, $id_field = NULL) {
 
 		AdminDB::initFields($fields);
 
@@ -483,7 +515,7 @@ class AdminDB {
 	 * @param mixed $id The value to look for in the $id_field column. The 
 	 *        type should correspond to the type of $field.
 	 */
-	public static function rowUpdate($db, $table, $fields, $values, $id_field, $id) {
+	public static function updateRow($db, $table, $fields, $values, $id_field, $id) {
 
 		AdminDB::initFields($fields);
 		$id_field = new AdminDBField($id_field, 'integer');
