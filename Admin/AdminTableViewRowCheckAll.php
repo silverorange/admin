@@ -3,12 +3,12 @@
  * @package Admin
  * @copyright silverorange 2004
  */
-require_once('Swat/SwatTableViewRow.php');
+require_once('Admin/AdminTableViewRow.php');
 
 /**
  * A an extra row containing a "check all" tool.
  */
-class AdminTableViewRowCheckAll extends SwatTableViewRow {
+class AdminTableViewRowCheckAll extends AdminTableViewRow {
 	
 	public function display(&$columns) {
 		echo '<tr>';
