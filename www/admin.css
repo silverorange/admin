@@ -85,8 +85,8 @@ a:active { color: #000; }
 }
 
 #admin-menu ul ul ul a {
-	padding-left: 2.5em;
-	font-weight: bold;
+	padding-left: 3.5em;
+	font-weight: normal;
 	font-size: 85%;
 }
 
