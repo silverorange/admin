@@ -16,13 +16,13 @@ abstract class AdminIndex extends AdminPage {
 	protected $ui;
 
 	public function display() {
-		$view = $this->ui->getWidget('view');
+		$view = $this->ui->getWidget('index_view');
 		$view->model = $this->getTableStore();
 
-		$form = $this->ui->getWidget('indexform');
+		$form = $this->ui->getWidget('index_form');
 		$form->action = $this->source;
 
-		$mb = $this->ui->getWidget('messagebox', true);
+		$mb = $this->ui->getWidget('message_box', true);
 
 		if ($mb !== null)
 			$mb->content = $this->app->getMessage();
@@ -43,7 +43,7 @@ abstract class AdminIndex extends AdminPage {
 	abstract protected function getTableStore();
 
 	protected function getOrderByClause($default_orderby, $column_prefix = null, $column_map = array()) {
-		$view = $this->ui->getWidget('view');
+		$view = $this->ui->getWidget('index_view');
 		$orderby = $default_orderby;
 
 		if ($view->orderby_column !== null) {
@@ -62,9 +62,9 @@ abstract class AdminIndex extends AdminPage {
 	}
 
 	public function process() {
-		$form = $this->ui->getWidget('indexform');
-		$view = $this->ui->getWidget('view');
-		$actions = $this->ui->getWidget('actions', true);
+		$form = $this->ui->getWidget('index_form');
+		$view = $this->ui->getWidget('index_view');
+		$actions = $this->ui->getWidget('index_actions', true);
 
 		if (!$form->process())
 			return;

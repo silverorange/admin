@@ -16,7 +16,7 @@ abstract class AdminSearch extends AdminIndex {
 	protected $ui;
 	
 	public function process() {
-		$form = $this->ui->getWidget('searchform', true);
+		$form = $this->ui->getWidget('search_form', true);
 
 		if ($form !== null) {
 			if ($form->process()) {
@@ -28,11 +28,11 @@ abstract class AdminSearch extends AdminIndex {
 	}
 
 	public function display() {
-		$form = $this->ui->getWidget('searchform', true);
+		$form = $this->ui->getWidget('search_form', true);
 
 		if ($form !== null) {
 			if ($this->loadState()) {
-				$index = $this->ui->getWidget('resultsframe');
+				$index = $this->ui->getWidget('results_frame');
 				$index->visible = true;
 			}
 			$form->action = $this->source;
@@ -42,14 +42,14 @@ abstract class AdminSearch extends AdminIndex {
 	}
 
 	protected function saveState() {
-		$search_form = $this->ui->getWidget('searchform');
+		$search_form = $this->ui->getWidget('search_form');
 		$search_state = $search_form->getDescendantStates();
 		$_SESSION[$this->source.'_search_state'] = $search_state;
 	}
 
 	protected function loadState() {
 		$ret = false;
-		$search_form = $this->ui->getWidget('searchform');
+		$search_form = $this->ui->getWidget('search_form');
 		$key = $this->source.'_search_state';
 
 		if (isset($_SESSION[$key])) {

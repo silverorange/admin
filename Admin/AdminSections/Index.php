@@ -18,16 +18,16 @@ class AdminSectionsIndex extends AdminPage {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminSections/index.xml');
 
-		$colorfly = $this->ui->getWidget('color');
-		$colorfly->options = 
+		$color_flydown = $this->ui->getWidget('color');
+		$color_flydown->options = 
 			array(0 => _('red'), 1 => _('yellow'), 2 => _('blue'));
 	}
 
 	public function display() {
-		$view = $this->ui->getWidget('view');
+		$view = $this->ui->getWidget('index_view');
 		$view->model = $this->getTableStore();
 
-		$form = $this->ui->getWidget('indexform');
+		$form = $this->ui->getWidget('index_form');
 		$form->action = $this->source;
 
 		$root = $this->ui->getRoot();
@@ -35,7 +35,7 @@ class AdminSectionsIndex extends AdminPage {
 	}
 
 	private function getTableStore() {
-		$view = $this->ui->getWidget('view');
+		$view = $this->ui->getWidget('index_view');
 
 		$sql = 'select sectionid, title, show 
 				from adminsections 
@@ -48,9 +48,9 @@ class AdminSectionsIndex extends AdminPage {
 	}
 
 	public function process() {
-		$form = $this->ui->getWidget('indexform');
-		$view = $this->ui->getWidget('view');
-		$actions = $this->ui->getWidget('actions');
+		$form = $this->ui->getWidget('index_form');
+		$view = $this->ui->getWidget('index_view');
+		$actions = $this->ui->getWidget('index_actions');
 
 		if (!$form->process())
 			return;

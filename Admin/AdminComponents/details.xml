@@ -1,16 +1,20 @@
 <?xml version='1.0' standalone='yes'?>
 <SwatUI>
-	<SwatMessageBox name="messagebox" />
-	<SwatFrame name="frame">
+	<SwatMessageBox name="message_box" />
+	<SwatFrame name="index_frame">
 
-		<SwatFrame name="subframe" title="Sub-Components">
+		<SwatFrame name="sub_frame" title="Sub-Components">
 			<SwatToolLink title="Create a New Sub-Component" href="AdminSubComponents/Edit?parent=%s" />
 			<SwatToolLink title="Change Sub-Component Order" href="AdminSubComponents/Order?parent=%s" />
-			<SwatForm name="indexform">
-				<SwatTableView name="view">
+
+			<SwatForm name="index_form">
+				<SwatTableView name="index_view">
 
 					<SwatTableViewColumn name="controls">
-						<SwatControlCellRenderer src="admin/images/b_edit.png" height="integer:22" width="integer:28" title="Edit" alt="Edit" href="AdminSubComponents/Edit?id=%s" value="data:subcomponentid" />
+						<SwatControlCellRenderer title="Edit" alt="Edit" href="AdminSubComponents/Edit?id=%s" 
+							value="data:subcomponentid" src="admin/images/b_edit.png" 
+							height="integer:22" width="integer:28" />
+
 					</SwatTableViewColumn>
 
 					<SwatTableViewCheckboxColumn name="checkbox">
@@ -18,7 +22,9 @@
 					</SwatTableViewCheckboxColumn>
 
 					<SwatTableViewColumn name="title" title="Title">
-						<SwatLinkCellRenderer title="data:title" href="AdminSubComponents/Edit?id=%s" value="data:subcomponentid" />
+						<SwatLinkCellRenderer title="data:title" href="AdminSubComponents/Edit?id=%s" 
+							value="data:subcomponentid" />
+
 					</SwatTableViewColumn>
 
 					<SwatTableViewColumn name="shortname" title="Short Name">
@@ -30,7 +36,7 @@
 					</SwatTableViewColumn>
 
 				</SwatTableView>
-				<SwatActions name="actions">
+				<SwatActions name="index_actions">
 
 					<SwatActionItem name="delete" title="delete" />
 					<SwatActionItem name="show" title="show" />

@@ -21,7 +21,7 @@ class AdminComponentsDetails extends AdminIndex {
 		$this->id = intval(SwatApplication::initVar('id'));
 		assert($this->id !== null);
 
-		$form = $this->ui->getWidget('indexform');
+		$form = $this->ui->getWidget('index_form');
 		$form->addHiddenField('id', $this->id);
 	}
 
@@ -29,12 +29,12 @@ class AdminComponentsDetails extends AdminIndex {
 		$fields = array('title'); 
 		$row = SwatDB::queryRow($this->app->db, 'admincomponents', $fields, 'componentid', $this->id);
 
-		$frame = $this->ui->getWidget('frame');
+		$frame = $this->ui->getWidget('index_frame');
 		$frame->title = $row->title;
 
-		$subframe = $this->ui->getWidget('subframe');
+		$sub_frame = $this->ui->getWidget('sub_frame');
 
-		foreach ($subframe->getChildren('SwatToolLink') as $tool)
+		foreach ($sub_frame->getChildren('SwatToolLink') as $tool)
 			$tool->value = $this->id;
 
 		parent::display();
@@ -59,8 +59,8 @@ class AdminComponentsDetails extends AdminIndex {
 	}
 
 	protected function processActions() {
-		$view = $this->ui->getWidget('view');
-		$actions = $this->ui->getWidget('actions');
+		$view = $this->ui->getWidget('index_view');
+		$actions = $this->ui->getWidget('index_actions');
 
 		switch ($actions->selected->name) {
 			case 'delete':

@@ -20,8 +20,8 @@ class AdminSectionsEdit extends AdminPage {
 
 	public function display() {
 		$id = intval(SwatApplication::initVar('id'));
-		$btn_submit = $this->ui->getWidget('btn_submit');
-		$frame = $this->ui->getWidget('frame');
+		$btn_submit = $this->ui->getWidget('submit_button');
+		$frame = $this->ui->getWidget('edit_frame');
 
 		if ($id == 0) {
 			$btn_submit->setTitleFromStock('create');
@@ -31,7 +31,7 @@ class AdminSectionsEdit extends AdminPage {
 			$btn_submit->setTitleFromStock('apply');
 		}
 				
-		$form = $this->ui->getWidget('editform');
+		$form = $this->ui->getWidget('edit_form');
 		$form->action = $this->source;
 		$form->addHiddenField('id', $id);
 		
@@ -40,7 +40,7 @@ class AdminSectionsEdit extends AdminPage {
 	}
 
 	public function process() {
-		$form = $this->ui->getWidget('editform');
+		$form = $this->ui->getWidget('edit_form');
 		$id = intval(SwatApplication::initVar('id'));
 
 		if ($form->process()) {

@@ -28,7 +28,7 @@ abstract class AdminConfirmation extends AdminPage {
 	 * to generate the confirmation message and then call parent::display().
 	 */
 	public function display() {
-		$form = $this->ui->getWidget('confirmform');
+		$form = $this->ui->getWidget('confirmation_form');
 		$form->action = $this->source;
 
 		$root = $this->ui->getRoot();
@@ -36,7 +36,7 @@ abstract class AdminConfirmation extends AdminPage {
 	}
 
 	public function process() {
-		$form = $this->ui->getWidget('confirmform');
+		$form = $this->ui->getWidget('confirmation_form');
 
 		if (!$form->process())
 			return;

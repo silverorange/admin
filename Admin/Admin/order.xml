@@ -1,7 +1,7 @@
 <?xml version='1.0' standalone='yes'?>
 <SwatUI>
-	<SwatFrame name="frame">
-		<SwatForm name="orderform">
+	<SwatFrame name="order_frame">
+		<SwatForm name="order_form">
 
 			<SwatFormField title="Order Options">
 				<SwatRadioList name="options" />
@@ -12,7 +12,7 @@
 			</SwatFormField>
 			
 			<SwatFormField class="swat-form-footer">
-				<SwatButton name="btn_submit" />
+				<SwatButton name="submit_button" />
 			</SwatFormField>
 
 		</SwatForm>
