@@ -1,0 +1,24 @@
+<?xml version='1.0' standalone='yes'?>
+<SwatUI>
+	<SwatFrame name="frame" title="Sub-Component">
+		<SwatForm name="editform">
+
+			<SwatFormField title="Title">
+				<SwatEntry name="title" required="bool:true" />
+			</SwatFormField>
+			
+			<SwatFormField title="Short Name">
+				<SwatEntry name="shortname" required="bool:true" />
+			</SwatFormField>
+			
+			<SwatFormField title="Show in menu?">
+				<SwatCheckbox name="show" value="bool:true" />
+			</SwatFormField>
+
+			<SwatFormField class="swat-form-footer">
+				<SwatButton name="btn_submit" />
+			</SwatFormField>
+
+		</SwatForm>
+	</SwatFrame>
+</SwatUI>
