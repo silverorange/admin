@@ -24,8 +24,8 @@
 					<SwatCellRendererText>data:title</SwatCellRendererText>
 				</SwatTableViewColumn>
 
-				<SwatTableViewColumn name="hidden" title="Hidden">
-					<SwatCellRendererCheck value="data:hidden" />
+				<SwatTableViewColumn name="show" title="Show in Menu">
+					<SwatCellRendererCheck value="data:show" />
 				</SwatTableViewColumn>
 
 			</SwatTableView>

@@ -26,13 +26,13 @@ class AdminComponentsEdit extends AdminEdit {
 			'admingroups', 'title', 'groupid', 'title');
 
 		$this->fields = array('title', 'shortname', 'integer:section', 
-			'boolean:hidden', 'description');
+			'boolean:show', 'boolean:enabled', 'description');
 	}
 
 	protected function saveData($id) {
 
 		$values = $this->ui->getValues(array('title', 'shortname', 'section', 
-			'hidden', 'description'));
+			'show', 'enabled', 'description'));
 
 		$this->app->db->beginTransaction();
 

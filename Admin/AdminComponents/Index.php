@@ -26,7 +26,8 @@ class AdminComponentsIndex extends AdminIndex {
 					admincomponents.title, 
 					admincomponents.shortname, 
 					admincomponents.section, 
-					admincomponents.hidden,
+					admincomponents.show,
+					admincomponents.enabled,
 					adminsections.title as section_title
 				from admincomponents 
 				inner join adminsections 
@@ -52,14 +53,28 @@ class AdminComponentsIndex extends AdminIndex {
 
 			case 'show':
 				SwatDB::updateField($this->app->db, 'admincomponents', 
-					'boolean:hidden', false, 'componentid', 
+					'boolean:show', true, 'componentid', 
 					$view->checked_items);
 
 				break;
 
 			case 'hide':
 				SwatDB::updateField($this->app->db, 'admincomponents', 
-					'boolean:hidden', true, 'componentid', 
+					'boolean:show', false, 'componentid', 
+					$view->checked_items);
+
+				break;
+
+			case 'enable':
+				SwatDB::updateField($this->app->db, 'admincomponents', 
+					'boolean:enabled', true, 'componentid', 
+					$view->checked_items);
+
+				break;
+
+			case 'disable':
+				SwatDB::updateField($this->app->db, 'admincomponents', 
+					'boolean:enabled', false, 'componentid', 
 					$view->checked_items);
 
 				break;

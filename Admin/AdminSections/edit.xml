@@ -6,8 +6,8 @@
 				<SwatEntry name="title" required="bool:true" />
 			</SwatFormField>
 			
-			<SwatFormField title="Hidden?">
-				<SwatCheckbox name="hidden" />
+			<SwatFormField title="Show in Menu?">
+				<SwatCheckbox name="show" />
 			</SwatFormField>
 
 			<SwatFormField title="Description">

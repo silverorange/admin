@@ -29,8 +29,12 @@
 					<SwatCellRendererText>data:shortname</SwatCellRendererText>
 				</SwatTableViewColumn>
 
-				<SwatTableViewColumn name="hidden" title="Hidden">
-					<SwatCellRendererCheck value="data:hidden" />
+				<SwatTableViewColumn name="show" title="Hidden">
+					<SwatCellRendererCheck value="data:show" />
+				</SwatTableViewColumn>
+
+				<SwatTableViewColumn name="enabled" title="Hidden">
+					<SwatCellRendererCheck value="data:enabled" />
 				</SwatTableViewColumn>
 
 			</SwatTableView>
@@ -39,6 +43,8 @@
 				<SwatActionItem name="delete" title="delete" />
 				<SwatActionItem name="show" title="show" />
 				<SwatActionItem name="hide" title="hide" />
+				<SwatActionItem name="enable" title="enable" />
+				<SwatActionItem name="disable" title="disable" />
 
 				<SwatActionItem name="changesection" title="change section...">
 					<SwatFlydown name="section" />

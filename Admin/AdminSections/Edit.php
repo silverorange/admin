@@ -55,18 +55,18 @@ class AdminSectionsEdit extends AdminPage {
 		$db = $this->app->db;
 
 		if ($id == 0)
-			$sql = 'INSERT INTO adminsections(title, hidden, description)
+			$sql = 'INSERT INTO adminsections(title, show, description)
 				VALUES (%s, %s, %s)';
 		else
 			$sql = 'UPDATE adminsections
 				SET title = %s,
-					hidden = %s,
+					show = %s,
 					description = %s
 				WHERE sectionid = %s';
 
 		$sql = sprintf($sql,
 			$db->quote($this->ui->getWidget('title')->value, 'text'),
-			$db->quote($this->ui->getWidget('hidden')->value, 'boolean'),
+			$db->quote($this->ui->getWidget('show')->value, 'boolean'),
 			$db->quote($this->ui->getWidget('description')->value, 'text'),
 			$db->quote($id, 'integer'));
 
@@ -74,7 +74,7 @@ class AdminSectionsEdit extends AdminPage {
 	}
 
 	private function loadData($id) {
-		$sql = 'SELECT title, hidden, description
+		$sql = 'SELECT title, show, description
 			FROM adminsections WHERE sectionid = %s';
 
 		$sql = sprintf($sql,
@@ -84,7 +84,7 @@ class AdminSectionsEdit extends AdminPage {
 		$row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT);
 
 		$this->ui->getWidget('title')->value = $row->title;
-		$this->ui->getWidget('hidden')->value = $row->hidden;
+		$this->ui->getWidget('show')->value = $row->show;
 		$this->ui->getWidget('description')->value = $row->description;
 	}
 }
