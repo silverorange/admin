@@ -23,4 +23,40 @@ class AdminUI extends SwatUI {
 
 		$this->classmap = array('Admin' => 'Admin');
 	}
+
+	/**
+	 * Get values from widgets
+	 *
+ 	 * Convenience method to retrive values from multiple widgets at once.
+	 * This method is useful when using {@link AdminDB::rowInsert()} and
+	 * {@link AdminDB::rowUpdate} but only works if the widget name and
+	 * field name are the same, if this is not the case you should manually get
+	 * the values.
+	 *
+	 * @return array Array of values with widget names as the keys.
+	 * @param array $names Array of widget names to retrieve values from.
+	 */
+	public function getValues($names) {
+		$values = array();
+
+		foreach ($names as $widget_name)
+			$values[$widget_name] = $this->getWidget($widget_name)->value;
+
+		return $values;
+	}
+
+	/**
+	 * Set values of widgets
+	 *
+ 	 * Convenience method to set values of multiple widgets at once.
+	 * This method is useful when using {@link AdminDB::rowQuery()}
+	 * but only works if the widget name and field name are the same, if this
+	 * is not the case you should manually set the values.
+	 *
+	 * @param array $values Array of values with widget names as the keys.
+	 */
+	public function setValues($values) {
+		foreach ($values as $name => $value)
+			$this->getWidget($name)->value = $values[$name];
+	}
 }
