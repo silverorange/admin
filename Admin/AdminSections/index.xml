@@ -42,7 +42,7 @@
 				<SwatActionItem name="hide" title="hide" />
 
 				<SwatActionItem name="setdate" title="set date">
-					<SwatDate name="date" />
+					<SwatDateEntry name="date" />
 				</SwatActionItem>
 
 				<SwatActionItem name="setcolor" title="set color">

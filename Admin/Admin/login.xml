@@ -7,7 +7,7 @@
 			</SwatFormField>
 			
 			<SwatFormField title="Password">
-				<SwatEntryPassword name="password" required="bool:true" />
+				<SwatPasswordEntry name="password" required="bool:true" />
 			</SwatFormField>
 
 			<SwatFormField class="swat-form-footer">

@@ -21,7 +21,7 @@ class AdminSearchClause {
 	private $field;
 	public $value;
 	public $case_sensitive = false;
-	public $operator = AdminSearchClause::OP_EQUALS;
+	public $operator;
 
 	/**
 	 * The database object
@@ -35,6 +35,7 @@ class AdminSearchClause {
 	function __construct($field, $value = null) {
 		$this->field = new SwatDBField($field);
 		$this->value = $value;
+		$this->operator = self::OP_EQUALS;
 	}
 
 
@@ -58,16 +59,16 @@ class AdminSearchClause {
 				$value = strtolower($value);
 			}
 
-			if ($this->operator == AdminSearchClause::OP_CONTAINS)
+			if ($this->operator == self::OP_CONTAINS)
 				$value = "%{$value}%";
-			elseif ($this->operator == AdminSearchClause::OP_STARTS_WITH)
+			elseif ($this->operator == self::OP_STARTS_WITH)
 				$value = "{$value}%";
-			elseif ($this->operator == AdminSearchClause::OP_ENDS_WITH)
+			elseif ($this->operator == self::OP_ENDS_WITH)
 				$value = "%{$value}";
 		}
 
 		$value = $db->quote($value);
-		$operator = AdminSearchClause::getOperatorString($this->operator);
+		$operator = self::getOperatorString($this->operator);
 		$clause = " {$logic_operator} {$field} {$operator} {$value} ";
 
 		return $clause;
@@ -75,14 +76,14 @@ class AdminSearchClause {
 
 	private static function getOperatorString($id) {
 		switch ($id) {
-			case AdminSearchClause::OP_EQUALS:      return '=';
-			case AdminSearchClause::OP_GT:          return '>';
-			case AdminSearchClause::OP_GTE:         return '>=';
-			case AdminSearchClause::OP_LT:          return '<';
-			case AdminSearchClause::OP_LTE:         return '<=';
-			case AdminSearchClause::OP_CONTAINS:    return 'like';
-			case AdminSearchClause::OP_STARTS_WITH: return 'like';
-			case AdminSearchClause::OP_ENDS_WITH:   return 'like';
+			case self::OP_EQUALS:      return '=';
+			case self::OP_GT:          return '>';
+			case self::OP_GTE:         return '>=';
+			case self::OP_LT:          return '<';
+			case self::OP_LTE:         return '<=';
+			case self::OP_CONTAINS:    return 'like';
+			case self::OP_STARTS_WITH: return 'like';
+			case self::OP_ENDS_WITH:   return 'like';
 
 			default:
 				throw new Exception('AdminSearchClause: unknown operator');
