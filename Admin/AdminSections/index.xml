@@ -5,16 +5,22 @@
 			<SwatTableView name="view">
 
 				<SwatTableViewColumn name="controls">
-					<SwatCellRendererControl src="admin/images/b_details.png" height="int:22" width="int:28" title="View Details" alt="Details" href="AdminSections/Details?id=%s" id="data:sectionid" />
-					<SwatCellRendererControl src="admin/images/b_edit.png" height="int:22" width="int:28" title="Edit" alt="Edit" href="AdminSections/Edit?id=%s" id="data:sectionid" />
+					<SwatCellRendererControl src="admin/images/b_details.png" height="int:22" width="int:28" title="View Details" alt="Details" href="AdminSections/Details?id=%s" value="data:sectionid" />
+					<SwatCellRendererControl src="admin/images/b_edit.png" height="int:22" width="int:28" title="Edit" alt="Edit" href="AdminSections/Edit?id=%s" value="data:sectionid" />
 				</SwatTableViewColumn>
 
 				<SwatTableViewColumn name="checkbox">
-					<SwatCellRendererCheckbox name="items[]" id="data:sectionid" />
+					<SwatCellRendererCheckbox name="items[]" value="data:sectionid" />
 				</SwatTableViewColumn>
 
 				<SwatTableViewColumn name="title" title="Title">
-					<SwatCellRendererLink text="data:title" href="AdminSections/Edit?id=%s" href_value="data:sectionid" />
+					<SwatCellRendererLink href="AdminSections/Edit?id=%s" value="data:sectionid">
+						data:title
+					</SwatCellRendererLink>
+				</SwatTableViewColumn>
+
+				<SwatTableViewColumn name="title2" title="Title">
+					<SwatCellRendererText>data:title</SwatCellRendererText>
 				</SwatTableViewColumn>
 
 				<SwatTableViewColumn name="hidden" title="Hidden">
