@@ -198,6 +198,7 @@ class AdminApplication extends SwatApplication {
 			$_SESSION['userID'] = 0;
 			$_SESSION['name'] = '';
 			$_SESSION['username'] = '';
+			$_SESSION['history'] = array();
 		}
 	}
 
