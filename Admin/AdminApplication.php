@@ -203,10 +203,27 @@ class AdminApplication extends SwatApplication {
 	 * @return bool True if login is successful.
 	 */
 	public function login($username, $password) {
-		// TODO: authenticate against adminusers table here
-		//       return true if login is successful
-		$_SESSION['userID'] = 2;
-		return true;
+		$chk_username = $username->value;
+		$chk_password = md5($password->value);
+		
+		$chk_username = $this->db->quote($chk_username, 'text');
+		$chk_password = $this->db->quote($chk_password, 'text');
+		$enabled = $this->db->quote(true, 'boolean');
+		
+		$sql = "select userid,name from adminusers
+				where username = {$chk_username}
+					and password = {$chk_password}
+					and enabled = {$enabled}";
+		$rs = $this->db->query($sql, array('integer', 'text'));
+		
+		if ($rs->numRows()) {
+			$result = $rs->fetchRow(MDB2_FETCHMODE_OBJECT); 
+			$_SESSION['userID'] = $result->userid;
+			$_SESSION['name']   = $result->name;
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
