@@ -27,7 +27,7 @@ abstract class AdminOrder extends AdminPage {
 		}
 	}
 
-	public function display() {
+	public function displayInit() {
 		$options_list = $this->ui->getWidget('options');
 		$options_list->options = array('auto'=>_S("Automatically"), 'custom'=>_("Custom"));
 			
@@ -41,9 +41,6 @@ abstract class AdminOrder extends AdminPage {
 		
 		$form = $this->ui->getWidget('order_form');
 		$form->action = $this->source;
-
-		$root = $this->ui->getRoot();
-		$root->display();
 	}
 	
 	protected function saveData() {

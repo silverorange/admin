@@ -16,14 +16,22 @@ class AdminSubComponentsOrder extends AdminOrder {
 		parent::init();
 
 		$this->parent = SwatApplication::initVar('parent');
-		$form = $this->ui->getWidget('orderform');
+		$form = $this->ui->getWidget('order_form');
 		$form->addHiddenField('parent', $this->parent);
 	}
 
-	public function display() {
-		$frame = $this->ui->getWidget('frame');
+	public function displayInit() {
+		$frame = $this->ui->getWidget('order_frame');
 		$frame->title = _S("Order Sub-Components");
-		parent::display();
+		parent::displayInit();
+	
+		//rebuild the navbar
+		$parent_title = SwatDB::queryOne($this->app->db, 'admincomponents', 'text:title',
+			'componentid', $this->parent);
+
+		$this->navbar->pop();
+		$this->navbar->add('Admin Components', 'AdminComponents');
+		$this->navbar->add($parent_title, 'AdminComponents/Details?id='.$this->parent);
 	}
 
 	public function loadData() {

@@ -20,9 +20,10 @@ class AdminNotFound extends AdminPage {
 	public function display() {
 		$box = new SwatMessageBox();
 		$box->title = 'Not Found';
-		if ($this->message !== null) {
+
+		if ($this->message !== null)
 			$box->messages = array($this->message); 
-		}
+
 		$box->display();
 	}
 

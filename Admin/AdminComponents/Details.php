@@ -25,7 +25,7 @@ class AdminComponentsDetails extends AdminIndex {
 		$form->addHiddenField('id', $this->id);
 	}
 
-	public function display() {
+	public function displayInit() {
 		$fields = array('title'); 
 		$row = SwatDB::queryRow($this->app->db, 'admincomponents', $fields, 'componentid', $this->id);
 
@@ -37,7 +37,7 @@ class AdminComponentsDetails extends AdminIndex {
 		foreach ($sub_frame->getChildren('SwatToolLink') as $tool)
 			$tool->value = $this->id;
 
-		parent::display();
+		parent::displayInit();
 	}
 
 	protected function getTableStore() {

@@ -54,12 +54,26 @@ abstract class AdminPage extends SwatPage {
 	abstract protected function init();
 
 	/**
+	 * Initialize the page before display
+	 *
+	 * Sub-classes should implement this method to initialize the page before display.
+	 * This method should be called before {@link AdminPage::display()} and always be
+	 * followed by a call to {@link AdminPage::display()}.
+	 */
+	public function displayInit() {
+
+	}
+
+	/**
 	 * Display the page
 	 *
 	 * Sub-classes should implement this method to display the contents of 
 	 * the page. Called after {@link AdminPage::init()}
 	 */
-	abstract public function display();
+	public function display() {
+		$root = $this->ui->getRoot();
+		$root->display();
+	}
 	
 	/**
 	 * Process the page
@@ -109,7 +123,7 @@ abstract class AdminPage extends SwatPage {
 		$menu->display();
 	}
 	
-	protected function displayMessages() {
+	protected function displayInitMessages() {
 		$message_box = $this->ui->getWidget('message_box', true);
 		$messages = $this->app->getMessages();
 

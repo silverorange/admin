@@ -27,7 +27,7 @@ abstract class AdminSearch extends AdminIndex {
 		parent::process();
 	}
 
-	public function display() {
+	public function displayInit() {
 		$form = $this->ui->getWidget('search_form', true);
 
 		if ($form !== null) {
@@ -37,8 +37,8 @@ abstract class AdminSearch extends AdminIndex {
 			}
 			$form->action = $this->source;
 		}
-		
-		parent::display();
+
+		parent::displayInit();
 	}
 
 	protected function saveState() {
