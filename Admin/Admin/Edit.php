@@ -16,34 +16,47 @@ abstract class AdminEdit extends AdminPage {
 	protected $ui;
 
 	public function display() {
-		$id = intval(SwatApplication::initVar('id'));
-		$button = $this->ui->getWidget('submit_button');
-		$frame = $this->ui->getWidget('edit_frame');
+		$id = SwatApplication::initVar('id');
 		$form = $this->ui->getWidget('edit_form');
 
-		if ($id == 0) {
-			$button->setTitleFromStock('create');
-			$frame->title = 'New '.$frame->title;
-		} else {
+		if ($id !== null)
 			if (!$form->hasBeenProcessed())
 				$this->loadData($id);
 
-			$button->setTitleFromStock('apply');
-			$frame->title .= ' Edit';
-		}
-
+		$this->displayFrame($id);
+		$this->displayButton($id);
 		$this->displayMessages();
 
 		$form->action = $this->source;
-		$form->addHiddenField('id', $id);
+
+		if ($id !== null)
+			$form->addHiddenField('id', $id);
 
 		$root = $this->ui->getRoot();
 		$root->display();
 	}
 
+	protected function displayButton($id) {
+		$button = $this->ui->getWidget('submit_button');
+
+		if ($id === null)
+			$button->setTitleFromStock('create');
+		else
+			$button->setTitleFromStock('apply');
+	}
+
+	protected function displayFrame($id) {
+		$frame = $this->ui->getWidget('edit_frame');
+
+		if ($id === null)
+			$frame->title = sprintf(_S("New %s"), $frame->title);
+		else
+			$frame->title = sprintf(_S("Edit %s"), $frame->title);
+	}
+
 	public function process() {
 		$form = $this->ui->getWidget('edit_form');
-		$id = intval(SwatApplication::initVar('id'));
+		$id = SwatApplication::initVar('id');
 
 		if ($form->process()) {
 			if (!$form->hasMessage()) {
