@@ -8,36 +8,32 @@
 			<SwatTableView name="view">
 
 				<SwatTableViewGroup group_by="section">
-					<AdminCellRendererGroupHeader order_href="AdminComponents/Order?parent=%s" order_value="data:section">
-						data:section_title
-					</AdminCellRendererGroupHeader>
+					<AdminGroupHeaderCellRenderer title="data:section_title" order_href="AdminComponents/Order?parent=%s" order_value="data:section" />
 				</SwatTableViewGroup>
 
 				<SwatTableViewColumn name="controls">
-					<AdminCellRendererDetailsControl href="AdminComponents/Details?id=%s" value="data:componentid" />
-					<AdminCellRendererEditControl href="AdminComponents/Edit?id=%s" value="data:componentid" />
+					<AdminDetailsControlCellRenderer href="AdminComponents/Details?id=%s" value="data:componentid" />
+					<AdminEditControlCellRenderer href="AdminComponents/Edit?id=%s" value="data:componentid" />
 				</SwatTableViewColumn>
 
 				<SwatTableViewCheckboxColumn name="checkbox">
-					<SwatCellRendererCheckbox name="items" value="data:componentid" />
+					<SwatCheckboxCellRenderer name="items" value="data:componentid" />
 				</SwatTableViewCheckboxColumn>
 
 				<AdminTableViewOrderableColumn name="title" title="Title">
-					<SwatCellRendererLink href="AdminComponents/Details?id=%s" value="data:componentid">
-						data:title
-					</SwatCellRendererLink>
+					<SwatLinkCellRenderer href="AdminComponents/Details?id=%s" value="data:componentid" title="data:title" />
 				</AdminTableViewOrderableColumn>
 
 				<AdminTableViewOrderableColumn name="shortname" title="Short Name">
-					<SwatCellRendererText>data:shortname</SwatCellRendererText>
+					<SwatTextCellRenderer value="data:shortname" />
 				</AdminTableViewOrderableColumn>
 
 				<AdminTableViewOrderableColumn name="show" title="Show in Menu">
-					<SwatCellRendererCheck value="data:show" />
+					<SwatCheckCellRenderer value="data:show" />
 				</AdminTableViewOrderableColumn>
 
 				<AdminTableViewOrderableColumn name="enabled" title="Enabled">
-					<SwatCellRendererCheck value="data:enabled" />
+					<SwatCheckCellRenderer value="data:enabled" />
 				</AdminTableViewOrderableColumn>
 
 			</SwatTableView>

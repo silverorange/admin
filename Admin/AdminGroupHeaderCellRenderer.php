@@ -8,16 +8,15 @@ require_once('Swat/SwatHtmlTag.php');
  * @package Admin
  * @copyright silverorange 2005
  */
-class AdminCellRendererGroupHeader extends SwatCellRenderer {
+class AdminGroupHeaderCellRenderer extends SwatCellRenderer {
 
 	/**
-	 * Cell content
+	 * Header title
 	 *
-	 * The content to place within the cell. In a SwatUI XML file 
-	 * this comes from the content of the SwatCellRendererGroupHeader tag.
+	 * The visible content to display on the header.
 	 * @var string
 	 */
-	public $content = '';
+	public $title = '';
 
 	/**
 	 * Change order link href
@@ -37,7 +36,7 @@ class AdminCellRendererGroupHeader extends SwatCellRenderer {
 
 	public function render($prefix) {
 	
-		echo $this->content;
+		echo $this->title;
 
 		if ($this->order_href !== null) {
 			$anchor = new SwatHtmlTag('a');

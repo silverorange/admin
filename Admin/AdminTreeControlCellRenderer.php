@@ -1,5 +1,5 @@
 <?php
-require_once('Swat/SwatCellRendererControl.php');
+require_once('Swat/SwatControlCellRenderer.php');
 
 /**
  * Tree Details Control
@@ -9,7 +9,7 @@ require_once('Swat/SwatCellRendererControl.php');
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminCellRendererTreeControl extends SwatCellRendererControl {
+class AdminTreeControlCellRenderer extends SwatControlCellRenderer {
 	
 	public $childcount = 0;
 	
