@@ -60,8 +60,8 @@ class AdminComponentsDelete extends AdminConfirmation {
 			$sql = sprintf($sql, implode(',', $items));
 			$this->app->db->query($sql);
 
-			$this->app->addMessage(sprintf(_nS('%d admin component has been deleted.', 
-				'%d admin components have been deleted.', count($items)), count($items)));
+			$this->app->addMessage(sprintf(_nS('%d component has been deleted.', 
+				'%d components have been deleted.', count($items)), count($items)));
 		}
 	}
 }
