@@ -1,6 +1,6 @@
 <?xml version='1.0' standalone='yes'?>
 <SwatLayout>
-	<SwatFrame title="Login">
+	<SwatFrame name="frame" title="Login">
 		<SwatForm name="loginform">
 			<SwatFormField title="Username">
 				<SwatEntry name="username" required="bool:true" />
