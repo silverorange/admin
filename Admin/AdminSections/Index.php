@@ -17,7 +17,7 @@ class AdminSectionsIndex extends AdminPage {
 		//$colorfly->options = 
 		//	array(0 => _('red'), 1 => _('yellow'), 2 => _('blue'));
 		$colorfly->options = AdminDB::getOptionArray($this->app->db, 
-			'adminsections', 'title', 'text', 'sectionid');
+			'adminsections', 'title', 'sectionid');
 	}
 
 	public function display() {
@@ -63,13 +63,15 @@ class AdminSectionsIndex extends AdminPage {
 				break;
 
 			case 'show':
-				AdminDB::update($this->app->db, 'adminsections', 'hidden',
-					false, 'boolean', 'sectionid', $view->checked_items);
+				AdminDB::update($this->app->db, 'adminsections', 
+					'boolean:hidden', false, 'sectionid', 
+					$view->checked_items);
 				break;
 
 			case 'hide':
-				AdminDB::update($this->app->db, 'adminsections', 'hidden',
-					true, 'boolean', 'sectionid', $view->checked_items);
+				AdminDB::update($this->app->db, 'adminsections', 
+					'boolean:hidden', true, 'sectionid', 
+					$view->checked_items);
 				break;
 
 			default:

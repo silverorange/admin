@@ -22,7 +22,7 @@ class AdminSectionsDelete extends AdminPage {
 
 		$where_clause = 'sectionid in ('.implode(', ', $this->items).')';
 		$items = AdminDB::getOptionArray($this->app->db, 'adminsections', 
-			'title', 'text', 'sectionid', 'integer', $where_clause);
+			'title', 'sectionid', $where_clause);
 
 		$message = $this->ui->getWidget('message');
 		$message->content = '<ul><li>';
