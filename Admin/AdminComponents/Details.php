@@ -60,13 +60,13 @@ class AdminComponentsDetails extends AdminIndex {
 				break;
 
 			case 'show':
-				SwatDB::updateField($this->app->db, 'admincomponents', 
+				SwatDB::updateColumn($this->app->db, 'admincomponents', 
 					'boolean:show', true, 'componentid', 
 					$view->checked_items);
 				break;
 
 			case 'hide':
-				SwatDB::updateField($this->app->db, 'admincomponents', 
+				SwatDB::updateColumn($this->app->db, 'admincomponents', 
 					'boolean:show', false, 'componentid', 
 					$view->checked_items);
 				break;
@@ -74,7 +74,7 @@ class AdminComponentsDetails extends AdminIndex {
 			case 'changesection':
 				$new_section = $actions->selected->widget->value;
 
-				SwatDB::updateField($this->app->db, 'admincomponents', 
+				SwatDB::updateColumn($this->app->db, 'admincomponents', 
 					'integer:section', $new_section, 'componentid', 
 					$view->checked_items);
 

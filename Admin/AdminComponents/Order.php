@@ -22,7 +22,7 @@ class AdminComponentsOrder extends AdminOrder {
 	}
 	
 	public function saveIndex($id, $index) {
-		SwatDB::updateField($this->app->db, 'admincomponents', 'integer:displayorder',
+		SwatDB::updateColumn($this->app->db, 'admincomponents', 'integer:displayorder',
 			$index, 'integer:componentid', array($id));
 	}
 }
