@@ -64,12 +64,11 @@ abstract class AdminPage extends SwatPage {
 	 */
 	public function displayHeader() {
 		/**
-		 * TODO: pull in the real admin title, admin user name,
-		 * and make these links work
+		 * TODO: make these links work
 		 */
 		echo '<h1>', $this->app->title, '</h1>';
 		echo '<div id="admin-syslinks">';
-		echo 'Welcome <a href="Admin/Profile">Buckminster Fuller</a> &nbsp;|&nbsp;';
+		echo 'Welcome <a href="Admin/Profile">'.$_SESSION['name'].'</a> &nbsp;|&nbsp;';
 		echo '<a href="Admin/Profile">Customize</a> &nbsp;|&nbsp;';
 		echo '<a href="Admin/Logout"><strong>Logout</strong></a>';
 		echo '</div>';
@@ -83,6 +82,7 @@ abstract class AdminPage extends SwatPage {
 	 */
 	public function displayMenu() {
 		$sql_false = $this->app->db->quote(0, 'boolean');
+		$sql_userid = $this->app->db->quote($_SESSION['userID'], 'integer');
 
 		$sql = "SELECT admincomponents.shortname, admincomponents.title,
 					admincomponents.section, adminsections.title AS sectiontitle,
@@ -104,21 +104,21 @@ abstract class AdminPage extends SwatPage {
 				AND (
 					adminsubcomponents.hidden = {$sql_false}
 					OR adminsubcomponents.hidden is  null
-				)";
-		// TODO: make this work once sessions are working
-				/*
-				AND adminarticles.articleid IN (
-					SELECT article
-					FROM adminarticle_admingroup
-					INNER JOIN adminuser_admingroup ON
-						adminarticle_admingroup.groupnum = adminuser_admingroup.groupnum
-					WHERE adminuser_admingroup.usernum = ".$_SESSION['userID']."
 				)
-				*/
-		$sql.="	ORDER BY adminsections.displayorder, adminsections.title,
-				admincomponents.section, admincomponents.displayorder,
-				admincomponents.title, adminsubcomponents.displayorder,
-				adminsubcomponents.title";
+				
+				AND admincomponents.componentid IN (
+					SELECT component
+					FROM admincomponent_admingroup
+					INNER JOIN adminuser_admingroup ON
+						admincomponent_admingroup.groupnum = adminuser_admingroup.groupnum
+					WHERE adminuser_admingroup.usernum = {$sql_userid}
+				)
+				
+				ORDER BY adminsections.displayorder, adminsections.title,
+					admincomponents.section, admincomponents.displayorder,
+					admincomponents.title, adminsubcomponents.displayorder,
+					adminsubcomponents.title
+				";
 		
 		$types = array('text', 'text', 'integer', 'text', 'integer', 'text', 'text');
 		$menu = $this->app->db->query($sql, $types, true, 'AdminMenu');
