@@ -30,6 +30,9 @@ class AdminSectionsDelete extends AdminPage {
 		$form->action = $this->source;
 		$form->addHiddenField('items', $this->items);
 
+		foreach ($items as &$id)
+			$id = $this->app->db->quote($id, 'integer');
+
 		$where_clause = 'sectionid in ('.implode(', ', $this->items).')';
 
 		$items = SwatDB::getOptionArray($this->app->db, 'adminsections', 

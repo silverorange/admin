@@ -16,7 +16,10 @@ class AdminComponentsDelete extends AdminDBDelete {
 	public function display() {
 		$form = $this->ui->getWidget('confirmation_form');
 		$form->addHiddenField('items', $this->items);
-		
+
+		foreach ($items as &$id)
+			$id = $this->app->db->quote($id, 'integer');
+
 		$where_items = implode(', ', $this->items);
 		
 		$dep = new AdminDependency();
