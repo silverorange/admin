@@ -42,6 +42,25 @@ abstract class AdminIndex extends AdminPage {
 	 */
 	abstract protected function getTableStore();
 
+	protected function getOrderByClause($default_orderby, $column_prefix = null, $column_map = array()) {
+		$view = $this->ui->getWidget('view');
+		$orderby = $default_orderby;
+
+		if ($view->orderby_column !== null) {
+
+			if (isset($column_map[$view->orderby_column->name]))
+				$orderby = $column_map[$view->orderby_column->name];
+			elseif ($column_prefix !== null)
+				$orderby = $column_prefix.'.'.$this->app->db->escape($view->orderby_column->name);
+			else
+				$orderby = $this->app->db->escape($view->orderby_column->name);
+
+			$orderby .= ' '.$view->orderby_column->getDirectionString();
+		}
+
+		return $orderby;
+	}
+
 	public function process() {
 		$form = $this->ui->getWidget('indexform');
 		$view = $this->ui->getWidget('view');
