@@ -139,8 +139,8 @@ class AdminApplication extends SwatApplication {
 		
 		if (MDB2::isError($rs))
             throw new Exception($rs->getMessage());
-		else
-			return $rs;
+			
+		return $rs;
 
 	}
 
