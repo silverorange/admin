@@ -56,7 +56,11 @@ class AdminUI extends SwatUI {
 	 * @param array $values Array of values with widget names as the keys.
 	 */
 	public function setValues($values) {
-		foreach ($values as $name => $value)
-			$this->getWidget($name)->value = $values[$name];
+		foreach ($values as $name => $value) {
+			$widget = $this->getWidget($name, true);
+
+			if ($widget != null)
+				$widget->value = $values[$name];
+		}
 	}
 }
