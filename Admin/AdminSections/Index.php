@@ -14,7 +14,10 @@ class AdminSectionsIndex extends AdminPage {
 	}
 
 	public function display() {
-		$sql = 'select sectionid, title, hidden from adminsections';
+		$sql = 'SELECT sectionid, title, hidden 
+				FROM adminsections 
+				ORDER BY displayorder';
+
 		$types = array('integer', 'text', 'boolean');
 		$result = $this->app->db->query($sql, $types);
 
