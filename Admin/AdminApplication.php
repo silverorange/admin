@@ -41,8 +41,8 @@ class AdminApplication extends SwatApplication {
 		$this->initDatabase();
 		$this->initSession();
 
-		$uriArray = explode('/', $_SERVER['REQUEST_URI']), 0, 4));
-		$this->uri = implode('/', array_slice($uriArray, 0, 4)).'/';
+		$uriArray = explode('/', $_SERVER['REQUEST_URI']);
+		$this->uri = implode('/', array_slice($uriArray, 0, 5)).'/';
 		$this->basehref = 'http://'.$_SERVER['SERVER_NAME'].$this->uri;
 	}
 
