@@ -72,15 +72,64 @@ class AdminApplication extends SwatApplication {
 	 * @return AdminPage A subclass of {@link AdminPage} is returned.
 	 */
 	public function getPage($source = null) {
+		
+		$request = $this->getRequest($source);
+		
+		if ($request === null)
+			$err = new SwatMessage(_S("Component not found."));
+		else {
+			$file = $request->getFilename();
+			
+			if ($file === null)
+				$err = new SwatMessage(_S("File not found."));
+			
+			else {
+				require_once($file);
 
+				$classname = $request->getClassname();
+				if ($classname === null)
+					$err = new SwatMessage(
+						sprintf(_S("Class '%s' does not exist in the included file."), $classname));
+				else {
+					$page = new $classname();
+					$page->title = $request->title;
+					//$page->source = $request->source;
+					$page->component = $request->component;
+					$page->subcomponent = $request->subcomponent;
+					$page->app = $this;
+					$page->navbar->add('Home', '');
+					$page->navbar->add($request->title,
+						($request->subcomponent == 'Index') ? null : $request->component);
+				}	
+			}
+		}
+	
+		if (!isset($page)) {
+			require_once('Admin/NotFound.php');
+			$page = new AdminNotFound();
+			$page->app = $this;
+			$page->source = 'Admin/NotFound';
+			$page->title = _S("Page not found");
+			$page->component = 'Admin';
+			$page->subcomponent = 'NotFound';
+			$page->setMessage($err);
+		}
+			
+		if (isset($_SERVER['HTTP_REFERER']))
+			$this->storeHistory($_SERVER['HTTP_REFERER']);
+
+		return $page;
+	}
+
+	private function getRequest($source) {
+		$request = null;
+	
 		if ($source === null) {
 			if (isset($_GET['source']))
 				$source = $_GET['source'];
 			else
 				$source = 'Admin/Front';
 		}
-
-		$found = true;
 
 		if ($this->isLoggedIn()) {
 			if (strpos($source, '/')) {
@@ -89,89 +138,40 @@ class AdminApplication extends SwatApplication {
 				$component = $source;
 				$subcomponent = 'Index';
 			}
+
+			if ($component == 'Admin') {
+				$admin_titles = array(
+					'Profile' => _S("Edit Profile"),
+					'Logout'  => _S("Logout"),
+					'Login'   => _S("Login"),
+					'Front'   => _S("Index"));
+
+				$request = new AdminPageRequest();
+				$request->title = $admin_titles[$subcomponent];
+				$request->component = $component;
+				$request->subcomponent = $subcomponent;
+				
+			} else {
 			
-			$pagequery = $this->queryForPage($component);
+				$pagequery = $this->queryForPage($component);
 
-			if ($pagequery->numRows()) {
-				$row = $pagequery->fetchRow(MDB2_FETCHMODE_OBJECT);
-				$title = $row->component_title;
-			} else {
-				$found = false;
-				$page_not_found_msg = new SwatMessage(
-					sprintf(_S("Component '%s' not found."), $component));
-				$title = '';
-			}
-
-			setcookie($this->name.'_username', $_SESSION['username'], time()+86400, '/', '', 0);
-		
-		} else {
-			$component = 'Admin';
-			$subcomponent = 'Login';
-			$title = _S("Login");
-		}
-
-		if ($found) {
-
-			$classfile = $component.'/'.$subcomponent.'.php';
-			$file = null;
-
-			if (file_exists('../../include/admin/'.$classfile)) {
-				$file = '../../include/admin/'.$classfile;
-			} else {
-				$paths = explode(':', ini_get('include_path'));
-
-				foreach ($paths as $path) {
-					if (file_exists($path.'/Admin/'.$classfile)) {
-						$file = $classfile;
-						break;
-					}
+				if ($pagequery->numRows()) {
+					$row = $pagequery->fetchRow(MDB2_FETCHMODE_OBJECT);
+					$request = new AdminPageRequest();
+					$request->title = $row->component_title;
+					$request->component = $component;
+					$request->subcomponent = $subcomponent;
 				}
 			}
 
-			if ($file !== null)
-				require_once($file);
-			else {
-				$found = false;
-				$page_not_found_msg = new SwatMessage(_S("File not found."));
-			}
-		}
-		
-		if ($found) {
-			$classname = $component.$subcomponent;
-			
-			if (!class_exists($classname)) {
-				$found = false;
-				$page_not_found_msg = new SwatMessage(
-					sprintf(_S("Class '%s' does not exist in the included file."), $classname));
-			}
+		} else {
+			$request = new AdminPageRequest();
+			$request->component = 'Admin';
+			$request->subcomponent = 'Login';
+			$request->title = _S("Login");
 		}
 
-
-		if (!$found) {
-			$component = 'Admin';
-			$subcomponent = 'NotFound';
-			$file = $component.'/'.$subcomponent.'.php';
-			require_once($file);
-			$classname = $component.$subcomponent;
-			$title = _S("Page Not Found");	
-		}
-
-		$page = new $classname();
-		$page->title = $title;
-		$page->source = $source;
-		$page->component = $component;
-		$page->subcomponent = $subcomponent;
-		$page->app = $this;
-		$page->navbar->add('Home', '');
-		$page->navbar->add($title, ($subcomponent == 'Index') ? null : $component);
-
-		if (!$found && isset($page_not_found_msg))
-			$page->setMessage($page_not_found_msg);
-			
-		if (isset($_SERVER['HTTP_REFERER']))
-			$this->storeHistory($_SERVER['HTTP_REFERER']);
-
-		return $page;
+		return $request;
 	}
 
 	private function queryForPage($component) {
@@ -224,6 +224,8 @@ class AdminApplication extends SwatApplication {
 			$_SESSION['name'] = '';
 			$_SESSION['username'] = '';
 			$_SESSION['history'] = array();
+		} elseif ($_SESSION['userID'] != 0) {	
+			setcookie($this->name.'_username', $_SESSION['username'], time()+86400, '/', '', 0);
 		}
 	}
 
@@ -340,3 +342,41 @@ class AdminApplication extends SwatApplication {
 		return false;
 	}
 }
+
+class AdminPageRequest {
+	public $component;
+	public $subcomponent;
+	public $title;
+
+	public function getFilename() {
+		$classfile = $this->component.'/'.$this->subcomponent.'.php';
+		$file = null;
+
+		if (file_exists('../../include/admin/'.$classfile)) {
+			$file = '../../include/admin/'.$classfile;
+		} else {
+			$paths = explode(':', ini_get('include_path'));
+
+			foreach ($paths as $path) {
+				if (file_exists($path.'/Admin/'.$classfile)) {
+					$file = $classfile;
+					break;
+				}
+			}
+		}
+		
+		return $file;
+	}
+
+	public function getClassname() {
+		$classname = $this->component.$this->subcomponent;
+		
+		if (class_exists($classname))
+			return $classname;
+		else
+			return null;
+	}
+}
+
+
+
