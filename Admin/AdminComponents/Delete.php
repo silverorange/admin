@@ -16,32 +16,36 @@ class AdminComponentsDelete extends AdminConfirmation {
 	public function display() {
 		$form = $this->ui->getWidget('confirmform');
 		$form->addHiddenField('items', $this->items);
+		
+		$where_items = implode(', ', $this->items);
+		
+		$dep = new AdminDependency();
+		$dep->title = 'component';
+		$dep->status_level = AdminDependency::DELETE;
 
-		$where_clause = 'componentid in ('.implode(', ', $this->items).')';
-		$components = SwatDB::getOptionArray($this->app->db, 'admincomponents',
-			'text:title', 'integer:componentid', 'displayorder, title', $where_clause);
+		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'admincomponents',
+			'integer:componentid', null, 'text:title', 'displayorder, title', 'componentid in ('.$where_items.')');
+
+		$dep_subcomponents = new AdminDependency();
+		$dep_subcomponents->title = 'sub-component';
+		$dep_subcomponents->status_level = AdminDependency::NODELETE;
+		$dep_subcomponents->display_count = true;
+
+		$dep_subcomponents->entries = AdminDependency::queryDependencyEntries($this->app->db, 'adminsubcomponents',
+			'integer:subcomponentid', 'integer:component', 'text:title', 'title', 'component in ('.$where_items.')');
+
+		$dep->addDependency($dep_subcomponents);
 
 		$message = $this->ui->getWidget('message');
+		$message->content = $dep->getMessage();
+		
+		if ($dep->getStatusLevelCount(AdminDependency::DELETE) == 0) {
+			$btn_yes = $this->ui->getWidget('btn_yes');
+			$btn_yes->visible = false;
 
-		//$dep = new AdminDependency($components, AdminDependency::DELETE, _S("components"));
-		//$message->content .= $dep->getMessage(false);
-
-		$message->content = '<p>'._("The following components will be deleted:").'</p>';
-		$message->content .= '<ul>';
-
-		foreach ($components as $id => $title) {
-			$message->content .= '<li>'.$title;
-
-			$subcomponents = SwatDB::getOptionArray($this->app->db, 'adminsubcomponents',
-				'text:title', 'integer:subcomponentid', 'title', 'component = '.$id);
-
-			$dep = new AdminDependency($subcomponents, AdminDependency::DELETE, _S("sub-components"));
-			$message->content .= $dep->getMessage();
-
-			$message->content .= '</li>';
+			$btn_no = $this->ui->getWidget('btn_no');
+			$btn_no->title = _S("Cancel");
 		}
-
-		$message->content .= '</ul>';
 
 		parent::display();
 	}
