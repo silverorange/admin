@@ -33,6 +33,9 @@ class AdminTableViewRowCheckAll extends SwatTableViewRow {
 				echo _S('Check All');
 				$label_tag->close();
 				$td_tag->close();
+
+				break;
+
 			} else {
 				$count++;
 				echo '<td>&nbsp;</td>';
