@@ -23,6 +23,10 @@
 				<SwatTextarea name="description" />
 			</SwatFormField>
 
+			<SwatFormField title="Groups">
+				<SwatCheckboxList name="groups" />
+			</SwatFormField>
+
 			<SwatFormField class="swat-form-footer">
 				<SwatButton name="btn_submit" />
 			</SwatFormField>
