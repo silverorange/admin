@@ -10,25 +10,23 @@
 				<SwatTableView name="view">
 
 					<SwatTableViewColumn name="controls">
-						<SwatCellRendererControl src="admin/images/b_edit.png" height="int:22" width="int:28" title="Edit" alt="Edit" href="AdminSubComponents/Edit?id=%s" value="data:subcomponentid" />
+						<SwatControlCellRenderer src="admin/images/b_edit.png" height="int:22" width="int:28" title="Edit" alt="Edit" href="AdminSubComponents/Edit?id=%s" value="data:subcomponentid" />
 					</SwatTableViewColumn>
 
 					<SwatTableViewCheckboxColumn name="checkbox">
-						<SwatCellRendererCheckbox name="items" value="data:subcomponentid" />
+						<SwatCheckboxCellRenderer name="items" value="data:subcomponentid" />
 					</SwatTableViewCheckboxColumn>
 
 					<SwatTableViewColumn name="title" title="Title">
-						<SwatCellRendererLink href="AdminSubComponents/Edit?id=%s" value="data:subcomponentid">
-							data:title
-						</SwatCellRendererLink>
+						<SwatLinkCellRenderer title="data:title" href="AdminSubComponents/Edit?id=%s" value="data:subcomponentid" />
 					</SwatTableViewColumn>
 
 					<SwatTableViewColumn name="shortname" title="Short Name">
-						<SwatCellRendererText>data:shortname</SwatCellRendererText>
+						<SwatTextCellRenderer value="data:shortname" />
 					</SwatTableViewColumn>
 
 					<SwatTableViewColumn name="show" title="Show in Menu">
-						<SwatCellRendererCheck value="data:show" />
+						<SwatCheckCellRenderer value="data:show" />
 					</SwatTableViewColumn>
 
 				</SwatTableView>

@@ -1,5 +1,5 @@
 <?php
-require_once('Swat/SwatCellRendererControl.php');
+require_once('Swat/SwatControlCellRenderer.php');
 
 /**
  * Details Control
@@ -9,7 +9,7 @@ require_once('Swat/SwatCellRendererControl.php');
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminCellRendererDetailsControl extends SwatCellRendererControl {
+class AdminDetailsControlCellRenderer extends SwatControlCellRenderer {
 	
 	public function render($prefix) {
 		$this->width  = 28;
