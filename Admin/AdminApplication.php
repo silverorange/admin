@@ -85,6 +85,7 @@ class AdminApplication extends SwatApplication {
 				$row = $pagequery->fetchRow(MDB2_FETCHMODE_OBJECT);
 				$title = $row->component_title;
 			} else {
+				// TODO: setting false here should cause the page to NOT load.
 				$found = false;
 				$title = '';
 			}
