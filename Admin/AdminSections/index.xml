@@ -3,7 +3,7 @@
 	<SwatFrame name="frame" title="Sections">
 		<SwatTableView name="view">
 			<SwatTableViewColumn name="title" title="Title">
-				<SwatCellRendererLink text="data:title" href="?source=AdminSections/Edit&amp;amp;id=%s" href_value="data:sectionid" />
+				<SwatCellRendererLink text="data:title" href="a/AdminSections/Edit?id=%s" href_value="data:sectionid" />
 			</SwatTableViewColumn>
 
 			<SwatTableViewColumn name="hidden" title="Hidden">

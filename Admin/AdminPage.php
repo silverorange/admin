@@ -19,16 +19,30 @@ abstract class AdminPage extends SwatPage {
 
 	}
 
+	public function displayHeader($app) {
+		/**
+		 * TODO: pull in the real admin title, admin user name,
+		 * and make these links work
+		 */
+		echo '<h1>Example Admin</h1>';
+		echo '<div id="admin-syslinks">';
+		echo 'Welcome <a href="#">Buckminster Fuller</a> &nbsp;|&nbsp;
+			<a href="#">Customize</a> &nbsp;|&nbsp;
+			<a href="#"><strong>Logout</strong></a>
+			</div>';
+	}
+
 	public function displayMenu($app) {
-		$sql="SELECT adminarticles.shortname, adminarticles.title,
-					adminarticles.section, adminsections.title AS sectiontitle
-				FROM adminarticles 
+		$sql = "SELECT admincomponents.shortname, admincomponents.title,
+					admincomponents.section, adminsections.title AS sectiontitle
+				FROM admincomponents 
 				INNER JOIN adminsections ON
-					adminarticles.section = adminsections.sectionid
+					admincomponents.section = adminsections.sectionid
 				WHERE adminsections.hidden='0' --$app->db->quote(0,'bit')
 				
-				AND adminarticles.hidden='0' --$app->db->quote(0,'bit')
+				AND admincomponents.hidden='0' --$app->db->quote(0,'bit')
 		";
+		// TODO: make this work once sessions are working
 				/*
 				AND adminarticles.articleid IN (
 					SELECT article
@@ -40,8 +54,8 @@ abstract class AdminPage extends SwatPage {
 				*/
 		$sql.="
 				ORDER BY adminsections.displayorder, adminsections.title,
-				adminarticles.section, adminarticles.displayorder,
-				adminarticles.title";
+				admincomponents.section, admincomponents.displayorder,
+				admincomponents.title";
 		
 		$types = array('text', 'text', 'integer','text');
 		$result = $app->db->query($sql, $types);
@@ -49,23 +63,23 @@ abstract class AdminPage extends SwatPage {
 		if (MDB2::isError($result)) 
 			throw new Exception($result->getMessage());
 
-		$section_out=0;
-		$currentrow=0;			
+		$section_out = 0;
+		$currentrow = 0;		
 		
 		echo '<ul>';
 		while ($row = $result->fetchRow(MDB2_FETCHMODE_OBJECT)) {
 			$currentrow++;
 			if ($row->section != $section_out) {
-				if ($currentrow!=1) echo "</ul>";
-				echo '<li><span>'.$row->sectiontitle.'</span></li>';
+				if ($currentrow != 1) echo "</li></ul>";
+				echo '<li><span>'.$row->sectiontitle.'</span>';
 				echo '<ul>';
 			}
-			$section_out=$row->section;
-			echo '<li><a href="?source='.$row->shortname.'">';
+			$section_out = $row->section;
+			echo '<li><a href="a/'.$row->shortname.'">';
 			echo $row->title;
 			echo '</a></li>';
 		}
-		echo '</ul></ul>';
+		echo '</ul></li></ul>';
 	}
 	
 	abstract public function init($app);
