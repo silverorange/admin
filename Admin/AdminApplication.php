@@ -99,6 +99,8 @@ class AdminApplication extends SwatApplication {
 				$found = false;
 				$title = '';
 			}
+
+			setcookie($this->name.'_username', $_SESSION['username'], time()+86400, '/', '', 0);
 		
 		} else {
 			$component = 'Admin';
@@ -193,6 +195,7 @@ class AdminApplication extends SwatApplication {
 		if (!isset($_SESSION['userID'])) {
 			$_SESSION['userID'] = 0;
 			$_SESSION['name'] = '';
+			$_SESSION['username'] = '';
 		}
 	}
 
@@ -207,7 +210,7 @@ class AdminApplication extends SwatApplication {
 	
 		$md5_password = md5($password);
 		
-		$sql = "select userid,name from adminusers
+		$sql = "select userid, name, username from adminusers
 				where username = %s and password = %s and enabled = %s";
 
 		$sql = sprintf($sql, 
@@ -215,12 +218,13 @@ class AdminApplication extends SwatApplication {
 			$this->db->quote($md5_password, 'text'),
 			$this->db->quote(true, 'boolean'));
 
-		$rs = $this->db->query($sql, array('integer', 'text'));
+		$rs = $this->db->query($sql, array('integer', 'text', 'text'));
 		
 		if ($rs->numRows()) {
 			$result = $rs->fetchRow(MDB2_FETCHMODE_OBJECT); 
 			$_SESSION['userID'] = $result->userid;
 			$_SESSION['name']   = $result->name;
+			$_SESSION['username']   = $result->username;
 			return true;
 		} else {
 			return false;
