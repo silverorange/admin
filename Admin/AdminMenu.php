@@ -30,7 +30,9 @@ class AdminMenu {
 				$component = new AdminMenuComponent($row->componentid, 
 					$row->shortname, $row->title);
 				$section->components[] = $component;
-			} else {
+			}
+
+			if (strlen($row->subcomponent_shortname) != 0) {
 				$subcomponent = new AdminMenuSubcomponent($row->subcomponent_shortname, 
 					$row->subcomponent_title);
 				$component->subcomponents[] = $subcomponent;

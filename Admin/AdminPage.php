@@ -41,7 +41,7 @@ abstract class AdminPage extends SwatPage {
 				FROM admincomponents 
 
 				LEFT OUTER JOIN adminsubcomponents on
-					adminsubcomponents.subcomponentid = admincomponents.componentid
+					adminsubcomponents.component = admincomponents.componentid
 
 				INNER JOIN adminsections ON
 					admincomponents.section = adminsections.sectionid
