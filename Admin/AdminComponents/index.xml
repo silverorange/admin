@@ -1,8 +1,11 @@
 <?xml version='1.0' standalone='yes'?>
 <SwatUI>
 	<SwatFrame title="Components">
+		<SwatMessageBox name="messagebox" />
+
 		<SwatToolLink title="Create a New Component" href="AdminComponents/Edit" />
 		<SwatToolLink title="Change Component Order" href="AdminComponents/Order" />
+
 		<SwatForm name="indexform">
 			<SwatTableView name="view">
 
@@ -29,11 +32,11 @@
 					<SwatCellRendererText>data:shortname</SwatCellRendererText>
 				</SwatTableViewColumn>
 
-				<SwatTableViewColumn name="show" title="Hidden">
+				<SwatTableViewColumn name="show" title="Show in Menu">
 					<SwatCellRendererCheck value="data:show" />
 				</SwatTableViewColumn>
 
-				<SwatTableViewColumn name="enabled" title="Hidden">
+				<SwatTableViewColumn name="enabled" title="Enabled">
 					<SwatCellRendererCheck value="data:enabled" />
 				</SwatTableViewColumn>
 

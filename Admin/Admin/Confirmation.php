@@ -1,6 +1,7 @@
 <?php
 
 require_once('Admin/AdminPage.php');
+require_once('Admin/AdminUI.php');
 
 /**
  * Generic admin confirmation page
@@ -20,24 +21,19 @@ abstract class AdminConfirmation extends AdminPage {
 		$this->ui->loadFromXML('Admin/Admin/confirmation.xml');
 	}
 
+	/**
+	 * Display the page
+	 *
+	 * Sub-classes should override this method to do whatever is necessary 
+	 * to generate the confirmation message and then call parent::display().
+	 */
 	public function display() {
 		$form = $this->ui->getWidget('confirmform');
 		$form->action = $this->source;
 
-		$this->displayMessage();
-
 		$root = $this->ui->getRoot();
 		$root->displayTidy();
 	}
-
-	/**
-	 * Display the message
-	 *
-	 * This method is called to display the message body of the confirmation 
-	 * page. Sub-classes should implement this method and do whatever is 
-	 * necessary to generate the confirmation message.
-	 */
-	abstract protected function displayMessage();
 
 	public function process() {
 		$form = $this->ui->getWidget('confirmform');
@@ -47,7 +43,7 @@ abstract class AdminConfirmation extends AdminPage {
 
 		$this->processResponse();
 
-		$this->app->relocate($this->component);
+		$this->app->relocate($this->app->getHistory());
 	}
 
 	/**

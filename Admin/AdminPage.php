@@ -38,7 +38,7 @@ abstract class AdminPage extends SwatPage {
 	 * method should be called before either {@link AdminPage::display()} or 
 	 * {@link AdminPage::process()}.
 	 */
-	abstract public function init();
+	abstract protected function init();
 
 	/**
 	 * Display the page

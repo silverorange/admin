@@ -7,7 +7,7 @@
 			</SwatFormField>
 			
 			<SwatFormField title="Show in Menu?">
-				<SwatCheckbox name="show" />
+				<SwatCheckbox name="show" value="bool:true" />
 			</SwatFormField>
 
 			<SwatFormField title="Description">

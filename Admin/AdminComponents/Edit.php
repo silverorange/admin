@@ -49,6 +49,8 @@ class AdminComponentsEdit extends AdminEdit {
 			'component', $id, 'groupnum', $grouplist->values, 'admingroups', 'groupid');
 		
 		$this->app->db->commit();
+
+		$this->app->addMessage(sprintf(_S('Admin component "%s" has been saved.'), $values['title']));
 	}
 
 	protected function loadData($id) {
