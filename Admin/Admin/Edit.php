@@ -19,17 +19,19 @@ abstract class AdminEdit extends AdminPage {
 		$id = intval(SwatApplication::initVar('id'));
 		$btn_submit = $this->ui->getWidget('btn_submit');
 		$frame = $this->ui->getWidget('frame');
+		$form = $this->ui->getWidget('editform');
 
 		if ($id == 0) {
 			$btn_submit->setTitleFromStock('create');
 			$frame->title = 'New '.$frame->title;
 		} else {
-			$this->loadData($id);
+			if (!$form->processed)
+				$this->loadData($id);
+
 			$btn_submit->setTitleFromStock('apply');
 			$frame->title .= ' Edit';
 		}
 
-		$form = $this->ui->getWidget('editform');
 		$form->action = $this->source;
 		$form->addHiddenField('id', $id);
 
