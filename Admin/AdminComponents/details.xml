@@ -38,7 +38,7 @@
 				</SwatTableView>
 				<SwatActions name="index_actions">
 
-					<SwatActionItem name="delete" title="delete" />
+					<SwatActionItem name="delete" title="delete..." />
 					<SwatActionItem name="show" title="show" />
 					<SwatActionItem name="hide" title="hide" />
 

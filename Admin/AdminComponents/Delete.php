@@ -44,7 +44,7 @@ class AdminComponentsDelete extends AdminDBDelete {
 		parent::processDBData();
 
 		$sql = 'delete from admincomponents where componentid in (%s)';
-		$item_list = $this->getItemList();
+		$item_list = $this->getItemList('integer');
 		$sql = sprintf($sql, $item_list);
 		SwatDB::query($this->app->db, $sql);
 
