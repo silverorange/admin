@@ -93,7 +93,7 @@ class AdminMenuComponent {
 	}
 
 	public function display() {
-		echo '<li><a href="a/'.$this->shortname.'">';
+		echo '<li><a href="'.$this->shortname.'">';
 		echo $this->title;
 		echo '</a>';
 
@@ -125,7 +125,7 @@ class AdminMenuSubcomponent {
 	}
 
 	public function display() {
-		echo '<li><a href="a/'.$this->shortname.'">';
+		echo '<li><a href="'.$this->shortname.'">';
 		echo $this->title;
 		echo '</a></li>';
 	}
