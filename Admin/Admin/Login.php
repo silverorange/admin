@@ -27,6 +27,9 @@ class AdminLogin extends AdminPage {
 	}
 
 	public function display() {
+		//$form = $this->ui->getWidget('loginform');
+		//$error_messages = $form->gatherErrorMessages();
+		
 		$root = $this->ui->getRoot();
 		$root->display();
 	}
@@ -39,8 +42,14 @@ class AdminLogin extends AdminPage {
 				$username = $this->ui->getWidget('username');
 				$password = $this->ui->getWidget('password');
 
-				$this->app->login($username->value, $password->value);
-				$this->app->relocate($this->app->uri);
+				$logged_in = $this->app->login($username->value, $password->value);
+				
+				if ($logged_in)
+					$this->app->relocate($this->app->uri);
+				else {
+					$frame = $this->ui->getWidget('frame');
+					$frame->addErrorMessage(_S("Login failed"));
+				}
 			}
 		}
 	}
