@@ -96,8 +96,9 @@ class AdminApplication extends SwatApplication {
 				$row = $pagequery->fetchRow(MDB2_FETCHMODE_OBJECT);
 				$title = $row->component_title;
 			} else {
-				// TODO: setting false here should cause the page to NOT load.
 				$found = false;
+				$page_not_found_msg = new SwatMessage(
+					sprintf(_S("Component '%s' not found."), $component));
 				$title = '';
 			}
 
@@ -109,28 +110,44 @@ class AdminApplication extends SwatApplication {
 			$title = _S("Login");
 		}
 
-		$classfile = $component.'/'.$subcomponent.'.php';
-		$file = null;
+		if ($found) {
 
-		if (file_exists('../../include/admin/'.$classfile)) {
-			$file = '../../include/admin/'.$classfile;
-		} else {
-			$paths = explode(':', ini_get('include_path'));
+			$classfile = $component.'/'.$subcomponent.'.php';
+			$file = null;
 
-			foreach ($paths as $path) {
-				if (file_exists($path.'/Admin/'.$classfile)) {
-					$file = $classfile;
-					break;
+			if (file_exists('../../include/admin/'.$classfile)) {
+				$file = '../../include/admin/'.$classfile;
+			} else {
+				$paths = explode(':', ini_get('include_path'));
+
+				foreach ($paths as $path) {
+					if (file_exists($path.'/Admin/'.$classfile)) {
+						$file = $classfile;
+						break;
+					}
 				}
+			}
+
+			if ($file !== null)
+				require_once($file);
+			else {
+				$found = false;
+				$page_not_found_msg = new SwatMessage(_S("File not found."));
+			}
+		}
+		
+		if ($found) {
+			$classname = $component.$subcomponent;
+			
+			if (!class_exists($classname)) {
+				$found = false;
+				$page_not_found_msg = new SwatMessage(
+					sprintf(_S("Class '%s' does not exist in the included file."), $classname));
 			}
 		}
 
-		if ($file !== null)
-			require_once($file);
 
-		$classname = $component.$subcomponent;
-
-		if (!class_exists($classname)) {
+		if (!$found) {
 			$component = 'Admin';
 			$subcomponent = 'NotFound';
 			$file = $component.'/'.$subcomponent.'.php';
@@ -146,6 +163,9 @@ class AdminApplication extends SwatApplication {
 		$page->subcomponent = $subcomponent;
 		$page->app = $this;
 
+		if (!$found && isset($page_not_found_msg))
+			$page->setMessage($page_not_found_msg);
+			
 		if (isset($_SERVER['HTTP_REFERER']))
 			$this->storeHistory($_SERVER['HTTP_REFERER']);
 
