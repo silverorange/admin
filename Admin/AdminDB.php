@@ -12,6 +12,9 @@ class AdminDB {
 	
 	public static function update($db, $table, $field, $type, $value, $id_field, $ids) {
 
+			if (count($ids) == 0)
+				return;
+
 			$sql = 'UPDATE %s SET %s = %s WHERE %s IN (%s)';
 
 			foreach ($ids as &$id)

@@ -9,6 +9,7 @@ require_once("MDB2.php");
 class AdminSectionsIndex extends AdminPage {
 
 	private $ui;
+	private $confirmation = null;
 
 	public function init() {
 		$this->ui = new AdminUI();
@@ -19,6 +20,22 @@ class AdminSectionsIndex extends AdminPage {
 	}
 
 	public function display() {
+		if ($this->confirmation != null) {
+			$this->displayConfirmation($this->confirmation);
+			return;
+		}
+
+		$view = $this->ui->getWidget('view');
+		$view->model = $this->getTableStore();
+
+		$form = $this->ui->getWidget('indexform');
+		$form->action = $this->source;
+
+		$root = $this->ui->getRoot();
+		$root->displayTidy();
+	}
+
+	private function getTableStore() {
 		$sql = 'SELECT sectionid, title, hidden 
 				FROM adminsections 
 				ORDER BY displayorder';
@@ -26,14 +43,7 @@ class AdminSectionsIndex extends AdminPage {
 		$types = array('integer', 'text', 'boolean');
 		$store = $this->app->db->query($sql, $types, true, 'AdminTableStore');
 
-		$view = $this->ui->getWidget('view');
-		$view->model = $store;
-
-		$form = $this->ui->getWidget('indexform');
-		$form->action = $this->source;
-
-		$root = $this->ui->getRoot();
-		$root->displayTidy();
+		return $store;
 	}
 
 	public function process() {
@@ -47,7 +57,14 @@ class AdminSectionsIndex extends AdminPage {
 		if ($actions->selected == null)
 			return;
 
+		if (count($view->checked_items) == 0)
+			return;
+
 		switch ($actions->selected->name) {
+			case 'delete':
+				$this->confirmation = 'delete';
+				break;
+
 			case 'show':
 				AdminDB::update($this->app->db, 'adminsections', 'hidden',
 					'boolean', false, 'sectionid', $view->checked_items);
@@ -66,6 +83,19 @@ class AdminSectionsIndex extends AdminPage {
 
 				if ($actions->selected->widget != null)
 					echo 'value = ', $actions->selected->widget->value;
+		}
+	}
+
+	public function displayConfirmation($type) {
+		$view = $this->ui->getWidget('view');
+
+		switch ($type) {
+			case 'delete':
+				echo 'confirm<br />';
+				echo 'items = ';
+				print_r($view->checked_items);
+				echo '<br />';
+				break;
 		}
 	}
 }
