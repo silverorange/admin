@@ -15,10 +15,7 @@ class AdminLogout extends AdminPage {
 
 	public function process() {
 		$this->app->logout();
-
-		// TODO: use a relocate function here
-		header('Location: '.$this->app->basehref);
-		exit();
+		$this->app->relocate($this->app->basehref);
 	}
 
 	public function getLayout() {
