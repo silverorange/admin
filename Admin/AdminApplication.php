@@ -69,8 +69,7 @@ class AdminApplication extends SwatApplication {
 
 		$found = true;
 
-		// TODO: remove this once logins work
-		if (1 == 1 || $this->isLoggedIn()) {
+		if ($this->isLoggedIn()) {
 			if (strpos($source, '/')) {
 				list($component, $subcomponent) = explode('/', $source);
 			} else {
@@ -82,7 +81,7 @@ class AdminApplication extends SwatApplication {
 
 			if ($pagequery->numRows()) {
 				$row = $pagequery->fetchRow(MDB2_FETCHMODE_OBJECT);
-				$page_title = $row->component_title;
+				$title = $row->component_title;
 			} else {
 				$found = false;
 			}
@@ -90,7 +89,7 @@ class AdminApplication extends SwatApplication {
 		} else {
 			$component = 'Admin';
 			$subcomponent = 'Login';
-			$page_title = _S("Login");
+			$title = _S("Login");
 		}
 
 		/* include_once() instead of require_once() since include is non-fatal.
@@ -108,11 +107,11 @@ class AdminApplication extends SwatApplication {
 			$file = $component.'/'.$subcomponent.'.php';
 			require_once($file);
 			$classname = $component.$subcomponent;
-			$page_title = _S("Page Not Found");	
+			$title = _S("Page Not Found");	
 		}
 	
 		$page = eval(sprintf("return new %s();", $classname));
-		$page->title = $page_title;
+		$page->title = $title;
 
 		return $page;
 	}
