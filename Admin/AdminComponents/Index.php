@@ -53,7 +53,7 @@ class AdminComponentsIndex extends AdminIndex {
 				break;
 
 			case 'show':
-				SwatDB::updateField($this->app->db, 'admincomponents', 
+				SwatDB::updateColumn($this->app->db, 'admincomponents', 
 					'boolean:show', true, 'componentid', 
 					$view->checked_items);
 
@@ -63,7 +63,7 @@ class AdminComponentsIndex extends AdminIndex {
 				break;
 
 			case 'hide':
-				SwatDB::updateField($this->app->db, 'admincomponents', 
+				SwatDB::updateColumn($this->app->db, 'admincomponents', 
 					'boolean:show', false, 'componentid', 
 					$view->checked_items);
 
@@ -73,7 +73,7 @@ class AdminComponentsIndex extends AdminIndex {
 				break;
 
 			case 'enable':
-				SwatDB::updateField($this->app->db, 'admincomponents', 
+				SwatDB::updateColumn($this->app->db, 'admincomponents', 
 					'boolean:enabled', true, 'componentid', 
 					$view->checked_items);
 
@@ -83,7 +83,7 @@ class AdminComponentsIndex extends AdminIndex {
 				break;
 
 			case 'disable':
-				SwatDB::updateField($this->app->db, 'admincomponents', 
+				SwatDB::updateColumn($this->app->db, 'admincomponents', 
 					'boolean:enabled', false, 'componentid', 
 					$view->checked_items);
 
@@ -95,12 +95,12 @@ class AdminComponentsIndex extends AdminIndex {
 			case 'changesection':
 				$new_section = $actions->selected->widget->value;
 
-				SwatDB::updateField($this->app->db, 'admincomponents', 
+				SwatDB::updateColumn($this->app->db, 'admincomponents', 
 					'integer:section', $new_section, 'componentid', 
 					$view->checked_items);
 
-				$title = current(SwatDB::queryField($this->app->db, 'adminsections', 'text:title',
-					'sectionid', $new_section));
+				$title = SwatDB::queryOne($this->app->db, 'adminsections', 'text:title',
+					'sectionid', $new_section);
 
 				$this->app->addMessage(sprintf(_nS('%d component has been moved to section "%s".', 
 					'%d components have been moved to section "%s".', $num), $num, $title));

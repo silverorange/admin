@@ -61,7 +61,7 @@ class AdminComponentsEdit extends AdminEdit {
 		$this->ui->setValues(get_object_vars($row));
 
 		$grouplist = $this->ui->getWidget('groups');
-		$grouplist->values = SwatDB::queryField($this->app->db, 
+		$grouplist->values = SwatDB::queryColumn($this->app->db, 
 			'admincomponent_admingroup', 'groupnum', 'component', $id);
 	}
 }
