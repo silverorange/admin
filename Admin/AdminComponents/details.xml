@@ -1,10 +1,11 @@
 <?xml version='1.0' standalone='yes'?>
 <SwatUI>
+	<SwatMessageBox name="messagebox" />
 	<SwatFrame name="frame">
 
-		<SwatFrame title="Sub-Components">
-			<SwatToolLink title="Create a New Sub-Component" href="AdminSubComponents/Edit" />
-			<SwatToolLink title="Change Sub-Component Order" href="AdminSubComponents/Order" />
+		<SwatFrame name="subframe" title="Sub-Components">
+			<SwatToolLink title="Create a New Sub-Component" href="AdminSubComponents/Edit?parent=%s" />
+			<SwatToolLink title="Change Sub-Component Order" href="AdminSubComponents/Order?parent=%s" />
 			<SwatForm name="indexform">
 				<SwatTableView name="view">
 

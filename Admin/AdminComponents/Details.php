@@ -19,6 +19,10 @@ class AdminComponentsDetails extends AdminIndex {
 		$this->ui->loadFromXML('Admin/AdminComponents/details.xml');
 
 		$this->id = intval(SwatApplication::initVar('id'));
+		assert($this->id != null);
+
+		$form = $this->ui->getWidget('indexform');
+		$form->addHiddenField('id', $this->id);
 	}
 
 	public function display() {
@@ -27,6 +31,11 @@ class AdminComponentsDetails extends AdminIndex {
 
 		$frame = $this->ui->getWidget('frame');
 		$frame->title = $row->title;
+
+		$subframe = $this->ui->getWidget('subframe');
+
+		foreach ($subframe->getChildren('SwatToolLink') as $tool)
+			$tool->value = $this->id;
 
 		parent::display();
 	}
@@ -43,7 +52,7 @@ class AdminComponentsDetails extends AdminIndex {
 
 		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
 
-		$types = array('integer', 'text', 'text', 'integer', 'boolean', 'text');
+		$types = array('integer', 'text', 'text', 'boolean');
 		$store = $this->app->db->query($sql, $types, true, 'AdminTableStore');
 
 		return $store;
@@ -55,30 +64,22 @@ class AdminComponentsDetails extends AdminIndex {
 
 		switch ($actions->selected->name) {
 			case 'delete':
-				$this->app->replacePage('AdminComponents/Delete');
+				$this->app->replacePage('AdminSubComponents/Delete');
 				$this->app->page->items = $view->checked_items;
 				break;
 
 			case 'show':
-				SwatDB::updateColumn($this->app->db, 'admincomponents', 
-					'boolean:show', true, 'componentid', 
+				SwatDB::updateColumn($this->app->db, 'adminsubcomponents', 
+					'boolean:show', true, 'subcomponentid', 
 					$view->checked_items);
 				break;
 
 			case 'hide':
-				SwatDB::updateColumn($this->app->db, 'admincomponents', 
-					'boolean:show', false, 'componentid', 
+				SwatDB::updateColumn($this->app->db, 'adminsubcomponents', 
+					'boolean:show', false, 'subcomponentid', 
 					$view->checked_items);
 				break;
 
-			case 'changesection':
-				$new_section = $actions->selected->widget->value;
-
-				SwatDB::updateColumn($this->app->db, 'admincomponents', 
-					'integer:section', $new_section, 'componentid', 
-					$view->checked_items);
-
-				break;
 		}
 	}
 }
