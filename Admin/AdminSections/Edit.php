@@ -20,7 +20,7 @@ class AdminSectionsEdit extends AdminPage {
 		if ($id == 0) {
 			$btn_submit->setTitleFromStock('create');
 		} else {
-			$this->loadFromDB($id);
+			$this->loadData($id);
 			$btn_submit->setTitleFromStock('apply');
 		}
 
@@ -38,13 +38,13 @@ class AdminSectionsEdit extends AdminPage {
 
 		if ($form->process()) {
 			if (!$form->hasErrorMessage()) {
-				$this->saveToDB($id);
+				$this->saveData($id);
 				$this->app->relocate($this->component);
 			}
 		}
 	}
 
-	private function saveToDB($id) {
+	private function saveDate($id) {
 		$db = $this->app->db;
 
 		if ($id == 0)
@@ -66,7 +66,7 @@ class AdminSectionsEdit extends AdminPage {
 		$db->query($sql);
 	}
 
-	private function loadFromDB($id) {
+	private function loadData($id) {
 		$sql = 'SELECT title, hidden, description
 			FROM adminsections WHERE sectionid = %s';
 

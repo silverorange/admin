@@ -21,7 +21,7 @@ abstract class AdminEditPage extends AdminPage {
 		if ($id == 0) {
 			$btn_submit->setTitleFromStock('create');
 		} else {
-			$this->loadFromDB($id);
+			$this->loadData($id);
 			$btn_submit->setTitleFromStock('apply');
 		}
 
@@ -39,7 +39,7 @@ abstract class AdminEditPage extends AdminPage {
 
 		if ($form->process()) {
 			if (!$form->hasErrorMessage()) {
-				$this->saveToDB($id);
+				$this->saveData($id);
 				$this->app->relocate($this->component);
 			}
 		}
