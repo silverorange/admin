@@ -10,7 +10,7 @@ require_once("Admin/AdminPage.php");
  * This class is intended to be a convenience class. For a fully custom page
  * inherit from AdminPage directly instead.
  */
-abstract class AdminEditPage extends AdminPage {
+abstract class AdminEdit extends AdminPage {
 
 	protected $ui;
 
