@@ -13,8 +13,6 @@ require_once("Admin/Admin/Index.php");
  */
 abstract class AdminSearch extends AdminIndex {
 
-	protected $ui;
-	
 	public function process() {
 		$form = $this->ui->getWidget('search_form', true);
 

@@ -12,8 +12,6 @@ require_once('Admin/AdminTableStore.php');
  */
 class AdminSectionsIndex extends AdminPage {
 
-	private $ui;
-
 	public function init() {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminSections/index.xml');

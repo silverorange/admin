@@ -13,8 +13,6 @@ require_once("Admin/AdminPage.php");
  */
 abstract class AdminEdit extends AdminPage {
 
-	protected $ui;
-
 	public function displayInit() {
 		$id = SwatApplication::initVar('id');
 		$form = $this->ui->getWidget('edit_form');

@@ -14,8 +14,6 @@ require_once('Admin/AdminUI.php');
  */
 abstract class AdminConfirmation extends AdminPage {
 
-	protected $ui;
-
 	public function init() {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/confirmation.xml');
