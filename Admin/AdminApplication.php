@@ -65,11 +65,11 @@ class AdminApplication extends SwatApplication {
 		if (isset($_GET['source']))
 			$source = $_GET['source'];
 		else
-			$source = 'front';
-
+			$source = 'Front';
 
 		$found = true;
 
+		// TODO: remove this once logins work
 		if (1 == 1 || $this->isLoggedIn()) {
 			if (strpos($source, '/')) {
 				list($component, $subcomponent) = explode('/', $source);
@@ -79,17 +79,13 @@ class AdminApplication extends SwatApplication {
 			}
 			
 			$pagequery = $this->queryForPage($component);
-			
-			
-			//if ($pagequery->size()) {
+
+			if ($pagequery->numRows()) {
 				$row = $pagequery->fetchRow(MDB2_FETCHMODE_OBJECT);
 				$page_title = $row->component_title;
-			//}
-			
-			/*
-			if (!$pagequery->size())
+			} else {
 				$found = false;
-			*/
+			}
 		
 		} else {
 			$component = 'Admin';
@@ -97,18 +93,24 @@ class AdminApplication extends SwatApplication {
 			$page_title = _S("Login");
 		}
 
+		/* include_once() instead of require_once() since include is non-fatal.
+		 * Warning suppressed with @ since class_exist() is used to test
+		 * success.
+		 */
 		$file = $component.'/'.$subcomponent.'.php';
-		/*if (!file_exists($file)) {
-				
-				$component = 'Admin';
-				$subcomponent = 'PageNotFound';
-				$page_title = _S("Page Not Found");	
-			
-		}*/
-		
-		require_once($file);
-	
+		@include_once($file);
+
 		$classname = $component.$subcomponent;
+
+		if (!class_exists($classname)) {
+			$component = 'Admin';
+			$subcomponent = 'NotFound';
+			$file = $component.'/'.$subcomponent.'.php';
+			require_once($file);
+			$classname = $component.$subcomponent;
+			$page_title = _S("Page Not Found");	
+		}
+	
 		$page = eval(sprintf("return new %s();", $classname));
 		$page->title = $page_title;
 
