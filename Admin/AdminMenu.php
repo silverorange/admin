@@ -11,16 +11,16 @@ class AdminMenu {
 
 	private $sections;
 
-	function __construct($result) {
+	function __construct($rs) {
 
-		if (MDB2::isError($result)) 
-			throw new Exception($result->getMessage());
+		if (MDB2::isError($rs)) 
+			throw new Exception($rs->getMessage());
 
 		$this->sections = array();
 		$section = null;
 		$component = null;
 
-		while ($row = $result->fetchRow(MDB2_FETCHMODE_OBJECT)) {
+		while ($row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT)) {
 			if ($section == null || $row->section != $section->id) {
 				$section = new AdminMenuSection($row->section, $row->sectiontitle);
 				$this->sections[] = $section;

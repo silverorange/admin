@@ -138,18 +138,13 @@ class AdminApplication extends SwatApplication {
 					WHERE adminuser_admingroup.usernum = {$usernum}
 				)";
 
-		$result = $this->db->query($sql, array('text','text'));
+		$rs = $this->db->query($sql, array('text','text'));
 		
-		if (MDB2::isError($result))
-            throw new Exception($result->getMessage());
+		if (MDB2::isError($rs))
+            throw new Exception($rs->getMessage());
 		else
-			return $result;
+			return $rs;
 
-		//if ($result->numrows() == 0)
-		//		$result = null;
-		//}
-
-		//return $result;
 	}
 
 	private function initDatabase() {
