@@ -41,12 +41,6 @@ class AdminApplication extends SwatApplication {
 	 */
 	public $page = null;
 
-	protected function setIncludePath() {
-		$uri_array = explode('/', $_SERVER['REQUEST_URI']);
-		$work_dir = $uri_array[2];
-		ini_set('include_path', "../../include/admin:/so/packages/admin/{$work_dir}:/so/packages/swat/{$work_dir}:/so/packages/pear/pear/MDB2:/so/packages/pear/pear/Date:/usr/lib/php");
-	}
-
 	/**
 	 * Replace the page object
 	 *
