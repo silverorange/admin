@@ -47,12 +47,13 @@ class AdminApplication extends SwatApplication {
 		$this->initDatabase();
 		$this->initSession();
 
-		$uri_array = explode('/', $_SERVER['REQUEST_URI']);
-		$this->uri = implode('/', array_slice($uri_array, 0, 5)).'/';
+		$this->uri = $_SERVER['REQUEST_URI'];
+		$uri_array = explode('/', $this->uri);
+		$this->baseuri = implode('/', array_slice($uri_array, 0, 5)).'/';
 
 		// TODO: Once we have a SITE_LIVE equivalent, we should use HTTP_HOST
 		//       on stage and SERVER_NAME on live.
-		$this->basehref = 'http://'.$_SERVER['HTTP_HOST'].$this->uri;
+		$this->basehref = 'http://'.$_SERVER['HTTP_HOST'].$this->baseuri;
 	}
 
 	/**
@@ -93,12 +94,24 @@ class AdminApplication extends SwatApplication {
 			$title = _S("Login");
 		}
 
-		/* include_once() instead of require_once() since include is non-fatal.
-		 * Warning suppressed with @ since class_exist() is used to test
-		 * success.
-		 */
-		$file = $component.'/'.$subcomponent.'.php';
-		@include_once($file);
+		$classfile = $component.'/'.$subcomponent.'.php';
+		$file = null;
+
+		if (file_exists('../../include/admin/'.$classfile)) {
+			$file = '../../include/admin/'.$classfile;
+		} else {
+			$paths = explode(':', ini_get('include_path'));
+
+			foreach ($paths as $path) {
+				if (file_exists($path.'/Admin/'.$classfile)) {
+					$file = $classfile;
+					break;
+				}
+			}
+		}
+
+		if ($file != null)
+			require_once($file);
 
 		$classname = $component.$subcomponent;
 
@@ -178,7 +191,9 @@ class AdminApplication extends SwatApplication {
 
 	public function login($username, $password) {
 		// TODO: authenticate against adminusers table here
+		//       return true if login is successful
 		$_SESSION['userID'] = 2;
+		return true;
 	}
 
 	public function logout() {
