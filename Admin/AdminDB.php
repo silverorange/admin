@@ -18,7 +18,7 @@ class AdminDB {
 			$sql = 'UPDATE %s SET %s = %s WHERE %s IN (%s)';
 
 			foreach ($ids as &$id)
-				$id = $db->quote($id, 'integer');
+				$id = $db->quote($id, $id_type);
 
 			$id_list = implode(',', $ids);
 
