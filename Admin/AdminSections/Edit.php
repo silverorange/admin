@@ -8,15 +8,15 @@ class AdminSectionsEdit extends AdminPage {
 
 	private $layout;
 
-	public function init($app) {
+	public function init() {
 		$this->layout = new SwatLayout('Admin/AdminSections/edit.xml');
 	}
 
-	public function display($app) {
+	public function display() {
 		/*
 		$sql = 'select sectionid, title, hidden from adminsections';
 		$types = array('integer', 'text', 'boolean');
-		$result = $app->db->query($sql, $types);
+		$result = $this->app->db->query($sql, $types);
 
 		if (MDB2::isError($result)) 
 			throw new Exception($result->getMessage());
@@ -34,7 +34,7 @@ class AdminSectionsEdit extends AdminPage {
 		$root->displayTidy();
 	}
 
-	public function process($app) {
+	public function process() {
 		$root = $this->layout->getRoot();
 		$root->process();
 	}

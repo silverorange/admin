@@ -11,25 +11,22 @@ require_once('Admin/AdminMenu.php');
  */
 abstract class AdminPage extends SwatPage {
 
-	/**
-	 * @var title Title of the page.
-	 */
-	public $title = '';
+	abstract public function init();
 
-	function __construct() {
-
-	}
+	abstract public function display();
+	
+	abstract public function process();
 
 	public function getLayout() {
 		return 'default';
 	}
 
-	public function displayHeader($app) {
+	public function displayHeader() {
 		/**
 		 * TODO: pull in the real admin title, admin user name,
 		 * and make these links work
 		 */
-		echo '<h1>', $app->title, '</h1>';
+		echo '<h1>', $this->app->title, '</h1>';
 		echo '<div id="admin-syslinks">';
 		echo 'Welcome <a href="Admin/Profile">Buckminster Fuller</a> &nbsp;|&nbsp;';
 		echo '<a href="Admin/Profile">Customize</a> &nbsp;|&nbsp;';
@@ -37,8 +34,8 @@ abstract class AdminPage extends SwatPage {
 		echo '</div>';
 	}
 
-	public function displayMenu($app) {
-		$sql_false = $app->db->quote(0, 'boolean');
+	public function displayMenu() {
+		$sql_false = $this->app->db->quote(0, 'boolean');
 
 		$sql = "SELECT admincomponents.shortname, admincomponents.title,
 					admincomponents.section, adminsections.title AS sectiontitle,
@@ -77,14 +74,9 @@ abstract class AdminPage extends SwatPage {
 				adminsubcomponents.title";
 		
 		$types = array('text', 'text', 'integer', 'text', 'integer', 'text', 'text');
-		$menu = $app->db->query($sql, $types, true, 'AdminMenu');
+		$menu = $this->app->db->query($sql, $types, true, 'AdminMenu');
 		$menu->display();	
 
 	}
 	
-	abstract public function init($app);
-
-	abstract public function display($app);
-	
-	abstract public function process($app);
 }
