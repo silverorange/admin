@@ -1,14 +1,15 @@
 <?php
-/**
- * @package Admin
- * @copyright silverorange 2004
- */
+
 require_once("Admin/AdminPage.php");
 
 /**
- * Base class for a standard admin index page.
- * This class is intended to be a convenience class. For a fully custom page
- * inherit from AdminPage directly instead.
+ * Generic admin index page
+ *
+ * This class is intended to be a convenience base class. For a fully custom 
+ * index page, inherit directly from AdminPage instead.
+ *
+ * @package Admin
+ * @copyright silverorange 2004
  */
 abstract class AdminIndex extends AdminPage {
 
@@ -27,9 +28,11 @@ abstract class AdminIndex extends AdminPage {
 
 	/**
 	 * Retrieve data to display.
+	 *
 	 * This method is called to load data to be displayed in the table view.
 	 * Sub-classes should implement this method and perform whatever actions
 	 * are necessary to obtain the data.
+	 *
 	 * @return SwatTableStore A new SwatTableStore containing the data.
 	 */
 	abstract protected function getTableStore();
@@ -55,6 +58,7 @@ abstract class AdminIndex extends AdminPage {
 
 	/**
 	 * Process the actions.
+	 *
 	 * This method is called to perform whatever processing is required in 
 	 * response to actions. Sub-classes should implement this method.
 	 * Widgets can be accessed through the $ui class variable.

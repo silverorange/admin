@@ -1,16 +1,20 @@
 <?php
-/**
- * @package Admin
- * @copyright silverorange 2004
- */
+
 require_once("MDB2.php");
 
 /**
+ * Database helper class
+ *
  * Static convenience methods for working with a database.
+ *
+ * @package Admin
+ * @copyright silverorange 2004
  */
 class AdminDB {
 	
 	/**
+	 * Update a field
+	 *
  	 * Convenience method to update a single database field for one or more 
 	 * rows. One convenient use of this method is for processing SwatActions
 	 * that change a single database field.
@@ -62,6 +66,8 @@ class AdminDB {
 	}
 
 	/**
+	 * Query for an option array
+	 *
  	 * Convenience method to query for a set of options, each consisting of
 	 * an id and a title. The returned option array in the form of
 	 * $id => $title can be passed directly to other classes, such as 
@@ -127,7 +133,12 @@ class AdminDB {
 }
 
 /**
+ * Database field
+ * 
  * Data class to represent a database field, a (name, type) pair.
+ *
+ * @package Admin
+ * @copyright silverorange 2004
  */
 class AdminDBField {
 
@@ -164,7 +175,7 @@ class AdminDBField {
 	}
 
 	/**
-	 * Get the field as a string.
+	 * Get the field as a string
 	 *
 	 * @return string A string representation of a database field in the
 	 *        form <type>:<name> where <name> is the name of the database 

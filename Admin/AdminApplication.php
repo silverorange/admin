@@ -1,44 +1,51 @@
 <?
-/**
- * @package Admin
- * @copyright silverorange 2004
- */
+
 require_once('Swat/SwatApplication.php');
 require_once('MDB2.php');
 require_once('AdminPage.php');
 
+/**
+ * Web application class for an administrator
+ * @package Admin
+ * @copyright silverorange 2004
+ */
 class AdminApplication extends SwatApplication {
 	
 	/**
-	 * A visble title for this admin.
+	 * A visble title for this admin
 	 * @var string
 	 */
 	public $title;
 
 	/**
-	 * The name of the database to connect to.  Set this before calling
+	 * The name of the database
+	 *
+	 * This is the name of the database to connect to.  Set this before calling
 	 * AdminApplication::init(), afterwords consider it readonly.
+	 *
 	 * @var string
 	 */
 	public $dbname;
 
 	/**
-	 * The database object.
+	 * The database object
 	 * @var MDB2_Connection Database connection object (readonly)
 	 */
 	public $db = null;
 	
 	/**
-	 * The page object.
+	 * The page object
 	 * @var AdminPage Current page object (readonly)
 	 */
 	public $page = null;
 
 	/**
-	 * Replace the page object.
+	 * Replace the page object
+	 *
 	 * This method can be used to load another page to replace the current 
 	 * page. For example, this is used to load a confirmation page when 
 	 * processing an admin index page.
+	 *
 	 * @return AdminPage A subclass of AdminPage is returned.
 	 */
 	public function replacePage($source) {
@@ -47,7 +54,7 @@ class AdminApplication extends SwatApplication {
 	}
 
 	/**
-	 * Initialize the application.
+	 * Initialize the application
 	 */
 	public function init() {
 		$this->initDatabase();
@@ -56,8 +63,10 @@ class AdminApplication extends SwatApplication {
 	}
 
 	/**
-	 * Get the page object.
+	 * Get the page object
+	 *
 	 * Uses the $_GET variables to decide which page subclass to instantiate.
+	 *
 	 * @return AdminPage A subclass of AdminPage is returned.
 	 */
 	public function getPage($source = null) {

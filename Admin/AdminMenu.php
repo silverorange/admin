@@ -1,11 +1,9 @@
 <?php
-/**
- * @package Admin
- * @copyright silverorange 2004
- */
 
 /**
- * The primary navigation in an admin.
+ * Primary navigation menu
+ * @package Admin
+ * @copyright silverorange 2004
  */
 class AdminMenu {
 
@@ -52,7 +50,7 @@ class AdminMenu {
 }
 
 /**
- * Data class for a menu section.
+ * Menu section (data class)
  */
 class AdminMenuSection {
 
@@ -78,7 +76,7 @@ class AdminMenuSection {
 }
 
 /**
- * Data class for a menu component.
+ * Menu component (data class)
  */
 class AdminMenuComponent {
 
@@ -114,7 +112,7 @@ class AdminMenuComponent {
 }
 
 /**
- * Data class for a menu subcomponent.
+ * Menu subcomponent (data class)
  */
 class AdminMenuSubcomponent {
 

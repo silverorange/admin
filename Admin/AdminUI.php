@@ -1,12 +1,14 @@
 <?php
-/**
- * @package Admin
- * @copyright silverorange 2004
- */
+
 require_once('Swat/SwatUI.php');
 
 /**
- * Subclass of SwatUI for use in Admin.
+ * UI manager for administrators
+ *
+ * Subclass of SwatUI for use with the Admin package.
+ *
+ * @package Admin
+ * @copyright silverorange 2004
  */
 class AdminUI extends SwatUI {
 

@@ -1,30 +1,29 @@
 <?php
-/**
- * @package Admin
- * @copyright silverorange 2004
- */
+
 require_once('Swat/SwatPage.php');
 require_once('Admin/AdminMenu.php');
 
 /**
- * Abstract base class for admin pages.
+ * Abstract base class for administrator pages.
+ * @package Admin
+ * @copyright silverorange 2004
  */
 abstract class AdminPage extends SwatPage {
 
 	/**
-	 * The source of this page, from the source GET variable.
+	 * Source of this page
 	 * @var string
 	 */
 	public $source;
 
 	/**
-	 * The component name of this page.
+	 * Component name of this page
 	 * @var string
 	 */
 	public $component;
 
 	/**
-	 * The subcomponent name of this page.
+	 * Subcomponent name of this page
 	 * @var string
 	 */
 	public $subcomponent;
