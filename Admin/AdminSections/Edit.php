@@ -16,9 +16,11 @@ class AdminSectionsEdit extends AdminPage {
 	public function display() {
 		$id = intval(SwatApplication::initVar('id'));
 		$btn_submit = $this->ui->getWidget('btn_submit');
+		$frame = $this->ui->getWidget('frame');
 
 		if ($id == 0) {
 			$btn_submit->setTitleFromStock('create');
+			$frame->title = 'New Section';
 		} else {
 			$this->loadData($id);
 			$btn_submit->setTitleFromStock('apply');
