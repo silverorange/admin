@@ -34,8 +34,15 @@ class AdminApplication extends SwatApplication {
 	 */
 	public $page = null;
 
-	public function replacePage() {
-		$this->page = $this->getPage('AdminSections/Delete');
+	/**
+	 * Replace the page object.
+	 * This method can be used to load another page to replace the current 
+	 * page. For example, this is used to load a confirmation page when 
+	 * processing an admin index page.
+	 * @return AdminPage A subclass of AdminPage is returned.
+	 */
+	public function replacePage($source) {
+		$this->page = $this->getPage($source);
 		$this->page->init();
 	}
 
