@@ -1,6 +1,7 @@
 <?php
 
 require_once("MDB2.php");
+require_once("Swat/SwatTreeNode.php");
 
 /**
  * Database helper class
@@ -79,7 +80,7 @@ class AdminDB {
 	 *
 	 * @param string $title_field The name of the database field to query for 
 	 *        the title. Can be given in the form type:name where type is a
-	 *        standard MDB2 datatype. If type is ommitted, then string is 
+	 *        standard MDB2 datatype. If type is ommitted, then text is 
 	 *        assummed for this field.
 	 *
 	 * @param string $id_field The name of the database field to query for 
@@ -129,8 +130,83 @@ class AdminDB {
 		return $options;
 	}
 
-	
+	/**
+	 * Query for an option tree array
+	 *
+ 	 * Convenience method to query for a set of options, each consisting of
+	 * an id, levelnum, and a title. The returned option array in the form of
+	 * a collection of {@link SwatTreeNode}s to other classes, such as 
+	 * SwatFlydown for example.
+	 *
+	 * @param MDB2_Driver_Common $db The database connection.
+	 *
+	 * @param string $sp Stored procedure/function to execute. Must return the
+	 *        values: id, title, level - in the order of output.
+	 *
+	 * @param string $title_field The name of the database field to query for 
+	 *        the title. Can be given in the form type:name where type is a
+	 *        standard MDB2 datatype. If type is ommitted, then text is 
+	 *        assummed for this field.
+	 *
+	 * @param string $id_field The name of the database field to query for 
+	 *        the id. Can be given in the form type:name where type is a
+	 *        standard MDB2 datatype. If type is ommitted, then integer is 
+	 *        assummed for this field.
+	 *
+	 * @param string $parent_field The name of the database field to query for 
+	 *        the parent. Can be given in the form type:name where type is a
+	 *        standard MDB2 datatype. If type is ommitted, then integer is 
+	 *        assummed for this field.
+	 *
+	 * @return SwatTreeNode A tree hierarchy of {@link SwatTreeNode}s
+	 */
+	public static function getOptionArrayTree($db, $sp, $title_field, $id_field,
+		$level_field) {
+
+		$id_field = new AdminDBField($id_field, 'integer');
+		$title_field = new AdminDBField($title_field, 'text');
+		$level_field = new AdminDBField($level_field, 'integer');
+		
+		$types = array($id_field->type, $title_field->type, $level_field->type);
+		
+		$rs = $db->executeStoredProc($sp, array(0), $types, true);
+		if (MDB2::isError($rs))
+			throw new Exception($rs->getMessage());
+
+		$tree = AdminDB::buildOptionArrayTree($rs, $title_field->name, $id_field->name, $level_field->name);
+		return $tree;
+	}
+
+	private static function buildOptionArrayTree($rs, $title_field_name, $id_field_name,
+		$level_field_name) {
+
+		$stack = array();
+		$current_parent =  new SwatTreeNode(0, 'root');
+		$base_parent = $current_parent;
+		array_push($stack, $current_parent);
+		$last_node = $current_parent;	
+
+		while ($row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT)) {
+			$title = $row->$title_field_name;
+			$id = $row->$id_field_name;
+			$level = $row->$level_field_name;
+			
+			if ($level > count($stack)) {
+				array_push($stack, $current_parent);
+				$current_parent = $last_node;
+			} else if ($level < count($stack)) {
+				$current_parent = array_pop($stack);
+			}
+		
+			$last_node = new SwatTreeNode(array('title'=>$title));
+			$current_parent->children[$id] = $last_node;
+		}
+
+		return $base_parent;
+	}
+
 }
+
 
 /**
  * Database field
