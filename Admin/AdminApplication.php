@@ -303,6 +303,7 @@ class AdminApplication extends SwatApplication {
 	 * Set the user as logged-out 
 	 */
 	public function logout() {
+		$_SESSION = array();
 		$_SESSION['userID'] = 0;
 	}
 
