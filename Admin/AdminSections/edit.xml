@@ -1,0 +1,19 @@
+<?xml version='1.0' standalone='yes'?>
+<SwatLayout>
+	<SwatFrame name="frame" title="Sections Edit">
+		<SwatForm name="form1">
+			<SwatFormField title="Title">
+				<SwatEntry name="title" required="bool:true" />
+			</SwatFormField>
+			
+			<SwatFormField title="Shortname">
+				<SwatEntry name="shortname" required="bool:true" />
+			</SwatFormField>
+
+			<SwatFormField class="swat-form-footer">
+				<SwatButton name="btn_create" title="Create" />
+			</SwatFormField>
+
+		</SwatForm>
+	</SwatFrame>
+</SwatLayout>
