@@ -29,7 +29,7 @@ class AdminTableViewRowCheckAll extends SwatTableViewRow {
 				$label_tag->for = 'check_all';
 
 				$td_tag->open();
-				$this->javascript();
+				$this->displayJavascript();
 				$label_tag->open();
 				$input_tag->display();
 				echo _S('Check All');
@@ -47,7 +47,7 @@ class AdminTableViewRowCheckAll extends SwatTableViewRow {
 		echo '</tr>';
 	}
 
-	private function javascript() {
+	private function displayJavascript() {
 		?>
 		<script type="text/javascript" language="JavaScript">	
 			function checkAll(my_form, id) {
