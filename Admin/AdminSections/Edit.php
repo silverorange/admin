@@ -23,6 +23,9 @@ class AdminSectionsEdit extends AdminPage {
 			$btn_submit->setTitleFromStock('apply');
 		}
 
+		$form = $this->layout->getWidget('editform');
+		$form->addHiddenField('id', $id);
+
 		$root = $this->layout->getRoot();
 		$root->display();
 	}
