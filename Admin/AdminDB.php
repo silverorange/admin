@@ -93,10 +93,10 @@ class AdminDB {
 	 * @param mixed $id The value to look for in the $id_field. The type should 
 	 *        correspond to the type of $id_field.
 	 */
-	public static function queryField($db, $table, $field, $id_field = NULL, $id = 0) {
+	public static function queryField($db, $table, $field, $id_field = null, $id = 0) {
 		$field = new AdminDBField($field, 'integer');
 
-		if ($id_field == NULL) {
+		if ($id_field == null) {
 			$sql = 'select %s from %s';
 			$sql = sprintf($sql, $field->name, $table);
 		} else {
@@ -456,13 +456,13 @@ class AdminDB {
 	 * @return mixed If $id_field is set, the value in the $id_field column of
 	 *        the inserted row is returned.
 	 */
-	public static function insertRow($db, $table, $fields, $values, $id_field = NULL) {
+	public static function insertRow($db, $table, $fields, $values, $id_field = null) {
 
 		AdminDB::initFields($fields);
 
 		$ret = null;
 
-		if ($id_field != NULL)
+		if ($id_field != null)
 			$db->beginTransaction();
 
 		$sql = 'insert into %s (%s) values (%s)';
@@ -480,7 +480,7 @@ class AdminDB {
 
 		$rs = $db->query($sql);
 
-		if ($id_field != NULL) {
+		if ($id_field != null) {
 			$ret = AdminDB::getFieldMax($db, $table, $id_field);						
 			$db->commit();
 		}

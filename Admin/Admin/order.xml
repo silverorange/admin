@@ -1,0 +1,20 @@
+<?xml version='1.0' standalone='yes'?>
+<SwatUI>
+	<SwatFrame name="frame" title="Order Components">
+		<SwatForm name="orderform">
+
+			<SwatFormField title="Order Options">
+				<SwatRadioList name="options" />
+			</SwatFormField>
+			
+			<SwatFormField title="Custom Order">
+				<SwatChangeOrder name="order" />
+			</SwatFormField>
+			
+			<SwatFormField class="swat-form-footer">
+				<SwatButton name="btn_submit" />
+			</SwatFormField>
+
+		</SwatForm>
+	</SwatFrame>
+</SwatUI>

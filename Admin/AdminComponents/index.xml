@@ -2,6 +2,7 @@
 <SwatUI>
 	<SwatFrame title="Components">
 		<SwatToolLink title="Create a New Component" href="AdminComponents/Edit" />
+		<SwatToolLink title="Change Component Order" href="AdminComponents/Order" />
 		<SwatForm name="indexform">
 			<SwatTableView name="view">
 
