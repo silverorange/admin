@@ -48,6 +48,8 @@ class AdminSubComponentsEdit extends AdminEdit {
 		$this->ui->setValues(get_object_vars($row));
 
 		$this->parent = intval($row->component);
+		$form = $this->ui->getWidget('editform');
+		$form->addHiddenField('parent', $this->parent);
 	}
 }
 ?>
