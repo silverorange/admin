@@ -4,7 +4,7 @@
  * @copyright silverorange 2004
  */
 require_once('Swat/SwatApplication.php');
-require_once("MDB2.php");
+require_once('MDB2.php');
 require_once('AdminPage.php');
 
 class AdminApplication extends SwatApplication {
@@ -41,7 +41,8 @@ class AdminApplication extends SwatApplication {
 		$this->initDatabase();
 		$this->initSession();
 
-		$this->uri = implode('/', array_slice(explode('/', $_SERVER['REQUEST_URI']), 0, 5)).'/';
+		$uriArray = explode('/', $_SERVER['REQUEST_URI']), 0, 4));
+		$this->uri = implode('/', array_slice($uriArray, 0, 4)).'/';
 		$this->basehref = 'http://'.$_SERVER['SERVER_NAME'].$this->uri;
 	}
 
@@ -76,7 +77,7 @@ class AdminApplication extends SwatApplication {
 		//if ($component == 'login')
 		//	$class = 'Admin/Login/Index';
 
-		require_once("Admin/$component/$subcomponent.php");
+		require_once('Admin/'.$component.'/'.$subcomponent.'.php');
 		$classname = $component.$subcomponent;
 		$page = eval(sprintf("return new %s();", $classname));
 
@@ -85,9 +86,10 @@ class AdminApplication extends SwatApplication {
 
 	private function queryForPage($source) {
 		$sql = <<<SQL
-			SELECT adminarticles.*, adminsections.title AS section_title
+			SELECT adminarticles.*,
+				adminsections.title AS section_title
 			FROM adminarticles
-			INNER JOIN adminsections ON section = sectionID
+				INNER JOIN adminsections ON section = sectionid
 			WHERE adminarticles.hidden = 0
 				AND shortname = '$source'
 				AND articleID IN (
@@ -100,7 +102,7 @@ class AdminApplication extends SwatApplication {
 SQL;
 
 		$result = $this->db->query($sql);
-                                                                                                                             
+
 		if ($result->size() == 0) {
 			$sql = <<<SQL
 				SELECT adminarticles.*, adminsections.title AS section_title
@@ -126,7 +128,8 @@ SQL;
 
 	private function initDatabase() {
 		// TODO: change to array form of DSN and move parts to a secure include file.
-		$dsn = "pgsql://php:test@zest/".$this->dbname;
+		//$dsn = "pgsql://php:test@zest/".$this->dbname;
+		$dsn = "pgsql://so@192.168.1.102/".$this->dbname;
 		$this->db = MDB2::connect($dsn);
 
 		if (MDB2::isError($this->db))
@@ -135,7 +138,8 @@ SQL;
 
 	private function initSession() {
 		session_cache_limiter('');
-		session_save_path('/so/phpsessions/'.$this->name);
+		//session_save_path('/so/phpsessions/'.$this->name);
+		session_save_path('/home/so/phpsessions');
 		session_name($this->name);
 		session_start();
 
