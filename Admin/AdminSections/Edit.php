@@ -17,10 +17,10 @@ class AdminSectionsEdit extends AdminPage {
 		$btn_submit = $this->layout->getWidget('btn_submit');
 
 		if ($id == 0) {
-			$btn_submit->title = $btn_submit->getStockTitle('create');
+			$btn_submit->setTitleFromStock('create');
 		} else {
 			$this->loadFromDB($id);
-			$btn_submit->title = $btn_submit->getStockTitle('apply');
+			$btn_submit->setTitleFromStock('apply');
 		}
 
 		$root = $this->layout->getRoot();
