@@ -95,6 +95,10 @@ a:active { color: #000; }
 	margin: 0;
 }
 
+#admin-menu ul ul ul {
+	margin-left: 100px;
+	font-size: 4px;
+}
 
 /* Content Styles */
 
