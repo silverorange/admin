@@ -119,7 +119,7 @@ class AdminMenuComponent {
 			echo '<ul>';
 
 			foreach ($this->subcomponents as $subcomponent)
-				$subcomponent->display();
+				$subcomponent->display($this->shortname);
 
 			echo '</ul>';
 		}
@@ -144,8 +144,8 @@ class AdminMenuSubcomponent {
 		$this->title = $title;
 	}
 
-	public function display() {
-		echo '<li><a href="'.$this->shortname.'">';
+	public function display($component_shortname) {
+		echo '<li><a href="'.$component_shortname.'/'.$this->shortname.'">';
 		echo $this->title;
 		echo '</a></li>';
 	}
