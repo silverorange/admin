@@ -5,18 +5,18 @@ require_once('SwatDB/SwatDBField.php');
  * Class for building search clauses
  *
  * @package Admin
- * @copyright silverorange 2004
+ * @copyright silverorange 2005
  */
 class AdminSearchClause {
 
-	const OP_EQUALS = '=';
-	const OP_GT = '>';
-	const OP_GTE = '>=';
-	const OP_LT = '<';
-	const OP_LTE = '<=';
-	const OP_CONTAINS = 'like';
-	const OP_STARTS_WITH = 'like';
-	const OP_ENDS_WITH = 'like';
+	const OP_EQUALS      = 1;
+	const OP_GT          = 2;
+	const OP_GTE         = 3;
+	const OP_LT          = 4;
+	const OP_LTE         = 5;
+	const OP_CONTAINS    = 6;
+	const OP_STARTS_WITH = 7;
+	const OP_ENDS_WITH   = 8;
 
 	private $field;
 	public $value;
@@ -67,8 +67,26 @@ class AdminSearchClause {
 		}
 
 		$value = $db->quote($value);
-		return " {$logic_operator} {$field} {$this->operator} {$value} ";
+		$operator = AdminSearchClause::getOperatorString($this->operator);
+		$clause = " {$logic_operator} {$field} {$operator} {$value} ";
+
+		return $clause;
 	}
 
+	private static function getOperatorString($id) {
+		switch ($id) {
+			case AdminSearchClause::OP_EQUALS:      return '=';
+			case AdminSearchClause::OP_GT:          return '>';
+			case AdminSearchClause::OP_GTE:         return '>=';
+			case AdminSearchClause::OP_LT:          return '<';
+			case AdminSearchClause::OP_LTE:         return '<=';
+			case AdminSearchClause::OP_CONTAINS:    return 'like';
+			case AdminSearchClause::OP_STARTS_WITH: return 'like';
+			case AdminSearchClause::OP_ENDS_WITH:   return 'like';
+
+			default:
+				throw new Exception('AdminSearchClause: unknown operator');
+		}
+	}
 }
 
