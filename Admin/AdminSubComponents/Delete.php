@@ -17,6 +17,9 @@ class AdminSubComponentsDelete extends AdminConfirmation {
 		$form = $this->ui->getWidget('confirmform');
 		$form->addHiddenField('items', $this->items);
 		
+		foreach ($items as &$id)
+			$id = $this->app->db->quote($id, 'integer');
+
 		$where_items = implode(', ', $this->items);
 		
 		$dep = new AdminDependency();
