@@ -162,6 +162,8 @@ class AdminApplication extends SwatApplication {
 		$page->component = $component;
 		$page->subcomponent = $subcomponent;
 		$page->app = $this;
+		$page->navbar->add('Home', '');
+		$page->navbar->add($title, ($subcomponent == 'Index') ? null : $component);
 
 		if (!$found && isset($page_not_found_msg))
 			$page->setMessage($page_not_found_msg);

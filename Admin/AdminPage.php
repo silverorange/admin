@@ -1,6 +1,7 @@
 <?php
 
 require_once('Swat/SwatPage.php');
+require_once('Swat/SwatNavBar.php');
 require_once('Admin/AdminMenu.php');
 
 /**
@@ -30,6 +31,18 @@ abstract class AdminPage extends SwatPage {
 	 * @var string
 	 */
 	public $subcomponent;
+
+	/**
+	 * Navbar of this page
+	 * @var SwatNavBar
+	 */
+	public $navbar;
+	 
+	public function __construct() {
+		parent::__construct();
+
+		$this->navbar = new SwatNavBar();
+	}
 
 	/**
 	 * Initialize the page
@@ -72,6 +85,10 @@ abstract class AdminPage extends SwatPage {
 		echo '<a href="Admin/Profile">Customize</a> &nbsp;|&nbsp;';
 		echo '<a href="Admin/Logout"><strong>Logout</strong></a>';
 		echo '</div>';
+	}
+
+	public function displayNavBar() {
+		$this->navbar->display();	
 	}
 
 	/**

@@ -14,7 +14,7 @@ class AdminNotFound extends AdminPage {
 	private $message = null;
 
 	public function init() {
-
+		$this->navbar->pop();
 	}
 
 	public function display() {
