@@ -28,8 +28,8 @@ class AdminUI extends SwatUI {
 	 * Get values from widgets
 	 *
  	 * Convenience method to retrive values from multiple widgets at once.
-	 * This method is useful when using {@link AdminDB::rowInsert()} and
-	 * {@link AdminDB::rowUpdate} but only works if the widget name and
+	 * This method is useful when using {@link SwatDB::rowInsert()} and
+	 * {@link SwatDB::rowUpdate} but only works if the widget name and
 	 * field name are the same, if this is not the case you should manually get
 	 * the values.
 	 *
@@ -49,7 +49,7 @@ class AdminUI extends SwatUI {
 	 * Set values of widgets
 	 *
  	 * Convenience method to set values of multiple widgets at once.
-	 * This method is useful when using {@link AdminDB::rowQuery()}
+	 * This method is useful when using {@link SwatDB::rowQuery()}
 	 * but only works if the widget name and field name are the same, if this
 	 * is not the case you should manually set the values.
 	 *

@@ -1,7 +1,7 @@
 <?php
 
 require_once('Admin/AdminUI.php');
-require_once('Admin/AdminDB.php');
+require_once('SwatDB/SwatDB.php');
 require_once('Admin/AdminPage.php');
 
 /**
@@ -31,7 +31,7 @@ class AdminSectionsDelete extends AdminPage {
 		$form->addHiddenField('items', $this->items);
 
 		$where_clause = 'sectionid in ('.implode(', ', $this->items).')';
-		$items = AdminDB::getOptionArray($this->app->db, 'adminsections', 
+		$items = SwatDB::getOptionArray($this->app->db, 'adminsections', 
 			'title', 'sectionid', $where_clause);
 
 		$message = $this->ui->getWidget('message');

@@ -1,7 +1,7 @@
 <?php
 
 require_once('Admin/AdminUI.php');
-require_once('Admin/AdminDB.php');
+require_once('SwatDB/SwatDB.php');
 require_once("Admin/Admin/Index.php");
 require_once('Admin/AdminTableStore.php');
 
@@ -47,13 +47,13 @@ class AdminComponentsDetails extends AdminIndex {
 				break;
 
 			case 'show':
-				AdminDB::updateField($this->app->db, 'admincomponents', 
+				SwatDB::updateField($this->app->db, 'admincomponents', 
 					'boolean:hidden', false, 'componentid', 
 					$view->checked_items);
 				break;
 
 			case 'hide':
-				AdminDB::updateField($this->app->db, 'admincomponents', 
+				SwatDB::updateField($this->app->db, 'admincomponents', 
 					'boolean:hidden', true, 'componentid', 
 					$view->checked_items);
 				break;
@@ -61,7 +61,7 @@ class AdminComponentsDetails extends AdminIndex {
 			case 'changesection':
 				$new_section = $actions->selected->widget->value;
 
-				AdminDB::updateField($this->app->db, 'admincomponents', 
+				SwatDB::updateField($this->app->db, 'admincomponents', 
 					'integer:section', $new_section, 'componentid', 
 					$view->checked_items);
 
