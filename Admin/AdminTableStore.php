@@ -3,7 +3,7 @@
 require_once('Swat/SwatTableStore.php');
 
 /**
- * AdminTableStore
+ * A DB-aware table store
  *
  * A subclass of SwatTableStore that can be used as an MDB2 results wrappper.
  *
