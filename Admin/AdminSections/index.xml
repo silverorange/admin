@@ -1,6 +1,7 @@
 <?xml version='1.0' standalone='yes'?>
 <SwatUI>
 	<SwatFrame title="Sections">
+		<SwatToolLink title="Create a New Section" href="AdminSections/Edit" />
 		<SwatForm name="indexform">
 			<SwatTableView name="view">
 
