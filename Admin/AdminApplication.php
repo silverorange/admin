@@ -203,6 +203,8 @@ class AdminApplication extends SwatApplication {
 	 * @return bool True if login is successful.
 	 */
 	public function login($username, $password) {
+		$this->logout(); //make sure user is logged out before logging in
+	
 		$md5_password = md5($password);
 		
 		$sql = "select userid,name from adminusers
