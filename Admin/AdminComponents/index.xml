@@ -3,13 +3,14 @@
 	<SwatMessageBox name="messagebox" />
 	<SwatFrame title="Components">
 		<SwatToolLink title="Create a New Component" href="AdminComponents/Edit" />
-		<SwatToolLink title="Change Component Order" href="AdminComponents/Order" />
 
 		<SwatForm name="indexform">
 			<SwatTableView name="view">
 
 				<SwatTableViewGroup group_by="section">
-					<SwatCellRendererText>data:section_title</SwatCellRendererText>
+					<AdminCellRendererGroupHeader order_href="AdminComponents/Order?parent=%s" order_value="data:section">
+						data:section_title
+					</AdminCellRendererGroupHeader>
 				</SwatTableViewGroup>
 
 				<SwatTableViewColumn name="controls">
