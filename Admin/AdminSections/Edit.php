@@ -44,7 +44,7 @@ class AdminSectionsEdit extends AdminPage {
 		$id = intval(SwatApplication::initVar('id'));
 
 		if ($form->process()) {
-			if (!$form->hasErrorMessage()) {
+			if (!$form->hasMessage()) {
 				$this->saveData($id);
 				$this->app->relocate($this->app->getHistory());
 			}

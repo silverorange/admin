@@ -2,6 +2,7 @@
 
 require_once('Admin/AdminPage.php');
 require_once('Admin/AdminUI.php');
+require_once('Swat/SwatMessage.php');
 
 /**
  * Administrator login page
@@ -42,7 +43,7 @@ class AdminLogin extends AdminPage {
 		$form = $this->ui->getWidget('login_form');
 
 		if ($form->process()) {
-			if (!$form->hasErrorMessage()) {
+			if (!$form->hasMessage()) {
 				$username = $this->ui->getWidget('username');
 				$password = $this->ui->getWidget('password');
 				$logged_in = $this->app->login($username->value, $password->value);
@@ -51,7 +52,8 @@ class AdminLogin extends AdminPage {
 					$this->app->relocate($this->app->uri);
 				else {
 					$frame = $this->ui->getWidget('login_frame');
-					$frame->addErrorMessage(_S("Login failed"));
+					$msg = new SwatMessage(_S("Login failed"), SwatMessage::USER_ERROR);
+					$frame->addMessage($msg);
 				}
 			}
 		}
