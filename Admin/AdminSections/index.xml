@@ -6,13 +6,17 @@
 			<property name="title" value="Create a New Section" translatable="yes" />
 			<property name="href" value="AdminSections/Edit" />
 		</widget>
+		<widget class="SwatToolLink">
+			<property name="title" value="Change Order" translatable="yes" />
+			<property name="href" value="AdminSections/Order" />
+		</widget>
 		<widget class="SwatForm" name="index_form">
 			<widget class="SwatTableView" name="index_view">
 				<widget class="SwatTableViewColumn" name="controls">
 					<widget class="SwatControlCellRenderer">
 						<property name="src" value="admin/images/b_details.png" />
-						<property name="height" value="22" type="int" />
-						<property name="width" value="28" type="int" />
+						<property name="height" value="22" type="integer" />
+						<property name="width" value="28" type="integer" />
 						<property name="title" value="View Details" translatable="yes" />
 						<property name="alt" value="Details" />
 						<property name="href" value="AdminSections/Details?id=%s" />
@@ -20,8 +24,8 @@
 					</widget>
 					<widget class="SwatControlCellRenderer">
 						<property name="src" value="admin/images/b_edit.png" />
-						<property name="height" value="22" type="int" />
-						<property name="width" value="28" type="int" />
+						<property name="height" value="22" type="integer" />
+						<property name="width" value="28" type="integer" />
 						<property name="title" value="Edit" translatable="yes" />
 						<property name="alt" value="Edit" />
 						<property name="href" value="AdminSections/Edit?id=%s" />
