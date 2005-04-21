@@ -1,5 +1,6 @@
 <?xml version='1.0' standalone='yes'?>
 <swat-interface>
+	<widget class="SwatMessageBox" name="message_box" />
 	<widget class="SwatFrame">
 		<property name="title" value="Sections" translatable="yes" />
 		<widget class="SwatToolLink">

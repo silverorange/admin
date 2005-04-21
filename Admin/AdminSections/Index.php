@@ -1,4 +1,5 @@
 <?php
+//TODO: update this file. It's using the old system an should extend AdminIndex
 
 require_once('Admin/AdminUI.php');
 require_once('SwatDB/SwatDB.php');
@@ -59,6 +60,8 @@ class AdminSectionsIndex extends AdminPage {
 		if (count($view->checked_items) == 0)
 			return;
 
+		$num = count($view->checked_items);
+		
 		switch ($actions->selected->name) {
 			case 'delete':
 				$this->app->replacePage('AdminSections/Delete');
@@ -69,12 +72,20 @@ class AdminSectionsIndex extends AdminPage {
 				SwatDB::updateColumn($this->app->db, 'adminsections', 
 					'boolean:show', true, 'sectionid', 
 					$view->checked_items);
+
+				$msg = new SwatMessage(sprintf(_nS("%d section has been shown.", 
+					"%d sections have been shown.", $num), $num));
+
 				break;
 
 			case 'hide':
 				SwatDB::updateColumn($this->app->db, 'adminsections', 
 					'boolean:show', false, 'sectionid', 
 					$view->checked_items);
+
+				$msg = new SwatMessage(sprintf(_nS("%d section has been hidden.", 
+					"%d sections have been hidden.", $num), $num));
+
 				break;
 
 			default:
@@ -86,6 +97,9 @@ class AdminSectionsIndex extends AdminPage {
 				if ($actions->selected->widget !== null)
 					echo 'value = ', $actions->selected->widget->value;
 		}
+		
+		if ($msg !== null)
+			$this->app->addMessage($msg);
 	}
 }
 

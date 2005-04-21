@@ -1,4 +1,5 @@
 <?php
+//TODO re-write this file, I think it uses the old way of doing things.
 
 require_once('Admin/AdminUI.php');
 require_once('SwatDB/SwatDB.php');
@@ -61,6 +62,12 @@ class AdminSectionsDelete extends AdminPage {
 
 			$sql = sprintf($sql, implode(',', $items));
 			$this->app->db->query($sql);
+
+			$msg = new SwatMessage(sprintf(_nS("%d component has been deleted.", 
+				"%d components have been deleted.", $this->getItemCount()), $this->getItemCount()),
+				SwatMessage::INFO);
+
+			$this->app->addMessage($msg);	
 		}
 
 		$this->app->relocate($this->app->getHistory());
