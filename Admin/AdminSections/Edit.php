@@ -1,8 +1,8 @@
 <?php
 
-require_once("Admin/AdminPage.php");
+require_once('Admin/AdminPage.php');
 require_once('Admin/AdminUI.php');
-require_once("MDB2.php");
+require_once('MDB2.php');
 
 /**
  * Edit page for AdminSections
