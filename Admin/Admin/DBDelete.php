@@ -70,4 +70,5 @@ abstract class AdminDBDelete extends AdminDBConfirmation {
 		$this->app->addMessage($msg);
 	}
 }
+
 ?>

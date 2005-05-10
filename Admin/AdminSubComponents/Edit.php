@@ -67,4 +67,5 @@ class AdminSubComponentsEdit extends AdminEdit {
 		$form->addHiddenField('parent', $this->parent);
 	}
 }
+
 ?>

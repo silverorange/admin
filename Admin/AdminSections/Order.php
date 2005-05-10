@@ -43,4 +43,5 @@ class AdminSectionsOrder extends AdminOrder {
 			$index, 'integer:sectionid', array($id));
 	}
 }
+
 ?>

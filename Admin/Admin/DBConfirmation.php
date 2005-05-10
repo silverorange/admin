@@ -18,7 +18,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation {
 	protected function processResponse() {
 		$form = $this->ui->getWidget('confirmation_form');
 
-		if ($form->button->name == 'yes_button') {
+		if ($form->button->id == 'yes_button') {
 			try {
 				$this->app->db->beginTransaction();
 				$this->processDBData();

@@ -64,7 +64,7 @@ class AdminComponentsDetails extends AdminIndex {
 		$num = count($view->checked_items);
 		$msg = null;
 
-		switch ($actions->selected->name) {
+		switch ($actions->selected->id) {
 			case 'delete':
 				$this->app->replacePage('AdminSubComponents/Delete');
 				$this->app->page->setItems($view->checked_items);

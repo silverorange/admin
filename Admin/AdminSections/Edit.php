@@ -86,4 +86,5 @@ class AdminSectionsEdit extends AdminPage {
 		$this->ui->getWidget('description')->value = $row->description;
 	}
 }
+
 ?>

@@ -1,4 +1,5 @@
 <?php
+
 require_once('SwatDB/SwatDBField.php');
 
 /**
@@ -94,4 +95,3 @@ class AdminSearchClause {
 }
 
 ?>
-

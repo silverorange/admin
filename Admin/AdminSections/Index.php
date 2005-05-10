@@ -1,4 +1,5 @@
 <?php
+
 //TODO: update this file. It's using the old system an should extend AdminIndex
 
 require_once('Admin/AdminUI.php');
@@ -62,7 +63,7 @@ class AdminSectionsIndex extends AdminPage {
 
 		$num = count($view->checked_items);
 		
-		switch ($actions->selected->name) {
+		switch ($actions->selected->id) {
 			case 'delete':
 				$this->app->replacePage('AdminSections/Delete');
 				$this->app->page->items = $view->checked_items;
@@ -89,7 +90,7 @@ class AdminSectionsIndex extends AdminPage {
 				break;
 
 			default:
-				echo 'action = ', $actions->selected->name, '<br />';
+				echo 'action = ', $actions->selected->id, '<br />';
 				echo 'items = ';
 				print_r($view->checked_items);
 				echo '<br />';

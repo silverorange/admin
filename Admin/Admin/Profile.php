@@ -63,4 +63,5 @@ class AdminProfile extends AdminDBEdit {
 		$this->ui->setValues(get_object_vars($row));
 	}
 }
+
 ?>

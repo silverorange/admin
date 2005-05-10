@@ -68,4 +68,5 @@ abstract class AdminDBEdit extends AdminEdit {
 	 */
 	abstract protected function loadDBData($id);
 }
+
 ?>

@@ -1,4 +1,5 @@
 <?php
+
 //TODO re-write this file, I think it uses the old way of doing things.
 
 require_once('Admin/AdminUI.php');
@@ -52,7 +53,7 @@ class AdminSectionsDelete extends AdminPage {
 		if (!$form->process())
 			return;
 
-		if ($form->button->name == 'yes_button') {
+		if ($form->button->id == 'yes_button') {
 			$items = $form->getHiddenField('items');
 
 			$sql = 'delete from adminsections where sectionid in (%s)';

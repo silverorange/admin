@@ -135,3 +135,5 @@ abstract class AdminPage extends SwatPage {
 			$message_box->messages = $messages;
 	}
 }
+
+?>

@@ -29,18 +29,18 @@ class AdminUI extends SwatUI {
 	 *
  	 * Convenience method to retrive values from multiple widgets at once.
 	 * This method is useful when using {@link SwatDB::rowInsert()} and
-	 * {@link SwatDB::rowUpdate} but only works if the widget name and
+	 * {@link SwatDB::rowUpdate} but only works if the widget id and
 	 * field name are the same, if this is not the case you should manually get
 	 * the values.
 	 *
-	 * @return array Array of values with widget names as the keys.
-	 * @param array $names Array of widget names to retrieve values from.
+	 * @return array Array of values with widget ids as the keys.
+	 * @param array $ids Array of widget ids to retrieve values from.
 	 */
-	public function getValues($names) {
+	public function getValues($ids) {
 		$values = array();
 
-		foreach ($names as $widget_name)
-			$values[$widget_name] = $this->getWidget($widget_name)->value;
+		foreach ($ids as $widget_id)
+			$values[$widget_id] = $this->getWidget($widget_id)->value;
 
 		return $values;
 	}
@@ -50,17 +50,19 @@ class AdminUI extends SwatUI {
 	 *
  	 * Convenience method to set values of multiple widgets at once.
 	 * This method is useful when using {@link SwatDB::rowQuery()}
-	 * but only works if the widget name and field name are the same, if this
+	 * but only works if the widget id and field name are the same, if this
 	 * is not the case you should manually set the values.
 	 *
-	 * @param array $values Array of values with widget names as the keys.
+	 * @param array $values Array of values with widget ids as the keys.
 	 */
 	public function setValues($values) {
-		foreach ($values as $name => $value) {
-			$widget = $this->getWidget($name, true);
+		foreach ($values as $id => $value) {
+			$widget = $this->getWidget($id, true);
 
 			if ($widget !== null)
-				$widget->value = $values[$name];
+				$widget->value = $values[$id];
 		}
 	}
 }
+
+?>

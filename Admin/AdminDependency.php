@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Dependency message class
  *
@@ -368,3 +369,5 @@ class AdminDependencyEntry {
 	 */
 	public $status_level = null;
 }
+
+?>

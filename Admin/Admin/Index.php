@@ -40,12 +40,12 @@ abstract class AdminIndex extends AdminPage {
 
 		if ($view->orderby_column !== null) {
 
-			if (isset($column_map[$view->orderby_column->name]))
-				$orderby = $column_map[$view->orderby_column->name];
+			if (isset($column_map[$view->orderby_column->id]))
+				$orderby = $column_map[$view->orderby_column->id];
 			elseif ($column_prefix !== null)
-				$orderby = $column_prefix.'.'.$this->app->db->escape($view->orderby_column->name);
+				$orderby = $column_prefix.'.'.$this->app->db->escape($view->orderby_column->id);
 			else
-				$orderby = $this->app->db->escape($view->orderby_column->name);
+				$orderby = $this->app->db->escape($view->orderby_column->id);
 
 			$orderby .= ' '.$view->orderby_column->getDirectionString();
 		}

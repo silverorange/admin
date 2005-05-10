@@ -1,4 +1,5 @@
 <?php
+
 require_once('Swat/SwatPagination.php');
 
 /**
@@ -16,3 +17,5 @@ class AdminPagination extends SwatPagination {
 	}
 
 }
+
+?>
