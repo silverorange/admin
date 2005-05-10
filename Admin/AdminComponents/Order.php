@@ -46,4 +46,5 @@ class AdminComponentsOrder extends AdminOrder {
 			$index, 'integer:componentid', array($id));
 	}
 }
+
 ?>

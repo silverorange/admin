@@ -1,4 +1,5 @@
 <?php
+
 require_once('Admin/AdminUI.php');
 require_once('Admin/AdminPage.php');
 require_once("MDB2.php");
@@ -79,4 +80,5 @@ abstract class AdminOrder extends AdminPage {
 	 */
 	abstract protected function loadData();
 }
+
 ?>

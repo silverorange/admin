@@ -22,3 +22,5 @@ class AdminTableStore extends SwatTableStore {
 			$this->addRow($row);
 	}
 }
+
+?>

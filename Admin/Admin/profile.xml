@@ -1,29 +1,29 @@
 <?xml version='1.0' standalone='yes'?>
 <swat-interface>
-	<widget class="SwatMessageBox" name="message_box" />
-	<widget class="SwatFrame" name="edit_frame">
+	<widget class="SwatMessageBox" id="message_box" />
+	<widget class="SwatFrame" id="edit_frame">
 		<property name="title" value="Edit User Profile" translatable="yes" />
-		<widget class="SwatForm" name="edit_form">
+		<widget class="SwatForm" id="edit_form">
 			<widget class="SwatFormField">
 				<property name="title" value="Name" translatable="yes" />
-				<widget class="SwatEntry" name="name">
+				<widget class="SwatEntry" id="name">
 					<property name="required" value="true" type="boolean" />
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
 				<property name="title" value="Password" translatable="yes" />
-				<widget class="SwatPasswordEntry" name="password">
+				<widget class="SwatPasswordEntry" id="password">
 					<property name="minlength" value="4" type="integer" />
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
 				<property name="title" value="Confirm Password" translatable="yes" />
 				<property name="note" value="Leave Password fields blank for them to remain the same." />
-				<widget class="SwatConfirmPasswordEntry" name="confirmpassword" />
+				<widget class="SwatConfirmPasswordEntry" id="confirmpassword" />
 			</widget>
 			<widget class="SwatFormField">
 				<property name="class" value="swat-form-footer" />
-				<widget class="SwatButton" name="submit_button">
+				<widget class="SwatButton" id="submit_button">
 					<property name="title" value="Update Profile" translatable="yes" />
 				</widget>
 			</widget>

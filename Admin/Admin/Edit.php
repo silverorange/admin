@@ -93,4 +93,5 @@ abstract class AdminEdit extends AdminPage {
 	 */
 	abstract protected function loadData($id);
 }
+
 ?>

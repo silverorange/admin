@@ -22,8 +22,8 @@ class AdminLogin extends AdminPage {
 		$frame->title = $this->app->title;
 
 		$username = $this->ui->getWidget('username');
-		if (isset($_COOKIE[$this->app->name.'_username']))
-			$username->value = $_COOKIE[$this->app->name.'_username'];
+		if (isset($_COOKIE[$this->app->id.'_username']))
+			$username->value = $_COOKIE[$this->app->id.'_username'];
 		
 		$form = $this->ui->getWidget('login_form');
 		$form->action = $this->app->uri;
@@ -55,8 +55,8 @@ class AdminLogin extends AdminPage {
 	}
 
 	private function displayJavascript() {
-		if (isset($_COOKIE[$this->app->name.'_username']))
-			$username = $_COOKIE[$this->app->name.'_username'];
+		if (isset($_COOKIE[$this->app->id.'_username']))
+			$username = $_COOKIE[$this->app->id.'_username'];
 		else
 			$username = '';
 		

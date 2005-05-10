@@ -62,4 +62,5 @@ class AdminComponentsEdit extends AdminDBEdit {
 			'admincomponent_admingroup', 'groupnum', 'component', $id);
 	}
 }
+
 ?>

@@ -53,4 +53,5 @@ class AdminSubComponentsOrder extends AdminOrder {
 			$index, 'integer:subcomponentid', array($id));
 	}
 }
+
 ?>

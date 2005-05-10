@@ -1,6 +1,6 @@
 <?xml version='1.0' standalone='yes'?>
 <swat-interface>
-	<widget class="SwatMessageBox" name="message_box" />
+	<widget class="SwatMessageBox" id="message_box" />
 	<widget class="SwatFrame">
 		<property name="title" value="Sections" translatable="yes" />
 		<widget class="SwatToolLink">
@@ -11,9 +11,9 @@
 			<property name="title" value="Change Order" translatable="yes" />
 			<property name="href" value="AdminSections/Order" />
 		</widget>
-		<widget class="SwatForm" name="index_form">
-			<widget class="SwatTableView" name="index_view">
-				<widget class="SwatTableViewColumn" name="controls">
+		<widget class="SwatForm" id="index_form">
+			<widget class="SwatTableView" id="index_view">
+				<widget class="SwatTableViewColumn" id="controls">
 					<widget class="SwatControlCellRenderer">
 						<property name="src" value="admin/images/b_details.png" />
 						<property name="height" value="22" type="integer" />
@@ -33,12 +33,12 @@
 						<property name="value" value="sectionid" type="data" />
 					</widget>
 				</widget>
-				<widget class="SwatTableViewCheckboxColumn" name="checkbox">
-					<widget class="SwatCheckboxCellRenderer" name="items">
+				<widget class="SwatTableViewCheckboxColumn" id="checkbox">
+					<widget class="SwatCheckboxCellRenderer" id="items">
 						<property name="value" value="sectionid" type="data" />
 					</widget>
 				</widget>
-				<widget class="SwatTableViewColumn" name="title">
+				<widget class="SwatTableViewColumn" id="title">
 					<property name="title" value="Title" translatable="yes" />
 					<widget class="SwatLinkCellRenderer">
 						<property name="title" value="title" type="data" translatable="yes" />
@@ -46,40 +46,40 @@
 						<property name="value" value="sectionid" type="data" />
 					</widget>
 				</widget>
-				<widget class="SwatTableViewColumn" name="title2">
+				<widget class="SwatTableViewColumn" id="title2">
 					<property name="title" value="Title" translatable="yes" />
 					<widget class="SwatTextCellRenderer">
 						<property name="value" value="title" type="data" />
 					</widget>
 				</widget>
-				<widget class="SwatTableViewColumn" name="show">
+				<widget class="SwatTableViewColumn" id="show">
 					<property name="title" value="Show in Menu" translatable="yes" />
 					<widget class="SwatCheckCellRenderer">
 						<property name="value" value="show" type="data" />
 					</widget>
 				</widget>
 			</widget>
-			<widget class="SwatActions" name="index_actions">
-				<widget class="SwatActionItem" name="delete">
+			<widget class="SwatActions" id="index_actions">
+				<widget class="SwatActionItem" id="delete">
 					<property name="title" value="delete..." translatable="yes" />
 				</widget>
-				<widget class="SwatActionItem" name="defibulate">
+				<widget class="SwatActionItem" id="defibulate">
 					<property name="title" value="defibulate..." translatable="yes" />
-					<widget class="SwatEntry" name="title" />
+					<widget class="SwatEntry" id="title" />
 				</widget>
-				<widget class="SwatActionItem" name="show">
+				<widget class="SwatActionItem" id="show">
 					<property name="title" value="show" translatable="yes" />
 				</widget>
-				<widget class="SwatActionItem" name="hide">
+				<widget class="SwatActionItem" id="hide">
 					<property name="title" value="hide" translatable="yes" />
 				</widget>
-				<widget class="SwatActionItem" name="setdate">
+				<widget class="SwatActionItem" id="setdate">
 					<property name="title" value="set date..." translatable="yes" />
 					<widget class="SwatDateEntry" name="date" />
 				</widget>
-				<widget class="SwatActionItem" name="setcolor">
+				<widget class="SwatActionItem" id="setcolor">
 					<property name="title" value="set color..." translatable="yes" />
-					<widget class="SwatFlydown" name="color" />
+					<widget class="SwatFlydown" id="color" />
 				</widget>
 			</widget>
 		</widget>

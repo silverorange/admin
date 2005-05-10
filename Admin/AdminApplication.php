@@ -1,4 +1,4 @@
-<?
+<?php
 
 require_once('Swat/SwatApplication.php');
 require_once('Swat/SwatMessage.php');
@@ -218,8 +218,8 @@ class AdminApplication extends SwatApplication {
 
 	private function initSession() {
 		session_cache_limiter('');
-		session_save_path('/so/phpsessions/'.$this->name);
-		session_name($this->name);
+		session_save_path('/so/phpsessions/'.$this->id);
+		session_name($this->id);
 		session_start();
 
 		if (!isset($_SESSION['userID'])) {
@@ -228,7 +228,7 @@ class AdminApplication extends SwatApplication {
 			$_SESSION['username'] = '';
 			$_SESSION['history'] = array();
 		} elseif ($_SESSION['userID'] != 0) {	
-			setcookie($this->name.'_username', $_SESSION['username'], time()+86400, '/', '', 0);
+			setcookie($this->id.'_username', $_SESSION['username'], time() + 86400, '/', '', 0);
 		}
 	}
 
@@ -382,5 +382,4 @@ class AdminPageRequest {
 	}
 }
 
-
-
+?>

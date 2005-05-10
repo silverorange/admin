@@ -1,4 +1,5 @@
 <?php
+
 require_once('Swat/SwatControlCellRenderer.php');
 
 /**
@@ -32,3 +33,5 @@ class AdminTreeControlCellRenderer extends SwatControlCellRenderer {
 		parent::render($prefix);
 	}
 }
+
+?>

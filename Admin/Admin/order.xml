@@ -1,18 +1,18 @@
 <?xml version='1.0' standalone='yes'?>
 <swat-interface>
-	<widget class="SwatFrame" name="order_frame">
-		<widget class="SwatForm" name="order_form">
+	<widget class="SwatFrame" id="order_frame">
+		<widget class="SwatForm" id="order_form">
 			<widget class="SwatFormField">
 				<property name="title" value="Order Options" translatable="yes" />
-				<widget class="SwatRadioList" name="options" />
+				<widget class="SwatRadioList" id="options" />
 			</widget>
 			<widget class="SwatFormField">
 				<property name="title" value="Custom Order" translatable="yes" />
-				<widget class="SwatChangeOrder" name="order" />
+				<widget class="SwatChangeOrder" id="order" />
 			</widget>
 			<widget class="SwatFormField">
 				<property name="class" value="swat-form-footer" />
-				<widget class="SwatButton" name="submit_button" />
+				<widget class="SwatButton" id="submit_button" />
 			</widget>
 		</widget>
 	</widget>

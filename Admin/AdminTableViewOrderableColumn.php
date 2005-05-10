@@ -1,4 +1,5 @@
 <?php
+
 require_once('Swat/SwatTableViewOrderableColumn.php');
 
 /**
@@ -16,3 +17,5 @@ class AdminTableViewOrderableColumn extends SwatTableViewOrderableColumn {
 	}
 
 }
+
+?>
