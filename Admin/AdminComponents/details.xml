@@ -14,8 +14,8 @@
 			</widget>
 			<widget class="SwatForm" id="index_form">
 				<widget class="SwatTableView" id="index_view">
-					<widget class="SwatTableViewColumn" id="controls">
-						<widget class="SwatControlCellRenderer">
+					<object class="SwatTableViewColumn" id="controls">
+						<object class="SwatControlCellRenderer">
 							<property name="title" value="Edit" translatable="yes" />
 							<property name="alt" value="Edit" />
 							<property name="href" value="AdminSubComponents/Edit?id=%s" />
@@ -23,33 +23,33 @@
 							<property name="src" value="admin/images/b_edit.png" />
 							<property name="height" value="22" type="integer" />
 							<property name="width" value="28" type="integer" />
-						</widget>
-					</widget>
-					<widget class="SwatTableViewCheckboxColumn" id="checkbox">
-						<widget class="SwatCheckboxCellRenderer" id="items">
+						</object>
+					</object>
+					<object class="SwatTableViewCheckboxColumn" id="checkbox">
+						<object class="SwatCheckboxCellRenderer" id="items">
 							<property name="value" value="subcomponentid" type="data" />
-						</widget>
-					</widget>
-					<widget class="SwatTableViewColumn" id="title">
+						</object>
+					</object>
+					<object class="SwatTableViewColumn" id="title">
 						<property name="title" value="Title" translatable="yes" />
-						<widget class="SwatLinkCellRenderer">
+						<object class="SwatLinkCellRenderer">
 							<property name="title" value="title" type="data" translatable="yes" />
 							<property name="href" value="AdminSubComponents/Edit?id=%s" />
 							<property name="value" value="subcomponentid" type="data" />
-						</widget>
-					</widget>
-					<widget class="SwatTableViewColumn" id="shortname">
+						</object>
+					</object>
+					<object class="SwatTableViewColumn" id="shortname">
 						<property name="title" value="Short Name" translatable="yes" />
-						<widget class="SwatTextCellRenderer">
+						<object class="SwatTextCellRenderer">
 							<property name="value" value="shortname" type="data" />
-						</widget>
-					</widget>
-					<widget class="SwatTableViewColumn" id="show">
+						</object>
+					</object>
+					<object class="SwatTableViewColumn" id="show">
 						<property name="title" value="Show in Menu" translatable="yes" />
-						<widget class="SwatCheckCellRenderer">
+						<object class="SwatCheckCellRenderer">
 							<property name="value" value="show" type="data" />
-						</widget>
-					</widget>
+						</object>
+					</object>
 				</widget>
 				<widget class="SwatActions" id="index_actions">
 					<widget class="SwatActionItem" id="delete">

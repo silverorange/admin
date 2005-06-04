@@ -9,55 +9,55 @@
 		</widget>
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
-				<widget class="SwatTableViewGroup">
+				<object class="SwatTableViewGroup">
 					<property name="group_by" value="section" />
-					<widget class="AdminGroupHeaderCellRenderer">
+					<object class="AdminGroupHeaderCellRenderer">
 						<property name="title" value="section_title" type="data" translatable="yes" />
 						<property name="order_href" value="AdminComponents/Order?parent=%s" />
 						<property name="order_value" value="section" type="data" />
-					</widget>
-				</widget>
-				<widget class="SwatTableViewColumn" id="controls">
-					<widget class="AdminDetailsControlCellRenderer">
+					</object>
+				</object>
+				<object class="SwatTableViewColumn" id="controls">
+					<object class="AdminDetailsControlCellRenderer">
 						<property name="href" value="AdminComponents/Details?id=%s" />
 						<property name="value" value="componentid" type="data" />
-					</widget>
-					<widget class="AdminEditControlCellRenderer">
+					</object>
+					<object class="AdminEditControlCellRenderer">
 						<property name="href" value="AdminComponents/Edit?id=%s" />
 						<property name="value" value="componentid" type="data" />
-					</widget>
-				</widget>
-				<widget class="SwatTableViewCheckboxColumn" id="checkbox">
-					<widget class="SwatCheckboxCellRenderer" id="items">
+					</object>
+				</object>
+				<object class="SwatTableViewCheckboxColumn" id="checkbox">
+					<object class="SwatCheckboxCellRenderer" id="items">
 						<property name="value" value="componentid" type="data" />
-					</widget>
-				</widget>
-				<widget class="AdminTableViewOrderableColumn" id="title">
+					</object>
+				</object>
+				<object class="AdminTableViewOrderableColumn" id="title">
 					<property name="title" value="Title" translatable="yes" />
-					<widget class="SwatLinkCellRenderer">
+					<object class="SwatLinkCellRenderer">
 						<property name="title" value="title" type="data" translatable="yes" />
 						<property name="href" value="AdminComponents/Details?id=%s" />
 						<property name="value" value="componentid" type="data" />
-					</widget>
-				</widget>
-				<widget class="AdminTableViewOrderableColumn" id="shortname">
+					</object>
+				</object>
+				<object class="AdminTableViewOrderableColumn" id="shortname">
 					<property name="title" value="Short Name" translatable="yes" />
-					<widget class="SwatTextCellRenderer">
+					<object class="SwatTextCellRenderer">
 						<property name="value" value="shortname" type="data" />
-					</widget>
-				</widget>
-				<widget class="AdminTableViewOrderableColumn" id="show">
+					</object>
+				</object>
+				<object class="AdminTableViewOrderableColumn" id="show">
 					<property name="title" value="Show in Menu" translatable="yes" />
-					<widget class="SwatCheckCellRenderer">
+					<object class="SwatCheckCellRenderer">
 						<property name="value" value="show" type="data" />
-					</widget>
-				</widget>
-				<widget class="AdminTableViewOrderableColumn" id="enabled">
+					</object>
+				</object>
+				<object class="AdminTableViewOrderableColumn" id="enabled">
 					<property name="title" value="Enabled" translatable="yes" />
-					<widget class="SwatCheckCellRenderer">
+					<object class="SwatCheckCellRenderer">
 						<property name="value" value="enabled" type="data" />
-					</widget>
-				</widget>
+					</object>
+				</object>
 			</widget>
 			<widget class="SwatActions" id="index_actions">
 				<widget class="SwatActionItem" id="delete">

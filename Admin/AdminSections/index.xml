@@ -13,51 +13,35 @@
 		</widget>
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
-				<widget class="SwatTableViewColumn" id="controls">
-					<widget class="SwatControlCellRenderer">
-						<property name="src" value="admin/images/b_details.png" />
-						<property name="height" value="22" type="integer" />
-						<property name="width" value="28" type="integer" />
-						<property name="title" value="View Details" translatable="yes" />
-						<property name="alt" value="Details" />
+				<object class="SwatTableViewColumn">
+					<object class="AdminDetailsControlCellRenderer">
 						<property name="href" value="AdminSections/Details?id=%s" />
 						<property name="value" value="sectionid" type="data" />
-					</widget>
-					<widget class="SwatControlCellRenderer">
-						<property name="src" value="admin/images/b_edit.png" />
-						<property name="height" value="22" type="integer" />
-						<property name="width" value="28" type="integer" />
-						<property name="title" value="Edit" translatable="yes" />
-						<property name="alt" value="Edit" />
+					</object>
+					<object class="AdminEditControlCellRenderer">
 						<property name="href" value="AdminSections/Edit?id=%s" />
 						<property name="value" value="sectionid" type="data" />
-					</widget>
-				</widget>
-				<widget class="SwatTableViewCheckboxColumn" id="checkbox">
-					<widget class="SwatCheckboxCellRenderer" id="items">
+					</object>
+				</object>
+				<object class="SwatTableViewCheckboxColumn">
+					<object class="SwatCheckboxCellRenderer" id="items">
 						<property name="value" value="sectionid" type="data" />
-					</widget>
-				</widget>
-				<widget class="SwatTableViewColumn" id="title">
+					</object>
+				</object>
+				<object class="SwatTableViewColumn">
 					<property name="title" value="Title" translatable="yes" />
-					<widget class="SwatLinkCellRenderer">
+					<object class="SwatLinkCellRenderer">
 						<property name="title" value="title" type="data" translatable="yes" />
 						<property name="href" value="AdminSections/Edit?id=%s" />
 						<property name="value" value="sectionid" type="data" />
-					</widget>
-				</widget>
-				<widget class="SwatTableViewColumn" id="title2">
-					<property name="title" value="Title" translatable="yes" />
-					<widget class="SwatTextCellRenderer">
-						<property name="value" value="title" type="data" />
-					</widget>
-				</widget>
-				<widget class="SwatTableViewColumn" id="show">
+					</object>
+				</object>
+				<object class="SwatTableViewColumn">
 					<property name="title" value="Show in Menu" translatable="yes" />
-					<widget class="SwatCheckCellRenderer">
+					<object class="SwatCheckCellRenderer">
 						<property name="value" value="show" type="data" />
-					</widget>
-				</widget>
+					</object>
+				</object>
 			</widget>
 			<widget class="SwatActions" id="index_actions">
 				<widget class="SwatActionItem" id="delete">
