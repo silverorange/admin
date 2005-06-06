@@ -52,12 +52,21 @@ abstract class AdminEdit extends AdminPage {
 		$id = SwatApplication::initVar('id');
 
 		if ($form->process()) {
+			$this->processPage();
+
 			if (!$form->hasMessage()) {
 				if ($this->saveData($id)) {
 					$this->relocate();
 				}
 			}
 		}
+	}
+
+	/**
+	 * Additional page-level processing
+	 */
+	protected function processPage() {
+
 	}
 
 	/**
