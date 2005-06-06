@@ -119,10 +119,8 @@ abstract class AdminPage extends SwatPage {
 		$db = $this->app->db;
 		$sql_userid = $db->quote($_SESSION['userID'], 'integer');
 		
-		$types = array('text', 'text', 'integer', 'text', 'integer', 'text', 'text');
-
 		$menu = $db->executeStoredProc('sp_admin_menu', array($sql_userid),
-					$types, true, 'AdminMenu');
+					null, true, 'AdminMenu');
 
 		$menu->display();
 	}
