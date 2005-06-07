@@ -3,13 +3,13 @@
 require_once('Swat/SwatEntry.php');
 
 /**
- * A unique shortname entry widget
+ * A unique text entry widget
  *
  * @package Swat
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @copyright silverorange 2004
  */
-class AdminShortnameEntry extends SwatEntry {
+class AdminUniqueEntry extends SwatEntry {
 
 	public $alphanum = true;
 
