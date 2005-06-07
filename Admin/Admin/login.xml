@@ -18,7 +18,7 @@
 			<widget class="SwatFormField">
 				<property name="class" value="swat-form-footer" />
 				<widget class="SwatButton" id="login_button">
-					<property name="title" value="Login »" translatable="yes" />
+					<property name="title" value="Login" translatable="yes" />
 				</widget>
 			</widget>
 		</widget>
