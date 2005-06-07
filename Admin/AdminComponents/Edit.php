@@ -29,6 +29,21 @@ class AdminComponentsEdit extends AdminDBEdit {
 			'boolean:show', 'boolean:enabled', 'description');
 	}
 
+	protected function processPage($id) {
+		$shortname = $this->ui->getWidget('shortname');
+
+		$query = SwatDB::query($this->app->db, sprintf('select shortname from
+			admincomponents where shortname = %s and componentid %s %s',
+			$this->app->db->quote($shortname->value, 'text'),
+			SwatDB::equalityOperator($id, true),
+			$this->app->db->quote($id, 'integer')));
+
+		if ($query->numRows()) {
+			$msg = new SwatMessage(_S("Shortname already exists and must be unique."), SwatMessage::USER_ERROR);
+			$shortname->addMessage($msg);
+		}
+	}
+
 	protected function saveDBData($id) {
 
 		$values = $this->ui->getValues(array('title', 'shortname', 'section', 
