@@ -3,7 +3,9 @@
 require_once('Swat/SwatApplication.php');
 require_once('Swat/SwatMessage.php');
 require_once('MDB2.php');
+require_once('SwatDB/SwatDB.php');
 require_once('AdminPage.php');
+require_once('Date.php');
 
 /**
  * Web application class for an administrator
@@ -320,6 +322,18 @@ class AdminApplication extends SwatApplication {
 			$_SESSION['userID'] = $result->userid;
 			$_SESSION['name']   = $result->name;
 			$_SESSION['username']   = $result->username;
+
+
+			$user_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ? $_SERVER['HTTP_USER_AGENT'] : null;
+			$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : null;
+			$login_date = new Date();
+			$login_date->toUTC();
+
+			SwatDB::insertRow($this->db, 'adminuserhistory',
+				array('integer:usernum','date:logindate', 'loginagent', 'remoteip'),
+				array('usernum' => $result->userid, 'logindate' => $login_date->getDate(),
+					'loginagent' => $user_agent, 'remoteip' => $remote_ip));
+
 			return true;
 		} else {
 			return false;
