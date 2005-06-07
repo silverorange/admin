@@ -63,7 +63,7 @@ class AdminApplication extends SwatApplication {
 	public function init() {
 		$this->initDatabase();
 		$this->initSession();
-		$this->initUriVars(4);
+		$this->base_uri_length = 4;
 	}
 
 	/**

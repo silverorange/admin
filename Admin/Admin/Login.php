@@ -26,7 +26,7 @@ class AdminLogin extends AdminPage {
 			$username->value = $_COOKIE[$this->app->id.'_username'];
 		
 		$form = $this->ui->getWidget('login_form');
-		$form->action = $this->app->uri;
+		$form->action = $this->app->getUri();
 	}
 
 	public function display() {
@@ -44,7 +44,7 @@ class AdminLogin extends AdminPage {
 				$logged_in = $this->app->login($username->value, $password->value);
 				
 				if ($logged_in)
-					$this->app->relocate($this->app->uri);
+					$this->app->relocate($this->app->getUri());
 				else {
 					$frame = $this->ui->getWidget('login_frame');
 					$msg = new SwatMessage(_S("Login failed"), SwatMessage::USER_ERROR);
