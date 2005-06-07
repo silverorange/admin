@@ -17,10 +17,6 @@ class AdminSectionsIndex extends AdminPage {
 	public function init() {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminSections/index.xml');
-
-		$color_flydown = $this->ui->getWidget('color');
-		$color_flydown->options = 
-			array(0 => _('red'), 1 => _('yellow'), 2 => _('blue'));
 	}
 
 	public function display() {
@@ -88,15 +84,6 @@ class AdminSectionsIndex extends AdminPage {
 					"%d sections have been hidden.", $num), $num));
 
 				break;
-
-			default:
-				echo 'action = ', $actions->selected->id, '<br />';
-				echo 'items = ';
-				print_r($view->checked_items);
-				echo '<br />';
-
-				if ($actions->selected->widget !== null)
-					echo 'value = ', $actions->selected->widget->value;
 		}
 		
 		if ($msg !== null)
