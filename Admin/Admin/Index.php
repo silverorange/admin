@@ -40,7 +40,9 @@ abstract class AdminIndex extends AdminPage {
 
 		if ($view->orderby_column !== null) {
 
-			if (isset($column_map[$view->orderby_column->id]))
+			if ($view->orderby_column->id === null) 
+				throw new SwatException('Orderable column missing id');
+			elseif (isset($column_map[$view->orderby_column->id]))
 				$orderby = $column_map[$view->orderby_column->id];
 			elseif ($column_prefix !== null)
 				$orderby = $column_prefix.'.'.$this->app->db->escape($view->orderby_column->id);
