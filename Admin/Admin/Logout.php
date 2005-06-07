@@ -19,7 +19,7 @@ class AdminLogout extends AdminPage {
 
 	public function process() {
 		$this->app->logout();
-		$this->app->relocate($this->app->basehref);
+		$this->app->relocate($this->app->getBaseHref());
 	}
 
 }
