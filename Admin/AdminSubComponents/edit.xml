@@ -11,7 +11,7 @@
 			</widget>
 			<widget class="SwatFormField">
 				<property name="title" value="Short Name" translatable="yes" />
-				<widget class="SwatEntry" id="shortname">
+				<widget class="AdminShortnameEntry" id="shortname">
 					<property name="required" value="true" type="boolean" />
 				</widget>
 			</widget>
