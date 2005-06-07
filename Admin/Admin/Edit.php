@@ -52,7 +52,7 @@ abstract class AdminEdit extends AdminPage {
 		$id = SwatApplication::initVar('id');
 
 		if ($form->process()) {
-			$this->processPage();
+			$this->processPage($id);
 
 			if (!$form->hasMessage()) {
 				if ($this->saveData($id)) {
@@ -65,7 +65,7 @@ abstract class AdminEdit extends AdminPage {
 	/**
 	 * Additional page-level processing
 	 */
-	protected function processPage() {
+	protected function processPage($id) {
 
 	}
 
