@@ -1,6 +1,6 @@
 <?php
 
-require_once('Admin/Admin/Edit.php');
+require_once('Admin/Admin/DBEdit.php');
 require_once('Admin/AdminUI.php');
 require_once('SwatDB/SwatDB.php');
 
@@ -9,7 +9,7 @@ require_once('SwatDB/SwatDB.php');
  * @package Admin
  * @copyright silverorange 2005
  */
-class AdminSubComponentsEdit extends AdminEdit {
+class AdminSubComponentsEdit extends AdminDBEdit {
 
 	private $fields;
 	private $parent;
@@ -38,8 +38,23 @@ class AdminSubComponentsEdit extends AdminEdit {
 		$this->navbar->add('Admin Components', 'AdminComponents');
 		$this->navbar->add($parent_title, 'AdminComponents/Details?id='.$this->parent);
 	}
+	
+	protected function processPage($id) {
+		$shortname = $this->ui->getWidget('shortname');
 
-	protected function saveData($id) {
+		$query = SwatDB::query($this->app->db, sprintf('select shortname from
+			adminsubcomponents where shortname = %s and subcomponentid %s %s',
+			$this->app->db->quote($shortname->value, 'text'),
+			SwatDB::equalityOperator($id, true),
+			$this->app->db->quote($id, 'integer')));
+
+		if ($query->numRows()) {
+			$msg = new SwatMessage(_S("Shortname already exists and must be unique."), SwatMessage::USER_ERROR);
+			$shortname->addMessage($msg);
+		}
+	}
+
+	protected function saveDBData($id) {
 
 		$values = $this->ui->getValues(array('title', 'shortname', 'show'));
 		$values['component'] = $this->parent;
@@ -51,11 +66,11 @@ class AdminSubComponentsEdit extends AdminEdit {
 			SwatDB::updateRow($this->app->db, 'adminsubcomponents', $this->fields,
 				$values, 'integer:subcomponentid', $id);
 
-		$msg = new SwatMessage(_S("Sub-Component \"%s\" has been saved."), SwatMessage::INFO);
+		$msg = new SwatMessage(sprintf(_S("Sub-Component \"%s\" has been saved."), $values['title']), SwatMessage::INFO);
 		$this->app->addMessage($msg);
 	}
 
-	protected function loadData($id) {
+	protected function loadDBData($id) {
 
 		$row = SwatDB::queryRow($this->app->db, 'adminsubcomponents', 
 			$this->fields, 'integer:subcomponentid', $id);

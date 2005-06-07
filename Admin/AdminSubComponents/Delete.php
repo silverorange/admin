@@ -1,5 +1,6 @@
 <?php
 
+require_once('Admin/Admin/DBDelete.php');
 require_once('Admin/Admin/Confirmation.php');
 require_once('SwatDB/SwatDB.php');
 require_once('Admin/AdminDependency.php');
@@ -15,14 +16,14 @@ class AdminSubComponentsDelete extends AdminDBDelete {
 		$item_list = $this->getItemList('integer');
 		
 		$dep = new AdminDependency();
-		$dep->title = 'subcomponent';
+		$dep->title = _S("Sub-Component");
 		$dep->status_level = AdminDependency::DELETE;
 
 		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'adminsubcomponents',
 			'integer:subcomponentid', null, 'text:title', 'displayorder, title', 
 			'subcomponentid in ('.$item_list.')');
 
-		$message = $this->ui->getWidget('message');
+		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = $dep->getMessage();
 		
 		if ($dep->getStatusLevelCount(AdminDependency::DELETE) == 0)
@@ -42,7 +43,7 @@ class AdminSubComponentsDelete extends AdminDBDelete {
 		$this->app->db->query($sql);
 
 		$msg = new SwatMessage(sprintf(_nS("%d sub-component has been deleted.", 
-			"%d sub-components have been deleted.", count($items)), count($items)), SwatMessage::INFO);
+			"%d sub-components have been deleted.", count($item_list)), count($item_list)), SwatMessage::INFO);
 
 		$this->app->addMessage($msg);
 	}
