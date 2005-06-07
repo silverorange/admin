@@ -47,23 +47,11 @@
 				<widget class="SwatActionItem" id="delete">
 					<property name="title" value="delete..." translatable="yes" />
 				</widget>
-				<widget class="SwatActionItem" id="defibulate">
-					<property name="title" value="defibulate..." translatable="yes" />
-					<widget class="SwatEntry" id="title" />
-				</widget>
 				<widget class="SwatActionItem" id="show">
 					<property name="title" value="show" translatable="yes" />
 				</widget>
 				<widget class="SwatActionItem" id="hide">
 					<property name="title" value="hide" translatable="yes" />
-				</widget>
-				<widget class="SwatActionItem" id="setdate">
-					<property name="title" value="set date..." translatable="yes" />
-					<widget class="SwatDateEntry" name="date" />
-				</widget>
-				<widget class="SwatActionItem" id="setcolor">
-					<property name="title" value="set color..." translatable="yes" />
-					<widget class="SwatFlydown" id="color" />
 				</widget>
 			</widget>
 		</widget>
