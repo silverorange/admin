@@ -1,0 +1,46 @@
+<?xml version='1.0' standalone='yes'?>
+<swat-interface>
+	<widget class="SwatMessageBox" id="message_box" />
+	<widget class="SwatFrame" id="edit_frame">
+		<property name="title" value="User" translatable="yes" />
+		<widget class="SwatForm" id="edit_form">
+			<widget class="SwatFormField">
+				<property name="title" value="Name" translatable="yes" />
+				<widget class="SwatEntry" id="name">
+					<property name="required" value="true" type="boolean" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Username" translatable="yes" />
+				<widget class="AdminUniqueEntry" id="username">
+					<property name="required" value="true" type="boolean" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Enabled" translatable="yes" />
+				<widget class="SwatCheckbox" id="enabled" />
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Password" translatable="yes" />
+				<widget class="SwatPasswordEntry" id="password">
+					<property name="minlength" value="4" type="integer" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Confirm Password" translatable="yes" />
+				<property name="note" value="Leave Password fields blank for them to remain the same." />
+				<widget class="SwatConfirmPasswordEntry" id="confirmpassword" />
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" value="Groups" translatable="yes" />
+				<widget class="SwatCheckboxList" id="groups" />
+			</widget>
+			<widget class="SwatFormField">
+				<property name="class" value="swat-form-footer" />
+				<widget class="SwatButton" id="submit_button">
+					<property name="title" value="Update Profile" translatable="yes" />
+				</widget>
+			</widget>
+		</widget>
+	</widget>
+</swat-interface>

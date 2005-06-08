@@ -1,0 +1,28 @@
+<?xml version='1.0' standalone='yes'?>
+<swat-interface>
+	<widget class="SwatFrame" id="index_frame">
+		<property name="title" value="Login History" translatable="yes" />
+		<widget class="SwatForm" id="index_form">
+			<widget class="SwatTableView" id="index_view">
+				<object class="AdminTableViewOrderableColumn" id="logindate">
+					<property name="title" value="Login Time" translatable="yes" />
+					<object class="SwatDateCellRenderer">
+						<property name="date" value="logindate" type="data" />
+					</object>
+				</object>
+				<object class="AdminTableViewOrderableColumn" id="loginagent">
+					<property name="title" value="Agent" translatable="yes" />
+					<object class="SwatTextCellRenderer">
+						<property name="value" value="loginagent" type="data" />
+					</object>
+				</object>
+				<object class="AdminTableViewOrderableColumn" id="remoteip">
+					<property name="title" value="Remote IP" translatable="yes" />
+					<object class="SwatTextCellRenderer">
+						<property name="value" value="remoteip" type="data" />
+					</object>
+				</object>
+			</widget>
+		</widget>
+	</widget>
+</swat-interface>

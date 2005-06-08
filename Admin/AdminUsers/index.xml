@@ -1,0 +1,67 @@
+<?xml version='1.0' standalone='yes'?>
+<swat-interface>
+	<widget class="SwatMessageBox" id="message_box" />
+	<widget class="SwatFrame">
+		<property name="title" value="Admin Users" translatable="yes" />
+		<widget class="SwatToolLink">
+			<property name="title" value="Create a New User" translatable="yes" />
+			<property name="href" value="AdminUsers/Edit" />
+		</widget>
+		<widget class="SwatForm" id="index_form">
+			<widget class="SwatTableView" id="index_view">
+				<object class="SwatTableViewColumn">
+					<object class="AdminDetailsControlCellRenderer">
+						<property name="href" value="AdminUsers/Details?id=%s" />
+						<property name="value" value="userid" type="data" />
+					</object>
+					<object class="AdminEditControlCellRenderer">
+						<property name="href" value="AdminUsers/Edit?id=%s" />
+						<property name="value" value="userid" type="data" />
+					</object>
+				</object>
+				<object class="SwatTableViewCheckboxColumn" id="checkbox">
+					<object class="SwatCheckboxCellRenderer" id="items">
+						<property name="value" value="userid" type="data" />
+					</object>
+				</object>
+				<object class="AdminTableViewOrderableColumn" id="username">
+					<property name="title" value="Username" translatable="yes" />
+					<object class="SwatLinkCellRenderer">
+						<property name="title" value="username" type="data" translatable="yes" />
+						<property name="href" value="AdminUsers/Edit?id=%s" />
+						<property name="value" value="userid" type="data" />
+					</object>
+				</object>
+				<object class="AdminTableViewOrderableColumn" id="name">
+					<property name="title" value="Name" translatable="yes" />
+					<object class="SwatTextCellRenderer">
+						<property name="value" value="name" type="data" />
+					</object>
+				</object>
+				<object class="AdminTableViewOrderableColumn" id="enabled">
+					<property name="title" value="Enabled" translatable="yes" />
+					<object class="SwatCheckCellRenderer">
+						<property name="value" value="enabled" type="data" />
+					</object>
+				</object>
+				<object class="AdminTableViewOrderableColumn" id="lastlogin">
+					<property name="title" value="Last Login" translatable="yes" />
+					<object class="SwatDateCellRenderer">
+						<property name="date" value="lastlogin" type="data" />
+					</object>
+				</object>
+			</widget>
+			<widget class="SwatActions" id="index_actions">
+				<widget class="SwatActionItem" id="delete">
+					<property name="title" value="delete..." translatable="yes" />
+				</widget>
+				<widget class="SwatActionItem" id="enable">
+					<property name="title" value="enable" translatable="yes" />
+				</widget>
+				<widget class="SwatActionItem" id="disable">
+					<property name="title" value="disable" translatable="yes" />
+				</widget>
+			</widget>
+		</widget>
+	</widget>
+</swat-interface>
