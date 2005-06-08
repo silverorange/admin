@@ -1,8 +1,8 @@
 <?php
 
-require_once('Swat/SwatPage.php');
-require_once('Swat/SwatNavBar.php');
-require_once('Admin/AdminMenu.php');
+require_once 'Swat/SwatPage.php';
+require_once 'Swat/SwatNavBar.php';
+require_once 'Admin/AdminMenu.php';
 
 /**
  * Page of an administrator

@@ -1,6 +1,6 @@
 <?php
 
-require_once('SwatDB/SwatDBField.php');
+require_once 'SwatDB/SwatDBField.php';
 
 /**
  * Class for building search clauses
@@ -20,9 +20,32 @@ class AdminSearchClause {
 	const OP_ENDS_WITH   = 8;
 
 	private $field;
+	
+	/**
+	 * Value of the search clause
+	 *
+	 * @var mixed
+	 */
 	public $value;
+	
+	/**
+	 * Case sensitive
+	 *
+	 * Whether or not the search match should be case-sensitive
+	 *
+	 * @var boolean
+	 */
 	public $case_sensitive = false;
+	
+	/**
+	 * Search operator
+	 *
+	 * Set using one of the {@link AdminSearchClause} class constants
+	 *
+	 * @var string
+	 */
 	public $operator;
+
 
 	/**
 	 * The database object

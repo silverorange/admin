@@ -1,7 +1,7 @@
 <?php
 
-require_once('Swat/SwatCellRenderer.php');
-require_once('Swat/SwatHtmlTag.php');
+require_once 'Swat/SwatCellRenderer.php';
+require_once 'Swat/SwatHtmlTag.php';
 
 /**
  * Group header cell renderer

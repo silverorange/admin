@@ -1,6 +1,6 @@
 <?php
 
-require_once('Swat/SwatUI.php');
+require_once 'Swat/SwatUI.php';
 
 /**
  * UI manager for administrators
