@@ -1,8 +1,8 @@
 <?php
 
-require_once('Admin/Admin/DBDelete.php');
-require_once('SwatDB/SwatDB.php');
-require_once('Admin/AdminDependency.php');
+require_once 'Admin/Admin/DBDelete.php';
+require_once 'SwatDB/SwatDB.php';
+require_once 'Admin/AdminDependency.php';
 
 /**
  * Delete confirmation page for AdminComponents

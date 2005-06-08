@@ -1,11 +1,9 @@
 <?php
 
-//TODO: update this file. It's using the old system an should extend AdminIndex
-
-require_once('Admin/AdminUI.php');
-require_once('SwatDB/SwatDB.php');
-require_once('Admin/Admin/Index.php');
-require_once('Admin/AdminTableStore.php');
+require_once 'Admin/AdminUI.php';
+require_once 'SwatDB/SwatDB.php';
+require_once 'Admin/Admin/Index.php';
+require_once 'Admin/AdminTableStore.php';
 
 /**
  * Index page for AdminSections
