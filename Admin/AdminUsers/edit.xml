@@ -39,9 +39,7 @@
 			</widget>
 			<widget class="SwatFormField">
 				<property name="class" value="swat-form-footer" />
-				<widget class="SwatButton" id="submit_button">
-					<property name="title" value="Update Profile" translatable="yes" />
-				</widget>
+				<widget class="SwatButton" id="submit_button" />
 			</widget>
 		</widget>
 	</widget>
