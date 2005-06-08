@@ -10,10 +10,6 @@
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
 				<object class="SwatTableViewColumn">
-					<object class="AdminDetailsControlCellRenderer">
-						<property name="href" value="AdminUsers/Details?id=%s" />
-						<property name="value" value="userid" type="data" />
-					</object>
 					<object class="AdminEditControlCellRenderer">
 						<property name="href" value="AdminUsers/Edit?id=%s" />
 						<property name="value" value="userid" type="data" />
@@ -48,6 +44,11 @@
 					<property name="title" value="Last Login" translatable="yes" />
 					<object class="SwatDateCellRenderer">
 						<property name="date" value="lastlogin" type="data" />
+					</object>
+					<object class="SwatLinkCellRenderer">
+						<property name="title" value="(history)" translatable="yes" />
+						<property name="href" value="AdminUsers/Details?id=%s" />
+						<property name="value" value="userid" type="data" />
 					</object>
 				</object>
 			</widget>

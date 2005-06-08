@@ -18,7 +18,9 @@
 			</widget>
 			<widget class="SwatFormField">
 				<property name="title" value="Enabled" translatable="yes" />
-				<widget class="SwatCheckbox" id="enabled" />
+				<widget class="SwatCheckbox" id="enabled">
+					<property name="value" value="true" type="boolean" />
+				</widget>
 			</widget>
 			<widget class="SwatFormField">
 				<property name="title" value="Password" translatable="yes" />

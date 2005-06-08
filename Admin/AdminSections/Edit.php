@@ -1,6 +1,6 @@
 <?php
 
-require_once('Admin/AdminPage.php');
+require_once('Admin/Admin/DBEdit.php');
 require_once('Admin/AdminUI.php');
 require_once('MDB2.php');
 
@@ -9,32 +9,13 @@ require_once('MDB2.php');
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminSectionsEdit extends AdminPage {
+class AdminSectionsEdit extends AdminDBEdit {
 
 	public function init() {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminSections/edit.xml');
-	}
-
-	public function display() {
-		$id = intval(SwatApplication::initVar('id'));
-		$btn_submit = $this->ui->getWidget('submit_button');
-		$frame = $this->ui->getWidget('edit_frame');
-
-		if ($id == 0) {
-			$btn_submit->setTitleFromStock('create');
-			$frame->title = 'New Section';
-		} else {
-			$this->loadData($id);
-			$btn_submit->setTitleFromStock('apply');
-		}
-				
-		$form = $this->ui->getWidget('edit_form');
-		$form->action = $this->source;
-		$form->addHiddenField('id', $id);
 		
-		$root = $this->ui->getRoot();
-		$root->display();
+		$this->fields = array('title', 'boolean:show', 'description');
 	}
 
 	public function process() {
@@ -49,41 +30,27 @@ class AdminSectionsEdit extends AdminPage {
 		}
 	}
 
-	private function saveData($id) {
-		$db = $this->app->db;
+	protected function saveDBData($id) {
+
+		$values = $this->ui->getValues(array('title', 'show', 'description'));
 
 		if ($id == 0)
-			$sql = 'INSERT INTO adminsections(title, show, description)
-				VALUES (%s, %s, %s)';
+			$id = SwatDB::insertRow($this->app->db, 'adminsections', $this->fields,
+				$values, 'integer:sectionid');
 		else
-			$sql = 'UPDATE adminsections
-				SET title = %s,
-					show = %s,
-					description = %s
-				WHERE sectionid = %s';
+			SwatDB::updateRow($this->app->db, 'adminsections', $this->fields,
+				$values, 'integer:sectionid', $id);
 
-		$sql = sprintf($sql,
-			$db->quote($this->ui->getWidget('title')->value, 'text'),
-			$db->quote($this->ui->getWidget('show')->value, 'boolean'),
-			$db->quote($this->ui->getWidget('description')->value, 'text'),
-			$db->quote($id, 'integer'));
-
-		$db->query($sql);
+		$msg = new SwatMessage(sprintf(_S("Section \"%s\" has been saved."), $values['title']), SwatMessage::INFO);
+		$this->app->addMessage($msg);
 	}
 
-	private function loadData($id) {
-		$sql = 'SELECT title, show, description
-			FROM adminsections WHERE sectionid = %s';
+	protected function loadDBData($id) {
 
-		$sql = sprintf($sql,
-			$this->app->db->quote($id, 'integer'));
+		$row = SwatDB::queryRow($this->app->db, 'adminsections', 
+			$this->fields, 'integer:sectionid', $id);
 
-		$rs = $this->app->db->query($sql, array('text', 'boolean', 'text'));
-		$row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT);
-
-		$this->ui->getWidget('title')->value = $row->title;
-		$this->ui->getWidget('show')->value = $row->show;
-		$this->ui->getWidget('description')->value = $row->description;
+		$this->ui->setValues(get_object_vars($row));
 	}
 }
 

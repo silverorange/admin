@@ -23,7 +23,7 @@
 						<property name="value" value="sectionid" type="data" />
 					</object>
 				</object>
-				<object class="SwatTableViewCheckboxColumn">
+				<object class="SwatTableViewCheckboxColumn" id="checkbox">
 					<object class="SwatCheckboxCellRenderer" id="items">
 						<property name="value" value="sectionid" type="data" />
 					</object>

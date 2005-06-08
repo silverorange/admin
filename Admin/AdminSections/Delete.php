@@ -1,77 +1,45 @@
 <?php
 
-//TODO re-write this file, I think it uses the old way of doing things.
-
-require_once('Admin/AdminUI.php');
+require_once('Admin/Admin/DBDelete.php');
 require_once('SwatDB/SwatDB.php');
-require_once('Admin/AdminPage.php');
+require_once('Admin/AdminDependency.php');
 
 /**
- * Delete confirmation page for AdminSections
- *
+ * Delete confirmation page for AdminComponents
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminSectionsDelete extends AdminPage {
+class AdminSectionsDelete extends AdminDBDelete {
 
-	/*
-	 * The items to delete.
-	 * @var Array
-	 */
-	public $items = null;
+	public function displayInit() {
+		$item_list = $this->getItemList('integer');
+		
+		$dep = new AdminDependency();
+		$dep->title = 'Admin Section';
+		$dep->status_level = AdminDependency::DELETE;
 
-	public function init() {
-		$this->ui = new AdminUI();
-		$this->ui->loadFromXML('Admin/Admin/confirmation.xml');
-	}
-
-	public function display() {
-		$form = $this->ui->getWidget('confirmation_form');
-		$form->action = $this->source;
-		$form->addHiddenField('items', $this->items);
-
-		foreach ($items as &$id)
-			$id = $this->app->db->quote($id, 'integer');
-
-		$where_clause = 'sectionid in ('.implode(', ', $this->items).')';
-
-		$items = SwatDB::getOptionArray($this->app->db, 'adminsections', 
-			'title', 'sectionid', null, $where_clause);
+		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'adminsections',
+			'integer:sectionid', null, 'text:title', 'title', 'sectionid in ('.$item_list.')');
 
 		$message = $this->ui->getWidget('confirmation_message');
-		$message->content = '<ul><li>';
-		$message->content .= implode('</li><li>', $items);
-		$message->content .= '</li></ul>';
-
-		$root = $this->ui->getRoot();
-		$root->displayTidy();
+		$message->content = $dep->getMessage();
+		
+		parent::displayInit();
 	}
 
-	public function process() {
-		$form = $this->ui->getWidget('confirmation_form');
+	protected function processDBData() {
+		parent::processDBData();
 
-		if (!$form->process())
-			return;
+		$sql = 'delete from adminsections where sectionid in (%s)';
+		$item_list = $this->getItemList('integer');
+		$sql = sprintf($sql, $item_list);
+		SwatDB::query($this->app->db, $sql);
 
-		if ($form->button->id == 'yes_button') {
-			$items = $form->getHiddenField('items');
+		$msg = new SwatMessage(sprintf(_nS("%d admin section has been deleted.", 
+			"%d admin sections have been deleted.", $this->getItemCount()), $this->getItemCount()),
+			SwatMessage::INFO);
 
-			$sql = 'delete from adminsections where sectionid in (%s)';
-
-			foreach ($items as &$id)
-				$id = $this->app->db->quote($id, 'integer');
-
-			$sql = sprintf($sql, implode(',', $items));
-			$this->app->db->query($sql);
-
-			$msg = new SwatMessage(sprintf(_nS("%d component has been deleted.", 
-				"%d components have been deleted.", $this->getItemCount()), $this->getItemCount()),
-				SwatMessage::INFO);
-
-			$this->app->addMessage($msg);	
-		}
-
-		$this->app->relocate($this->app->getHistory());
+		$this->app->addMessage($msg);	
 	}
 }
 

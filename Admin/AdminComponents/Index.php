@@ -37,8 +37,7 @@ class AdminComponentsIndex extends AdminIndex {
 		$sql = sprintf($sql,
 			$this->getOrderByClause('admincomponents.displayorder, admincomponents.title', 'admincomponents'));
 
-		$types = array('integer', 'text', 'text', 'integer', 'boolean', 'boolean', 'text');
-		$store = $this->app->db->query($sql, $types, true, 'AdminTableStore');
+		$store = $this->app->db->query($sql, null, true, 'AdminTableStore');
 
 		return $store;
 	}

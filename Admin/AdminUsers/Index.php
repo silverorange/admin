@@ -19,17 +19,6 @@ class AdminUsersIndex extends AdminIndex {
 		$this->ui->loadFromXML('Admin/AdminUsers/index.xml');
 	}
 
-	public function display() {
-		$view = $this->ui->getWidget('index_view');
-		$view->model = $this->getTableStore();
-
-		$form = $this->ui->getWidget('index_form');
-		$form->action = $this->source;
-
-		$root = $this->ui->getRoot();
-		$root->display();
-	}
-
 	protected function getTableStore() {
 		$view = $this->ui->getWidget('index_view');
 
@@ -47,19 +36,9 @@ class AdminUsersIndex extends AdminIndex {
 		return $store;
 	}
 
-	public function process() {
-		$form = $this->ui->getWidget('index_form');
+	public function processActions() {
 		$view = $this->ui->getWidget('index_view');
 		$actions = $this->ui->getWidget('index_actions');
-
-		if (!$form->process())
-			return;
-
-		if ($actions->selected === null)
-			return;
-
-		if (count($view->checked_items) == 0)
-			return;
 
 		$num = count($view->checked_items);
 		$msg = null;
