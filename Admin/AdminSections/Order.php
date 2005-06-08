@@ -1,8 +1,8 @@
 <?php
 
-require_once('Admin/Admin/Order.php');
-require_once('Admin/AdminUI.php');
-require_once('SwatDB/SwatDB.php');
+require_once 'Admin/Admin/Order.php';
+require_once 'Admin/AdminUI.php';
+require_once 'SwatDB/SwatDB.php';
 
 /**
  * Order page for AdminComponents
