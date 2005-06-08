@@ -165,7 +165,8 @@ class AdminApplication extends SwatApplication {
 					$request->title = $row->component_title;
 					$request->component = $component;
 					$request->subcomponent = $subcomponent;
-				}
+				} else
+					return null;
 			}
 
 		} else {
