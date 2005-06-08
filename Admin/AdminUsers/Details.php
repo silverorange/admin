@@ -10,7 +10,7 @@ require_once('SwatDB/SwatDB.php');
  * @package silverorange3
  * @copyright silverorange 2005
  */
-class AdminUserDetails extends AdminIndex {
+class AdminUsersDetails extends AdminIndex {
 
 	public function init() {
 		$this->ui = new AdminUI();
