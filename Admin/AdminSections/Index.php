@@ -4,7 +4,7 @@
 
 require_once('Admin/AdminUI.php');
 require_once('SwatDB/SwatDB.php');
-require_once('Admin/AdminPage.php');
+require_once('Admin/Admin/Index.php');
 require_once('Admin/AdminTableStore.php');
 
 /**
@@ -12,57 +12,36 @@ require_once('Admin/AdminTableStore.php');
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminSectionsIndex extends AdminPage {
+class AdminSectionsIndex extends AdminIndex {
 
 	public function init() {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminSections/index.xml');
 	}
 
-	public function display() {
-		$view = $this->ui->getWidget('index_view');
-		$view->model = $this->getTableStore();
-
-		$form = $this->ui->getWidget('index_form');
-		$form->action = $this->source;
-
-		$root = $this->ui->getRoot();
-		$root->display();
-	}
-
-	private function getTableStore() {
+	protected function getTableStore() {
 		$view = $this->ui->getWidget('index_view');
 
 		$sql = 'select sectionid, title, show 
 				from adminsections 
 				order by displayorder';
 
-		$types = array('integer', 'text', 'boolean');
-		$store = $this->app->db->query($sql, $types, true, 'AdminTableStore');
+		$store = $this->app->db->query($sql, null, true, 'AdminTableStore');
 
 		return $store;
 	}
 
-	public function process() {
-		$form = $this->ui->getWidget('index_form');
+	public function processActions() {
 		$view = $this->ui->getWidget('index_view');
 		$actions = $this->ui->getWidget('index_actions');
 
-		if (!$form->process())
-			return;
-
-		if ($actions->selected === null)
-			return;
-
-		if (count($view->checked_items) == 0)
-			return;
-
 		$num = count($view->checked_items);
+		$msg = null;
 		
 		switch ($actions->selected->id) {
 			case 'delete':
 				$this->app->replacePage('AdminSections/Delete');
-				$this->app->page->items = $view->checked_items;
+				$this->app->page->setItems($view->checked_items);
 				break;
 
 			case 'show':
