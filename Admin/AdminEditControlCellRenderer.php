@@ -1,6 +1,6 @@
 <?php
 
-require_once('Swat/SwatControlCellRenderer.php');
+require_once 'Swat/SwatControlCellRenderer.php';
 
 /**
  * Edit Control

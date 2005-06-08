@@ -1,6 +1,6 @@
 <?php
 
-require_once('Swat/SwatTableStore.php');
+require_once 'Swat/SwatTableStore.php';
 
 /**
  * A DB-aware table store

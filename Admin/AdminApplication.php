@@ -1,11 +1,11 @@
 <?php
 
-require_once('Swat/SwatApplication.php');
-require_once('Swat/SwatMessage.php');
-require_once('MDB2.php');
-require_once('SwatDB/SwatDB.php');
-require_once('AdminPage.php');
-require_once('Date.php');
+require_once 'Swat/SwatApplication.php';
+require_once 'Swat/SwatMessage.php';
+require_once 'MDB2.php';
+require_once 'SwatDB/SwatDB.php';
+require_once 'AdminPage.php';
+require_once 'Date.php';
 
 /**
  * Web application class for an administrator
@@ -86,7 +86,7 @@ class AdminApplication extends SwatApplication {
 				$err = new SwatMessage(_S("File not found."));
 			
 			else {
-				require_once($file);
+				require_once $file;
 
 				$classname = $request->getClassname();
 				if ($classname === null)
@@ -108,7 +108,7 @@ class AdminApplication extends SwatApplication {
 		}
 	
 		if (!isset($page)) {
-			require_once('Admin/NotFound.php');
+			require_once 'Admin/NotFound.php';
 			$page = new AdminNotFound();
 			$page->app = $this;
 			$page->source = 'Admin/NotFound';

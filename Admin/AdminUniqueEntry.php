@@ -1,6 +1,6 @@
 <?php
 
-require_once('Swat/SwatEntry.php');
+require_once 'Swat/SwatEntry.php';
 
 /**
  * A unique text entry widget

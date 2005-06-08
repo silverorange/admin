@@ -1,6 +1,6 @@
 <?php
 
-require_once('Swat/SwatTableViewOrderableColumn.php');
+require_once 'Swat/SwatTableViewOrderableColumn.php';
 
 /**
  * An orderable column
