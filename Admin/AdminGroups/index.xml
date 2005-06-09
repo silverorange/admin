@@ -1,0 +1,39 @@
+<?xml version='1.0' standalone='yes'?>
+<swat-interface>
+	<widget class="SwatMessageBox" id="message_box" />
+	<widget class="SwatFrame">
+		<property name="title" value="Groups" translatable="yes" />
+		<widget class="SwatToolLink">
+			<property name="title" value="Create a New Group" translatable="yes" />
+			<property name="href" value="AdminGroups/Edit" />
+		</widget>
+		<widget class="SwatForm" id="index_form">
+			<widget class="SwatTableView" id="index_view">
+				<object class="SwatTableViewColumn">
+					<object class="AdminEditControlCellRenderer">
+						<property name="href" value="AdminGroups/Edit?id=%s" />
+						<property name="value" value="groupid" type="data" />
+					</object>
+				</object>
+				<object class="SwatTableViewCheckboxColumn" id="checkbox">
+					<object class="SwatCheckboxCellRenderer" id="items">
+						<property name="value" value="groupid" type="data" />
+					</object>
+				</object>
+				<object class="SwatTableViewColumn">
+					<property name="title" value="Title" translatable="yes" />
+					<object class="SwatLinkCellRenderer">
+						<property name="title" value="title" type="data" translatable="yes" />
+						<property name="href" value="AdminGroups/Edit?id=%s" />
+						<property name="value" value="groupid" type="data" />
+					</object>
+				</object>
+			</widget>
+			<widget class="SwatActions" id="index_actions">
+				<widget class="SwatActionItem" id="delete">
+					<property name="title" value="delete..." translatable="yes" />
+				</widget>
+			</widget>
+		</widget>
+	</widget>
+</swat-interface>

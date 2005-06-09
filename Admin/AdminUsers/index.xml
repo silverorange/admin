@@ -45,10 +45,11 @@
 					<object class="SwatDateCellRenderer">
 						<property name="date" value="lastlogin" type="data" />
 					</object>
-					<object class="SwatLinkCellRenderer">
-						<property name="title" value="(history)" translatable="yes" />
+					<object class="AdminUsersHistoryCellRenderer">
+						<property name="title" value="history" translatable="yes" />
 						<property name="href" value="AdminUsers/Details?id=%s" />
-						<property name="value" value="userid" type="data" />
+						<property name="user" value="userid" type="data" />
+						<property name="date" value="lastlogin" type="data" />
 					</object>
 				</object>
 			</widget>
