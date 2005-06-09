@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * Page request
+ *
+ * @package Admin
+ * @copyright silverorange 2004
+ */
+class AdminPageRequest {
+	public $source;
+	public $component;
+	public $subcomponent;
+	public $title;
+
+	public function getFilename() {
+		$classfile = $this->component.'/'.$this->subcomponent.'.php';
+		$file = null;
+
+		if (file_exists('../../include/admin/'.$classfile)) {
+			$file = '../../include/admin/'.$classfile;
+		} else {
+			$paths = explode(':', ini_get('include_path'));
+
+			foreach ($paths as $path) {
+				if (file_exists($path.'/Admin/'.$classfile)) {
+					$file = $classfile;
+					break;
+				}
+			}
+		}
+		
+		return $file;
+	}
+
+	public function getClassname() {
+		$classname = $this->component.$this->subcomponent;
+		
+		if (class_exists($classname))
+			return $classname;
+		else
+			return null;
+	}
+}
+
+?>
