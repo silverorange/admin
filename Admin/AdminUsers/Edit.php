@@ -5,7 +5,7 @@ require_once 'Admin/AdminUI.php';
 require_once 'SwatDB/SwatDB.php';
 
 /**
- * Edit page for AdminComponents
+ * Edit page for AdminUsers component
  * @package Admin
  * @copyright silverorange 2004
  */

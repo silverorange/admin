@@ -6,8 +6,8 @@ require_once 'Admin/AdminTableStore.php';
 require_once 'SwatDB/SwatDB.php';
 
 /**
- * Index page for Portfolio 
- * @package silverorange3
+ * Details page for AdminUsers component
+ * @package Admin
  * @copyright silverorange 2005
  */
 class AdminUsersDetails extends AdminIndex {
