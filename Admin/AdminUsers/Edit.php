@@ -23,13 +23,17 @@ class AdminUsersEdit extends AdminDBEdit {
 		$group_list->options = SwatDB::getOptionArray($this->app->db, 
 			'admingroups', 'title', 'groupid', 'title');
 		
-		$confirm = $this->ui->getWidget('confirmpassword');
+		$confirm = $this->ui->getWidget('confirm_password');
 		$confirm->password_widget = $this->ui->getWidget('password');;
 		
 		$id = SwatApplication::initVar('id');
 		if ($id === null) {
 			$this->ui->getWidget('password')->required = true;
 			$confirm->required = true;
+			
+			$this->ui->getWidget('confirm_password_field')->note = null;
+			$this->ui->getWidget('password_disclosure')->open = true;
+			$this->ui->getWidget('password_disclosure')->title = _S("Set Password");
 		}
 	}
 
