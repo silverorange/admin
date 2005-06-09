@@ -4,7 +4,7 @@ require_once 'Swat/SwatCellRenderer.php';
 require_once 'Swat/SwatHtmlTag.php';
 
 /**
- * A Custom Cell Renderer for the User History link on Users Index
+ * Custom cell renderer for the history link on AdminUsers index page
  *
  * @package Admin
  * @copyright silverorange 2005

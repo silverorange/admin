@@ -5,8 +5,8 @@ require_once('Admin/Admin/Index.php');
 require_once('Admin/AdminTableStore.php');
 
 /**
- * Index page for Portfolio 
- * @package silverorange3
+ * Login history page for AdminUsers component
+ * @package Admin
  * @copyright silverorange 2005
  */
 class AdminUsersLoginHistory extends AdminIndex {

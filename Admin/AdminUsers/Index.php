@@ -7,7 +7,7 @@ require_once 'Admin/AdminTableStore.php';
 require_once 'Admin/AdminUsers/HistoryCellRenderer.php';
 
 /**
- * Index page for AdminSections
+ * Index page for AdminUsers component
  * @package Admin
  * @copyright silverorange 2004
  */
