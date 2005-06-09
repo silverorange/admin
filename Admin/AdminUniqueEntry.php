@@ -5,9 +5,8 @@ require_once 'Swat/SwatEntry.php';
 /**
  * A unique text entry widget
  *
- * @package Swat
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @copyright silverorange 2004
+ * @package Admin
+ * @copyright silverorange 2005
  */
 class AdminUniqueEntry extends SwatEntry {
 
