@@ -16,6 +16,21 @@
 					<property name="required" value="true" type="boolean" />
 				</widget>
 			</widget>
+			<widget class="SwatDisclosure" id="password_disclosure">
+				<property name="title" value="Change Password" translatable="yes" />
+				<property name="open" value="false" type="boolean" />
+				<widget class="SwatFormField">
+					<property name="title" value="Password" translatable="yes" />
+					<widget class="SwatPasswordEntry" id="password">
+						<property name="minlength" value="4" type="integer" />
+					</widget>
+				</widget>
+				<widget class="SwatFormField" id="confirm_password_field">
+					<property name="title" value="Confirm Password" translatable="yes" />
+					<property name="note" value="Leave Password fields blank for them to remain the same." />
+					<widget class="SwatConfirmPasswordEntry" id="confirm_password" />
+				</widget>
+			</widget>
 			<widget class="SwatFormField">
 				<property name="title" value="Enabled" translatable="yes" />
 				<widget class="SwatCheckbox" id="enabled">
@@ -23,18 +38,7 @@
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
-				<property name="title" value="Password" translatable="yes" />
-				<widget class="SwatPasswordEntry" id="password">
-					<property name="minlength" value="4" type="integer" />
-				</widget>
-			</widget>
-			<widget class="SwatFormField">
-				<property name="title" value="Confirm Password" translatable="yes" />
-				<property name="note" value="Leave Password fields blank for them to remain the same." />
-				<widget class="SwatConfirmPasswordEntry" id="confirmpassword" />
-			</widget>
-			<widget class="SwatFormField">
-				<property name="title" value="Groups" translatable="yes" />
+				<property name="title" value="Belongs to Groups" translatable="yes" />
 				<widget class="SwatCheckboxList" id="groups" />
 			</widget>
 			<widget class="SwatFormField">
