@@ -4,8 +4,9 @@ require_once 'Swat/SwatApplication.php';
 require_once 'Swat/SwatMessage.php';
 require_once 'MDB2.php';
 require_once 'SwatDB/SwatDB.php';
-require_once 'AdminPage.php';
-require_once 'AdminPageRequest.php';
+require_once 'Admin/Admin.php';
+require_once 'Admin/AdminPage.php';
+require_once 'Admin/AdminPageRequest.php';
 require_once 'Date.php';
 
 /**
@@ -79,12 +80,12 @@ class AdminApplication extends SwatApplication {
 		$request = $this->getRequest($source);
 		
 		if ($request === null)
-			$err = new SwatMessage(_S("Component not found."));
+			$err = new SwatMessage(Admin::_('Component not found.'));
 		else {
 			$file = $request->getFilename();
 			
 			if ($file === null)
-				$err = new SwatMessage(_S("File not found."));
+				$err = new SwatMessage(Admin::_('File not found.'));
 			
 			else {
 				require_once $file;
@@ -92,7 +93,7 @@ class AdminApplication extends SwatApplication {
 				$classname = $request->getClassname();
 				if ($classname === null)
 					$err = new SwatMessage(
-						sprintf(_S("Class '%s' does not exist in the included file."),
+						sprintf(Admin::_('Class '%s' does not exist in the included file.'),
 							$request->component.$request->subcomponent));
 				else {
 					$page = new $classname();
@@ -101,7 +102,7 @@ class AdminApplication extends SwatApplication {
 					$page->component = $request->component;
 					$page->subcomponent = $request->subcomponent;
 					$page->app = $this;
-					$page->navbar->add(_S("Home"), '');
+					$page->navbar->add(Admin::_('Home'), '');
 					$page->navbar->add($request->title,
 						($request->subcomponent == 'Index') ? null : $request->component);
 				}	
@@ -113,11 +114,11 @@ class AdminApplication extends SwatApplication {
 			$page = new AdminNotFound();
 			$page->app = $this;
 			$page->source = 'Admin/NotFound';
-			$page->title = _S("Page not found");
+			$page->title = Admin::_('Page not found');
 			$page->component = 'Admin';
 			$page->subcomponent = 'NotFound';
 			$page->setMessage($err);
-			$page->navbar->add(_S("Home"), '');
+			$page->navbar->add(Admin::_('Home'), '');
 		}
 			
 		if (isset($_SERVER['HTTP_REFERER']))
@@ -146,10 +147,10 @@ class AdminApplication extends SwatApplication {
 
 			if ($component == 'Admin') {
 				$admin_titles = array(
-					'Profile' => _S("Edit User Profile"),
-					'Logout'  => _S("Logout"),
-					'Login'   => _S("Login"),
-					'Front'   => _S("Index"));
+					'Profile' => Admin::_('Edit User Profile'),
+					'Logout'  => Admin::_('Logout'),
+					'Login'   => Admin::_('Login'),
+					'Front'   => Admin::_('Index'));
 
 				$request = new AdminPageRequest();
 				$request->title = $admin_titles[$subcomponent];
@@ -174,7 +175,7 @@ class AdminApplication extends SwatApplication {
 			$request = new AdminPageRequest();
 			$request->component = 'Admin';
 			$request->subcomponent = 'Login';
-			$request->title = _S("Login");
+			$request->title = Admin::_('Login');
 		}
 
 		$request->source = $source;

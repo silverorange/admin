@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Swat/SwatControlCellRenderer.php';
+require_once 'Admin/Admin.php';
 
 /**
  * Edit Control
@@ -15,8 +16,8 @@ class AdminEditControlCellRenderer extends SwatControlCellRenderer {
 	public function render($prefix) {
 		$this->width  = 28;
 		$this->height = 22;
-		$this->title = _("Edit Item");
-		$this->alt = _("Edit");
+		$this->title = Admin::_('Edit Item');
+		$this->alt = Admin::_('Edit');
 		$this->src = 'admin/images/b_edit.png';
 	
 		parent::render($prefix);
