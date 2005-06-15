@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Swat/SwatControlCellRenderer.php';
+require_once 'Admin/Admin.php';
 
 /**
  * Tree Details Control
@@ -19,14 +20,14 @@ class AdminTreeControlCellRenderer extends SwatControlCellRenderer {
 		$this->height = 22;
 
 		if ($this->childcount == 0) {
-			$this->title = _S('View Details');
-			$this->alt = _S('Details');
+			$this->title = Admin::_('View Details');
+			$this->alt = Admin::_('Details');
 			$this->src = 'admin/images/b_details.png';
 		} else {
 			$this->title = sprintf(_nS('View Details (%d sub-item)', 'View Details (%d sub-items)', 
 				$this->childcount), $this->childcount);
 
-			$this->alt = _S("Details");
+			$this->alt = Admin::_('Details');
 			$this->src = 'admin/images/b_details_folder.png';
 		}
 	

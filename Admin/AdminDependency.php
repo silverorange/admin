@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Admin/Admin.php';
+
 /**
  * Dependency message class
  *
@@ -36,8 +38,8 @@ class AdminDependency {
 	 * contain a %s placeholder that will be filled with the {AdminDependency::$title}.
 	 *
 	 * By default two status levels are setup:
-	 *        array(AdminDependency::DELETE => _S("The following %s will be deleted:"),
-	 *              AdminDependency::NODELETE => _S("The following %s can't be deleted:"))
+	 *        array(AdminDependency::DELETE => Admin::_('The following %s will be deleted:'),
+	 *              AdminDependency::NODELETE => Admin::_('The following %s can't be deleted:'))
 	 *
 	 * @var array
 	 */
@@ -91,8 +93,8 @@ class AdminDependency {
 
 		if ($this->status_levels === null) {
 			$this->status_levels = array();
-			$this->status_levels[AdminDependency::DELETE] = _S("The following %s(s) will be deleted:");
-			$this->status_levels[AdminDependency::NODELETE] = _S("The following %s(s) can not be deleted:");
+			$this->status_levels[AdminDependency::DELETE] = Admin::_('The following %s(s) will be deleted:');
+			$this->status_levels[AdminDependency::NODELETE] = Admin::_('The following %s(s) can not be deleted:');
 		}
 
 		$this->processDependencies();
@@ -196,9 +198,9 @@ class AdminDependency {
 					echo '<br />';
 					
 					if ($this->title !== null)
-						printf(_S("Dependent %s(s):"), $this->title);
+						printf(Admin::_('Dependent %s(s):'), $this->title);
 					else
-						echo _S("Dependent items(s):");
+						echo Admin::_('Dependent item(s):');
 						
 					echo '<ul>';
 					$first = false;
@@ -227,10 +229,14 @@ class AdminDependency {
 		
 		if ($count != 0) {
 			echo '<ul><li>';
-			if ($this->title !== null)
-				printf(_S("%d Dependent %s(s)"), $count, $this->title);
-			else
-				printf(_S("%d Dependent item(s)"), $count);
+			if ($this->title !== null) {
+				printf(Admin::ngettext('%d dependent %s', '%d Dependent %s(s)', $count), 
+					$count, $this->title);
+
+			} else {
+				printf(Admin::ngettext('%d dependent item', '%d dependent items', 
+					$count), $count);
+			}
 		}
 		
 		foreach ($this->entries as $entry)

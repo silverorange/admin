@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Swat/SwatControlCellRenderer.php';
+require_once 'Admin/Admin.php';
 
 /**
  * Details Control
@@ -15,8 +16,8 @@ class AdminDetailsControlCellRenderer extends SwatControlCellRenderer {
 	public function render($prefix) {
 		$this->width  = 28;
 		$this->height = 22;
-		$this->title = _("View Details");
-		$this->alt = _("Details");
+		$this->title = Admin::_('View Details');
+		$this->alt = Admin::_('Details');
 		$this->src = 'admin/images/b_details.png';
 	
 		parent::render($prefix);

@@ -2,6 +2,7 @@
 
 require_once 'Swat/SwatCellRenderer.php';
 require_once 'Swat/SwatHtmlTag.php';
+require_once 'Admin/Admin.php';
 
 /**
  * Group header cell renderer
@@ -41,7 +42,7 @@ class AdminGroupHeaderCellRenderer extends SwatCellRenderer {
 
 		if ($this->order_href !== null) {
 			$anchor = new SwatHtmlTag('a');
-			$anchor->content = _S("Change Order");
+			$anchor->content = Admin::_('Change Order');
 			$anchor->href = sprintf($this->order_href, $this->order_value);
 
 			echo ' - ';

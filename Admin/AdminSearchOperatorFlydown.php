@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Swat/SwatFlydown.php';
+require_once 'Admin/Admin.php';
 require_once 'Admin/AdminSearchClause.php';
 
 /**
@@ -40,9 +41,9 @@ class AdminSearchOperatorFlydown extends SwatFlydown {
 			case AdminSearchClause::OP_GTE:         return '>=';
 			case AdminSearchClause::OP_LT:          return '<';
 			case AdminSearchClause::OP_LTE:         return '<=';
-			case AdminSearchClause::OP_CONTAINS:    return _S("contains");
-			case AdminSearchClause::OP_STARTS_WITH: return _S("starts with");
-			case AdminSearchClause::OP_ENDS_WITH:   return _S("ends with");
+			case AdminSearchClause::OP_CONTAINS:    return Admin::_('contains');
+			case AdminSearchClause::OP_STARTS_WITH: return Admin::_('starts with');
+			case AdminSearchClause::OP_ENDS_WITH:   return Admin::_('ends with');
 
 			default:
 				throw new Exception('AdminSearchOperatorFlydown: unknown operator');
