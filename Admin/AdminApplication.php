@@ -93,7 +93,7 @@ class AdminApplication extends SwatApplication {
 				$classname = $request->getClassname();
 				if ($classname === null)
 					$err = new SwatMessage(
-						sprintf(Admin::_('Class '%s' does not exist in the included file.'),
+						sprintf(Admin::_('Class \'%s\' does not exist in the included file.'),
 							$request->component.$request->subcomponent));
 				else {
 					$page = new $classname();
