@@ -102,8 +102,8 @@ class AdminApplication extends SwatApplication {
 					$page->component = $request->component;
 					$page->subcomponent = $request->subcomponent;
 					$page->app = $this;
-					$page->navbar->add(Admin::_('Home'), '');
-					$page->navbar->add($request->title,
+					$page->navbar->addElement(Admin::_('Home'), '');
+					$page->navbar->addElement($request->title,
 						($request->subcomponent == 'Index') ? null : $request->component);
 				}	
 			}
@@ -118,7 +118,7 @@ class AdminApplication extends SwatApplication {
 			$page->component = 'Admin';
 			$page->subcomponent = 'NotFound';
 			$page->setMessage($err);
-			$page->navbar->add(Admin::_('Home'), '');
+			$page->navbar->addElement(Admin::_('Home'), '');
 		}
 			
 		if (isset($_SERVER['HTTP_REFERER']))
