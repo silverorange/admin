@@ -23,7 +23,7 @@ class AdminSectionsOrder extends AdminOrder {
 
 	public function displayInit() {
 		$frame = $this->ui->getWidget('order_frame');
-		$frame->title = _S("Order Sections");
+		$frame->title = Admin::_('Order Sections');
 		parent::displayInit();
 	}
 

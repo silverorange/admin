@@ -39,7 +39,7 @@ abstract class AdminOrder extends AdminPage {
 		$this->loadData();
 	
 		$button = $this->ui->getWidget('submit_button');
-		$button->title = Admin::_("Update Order");
+		$button->title = Admin::_('Update Order');
 		
 		$form = $this->ui->getWidget('order_form');
 		$form->action = $this->source;

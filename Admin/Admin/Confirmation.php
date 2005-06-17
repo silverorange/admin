@@ -37,7 +37,7 @@ abstract class AdminConfirmation extends AdminPage {
 	 */
 	protected function displayCancelButton() {
 		$this->ui->getWidget('yes_button')->visible = false;
-		$this->ui->getWidget('no_button')->title = _S("Cancel");
+		$this->ui->getWidget('no_button')->title = Admin::_('Cancel');
 	}
 	
 	public function process() {

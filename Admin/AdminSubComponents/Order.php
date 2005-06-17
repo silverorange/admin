@@ -22,7 +22,7 @@ class AdminSubComponentsOrder extends AdminOrder {
 
 	public function displayInit() {
 		$frame = $this->ui->getWidget('order_frame');
-		$frame->title = _S("Order Sub-Components");
+		$frame->title = Admin::_('Order Sub-Components');
 		parent::displayInit();
 	
 		//rebuild the navbar

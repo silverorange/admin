@@ -23,14 +23,14 @@ abstract class AdminDBEdit extends AdminEdit {
 		} catch (SwatDBException $e) {
 			$this->app->db->rollback();
 
-			$msg = new SwatMessage(_S("A database error has occured. The item was not saved."), SwatMessage::ERROR);
+			$msg = new SwatMessage(Admin::_('A database error has occured. The item was not saved.'), SwatMessage::ERROR);
 			$this->app->addMessage($msg);
 
 			$e->process();
 			return false;
 
 		} catch (SwatException $e) {
-			$msg = new SwatMessage(_S("An error has occured. The item was not saved."), SwatMessage::ERROR);
+			$msg = new SwatMessage(Admin::_('An error has occured. The item was not saved.'), SwatMessage::ERROR);
 			$this->app->addMessage($msg);
 
 			$e->process();
