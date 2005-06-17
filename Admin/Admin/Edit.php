@@ -42,9 +42,9 @@ abstract class AdminEdit extends AdminPage {
 		$frame = $this->ui->getWidget('edit_frame');
 
 		if ($id === null)
-			$frame->title = sprintf(_S("New %s"), $frame->title);
+			$frame->title = sprintf(Admin::_('New %s'), $frame->title);
 		else
-			$frame->title = sprintf(_S("Edit %s"), $frame->title);
+			$frame->title = sprintf(Admin::_('Edit %s'), $frame->title);
 	}
 
 	public function process() {
