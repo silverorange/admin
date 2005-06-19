@@ -5,21 +5,21 @@
 		<property name="title" value="Sections" translatable="yes" />
 		<widget class="SwatToolLink">
 			<property name="title" value="Create a New Section" translatable="yes" />
-			<property name="href" value="AdminSections/Edit" />
+			<property name="link" value="AdminSections/Edit" />
 		</widget>
 		<widget class="SwatToolLink">
 			<property name="title" value="Change Order" translatable="yes" />
-			<property name="href" value="AdminSections/Order" />
+			<property name="link" value="AdminSections/Order" />
 		</widget>
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
 				<object class="SwatTableViewColumn">
 					<object class="AdminDetailsControlCellRenderer">
-						<property name="href" value="AdminSections/Details?id=%s" />
+						<property name="link" value="AdminSections/Details?id=%s" />
 						<property name="value" value="sectionid" type="data" />
 					</object>
 					<object class="AdminEditControlCellRenderer">
-						<property name="href" value="AdminSections/Edit?id=%s" />
+						<property name="link" value="AdminSections/Edit?id=%s" />
 						<property name="value" value="sectionid" type="data" />
 					</object>
 				</object>
@@ -32,7 +32,7 @@
 					<property name="title" value="Title" translatable="yes" />
 					<object class="SwatLinkCellRenderer">
 						<property name="title" value="title" type="data" translatable="yes" />
-						<property name="href" value="AdminSections/Edit?id=%s" />
+						<property name="link" value="AdminSections/Edit?id=%s" />
 						<property name="value" value="sectionid" type="data" />
 					</object>
 				</object>

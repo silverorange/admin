@@ -5,7 +5,7 @@
 		<property name="title" value="Components" translatable="yes" />
 		<widget class="SwatToolLink">
 			<property name="title" value="Create a New Component" translatable="yes" />
-			<property name="href" value="AdminComponents/Edit" />
+			<property name="link" value="AdminComponents/Edit" />
 		</widget>
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
@@ -13,17 +13,17 @@
 					<property name="group_by" value="section" />
 					<object class="AdminGroupHeaderCellRenderer">
 						<property name="title" value="section_title" type="data" translatable="yes" />
-						<property name="order_href" value="AdminComponents/Order?parent=%s" />
+						<property name="order_link" value="AdminComponents/Order?parent=%s" />
 						<property name="order_value" value="section" type="data" />
 					</object>
 				</object>
 				<object class="SwatTableViewColumn" id="controls">
 					<object class="AdminDetailsControlCellRenderer">
-						<property name="href" value="AdminComponents/Details?id=%s" />
+						<property name="link" value="AdminComponents/Details?id=%s" />
 						<property name="value" value="componentid" type="data" />
 					</object>
 					<object class="AdminEditControlCellRenderer">
-						<property name="href" value="AdminComponents/Edit?id=%s" />
+						<property name="link" value="AdminComponents/Edit?id=%s" />
 						<property name="value" value="componentid" type="data" />
 					</object>
 				</object>
@@ -36,7 +36,7 @@
 					<property name="title" value="Title" translatable="yes" />
 					<object class="SwatLinkCellRenderer">
 						<property name="title" value="title" type="data" translatable="yes" />
-						<property name="href" value="AdminComponents/Details?id=%s" />
+						<property name="link" value="AdminComponents/Details?id=%s" />
 						<property name="value" value="componentid" type="data" />
 					</object>
 				</object>

@@ -5,13 +5,13 @@
 		<property name="title" value="Admin Users" translatable="yes" />
 		<widget class="SwatToolLink">
 			<property name="title" value="Create a New User" translatable="yes" />
-			<property name="href" value="AdminUsers/Edit" />
+			<property name="link" value="AdminUsers/Edit" />
 		</widget>
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
 				<object class="SwatTableViewColumn">
 					<object class="AdminEditControlCellRenderer">
-						<property name="href" value="AdminUsers/Edit?id=%s" />
+						<property name="link" value="AdminUsers/Edit?id=%s" />
 						<property name="value" value="userid" type="data" />
 					</object>
 				</object>
@@ -24,7 +24,7 @@
 					<property name="title" value="Username" translatable="yes" />
 					<object class="SwatLinkCellRenderer">
 						<property name="title" value="username" type="data" translatable="yes" />
-						<property name="href" value="AdminUsers/Edit?id=%s" />
+						<property name="link" value="AdminUsers/Edit?id=%s" />
 						<property name="value" value="userid" type="data" />
 					</object>
 				</object>
@@ -47,7 +47,7 @@
 					</object>
 					<object class="AdminUsersHistoryCellRenderer">
 						<property name="title" value="history" translatable="yes" />
-						<property name="href" value="AdminUsers/Details?id=%s" />
+						<property name="link" value="AdminUsers/Details?id=%s" />
 						<property name="user" value="userid" type="data" />
 						<property name="date" value="lastlogin" type="data" />
 					</object>
