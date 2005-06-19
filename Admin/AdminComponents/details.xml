@@ -6,11 +6,11 @@
 			<property name="title" value="Sub-Components" translatable="yes" />
 			<widget class="SwatToolLink">
 				<property name="title" value="Create a New Sub-Component" translatable="yes" />
-				<property name="href" value="AdminSubComponents/Edit?parent=%s" />
+				<property name="link" value="AdminSubComponents/Edit?parent=%s" />
 			</widget>
 			<widget class="SwatToolLink">
 				<property name="title" value="Change Sub-Component Order" translatable="yes" />
-				<property name="href" value="AdminSubComponents/Order?parent=%s" />
+				<property name="link" value="AdminSubComponents/Order?parent=%s" />
 			</widget>
 			<widget class="SwatForm" id="index_form">
 				<widget class="SwatTableView" id="index_view">
@@ -18,9 +18,9 @@
 						<object class="SwatControlCellRenderer">
 							<property name="title" value="Edit" translatable="yes" />
 							<property name="alt" value="Edit" />
-							<property name="href" value="AdminSubComponents/Edit?id=%s" />
+							<property name="link" value="AdminSubComponents/Edit?id=%s" />
 							<property name="value" value="subcomponentid" type="data" />
-							<property name="src" value="admin/images/b_edit.png" />
+							<property name="image" value="admin/images/b_edit.png" />
 							<property name="height" value="22" type="integer" />
 							<property name="width" value="28" type="integer" />
 						</object>
@@ -34,7 +34,7 @@
 						<property name="title" value="Title" translatable="yes" />
 						<object class="SwatLinkCellRenderer">
 							<property name="title" value="title" type="data" translatable="yes" />
-							<property name="href" value="AdminSubComponents/Edit?id=%s" />
+							<property name="link" value="AdminSubComponents/Edit?id=%s" />
 							<property name="value" value="subcomponentid" type="data" />
 						</object>
 					</object>
