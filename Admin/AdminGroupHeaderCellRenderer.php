@@ -26,12 +26,12 @@ class AdminGroupHeaderCellRenderer extends SwatCellRenderer {
 	 * When not null, this will produce a link to re-order the items within this group. 
 	 * @var string
 	 */
-	public $order_href = null;
+	public $order_link = null;
 
 	/**
 	 * Change order link value
 	 *
-	 * Value to substitute into the $link_href.
+	 * Value to substitute into the $order_link.
 	 * @var string
 	 */
 	public $order_value = null;
@@ -40,10 +40,10 @@ class AdminGroupHeaderCellRenderer extends SwatCellRenderer {
 	
 		echo $this->title;
 
-		if ($this->order_href !== null) {
+		if ($this->order_link !== null) {
 			$anchor = new SwatHtmlTag('a');
 			$anchor->content = Admin::_('Change Order');
-			$anchor->href = sprintf($this->order_href, $this->order_value);
+			$anchor->href = sprintf($this->order_link, $this->order_value);
 
 			echo ' - ';
 			$anchor->display();
