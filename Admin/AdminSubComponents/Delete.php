@@ -41,7 +41,7 @@ class AdminSubComponentsDelete extends AdminDBDelete {
 		$sql = sprintf($sql, $item_list);
 		$this->app->db->query($sql);
 
-		$msg = new SwatMessage(sprintf(_nS("%d sub-component has been deleted.", 
+		$msg = new SwatMessage(sprintf(Swat::ngettext("%d sub-component has been deleted.", 
 			"%d sub-components have been deleted.", count($item_list)), count($item_list)), SwatMessage::INFO);
 
 		$this->app->addMessage($msg);
