@@ -18,7 +18,7 @@ class AdminDetailsControlCellRenderer extends SwatControlCellRenderer {
 		$this->height = 22;
 		$this->title = Admin::_('View Details');
 		$this->alt = Admin::_('Details');
-		$this->src = 'admin/images/b_details.png';
+		$this->image = 'admin/images/b_details.png';
 	
 		parent::render($prefix);
 	}

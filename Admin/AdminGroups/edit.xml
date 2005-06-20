@@ -10,13 +10,19 @@
 					<property name="required" value="true" type="boolean" />
 				</widget>
 			</widget>
-			<widget class="SwatFormField">
-				<property name="title" value="Component Access" translatable="yes" />
-				<widget class="SwatCheckboxTree" id="components" />
+			<widget class="SwatFrame">
+		        <property name="title" value="Component Access" translatable="yes" />
+				<!--widget class="SwatFormField">
+					<property name="title" value="Components" translatable="yes" /-->
+					<widget class="SwatCheckboxTree" id="components" />
+				<!--/widget-->
 			</widget>
-			<widget class="SwatFormField">
-				<property name="title" value="Users" translatable="yes" />
-				<widget class="SwatCheckboxList" id="users" />
+			<widget class="SwatFrame">
+		        <property name="title" value="Users in Group" translatable="yes" />
+				<!--widget class="SwatFormField">
+					<property name="title" value="Users" translatable="yes" /-->
+					<widget class="SwatCheckboxList" id="users" />
+				<!--/widget-->
 			</widget>
 			<widget class="SwatFormField">
 				<property name="class" value="swat-form-footer" />
