@@ -22,13 +22,13 @@ class AdminTreeControlCellRenderer extends SwatControlCellRenderer {
 		if ($this->childcount == 0) {
 			$this->title = Admin::_('View Details');
 			$this->alt = Admin::_('Details');
-			$this->src = 'admin/images/b_details.png';
+			$this->image = 'admin/images/b_details.png';
 		} else {
-			$this->title = sprintf(_nS('View Details (%d sub-item)', 'View Details (%d sub-items)', 
+			$this->title = sprintf(Swat::ngettext('View Details (%d sub-item)', 'View Details (%d sub-items)', 
 				$this->childcount), $this->childcount);
 
 			$this->alt = Admin::_('Details');
-			$this->src = 'admin/images/b_details_folder.png';
+			$this->image = 'admin/images/b_details_folder.png';
 		}
 	
 		parent::render($prefix);
