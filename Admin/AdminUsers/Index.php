@@ -19,8 +19,6 @@ class AdminUsersIndex extends AdminIndex {
 	}
 
 	protected function getTableStore() {
-		$view = $this->ui->getWidget('index_view');
-
 		$sql = 'select adminusers.userid, adminusers.username, adminusers.name,
 					adminusers.enabled, view_adminuser_lastlogin.lastlogin
 				from adminusers 
