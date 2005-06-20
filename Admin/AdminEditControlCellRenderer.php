@@ -18,7 +18,7 @@ class AdminEditControlCellRenderer extends SwatControlCellRenderer {
 		$this->height = 22;
 		$this->title = Admin::_('Edit Item');
 		$this->alt = Admin::_('Edit');
-		$this->src = 'admin/images/b_edit.png';
+		$this->image = 'admin/images/b_edit.png';
 	
 		parent::render($prefix);
 	}

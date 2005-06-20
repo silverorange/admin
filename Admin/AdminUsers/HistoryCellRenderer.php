@@ -14,7 +14,6 @@ class AdminUsersHistoryCellRenderer extends SwatCellRenderer {
 	public $date;
 	public $user;
 	public $title;
-	public $href;
 
 	public function render($prefix) {
 		if ($this->date !== null) {

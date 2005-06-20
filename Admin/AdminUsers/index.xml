@@ -47,7 +47,6 @@
 					</object>
 					<object class="AdminUsersHistoryCellRenderer">
 						<property name="title" value="history" translatable="yes" />
-						<property name="link" value="AdminUsers/Details?id=%s" />
 						<property name="user" value="userid" type="data" />
 						<property name="date" value="lastlogin" type="data" />
 					</object>
