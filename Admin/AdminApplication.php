@@ -152,10 +152,13 @@ class AdminApplication extends SwatApplication {
 					'Login'   => Admin::_('Login'),
 					'Front'   => Admin::_('Index'));
 
-				$request = new AdminPageRequest();
-				$request->title = $admin_titles[$subcomponent];
-				$request->component = $component;
-				$request->subcomponent = $subcomponent;
+				if (isset($admin_titles[$subcomponent])) {
+					$request = new AdminPageRequest();
+					$request->title = $admin_titles[$subcomponent];
+					$request->component = $component;
+					$request->subcomponent = $subcomponent;
+				} else
+					return null;
 				
 			} else {
 			
