@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Admin/Admin/Order.php';
+require_once 'Admin/Admin/DBOrder.php';
 require_once 'Admin/AdminUI.php';
 require_once 'SwatDB/SwatDB.php';
 
@@ -9,7 +9,7 @@ require_once 'SwatDB/SwatDB.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminSectionsOrder extends AdminOrder {
+class AdminSectionsOrder extends AdminDBOrder {
 
 	private $parent;
 

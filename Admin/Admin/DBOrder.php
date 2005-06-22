@@ -1,6 +1,6 @@
 <?php
 
-require_once('Admin/Admin/Order.php');
+require_once 'Admin/Admin/Order.php';
 
 /**
  * DB admin ordering page
