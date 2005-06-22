@@ -17,7 +17,7 @@ class AdminProfile extends AdminDBEdit {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/profile.xml');
 
-		$this->navbar->pop();
+		$this->navbar->popElements();
 
 		$confirm = $this->ui->getWidget('confirmpassword');
 		$confirm->password_widget = $this->ui->getWidget('password');;
