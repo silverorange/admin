@@ -94,9 +94,6 @@ abstract class AdminPage extends SwatPage {
 	 * should call this from their implementation of {@link AdminPage::display()}.
 	 */
 	public function displayHeader() {
-		/**
-		 * TODO: make these links work
-		 */
 		echo '<h1>', $this->app->title, '</h1>';
 		echo '<div id="admin-syslinks">';
 		echo 'Welcome <a href="Admin/Profile">'.$_SESSION['name'].'</a> &nbsp;|&nbsp;';

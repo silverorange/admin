@@ -15,7 +15,7 @@ class AdminTreeControlCellRenderer extends SwatControlCellRenderer {
 	
 	public $childcount = 0;
 	
-	public function render($prefix) {
+	public function render($prefix = null) {
 		$this->width  = 28;
 		$this->height = 22;
 
