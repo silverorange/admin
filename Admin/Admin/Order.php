@@ -1,8 +1,8 @@
 <?php
 
 require_once 'Admin/Admin.php';
-require_once('Admin/AdminUI.php');
-require_once('Admin/AdminPage.php');
+require_once 'Admin/AdminUI.php';
+require_once 'Admin/AdminPage.php';
 
 /**
  * Generic admin ordering page
