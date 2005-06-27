@@ -6,8 +6,10 @@
 			<widget class="SwatTableView" id="index_view">
 				<object class="AdminTableViewOrderableColumn" id="username">
 					<property name="title" value="Username" translatable="yes" />
-					<object class="SwatTextCellRenderer">
-						<property name="value" value="username" type="data" />
+					<object class="SwatLinkCellRenderer">
+						<property name="link" value="AdminUsers/Details?id=%s" />
+						<property name="value" value="usernum" type="data" />
+						<property name="title" value="username" type="data" />
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="logindate">

@@ -1,8 +1,9 @@
 <?php
 
-require_once('Admin/AdminUI.php');
-require_once('Admin/Admin/Index.php');
-require_once('Admin/AdminTableStore.php');
+require_once 'Admin/AdminUI.php';
+require_once 'Admin/Admin/Index.php';
+require_once 'Admin/AdminTableStore.php';
+require_once 'Admin/AdminUsers/HistoryCellRenderer.php';
 
 /**
  * Login history page for AdminUsers component
