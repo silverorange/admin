@@ -35,7 +35,7 @@ class AdminSectionsDelete extends AdminDBDelete {
 		$sql = sprintf($sql, $item_list);
 		SwatDB::query($this->app->db, $sql);
 
-		$msg = new SwatMessage(sprintf(_nS("%d admin section has been deleted.", 
+		$msg = new SwatMessage(sprintf(Admin::ngettext("%d admin section has been deleted.", 
 			"%d admin sections have been deleted.", $this->getItemCount()), $this->getItemCount()),
 			SwatMessage::INFO);
 
