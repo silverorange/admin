@@ -47,7 +47,7 @@ class AdminSectionsIndex extends AdminIndex {
 					'boolean:show', true, 'sectionid', 
 					$view->checked_items);
 
-				$msg = new SwatMessage(sprintf(_nS("%d section has been shown.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext("%d section has been shown.", 
 					"%d sections have been shown.", $num), $num));
 
 				break;
@@ -57,7 +57,7 @@ class AdminSectionsIndex extends AdminIndex {
 					'boolean:show', false, 'sectionid', 
 					$view->checked_items);
 
-				$msg = new SwatMessage(sprintf(_nS("%d section has been hidden.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext("%d section has been hidden.", 
 					"%d sections have been hidden.", $num), $num));
 
 				break;

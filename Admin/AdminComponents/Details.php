@@ -75,7 +75,7 @@ class AdminComponentsDetails extends AdminIndex {
 					'boolean:show', true, 'subcomponentid', 
 					$view->checked_items);
 				
-				$msg = new SwatMessage(sprintf(_nS("%d sub-component has been shown.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext("%d sub-component has been shown.", 
 					"%d sub-components have been shown.", $num), $num));
 				
 				break;
@@ -85,7 +85,7 @@ class AdminComponentsDetails extends AdminIndex {
 					'boolean:show', false, 'subcomponentid', 
 					$view->checked_items);
 				
-				$msg = new SwatMessage(sprintf(_nS("%d sub-component has been hidden.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext("%d sub-component has been hidden.", 
 					"%d sub-components have been hidden.", $num), $num));
 				
 				break;

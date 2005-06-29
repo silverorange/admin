@@ -59,7 +59,7 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:show', true, 'componentid', 
 					$view->checked_items);
 
-				$msg = new SwatMessage(sprintf(_nS("%d component has been shown.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been shown.", 
 					"%d components have been shown.", $num), $num));
 
 				break;
@@ -69,7 +69,7 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:show', false, 'componentid', 
 					$view->checked_items);
 
-				$msg = new SwatMessage(sprintf(_nS("%d component has been hidden.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been hidden.", 
 					"%d components have been hidden.", $num), $num));
 
 				break;
@@ -79,7 +79,7 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:enabled', true, 'componentid', 
 					$view->checked_items);
 
-				$msg = new SwatMessage(sprintf(_nS("%d component has been enabled.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been enabled.", 
 					"%d components have been enabled.", $num), $num));
 
 				break;
@@ -89,7 +89,7 @@ class AdminComponentsIndex extends AdminIndex {
 					'boolean:enabled', false, 'componentid', 
 					$view->checked_items);
 
-				$msg = new SwatMessage(sprintf(_nS("%d component has been disabled.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been disabled.", 
 					"%d components have been disabled.", $num), $num));
 
 				break;
@@ -104,7 +104,7 @@ class AdminComponentsIndex extends AdminIndex {
 				$title = SwatDB::queryOne($this->app->db, 'adminsections', 'text:title',
 					'sectionid', $new_section);
 
-				$msg = new SwatMessage(sprintf(_nS("%d component has been moved to section \"%s\".", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been moved to section \"%s\".", 
 					"%d components have been moved to section \"%s\".", $num), $num, $title));
 
 				break;

@@ -51,7 +51,7 @@ class AdminUsersIndex extends AdminIndex {
 					'boolean:enabled', true, 'userid', 
 					$view->checked_items);
 
-				$msg = new SwatMessage(sprintf(_nS("%d user has been enabled.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext("%d user has been enabled.", 
 					"%d users have been enabled.", $num), $num));
 
 				break;
@@ -61,7 +61,7 @@ class AdminUsersIndex extends AdminIndex {
 					'boolean:enabled', false, 'userid', 
 					$view->checked_items);
 
-				$msg = new SwatMessage(sprintf(_nS("%d user has been disabled.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext("%d user has been disabled.", 
 					"%d users have been disabled.", $num), $num));
 
 				break;
