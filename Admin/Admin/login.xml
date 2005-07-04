@@ -7,12 +7,14 @@
 				<property name="title" value="Username" translatable="yes" />
 				<widget class="SwatEntry" id="username">
 					<property name="required" value="true" type="boolean" />
+					<property name="size" value="25" type="integer" />
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
 				<property name="title" value="Password" translatable="yes" />
 				<widget class="SwatPasswordEntry" id="password">
 					<property name="required" value="true" type="boolean" />
+					<property name="size" value="25" type="integer" />
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
