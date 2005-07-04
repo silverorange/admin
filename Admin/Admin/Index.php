@@ -49,7 +49,7 @@ abstract class AdminIndex extends AdminPage {
 			else
 				$orderby = $this->app->db->escape($view->orderby_column->id);
 
-			$orderby .= ' '.$view->orderby_column->getDirectionString();
+			$orderby .= ' '.$view->orderby_column->getDirectionAsString();
 		}
 
 		return $orderby;
