@@ -34,9 +34,9 @@ class AdminSubComponentsEdit extends AdminDBEdit {
 		$parent_title = SwatDB::queryOne($this->app->db, 'admincomponents', 'text:title',
 			'componentid', $this->parent);
 
-		$this->navbar->pop();
-		$this->navbar->add('Admin Components', 'AdminComponents');
-		$this->navbar->add($parent_title, 'AdminComponents/Details?id='.$this->parent);
+		$this->navbar->popElements();
+		$this->navbar->addElement('Admin Components', 'AdminComponents');
+		$this->navbar->addElement($parent_title, 'AdminComponents/Details?id='.$this->parent);
 	}
 	
 	protected function processPage($id) {
