@@ -103,6 +103,10 @@ a:active { color: #000; }
 
 /* Content Styles */
 
+#admin-navbar {
+	font-size: 85%;
+}
+
 #admin-content {
 	padding: 2em;
 }
