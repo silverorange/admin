@@ -17,8 +17,8 @@ class AdminComponentsIndex extends AdminIndex {
 		$this->ui->loadFromXML('Admin/AdminComponents/index.xml');
 
 		$section_flydown = $this->ui->getWidget('section');
-		$section_flydown->options = SwatDB::getOptionArray($this->app->db, 
-			'adminsections', 'title', 'sectionid', 'displayorder');
+		$section_flydown->addOptionsByArray(SwatDB::getOptionArray($this->app->db, 
+			'adminsections', 'title', 'sectionid', 'displayorder'));
 	}
 
 	protected function getTableStore() {
