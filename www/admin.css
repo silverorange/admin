@@ -11,6 +11,8 @@ a:visited { color: #3F5ACE; }
 a:hover { color: #333; }
 a:active { color: #000; }
 
+img { border: 0; }
+
 /* Basic Layout */
 
 #admin-menu {
