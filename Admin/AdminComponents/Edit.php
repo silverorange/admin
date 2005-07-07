@@ -18,8 +18,8 @@ class AdminComponentsEdit extends AdminDBEdit {
 		$this->ui->loadFromXML('Admin/AdminComponents/edit.xml');
 
 		$section_flydown = $this->ui->getWidget('section');
-		$section_flydown->options = SwatDB::getOptionArray($this->app->db, 
-			'adminsections', 'title', 'sectionid', 'displayorder');
+		$section_flydown->addOptionsByArray(SwatDB::getOptionArray($this->app->db, 
+			'adminsections', 'title', 'sectionid', 'displayorder'));
 
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->options = SwatDB::getOptionArray($this->app->db, 

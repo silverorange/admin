@@ -29,7 +29,7 @@ class AdminSearchOperatorFlydown extends SwatFlydown {
 		$this->show_blank = false;
 
 		foreach ($this->operators as $op)
-			$this->options[$op] = AdminSearchOperatorFlydown::getOperatorTitle($op);
+			$this->addOption($op, AdminSearchOperatorFlydown::getOperatorTitle($op));
 
 		parent::display();
 	}
