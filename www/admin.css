@@ -107,10 +107,11 @@ img { border: 0; }
 
 #admin-navbar {
 	font-size: 85%;
+	color: #666;
 }
 
 #admin-content {
-	padding: 2em;
+	padding: 1.5em 2em;
 }
 
 /* Login Page Styles */
