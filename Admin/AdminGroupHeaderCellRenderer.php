@@ -36,7 +36,7 @@ class AdminGroupHeaderCellRenderer extends SwatCellRenderer {
 	 */
 	public $order_value = null;
 
-	public function render($prefix = null) {
+	public function render() {
 	
 		echo $this->title;
 

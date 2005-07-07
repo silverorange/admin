@@ -13,14 +13,14 @@ require_once 'Admin/Admin.php';
  */
 class AdminDetailsControlCellRenderer extends SwatControlCellRenderer {
 	
-	public function render($prefix = null) {
+	public function render() {
 		$this->width  = 28;
 		$this->height = 22;
 		$this->title = Admin::_('View Details');
 		$this->alt = Admin::_('Details');
 		$this->image = 'admin/images/b_details.png';
 	
-		parent::render($prefix);
+		parent::render();
 	}
 }
 

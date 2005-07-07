@@ -15,7 +15,7 @@ class AdminTreeControlCellRenderer extends SwatControlCellRenderer {
 	
 	public $childcount = 0;
 	
-	public function render($prefix = null) {
+	public function render() {
 		$this->width  = 28;
 		$this->height = 22;
 
@@ -31,7 +31,7 @@ class AdminTreeControlCellRenderer extends SwatControlCellRenderer {
 			$this->image = 'admin/images/b_details_folder.png';
 		}
 	
-		parent::render($prefix);
+		parent::render();
 	}
 }
 
