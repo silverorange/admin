@@ -15,7 +15,7 @@ class AdminUsersHistoryCellRenderer extends SwatCellRenderer {
 	public $user;
 	public $title;
 
-	public function render($prefix = null) {
+	public function render() {
 		if ($this->date !== null) {
 			echo ' (';
 			$anchor = new SwatHtmlTag('a');
