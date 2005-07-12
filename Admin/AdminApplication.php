@@ -368,6 +368,17 @@ class AdminApplication extends SwatApplication {
 
 		return false;
 	}
+
+	/**
+	 * Retrieve the current user ID
+	 * @return integer current user ID, or null if not logged in.
+	 */
+	public function getUserID() {
+		if (!$this->isLoggedIn())
+			return null;
+
+		return $_SESSION['userID'];
+	}
 }
 
 ?>
