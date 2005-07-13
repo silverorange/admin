@@ -11,6 +11,8 @@ require_once 'Admin/AdminDependency.php';
  */
 class AdminSubComponentsDelete extends AdminDBDelete {
 
+	public $parent;
+
 	public function displayInit() {
 		$item_list = $this->getItemList('integer');
 		
@@ -29,6 +31,14 @@ class AdminSubComponentsDelete extends AdminDBDelete {
 			$this->displayCancelButton();
 
 		parent::displayInit();
+
+		//rebuild the navbar
+		$component_title = SwatDB::queryOne($this->app->db, 'admincomponents', 'text:title',
+			'componentid', $this->parent);
+
+		$this->navbar->popElements();
+		$this->navbar->addElement(Swat::_("Admin Components"), 'AdminComponents');
+		$this->navbar->addElement($component_title, 'AdminComponents/Details?id='.$this->parent);
 	}
 
 	protected function processDBData() {
