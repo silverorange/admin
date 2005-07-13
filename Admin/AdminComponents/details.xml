@@ -15,14 +15,9 @@
 			<widget class="SwatForm" id="index_form">
 				<widget class="SwatTableView" id="index_view">
 					<object class="SwatTableViewColumn" id="controls">
-						<object class="SwatControlCellRenderer">
-							<property name="title" value="Edit" translatable="yes" />
-							<property name="alt" value="Edit" />
+						<object class="AdminEditControlCellRenderer">
 							<property name="link" value="AdminSubComponents/Edit?id=%s" />
 							<property name="value" value="subcomponentid" type="data" />
-							<property name="image" value="admin/images/b_edit.png" />
-							<property name="height" value="22" type="integer" />
-							<property name="width" value="28" type="integer" />
 						</object>
 					</object>
 					<object class="SwatTableViewCheckboxColumn" id="checkbox">
