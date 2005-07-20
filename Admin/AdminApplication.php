@@ -98,13 +98,16 @@ class AdminApplication extends SwatApplication {
 				else {
 					$page = new $classname();
 					$page->title = $request->title;
-					$page->source = $request->source;
-					$page->component = $request->component;
-					$page->subcomponent = $request->subcomponent;
 					$page->app = $this;
-					$page->navbar->addElement(Admin::_('Home'), '');
-					$page->navbar->addElement($request->title,
-						($request->subcomponent == 'Index') ? null : $request->component);
+
+					if ($page instanceof AdminPage) {
+						$page->source = $request->source;
+						$page->component = $request->component;
+						$page->subcomponent = $request->subcomponent;
+						$page->navbar->addElement(Admin::_('Home'), '');
+						$page->navbar->addElement($request->title,
+							($request->subcomponent == 'Index') ? null : $request->component);
+					}
 				}	
 			}
 		}
