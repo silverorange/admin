@@ -22,6 +22,7 @@ class AdminUsersLoginHistory extends AdminIndex {
 		
 		$pager = $this->ui->getWidget('pager');
 		$pager->total_records =	$this->app->db->queryOne('select count(historyid) from adminuserhistory');
+		$pager->link = 'AdminUsers/LoginHistory';
 		$pager->process();
 	}
 
