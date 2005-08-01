@@ -1,7 +1,7 @@
 <?xml version='1.0' standalone='yes'?>
 <swat-interface>
 	<widget class="SwatMessageBox" id="message_box" />
-	<widget class="SwatFrame">
+	<widget class="SwatFrame" id="index_frame">
 		<property name="title" value="Admin Users" translatable="yes" />
 		<widget class="SwatToolLink">
 			<property name="title" value="Create a New User" translatable="yes" />
@@ -22,10 +22,8 @@
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="username">
 					<property name="title" value="Username" translatable="yes" />
-					<object class="SwatLinkCellRenderer">
-						<property name="title" value="username" type="data" translatable="yes" />
-						<property name="link" value="AdminUsers/Edit?id=%s" />
-						<property name="value" value="userid" type="data" />
+					<object class="SwatTextCellRenderer">
+						<property name="value" value="username" type="data" />
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="name">
