@@ -9,11 +9,12 @@ require_once 'SwatDB/SwatDB.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminUsersEdit extends AdminDBEdit {
-
+class AdminUsersEdit extends AdminDBEdit
+{
 	private $fields;
 
-	public function init() {
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminUsers/edit.xml');
 
@@ -37,7 +38,8 @@ class AdminUsersEdit extends AdminDBEdit {
 		}
 	}
 
-	protected function processPage($id) {
+	protected function processPage($id)
+	{
 		$username = $this->ui->getWidget('username');
 
 		$query = SwatDB::query($this->app->db, sprintf('select username from
@@ -52,7 +54,8 @@ class AdminUsersEdit extends AdminDBEdit {
 		}
 	}
 
-	protected function saveDBData($id) {		
+	protected function saveDBData($id)
+	{
 		$values = $this->ui->getValues(array('username', 'name', 'enabled'));
 
 		$password = $this->ui->getWidget('password');
@@ -77,8 +80,8 @@ class AdminUsersEdit extends AdminDBEdit {
 		$this->app->addMessage($msg);
 	}
 
-	protected function loadDBData($id) {
-
+	protected function loadDBData($id)
+	{
 		$row = SwatDB::queryRow($this->app->db, 'adminusers', 
 			$this->fields, 'integer:userid', $id);
 

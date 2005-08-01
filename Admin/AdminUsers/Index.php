@@ -11,14 +11,16 @@ require_once 'Admin/AdminUsers/HistoryCellRenderer.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminUsersIndex extends AdminIndex {
-
-	public function init() {
+class AdminUsersIndex extends AdminIndex
+{
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminUsers/index.xml');
 	}
 
-	protected function getTableStore() {
+	protected function getTableStore()
+	{
 		$sql = 'select adminusers.userid, adminusers.username, adminusers.name,
 					adminusers.enabled, view_adminuser_lastlogin.lastlogin
 				from adminusers 
@@ -33,7 +35,8 @@ class AdminUsersIndex extends AdminIndex {
 		return $store;
 	}
 
-	public function processActions() {
+	public function processActions()
+	{
 		$view = $this->ui->getWidget('index_view');
 		$actions = $this->ui->getWidget('index_actions');
 

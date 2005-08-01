@@ -10,14 +10,16 @@ require_once 'SwatDB/SwatDB.php';
  * @package Admin
  * @copyright silverorange 2005
  */
-class AdminUsersDetails extends AdminIndex {
-
-	public function init() {
+class AdminUsersDetails extends AdminIndex
+{
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminUsers/details.xml');
 	}
 
-	public function displayInit() {
+	public function displayInit()
+	{
 		$id = $this->app->initVar('id');
 
 		$row = SwatDB::queryRow($this->app->db, 'adminusers',
@@ -30,7 +32,8 @@ class AdminUsersDetails extends AdminIndex {
 	}
 	
 	
-	protected function getTableStore() {
+	protected function getTableStore()
+	{
 		$id = $this->app->initVar('id');
 	
 		$sql = 'select logindate, loginagent, remoteip
