@@ -1,6 +1,6 @@
 <?php
 
-require_once("Admin/AdminPage.php");
+require_once 'Admin/AdminPage.php';
 
 /**
  * Generic admin edit page
@@ -11,9 +11,10 @@ require_once("Admin/AdminPage.php");
  * @package Admin
  * @copyright silverorange 2004
  */
-abstract class AdminEdit extends AdminPage {
-
-	public function displayInit() {
+abstract class AdminEdit extends AdminPage
+{
+	public function displayInit()
+	{
 		$id = SwatApplication::initVar('id');
 		$form = $this->ui->getWidget('edit_form');
 
@@ -29,7 +30,8 @@ abstract class AdminEdit extends AdminPage {
 		$form->addHiddenField('id', $id);
 	}
 
-	protected function displayInitButton($id) {
+	protected function displayInitButton($id)
+	{
 		$button = $this->ui->getWidget('submit_button');
 
 		if ($id === null)
@@ -38,7 +40,8 @@ abstract class AdminEdit extends AdminPage {
 			$button->setTitleFromStock('apply');
 	}
 
-	protected function displayInitFrame($id) {
+	protected function displayInitFrame($id)
+	{
 		$frame = $this->ui->getWidget('edit_frame');
 
 		if ($id === null)
@@ -47,7 +50,8 @@ abstract class AdminEdit extends AdminPage {
 			$frame->title = sprintf(Admin::_('Edit %s'), $frame->title);
 	}
 
-	public function process() {
+	public function process()
+	{
 		$form = $this->ui->getWidget('edit_form');
 		$id = SwatApplication::initVar('id');
 
@@ -65,14 +69,16 @@ abstract class AdminEdit extends AdminPage {
 	/**
 	 * Additional page-level processing
 	 */
-	protected function processPage($id) {
+	protected function processPage($id)
+	{
 
 	}
 
 	/**
 	 * Relocate after process
 	 */
-	protected function relocate() {
+	protected function relocate()
+	{
 		$this->app->relocate($this->app->getHistory());
 	}
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once("Admin/Admin/Index.php");
+require_once 'Admin/Admin/Index.php';
 
 /**
  * Generic admin search page
@@ -11,9 +11,10 @@ require_once("Admin/Admin/Index.php");
  * @package Admin
  * @copyright silverorange 2004
  */
-abstract class AdminSearch extends AdminIndex {
-
-	public function process() {
+abstract class AdminSearch extends AdminIndex
+{
+	public function process()
+	{
 		$form = $this->ui->getWidget('search_form', true);
 
 		if ($form !== null) {
@@ -25,7 +26,8 @@ abstract class AdminSearch extends AdminIndex {
 		parent::process();
 	}
 
-	public function displayInit() {
+	public function displayInit()
+	{
 		$form = $this->ui->getWidget('search_form', true);
 
 		if ($form !== null) {
@@ -39,13 +41,15 @@ abstract class AdminSearch extends AdminIndex {
 		parent::displayInit();
 	}
 
-	protected function saveState() {
+	protected function saveState()
+	{
 		$search_form = $this->ui->getWidget('search_form');
 		$search_state = $search_form->getDescendantStates();
 		$_SESSION[$this->source.'_search_state'] = $search_state;
 	}
 
-	protected function loadState() {
+	protected function loadState()
+	{
 		$ret = false;
 		$search_form = $this->ui->getWidget('search_form');
 		$key = $this->source.'_search_state';

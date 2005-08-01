@@ -1,7 +1,7 @@
 <?php
 
-require_once('Admin/Admin/Edit.php');
-require_once('Swat/SwatMessage.php');
+require_once 'Admin/Admin/Edit.php';
+require_once 'Swat/SwatMessage.php';
 
 /**
  * Generic admin database edit page
@@ -12,9 +12,10 @@ require_once('Swat/SwatMessage.php');
  * @package Admin
  * @copyright silverorange 2005
  */
-abstract class AdminDBEdit extends AdminEdit {
-
-	protected function saveData($id) {
+abstract class AdminDBEdit extends AdminEdit
+{
+	protected function saveData($id)
+	{
 		try {
 			$this->app->db->beginTransaction();
 			$this->saveDBData($id);
@@ -39,7 +40,8 @@ abstract class AdminDBEdit extends AdminEdit {
 		return true;
 	}
 
-	protected function loadData($id) {
+	protected function loadData($id)
+	{
 		$this->loadDBData($id);
 		return true;
 	}

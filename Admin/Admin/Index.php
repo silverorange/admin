@@ -1,6 +1,6 @@
 <?php
 
-require_once("Admin/AdminPage.php");
+require_once 'Admin/AdminPage.php';
 
 /**
  * Generic admin index page
@@ -11,9 +11,10 @@ require_once("Admin/AdminPage.php");
  * @package Admin
  * @copyright silverorange 2004
  */
-abstract class AdminIndex extends AdminPage {
-
-	public function displayInit() {
+abstract class AdminIndex extends AdminPage
+{
+	public function displayInit()
+	{
 		$view = $this->ui->getWidget('index_view');
 		$view->model = $this->getTableStore();
 

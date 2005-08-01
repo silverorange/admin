@@ -1,7 +1,7 @@
 <?php
 
-require_once('Admin/AdminPage.php');
-require_once('Admin/AdminUI.php');
+require_once 'Admin/AdminPage.php';
+require_once 'Admin/AdminUI.php';
 
 /**
  * Generic admin confirmation page
@@ -12,9 +12,10 @@ require_once('Admin/AdminUI.php');
  * @package Admin
  * @copyright silverorange 2004
  */
-abstract class AdminConfirmation extends AdminPage {
-
-	public function init() {
+abstract class AdminConfirmation extends AdminPage
+{
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/confirmation.xml');
 	}
@@ -25,7 +26,8 @@ abstract class AdminConfirmation extends AdminPage {
 	 * Sub-classes should override this method to do whatever is necessary 
 	 * to generate the confirmation message and then call parent::displayInit().
 	 */
-	public function displayInit() {
+	public function displayInit()
+	{
 		$form = $this->ui->getWidget('confirmation_form');
 		$form->action = $this->source;
 	}
@@ -35,12 +37,14 @@ abstract class AdminConfirmation extends AdminPage {
 	 *
 	 * Transforms the default Yes/No buttons in confirmation.xml into a cancel button.
 	 */
-	protected function displayCancelButton() {
+	protected function displayCancelButton()
+	{
 		$this->ui->getWidget('yes_button')->visible = false;
 		$this->ui->getWidget('no_button')->title = Admin::_('Cancel');
 	}
 	
-	public function process() {
+	public function process()
+	{
 		$form = $this->ui->getWidget('confirmation_form');
 
 		if (!$form->process())

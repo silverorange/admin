@@ -10,9 +10,10 @@ require_once 'Admin/Admin/Order.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-abstract class AdminDBOrder extends AdminOrder {
-
-	protected function saveData() {
+abstract class AdminDBOrder extends AdminOrder
+{
+	protected function saveData()
+	{
 		try {
 			$this->app->db->beginTransaction();
 			parent::saveData();

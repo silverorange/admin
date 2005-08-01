@@ -13,14 +13,16 @@ require_once 'Admin/AdminPage.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-abstract class AdminOrder extends AdminPage {
-
-	public function init() {
+abstract class AdminOrder extends AdminPage
+{
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/order.xml');
 	}
 
-	public function process() {
+	public function process()
+	{
 		$form = $this->ui->getWidget('order_form');
 		if ($form->process()) {
 			$this->saveData();
@@ -28,7 +30,8 @@ abstract class AdminOrder extends AdminPage {
 		}
 	}
 
-	public function displayInit() {
+	public function displayInit()
+	{
 		$options_list = $this->ui->getWidget('options');
 		$options_list->options = array('auto'=>Admin::_('Automatically'), 'custom'=>Admin::_('Custom'));
 			
@@ -44,7 +47,8 @@ abstract class AdminOrder extends AdminPage {
 		$form->action = $this->source;
 	}
 	
-	protected function saveData() {
+	protected function saveData()
+	{
 		$count = 0;
 		$order_widget = $this->ui->getWidget('order');
 		$options_list = $this->ui->getWidget('options');

@@ -1,19 +1,20 @@
 <?php
 
-require_once('Admin/Admin/DBEdit.php');
-require_once('Admin/AdminUI.php');
-require_once('SwatDB/SwatDB.php');
+require_once 'Admin/Admin/DBEdit.php';
+require_once 'Admin/AdminUI.php';
+require_once 'SwatDB/SwatDB.php';
 
 /**
- * Edit page for AdminComponents
+ * Edit page for Admin user profile
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminProfile extends AdminDBEdit {
-
+class AdminProfile extends AdminDBEdit
+{
 	private $fields;
 
-	public function init() {
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/profile.xml');
 
@@ -23,7 +24,8 @@ class AdminProfile extends AdminDBEdit {
 		$confirm->password_widget = $this->ui->getWidget('password');;
 	}
 	
-	public function displayInit() {
+	public function displayInit()
+	{
 		$form = $this->ui->getWidget('edit_form');
 		$form->action = $this->source;
 
@@ -34,11 +36,13 @@ class AdminProfile extends AdminDBEdit {
 	}
 
 
-	protected function relocate() {
+	protected function relocate()
+	{
 		$this->app->relocate('');
 	}
 
-	protected function saveDBData($id) {
+	protected function saveDBData($id)
+	{
 		$name = $this->ui->getWidget('name');
 		$values = array('name' => $name->value);
 		
@@ -56,7 +60,8 @@ class AdminProfile extends AdminDBEdit {
 		$this->app->addMessage($msg);
 	}
 
-	protected function loadDBData($id) {
+	protected function loadDBData($id)
+	{
 		$row = SwatDB::queryRow($this->app->db, 'adminusers', 
 			array('name'), 'integer:userid', $_SESSION['userID']);
 
