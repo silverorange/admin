@@ -9,9 +9,10 @@ require_once 'Admin/AdminDependency.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminComponentsDelete extends AdminDBDelete {
-
-	public function displayInit() {
+class AdminComponentsDelete extends AdminDBDelete
+{
+	public function displayInit()
+	{
 		$item_list = $this->getItemList('integer');
 		
 		$dep = new AdminDependency();
@@ -40,7 +41,8 @@ class AdminComponentsDelete extends AdminDBDelete {
 		parent::displayInit();
 	}
 
-	protected function processDBData() {
+	protected function processDBData()
+	{
 		parent::processDBData();
 
 		$sql = 'delete from admincomponents where componentid in (%s)';

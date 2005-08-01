@@ -9,16 +9,18 @@ require_once 'MDB2.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminSectionsEdit extends AdminDBEdit {
-
-	public function init() {
+class AdminSectionsEdit extends AdminDBEdit
+{
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminSections/edit.xml');
 		
 		$this->fields = array('title', 'boolean:show', 'description');
 	}
 
-	public function process() {
+	public function process()
+	{
 		$form = $this->ui->getWidget('edit_form');
 		$id = intval(SwatApplication::initVar('id'));
 
@@ -30,8 +32,8 @@ class AdminSectionsEdit extends AdminDBEdit {
 		}
 	}
 
-	protected function saveDBData($id) {
-
+	protected function saveDBData($id)
+	{
 		$values = $this->ui->getValues(array('title', 'show', 'description'));
 
 		if ($id == 0)

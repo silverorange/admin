@@ -5,18 +5,20 @@ require_once 'Admin/Admin/Index.php';
 require_once 'Admin/AdminTableStore.php';
 
 /**
- * Index page for AdminSections
+ * Index page for AdminGroups component
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminGroupsIndex extends AdminIndex {
-
-	public function init() {
+class AdminGroupsIndex extends AdminIndex
+{
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminGroups/index.xml');
 	}
 
-	protected function getTableStore() {
+	protected function getTableStore()
+	{
 		$view = $this->ui->getWidget('index_view');
 
 		$sql = 'select groupid, title 
@@ -28,7 +30,8 @@ class AdminGroupsIndex extends AdminIndex {
 		return $store;
 	}
 
-	public function processActions() {
+	public function processActions()
+	{
 		$view = $this->ui->getWidget('index_view');
 		$actions = $this->ui->getWidget('index_actions');
 

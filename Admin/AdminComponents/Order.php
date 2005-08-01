@@ -9,11 +9,12 @@ require_once 'SwatDB/SwatDB.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminComponentsOrder extends AdminDBOrder {
-
+class AdminComponentsOrder extends AdminDBOrder
+{
 	private $parent;
 
-	public function init() {
+	public function init()
+	{
 		parent::init();
 
 		$this->parent = SwatApplication::initVar('parent');
@@ -21,13 +22,15 @@ class AdminComponentsOrder extends AdminDBOrder {
 		$form->addHiddenField('parent', $this->parent);
 	}
 
-	public function displayInit() {
+	public function displayInit()
+	{
 		$frame = $this->ui->getWidget('order_frame');
 		$frame->title = Admin::_('Order Components');
 		parent::displayInit();
 	}
 
-	public function loadData() {
+	public function loadData()
+	{ 
 		$where_clause = sprintf('section = %s',
 			$this->app->db->quote($this->parent, 'integer'));
 
@@ -41,7 +44,8 @@ class AdminComponentsOrder extends AdminDBOrder {
 		$options_list->value = ($sum == 0) ? 'auto' : 'custom';
 	}
 	
-	public function saveIndex($id, $index) {
+	public function saveIndex($id, $index)
+	{
 		SwatDB::updateColumn($this->app->db, 'admincomponents', 'integer:displayorder',
 			$index, 'integer:componentid', array($id));
 	}

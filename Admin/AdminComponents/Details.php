@@ -10,11 +10,12 @@ require_once 'SwatDB/SwatDB.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminComponentsDetails extends AdminIndex {
-
+class AdminComponentsDetails extends AdminIndex
+{
 	private $id;
 
-	public function init() {
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminComponents/details.xml');
 
@@ -25,7 +26,8 @@ class AdminComponentsDetails extends AdminIndex {
 		$form->addHiddenField('id', $this->id);
 	}
 
-	public function displayInit() {
+	public function displayInit()
+	{
 		$fields = array('title'); 
 		$row = SwatDB::queryRow($this->app->db, 'admincomponents', $fields, 'componentid', $this->id);
 
@@ -40,8 +42,8 @@ class AdminComponentsDetails extends AdminIndex {
 		parent::displayInit();
 	}
 
-	protected function getTableStore() {
-
+	protected function getTableStore()
+	{
 		$sql = 'select adminsubcomponents.subcomponentid, 
 					adminsubcomponents.title, 
 					adminsubcomponents.shortname, 
@@ -58,7 +60,8 @@ class AdminComponentsDetails extends AdminIndex {
 		return $store;
 	}
 
-	protected function processActions() {
+	protected function processActions()
+	{
 		$view = $this->ui->getWidget('index_view');
 		$actions = $this->ui->getWidget('index_actions');
 		$num = count($view->checked_items);
@@ -94,7 +97,6 @@ class AdminComponentsDetails extends AdminIndex {
 		
 		if ($msg !== null)
 			$this->app->addMessage($msg);
-
 	}
 }
 

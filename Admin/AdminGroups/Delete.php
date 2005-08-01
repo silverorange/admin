@@ -5,13 +5,14 @@ require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/AdminDependency.php';
 
 /**
- * Delete confirmation page for AdminComponents
+ * Delete confirmation page for AdminGroups component
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminGroupsDelete extends AdminDBDelete {
-
-	public function displayInit() {
+class AdminGroupsDelete extends AdminDBDelete
+{
+	public function displayInit()
+	{
 		$item_list = $this->getItemList('integer');
 		
 		$dep = new AdminDependency();
@@ -27,7 +28,8 @@ class AdminGroupsDelete extends AdminDBDelete {
 		parent::displayInit();
 	}
 
-	protected function processDBData() {
+	protected function processDBData()
+	{
 		parent::processDBData();
 
 		$sql = 'delete from admingroups where groupid in (%s)';

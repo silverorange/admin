@@ -1,7 +1,7 @@
 <?xml version='1.0' standalone='yes'?>
 <swat-interface>
 	<widget class="SwatMessageBox" id="message_box" />
-	<widget class="SwatFrame">
+	<widget class="SwatFrame" id="index_frame">
 		<property name="title" value="Components" translatable="yes" />
 		<widget class="SwatToolLink">
 			<property name="title" value="Create a New Component" translatable="yes" />

@@ -5,15 +5,16 @@ require_once 'Admin/AdminUI.php';
 require_once 'SwatDB/SwatDB.php';
 
 /**
- * Edit page for AdminComponents
+ * Edit page for AdminGroups component
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminGroupsEdit extends AdminDBEdit {
-
+class AdminGroupsEdit extends AdminDBEdit
+{
 	private $fields;
 
-	public function init() {
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminGroups/edit.xml');
 
@@ -31,7 +32,8 @@ class AdminGroupsEdit extends AdminDBEdit {
 			admincomponents.displayorder,  admincomponents.title');
 	}
 
-	protected function saveDBData($id) {		
+	protected function saveDBData($id)
+	{
 		$values = $this->ui->getValues(array('title'));
 
 		if ($id == 0)
@@ -55,8 +57,8 @@ class AdminGroupsEdit extends AdminDBEdit {
 		$this->app->addMessage($msg);
 	}
 
-	protected function loadDBData($id) {
-
+	protected function loadDBData($id)
+	{
 		$row = SwatDB::queryRow($this->app->db, 'admingroups', 
 			$this->fields, 'integer:groupid', $id);
 
