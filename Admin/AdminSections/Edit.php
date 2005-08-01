@@ -52,6 +52,9 @@ class AdminSectionsEdit extends AdminDBEdit
 		$row = SwatDB::queryRow($this->app->db, 'adminsections', 
 			$this->fields, 'integer:sectionid', $id);
 
+		if ($row === null)
+			return $this->app->replacePage('Admin/NotFound');
+
 		$this->ui->setValues(get_object_vars($row));
 	}
 }
