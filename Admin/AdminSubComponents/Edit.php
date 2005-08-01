@@ -79,6 +79,9 @@ class AdminSubComponentsEdit extends AdminDBEdit {
 		$row = SwatDB::queryRow($this->app->db, 'adminsubcomponents', 
 			$this->fields, 'integer:subcomponentid', $id);
 
+		if ($row === null)
+			return $this->app->replacePage('Admin/NotFound');
+
 		$this->ui->setValues(get_object_vars($row));
 
 		$this->parent = intval($row->component);

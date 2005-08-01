@@ -62,6 +62,9 @@ class AdminGroupsEdit extends AdminDBEdit
 		$row = SwatDB::queryRow($this->app->db, 'admingroups', 
 			$this->fields, 'integer:groupid', $id);
 
+		if ($row === null)
+			return $this->app->replacePage('Admin/NotFound');
+
 		$this->ui->setValues(get_object_vars($row));
 		
 		$user_list = $this->ui->getWidget('users');

@@ -72,6 +72,9 @@ class AdminComponentsEdit extends AdminDBEdit
 		$row = SwatDB::queryRow($this->app->db, 'admincomponents', 
 			$this->fields, 'integer:componentid', $id);
 
+		if ($row === null)
+			return $this->app->replacePage('Admin/NotFound');
+
 		$this->ui->setValues(get_object_vars($row));
 
 		$group_list = $this->ui->getWidget('groups');

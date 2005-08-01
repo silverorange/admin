@@ -60,6 +60,20 @@ class AdminApplication extends SwatApplication {
 	}
 
 	/**
+	 * 
+	 *
+	 * This method can be used to load another page to replace the current 
+	 * page. For example, this is used to load a confirmation page when 
+	 * processing an admin index page.
+	 *
+	 * @return AdminPage A subclass of {@link AdminPage} is returned.
+	 */
+	public function replacePageNoAccess($msg = null) {
+		$this->replacePage('Admin/NoAccess');
+		$this->page->setMessage($msg);
+	}
+
+	/**
 	 * Initialize the application
 	 */
 	public function init() {
@@ -153,6 +167,8 @@ class AdminApplication extends SwatApplication {
 					'Profile' => Admin::_('Edit User Profile'),
 					'Logout'  => Admin::_('Logout'),
 					'Login'   => Admin::_('Login'),
+					'NoAccess'   => Admin::_('No Access'),
+					'NotFound'   => Admin::_('Not Found'),
 					'Front'   => Admin::_('Index'));
 
 				if (isset($admin_titles[$subcomponent])) {
