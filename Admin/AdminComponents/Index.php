@@ -10,9 +10,10 @@ require_once 'SwatDB/SwatDB.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminComponentsIndex extends AdminIndex {
-
-	public function init() {
+class AdminComponentsIndex extends AdminIndex
+{
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminComponents/index.xml');
 
@@ -21,7 +22,8 @@ class AdminComponentsIndex extends AdminIndex {
 			'adminsections', 'title', 'sectionid', 'displayorder'));
 	}
 
-	protected function getTableStore() {
+	protected function getTableStore()
+	{
 		$sql = 'select admincomponents.componentid,
 					admincomponents.title, 
 					admincomponents.shortname, 
@@ -42,7 +44,8 @@ class AdminComponentsIndex extends AdminIndex {
 		return $store;
 	}
 
-	protected function processActions() {
+	protected function processActions()
+	{
 		$view = $this->ui->getWidget('index_view');
 		$actions = $this->ui->getWidget('index_actions');
 		$num = count($view->checked_items);

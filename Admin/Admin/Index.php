@@ -34,7 +34,8 @@ abstract class AdminIndex extends AdminPage {
 	 */
 	abstract protected function getTableStore();
 
-	protected function getOrderByClause($default_orderby, $column_prefix = null, $column_map = array()) {
+	protected function getOrderByClause($default_orderby, $column_prefix = null, $column_map = array())
+	{
 		$view = $this->ui->getWidget('index_view');
 		$orderby = $default_orderby;
 
@@ -55,7 +56,8 @@ abstract class AdminIndex extends AdminPage {
 		return $orderby;
 	}
 
-	public function process() {
+	public function process()
+	{
 		$form = $this->ui->getWidget('index_form');
 		$view = $this->ui->getWidget('index_view');
 		$actions = $this->ui->getWidget('index_actions', true);
@@ -81,7 +83,8 @@ abstract class AdminIndex extends AdminPage {
 	 * response to actions. Sub-classes should implement this method.
 	 * Widgets can be accessed through the $ui class variable.
 	 */
-	protected function processActions() {
+	protected function processActions()
+	{
 
 	}
 }

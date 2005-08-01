@@ -5,13 +5,14 @@ require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/AdminDependency.php';
 
 /**
- * Delete confirmation page for AdminComponents
+ * Delete confirmation page for AdminSections component
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminSectionsDelete extends AdminDBDelete {
-
-	public function displayInit() {
+class AdminSectionsDelete extends AdminDBDelete
+{
+	public function displayInit()
+	{
 		$item_list = $this->getItemList('integer');
 		
 		$dep = new AdminDependency();
@@ -27,7 +28,8 @@ class AdminSectionsDelete extends AdminDBDelete {
 		parent::displayInit();
 	}
 
-	protected function processDBData() {
+	protected function processDBData()
+	{
 		parent::processDBData();
 
 		$sql = 'delete from adminsections where sectionid in (%s)';

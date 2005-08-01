@@ -9,11 +9,12 @@ require_once 'Admin/AdminDependency.php';
  * @package Admin
  * @copyright silverorange 2005
  */
-class AdminSubComponentsDelete extends AdminDBDelete {
-
+class AdminSubComponentsDelete extends AdminDBDelete
+{
 	public $parent;
 
-	public function displayInit() {
+	public function displayInit()
+	{
 		$item_list = $this->getItemList('integer');
 		
 		$dep = new AdminDependency();
@@ -41,7 +42,8 @@ class AdminSubComponentsDelete extends AdminDBDelete {
 		$this->navbar->addElement($component_title, 'AdminComponents/Details?id='.$this->parent);
 	}
 
-	protected function processDBData() {
+	protected function processDBData()
+	{
 		parent::processDBData();
 		
 		$item_list = $this->getItemList('integer');

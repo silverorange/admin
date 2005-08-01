@@ -14,7 +14,8 @@ class AdminSubComponentsEdit extends AdminDBEdit {
 	private $fields;
 	private $parent;
 
-	public function init() {
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminSubComponents/edit.xml');
 
@@ -27,7 +28,8 @@ class AdminSubComponentsEdit extends AdminDBEdit {
 		$form->addHiddenField('parent', $this->parent);
 	}
 
-	public function displayInit() {
+	public function displayInit()
+	{
 		parent::displayInit();
 		
 		//rebuild the navbar
@@ -39,7 +41,8 @@ class AdminSubComponentsEdit extends AdminDBEdit {
 		$this->navbar->addElement($parent_title, 'AdminComponents/Details?id='.$this->parent);
 	}
 	
-	protected function processPage($id) {
+	protected function processPage($id)
+	{
 		$shortname = $this->ui->getWidget('shortname');
 
 		$query = SwatDB::query($this->app->db, sprintf('select shortname from
@@ -55,8 +58,8 @@ class AdminSubComponentsEdit extends AdminDBEdit {
 		}
 	}
 
-	protected function saveDBData($id) {
-
+	protected function saveDBData($id)
+	{
 		$values = $this->ui->getValues(array('title', 'shortname', 'show'));
 		$values['component'] = $this->parent;
 
@@ -71,8 +74,8 @@ class AdminSubComponentsEdit extends AdminDBEdit {
 		$this->app->addMessage($msg);
 	}
 
-	protected function loadDBData($id) {
-
+	protected function loadDBData($id)
+	{
 		$row = SwatDB::queryRow($this->app->db, 'adminsubcomponents', 
 			$this->fields, 'integer:subcomponentid', $id);
 

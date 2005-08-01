@@ -1,19 +1,20 @@
 <?php
 
-require_once('Admin/Admin/DBEdit.php');
-require_once('Admin/AdminUI.php');
-require_once('SwatDB/SwatDB.php');
+require_once 'Admin/Admin/DBEdit.php';
+require_once 'Admin/AdminUI.php';
+require_once 'SwatDB/SwatDB.php';
 
 /**
  * Edit page for AdminComponents
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminComponentsEdit extends AdminDBEdit {
-
+class AdminComponentsEdit extends AdminDBEdit
+{
 	private $fields;
 
-	public function init() {
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminComponents/edit.xml');
 
@@ -29,7 +30,8 @@ class AdminComponentsEdit extends AdminDBEdit {
 			'boolean:show', 'boolean:enabled', 'description');
 	}
 
-	protected function processPage($id) {
+	protected function processPage($id)
+	{
 		$shortname = $this->ui->getWidget('shortname');
 
 		$query = SwatDB::query($this->app->db, sprintf('select shortname from
@@ -44,8 +46,8 @@ class AdminComponentsEdit extends AdminDBEdit {
 		}
 	}
 
-	protected function saveDBData($id) {
-
+	protected function saveDBData($id)
+	{
 		$values = $this->ui->getValues(array('title', 'shortname', 'section', 
 			'show', 'enabled', 'description'));
 
@@ -65,8 +67,8 @@ class AdminComponentsEdit extends AdminDBEdit {
 		$this->app->addMessage($msg);
 	}
 
-	protected function loadDBData($id) {
-
+	protected function loadDBData($id)
+	{
 		$row = SwatDB::queryRow($this->app->db, 'admincomponents', 
 			$this->fields, 'integer:componentid', $id);
 

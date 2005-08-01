@@ -10,14 +10,16 @@ require_once 'Admin/AdminTableStore.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminSectionsIndex extends AdminIndex {
-
-	public function init() {
+class AdminSectionsIndex extends AdminIndex
+{
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminSections/index.xml');
 	}
 
-	protected function getTableStore() {
+	protected function getTableStore()
+	{
 		$view = $this->ui->getWidget('index_view');
 
 		$sql = 'select sectionid, title, show 
@@ -29,7 +31,8 @@ class AdminSectionsIndex extends AdminIndex {
 		return $store;
 	}
 
-	public function processActions() {
+	public function processActions()
+	{
 		$view = $this->ui->getWidget('index_view');
 		$actions = $this->ui->getWidget('index_actions');
 
