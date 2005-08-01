@@ -1,8 +1,8 @@
 <?php
 
-require_once('Admin/AdminPage.php');
-require_once('Admin/AdminUI.php');
-require_once('Swat/SwatMessage.php');
+require_once 'Admin/AdminPage.php';
+require_once 'Admin/AdminUI.php';
+require_once 'Swat/SwatMessage.php';
 
 /**
  * Administrator login page
@@ -10,9 +10,10 @@ require_once('Swat/SwatMessage.php');
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminLogin extends AdminPage {
-
-	public function init() {
+class AdminLogin extends AdminPage
+{
+	public function init()
+	{
 		$this->layout = 'login';
 
 		$this->ui = new AdminUI();
@@ -29,12 +30,14 @@ class AdminLogin extends AdminPage {
 		$form->action = $this->app->getUri();
 	}
 
-	public function display() {
+	public function display()
+	{
 		parent::display();
 		$this->displayJavascript();
 	}
 
-	public function process() {
+	public function process()
+	{
 		$form = $this->ui->getWidget('login_form');
 
 		if ($form->process()) {
@@ -54,7 +57,8 @@ class AdminLogin extends AdminPage {
 		}
 	}
 
-	private function displayJavascript() {
+	private function displayJavascript()
+	{
 		if (isset($_COOKIE[$this->app->id.'_username']))
 			$username = $_COOKIE[$this->app->id.'_username'];
 		else

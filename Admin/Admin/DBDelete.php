@@ -1,7 +1,7 @@
 <?php
 
-require_once('Admin/Admin/DBConfirmation.php');
-require_once('SwatDB/SwatDBException.php');
+require_once 'Admin/Admin/DBConfirmation.php';
+require_once 'SwatDB/SwatDBException.php';
 
 /**
  * Generic admin database delete page
@@ -13,8 +13,8 @@ require_once('SwatDB/SwatDBException.php');
  * @package Admin
  * @copyright silverorange 2004
  */
-abstract class AdminDBDelete extends AdminDBConfirmation {
-
+abstract class AdminDBDelete extends AdminDBConfirmation
+{
 	protected $items = null;
 
 	/**
@@ -22,7 +22,8 @@ abstract class AdminDBDelete extends AdminDBConfirmation {
 	 *
 	 * @param array $items Array of items
 	 */
-	public function setItems($items) {
+	public function setItems($items)
+	{
 		$this->items = $items;
 		
 		$form = $this->ui->getWidget('confirmation_form');
@@ -35,7 +36,8 @@ abstract class AdminDBDelete extends AdminDBConfirmation {
 	 * @param string $type MDB2 datatype used to quote the items.
 	 * @return string Comma-seperated and MDB2 quoted list of items.
 	 */
-	protected function getItemList($type) {
+	protected function getItemList($type)
+	{
 		$items = $this->items;
 		
 		foreach ($items as &$id)
@@ -49,16 +51,19 @@ abstract class AdminDBDelete extends AdminDBConfirmation {
 	 *
 	 * @return integer Number of items.
 	 */
-	protected function getItemCount() {
+	protected function getItemCount()
+	{
 		return count($this->items);
 	}
 
-	protected function processDBData() {
+	protected function processDBData()
+	{
 		$form = $this->ui->getWidget('confirmation_form');
 		$this->items = $form->getHiddenField('items');
 	}
 
-	protected function processGenerateMessage(Exception $e) {
+	protected function processGenerateMessage(Exception $e)
+	{
 		if ($e instanceof SwatDBException) {
 			$msg = new SwatMessage(Admin::_('A database error has occured. The item(s) were not deleted.'),
 				 SwatMessage::ERROR);
