@@ -51,8 +51,6 @@ class AdminApplication extends SwatApplication {
 	 * This method can be used to load another page to replace the current 
 	 * page. For example, this is used to load a confirmation page when 
 	 * processing an admin index page.
-	 *
-	 * @return AdminPage A subclass of {@link AdminPage} is returned.
 	 */
 	public function replacePage($source) {
 		$this->page = $this->getPage($source);
@@ -60,13 +58,12 @@ class AdminApplication extends SwatApplication {
 	}
 
 	/**
-	 * 
+	 * Replace Page with No Access Admin Page
 	 *
-	 * This method can be used to load another page to replace the current 
-	 * page. For example, this is used to load a confirmation page when 
-	 * processing an admin index page.
+	 * This method is used to replace the current page with a No Access page
+	 * and an optional message.
 	 *
-	 * @return AdminPage A subclass of {@link AdminPage} is returned.
+	 * @param SwatMessage An optional {@link SwatMessage} to display.
 	 */
 	public function replacePageNoAccess($msg = null) {
 		$this->replacePage('Admin/NoAccess');
