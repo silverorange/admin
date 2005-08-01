@@ -28,6 +28,10 @@ class AdminSectionsIndex extends AdminIndex
 
 		$store = $this->app->db->query($sql, null, true, 'AdminTableStore');
 
+		if ($store->getRowCount() == 0)
+			$this->ui->getWidget('order_tool')->visible = false;
+
+
 		return $store;
 	}
 

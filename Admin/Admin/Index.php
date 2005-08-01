@@ -21,6 +21,11 @@ abstract class AdminIndex extends AdminPage
 		$form = $this->ui->getWidget('index_form');
 		$form->action = $this->source;
 
+		if ($view->model->getRowCount() == 0) {
+			$actions = $this->ui->getWidget('index_actions');
+			$actions->visible = false;
+		}
+
 		$this->displayInitMessages();
 	}
 
