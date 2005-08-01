@@ -7,7 +7,7 @@
 			<property name="title" value="Create a New Section" translatable="yes" />
 			<property name="link" value="AdminSections/Edit" />
 		</widget>
-		<widget class="SwatToolLink">
+		<widget class="SwatToolLink" id="order_tool">
 			<property name="title" value="Change Order" translatable="yes" />
 			<property name="link" value="AdminSections/Order" />
 		</widget>

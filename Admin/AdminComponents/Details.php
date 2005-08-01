@@ -57,6 +57,9 @@ class AdminComponentsDetails extends AdminIndex
 		$types = array('integer', 'text', 'text', 'boolean');
 		$store = $this->app->db->query($sql, $types, true, 'AdminTableStore');
 
+		if ($store->getRowCount() == 0)
+			$this->ui->getWidget('order_tool')->visible = false;
+
 		return $store;
 	}
 

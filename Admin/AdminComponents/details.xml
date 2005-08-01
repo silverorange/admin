@@ -8,7 +8,7 @@
 				<property name="title" value="Create a New Sub-Component" translatable="yes" />
 				<property name="link" value="AdminSubComponents/Edit?parent=%s" />
 			</widget>
-			<widget class="SwatToolLink">
+			<widget class="SwatToolLink" id="order_tool">
 				<property name="title" value="Change Sub-Component Order" translatable="yes" />
 				<property name="link" value="AdminSubComponents/Order?parent=%s" />
 			</widget>
