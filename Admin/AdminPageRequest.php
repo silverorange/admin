@@ -16,8 +16,8 @@ class AdminPageRequest {
 		$classfile = $this->component.'/'.$this->subcomponent.'.php';
 		$file = null;
 
-		if (file_exists('../../include/admin/'.$classfile)) {
-			$file = '../../include/admin/'.$classfile;
+		if (file_exists('../../include/admin/components/'.$classfile)) {
+			$file = '../../include/admin/components/'.$classfile;
 		} else {
 			$paths = explode(':', ini_get('include_path'));
 
