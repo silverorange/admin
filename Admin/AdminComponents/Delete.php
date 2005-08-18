@@ -38,7 +38,7 @@ class AdminComponentsDelete extends AdminDBDelete
 		if ($dep->getStatusLevelCount(AdminDependency::DELETE) == 0)
 			$this->displayCancelButton();
 
-		parent::displayInit();
+		parent::initDisplay();
 	}
 
 	protected function processDBData()
