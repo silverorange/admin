@@ -11,7 +11,7 @@ require_once 'Admin/AdminDependency.php';
  */
 class AdminGroupsDelete extends AdminDBDelete
 {
-	public function displayInit()
+	public function initDisplay()
 	{
 		$item_list = $this->getItemList('integer');
 		
@@ -25,7 +25,7 @@ class AdminGroupsDelete extends AdminDBDelete
 		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = $dep->getMessage();
 		
-		parent::displayInit();
+		parent::initDisplay();
 	}
 
 	protected function processDBData()

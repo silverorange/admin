@@ -12,7 +12,9 @@ require_once 'Admin/AdminMenu.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-abstract class AdminPage extends SwatPage {
+abstract class AdminPage extends SwatPage
+{
+    // {{{ public properties
 
 	/**
 	 * Source of this page
@@ -38,22 +40,21 @@ abstract class AdminPage extends SwatPage {
 	 */
 	public $navbar;
 
+    // }}}
+    // {{{ protected properties
+
 	protected $ui = null;
-	 
-	public function __construct() {
-		parent::__construct();
 
-		$this->navbar = new SwatNavBar();
-	}
+    // }}}
+    // {{{ public function createLayout()
 
-	/**
-	 * Initialize the page
-	 *
-	 * Sub-classes should implement this method to initialize the page. This 
-	 * method should be called before either {@link AdminPage::display()} or 
-	 * {@link AdminPage::process()}.
-	 */
-	abstract protected function init();
+    protected function createLayout()
+    {
+        return new SwatLayout('../../layouts/admin/default.php');
+    }
+
+    // }}}
+    // {{{ public function initDisplay()
 
 	/**
 	 * Initialize the page before display
@@ -62,9 +63,39 @@ abstract class AdminPage extends SwatPage {
 	 * This method should be called before {@link AdminPage::display()} and always be
 	 * followed by a call to {@link AdminPage::display()}.
 	 */
-	public function displayInit() {
-
+	public function initDisplay()
+	{
 	}
+
+    // }}}
+    // {{{ public function build()
+
+	public function build()
+	{
+		$this->initDisplay();
+
+		$this->layout->title = $this->app->title.' | '.$this->title;
+		$this->layout->basehref = $this->app->getBaseHref();
+
+		ob_start();
+		$this->displayHeader();
+		$this->layout->header = ob_get_clean();
+
+		ob_start();
+		$this->navbar->display();	
+		$this->layout->navbar = ob_get_clean();
+
+		ob_start();
+		$this->displayMenu();
+		$this->layout->menu = ob_get_clean();
+
+		ob_start();
+		$this->display();
+		$this->layout->content = ob_get_clean();
+	}
+
+    // }}}
+    // {{{ public function display()
 
 	/**
 	 * Display the page
@@ -72,13 +103,16 @@ abstract class AdminPage extends SwatPage {
 	 * Sub-classes should implement this method to display the contents of 
 	 * the page. Called after {@link AdminPage::init()}
 	 */
-	public function display() {
+	public function display()
+	{
 		if ($this->ui !== null) {
-			$root = $this->ui->getRoot();
-			$root->display();
+			$this->ui->display();
 		}
 	}
 	
+    // }}}
+	// {{{ abstract public function process()
+
 	/**
 	 * Process the page
 	 *
@@ -87,13 +121,17 @@ abstract class AdminPage extends SwatPage {
 	 */
 	abstract public function process();
 
+    // }}}
+    // {{{ public function displayHeader()
+
 	/**
 	 * Display admin page header
 	 *
 	 * Display common elements for the header of an admin page. Sub-classes
 	 * should call this from their implementation of {@link AdminPage::display()}.
 	 */
-	public function displayHeader() {
+	public function displayHeader()
+	{
 		echo '<h1>', $this->app->title, '</h1>';
 		echo '<div id="admin-syslinks">';
 		echo 'Welcome <a href="Admin/Profile">'.$_SESSION['name'].'</a> &nbsp;|&nbsp;';
@@ -102,9 +140,16 @@ abstract class AdminPage extends SwatPage {
 		echo '</div>';
 	}
 
-	public function displayNavBar() {
+    // }}}
+    // {{{ public function displayNavBar()
+
+	public function displayNavBar()
+	{
 		$this->navbar->display();	
 	}
+
+    // }}}
+    // {{{ public function displayMenu()
 
 	/**
 	 * Display admin page menu
@@ -112,7 +157,8 @@ abstract class AdminPage extends SwatPage {
 	 * Display the menu of an admin page. Sub-classes should call this 
 	 * from their implementation of {@link AdminPage::display()}.
 	 */
-	public function displayMenu() {
+	public function displayMenu()
+	{
 		$db = $this->app->db;
 		$sql_userid = $db->quote($_SESSION['userID'], 'integer');
 		
@@ -122,13 +168,19 @@ abstract class AdminPage extends SwatPage {
 		$menu->display();
 	}
 	
-	protected function displayInitMessages() {
+    // }}}
+    // {{{ protected function initMessages()
+
+	protected function initMessages()
+	{
 		$message_box = $this->ui->getWidget('message_box', true);
 		$messages = $this->app->getMessages();
 
 		if ($message_box !== null)
 			$message_box->messages = $messages;
 	}
+
+    // }}}
 }
 
 ?>

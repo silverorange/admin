@@ -11,12 +11,6 @@ class AdminLogout extends AdminPage
 {
 	public function init()
 	{
-		$this->layout = 'login';
-	}
-
-	public function display()
-	{
-
 	}
 
 	public function process()
@@ -24,7 +18,6 @@ class AdminLogout extends AdminPage
 		$this->app->logout();
 		$this->app->relocate($this->app->getBaseHref());
 	}
-
 }
 
 ?>

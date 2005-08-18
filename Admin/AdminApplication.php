@@ -15,7 +15,9 @@ require_once 'Date.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminApplication extends SwatApplication {
+class AdminApplication extends SwatApplication
+{
+    // {{{ public properties
 	
 	/**
 	 * A visble title for this admin
@@ -39,45 +41,56 @@ class AdminApplication extends SwatApplication {
 	 */
 	public $db = null;
 	
-	/**
-	 * The page object
-	 * @var AdminPage Current page object (readonly)
-	 */
-	public $page = null;
-
-	/**
-	 * Replace the page object
-	 *
-	 * This method can be used to load another page to replace the current 
-	 * page. For example, this is used to load a confirmation page when 
-	 * processing an admin index page.
-	 */
-	public function replacePage($source) {
-		$this->page = $this->getPage($source);
-		$this->page->init();
-	}
-
-	/**
-	 * Replace Page with No Access Admin Page
-	 *
-	 * This method is used to replace the current page with a No Access page
-	 * and an optional message.
-	 *
-	 * @param SwatMessage An optional {@link SwatMessage} to display.
-	 */
-	public function replacePageNoAccess($msg = null) {
-		$this->replacePage('Admin/NoAccess');
-		$this->page->setMessage($msg);
-	}
+    // }}}
+    // {{{ public function init()
 
 	/**
 	 * Initialize the application
 	 */
-	public function init() {
+	public function init()
+	{
+        $this->initBaseHref(4);
 		$this->initDatabase();
 		$this->initSession();
-		$this->base_uri_length = 4;
+        $this->initPage();
 	}
+
+    // }}}
+    // {{{ private function initDatabase()
+
+	private function initDatabase()
+	{
+		// TODO: change to array /form of DSN and move parts to a secure include file.
+		$dsn = "pgsql://php:test@zest/".$this->dbname;
+		$this->db = MDB2::connect($dsn);
+		$this->db->options['debug'] = true;
+
+		if (MDB2::isError($this->db))
+			throw new Exception('Unable to connect to database.');
+	}
+
+    // }}}
+    // {{{ private function initSession()
+
+	private function initSession()
+	{
+		session_cache_limiter('');
+		session_save_path('/so/phpsessions/'.$this->id);
+		session_name($this->id);
+		session_start();
+
+		if (!isset($_SESSION['userID'])) {
+			$_SESSION['userID'] = 0;
+			$_SESSION['name'] = '';
+			$_SESSION['username'] = '';
+			$_SESSION['history'] = array();
+		} elseif ($_SESSION['userID'] != 0) {	
+			setcookie($this->id.'_username', $_SESSION['username'], time() + 86400, '/', '', 0);
+		}
+	}
+
+    // }}}
+    // {{{ public function resolvePage()
 
 	/**
 	 * Get the page object
@@ -86,8 +99,17 @@ class AdminApplication extends SwatApplication {
 	 *
 	 * @return AdminPage A subclass of {@link AdminPage} is returned.
 	 */
-	public function getPage($source = null) {
+	public function resolvePage()
+	{
+		$source = self::initVar('source', null, self::VAR_GET);
+		return $this->instantiatePage($source);
+	}
 		
+    // }}}
+    // {{{ private function instantiatePage()
+
+	private function instantiatePage($source)
+	{
 		$request = $this->getRequest($source);
 		
 		if ($request === null)
@@ -102,19 +124,19 @@ class AdminApplication extends SwatApplication {
 				require_once $file;
 
 				$classname = $request->getClassname();
-				if ($classname === null)
+				if ($classname === null) {
 					$err = new SwatMessage(
 						sprintf(Admin::_('Class \'%s\' does not exist in the included file.'),
 							$request->component.$request->subcomponent));
-				else {
-					$page = new $classname();
+				} else {
+					$page = new $classname($this);
 					$page->title = $request->title;
-					$page->app = $this;
 
 					if ($page instanceof AdminPage) {
 						$page->source = $request->source;
 						$page->component = $request->component;
 						$page->subcomponent = $request->subcomponent;
+						$page->navbar = new SwatNavBar();
 						$page->navbar->addElement(Admin::_('Home'), '');
 						$page->navbar->addElement($request->title,
 							($request->subcomponent == 'Index') ? null : $request->component);
@@ -125,13 +147,13 @@ class AdminApplication extends SwatApplication {
 	
 		if (!isset($page)) {
 			require_once 'Admin/NotFound.php';
-			$page = new AdminNotFound();
-			$page->app = $this;
+			$page = new AdminNotFound($this);
 			$page->source = 'Admin/NotFound';
 			$page->title = Admin::_('Page not found');
 			$page->component = 'Admin';
 			$page->subcomponent = 'NotFound';
 			$page->setMessage($err);
+			$page->navbar = new SwatNavBar();
 			$page->navbar->addElement(Admin::_('Home'), '');
 		}
 			
@@ -141,7 +163,11 @@ class AdminApplication extends SwatApplication {
 		return $page;
 	}
 
-	private function getRequest($source) {
+    // }}}
+    // {{{ private function getRequest()
+
+	private function getRequest($source)
+	{
 		$request = null;
 	
 		if ($source === null) {
@@ -202,7 +228,11 @@ class AdminApplication extends SwatApplication {
 		return $request;
 	}
 
-	private function queryForPage($component) {
+    // }}}
+    // {{{ private function queryForPage()
+
+	private function queryForPage($component)
+	{
 		$shortname = $this->db->quote($component, 'text');
 		$enabled = $this->db->quote(true, 'boolean');
 		$usernum = $this->db->quote($_SESSION['userID'], 'integer');	
@@ -231,33 +261,53 @@ class AdminApplication extends SwatApplication {
 
 	}
 
-	private function initDatabase() {
-		// TODO: change to array /form of DSN and move parts to a secure include file.
-		$dsn = "pgsql://php:test@zest/".$this->dbname;
-		$this->db = MDB2::connect($dsn);
-		$this->db->options['debug'] = true;
+    // }}}
+    // {{{ public function replacePage()
 
-		if (MDB2::isError($this->db))
-			throw new Exception('Unable to connect to database.');
+	/**
+	 * Replace the page object
+	 *
+	 * This method can be used to load another page to replace the current 
+	 * page. For example, this is used to load a confirmation page when 
+	 * processing an admin index page.
+	 */
+	public function replacePage($source)
+	{
+		$newpage = $this->instantiatePage($source);
+		$this->setPage($newpage);
 	}
 
-	private function initSession() {
-		session_cache_limiter('');
-		session_save_path('/so/phpsessions/'.$this->id);
-		session_name($this->id);
-		session_start();
+    // }}}
+    // {{{ public function replacePageNoAccess()
 
-		if (!isset($_SESSION['userID'])) {
-			$_SESSION['userID'] = 0;
-			$_SESSION['name'] = '';
-			$_SESSION['username'] = '';
-			$_SESSION['history'] = array();
-		} elseif ($_SESSION['userID'] != 0) {	
-			setcookie($this->id.'_username', $_SESSION['username'], time() + 86400, '/', '', 0);
-		}
+	/**
+	 * Replace Page with No Access Admin Page
+	 *
+	 * This method is used to replace the current page with a No Access page
+	 * and an optional message.
+	 *
+	 * @param SwatMessage An optional {@link SwatMessage} to display.
+	 */
+	public function replacePageNoAccess($msg = null)
+	{
+		$this->replacePage('Admin/NoAccess');
+		$this->page->setMessage($msg);
 	}
 
-	public function storeHistory($url) {
+    // }}}
+    // {{{ protected function getServerName()
+	/*
+    protected function getServerName()
+    {
+        return ($this->live) ? $_SERVER['SERVER_NAME'] : $_SERVER['HTTP_HOST'];
+    }
+	*/
+
+    // }}}
+    // {{{ public function storeHistory()
+
+	public function storeHistory($url)
+	{
 		$history = &$_SESSION['history'];
 
 		if (!is_array($history))
@@ -293,7 +343,11 @@ class AdminApplication extends SwatApplication {
 
 	}
 
-	public function getHistory($index = 1) {
+    // }}}
+    // {{{ public function getHistory()
+
+	public function getHistory($index = 1)
+	{
 
 		for ($i = 0; $i <= $index; $i++)
 			$url = array_pop($_SESSION['history']);
@@ -301,7 +355,11 @@ class AdminApplication extends SwatApplication {
 		return $url;
 	}
 
-	public function addMessage(SwatMessage $message) {
+    // }}}
+    // {{{ public function addMessage()
+
+	public function addMessage(SwatMessage $message)
+	{
 
 		if (!isset($_SESSION['messages']) || !is_array($_SESSION['messages']))
 			$_SESSION['messages'] = array();
@@ -309,7 +367,11 @@ class AdminApplication extends SwatApplication {
 		$_SESSION['messages'][] = $message;
 	}
 
-	public function getMessages() {
+    // }}}
+    // {{{ public function getMessages()
+
+	public function getMessages()
+	{
 
 		if (!isset($_SESSION['messages']) || !is_array($_SESSION['messages']))
 			$_SESSION['messages'] = array();
@@ -319,13 +381,17 @@ class AdminApplication extends SwatApplication {
 		return $ret;
 	}
 
+    // }}}
+    // {{{ public function login()
+
 	/**
 	 * Authenticate user
 	 * @param string $username
 	 * @param string $password
 	 * @return bool True if login is successful.
 	 */
-	public function login($username, $password) {
+	public function login($username, $password)
+	{
 		$this->logout(); //make sure user is logged out before logging in
 	
 		$md5_password = md5($password);
@@ -354,7 +420,11 @@ class AdminApplication extends SwatApplication {
 		}
 	}
 
-	private function insertUserHistory($userid) {
+    // }}}
+    // {{{ private function insertUserHistory()
+
+	private function insertUserHistory($userid)
+	{
 		$user_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ? $_SERVER['HTTP_USER_AGENT'] : null;
 		$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : null;
 		$login_date = new Date();
@@ -366,35 +436,49 @@ class AdminApplication extends SwatApplication {
 				'loginagent' => $user_agent, 'remoteip' => $remote_ip));
 	}
 
+    // }}}
+    // {{{ public function logout()
+
 	/**
 	 * Set the user as logged-out 
 	 */
-	public function logout() {
+	public function logout()
+	{
 		$_SESSION = array();
 		$_SESSION['userID'] = 0;
 	}
+
+    // }}}
+    // {{{ public function isLoggedIn()
 
 	/**
 	 * Check the user's logged-in status
 	 * @return bool True if user is logged in. 
 	 */
-	public function isLoggedIn() {
+	public function isLoggedIn()
+	{
 		if (isset($_SESSION['userID']))
 			return ($_SESSION['userID'] != 0);
 
 		return false;
 	}
 
+    // }}}
+    // {{{ public function getUserID()
+
 	/**
 	 * Retrieve the current user ID
 	 * @return integer current user ID, or null if not logged in.
 	 */
-	public function getUserID() {
+	public function getUserID()
+	{
 		if (!$this->isLoggedIn())
 			return null;
 
 		return $_SESSION['userID'];
 	}
+
+    // }}}
 }
 
 ?>

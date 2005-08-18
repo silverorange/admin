@@ -3,6 +3,7 @@
 require_once 'Admin/AdminPage.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Swat/SwatMessage.php';
+require_once 'Swat/SwatLayout.php';
 
 /**
  * Administrator login page
@@ -12,10 +13,13 @@ require_once 'Swat/SwatMessage.php';
  */
 class AdminLogin extends AdminPage
 {
+    protected function createLayout()
+    {
+        return new SwatLayout('../../layouts/admin/login.php');
+    }
+
 	public function init()
 	{
-		$this->layout = 'login';
-
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/login.xml');
 
@@ -30,12 +34,6 @@ class AdminLogin extends AdminPage
 		$form->action = $this->app->getUri();
 	}
 
-	public function display()
-	{
-		parent::display();
-		$this->displayJavascript();
-	}
-
 	public function process()
 	{
 		$form = $this->ui->getWidget('login_form');
@@ -46,15 +44,29 @@ class AdminLogin extends AdminPage
 				$password = $this->ui->getWidget('password');
 				$logged_in = $this->app->login($username->value, $password->value);
 				
-				if ($logged_in)
+				if ($logged_in) {
 					$this->app->relocate($this->app->getUri());
-				else {
+				} else {
 					$frame = $this->ui->getWidget('login_frame');
 					$msg = new SwatMessage(Admin::_('Login failed'), SwatMessage::USER_ERROR);
 					$frame->addMessage($msg);
 				}
 			}
 		}
+	}
+
+	public function build()
+	{
+		$this->layout->title = $this->app->title.' | '.$this->title;
+		$this->layout->basehref = $this->app->getBaseHref();
+
+		ob_start();
+		$this->display();
+		$this->layout->ui = ob_get_clean();
+
+		ob_start();
+		$this->displayJavascript();
+		$this->layout->javascript = ob_get_clean();
 	}
 
 	private function displayJavascript()

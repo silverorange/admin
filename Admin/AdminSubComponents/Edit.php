@@ -28,9 +28,9 @@ class AdminSubComponentsEdit extends AdminDBEdit {
 		$form->addHiddenField('parent', $this->parent);
 	}
 
-	public function displayInit()
+	public function initDisplay()
 	{
-		parent::displayInit();
+		parent::initDisplay();
 		
 		//rebuild the navbar
 		$parent_title = SwatDB::queryOne($this->app->db, 'admincomponents', 'text:title',
