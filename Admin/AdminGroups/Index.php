@@ -38,7 +38,7 @@ class AdminGroupsIndex extends AdminIndex
 		switch ($actions->selected->id) {
 			case 'delete':
 				$this->app->replacePage('AdminGroups/Delete');
-				$this->app->page->setItems($view->checked_items);
+				$this->app->getPage()->setItems($view->checked_items);
 				break;
 		}
 	}

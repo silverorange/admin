@@ -73,8 +73,8 @@ class AdminComponentsDetails extends AdminIndex
 		switch ($actions->selected->id) {
 			case 'delete':
 				$this->app->replacePage('AdminSubComponents/Delete');
-				$this->app->page->setItems($view->checked_items);
-				$this->app->page->parent = $this->id;
+				$this->app->getPage()->setItems($view->checked_items);
+				$this->app->getPage()->parent = $this->id;
 				break;
 
 			case 'show':
