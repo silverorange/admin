@@ -13,7 +13,7 @@ require_once 'Admin/AdminPage.php';
  */
 abstract class AdminIndex extends AdminPage
 {
-	public function displayInit()
+	public function initDisplay()
 	{
 		$view = $this->ui->getWidget('index_view');
 		$view->model = $this->getTableStore();
@@ -26,7 +26,7 @@ abstract class AdminIndex extends AdminPage
 			$actions->visible = false;
 		}
 
-		$this->displayInitMessages();
+		$this->initMessages();
 	}
 
 	/**

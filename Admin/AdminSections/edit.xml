@@ -16,6 +16,12 @@
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
+				<property name="title" value="Colour" translatable="yes" />
+				<widget class="SwatColorEntry" id="color">
+					<property name="required" value="true" type="boolean" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
 				<property name="title" value="Description" translatable="yes" />
 				<widget class="SwatTextarea" id="description" />
 			</widget>

@@ -21,11 +21,11 @@ class AdminSubComponentsOrder extends AdminDBOrder
 		$form->addHiddenField('parent', $this->parent);
 	}
 
-	public function displayInit()
+	public function initDisplay()
 	{
 		$frame = $this->ui->getWidget('order_frame');
 		$frame->title = Admin::_('Order Sub-Components');
-		parent::displayInit();
+		parent::initDisplay();
 	
 		//rebuild the navbar
 		$parent_title = SwatDB::queryOne($this->app->db, 'admincomponents', 'text:title',

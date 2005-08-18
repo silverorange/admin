@@ -13,7 +13,7 @@ class AdminSubComponentsDelete extends AdminDBDelete
 {
 	public $parent;
 
-	public function displayInit()
+	public function initDisplay()
 	{
 		$item_list = $this->getItemList('integer');
 		
@@ -31,7 +31,7 @@ class AdminSubComponentsDelete extends AdminDBDelete
 		if ($dep->getStatusLevelCount(AdminDependency::DELETE) == 0)
 			$this->displayCancelButton();
 
-		parent::displayInit();
+		parent::initDisplay();
 
 		//rebuild the navbar
 		$component_title = SwatDB::queryOne($this->app->db, 'admincomponents', 'text:title',

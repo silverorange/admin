@@ -11,7 +11,7 @@ require_once 'Admin/AdminDependency.php';
  */
 class AdminComponentsDelete extends AdminDBDelete
 {
-	public function displayInit()
+	public function initDisplay()
 	{
 		$item_list = $this->getItemList('integer');
 		

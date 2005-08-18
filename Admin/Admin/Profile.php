@@ -24,7 +24,7 @@ class AdminProfile extends AdminDBEdit
 		$confirm->password_widget = $this->ui->getWidget('password');;
 	}
 	
-	public function displayInit()
+	public function initDisplay()
 	{
 		$form = $this->ui->getWidget('edit_form');
 		$form->action = $this->source;

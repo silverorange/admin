@@ -18,7 +18,7 @@ class AdminUsersDetails extends AdminIndex
 		$this->ui->loadFromXML('Admin/AdminUsers/details.xml');
 	}
 
-	public function displayInit()
+	public function initDisplay()
 	{
 		$id = $this->app->initVar('id');
 
@@ -28,7 +28,7 @@ class AdminUsersDetails extends AdminIndex
 		$frame = $this->ui->getWidget('index_frame');
 		$frame->title.=' - '.$row->name;
 		
-		parent::displayInit();
+		parent::initDisplay();
 	}
 	
 	

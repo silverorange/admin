@@ -30,7 +30,7 @@ abstract class AdminOrder extends AdminPage
 		}
 	}
 
-	public function displayInit()
+	public function initDisplay()
 	{
 		$options_list = $this->ui->getWidget('options');
 		$options_list->options = array('auto'=>Admin::_('Automatically'), 'custom'=>Admin::_('Custom'));

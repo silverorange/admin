@@ -20,9 +20,9 @@ class AdminFront extends AdminPage
 		$this->navbar = new SwatNavBar();
 	}
 
-	public function displayInit()
+	public function initDisplay()
 	{
-		$this->displayInitMessages();
+		$this->initMessages();
 	}
 
 
