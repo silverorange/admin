@@ -24,10 +24,19 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 	 */
 	public function setItems($items)
 	{
-		$this->items = $items;
-		
+		$this->items = $items;	
+		$this->setHiddenField($items);
+	}
+
+	/**
+	 * Set Hidden Field of Items
+	 *
+	 * @param array $items
+	 */
+	public function setHiddenField($items)
+	{
 		$form = $this->ui->getWidget('confirmation_form');
-		$form->addHiddenField('items', $this->items);
+		$form->addHiddenField('items', $items);
 	}
 
 	/**
@@ -65,10 +74,12 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 	protected function processGenerateMessage(Exception $e)
 	{
 		if ($e instanceof SwatDBException) {
-			$msg = new SwatMessage(Admin::_('A database error has occured. The item(s) were not deleted.'),
+			$msg = new SwatMessage(Admin::_('A database error has occured.
+				The item(s) were not deleted.'),
 				 SwatMessage::ERROR);
 		} else {
-			$msg = new SwatMessage(Admin::_('An error has occured. The item(s) were not deleted.'),
+			$msg = new SwatMessage(Admin::_('An error has occured.
+				The item(s) were not deleted.'),
 				SwatMessage::ERROR);
 		}
 
