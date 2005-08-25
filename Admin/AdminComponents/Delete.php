@@ -52,7 +52,7 @@ class AdminComponentsDelete extends AdminDBDelete
 
 		$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been deleted.", 
 			"%d components have been deleted.", $this->getItemCount()), $this->getItemCount()),
-			SwatMessage::INFO);
+			SwatMessage::NOTIFICATION);
 
 		$this->app->messages->add($msg);	
 	}

@@ -49,7 +49,7 @@ class AdminUsersEdit extends AdminDBEdit
 			$this->app->db->quote($id, 'integer')));
 
 		if ($query->numRows()) {
-			$msg = new SwatMessage(Admin::_('Username already exists and must be unique.'), SwatMessage::USER_ERROR);
+			$msg = new SwatMessage(Admin::_('Username already exists and must be unique.'), SwatMessage::ERROR);
 			$shortname->addMessage($msg);
 		}
 	}
@@ -76,7 +76,7 @@ class AdminUsersEdit extends AdminDBEdit
 		SwatDB::updateBinding($this->app->db, 'adminuser_admingroup', 
 			'usernum', $id, 'groupnum', $group_list->values, 'admingroups', 'groupid');
 		
-		$msg = new SwatMessage(sprintf(Admin::_('User "%s" has been saved.'), $values['username']), SwatMessage::INFO);
+		$msg = new SwatMessage(sprintf(Admin::_('User "%s" has been saved.'), $values['username']), SwatMessage::NOTIFICATION);
 		$this->app->messages->add($msg);	
 	}
 

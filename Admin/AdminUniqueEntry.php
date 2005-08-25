@@ -25,7 +25,7 @@ class AdminUniqueEntry extends SwatEntry {
 
 			$msg = Admin::_('The %s field can only contain letters and numbers. Spaces and other special characters are not allowed.');
 
-			$this->addMessage(new SwatMessage($msg, SwatMessage::USER_ERROR));
+			$this->addMessage(new SwatMessage($msg, SwatMessage::ERROR));
 		}
 	}
 }

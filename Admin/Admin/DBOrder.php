@@ -22,14 +22,14 @@ abstract class AdminDBOrder extends AdminOrder
 		} catch (SwatDBException $e) {
 			$this->app->db->rollback();
 
-			$msg = new SwatMessage(Admin::_('A database error has occured. The item was not saved.'), SwatMessage::ERROR);
+			$msg = new SwatMessage(Admin::_('A database error has occured. The item was not saved.'), SwatMessage::SYSTEM_ERROR);
 			$this->app->messages->add($msg);	
 
 			$e->process();
 			return false;
 
 		} catch (SwatException $e) {
-			$msg = new SwatMessage(Admin::_('An error has occured. The item was not saved.'), SwatMessage::ERROR);
+			$msg = new SwatMessage(Admin::_('An error has occured. The item was not saved.'), SwatMessage::SYSTEM_ERROR);
 			$this->app->messages->add($msg);	
 
 			$e->process();
