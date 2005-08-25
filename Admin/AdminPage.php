@@ -40,6 +40,12 @@ abstract class AdminPage extends SwatPage
 	 */
 	public $navbar;
 
+	/**
+	 * Title of this page
+	 * @var Title
+	 */
+	public $title;
+
     // }}}
     // {{{ protected properties
 
@@ -158,12 +164,10 @@ abstract class AdminPage extends SwatPage
 	 * from their implementation of {@link AdminPage::display()}.
 	 */
 	public function displayMenu()
-	{
-		$db = $this->app->db;
-		$sql_userid = $db->quote($_SESSION['userID'], 'integer');
-		
-		$menu = $db->executeStoredProc('sp_admin_menu', array($sql_userid),
-					null, true, 'AdminMenu');
+	{		
+		$menu = SwatDB::executeStoredProc($this->app->db, 'sp_admin_menu',
+				$this->app->db->quote($_SESSION['userID'], 'integer'),
+				'AdminMenu');
 
 		$menu->display();
 	}
@@ -174,7 +178,7 @@ abstract class AdminPage extends SwatPage
 	protected function initMessages()
 	{
 		$message_box = $this->ui->getWidget('message_box', true);
-		$messages = $this->app->getMessages();
+		$messages = $this->app->messages->getAll();
 
 		if ($message_box !== null)
 			$message_box->messages = $messages;

@@ -79,7 +79,7 @@ abstract class AdminEdit extends AdminPage
 	 */
 	protected function relocate()
 	{
-		$this->app->relocate($this->app->getHistory());
+		$this->app->relocate($this->app->history->getHistory());
 	}
 
 	/**

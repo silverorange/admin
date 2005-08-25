@@ -57,7 +57,7 @@ class AdminProfile extends AdminDBEdit
 		$_SESSION['name'] = $values['name'];
 
 		$msg = new SwatMessage(Admin::_('Your user profile has been updated.'));
-		$this->app->addMessage($msg);
+		$this->app->messages->add($msg);	
 	}
 
 	protected function loadDBData($id)

@@ -77,7 +77,7 @@ class AdminUsersEdit extends AdminDBEdit
 			'usernum', $id, 'groupnum', $group_list->values, 'admingroups', 'groupid');
 		
 		$msg = new SwatMessage(sprintf(Admin::_('User "%s" has been saved.'), $values['username']), SwatMessage::INFO);
-		$this->app->addMessage($msg);
+		$this->app->messages->add($msg);	
 	}
 
 	protected function loadDBData($id)

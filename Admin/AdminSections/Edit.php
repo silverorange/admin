@@ -27,7 +27,7 @@ class AdminSectionsEdit extends AdminDBEdit
 		if ($form->process()) {
 			if (!$form->hasMessage()) {
 				$this->saveData($id);
-				$this->app->relocate($this->app->getHistory());
+				$this->app->relocate($this->app->history->getHistory());
 			}
 		}
 	}
@@ -44,7 +44,7 @@ class AdminSectionsEdit extends AdminDBEdit
 				$values, 'integer:sectionid', $id);
 
 		$msg = new SwatMessage(sprintf(Admin::_('Section "%s" has been saved.'), $values['title']), SwatMessage::INFO);
-		$this->app->addMessage($msg);
+		$this->app->messages->add($msg);	
 	}
 
 	protected function loadDBData($id) {

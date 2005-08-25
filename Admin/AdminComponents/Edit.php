@@ -64,7 +64,7 @@ class AdminComponentsEdit extends AdminDBEdit
 			'component', $id, 'groupnum', $group_list->values, 'admingroups', 'groupid');
 		
 		$msg = new SwatMessage(sprintf(Admin::_('Component "%s" has been saved.'), $values['title']), SwatMessage::INFO);
-		$this->app->addMessage($msg);
+		$this->app->messages->add($msg);
 	}
 
 	protected function loadDBData($id)
