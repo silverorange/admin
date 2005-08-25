@@ -63,7 +63,7 @@ class AdminGroupsEdit extends AdminDBEdit
 			$this->fields, 'integer:groupid', $id);
 
 		if ($row === null)
-			return $this->app->replacePage('Admin/NotFound');
+			return $this->app->replacePageNoAccess();
 
 		$this->ui->setValues(get_object_vars($row));
 		
