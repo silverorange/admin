@@ -39,7 +39,7 @@ class AdminUsersDelete extends AdminDBDelete
 
 		$msg = new SwatMessage(sprintf(Admin::ngettext("%d admin user has been deleted.", 
 			"%d admin users have been deleted.", $this->getItemCount()), $this->getItemCount()),
-			SwatMessage::INFO);
+			SwatMessage::NOTIFICATION);
 
 		$this->app->messages->add($msg);	
 	}

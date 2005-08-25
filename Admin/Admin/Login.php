@@ -49,7 +49,7 @@ class AdminLogin extends AdminPage
 					$this->app->relocate($this->app->getUri());
 				} else {
 					$frame = $this->ui->getWidget('login_frame');
-					$msg = new SwatMessage(Admin::_('Login failed'), SwatMessage::USER_ERROR);
+					$msg = new SwatMessage(Admin::_('Login failed'), SwatMessage::ERROR);
 					$frame->addMessage($msg);
 				}
 			}

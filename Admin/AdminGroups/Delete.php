@@ -39,7 +39,7 @@ class AdminGroupsDelete extends AdminDBDelete
 
 		$msg = new SwatMessage(sprintf(Admin::ngettext("%d admin group has been deleted.", 
 			"%d admin groups have been deleted.", $this->getItemCount()), $this->getItemCount()),
-			SwatMessage::INFO);
+			SwatMessage::NOTIFICATION);
 
 		$this->app->messages->add($msg);	
 	}
