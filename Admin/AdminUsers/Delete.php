@@ -41,7 +41,7 @@ class AdminUsersDelete extends AdminDBDelete
 			"%d admin users have been deleted.", $this->getItemCount()), $this->getItemCount()),
 			SwatMessage::INFO);
 
-		$this->app->addMessage($msg);	
+		$this->app->messages->add($msg);	
 	}
 }
 

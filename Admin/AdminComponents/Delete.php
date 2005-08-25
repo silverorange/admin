@@ -54,7 +54,7 @@ class AdminComponentsDelete extends AdminDBDelete
 			"%d components have been deleted.", $this->getItemCount()), $this->getItemCount()),
 			SwatMessage::INFO);
 
-		$this->app->addMessage($msg);	
+		$this->app->messages->add($msg);	
 	}
 }
 

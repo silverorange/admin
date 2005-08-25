@@ -71,7 +71,7 @@ class AdminSubComponentsEdit extends AdminDBEdit {
 				$values, 'integer:subcomponentid', $id);
 
 		$msg = new SwatMessage(sprintf(Admin::_('Sub-Component "%s" has been saved.'), $values['title']), SwatMessage::INFO);
-		$this->app->addMessage($msg);
+		$this->app->messages->add($msg);
 	}
 
 	protected function loadDBData($id)

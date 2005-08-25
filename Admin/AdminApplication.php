@@ -1,13 +1,15 @@
 <?php
 
 require_once 'Swat/SwatApplication.php';
-require_once 'Swat/SwatMessage.php';
 require_once 'MDB2.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/Admin.php';
+require_once 'Admin/AdminApplicationHistoryModule.php';
+require_once 'Admin/AdminApplicationSessionModule.php';
+require_once 'Admin/AdminApplicationMessagesModule.php';
+require_once 'Admin/AdminApplicationDatabaseModule.php';
 require_once 'Admin/AdminPage.php';
 require_once 'Admin/AdminPageRequest.php';
-require_once 'Date.php';
 
 /**
  * Web application class for an administrator
@@ -26,21 +28,63 @@ class AdminApplication extends SwatApplication
 	public $title;
 
 	/**
-	 * Name of the database
+	 * Convenience reference to the built-in AdminApplicationHistoryModule
 	 *
-	 * This is the name of the database to connect to.  Set this before calling
-	 * {@link AdminApplication::init()}, afterwords consider it readonly.
-	 *
-	 * @var string
+	 * @var AdminApplicationHistoryModule (readonly)
 	 */
-	public $dbname;
+	public $history;
 
 	/**
-	 * The database object
+	 * Convenience reference to the built-in AdminApplicationSessionModule
+	 *
+	 * @var AdminApplicationSessionModule (readonly)
+	 */
+	public $session;
+
+	/**
+	 * Convenience reference to the built-in AdminApplicationMessagesModule
+	 *
+	 * @var AdminApplicationMessagesModule (readonly)
+	 */
+	public $messages;
+
+	/**
+	 * Convenience reference to the built-in AdminApplicationDatabaseModule
+	 *
+	 * @var AdminApplicationDatabaseModule (readonly)
+	 */
+	public $database;
+
+	/**
+	 * Convenience reference to MDB2 object within the built-in AdminApplicationDatabaseModule
+	 *
 	 * @var MDB2_Connection Database connection object (readonly)
 	 */
-	public $db = null;
-	
+	public $db;
+    // }}}
+    // {{{ public function __construct()
+
+    /**
+     * Creates a new application object
+     *
+     * @param string $id a unique identifier for this application.
+     */
+    public function __construct($id)
+    {
+		parent::__construct($id);
+
+		$this->addModule(new AdminApplicationHistoryModule($this));
+		$this->addModule(new AdminApplicationSessionModule($this));
+		$this->addModule(new AdminApplicationMessagesModule($this));
+		$this->addModule(new AdminApplicationDatabaseModule($this));
+
+		// set up convenience references
+		$this->history = $this->modules['AdminApplicationHistoryModule'];
+		$this->session = $this->modules['AdminApplicationSessionModule'];
+		$this->messages = $this->modules['AdminApplicationMessagesModule'];
+		$this->database = $this->modules['AdminApplicationDatabaseModule'];
+	}
+
     // }}}
     // {{{ public function init()
 
@@ -50,43 +94,13 @@ class AdminApplication extends SwatApplication
 	public function init()
 	{
         $this->initBaseHref(4);
-		$this->initDatabase();
-		$this->initSession();
+        $this->initModules();
+
+		// set up convenience references
+		$this->db = $this->database->mdb2;
+
+		// call this last
         $this->initPage();
-	}
-
-    // }}}
-    // {{{ private function initDatabase()
-
-	private function initDatabase()
-	{
-		// TODO: change to array /form of DSN and move parts to a secure include file.
-		$dsn = "pgsql://php:test@zest/".$this->dbname;
-		$this->db = MDB2::connect($dsn);
-		$this->db->options['debug'] = true;
-
-		if (MDB2::isError($this->db))
-			throw new Exception('Unable to connect to database.');
-	}
-
-    // }}}
-    // {{{ private function initSession()
-
-	private function initSession()
-	{
-		session_cache_limiter('');
-		session_save_path('/so/phpsessions/'.$this->id);
-		session_name($this->id);
-		session_start();
-
-		if (!isset($_SESSION['userID'])) {
-			$_SESSION['userID'] = 0;
-			$_SESSION['name'] = '';
-			$_SESSION['username'] = '';
-			$_SESSION['history'] = array();
-		} elseif ($_SESSION['userID'] != 0) {	
-			setcookie($this->id.'_username', $_SESSION['username'], time() + 86400, '/', '', 0);
-		}
 	}
 
     // }}}
@@ -158,7 +172,7 @@ class AdminApplication extends SwatApplication
 		}
 			
 		if (isset($_SERVER['HTTP_REFERER']))
-			$this->storeHistory($_SERVER['HTTP_REFERER']);
+			$this->history->storeHistory($_SERVER['HTTP_REFERER']);
 
 		return $page;
 	}
@@ -177,7 +191,7 @@ class AdminApplication extends SwatApplication
 				$source = 'Admin/Front';
 		}
 
-		if ($this->isLoggedIn()) {
+		if ($this->session->isLoggedIn()) {
 			if (strpos($source, '/')) {
 				list($component, $subcomponent) = explode('/', $source);
 			} else {
@@ -302,181 +316,6 @@ class AdminApplication extends SwatApplication
         return ($this->live) ? $_SERVER['SERVER_NAME'] : $_SERVER['HTTP_HOST'];
     }
 	*/
-
-    // }}}
-    // {{{ public function storeHistory()
-
-	public function storeHistory($url)
-	{
-		$history = &$_SESSION['history'];
-
-		if (!is_array($history))
-			$history = array();
-
-		$has_querystring = strpos($url, '?');
-	
-		if (count($history) > 0) {
-			end($history);
-			$last = current($history);
-			$pos = strpos($last, '?');
-
-			if ($pos)
-				$last = substr($last, 0, $pos);
-		} else {
-			$last = null;
-		}
-
-		$pos = strpos($url, '?');
-
-		if ($pos)
-			$base = substr($url, 0, $pos);
-		else
-			$base = $url;
-
-		if ($has_querystring || strcmp($last, $base) != 0) {
-			array_push($history, $url);
-		}
-
-		// throw away old ones
-		while (count($history) > 10)
-			array_shift($history);
-
-	}
-
-    // }}}
-    // {{{ public function getHistory()
-
-	public function getHistory($index = 1)
-	{
-
-		for ($i = 0; $i <= $index; $i++)
-			$url = array_pop($_SESSION['history']);
-
-		return $url;
-	}
-
-    // }}}
-    // {{{ public function addMessage()
-
-	public function addMessage(SwatMessage $message)
-	{
-
-		if (!isset($_SESSION['messages']) || !is_array($_SESSION['messages']))
-			$_SESSION['messages'] = array();
-
-		$_SESSION['messages'][] = $message;
-	}
-
-    // }}}
-    // {{{ public function getMessages()
-
-	public function getMessages()
-	{
-
-		if (!isset($_SESSION['messages']) || !is_array($_SESSION['messages']))
-			$_SESSION['messages'] = array();
-
-		$ret = $_SESSION['messages'];
-		$_SESSION['messages'] = array();
-		return $ret;
-	}
-
-    // }}}
-    // {{{ public function login()
-
-	/**
-	 * Authenticate user
-	 * @param string $username
-	 * @param string $password
-	 * @return bool True if login is successful.
-	 */
-	public function login($username, $password)
-	{
-		$this->logout(); //make sure user is logged out before logging in
-	
-		$md5_password = md5($password);
-		
-		$sql = "select userid, name, username from adminusers
-				where username = %s and password = %s and enabled = %s";
-
-		$sql = sprintf($sql, 
-			$this->db->quote($username, 'text'),
-			$this->db->quote($md5_password, 'text'),
-			$this->db->quote(true, 'boolean'));
-
-		$rs = $this->db->query($sql);
-		
-		if ($rs->numRows()) {
-			$result = $rs->fetchRow(MDB2_FETCHMODE_OBJECT); 
-			$_SESSION['userID'] = $result->userid;
-			$_SESSION['name']   = $result->name;
-			$_SESSION['username']   = $result->username;
-
-			$this->insertUserHistory($result->userid);
-
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-    // }}}
-    // {{{ private function insertUserHistory()
-
-	private function insertUserHistory($userid)
-	{
-		$user_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ? $_SERVER['HTTP_USER_AGENT'] : null;
-		$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : null;
-		$login_date = new Date();
-		$login_date->toUTC();
-
-		SwatDB::insertRow($this->db, 'adminuserhistory',
-			array('integer:usernum','date:logindate', 'loginagent', 'remoteip'),
-			array('usernum' => $userid, 'logindate' => $login_date->getDate(),
-				'loginagent' => $user_agent, 'remoteip' => $remote_ip));
-	}
-
-    // }}}
-    // {{{ public function logout()
-
-	/**
-	 * Set the user as logged-out 
-	 */
-	public function logout()
-	{
-		$_SESSION = array();
-		$_SESSION['userID'] = 0;
-	}
-
-    // }}}
-    // {{{ public function isLoggedIn()
-
-	/**
-	 * Check the user's logged-in status
-	 * @return bool True if user is logged in. 
-	 */
-	public function isLoggedIn()
-	{
-		if (isset($_SESSION['userID']))
-			return ($_SESSION['userID'] != 0);
-
-		return false;
-	}
-
-    // }}}
-    // {{{ public function getUserID()
-
-	/**
-	 * Retrieve the current user ID
-	 * @return integer current user ID, or null if not logged in.
-	 */
-	public function getUserID()
-	{
-		if (!$this->isLoggedIn())
-			return null;
-
-		return $_SESSION['userID'];
-	}
 
     // }}}
 }

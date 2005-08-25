@@ -42,7 +42,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation {
 		else
 			$msg = new SwatMessage(Admin::_('An error has occured.'), SwatMessage::ERROR);
 
-		$this->app->addMessage($msg);
+		$this->app->messages->add($msg);	
 	}
 
 	/**

@@ -83,7 +83,7 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 				SwatMessage::ERROR);
 		}
 
-		$this->app->addMessage($msg);
+		$this->app->messages->add($msg);	
 	}
 }
 

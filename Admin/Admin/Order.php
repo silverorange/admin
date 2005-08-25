@@ -26,7 +26,7 @@ abstract class AdminOrder extends AdminPage
 		$form = $this->ui->getWidget('order_form');
 		if ($form->process()) {
 			$this->saveData();
-			$this->app->relocate($this->app->getHistory());
+			$this->app->relocate($this->app->history->getHistory());
 		}
 	}
 

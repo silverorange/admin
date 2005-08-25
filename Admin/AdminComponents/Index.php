@@ -114,7 +114,7 @@ class AdminComponentsIndex extends AdminIndex
 		}
 
 		if ($msg !== null)
-			$this->app->addMessage($msg);
+			$this->app->messages->add($msg);
 	}
 }
 
