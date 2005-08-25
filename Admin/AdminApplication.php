@@ -306,6 +306,7 @@ class AdminApplication extends SwatApplication
 	{
 		$this->replacePage('Admin/NoAccess');
 		$this->page->setMessage($msg);
+		$this->page->build();
 	}
 
     // }}}
