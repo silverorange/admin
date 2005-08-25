@@ -15,7 +15,7 @@ class AdminNoAccess extends AdminPage
 
 	public function init()
 	{
-
+		$this->app->getPage()->navbar->replaceElement(1, Admin::_('No Access'));
 	}
 
 	public function display()
