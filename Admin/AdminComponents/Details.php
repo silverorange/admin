@@ -31,6 +31,9 @@ class AdminComponentsDetails extends AdminIndex
 		$fields = array('title'); 
 		$row = SwatDB::queryRow($this->app->db, 'admincomponents', $fields, 'componentid', $this->id);
 
+		if ($row === null)
+			return $this->app->replacePageNoAccess();
+
 		$frame = $this->ui->getWidget('index_frame');
 		$frame->title = $row->title;
 
