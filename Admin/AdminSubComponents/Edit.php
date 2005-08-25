@@ -46,7 +46,7 @@ class AdminSubComponentsEdit extends AdminDBEdit {
 		$shortname = $this->ui->getWidget('shortname');
 
 		$query = SwatDB::query($this->app->db, sprintf('select shortname from
-			adminsubcomponents where shortname = %s and subcomponentid != %s and component != %s',
+			adminsubcomponents where shortname = %s and subcomponentid %s %s and component = %s',
 			$this->app->db->quote($shortname->value, 'text'),
 			SwatDB::equalityOperator($id, true),
 			$this->app->db->quote($id, 'integer'),
