@@ -58,7 +58,10 @@ abstract class AdminEdit extends AdminPage
 		if ($form->process()) {
 			$this->processPage($id);
 
-			if (!$form->hasMessage()) {
+			if ($form->hasMessage()) {
+				$msg = new SwatMessage(Admin::_('REWRITE: There is a problem below.'), SwatMessage::ERROR);
+				$this->app->messages->add($msg);
+			} else {
 				if ($this->saveData($id)) {
 					$this->relocate();
 				}
