@@ -1,7 +1,7 @@
 <?xml version='1.0' standalone='yes'?>
 <swat-interface>
 	<widget class="SwatFrame" id="edit_frame">
-		<property name="title" value="Section Edit" translatable="yes" />
+		<property name="title" value="Section" translatable="yes" />
 		<widget class="SwatForm" id="edit_form">
 			<widget class="SwatFormField">
 				<property name="title" value="Title" translatable="yes" />
