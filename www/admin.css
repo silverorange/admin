@@ -46,10 +46,15 @@ img { border: 0; }
 #admin-header h1 {
 	margin: 0 0 0.1em 0;
 	padding: 0;
-	font-size: 140%;
+	font-size: 100%;
 	color: #fff;
+	display: inline;
+	font-weight: bold;
 }
 
+#admin-navbar {
+	font-size: 140%;
+}
 
 /* Menu Styles */
 
@@ -104,11 +109,6 @@ img { border: 0; }
 }
 
 /* Content Styles */
-
-#admin-navbar {
-	font-size: 85%;
-	color: #666;
-}
 
 #admin-content {
 	padding: 1.5em 2em;
