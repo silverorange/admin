@@ -138,7 +138,6 @@ abstract class AdminPage extends SwatPage
 	 */
 	public function displayHeader()
 	{
-		echo '<h1>', $this->app->title, '</h1>';
 		echo '<div id="admin-syslinks">';
 		echo 'Welcome <a href="Admin/Profile">'.$_SESSION['name'].'</a> &nbsp;|&nbsp;';
 		echo '<a href="Admin/Profile">Customize</a> &nbsp;|&nbsp;';
