@@ -56,7 +56,7 @@ abstract class AdminPage extends SwatPage
 
     protected function createLayout()
     {
-        return new SwatLayout('../../layouts/admin/default.php');
+        return new SwatLayout('Admin/layouts/default.php');
     }
 
     // }}}
