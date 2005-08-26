@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Admin/AdminPage.php';
-require_once 'Swat/SwatMessageBox.php';
+require_once 'Swat/SwatMessageDisplay.php';
 
 /**
  * Administrator Not Access page
@@ -20,7 +20,7 @@ class AdminNoAccess extends AdminPage
 
 	public function display()
 	{
-		$box = new SwatMessageBox();
+		$box = new SwatMessageDisplay();
 		$box->title = 'No Access';
 
 		if ($this->message !== null)
