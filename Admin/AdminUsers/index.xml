@@ -1,6 +1,6 @@
 <?xml version='1.0' standalone='yes'?>
 <swat-interface>
-	<widget class="SwatMessageDisplay" id="message_box" />
+	<widget class="SwatMessageDisplay" id="message_display" />
 	<widget class="SwatFrame" id="index_frame">
 		<property name="title" value="Admin Users" translatable="yes" />
 		<widget class="SwatToolLink">
