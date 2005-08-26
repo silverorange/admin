@@ -15,7 +15,7 @@ class AdminLogin extends AdminPage
 {
     protected function createLayout()
     {
-        return new SwatLayout('../../layouts/admin/login.php');
+        return new SwatLayout('Admin/layouts/login.php');
     }
 
 	public function init()
