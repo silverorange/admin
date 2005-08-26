@@ -152,7 +152,7 @@ class AdminApplication extends SwatApplication
 						$page->component = $request->component;
 						$page->subcomponent = $request->subcomponent;
 						$page->navbar = new SwatNavBar();
-						$page->navbar->addElement(Admin::_('Home'), '');
+						$page->navbar->addElement('<h1>'.$this->title.'</h1>', '');
 						$page->navbar->addElement($request->title,
 							($request->subcomponent == 'Index') ? null : $request->component);
 					}
@@ -169,7 +169,7 @@ class AdminApplication extends SwatApplication
 			$page->subcomponent = 'NotFound';
 			$page->setMessage($err);
 			$page->navbar = new SwatNavBar();
-			$page->navbar->addElement(Admin::_('Home'), '');
+			$page->navbar->addElement('<h1>'.$this->title.'</h1>', '');
 		}
 			
 		if (isset($_SERVER['HTTP_REFERER']))

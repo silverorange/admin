@@ -11,6 +11,9 @@
 
 <div id="admin-header">
 	<?=$this->header?>
+	<span id="admin-navbar">
+		<?=$this->navbar?>
+	</span>
 </div>
 
 <div id="admin-menu">
@@ -18,9 +21,6 @@
 </div>
 
 <div id="admin-content">
-	<div id="admin-navbar">
-		<?=$this->navbar?>
-	</div>
 	<?=$this->content?>
 </div>
 
