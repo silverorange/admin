@@ -20,13 +20,13 @@ class AdminNotFound extends AdminPage
 
 	public function display()
 	{
-		$box = new SwatMessageDisplay();
-		$box->title = 'Not Found';
+		$message_display = new SwatMessageDisplay();
+		$message_display->title = 'Not Found';
 
 		if ($this->message !== null)
-			$box->messages = array($this->message); 
-
-		$box->display();
+			$message_display->add($this->message);
+			
+		$message_display->display();
 	}
 
 	public function process()

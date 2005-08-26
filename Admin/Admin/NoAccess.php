@@ -20,13 +20,13 @@ class AdminNoAccess extends AdminPage
 
 	public function display()
 	{
-		$box = new SwatMessageDisplay();
-		$box->title = 'No Access';
+		$message_display = new SwatMessageDisplay();
+		$message_display->title = 'No Access';
 
 		if ($this->message !== null)
-			$box->messages = array($this->message); 
+			$message_display->add($this->message); 
 
-		$box->display();
+		$message_display->display();
 	}
 
 	public function process()
