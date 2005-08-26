@@ -127,12 +127,14 @@ class AdminApplication extends SwatApplication
 		$request = $this->getRequest($source);
 		
 		if ($request === null)
-			$err = new SwatMessage(Admin::_('Component not found.'));
+			$err = new SwatMessage(Admin::_('Component not found.'),
+				SwatMessage::SYSTEM_ERROR);
 		else {
 			$file = $request->getFilename();
 			
 			if ($file === null)
-				$err = new SwatMessage(Admin::_('File not found.'));
+				$err = new SwatMessage(Admin::_('File not found.'),
+					SwatMessage::SYSTEM_ERROR);
 			
 			else {
 				require_once $file;
