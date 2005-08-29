@@ -153,9 +153,8 @@ class AdminApplication extends SwatApplication
 						$page->source = $request->source;
 						$page->component = $request->component;
 						$page->subcomponent = $request->subcomponent;
-						$page->navbar = new SwatNavBar();
 						$page->navbar->addElement('<h1>'.$this->title.'</h1>', '');
-						$page->navbar->addElement($request->title,
+						$page->navbar->addElement($request->title, 
 							($request->subcomponent == 'Index') ? null : $request->component);
 					}
 				}	

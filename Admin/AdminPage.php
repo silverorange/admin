@@ -52,6 +52,16 @@ abstract class AdminPage extends SwatPage
 	protected $ui = null;
 
     // }}}
+	// {{{ public function __construct()
+
+	public function __construct($app)
+	{
+		parent::__construct($app);
+
+		$this->navbar = new SwatNavbar();
+	}
+
+	// }}}
     // {{{ public function createLayout()
 
     protected function createLayout()

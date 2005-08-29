@@ -13,6 +13,15 @@ require_once 'Admin/AdminPage.php';
  */
 abstract class AdminEdit extends AdminPage
 {
+	public function init()
+	{
+		parent::init();
+
+		$id = SwatApplication::initVar('id');
+		$this->navbar->addElement(
+			($id == 0) ? Admin::_('Add') : Admin::_('Edit'));
+	}
+	
 	public function initDisplay()
 	{
 		$id = SwatApplication::initVar('id');
