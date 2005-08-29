@@ -15,6 +15,8 @@ class AdminUsersEdit extends AdminDBEdit
 
 	public function init()
 	{
+		parent::init();
+
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminUsers/edit.xml');
 

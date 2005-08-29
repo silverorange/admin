@@ -15,6 +15,8 @@ class AdminUsersLoginHistory extends AdminIndex {
 	public function init() {
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminUsers/loginhistory.xml');
+
+		$this->navbar->addElement(Admin::_('Login History'));
 	}
 	
 	public function process() {
