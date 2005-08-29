@@ -15,6 +15,8 @@ class AdminGroupsEdit extends AdminDBEdit
 
 	public function init()
 	{
+		parent::init();
+
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminGroups/edit.xml');
 

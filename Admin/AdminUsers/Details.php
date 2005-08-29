@@ -16,6 +16,8 @@ class AdminUsersDetails extends AdminIndex
 	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminUsers/details.xml');
+
+		$this->navbar->addElement(Admin::_('Details'));
 	}
 
 	public function initDisplay()
