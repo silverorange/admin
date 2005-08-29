@@ -17,6 +17,17 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 {
 	protected $items = null;
 
+	public function init()
+	{
+		parent::init();
+
+		$yes_button = $this->ui->getWidget('yes_button');
+		$yes_button->title = Admin::_('Delete');
+		
+		$no_button = $this->ui->getWidget('no_button');
+		$no_button->title = Admin::_('Cancel');
+	}
+
 	/**
 	 * Set items 
 	 *
