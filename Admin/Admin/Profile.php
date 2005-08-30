@@ -32,7 +32,7 @@ class AdminProfile extends AdminDBEdit
 		if (!$form->hasBeenProcessed())
 			$this->loadData(null);
 
-		$this->displayInitMessages();
+		$this->initMessages();
 	}
 
 
