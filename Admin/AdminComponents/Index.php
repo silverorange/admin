@@ -104,7 +104,7 @@ class AdminComponentsIndex extends AdminIndex
 					'integer:section', $new_section, 'componentid', 
 					$view->checked_items);
 
-				$title = SwatDB::queryOne($this->app->db, 'adminsections', 'text:title',
+				$title = SwatDB::queryOneFromTable($this->app->db, 'adminsections', 'text:title',
 					'sectionid', $new_section);
 
 				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been moved to section \"%s\".", 

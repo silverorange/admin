@@ -28,7 +28,7 @@ class AdminSubComponentsOrder extends AdminDBOrder
 		parent::initDisplay();
 	
 		//rebuild the navbar
-		$parent_title = SwatDB::queryOne($this->app->db, 'admincomponents', 'text:title',
+		$parent_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',
 			'componentid', $this->parent);
 
 		$this->navbar->popElements();
@@ -46,7 +46,7 @@ class AdminSubComponentsOrder extends AdminDBOrder
 			'title', 'subcomponentid', 'displayorder, title', $where_clause);
 
 		$sql = 'select sum(displayorder) from adminsubcomponents where '.$where_clause;
-		$sum = $this->app->db->queryOne($sql, 'integer');
+		$sum = $this->app->db->queryOneFromTable($sql, 'integer');
 		$radio_list = $this->ui->getWidget('options');
 		$radio_list->value = ($sum == 0) ? 'auto' : 'custom';
 	}

@@ -33,7 +33,7 @@ class AdminSubComponentsEdit extends AdminDBEdit {
 		parent::initDisplay();
 		
 		//rebuild the navbar
-		$parent_title = SwatDB::queryOne($this->app->db, 'admincomponents', 'text:title',
+		$parent_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',
 			'componentid', $this->parent);
 
 		$this->navbar->popElements();
