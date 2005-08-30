@@ -39,6 +39,25 @@ abstract class AdminEdit extends AdminPage
 		$form->addHiddenField('id', $id);
 	}
 
+	public function process()
+	{
+		$form = $this->ui->getWidget('edit_form');
+		$id = SwatApplication::initVar('id');
+
+		if ($form->process()) {
+			$this->processPage($id);
+
+			if ($form->hasMessage()) {
+				$msg = new SwatMessage(Admin::_('REWRITE: There is a problem below.'), SwatMessage::ERROR);
+				$this->app->messages->add($msg);
+			} else {
+				if ($this->saveData($id)) {
+					$this->relocate();
+				}
+			}
+		}
+	}
+
 	protected function initButton($id)
 	{
 		$button = $this->ui->getWidget('submit_button');
@@ -59,31 +78,11 @@ abstract class AdminEdit extends AdminPage
 			$frame->title = sprintf(Admin::_('Edit %s'), $frame->title);
 	}
 
-	public function process()
-	{
-		$form = $this->ui->getWidget('edit_form');
-		$id = SwatApplication::initVar('id');
-
-		if ($form->process()) {
-			$this->processPage($id);
-
-			if ($form->hasMessage()) {
-				$msg = new SwatMessage(Admin::_('REWRITE: There is a problem below.'), SwatMessage::ERROR);
-				$this->app->messages->add($msg);
-			} else {
-				if ($this->saveData($id)) {
-					$this->relocate();
-				}
-			}
-		}
-	}
-
 	/**
 	 * Additional page-level processing
 	 */
 	protected function processPage($id)
 	{
-
 	}
 
 	/**

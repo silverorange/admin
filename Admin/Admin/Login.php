@@ -13,11 +13,6 @@ require_once 'Swat/SwatLayout.php';
  */
 class AdminLogin extends AdminPage
 {
-    protected function createLayout()
-    {
-        return new SwatLayout('Admin/layouts/login.php');
-    }
-
 	public function init()
 	{
 		$this->ui = new AdminUI();
@@ -69,6 +64,11 @@ class AdminLogin extends AdminPage
 		$this->displayJavascript();
 		$this->layout->javascript = ob_get_clean();
 	}
+
+    protected function createLayout()
+    {
+        return new SwatLayout('Admin/layouts/login.php');
+    }
 
 	private function displayJavascript()
 	{
