@@ -31,7 +31,6 @@ class AdminNoAccess extends AdminPage
 
 	public function process()
 	{
-
 	}
 
 	public function setMessage($msg)

@@ -28,7 +28,6 @@ class AdminFront extends AdminPage
 
 	public function process()
 	{
-
 	}
 }
 

@@ -13,9 +13,10 @@ require_once('Admin/AdminDependency.php');
  * @package Admin
  * @copyright silverorange 2004
  */
-abstract class AdminDBConfirmation extends AdminConfirmation {
-
-	protected function processResponse() {
+abstract class AdminDBConfirmation extends AdminConfirmation
+{
+	protected function processResponse()
+	{
 		$form = $this->ui->getWidget('confirmation_form');
 
 		if ($form->button->id == 'yes_button') {
@@ -36,7 +37,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation {
 		}
 	}
 
-	protected function processGenerateMessage(Exception $e) {
+	protected function processGenerateMessage(Exception $e)
+	{
 		if ($e instanceof SwatDBException)
 			$msg = new SwatMessage(Admin::_('A database error has occured.'), SwatMessage::SYSTEM_ERROR);
 		else

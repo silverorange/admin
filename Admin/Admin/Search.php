@@ -62,7 +62,6 @@ abstract class AdminSearch extends AdminIndex
 
 		return $ret;
 	}
-
 }
 
 ?>
