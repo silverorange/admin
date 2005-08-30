@@ -19,6 +19,7 @@ class AdminProfile extends AdminDBEdit
 		$this->ui->loadFromXML('Admin/Admin/profile.xml');
 
 		$this->navbar->popElements();
+		$this->navbar->addElement(Admin::_('My Profile'));
 
 		$confirm = $this->ui->getWidget('confirmpassword');
 		$confirm->password_widget = $this->ui->getWidget('password');;
@@ -34,7 +35,6 @@ class AdminProfile extends AdminDBEdit
 
 		$this->initMessages();
 	}
-
 
 	protected function relocate()
 	{
