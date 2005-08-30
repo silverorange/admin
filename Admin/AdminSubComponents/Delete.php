@@ -34,7 +34,7 @@ class AdminSubComponentsDelete extends AdminDBDelete
 		parent::initDisplay();
 
 		//rebuild the navbar
-		$component_title = SwatDB::queryOne($this->app->db, 'admincomponents', 'text:title',
+		$component_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',
 			'componentid', $this->parent);
 
 		$this->navbar->popElements();
