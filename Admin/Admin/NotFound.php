@@ -15,7 +15,6 @@ class AdminNotFound extends AdminPage
 
 	public function init()
 	{
-
 	}
 
 	public function display()
@@ -31,7 +30,6 @@ class AdminNotFound extends AdminPage
 
 	public function process()
 	{
-
 	}
 
 	public function setMessage($msg)
