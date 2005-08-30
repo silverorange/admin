@@ -40,6 +40,26 @@ abstract class AdminIndex extends AdminPage
 	 */
 	abstract protected function getTableStore();
 
+	public function process()
+	{
+		$form = $this->ui->getWidget('index_form');
+		$view = $this->ui->getWidget('index_view');
+		$actions = $this->ui->getWidget('index_actions', true);
+
+		if (!$form->process())
+			return;
+
+		if (count($view->checked_items) == 0)
+			return;
+
+		if ($actions !== null) {
+			if ($actions->selected === null)
+				return;
+
+			$this->processActions();
+		}
+	}
+
 	protected function getOrderByClause($default_orderby, $column_prefix = null, $column_map = array())
 	{
 		$view = $this->ui->getWidget('index_view');
@@ -62,26 +82,6 @@ abstract class AdminIndex extends AdminPage
 		return $orderby;
 	}
 
-	public function process()
-	{
-		$form = $this->ui->getWidget('index_form');
-		$view = $this->ui->getWidget('index_view');
-		$actions = $this->ui->getWidget('index_actions', true);
-
-		if (!$form->process())
-			return;
-
-		if (count($view->checked_items) == 0)
-			return;
-
-		if ($actions !== null) {
-			if ($actions->selected === null)
-				return;
-
-			$this->processActions();
-		}
-	}
-
 	/**
 	 * Process the actions.
 	 *
@@ -91,7 +91,6 @@ abstract class AdminIndex extends AdminPage
 	 */
 	protected function processActions()
 	{
-
 	}
 }
 

@@ -33,17 +33,6 @@ abstract class AdminConfirmation extends AdminPage
 		$form = $this->ui->getWidget('confirmation_form');
 		$form->action = $this->source;
 	}
-
-	/**
-	 * Switch to a cancel button.
-	 *
-	 * Transforms the default Yes/No buttons in confirmation.xml into a cancel button.
-	 */
-	protected function displayCancelButton()
-	{
-		$this->ui->getWidget('yes_button')->visible = false;
-		$this->ui->getWidget('no_button')->title = Admin::_('Cancel');
-	}
 	
 	public function process()
 	{
@@ -55,6 +44,17 @@ abstract class AdminConfirmation extends AdminPage
 		$this->processResponse();
 
 		$this->app->relocate($this->app->history->getHistory(0));
+	}
+
+	/**
+	 * Switch to a cancel button.
+	 *
+	 * Transforms the default Yes/No buttons in confirmation.xml into a cancel button.
+	 */
+	protected function displayCancelButton()
+	{
+		$this->ui->getWidget('yes_button')->visible = false;
+		$this->ui->getWidget('no_button')->title = Admin::_('Cancel');
 	}
 
 	/**
