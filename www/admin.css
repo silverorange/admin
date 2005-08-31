@@ -114,10 +114,6 @@ img { border: 0; }
 
 /* Login Page Styles */
 
-body#admin-login-page {
-	background-position: -200px;
-}
-
 #admin-login {
 	width: 25em;
 	margin: 4em auto 1em auto;
