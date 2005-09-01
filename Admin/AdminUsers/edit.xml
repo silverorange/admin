@@ -4,13 +4,13 @@
 	<widget class="SwatFrame" id="edit_frame">
 		<property name="title" value="User" translatable="yes" />
 		<widget class="SwatForm" id="edit_form">
-			<widget class="SwatFormField">
+			<widget class="SwatFormFooterField">
 				<property name="title" value="Name" translatable="yes" />
 				<widget class="SwatEntry" id="name">
 					<property name="required" value="true" type="boolean" />
 				</widget>
 			</widget>
-			<widget class="SwatFormField">
+			<widget class="SwatFormFooterField">
 				<property name="title" value="Username" translatable="yes" />
 				<widget class="AdminUniqueEntry" id="username">
 					<property name="required" value="true" type="boolean" />
@@ -19,7 +19,7 @@
 			<widget class="SwatDisclosure" id="password_disclosure">
 				<property name="title" value="Change Password" translatable="yes" />
 				<property name="open" value="false" type="boolean" />
-				<widget class="SwatFormField">
+				<widget class="SwatFormFooterField">
 					<property name="title" value="Password" translatable="yes" />
 					<widget class="SwatPasswordEntry" id="password">
 						<property name="minlength" value="4" type="integer" />
@@ -31,18 +31,17 @@
 					<widget class="SwatConfirmPasswordEntry" id="confirm_password" />
 				</widget>
 			</widget>
-			<widget class="SwatFormField">
+			<widget class="SwatFormFooterField">
 				<property name="title" value="Enabled" translatable="yes" />
 				<widget class="SwatCheckbox" id="enabled">
 					<property name="value" value="true" type="boolean" />
 				</widget>
 			</widget>
-			<widget class="SwatFormField">
+			<widget class="SwatFormFooterField">
 				<property name="title" value="Belongs to Groups" translatable="yes" />
 				<widget class="SwatCheckboxList" id="groups" />
 			</widget>
-			<widget class="SwatFormField">
-				<property name="class" value="swat-form-footer" />
+			<widget class="SwatFormFooterField">
 				<widget class="SwatButton" id="submit_button" />
 			</widget>
 		</widget>
