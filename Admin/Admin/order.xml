@@ -2,11 +2,11 @@
 <swat-interface>
 	<widget class="SwatFrame" id="order_frame">
 		<widget class="SwatForm" id="order_form">
-			<widget class="SwatFormFooterField">
+			<widget class="SwatFormField">
 				<property name="title" value="Order Options" translatable="yes" />
 				<widget class="SwatRadioList" id="options" />
 			</widget>
-			<widget class="SwatFormFooterField">
+			<widget class="SwatFormField">
 				<property name="title" value="Custom Order" translatable="yes" />
 				<widget class="SwatChangeOrder" id="order" />
 			</widget>
