@@ -3,22 +3,21 @@
 	<widget class="SwatFrame" id="login_frame">
 		<property name="title" value="Login" translatable="yes" />
 		<widget class="SwatForm" id="login_form">
-			<widget class="SwatFormField">
+			<widget class="SwatFormFooterField">
 				<property name="title" value="Username" translatable="yes" />
 				<widget class="SwatEntry" id="username">
 					<property name="required" value="true" type="boolean" />
 					<property name="size" value="25" type="integer" />
 				</widget>
 			</widget>
-			<widget class="SwatFormField">
+			<widget class="SwatFormFooterField">
 				<property name="title" value="Password" translatable="yes" />
 				<widget class="SwatPasswordEntry" id="password">
 					<property name="required" value="true" type="boolean" />
 					<property name="size" value="25" type="integer" />
 				</widget>
 			</widget>
-			<widget class="SwatFormField">
-				<property name="class" value="swat-form-footer" />
+			<widget class="SwatFormFooterField">
 				<widget class="SwatButton" id="login_button">
 					<property name="title" value="Login" translatable="yes" />
 				</widget>
