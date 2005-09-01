@@ -69,9 +69,9 @@ abstract class AdminEdit extends AdminPage
 		$button = $this->ui->getWidget('submit_button');
 
 		if ($id === null)
-			$button->setTitleFromStock('create');
+			$button->setFromStock('create');
 		else
-			$button->setTitleFromStock('apply');
+			$button->setFromStock('apply');
 	}
 
 	protected function initFrame($id)
