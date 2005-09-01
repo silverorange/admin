@@ -153,6 +153,7 @@ class AdminApplication extends SwatApplication
 						$page->source = $request->source;
 						$page->component = $request->component;
 						$page->subcomponent = $request->subcomponent;
+						// TODO: Make this first element an <h1>, but make sure the <h1> is outside the <a></a>
 						$page->navbar->addElement($this->title, '');
 						$page->navbar->addElement($request->title, 
 							($request->subcomponent == 'Index') ? null : $request->component);
