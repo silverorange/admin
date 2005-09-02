@@ -19,7 +19,7 @@ abstract class AdminConfirmation extends AdminPage
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/confirmation.xml');
 
-		$this->navbar->addElement(Admin::_('Confirmation'));
+		$this->navbar->createEntry(Admin::_('Confirmation'));
 	}
 
 	/**

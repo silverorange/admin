@@ -37,9 +37,9 @@ class AdminSubComponentsDelete extends AdminDBDelete
 		$component_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',
 			'componentid', $this->parent);
 
-		$this->navbar->popElements();
-		$this->navbar->addElement(Swat::_("Admin Components"), 'AdminComponents');
-		$this->navbar->addElement($component_title, 'AdminComponents/Details?id='.$this->parent);
+		$this->navbar->popEntry();
+		$this->navbar->createEntry(Swat::_("Admin Components"), 'AdminComponents');
+		$this->navbar->createEntry($component_title, 'AdminComponents/Details?id='.$this->parent);
 	}
 
 	protected function processDBData()

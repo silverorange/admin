@@ -154,8 +154,8 @@ class AdminApplication extends SwatApplication
 						$page->component = $request->component;
 						$page->subcomponent = $request->subcomponent;
 						// TODO: Make this first element an <h1>, but make sure the <h1> is outside the <a></a>
-						$page->navbar->addElement($this->title, '');
-						$page->navbar->addElement($request->title, 
+						$page->navbar->createEntry($this->title, '');
+						$page->navbar->createEntry($request->title, 
 							($request->subcomponent == 'Index') ? null : $request->component);
 					}
 				}	
@@ -171,7 +171,7 @@ class AdminApplication extends SwatApplication
 			$page->subcomponent = 'NotFound';
 			$page->setMessage($err);
 			$page->navbar = new SwatNavBar();
-			$page->navbar->addElement($this->title, '');
+			$page->navbar->createEntry($this->title, '');
 		}
 			
 		if (isset($_SERVER['HTTP_REFERER']))
