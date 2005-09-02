@@ -17,7 +17,7 @@ class AdminFront extends AdminPage
 		$this->ui->loadFromXML('Admin/Admin/front.xml');
 
 		$this->navbar = new SwatNavBar();
-		$this->navbar->addElement('<h1>'.$this->app->title.'</h1>');
+		$this->navbar->createEntry('<h1>'.$this->app->title.'</h1>');
 	}
 
 	public function initDisplay()

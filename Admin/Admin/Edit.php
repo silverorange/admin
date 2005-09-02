@@ -18,7 +18,7 @@ abstract class AdminEdit extends AdminPage
 		parent::init();
 
 		$id = SwatApplication::initVar('id');
-		$this->navbar->addElement(
+		$this->navbar->createEntry(
 			($id == 0) ? Admin::_('Add') : Admin::_('Edit'));
 	}
 	

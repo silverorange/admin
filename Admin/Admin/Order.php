@@ -20,7 +20,7 @@ abstract class AdminOrder extends AdminPage
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/order.xml');
 
-		$this->navbar->addElement(Admin::_('Change Order'));
+		$this->navbar->createEntry(Admin::_('Change Order'));
 	}
 
 	public function process()
