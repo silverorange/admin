@@ -90,6 +90,10 @@ abstract class AdminPage extends SwatPage
 	{
 		$this->initDisplay();
 
+		ob_start();
+		$this->ui->getRoot()->displayHtmlHeadEntries();
+		$this->layout->html_head_entries = ob_get_clean();
+
 		$this->layout->title = $this->app->title.' | '.$this->title;
 		$this->layout->basehref = $this->app->getBaseHref();
 
