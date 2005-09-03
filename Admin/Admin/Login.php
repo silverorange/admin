@@ -55,7 +55,7 @@ class AdminLogin extends AdminPage
 	{
 		ob_start();
 		$this->ui->getRoot()->displayHtmlHeadEntries();
-		$this->layout = ob_get_clean();
+		$this->layout->html_head_entries = ob_get_clean();
 
 		$this->layout->title = $this->app->title.' | '.$this->title;
 		$this->layout->basehref = $this->app->getBaseHref();
