@@ -53,6 +53,10 @@ class AdminLogin extends AdminPage
 
 	public function build()
 	{
+		ob_start();
+		$this->ui->getRoot()->displayHtmlHeadEntries();
+		$this->layout = ob_get_clean();
+
 		$this->layout->title = $this->app->title.' | '.$this->title;
 		$this->layout->basehref = $this->app->getBaseHref();
 
