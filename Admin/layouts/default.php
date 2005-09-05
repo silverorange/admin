@@ -16,12 +16,16 @@
 	</span>
 </div>
 
-<div id="admin-menu">
-	<?=$this->menu?>
-</div>
+<div id="admin-body">
 
-<div id="admin-content">
-	<?=$this->content?>
+	<div id="admin-content">
+		<?=$this->content?>
+	</div>
+
+	<div id="admin-menu">
+		<?=$this->menu?>
+	</div>
+
 </div>
 
 </body>
