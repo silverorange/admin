@@ -6,7 +6,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<?=$this->html_head_entries?>
 	<style type="text/css" media="all">@import "admin/admin.css";</style>
-	<style type="text/css" media="all">@import "swat/swat.css";</style>
 </head>
 <body>
 
