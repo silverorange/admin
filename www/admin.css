@@ -1,7 +1,8 @@
 body {
 	font-family: sans-serif;
 	font-size: 13px;
-	background: #F9F6F0 url('images/menu.png');
+	background: #FFF;
+	color: #333;
 	margin: 0;
 	padding: 0;
 }
@@ -13,23 +14,32 @@ a:active { color: #000; }
 
 img { border: 0; }
 
+
 /* Basic Layout */
 
+#admin-body { position: relative; border: 1px solid #FFF; }
+
 #admin-menu {
-	float: left;
-	width: 100px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 160px;
+	color: #666;
+	padding: 2em 16px;
 }
 
 #admin-content {
-	margin-left: 190px;
+	padding: 1em 16px 1em 200px;
 }
+
 
 /* Header Styles */
 
 #admin-header {
-	background: #4272C1 url('images/header.png') repeat-x bottom;
+	background: #426c9e;
 	padding: 0.5em 1em;
 	color: #ddd;
+	border-bottom: 4px solid #81aed5;
 }
 
 #admin-header a { color: #fff; }
@@ -54,63 +64,59 @@ img { border: 0; }
 	font-size: 140%;
 }
 
+
 /* Menu Styles */
 
-#admin-menu {
-	width: 188px;
-	color: #666;
-}
-
-#admin-menu ul li {
+#admin-menu ul {
+	list-style-type: none;
 	margin: 0;
 	padding: 0;
+}
+
+#admin-menu ul span {
+	background: #fff;
+	position: relative;
+	top: -0.7em;
+	padding: 0 6px;
 	font-weight: bold;
 }
 
-#admin-menu ul a,
-#admin-menu ul span {
-	display: block;
-	padding: 6px 4px 6px 1.2em;
-	border-top: 1px solid #fff;
-	border-bottom: 1px solid #e3dfd7;
-	text-decoration: none;
+#admin-menu ul li {
+	border: 1px solid #ddd;
+	padding: 0 12px 12px 12px;
+	margin-bottom: 2em;
 }
 
-#admin-menu ul span {
-	background: #eeeae3;
+#admin-menu li li {
 	border: 0;
-}
-
-#admin-menu ul a:hover { background: #fff; }
-#admin-menu ul a:active { background: #e3dfd7; }
-
-#admin-menu ul ul a,
-#admin-menu ul ul span {
-	padding: 3px 3px 3px 2em;
-}
-
-#admin-menu ul ul ul a {
-	padding-left: 3.5em;
-	font-weight: normal;
-	font-size: 85%;
-}
-
-#admin-menu ul {
-	margin: 0;
 	padding: 0;
-	list-style-type: none;
+	margin: 0;
 }
 
 #admin-menu ul ul {
-	padding: 0;
-	margin: 0;
+	padding: 0 0 0.5em 1.3em;
+	list-style-type: circle;
+}
+
+#admin-menu ul ul ul {
+	padding-bottom: 0;
+}
+
+#admin-menu li {
+	padding-top: 0.2em;
+}
+
+#admin-menu ul ul ul li {
+	font-size: 85%;
+}
+
+#admin-menu a {
+	text-decoration: none;
 }
 
 /* Content Styles */
 
-#admin-content {
-	padding: 1.5em 2em;
-}
+
 
 /* Login Page Styles */
 
