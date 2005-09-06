@@ -71,6 +71,7 @@ img { border: 0; }
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+	color: #837352;
 }
 
 #admin-menu ul span {
@@ -82,7 +83,7 @@ img { border: 0; }
 }
 
 #admin-menu ul li {
-	border: 1px solid #ddd;
+	border: 1px solid #e7ddc8;
 	padding: 0 12px 12px 12px;
 	margin-bottom: 2em;
 }
