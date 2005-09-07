@@ -108,7 +108,7 @@ class AdminComponentsDetails extends AdminIndex
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
-		if ($store->getRowCount() == 0)
+		if ($store->getRowCount() < 2)
 			$this->ui->getWidget('order_tool')->visible = false;
 
 		return $store;
