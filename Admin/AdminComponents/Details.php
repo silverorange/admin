@@ -4,6 +4,7 @@ require_once 'Admin/AdminUI.php';
 require_once 'Admin/Admin/Index.php';
 require_once 'Admin/AdminTableStore.php';
 require_once 'SwatDB/SwatDB.php';
+require_once 'Swat/SwatString.php';
 
 /**
  * Details page for AdminComponents
@@ -36,7 +37,8 @@ class AdminComponentsDetails extends AdminIndex
 
 		$sql = 'select admincomponents.title as title, shortname,
 					adminsections.title as section,
-					admincomponents.show as show, enabled
+					admincomponents.show as show, enabled,
+					admincomponents.description as description
 				from admincomponents
 					inner join adminsections on
 						adminsections.sectionid = admincomponents.section
@@ -44,8 +46,27 @@ class AdminComponentsDetails extends AdminIndex
 
 		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
 
-		$rs = SwatDB::queryRowFromTable($this->app->db, $sql);
-		echo '<pre>',print_r($row, true),'</pre>';
+		$rs = SwatDB::query($this->app->db, $sql);
+		$row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT);
+
+		if ($row === null)
+			return $this->app->replacePageNoAccess();
+
+		$groups = array();
+
+		$sql = 'select admingroups.title as title
+				from admingroups
+					inner join admincomponent_admingroup on
+						admingroups.groupid = admincomponent_admingroup.groupnum
+				where admincomponent_admingroup.component = %s';
+
+		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
+
+		$rs = SwatDB::query($this->app->db, $sql);
+		while ($group_row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT))
+			$groups[] = $group_row->title;
+
+		$row->groups = implode(', ', $groups);
 
 		if ($row === null)
 			return $this->app->replacePageNoAccess();
@@ -57,6 +78,9 @@ class AdminComponentsDetails extends AdminIndex
 
 		foreach ($frame->getChildren('SwatToolLink') as $tool)
 			$tool->value = $this->id;
+
+		$description = $this->ui->getWidget('component_description');
+		$description->content = SwatString::toXHTML($row->description);
 
 		parent::initDisplay();
 	}
