@@ -61,7 +61,7 @@ class AdminGroupsEdit extends AdminDBEdit
 
 	protected function loadDBData($id)
 	{
-		$row = SwatDB::queryRow($this->app->db, 'admingroups', 
+		$row = SwatDB::queryRowFromTable($this->app->db, 'admingroups', 
 			$this->fields, 'integer:groupid', $id);
 
 		if ($row === null)

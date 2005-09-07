@@ -71,7 +71,7 @@ class AdminComponentsEdit extends AdminDBEdit
 
 	protected function loadDBData($id)
 	{
-		$row = SwatDB::queryRow($this->app->db, 'admincomponents', 
+		$row = SwatDB::queryRowFromTable($this->app->db, 'admincomponents', 
 			$this->fields, 'integer:componentid', $id);
 
 		if ($row === null)

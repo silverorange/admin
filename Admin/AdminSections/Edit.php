@@ -51,7 +51,7 @@ class AdminSectionsEdit extends AdminDBEdit
 
 	protected function loadDBData($id) {
 
-		$row = SwatDB::queryRow($this->app->db, 'adminsections', 
+		$row = SwatDB::queryRowFromTable($this->app->db, 'adminsections', 
 			$this->fields, 'integer:sectionid', $id);
 
 		if ($row === null)
