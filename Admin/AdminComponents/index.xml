@@ -18,8 +18,8 @@
 					</object>
 				</object>
 				<object class="SwatTableViewColumn" id="controls">
-					<object class="AdminEditControlCellRenderer">
-						<property name="link" value="AdminComponents/Edit?id=%s" />
+					<object class="AdminDetailsControlCellRenderer">
+						<property name="link" value="AdminComponents/Details?id=%s" />
 						<property name="value" value="componentid" type="data" />
 					</object>
 				</object>
