@@ -221,10 +221,9 @@ class AdminApplication extends SwatApplication
 				
 			} else {
 			
-				$pagequery = $this->queryForPage($component);
+				$row = $this->queryForPage($component);
 
-				if ($pagequery->numRows()) {
-					$row = $pagequery->fetchRow(MDB2_FETCHMODE_OBJECT);
+				if ($row !== null) {
 					$request = new AdminPageRequest();
 					$request->title = $row->component_title;
 					$request->component = $component;
@@ -269,13 +268,8 @@ class AdminApplication extends SwatApplication
 					WHERE adminuser_admingroup.usernum = {$usernum}
 				)";
 
-		$rs = SwatDB::query($this->db, $sql);
-		
-		if (MDB2::isError($rs))
-			throw new Exception($rs->getMessage());
-			
-		return $rs;
-
+		$row = SwatDB::queryRow($this->db, $sql);
+		return $row;
 	}
 
     // }}}
