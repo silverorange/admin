@@ -70,9 +70,6 @@ class AdminComponentsDetails extends AdminIndex
 
 		$row->groups = implode(', ', $groups);
 
-		if ($row === null)
-			return $this->app->replacePageNoAccess();
-
 		$component_details->data = &$row;
 
 		$frame = $this->ui->getWidget('index_frame');
