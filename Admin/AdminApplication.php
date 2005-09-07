@@ -195,7 +195,12 @@ class AdminApplication extends SwatApplication
 
 		if ($this->session->isLoggedIn()) {
 			if (strpos($source, '/')) {
-				list($component, $subcomponent) = explode('/', $source);
+
+				$source = rtrim($source, '/');
+				$source_exp = explode('/', $source);
+				$component = array_shift($source_exp);
+				$subcomponent = implode('/', $source_exp);
+
 			} else {
 				$component = $source;
 				$subcomponent = 'Index';
