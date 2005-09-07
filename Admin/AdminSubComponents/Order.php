@@ -27,10 +27,11 @@ class AdminSubComponentsOrder extends AdminDBOrder
 		$frame->title = Admin::_('Order Sub-Components');
 		parent::initDisplay();
 	
-		//rebuild the navbar
+		// rebuild the navbar
 		$parent_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',
 			'componentid', $this->parent);
 
+		// pop two entries because the AdminDBOrder base class adds an entry
 		$this->navbar->popEntries(2);
 		$this->navbar->createEntry('Admin Components', 'AdminComponents');
 		$this->navbar->createEntry($parent_title, 'AdminComponents/Details?id='.$this->parent);
