@@ -7,7 +7,7 @@
 			<property name="title" value="Edit Component" translatable="yes" />
 			<property name="link" value="AdminComponents/Edit?id=%s" />
 		</widget>
-		<widget class="SwatFieldset">
+		<widget class="SwatFieldset" id="component_description_field">
 			<property name="title" value="Description" type="string" />
 			<widget class="SwatContentBlock" id="component_description">
 			</widget>

@@ -79,8 +79,15 @@ class AdminComponentsDetails extends AdminIndex
 		foreach ($frame->getChildren('SwatToolLink') as $tool)
 			$tool->value = $this->id;
 
-		$description = $this->ui->getWidget('component_description');
-		$description->content = SwatString::toXHTML($row->description);
+		$description_field =
+			$this->ui->getWidget('component_description_field');
+
+		if (strlen($row->description) == 0) {
+			$description_field->visible = false;
+		} else {
+			$description = $this->ui->getWidget('component_description');
+			$description->content = SwatString::toXHTML($row->description);
+		}
 
 		parent::initDisplay();
 	}
