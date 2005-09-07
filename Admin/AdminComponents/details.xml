@@ -8,7 +8,7 @@
 			<property name="link" value="AdminComponents/Edit?id=%s" />
 			<property name="stock_id" value="edit" type="string" />
 		</widget>
-		<widget class="SwatFieldset" id="component_description_field">
+		<widget class="SwatFieldset">
 			<property name="title" value="Description" type="string" />
 			<widget class="SwatContentBlock" id="component_description">
 			</widget>
@@ -29,7 +29,7 @@
 			<object class="SwatDetailsViewField" id="section">
 				<property name="title" value="Section" />
 				<object class="SwatTextCellRenderer" id="section_renderer">
-					<property name="value" value="section" type="data" />
+					<property name="value" value="section_title" type="data" />
 				</object>
 			</object>
 			<object class="SwatDetailsViewField" id="show">
