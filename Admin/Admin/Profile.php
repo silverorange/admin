@@ -62,7 +62,7 @@ class AdminProfile extends AdminDBEdit
 
 	protected function loadDBData($id)
 	{
-		$row = SwatDB::queryRow($this->app->db, 'adminusers', 
+		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers', 
 			array('name'), 'integer:userid', $_SESSION['userID']);
 
 		$this->ui->setValues(get_object_vars($row));

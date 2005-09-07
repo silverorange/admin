@@ -84,7 +84,7 @@ class AdminUsersEdit extends AdminDBEdit
 
 	protected function loadDBData($id)
 	{
-		$row = SwatDB::queryRow($this->app->db, 'adminusers', 
+		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers', 
 			$this->fields, 'integer:userid', $id);
 
 		if ($row === null)

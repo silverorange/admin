@@ -30,25 +30,6 @@ class AdminComponentsDetails extends AdminIndex
 
 	public function initDisplay()
 	{
-		$fields = array('title'); 
-		$row = SwatDB::queryRow($this->app->db, 'admincomponents', $fields, 'componentid', $this->id);
-
-		if ($row === null)
-			return $this->app->replacePageNoAccess();
-
-		$frame = $this->ui->getWidget('index_frame');
-		$frame->title = $row->title;
-
-		$sub_frame = $this->ui->getWidget('sub_frame');
-
-		foreach ($sub_frame->getChildren('SwatToolLink') as $tool)
-			$tool->value = $this->id;
-
-		parent::initDisplay();
-	}
-/*
-	public function initDisplay()
-	{
 		$component_details = $this->ui->getWidget('component_details');
 
 		$fields = array('title', 'shortname', 'show', 'enabled');
@@ -63,7 +44,7 @@ class AdminComponentsDetails extends AdminIndex
 
 		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
 
-		$row = SwatDB::query($this->app->db, $sql);
+		$rs = SwatDB::queryRowFromTable($this->app->db, $sql);
 		echo '<pre>',print_r($row, true),'</pre>';
 
 		if ($row === null)
@@ -79,7 +60,7 @@ class AdminComponentsDetails extends AdminIndex
 
 		parent::initDisplay();
 	}
-*/
+
 	protected function getTableStore()
 	{
 		$sql = 'select adminsubcomponents.subcomponentid, 

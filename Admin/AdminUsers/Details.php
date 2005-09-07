@@ -24,7 +24,7 @@ class AdminUsersDetails extends AdminIndex
 	{
 		$id = $this->app->initVar('id');
 
-		$row = SwatDB::queryRow($this->app->db, 'adminusers',
+		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers',
 			array('username','name'), 'userid' , $id);
 
 		$frame = $this->ui->getWidget('index_frame');
