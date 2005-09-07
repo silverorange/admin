@@ -21,7 +21,6 @@ class AdminSubComponentsEdit extends AdminDBEdit {
 
 		$this->parent = SwatApplication::initVar('parent');
 
-
 		$this->fields = array('title', 'shortname', 'boolean:show', 'integer:component');
 
 		$form = $this->ui->getWidget('edit_form');
@@ -32,13 +31,19 @@ class AdminSubComponentsEdit extends AdminDBEdit {
 	{
 		parent::initDisplay();
 		
-		//rebuild the navbar
+		// rebuild the navbar
 		$parent_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',
 			'componentid', $this->parent);
 
 		$this->navbar->popEntry();
 		$this->navbar->createEntry('Admin Components', 'AdminComponents');
 		$this->navbar->createEntry($parent_title, 'AdminComponents/Details?id='.$this->parent);
+
+		$id = $this->app->initVar('id');
+		if ($id == 0)
+			$this->navbar->createEntry('Add Sub-Component');
+		else
+			$this->navbar->createEntry('Edit Sub-Component');
 	}
 	
 	protected function processPage($id)
