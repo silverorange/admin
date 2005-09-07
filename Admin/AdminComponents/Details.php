@@ -78,7 +78,7 @@ class AdminComponentsDetails extends AdminIndex
 		$frame = $this->ui->getWidget('index_frame');
 		$frame->title = $row->title;
 
-		foreach ($frame->getChildren('SwatToolLink') as $tool)
+		foreach ($frame->getDescendants('SwatToolLink') as $tool)
 			$tool->value = $this->id;
 
 		$description_field =
