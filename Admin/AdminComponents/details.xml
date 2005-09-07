@@ -62,7 +62,7 @@
 			<widget class="SwatToolLink" id="order_tool">
 				<property name="title" value="Change Sub-Component Order" translatable="yes" />
 				<property name="link" value="AdminSubComponents/Order?parent=%s" />
-				<property name="stock_id" value="order" type="string" />
+				<property name="stock_id" value="change-order" type="string" />
 			</widget>
 			<widget class="SwatForm" id="index_form">
 				<widget class="SwatTableView" id="index_view">
