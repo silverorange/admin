@@ -46,7 +46,40 @@ class AdminComponentsDetails extends AdminIndex
 
 		parent::initDisplay();
 	}
+/*
+	public function initDisplay()
+	{
+		$component_details = $this->ui->getWidget('component_details');
 
+		$fields = array('title', 'shortname', 'show', 'enabled');
+
+		$sql = 'select admincomponents.title as title, shortname,
+					adminsections.title as section,
+					admincomponents.show as show, enabled
+				from admincomponents
+					inner join adminsections on
+						adminsections.sectionid = admincomponents.section
+				where componentid = %s';
+
+		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
+
+		$row = SwatDB::query($this->app->db, $sql);
+		echo '<pre>',print_r($row, true),'</pre>';
+
+		if ($row === null)
+			return $this->app->replacePageNoAccess();
+
+		$component_details->data = &$row;
+
+		$frame = $this->ui->getWidget('index_frame');
+		$frame->title = $row->title;
+
+		foreach ($frame->getChildren('SwatToolLink') as $tool)
+			$tool->value = $this->id;
+
+		parent::initDisplay();
+	}
+*/
 	protected function getTableStore()
 	{
 		$sql = 'select adminsubcomponents.subcomponentid, 
@@ -59,8 +92,7 @@ class AdminComponentsDetails extends AdminIndex
 
 		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
 
-		$types = array('integer', 'text', 'text', 'boolean');
-		$store = $this->app->db->query($sql, $types, true, 'AdminTableStore');
+		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
 		if ($store->getRowCount() == 0)
 			$this->ui->getWidget('order_tool')->visible = false;

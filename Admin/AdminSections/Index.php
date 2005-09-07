@@ -26,7 +26,7 @@ class AdminSectionsIndex extends AdminIndex
 				from adminsections 
 				order by displayorder';
 
-		$store = $this->app->db->query($sql, null, true, 'AdminTableStore');
+		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
 		if ($store->getRowCount() == 0)
 			$this->ui->getWidget('order_tool')->visible = false;

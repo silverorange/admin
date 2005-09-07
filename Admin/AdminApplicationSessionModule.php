@@ -54,7 +54,7 @@ class AdminApplicationSessionModule extends SwatApplicationModule
 			$this->app->db->quote($md5_password, 'text'),
 			$this->app->db->quote(true, 'boolean'));
 
-		$rs = $this->app->db->query($sql);
+		$rs = SwatDB::query($this->app->db, $sql);
 		
 		if ($rs->numRows()) {
 			$result = $rs->fetchRow(MDB2_FETCHMODE_OBJECT); 

@@ -39,7 +39,7 @@ class AdminComponentsIndex extends AdminIndex
 		$sql = sprintf($sql,
 			$this->getOrderByClause('admincomponents.displayorder, admincomponents.title', 'admincomponents'));
 
-		$store = $this->app->db->query($sql, null, true, 'AdminTableStore');
+		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
 		return $store;
 	}
