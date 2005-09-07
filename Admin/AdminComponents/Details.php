@@ -27,6 +27,8 @@ class AdminComponentsDetails extends AdminIndex
 		$form->addHiddenField('id', $this->id);
 
 		$this->navbar->createEntry(Admin::_('Details'));
+
+		$this->ui->init();
 	}
 
 	public function initDisplay()

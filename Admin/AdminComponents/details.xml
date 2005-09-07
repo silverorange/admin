@@ -6,6 +6,7 @@
 		<widget class="SwatToolLink">
 			<property name="title" value="Edit Component" translatable="yes" />
 			<property name="link" value="AdminComponents/Edit?id=%s" />
+			<property name="stock_id" value="edit" type="string" />
 		</widget>
 		<widget class="SwatFieldset" id="component_description_field">
 			<property name="title" value="Description" type="string" />
@@ -56,10 +57,12 @@
 			<widget class="SwatToolLink">
 				<property name="title" value="Create a New Sub-Component" translatable="yes" />
 				<property name="link" value="AdminSubComponents/Edit?parent=%s" />
+				<property name="stock_id" value="create" type="string" />
 			</widget>
 			<widget class="SwatToolLink" id="order_tool">
 				<property name="title" value="Change Sub-Component Order" translatable="yes" />
 				<property name="link" value="AdminSubComponents/Order?parent=%s" />
+				<property name="stock_id" value="order" type="string" />
 			</widget>
 			<widget class="SwatForm" id="index_form">
 				<widget class="SwatTableView" id="index_view">
