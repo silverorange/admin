@@ -35,12 +35,8 @@ class AdminComponentsDetails extends AdminIndex
 	{
 		$component_details = $this->ui->getWidget('component_details');
 
-		$fields = array('title', 'shortname', 'show', 'enabled');
-
-		$sql = 'select admincomponents.title as title, shortname,
-					adminsections.title as section,
-					admincomponents.show as show, enabled,
-					admincomponents.description as description
+		$sql = 'select admincomponents.*,
+					adminsections.title as section_title
 				from admincomponents
 					inner join adminsections on
 						adminsections.sectionid = admincomponents.section
@@ -48,47 +44,57 @@ class AdminComponentsDetails extends AdminIndex
 
 		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
 
-		$rs = SwatDB::query($this->app->db, $sql);
-		$row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT);
+		$row = SwatDB::queryRow($this->app->db, $sql);
 
 		if ($row === null)
 			return $this->app->replacePageNoAccess();
 
-		$groups = array();
+		ob_start();
+		$this->displayGroups($this->id);
+		$row->groups = ob_get_clean();
 
-		$sql = 'select admingroups.title as title
-				from admingroups
-					inner join admincomponent_admingroup on
-						admingroups.groupid = admincomponent_admingroup.groupnum
-				where admincomponent_admingroup.component = %s';
-
-		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
-
-		$rs = SwatDB::query($this->app->db, $sql);
-		while ($group_row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT))
-			$groups[] = $group_row->title;
-
-		$row->groups = implode(', ', $groups);
-
-		$component_details->data = &$row;
+		$component_details->data = $row;
 
 		$frame = $this->ui->getWidget('index_frame');
-		$frame->title = $row->title;
+		$frame->title = sprintf(Admin::_("Component: \"%s\""), $row->title);
 
 		foreach ($frame->getDescendants('SwatToolLink') as $tool)
 			$tool->value = $this->id;
 
-		$description_field =
-			$this->ui->getWidget('component_description_field');
+		$description = $this->ui->getWidget('component_description');
 
-		if (strlen($row->description) == 0) {
-			$description_field->visible = false;
-		} else {
-			$description = $this->ui->getWidget('component_description');
+		if (strlen($row->description) == 0)
+			$description->parent->visible = false;
+		else
 			$description->content = SwatString::toXHTML($row->description);
+		
+		parent::initDisplay();
+	}
+
+	private function displayGroups($id)
+	{
+		$sql = 'select groupid, title
+				from admingroups
+				where groupid in
+					(select groupnum from admincomponent_admingroup 
+					where component = %s)';
+
+		$sql = sprintf($sql, $this->app->db->quote($id, 'integer'));
+		
+		$rs = SwatDB::query($this->app->db, $sql);
+
+		echo '<ul>';
+
+		foreach ($rs as $row) {
+			echo '<li>';
+			$anchor_tag = new SwatHtmlTag('a');
+			$anchor_tag->href = 'AdminGroups/Details?id='.$row->groupid;
+			$anchor_tag->content = $row->title;
+			$anchor_tag->display();
+			echo '</li>';
 		}
 
-		parent::initDisplay();
+		echo '<ul>';
 	}
 
 	protected function getTableStore()
