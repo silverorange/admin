@@ -30,7 +30,7 @@ class AdminUsersIndex extends AdminIndex
 
 		$sql = sprintf($sql, $this->getOrderByClause('adminusers.username'));
 
-		$store = $this->app->db->query($sql, null, true, 'AdminTableStore');
+		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
 		return $store;
 	}

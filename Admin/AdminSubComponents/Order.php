@@ -46,7 +46,7 @@ class AdminSubComponentsOrder extends AdminDBOrder
 			'title', 'subcomponentid', 'displayorder, title', $where_clause);
 
 		$sql = 'select sum(displayorder) from adminsubcomponents where '.$where_clause;
-		$sum = $this->app->db->queryOneFromTable($sql, 'integer');
+		$sum = SwatDB::queryOneFromTable($this->app->db, $sql, 'integer');
 		$radio_list = $this->ui->getWidget('options');
 		$radio_list->value = ($sum == 0) ? 'auto' : 'custom';
 	}

@@ -47,7 +47,7 @@ class AdminUsersDetails extends AdminIndex
 			$this->app->db->quote($id, 'integer'),
             $this->getOrderByClause('logindate desc'));
 
-		$store = $this->app->db->query($sql, null, true, 'AdminTableStore');
+		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
 		return $store;
 	}	

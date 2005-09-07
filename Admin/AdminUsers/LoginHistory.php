@@ -1,5 +1,6 @@
 <?php
 
+require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Admin/Admin/Index.php';
 require_once 'Admin/AdminTableStore.php';
@@ -23,7 +24,8 @@ class AdminUsersLoginHistory extends AdminIndex {
 		parent::process();
 		
 		$pager = $this->ui->getWidget('pager');
-		$pager->total_records =	$this->app->db->queryOne('select count(historyid) from adminuserhistory');
+		$sql = 'select count(historyid) from adminuserhistory';
+		$pager->total_records = SwatDB::queryOne($this->app->db, $sql);
 		$pager->link = 'AdminUsers/LoginHistory';
 		$pager->process();
 	}
@@ -41,7 +43,7 @@ class AdminUsersLoginHistory extends AdminIndex {
         $sql = sprintf($sql,
             $this->getOrderByClause('logindate desc'));
 
-		$store = $this->app->db->query($sql, null, true, 'AdminTableStore');
+		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
 		return $store;
 	}	

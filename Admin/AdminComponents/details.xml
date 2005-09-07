@@ -2,6 +2,49 @@
 <swat-interface>
 	<widget class="SwatMessageDisplay" id="message_display" />
 	<widget class="SwatFrame" id="index_frame">
+
+		<widget class="SwatToolLink">
+			<property name="title" value="Edit Component" translatable="yes" />
+			<property name="link" value="AdminComponents/Edit?id=%s" />
+		</widget>
+		<widget class="SwatDetailsView" id="component_details">
+			<object class="SwatDetailsViewField" id="title">
+				<property name="title" value="Title" />
+				<object class="SwatTextCellRenderer" id="X">
+					<property name="value" value="title" type="data" />
+				</object>
+			</object>
+			<object class="SwatDetailsViewField" id="shortname">
+				<property name="title" value="Short Name" />
+				<object class="SwatTextCellRenderer" id="X">
+					<property name="value" value="shortname" type="data" />
+				</object>
+			</object>
+			<object class="SwatDetailsViewField" id="section">
+				<property name="title" value="Section" />
+				<object class="SwatTextCellRenderer" id="X">
+					<property name="value" value="section_title" type="data" />
+				</object>
+			</object>
+			<object class="SwatDetailsViewField" id="show">
+				<property name="title" value="Show in Menu?" />
+				<object class="SwatCheckCellRenderer" id="X">
+					<property name="value" value="show" type="data" />
+				</object>
+			</object>
+			<object class="SwatDetailsViewField" id="enabled">
+				<property name="title" value="Enabled?" />
+				<object class="SwatCheckCellRenderer" id="X">
+					<property name="value" value="enabled" type="data" />
+				</object>
+			</object>
+			<object class="SwatDetailsViewField" id="groups">
+				<property name="title" value="Groups" />
+				<object class="SwatTextCellRenderer" id="groups_renderer">
+				</object>
+			</object>
+		</widget>
+
 		<widget class="SwatFrame" id="sub_frame">
 			<property name="title" value="Sub-Components" translatable="yes" />
 			<widget class="SwatToolLink">

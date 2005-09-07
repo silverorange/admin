@@ -36,7 +36,7 @@ class AdminSectionsOrder extends AdminDBOrder
 			'adminsections', 'title', 'sectionid', 'displayorder, title');
 
 		$sql = 'select sum(displayorder) from adminsections';
-		$sum = $this->app->db->queryOne($sql, 'integer');
+		$sum = SwatDB::queryOne($this->app->db, $sql, 'integer');
 		$options_list = $this->ui->getWidget('options');
 		$options_list->value = ($sum == 0) ? 'auto' : 'custom';
 	}

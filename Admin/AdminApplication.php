@@ -269,7 +269,7 @@ class AdminApplication extends SwatApplication
 					WHERE adminuser_admingroup.usernum = {$usernum}
 				)";
 
-		$rs = $this->db->query($sql);
+		$rs = SwatDB::query($this->db, $sql);
 		
 		if (MDB2::isError($rs))
 			throw new Exception($rs->getMessage());

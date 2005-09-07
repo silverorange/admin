@@ -1,5 +1,6 @@
 <?php
 
+require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Admin/Admin/Index.php';
 require_once 'Admin/AdminTableStore.php';
@@ -25,7 +26,7 @@ class AdminGroupsIndex extends AdminIndex
 				from admingroups 
 				order by title';
 
-		$store = $this->app->db->query($sql, null, true, 'AdminTableStore');
+		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
 		return $store;
 	}

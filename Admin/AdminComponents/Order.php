@@ -39,7 +39,7 @@ class AdminComponentsOrder extends AdminDBOrder
 			'admincomponents', 'title', 'componentid', 'displayorder, title', $where_clause);
 
 		$sql = 'select sum(displayorder) from admincomponents where '.$where_clause;
-		$sum = $this->app->db->queryOne($sql, 'integer');
+		$sum = SwatDB::queryOne($this->app->db, $sql, 'integer');
 		$options_list = $this->ui->getWidget('options');
 		$options_list->value = ($sum == 0) ? 'auto' : 'custom';
 	}
