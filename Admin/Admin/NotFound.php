@@ -17,6 +17,32 @@ class AdminNotFound extends AdminPage
 	{
 	}
 
+	public function build()
+	{
+		$this->initDisplay();
+
+		$this->layout->html_head_entries = '';
+
+		$this->layout->title = $this->app->title.' | '.$this->title;
+		$this->layout->basehref = $this->app->getBaseHref();
+
+		ob_start();
+		$this->displayHeader();
+		$this->layout->header = ob_get_clean();
+
+		ob_start();
+		$this->navbar->display();	
+		$this->layout->navbar = ob_get_clean();
+
+		ob_start();
+		$this->displayMenu();
+		$this->layout->menu = ob_get_clean();
+
+		ob_start();
+		$this->display();
+		$this->layout->content = ob_get_clean();
+	}
+
 	public function display()
 	{
 		$message_display = new SwatMessageDisplay();
