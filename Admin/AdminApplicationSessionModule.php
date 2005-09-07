@@ -54,15 +54,14 @@ class AdminApplicationSessionModule extends SwatApplicationModule
 			$this->app->db->quote($md5_password, 'text'),
 			$this->app->db->quote(true, 'boolean'));
 
-		$rs = SwatDB::query($this->app->db, $sql);
+		$row = SwatDB::queryRow($this->app->db, $sql);
 		
-		if ($rs->numRows()) {
-			$result = $rs->fetchRow(MDB2_FETCHMODE_OBJECT); 
-			$_SESSION['userID'] = $result->userid;
-			$_SESSION['name']   = $result->name;
-			$_SESSION['username']   = $result->username;
+		if ($row !== null) {
+			$_SESSION['userID'] = $row->userid;
+			$_SESSION['name']   = $row->name;
+			$_SESSION['username']   = $row->username;
 
-			$this->insertUserHistory($result->userid);
+			$this->insertUserHistory($row->userid);
 
 			return true;
 		} else {
