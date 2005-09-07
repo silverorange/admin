@@ -21,7 +21,12 @@ class AdminNotFound extends AdminPage
 	{
 		$this->initDisplay();
 
-		$this->layout->html_head_entries = '';
+		ob_start();
+		$html_head_entry = new SwatHtmlHeadEntry('swat/styles/swat.css',
+			SwatHtmlHeadEntry::TYPE_STYLE);
+
+		$html_head_entry->display();
+		$this->layout->html_head_entries = ob_get_clean();
 
 		$this->layout->title = $this->app->title.' | '.$this->title;
 		$this->layout->basehref = $this->app->getBaseHref();
