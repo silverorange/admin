@@ -23,7 +23,7 @@
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
-				<property name="title" value="Show in menu?" translatable="yes" />
+				<property name="title" value="Show in Menu?" translatable="yes" />
 				<widget class="SwatCheckbox" id="show">
 					<property name="value" value="true" type="boolean" />
 				</widget>
