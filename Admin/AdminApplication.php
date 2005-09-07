@@ -126,17 +126,17 @@ class AdminApplication extends SwatApplication
 	{
 		$request = $this->getRequest($source);
 		
-		if ($request === null)
+		if ($request === null) {
 			$err = new SwatMessage(Admin::_('Component not found.'),
 				SwatMessage::SYSTEM_ERROR);
-		else {
+		} else {
 			$file = $request->getFilename();
 			
-			if ($file === null)
+			if ($file === null) {
 				$err = new SwatMessage(Admin::_('File not found.'),
 					SwatMessage::SYSTEM_ERROR);
 			
-			else {
+			} else {
 				require_once $file;
 
 				$classname = $request->getClassname();
@@ -204,20 +204,21 @@ class AdminApplication extends SwatApplication
 
 			if ($component == 'Admin') {
 				$admin_titles = array(
-					'Profile' => Admin::_('Edit User Profile'),
-					'Logout'  => Admin::_('Logout'),
-					'Login'   => Admin::_('Login'),
-					'NoAccess'   => Admin::_('No Access'),
-					'NotFound'   => Admin::_('Not Found'),
-					'Front'   => Admin::_('Index'));
+					'Profile'  => Admin::_('Edit User Profile'),
+					'Logout'   => Admin::_('Logout'),
+					'Login'    => Admin::_('Login'),
+					'NoAccess' => Admin::_('No Access'),
+					'NotFound' => Admin::_('Not Found'),
+					'Front'    => Admin::_('Index'));
 
 				if (isset($admin_titles[$subcomponent])) {
 					$request = new AdminPageRequest();
 					$request->title = $admin_titles[$subcomponent];
 					$request->component = $component;
 					$request->subcomponent = $subcomponent;
-				} else
+				} else {
 					return null;
+				}
 				
 			} else {
 			
@@ -228,8 +229,9 @@ class AdminApplication extends SwatApplication
 					$request->title = $row->component_title;
 					$request->component = $component;
 					$request->subcomponent = $subcomponent;
-				} else
+				} else {
 					return null;
+				}
 			}
 
 		} else {
