@@ -14,10 +14,6 @@
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
 				<object class="SwatTableViewColumn">
-					<object class="AdminDetailsControlCellRenderer">
-						<property name="link" value="AdminSections/Details?id=%s" />
-						<property name="value" value="sectionid" type="data" />
-					</object>
 					<object class="AdminEditControlCellRenderer">
 						<property name="link" value="AdminSections/Edit?id=%s" />
 						<property name="value" value="sectionid" type="data" />
