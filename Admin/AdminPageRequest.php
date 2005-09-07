@@ -6,13 +6,15 @@
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminPageRequest {
+class AdminPageRequest
+{
 	public $source;
 	public $component;
 	public $subcomponent;
 	public $title;
 
-	public function getFilename() {
+	public function getFilename()
+	{
 		$classfile = $this->component.'/'.$this->subcomponent.'.php';
 		$file = null;
 
@@ -32,7 +34,8 @@ class AdminPageRequest {
 		return $file;
 	}
 
-	public function getClassname() {
+	public function getClassname()
+	{
 		$classname = $this->component.$this->subcomponent;
 		
 		if (class_exists($classname))
