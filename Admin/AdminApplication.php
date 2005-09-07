@@ -170,7 +170,6 @@ class AdminApplication extends SwatApplication
 			$page->component = 'Admin';
 			$page->subcomponent = 'NotFound';
 			$page->setMessage($err);
-			$page->navbar = new SwatNavBar();
 			$page->navbar->createEntry($this->title, '');
 		}
 			
