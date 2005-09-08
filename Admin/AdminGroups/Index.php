@@ -7,6 +7,7 @@ require_once 'Admin/AdminTableStore.php';
 
 /**
  * Index page for AdminGroups component
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -22,7 +23,7 @@ class AdminGroupsIndex extends AdminIndex
 	{
 		$view = $this->ui->getWidget('index_view');
 
-		$sql = 'select groupid, title 
+		$sql = 'select id, title 
 				from admingroups 
 				order by title';
 
