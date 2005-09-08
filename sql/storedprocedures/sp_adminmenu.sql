@@ -1,7 +1,10 @@
 CREATE TYPE type_admin_menu AS (
-	shortname varchar(255), title varchar(255),
-	section integer, sectiontitle varchar(255),
-	componentid integer, subcomponent_title  varchar(255),
+	shortname varchar(255),
+	title varchar(255),
+	section integer,
+	section_title varchar(255),
+	component_id integer,
+	subcomponent_title varchar(255),
 	subcomponent_shortname varchar(255)
 );
 
@@ -16,16 +19,16 @@ CREATE OR REPLACE FUNCTION sp_admin_menu(integer) RETURNS SETOF type_admin_menu 
 		FOR returned_row IN
 		SELECT admincomponents.shortname, admincomponents.title,
 			admincomponents.section, adminsections.title AS sectiontitle,
-			admincomponents.componentid,
+			admincomponents.id,
 			adminsubcomponents.title as subcomponent_title,
 			adminsubcomponents.shortname as subcomponent_shortname
 		FROM admincomponents 
 
 		LEFT OUTER JOIN adminsubcomponents on
-			adminsubcomponents.component = admincomponents.componentid
+			adminsubcomponents.component = admincomponents.id
 
 		INNER JOIN adminsections ON
-			admincomponents.section = adminsections.sectionid
+			admincomponents.section = adminsections.id
 
 		WHERE adminsections.show = ''1''
 
@@ -39,7 +42,7 @@ CREATE OR REPLACE FUNCTION sp_admin_menu(integer) RETURNS SETOF type_admin_menu 
 			OR adminsubcomponents.show is  null
 		)
 				
-		AND admincomponents.componentid IN (
+		AND admincomponents.id IN (
 			SELECT component
 			FROM admincomponent_admingroup
 				INNER JOIN adminuser_admingroup ON
