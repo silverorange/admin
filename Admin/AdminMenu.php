@@ -8,18 +8,18 @@
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminMenu {
-
+class AdminMenu
+{
 	private $sections;
 
 	/**
-	* @param MDB2_Result $rs A recordset containing the menu.
-	*        Requires the fields: section (integer), sectiontitle (text),
-	*        componentid (integer), shortname (text), title (text)
-	*        subcomponent_shortname (text), subcomponent_title (text)
-	*/
-	function __construct($rs) {
-
+	 * @param MDB2_Result $rs A recordset containing the menu.
+	 *        Requires the fields: section (integer), sectiontitle (text),
+	 *        componentid (integer), shortname (text), title (text)
+	 *        subcomponent_shortname (text), subcomponent_title (text)
+	 */
+	public function __construct($rs)
+	{
 		if (MDB2::isError($rs)) 
 			throw new Exception($rs->getMessage());
 
@@ -48,11 +48,12 @@ class AdminMenu {
 	}
 
 	/**
-	* Display the menu
-	*
-	* Outputs the HTML of the menu
-	*/
-	public function display() {
+	 * Displays this menu
+	 *
+	 * Outputs the HTML of the menu
+	 */
+	public function display()
+	{
 		echo '<ul>';
 
 		foreach ($this->sections as $section)
@@ -60,7 +61,6 @@ class AdminMenu {
 
 		echo '</ul>';
 	}
-
 }
 
 /**
@@ -68,19 +68,21 @@ class AdminMenu {
  *
  * Internal data/display class used internally within {@link AdminMenu}
  */
-class AdminMenuSection {
-
+class AdminMenuSection
+{
 	public $id;
 	public $title;
 	public $components;
 
-	function __construct($id, $title) {
+	public function __construct($id, $title)
+	{
 		$this->id = $id;
 		$this->title = $title;
 		$this->components = array();
 	}
 
-	public function display() {
+	public function display()
+	{
 		echo '<li><span>'.$this->title.'</span>';
 		echo '<ul>';
 
@@ -96,21 +98,23 @@ class AdminMenuSection {
  *
  * Internal data/display class used internally within {@link AdminMenu}
  */
-class AdminMenuComponent {
-
+class AdminMenuComponent
+{
 	public $id;
 	public $shortname;
 	public $title;
 	public $subcomponents;
 
-	function __construct($id, $shortname, $title) {
+	public function __construct($id, $shortname, $title)
+	{
 		$this->id = $id;
 		$this->shortname = $shortname;
 		$this->title = $title;
 		$this->subcomponents = array();
 	}
 
-	public function display() {
+	public function display()
+	{
 		echo '<li><a href="'.$this->shortname.'">';
 		echo $this->title;
 		echo '</a>';
@@ -126,7 +130,6 @@ class AdminMenuComponent {
 
 		echo '</li>';
 	}
-
 }
 
 /**
@@ -134,17 +137,19 @@ class AdminMenuComponent {
  *
  * Internal data/display class used internally within {@link AdminMenu}
  */
-class AdminMenuSubcomponent {
-
+class AdminMenuSubcomponent
+{
 	public $shortname;
 	public $title;
 
-	function __construct($shortname, $title) {
+	public function __construct($shortname, $title)
+	{
 		$this->shortname = $shortname;
 		$this->title = $title;
 	}
 
-	public function display($component_shortname) {
+	public function display($component_shortname)
+	{
 		echo '<li><a href="'.$component_shortname.'/'.$this->shortname.'">';
 		echo $this->title;
 		echo '</a></li>';
