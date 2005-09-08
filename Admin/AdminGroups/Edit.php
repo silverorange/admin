@@ -6,6 +6,7 @@ require_once 'SwatDB/SwatDB.php';
 
 /**
  * Edit page for AdminGroups component
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -24,12 +25,12 @@ class AdminGroupsEdit extends AdminDBEdit
 
 		$user_list = $this->ui->getWidget('users');
 		$user_list->options = SwatDB::getOptionArray($this->app->db, 
-			'adminusers', 'name', 'userid', 'name');
+			'adminusers', 'name', 'id', 'name');
 
 		$component_list = $this->ui->getWidget('components');
 		$component_list->tree = SwatDB::getGroupedOptionArray($this->app->db, 
-			'admincomponents', 'title', 'componentid',
-			'adminsections', 'title', 'sectionid', 'section',
+			'admincomponents', 'title', 'id',
+			'adminsections', 'title', 'id', 'section',
 			'adminsections.displayorder, adminsections.title,
 			admincomponents.displayorder,  admincomponents.title');
 	}
@@ -40,15 +41,15 @@ class AdminGroupsEdit extends AdminDBEdit
 
 		if ($id == 0)
 			$id = SwatDB::insertRow($this->app->db, 'admingroups', $this->fields,
-				$values, 'integer:groupid');
+				$values, 'integer:id');
 		else
 			SwatDB::updateRow($this->app->db, 'admingroups', $this->fields,
-				$values, 'integer:groupid', $id);
+				$values, 'integer:id', $id);
 
 		$user_list = $this->ui->getWidget('users');
 
 		SwatDB::updateBinding($this->app->db, 'adminuser_admingroup', 
-			'groupnum', $id, 'usernum', $user_list->values, 'adminusers', 'userid');
+			'groupnum', $id, 'usernum', $user_list->values, 'adminusers', 'id');
 
 		$component_list = $this->ui->getWidget('components');
 
@@ -62,7 +63,7 @@ class AdminGroupsEdit extends AdminDBEdit
 	protected function loadDBData($id)
 	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'admingroups', 
-			$this->fields, 'integer:groupid', $id);
+			$this->fields, 'integer:id', $id);
 
 		if ($row === null)
 			return $this->app->replacePageNoAccess();

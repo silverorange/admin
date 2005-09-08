@@ -6,6 +6,7 @@ require_once 'Admin/AdminDependency.php';
 
 /**
  * Delete confirmation page for AdminGroups component
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -20,7 +21,7 @@ class AdminGroupsDelete extends AdminDBDelete
 		$dep->status_level = AdminDependency::DELETE;
 
 		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'admingroups',
-			'integer:groupid', null, 'text:title', 'title', 'groupid in ('.$item_list.')');
+			'integer:id', null, 'text:title', 'title', 'id in ('.$item_list.')');
 
 		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = $dep->getMessage();
@@ -32,7 +33,7 @@ class AdminGroupsDelete extends AdminDBDelete
 	{
 		parent::processDBData();
 
-		$sql = 'delete from admingroups where groupid in (%s)';
+		$sql = 'delete from admingroups where id in (%s)';
 		$item_list = $this->getItemList('integer');
 		$sql = sprintf($sql, $item_list);
 		SwatDB::query($this->app->db, $sql);
