@@ -54,7 +54,7 @@ class AdminGroupsEdit extends AdminDBEdit
 		$component_list = $this->ui->getWidget('components');
 
 		SwatDB::updateBinding($this->app->db, 'admincomponent_admingroup', 
-			'groupnum', $id, 'component', $component_list->values, 'admincomponents', 'componentid');
+			'groupnum', $id, 'component', $component_list->values, 'admincomponents', 'id');
 
 		$msg = new SwatMessage(sprintf(Admin::_('Group "%s" has been saved.'), $values['title']), SwatMessage::NOTIFICATION);
 		$this->app->messages->add($msg);
