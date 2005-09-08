@@ -21,12 +21,12 @@ class AdminApplicationSessionModule extends SwatApplicationModule
 		session_name($this->app->id);
 		session_start();
 
-		if (!isset($_SESSION['userID'])) {
-			$_SESSION['userID'] = 0;
+		if (!isset($_SESSION['user_id'])) {
+			$_SESSION['user_id'] = 0;
 			$_SESSION['name'] = '';
 			$_SESSION['username'] = '';
 			$_SESSION['history'] = array();
-		} elseif ($_SESSION['userID'] != 0) {	
+		} elseif ($_SESSION['user_id'] != 0) {	
 			setcookie($this->app->id.'_username', $_SESSION['username'], time() + 86400, '/', '', 0);
 		}
 	}
@@ -94,7 +94,7 @@ class AdminApplicationSessionModule extends SwatApplicationModule
 	public function logout()
 	{
 		$_SESSION = array();
-		$_SESSION['userID'] = 0;
+		$_SESSION['user_id'] = 0;
 	}
 
     // }}}
@@ -106,8 +106,8 @@ class AdminApplicationSessionModule extends SwatApplicationModule
 	 */
 	public function isLoggedIn()
 	{
-		if (isset($_SESSION['userID']))
-			return ($_SESSION['userID'] != 0);
+		if (isset($_SESSION['user_id']))
+			return ($_SESSION['user_id'] != 0);
 
 		return false;
 	}
@@ -124,7 +124,7 @@ class AdminApplicationSessionModule extends SwatApplicationModule
 		if (!$this->isLoggedIn())
 			return null;
 
-		return $_SESSION['userID'];
+		return $_SESSION['user_id'];
 	}
 
     // }}}
