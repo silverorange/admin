@@ -16,12 +16,12 @@
 				<object class="SwatTableViewColumn">
 					<object class="AdminEditControlCellRenderer">
 						<property name="link" value="AdminSections/Edit?id=%s" />
-						<property name="value" value="sectionid" type="data" />
+						<property name="value" value="id" type="data" />
 					</object>
 				</object>
 				<object class="SwatTableViewCheckboxColumn" id="checkbox">
 					<object class="SwatCheckboxCellRenderer" id="items">
-						<property name="value" value="sectionid" type="data" />
+						<property name="value" value="id" type="data" />
 					</object>
 				</object>
 				<object class="SwatTableViewColumn">
@@ -29,7 +29,7 @@
 					<object class="SwatLinkCellRenderer">
 						<property name="title" value="title" type="data" translatable="yes" />
 						<property name="link" value="AdminSections/Edit?id=%s" />
-						<property name="value" value="sectionid" type="data" />
+						<property name="value" value="id" type="data" />
 					</object>
 				</object>
 				<object class="SwatTableViewColumn">

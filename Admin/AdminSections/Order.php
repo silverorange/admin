@@ -6,6 +6,7 @@ require_once 'SwatDB/SwatDB.php';
 
 /**
  * Order page for AdminSections component
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -33,7 +34,7 @@ class AdminSectionsOrder extends AdminDBOrder
 	{
 		$order_widget = $this->ui->getWidget('order');
 		$order_widget->options = SwatDB::getOptionArray($this->app->db, 
-			'adminsections', 'title', 'sectionid', 'displayorder, title');
+			'adminsections', 'title', 'id', 'displayorder, title');
 
 		$sql = 'select sum(displayorder) from adminsections';
 		$sum = SwatDB::queryOne($this->app->db, $sql, 'integer');
@@ -44,7 +45,7 @@ class AdminSectionsOrder extends AdminDBOrder
 	public function saveIndex($id, $index)
 	{
 		SwatDB::updateColumn($this->app->db, 'adminsections', 'integer:displayorder',
-			$index, 'integer:sectionid', array($id));
+			$index, 'integer:id', array($id));
 	}
 }
 

@@ -6,6 +6,7 @@ require_once 'Admin/AdminDependency.php';
 
 /**
  * Delete confirmation page for AdminSections component
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -20,8 +21,7 @@ class AdminSectionsDelete extends AdminDBDelete
 		$dep->status_level = AdminDependency::DELETE;
 
 		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'adminsections',
-			'integer:sectionid', null, 'text:title', 'title', 'sectionid in ('.$item_list.')');
-
+			'integer:id', null, 'text:title', 'title', 'id in ('.$item_list.')');
 		
 		$dep_components = new AdminDependency();
 		$dep_components->title = 'component';
@@ -33,7 +33,6 @@ class AdminSectionsDelete extends AdminDBDelete
 
 		$dep->addDependency($dep_components);
 
-		
 		$dep_subcomponents = new AdminDependency();
 		$dep_subcomponents->title = 'sub-component';
 		$dep_subcomponents->status_level = AdminDependency::DELETE;
@@ -45,7 +44,6 @@ class AdminSectionsDelete extends AdminDBDelete
 
 		$dep_components->addDependency($dep_subcomponents);
 
-
 		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = $dep->getMessage();
 		
@@ -56,7 +54,7 @@ class AdminSectionsDelete extends AdminDBDelete
 	{
 		parent::processDBData();
 
-		$sql = 'delete from adminsections where sectionid in (%s)';
+		$sql = 'delete from adminsections where id in (%s)';
 		$item_list = $this->getItemList('integer');
 		$sql = sprintf($sql, $item_list);
 		SwatDB::query($this->app->db, $sql);
