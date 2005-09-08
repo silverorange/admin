@@ -24,7 +24,7 @@ class AdminUsersLoginHistory extends AdminIndex {
 		parent::process();
 		
 		$pager = $this->ui->getWidget('pager');
-		$sql = 'select count(historyid) from adminuserhistory';
+		$sql = 'select count(id) from adminuserhistory';
 		$pager->total_records = SwatDB::queryOne($this->app->db, $sql);
 		$pager->link = 'AdminUsers/LoginHistory';
 		$pager->process();
@@ -37,7 +37,7 @@ class AdminUsersLoginHistory extends AdminIndex {
 		
 		$sql = 'select usernum, logindate, loginagent, remoteip, username, name
 				from adminuserhistory
-				inner join adminusers on adminusers.userid = adminuserhistory.usernum
+				inner join adminusers on adminusers.id = adminuserhistory.usernum
 				order by %s';
 
         $sql = sprintf($sql,
