@@ -43,7 +43,7 @@ class AdminComponentsEdit extends AdminDBEdit
 			SwatDB::equalityOperator($id, true),
 			$this->app->db->quote($id, 'integer')));
 
-		if ($query->numRows()) {
+		if ($query->getCount() > 0) {
 			$msg = new SwatMessage(Admin::_('Shortname already exists and must be unique.'), SwatMessage::ERROR);
 			$shortname->addMessage($msg);
 		}
@@ -64,7 +64,7 @@ class AdminComponentsEdit extends AdminDBEdit
 		$group_list = $this->ui->getWidget('groups');
 
 		SwatDB::updateBinding($this->app->db, 'admincomponent_admingroup', 
-			'component', $id, 'groupnum', $group_list->values, 'admingroups', 'groupid');
+			'component', $id, 'groupnum', $group_list->values, 'admingroups', 'id');
 		
 		$msg = new SwatMessage(sprintf(Admin::_('Component "%s" has been saved.'), $values['title']), SwatMessage::NOTIFICATION);
 		$this->app->messages->add($msg);
