@@ -6,6 +6,7 @@ require_once 'SwatDB/SwatDB.php';
 
 /**
  * Edit page for AdminUsers component
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -24,7 +25,7 @@ class AdminUsersEdit extends AdminDBEdit
 		
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->options = SwatDB::getOptionArray($this->app->db, 
-			'admingroups', 'title', 'groupid', 'title');
+			'admingroups', 'title', 'id', 'title');
 		
 		$confirm = $this->ui->getWidget('confirm_password');
 		$confirm->password_widget = $this->ui->getWidget('password');;
@@ -45,7 +46,7 @@ class AdminUsersEdit extends AdminDBEdit
 		$username = $this->ui->getWidget('username');
 
 		$query = SwatDB::query($this->app->db, sprintf('select username from
-			adminusers where username = %s and userid %s %s',
+			adminusers where username = %s and id %s %s',
 			$this->app->db->quote($username->value, 'text'),
 			SwatDB::equalityOperator($id, true),
 			$this->app->db->quote($id, 'integer')));
@@ -68,15 +69,15 @@ class AdminUsersEdit extends AdminDBEdit
 
 		if ($id == 0)
 			$id = SwatDB::insertRow($this->app->db, 'adminusers', $this->fields,
-				$values, 'integer:userid');
+				$values, 'integer:id');
 		else
 			SwatDB::updateRow($this->app->db, 'adminusers', $this->fields,
-				$values, 'integer:userid', $id);
+				$values, 'integer:id', $id);
 
 		$group_list = $this->ui->getWidget('groups');
 
 		SwatDB::updateBinding($this->app->db, 'adminuser_admingroup', 
-			'usernum', $id, 'groupnum', $group_list->values, 'admingroups', 'groupid');
+			'usernum', $id, 'groupnum', $group_list->values, 'admingroups', 'id');
 		
 		$msg = new SwatMessage(sprintf(Admin::_('User "%s" has been saved.'), $values['username']), SwatMessage::NOTIFICATION);
 		$this->app->messages->add($msg);	
@@ -85,7 +86,7 @@ class AdminUsersEdit extends AdminDBEdit
 	protected function loadDBData($id)
 	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers', 
-			$this->fields, 'integer:userid', $id);
+			$this->fields, 'integer:id', $id);
 
 		if ($row === null)
 			return $this->app->replacePageNoAccess();

@@ -12,12 +12,12 @@
 				<object class="SwatTableViewColumn">
 					<object class="AdminEditControlCellRenderer">
 						<property name="link" value="AdminUsers/Edit?id=%s" />
-						<property name="value" value="userid" type="data" />
+						<property name="value" value="id" type="data" />
 					</object>
 				</object>
 				<object class="SwatTableViewCheckboxColumn" id="checkbox">
 					<object class="SwatCheckboxCellRenderer" id="items">
-						<property name="value" value="userid" type="data" />
+						<property name="value" value="id" type="data" />
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="username">
@@ -45,7 +45,7 @@
 					</object>
 					<object class="AdminUsersHistoryCellRenderer">
 						<property name="title" value="history" translatable="yes" />
-						<property name="user" value="userid" type="data" />
+						<property name="user" value="id" type="data" />
 						<property name="date" value="lastlogin" type="data" />
 					</object>
 				</object>

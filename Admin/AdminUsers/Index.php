@@ -8,6 +8,7 @@ require_once 'Admin/AdminUsers/HistoryCellRenderer.php';
 
 /**
  * Index page for AdminUsers component
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -21,11 +22,11 @@ class AdminUsersIndex extends AdminIndex
 
 	protected function getTableStore()
 	{
-		$sql = 'select adminusers.userid, adminusers.username, adminusers.name,
+		$sql = 'select adminusers.id, adminusers.username, adminusers.name,
 					adminusers.enabled, view_adminuser_lastlogin.lastlogin
 				from adminusers 
 				left outer join view_adminuser_lastlogin on
-					view_adminuser_lastlogin.usernum = adminusers.userid
+					view_adminuser_lastlogin.usernum = adminusers.id
 				order by %s';
 
 		$sql = sprintf($sql, $this->getOrderByClause('adminusers.username'));
@@ -51,7 +52,7 @@ class AdminUsersIndex extends AdminIndex
 
 			case 'enable':
 				SwatDB::updateColumn($this->app->db, 'adminusers', 
-					'boolean:enabled', true, 'userid', 
+					'boolean:enabled', true, 'id', 
 					$view->checked_items);
 
 				$msg = new SwatMessage(sprintf(Admin::ngettext("%d user has been enabled.", 
@@ -61,7 +62,7 @@ class AdminUsersIndex extends AdminIndex
 
 			case 'disable':
 				SwatDB::updateColumn($this->app->db, 'adminusers', 
-					'boolean:enabled', false, 'userid', 
+					'boolean:enabled', false, 'id', 
 					$view->checked_items);
 
 				$msg = new SwatMessage(sprintf(Admin::ngettext("%d user has been disabled.", 
