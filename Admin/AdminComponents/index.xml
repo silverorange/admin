@@ -20,12 +20,12 @@
 				<object class="SwatTableViewColumn" id="controls">
 					<object class="AdminDetailsControlCellRenderer">
 						<property name="link" value="AdminComponents/Details?id=%s" />
-						<property name="value" value="componentid" type="data" />
+						<property name="value" value="id" type="data" />
 					</object>
 				</object>
 				<object class="SwatTableViewCheckboxColumn" id="checkbox">
 					<object class="SwatCheckboxCellRenderer" id="items">
-						<property name="value" value="componentid" type="data" />
+						<property name="value" value="id" type="data" />
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="title">
@@ -33,7 +33,7 @@
 					<object class="SwatLinkCellRenderer">
 						<property name="title" value="title" type="data" translatable="yes" />
 						<property name="link" value="AdminComponents/Details?id=%s" />
-						<property name="value" value="componentid" type="data" />
+						<property name="value" value="id" type="data" />
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="shortname">
