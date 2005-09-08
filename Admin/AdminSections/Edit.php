@@ -6,6 +6,7 @@ require_once 'MDB2.php';
 
 /**
  * Edit page for AdminSections
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -40,19 +41,19 @@ class AdminSectionsEdit extends AdminDBEdit
 
 		if ($id == 0)
 			$id = SwatDB::insertRow($this->app->db, 'adminsections', $this->fields,
-				$values, 'integer:sectionid');
+				$values, 'integer:id');
 		else
 			SwatDB::updateRow($this->app->db, 'adminsections', $this->fields,
-				$values, 'integer:sectionid', $id);
+				$values, 'integer:id', $id);
 
 		$msg = new SwatMessage(sprintf(Admin::_('Section "%s" has been saved.'), $values['title']), SwatMessage::NOTIFICATION);
 		$this->app->messages->add($msg);	
 	}
 
-	protected function loadDBData($id) {
-
+	protected function loadDBData($id)
+	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'adminsections', 
-			$this->fields, 'integer:sectionid', $id);
+			$this->fields, 'integer:id', $id);
 
 		if ($row === null)
 			return $this->app->replacePageNoAccess();

@@ -7,6 +7,7 @@ require_once 'Admin/AdminTableStore.php';
 
 /**
  * Index page for AdminSections
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -22,7 +23,7 @@ class AdminSectionsIndex extends AdminIndex
 	{
 		$view = $this->ui->getWidget('index_view');
 
-		$sql = 'select sectionid, title, show 
+		$sql = 'select id, title, show 
 				from adminsections 
 				order by displayorder';
 
@@ -51,7 +52,7 @@ class AdminSectionsIndex extends AdminIndex
 
 			case 'show':
 				SwatDB::updateColumn($this->app->db, 'adminsections', 
-					'boolean:show', true, 'sectionid', 
+					'boolean:show', true, 'id', 
 					$view->checked_items);
 
 				$msg = new SwatMessage(sprintf(Admin::ngettext("%d section has been shown.", 
@@ -61,7 +62,7 @@ class AdminSectionsIndex extends AdminIndex
 
 			case 'hide':
 				SwatDB::updateColumn($this->app->db, 'adminsections', 
-					'boolean:show', false, 'sectionid', 
+					'boolean:show', false, 'id', 
 					$view->checked_items);
 
 				$msg = new SwatMessage(sprintf(Admin::ngettext("%d section has been hidden.", 
