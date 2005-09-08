@@ -7,6 +7,7 @@ require_once 'SwatDB/SwatDB.php';
 
 /**
  * Index page for AdminComponents
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -19,12 +20,12 @@ class AdminComponentsIndex extends AdminIndex
 
 		$section_flydown = $this->ui->getWidget('section');
 		$section_flydown->addOptionsByArray(SwatDB::getOptionArray($this->app->db, 
-			'adminsections', 'title', 'sectionid', 'displayorder'));
+			'adminsections', 'title', 'id', 'displayorder'));
 	}
 
 	protected function getTableStore()
 	{
-		$sql = 'select admincomponents.componentid,
+		$sql = 'select admincomponents.id,
 					admincomponents.title, 
 					admincomponents.shortname, 
 					admincomponents.section, 
@@ -33,8 +34,8 @@ class AdminComponentsIndex extends AdminIndex
 					adminsections.title as section_title
 				from admincomponents 
 				inner join adminsections 
-					on adminsections.sectionid = admincomponents.section
-				order by adminsections.displayorder, adminsections.sectionid, %s';
+					on adminsections.id = admincomponents.section
+				order by adminsections.displayorder, adminsections.id, %s';
 
 		$sql = sprintf($sql,
 			$this->getOrderByClause('admincomponents.displayorder, admincomponents.title', 'admincomponents'));
@@ -59,7 +60,7 @@ class AdminComponentsIndex extends AdminIndex
 
 			case 'show':
 				SwatDB::updateColumn($this->app->db, 'admincomponents', 
-					'boolean:show', true, 'componentid', 
+					'boolean:show', true, 'id', 
 					$view->checked_items);
 
 				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been shown.", 
@@ -69,7 +70,7 @@ class AdminComponentsIndex extends AdminIndex
 
 			case 'hide':
 				SwatDB::updateColumn($this->app->db, 'admincomponents', 
-					'boolean:show', false, 'componentid', 
+					'boolean:show', false, 'id', 
 					$view->checked_items);
 
 				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been hidden.", 
@@ -79,7 +80,7 @@ class AdminComponentsIndex extends AdminIndex
 
 			case 'enable':
 				SwatDB::updateColumn($this->app->db, 'admincomponents', 
-					'boolean:enabled', true, 'componentid', 
+					'boolean:enabled', true, 'id', 
 					$view->checked_items);
 
 				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been enabled.", 
@@ -89,7 +90,7 @@ class AdminComponentsIndex extends AdminIndex
 
 			case 'disable':
 				SwatDB::updateColumn($this->app->db, 'admincomponents', 
-					'boolean:enabled', false, 'componentid', 
+					'boolean:enabled', false, 'id', 
 					$view->checked_items);
 
 				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been disabled.", 
@@ -101,7 +102,7 @@ class AdminComponentsIndex extends AdminIndex
 				$new_section = $actions->selected->widget->value;
 
 				SwatDB::updateColumn($this->app->db, 'admincomponents', 
-					'integer:section', $new_section, 'componentid', 
+					'integer:section', $new_section, 'id', 
 					$view->checked_items);
 
 				$title = SwatDB::queryOneFromTable($this->app->db, 'adminsections', 'text:title',

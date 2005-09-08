@@ -6,6 +6,7 @@ require_once 'SwatDB/SwatDB.php';
 
 /**
  * Edit page for AdminComponents
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -22,11 +23,11 @@ class AdminComponentsEdit extends AdminDBEdit
 
 		$section_flydown = $this->ui->getWidget('section');
 		$section_flydown->addOptionsByArray(SwatDB::getOptionArray($this->app->db, 
-			'adminsections', 'title', 'sectionid', 'displayorder'));
+			'adminsections', 'title', 'id', 'displayorder'));
 
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->options = SwatDB::getOptionArray($this->app->db, 
-			'admingroups', 'title', 'groupid', 'title');
+			'admingroups', 'title', 'id', 'title');
 
 		$this->fields = array('title', 'shortname', 'integer:section', 
 			'boolean:show', 'boolean:enabled', 'description');
@@ -37,7 +38,7 @@ class AdminComponentsEdit extends AdminDBEdit
 		$shortname = $this->ui->getWidget('shortname');
 
 		$query = SwatDB::query($this->app->db, sprintf('select shortname from
-			admincomponents where shortname = %s and componentid %s %s',
+			admincomponents where shortname = %s and id %s %s',
 			$this->app->db->quote($shortname->value, 'text'),
 			SwatDB::equalityOperator($id, true),
 			$this->app->db->quote($id, 'integer')));
@@ -55,10 +56,10 @@ class AdminComponentsEdit extends AdminDBEdit
 
 		if ($id == 0)
 			$id = SwatDB::insertRow($this->app->db, 'admincomponents', $this->fields,
-				$values, 'integer:componentid');
+				$values, 'integer:id');
 		else
 			SwatDB::updateRow($this->app->db, 'admincomponents', $this->fields,
-				$values, 'integer:componentid', $id);
+				$values, 'integer:id', $id);
 
 		$group_list = $this->ui->getWidget('groups');
 
@@ -72,7 +73,7 @@ class AdminComponentsEdit extends AdminDBEdit
 	protected function loadDBData($id)
 	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'admincomponents', 
-			$this->fields, 'integer:componentid', $id);
+			$this->fields, 'integer:id', $id);
 
 		if ($row === null)
 			return $this->app->replacePageNoAccess();

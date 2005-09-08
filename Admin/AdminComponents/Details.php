@@ -8,6 +8,7 @@ require_once 'Swat/SwatString.php';
 
 /**
  * Details page for AdminComponents
+ *
  * @package Admin
  * @copyright silverorange 2004
  */
@@ -39,8 +40,8 @@ class AdminComponentsDetails extends AdminIndex
 					adminsections.title as section_title
 				from admincomponents
 					inner join adminsections on
-						adminsections.sectionid = admincomponents.section
-				where componentid = %s';
+						adminsections.id = admincomponents.section
+				where admincomponents.id = %s';
 
 		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
 
@@ -73,9 +74,9 @@ class AdminComponentsDetails extends AdminIndex
 
 	private function displayGroups($id)
 	{
-		$sql = 'select groupid, title
+		$sql = 'select id, title
 				from admingroups
-				where groupid in
+				where id in
 					(select groupnum from admincomponent_admingroup 
 					where component = %s)';
 
@@ -88,7 +89,7 @@ class AdminComponentsDetails extends AdminIndex
 		foreach ($rs as $row) {
 			echo '<li>';
 			$anchor_tag = new SwatHtmlTag('a');
-			$anchor_tag->href = 'AdminGroups/Details?id='.$row->groupid;
+			$anchor_tag->href = 'AdminGroups/Details?id='.$row->id;
 			$anchor_tag->content = $row->title;
 			$anchor_tag->display();
 			echo '</li>';
@@ -99,7 +100,7 @@ class AdminComponentsDetails extends AdminIndex
 
 	protected function getTableStore()
 	{
-		$sql = 'select adminsubcomponents.subcomponentid, 
+		$sql = 'select adminsubcomponents.id, 
 					adminsubcomponents.title, 
 					adminsubcomponents.shortname, 
 					adminsubcomponents.show
@@ -133,7 +134,7 @@ class AdminComponentsDetails extends AdminIndex
 
 			case 'show':
 				SwatDB::updateColumn($this->app->db, 'adminsubcomponents', 
-					'boolean:show', true, 'subcomponentid', 
+					'boolean:show', true, 'id', 
 					$view->checked_items);
 				
 				$msg = new SwatMessage(sprintf(Admin::ngettext("%d sub-component has been shown.", 
@@ -143,7 +144,7 @@ class AdminComponentsDetails extends AdminIndex
 
 			case 'hide':
 				SwatDB::updateColumn($this->app->db, 'adminsubcomponents', 
-					'boolean:show', false, 'subcomponentid', 
+					'boolean:show', false, 'id', 
 					$view->checked_items);
 				
 				$msg = new SwatMessage(sprintf(Admin::ngettext("%d sub-component has been hidden.", 
