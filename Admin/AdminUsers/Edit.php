@@ -51,9 +51,9 @@ class AdminUsersEdit extends AdminDBEdit
 			SwatDB::equalityOperator($id, true),
 			$this->app->db->quote($id, 'integer')));
 
-		if ($query->numRows()) {
+		if ($query->getCount() > 0) {
 			$msg = new SwatMessage(Admin::_('Username already exists and must be unique.'), SwatMessage::ERROR);
-			$shortname->addMessage($msg);
+			$username->addMessage($msg);
 		}
 	}
 
