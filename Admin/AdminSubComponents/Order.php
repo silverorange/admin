@@ -5,6 +5,7 @@ require_once 'SwatDB/SwatDB.php';
 
 /**
  * Order page for AdminSubComponents
+ *
  * @package Admin
  * @copyright silverorange 2005
  */
@@ -29,7 +30,7 @@ class AdminSubComponentsOrder extends AdminDBOrder
 	
 		// rebuild the navbar
 		$parent_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',
-			'componentid', $this->parent);
+			'id', $this->parent);
 
 		// pop two entries because the AdminDBOrder base class adds an entry
 		$this->navbar->popEntries(2);
@@ -45,7 +46,7 @@ class AdminSubComponentsOrder extends AdminDBOrder
 
 		$order_list = $this->ui->getWidget('order');
 		$order_list->options = SwatDB::getOptionArray($this->app->db, 'adminsubcomponents', 
-			'title', 'subcomponentid', 'displayorder, title', $where_clause);
+			'title', 'id', 'displayorder, title', $where_clause);
 
 		$sql = 'select sum(displayorder) from adminsubcomponents where '.$where_clause;
 		$sum = SwatDB::queryOne($this->app->db, $sql, 'integer');
@@ -56,7 +57,7 @@ class AdminSubComponentsOrder extends AdminDBOrder
 	public function saveIndex($id, $index)
 	{
 		SwatDB::updateColumn($this->app->db, 'adminsubcomponents', 'integer:displayorder',
-			$index, 'integer:subcomponentid', array($id));
+			$index, 'integer:id', array($id));
 	}
 }
 
