@@ -254,24 +254,25 @@ class AdminApplication extends SwatApplication
 
 	private function queryForPage($component)
 	{
-		$shortname = $this->db->quote($component, 'text');
-		$enabled = $this->db->quote(true, 'boolean');
-		$usernum = $this->db->quote($_SESSION['userID'], 'integer');	
-
 		// TODO: move this page query into a stored procedure
 		$sql = "SELECT admincomponents.title as component_title, admincomponents.shortname,
 				adminsections.title as section_title
 			FROM admincomponents
-				INNER JOIN adminsections ON admincomponents.section = adminsections.sectionid
-			WHERE admincomponents.enabled = {$enabled}
-				AND admincomponents.shortname = {$shortname}
-				AND componentid IN (
+				INNER JOIN adminsections ON admincomponents.section = adminsections.id
+			WHERE admincomponents.enabled = %
+				AND admincomponents.shortname = %
+				AND admincomponents.id IN (
 					SELECT component
 					FROM admincomponent_admingroup
 					INNER JOIN adminuser_admingroup
 						ON admincomponent_admingroup.groupnum = adminuser_admingroup.groupnum
-					WHERE adminuser_admingroup.usernum = {$usernum}
+					WHERE adminuser_admingroup.usernum = %s
 				)";
+
+		$sql = sprintf($sql,
+			$this->db->quote(true, 'boolean'),
+			$this->db->quote($component, 'text'),
+			$this->db->quote($_SESSION['user_id'], 'integer'));	
 
 		$row = SwatDB::queryRow($this->db, $sql);
 		return $row;
