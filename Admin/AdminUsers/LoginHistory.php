@@ -8,19 +8,22 @@ require_once 'Admin/AdminUsers/HistoryCellRenderer.php';
 
 /**
  * Login history page for AdminUsers component
+ *
  * @package Admin
  * @copyright silverorange 2005
  */
-class AdminUsersLoginHistory extends AdminIndex {
-
-	public function init() {
+class AdminUsersLoginHistory extends AdminIndex
+{
+	public function init()
+	{
 		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminUsers/loginhistory.xml');
 
 		$this->navbar->createEntry(Admin::_('Login History'));
 	}
 	
-	public function process() {
+	public function process()
+	{
 		parent::process();
 		
 		$pager = $this->ui->getWidget('pager');
@@ -30,8 +33,8 @@ class AdminUsersLoginHistory extends AdminIndex {
 		$pager->process();
 	}
 
-	protected function getTableStore() {
-	
+	protected function getTableStore()
+	{
 		$pager = $this->ui->getWidget('pager');
 		$this->app->db->setLimit($pager->page_size, $pager->current_record);
 		
@@ -48,4 +51,5 @@ class AdminUsersLoginHistory extends AdminIndex {
 		return $store;
 	}	
 }
+
 ?>
