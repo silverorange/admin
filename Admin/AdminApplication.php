@@ -259,8 +259,8 @@ class AdminApplication extends SwatApplication
 				adminsections.title as section_title
 			FROM admincomponents
 				INNER JOIN adminsections ON admincomponents.section = adminsections.id
-			WHERE admincomponents.enabled = %
-				AND admincomponents.shortname = %
+			WHERE admincomponents.enabled = %s
+				AND admincomponents.shortname = %s
 				AND admincomponents.id IN (
 					SELECT component
 					FROM admincomponent_admingroup
