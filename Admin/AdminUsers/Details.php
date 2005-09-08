@@ -7,6 +7,7 @@ require_once 'SwatDB/SwatDB.php';
 
 /**
  * Details page for AdminUsers component
+ *
  * @package Admin
  * @copyright silverorange 2005
  */
@@ -25,7 +26,7 @@ class AdminUsersDetails extends AdminIndex
 		$id = $this->app->initVar('id');
 
 		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers',
-			array('username','name'), 'userid' , $id);
+			array('username','name'), 'id' , $id);
 
 		$frame = $this->ui->getWidget('index_frame');
 		$frame->title.=' - '.$row->name;
