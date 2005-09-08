@@ -46,7 +46,7 @@ class AdminApplicationSessionModule extends SwatApplicationModule
 	
 		$md5_password = md5($password);
 		
-		$sql = "select userid, name, username from adminusers
+		$sql = "select id, name, username from adminusers
 				where username = %s and password = %s and enabled = %s";
 
 		$sql = sprintf($sql, 
@@ -57,11 +57,11 @@ class AdminApplicationSessionModule extends SwatApplicationModule
 		$row = SwatDB::queryRow($this->app->db, $sql);
 		
 		if ($row !== null) {
-			$_SESSION['userID'] = $row->userid;
+			$_SESSION['user_id'] = $row->id;
 			$_SESSION['name']   = $row->name;
 			$_SESSION['username']   = $row->username;
 
-			$this->insertUserHistory($row->userid);
+			$this->insertUserHistory($row->id);
 
 			return true;
 		} else {
