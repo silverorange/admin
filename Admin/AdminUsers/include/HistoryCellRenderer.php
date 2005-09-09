@@ -9,13 +9,14 @@ require_once 'Swat/SwatHtmlTag.php';
  * @package Admin
  * @copyright silverorange 2005
  */
-class AdminUsersHistoryCellRenderer extends SwatCellRenderer {
-
+class AdminUsersHistoryCellRenderer extends SwatCellRenderer
+{
 	public $date;
 	public $user;
 	public $title;
 
-	public function render() {
+	public function render()
+	{
 		if ($this->date !== null) {
 			echo ' (';
 			$anchor = new SwatHtmlTag('a');
