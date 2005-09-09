@@ -4,7 +4,7 @@ require_once 'Admin/AdminUI.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/Admin/Index.php';
 require_once 'Admin/AdminTableStore.php';
-require_once 'Admin/AdminUsers/HistoryCellRenderer.php';
+require_once 'Admin/AdminUsers/include/HistoryCellRenderer.php';
 
 /**
  * Index page for AdminUsers component
