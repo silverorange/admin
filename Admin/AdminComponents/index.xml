@@ -2,79 +2,79 @@
 <swat-interface>
 	<widget class="SwatMessageDisplay" id="message_display" />
 	<widget class="SwatFrame" id="index_frame">
-		<property name="title" value="Components" translatable="yes" />
+		<property name="title" translatable="yes">Components</property>
 		<widget class="SwatToolLink">
-			<property name="title" value="Create a New Component" translatable="yes" />
-			<property name="link" value="AdminComponents/Edit" />
+			<property name="title" translatable="yes">Create a New Component</property>
+			<property name="link">AdminComponents/Edit</property>
 		</widget>
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
 				<object class="SwatTableViewGroup">
-					<property name="group_by" value="section" />
+					<property name="group_by">section</property>
 					<object class="AdminGroupHeaderCellRenderer">
-						<property name="title" value="section_title" type="data" translatable="yes" />
-						<property name="order_link" value="AdminComponents/Order?parent=%s" />
-						<property name="order_value" value="section" type="data" />
+						<property name="title" type="data" translatable="yes">section_title</property>
+						<property name="order_link">AdminComponents/Order?parent=%s</property>
+						<property name="order_value" type="data">section</property>
 					</object>
 				</object>
 				<object class="SwatTableViewColumn" id="controls">
 					<object class="AdminDetailsControlCellRenderer">
-						<property name="link" value="AdminComponents/Details?id=%s" />
-						<property name="value" value="id" type="data" />
+						<property name="link">AdminComponents/Details?id=%s</property>
+						<property name="value" type="data">id</property>
 					</object>
 				</object>
 				<object class="SwatTableViewCheckboxColumn" id="checkbox">
 					<object class="SwatCheckboxCellRenderer" id="items">
-						<property name="value" value="id" type="data" />
+						<property name="value" type="data">id</property>
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="title">
-					<property name="title" value="Title" translatable="yes" />
+					<property name="title" translatable="yes">Title</property>
 					<object class="SwatLinkCellRenderer">
-						<property name="title" value="title" type="data" translatable="yes" />
-						<property name="link" value="AdminComponents/Details?id=%s" />
-						<property name="value" value="id" type="data" />
+						<property name="title" type="data" translatable="yes">title</property>
+						<property name="link">AdminComponents/Details?id=%s</property>
+						<property name="value" type="data">id</property>
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="shortname">
-					<property name="title" value="Short Name" translatable="yes" />
+					<property name="title" translatable="yes">Short Name</property>
 					<object class="SwatTextCellRenderer">
-						<property name="value" value="shortname" type="data" />
+						<property name="value" type="data">shortname</property>
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="show">
-					<property name="title" value="Show in Menu" translatable="yes" />
+					<property name="title" translatable="yes">Show in Menu</property>
 					<object class="SwatCheckCellRenderer">
-						<property name="value" value="show" type="data" />
+						<property name="value" type="data">show</property>
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="enabled">
-					<property name="title" value="Enabled" translatable="yes" />
+					<property name="title" translatable="yes">Enabled</property>
 					<object class="SwatCheckCellRenderer">
-						<property name="value" value="enabled" type="data" />
+						<property name="value" type="data">enabled</property>
 					</object>
 				</object>
 			</widget>
 			<widget class="SwatActions" id="index_actions">
 				<widget class="SwatActionItem" id="delete">
-					<property name="title" value="delete..." translatable="yes" />
+					<property name="title" translatable="yes">delete...</property>
 				</widget>
 				<widget class="SwatActionItem" id="show">
-					<property name="title" value="show" translatable="yes" />
+					<property name="title" translatable="yes">show</property>
 				</widget>
 				<widget class="SwatActionItem" id="hide">
-					<property name="title" value="hide" translatable="yes" />
+					<property name="title" translatable="yes">hide</property>
 				</widget>
 				<widget class="SwatActionItem" id="enable">
-					<property name="title" value="enable" translatable="yes" />
+					<property name="title" translatable="yes">enable</property>
 				</widget>
 				<widget class="SwatActionItem" id="disable">
-					<property name="title" value="disable" translatable="yes" />
+					<property name="title" translatable="yes">disable</property>
 				</widget>
 				<widget class="SwatActionItem" id="change_section">
-					<property name="title" value="change section..." translatable="yes" />
+					<property name="title" translatable="yes">change section...</property>
 					<widget class="SwatFlydown" id="section">
-						<property name="show_blank" value="false" type="boolean" />
+						<property name="show_blank" type="boolean">false</property>
 					</widget>
 				</widget>
 			</widget>

@@ -2,43 +2,43 @@
 <swat-interface>
 	<widget class="SwatMessageDisplay" id="message_display" />
 	<widget class="SwatFrame" id="edit_frame">
-		<property name="title" value="User" translatable="yes" />
+		<property name="title" translatable="yes">User</property>
 		<widget class="SwatForm" id="edit_form">
 			<widget class="SwatFormField">
-				<property name="title" value="Name" translatable="yes" />
+				<property name="title" translatable="yes">Name</property>
 				<widget class="SwatEntry" id="name">
-					<property name="required" value="true" type="boolean" />
+					<property name="required" type="boolean">true</property>
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
-				<property name="title" value="Username" translatable="yes" />
+				<property name="title" translatable="yes">Username</property>
 				<widget class="AdminUniqueEntry" id="username">
-					<property name="required" value="true" type="boolean" />
+					<property name="required" type="boolean">true</property>
 				</widget>
 			</widget>
 			<widget class="SwatDisclosure" id="password_disclosure">
-				<property name="title" value="Change Password" translatable="yes" />
-				<property name="open" value="false" type="boolean" />
+				<property name="title" translatable="yes">Change Password</property>
+				<property name="open" type="boolean">false</property>
 				<widget class="SwatFormField">
-					<property name="title" value="Password" translatable="yes" />
+					<property name="title" translatable="yes">Password</property>
 					<widget class="SwatPasswordEntry" id="password">
-						<property name="minlength" value="4" type="integer" />
+						<property name="minlength" type="integer">4</property>
 					</widget>
 				</widget>
 				<widget class="SwatFormField" id="confirm_password_field">
-					<property name="title" value="Confirm Password" translatable="yes" />
-					<property name="note" value="Leave Password fields blank for them to remain the same." />
+					<property name="title" translatable="yes">Confirm Password</property>
+					<property name="note">Leave Password fields blank for them to remain the same.</property>
 					<widget class="SwatConfirmPasswordEntry" id="confirm_password" />
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
-				<property name="title" value="Enabled" translatable="yes" />
+				<property name="title" translatable="yes">Enabled</property>
 				<widget class="SwatCheckbox" id="enabled">
-					<property name="value" value="true" type="boolean" />
+					<property name="value" type="boolean">true</property>
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
-				<property name="title" value="Belongs to Groups" translatable="yes" />
+				<property name="title" translatable="yes">Belongs to Groups</property>
 				<widget class="SwatCheckboxList" id="groups" />
 			</widget>
 			<widget class="SwatFormFooterField">
