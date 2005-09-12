@@ -1,33 +1,33 @@
 <?xml version='1.0' standalone='yes'?>
 <swat-interface>
 	<widget class="SwatFrame" id="index_frame">
-		<property name="title" value="Admin User Login History" translatable="yes" />
+		<property name="title" translatable="yes">Admin User Login History</property>
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
 				<object class="AdminTableViewOrderableColumn" id="username">
-					<property name="title" value="Username" translatable="yes" />
+					<property name="title" translatable="yes">Username</property>
 					<object class="SwatLinkCellRenderer">
-						<property name="link" value="AdminUsers/Details?id=%s" />
-						<property name="value" value="usernum" type="data" />
-						<property name="title" value="username" type="data" />
+						<property name="link">AdminUsers/Details?id=%s</property>
+						<property name="value" type="data">usernum</property>
+						<property name="title" type="data">username</property>
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="logindate">
-					<property name="title" value="Login Time" translatable="yes" />
+					<property name="title" translatable="yes">Login Time</property>
 					<object class="SwatDateCellRenderer">
-						<property name="date" value="logindate" type="data" />
+						<property name="date" type="data">logindate</property>
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="loginagent">
-					<property name="title" value="Agent" translatable="yes" />
+					<property name="title" translatable="yes">Agent</property>
 					<object class="SwatTextCellRenderer">
-						<property name="value" value="loginagent" type="data" />
+						<property name="value" type="data">loginagent</property>
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="remoteip">
-					<property name="title" value="Remote IP" translatable="yes" />
+					<property name="title" translatable="yes">Remote IP</property>
 					<object class="SwatTextCellRenderer">
-						<property name="value" value="remoteip" type="data" />
+						<property name="value" type="data">remoteip</property>
 					</object>
 				</object>
 			</widget>

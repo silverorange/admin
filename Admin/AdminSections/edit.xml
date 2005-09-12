@@ -1,28 +1,28 @@
 <?xml version='1.0' standalone='yes'?>
 <swat-interface>
 	<widget class="SwatFrame" id="edit_frame">
-		<property name="title" value="Section" translatable="yes" />
+		<property name="title" translatable="yes">Section</property>
 		<widget class="SwatForm" id="edit_form">
 			<widget class="SwatFormField">
-				<property name="title" value="Title" translatable="yes" />
+				<property name="title" translatable="yes">Title</property>
 				<widget class="SwatEntry" id="title">
-					<property name="required" value="true" type="boolean" />
+					<property name="required" type="boolean">true</property>
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
-				<property name="title" value="Show in Menu?" translatable="yes" />
+				<property name="title" translatable="yes">Show in Menu?</property>
 				<widget class="SwatCheckbox" id="show">
-					<property name="value" value="true" type="boolean" />
+					<property name="value" type="boolean">true</property>
 				</widget>
 			</widget>
 			<!-- widget class="SwatFormField">
-				<property name="title" value="Colour" translatable="yes" />
+				<property name="title" translatable="yes">Colour</property>
 				<widget class="SwatColorEntry" id="color">
-					<property name="required" value="true" type="boolean" />
+					<property name="required" type="boolean">true</property>
 				</widget>
 			</widget -->
 			<widget class="SwatFormField">
-				<property name="title" value="Description" translatable="yes" />
+				<property name="title" translatable="yes">Description</property>
 				<widget class="SwatTextarea" id="description" />
 			</widget>
 			<widget class="SwatFormFooterField">

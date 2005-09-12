@@ -2,52 +2,52 @@
 <swat-interface>
 	<widget class="SwatMessageDisplay" id="message_display" />
 	<widget class="SwatFrame">
-		<property name="title" value="Sections" translatable="yes" />
+		<property name="title" translatable="yes">Sections</property>
 		<widget class="SwatToolLink">
-			<property name="title" value="Create a New Section" translatable="yes" />
-			<property name="link" value="AdminSections/Edit" />
+			<property name="title" translatable="yes">Create a New Section</property>
+			<property name="link">AdminSections/Edit</property>
 		</widget>
 		<widget class="SwatToolLink" id="order_tool">
-			<property name="title" value="Change Order" translatable="yes" />
-			<property name="link" value="AdminSections/Order" />
+			<property name="title" translatable="yes">Change Order</property>
+			<property name="link">AdminSections/Order</property>
 		</widget>
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
 				<object class="SwatTableViewColumn">
 					<object class="AdminEditControlCellRenderer">
-						<property name="link" value="AdminSections/Edit?id=%s" />
-						<property name="value" value="id" type="data" />
+						<property name="link">AdminSections/Edit?id=%s</property>
+						<property name="value" type="data">id</property>
 					</object>
 				</object>
 				<object class="SwatTableViewCheckboxColumn" id="checkbox">
 					<object class="SwatCheckboxCellRenderer" id="items">
-						<property name="value" value="id" type="data" />
+						<property name="value" type="data">id</property>
 					</object>
 				</object>
 				<object class="SwatTableViewColumn">
-					<property name="title" value="Title" translatable="yes" />
+					<property name="title" translatable="yes">Title</property>
 					<object class="SwatLinkCellRenderer">
-						<property name="title" value="title" type="data" translatable="yes" />
-						<property name="link" value="AdminSections/Edit?id=%s" />
-						<property name="value" value="id" type="data" />
+						<property name="title" type="data" translatable="yes">title</property>
+						<property name="link">AdminSections/Edit?id=%s</property>
+						<property name="value" type="data">id</property>
 					</object>
 				</object>
 				<object class="SwatTableViewColumn">
-					<property name="title" value="Show in Menu" translatable="yes" />
+					<property name="title" translatable="yes">Show in Menu</property>
 					<object class="SwatCheckCellRenderer">
-						<property name="value" value="show" type="data" />
+						<property name="value" type="data">show</property>
 					</object>
 				</object>
 			</widget>
 			<widget class="SwatActions" id="index_actions">
 				<widget class="SwatActionItem" id="delete">
-					<property name="title" value="delete..." translatable="yes" />
+					<property name="title" translatable="yes">delete...</property>
 				</widget>
 				<widget class="SwatActionItem" id="show">
-					<property name="title" value="show" translatable="yes" />
+					<property name="title" translatable="yes">show</property>
 				</widget>
 				<widget class="SwatActionItem" id="hide">
-					<property name="title" value="hide" translatable="yes" />
+					<property name="title" translatable="yes">hide</property>
 				</widget>
 			</widget>
 		</widget>

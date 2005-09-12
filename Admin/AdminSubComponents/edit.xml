@@ -1,24 +1,24 @@
 <?xml version='1.0' standalone='yes'?>
 <swat-interface>
 	<widget class="SwatFrame" id="edit_frame">
-		<property name="title" value="Sub-Component" translatable="yes" />
+		<property name="title" translatable="yes">Sub-Component</property>
 		<widget class="SwatForm" id="edit_form">
 			<widget class="SwatFormField">
-				<property name="title" value="Title" translatable="yes" />
+				<property name="title" translatable="yes">Title</property>
 				<widget class="SwatEntry" id="title">
-					<property name="required" value="true" type="boolean" />
+					<property name="required" type="boolean">true</property>
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
-				<property name="title" value="Short Name" translatable="yes" />
+				<property name="title" translatable="yes">Short Name</property>
 				<widget class="AdminUniqueEntry" id="shortname">
-					<property name="required" value="true" type="boolean" />
+					<property name="required" type="boolean">true</property>
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
-				<property name="title" value="Show in menu?" translatable="yes" />
+				<property name="title" translatable="yes">Show in menu?</property>
 				<widget class="SwatCheckbox" id="show">
-					<property name="value" value="true" type="boolean" />
+					<property name="value" type="boolean">true</property>
 				</widget>
 			</widget>
 			<widget class="SwatFormFooterField">

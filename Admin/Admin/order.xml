@@ -3,11 +3,11 @@
 	<widget class="SwatFrame" id="order_frame">
 		<widget class="SwatForm" id="order_form">
 			<widget class="SwatFormField">
-				<property name="title" value="Order Options" translatable="yes" />
+				<property name="title" translatable="yes">Order Options</property>
 				<widget class="SwatRadioList" id="options" />
 			</widget>
 			<widget class="SwatFormField">
-				<property name="title" value="Custom Order" translatable="yes" />
+				<property name="title" translatable="yes">Custom Order</property>
 				<widget class="SwatChangeOrder" id="order" />
 			</widget>
 			<widget class="SwatFormFooterField">

@@ -2,23 +2,23 @@
 <swat-interface>
 	<widget class="SwatMessageDisplay" id="message_display" />
 	<widget class="SwatFrame" id="edit_frame">
-		<property name="title" value="Group" translatable="yes" />
+		<property name="title" translatable="yes">Group</property>
 		<widget class="SwatForm" id="edit_form">
 			<widget class="SwatFormField">
-				<property name="title" value="Title" translatable="yes" />
+				<property name="title" translatable="yes">Title</property>
 				<widget class="SwatEntry" id="title">
-					<property name="required" value="true" type="boolean" />
+					<property name="required" type="boolean">true</property>
 				</widget>
 			</widget>
 			<widget class="SwatFrame">
-		        <property name="title" value="Component Access" translatable="yes" />
+		        <property name="title" translatable="yes">Component Access</property>
 				<!--widget class="SwatFormField">
 					<property name="title" value="Components" translatable="yes" /-->
 					<widget class="SwatCheckboxTree" id="components" />
 				<!--/widget-->
 			</widget>
 			<widget class="SwatFrame">
-		        <property name="title" value="Users in Group" translatable="yes" />
+		        <property name="title" translatable="yes">Users in Group</property>
 				<!--widget class="SwatFormField">
 					<property name="title" value="Users" translatable="yes" /-->
 					<widget class="SwatCheckboxList" id="users" />

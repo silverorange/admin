@@ -1,15 +1,15 @@
 <?xml version='1.0' standalone='yes'?>
 <swat-interface>
 	<widget class="SwatFrame">
-		<property name="title" value="Confirmation" translatable="yes" />
+		<property name="title" translatable="yes">Confirmation</property>
 		<widget class="SwatForm" id="confirmation_form">
 			<widget class="SwatContentBlock" id="confirmation_message" />
 			<widget class="SwatFormFooterField">
 				<widget class="SwatButton" id="yes_button">
-					<property name="title" value="Yes" translatable="yes" />
+					<property name="title" translatable="yes">Yes</property>
 				</widget>
 				<widget class="SwatButton" id="no_button">
-					<property name="title" value="No" translatable="yes" />
+					<property name="title" translatable="yes">No</property>
 				</widget>
 			</widget>
 		</widget>
