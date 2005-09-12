@@ -93,14 +93,14 @@ class AdminApplication extends SwatApplication
 	 */
 	public function init()
 	{
-        $this->initBaseHref(4);
-        $this->initModules();
+	        $this->initBaseHref(4);
+        	$this->initModules();
 
 		// set up convenience references
 		$this->db = $this->database->mdb2;
 
 		// call this last
-        $this->initPage();
+	        $this->initPage();
 	}
 
     // }}}
