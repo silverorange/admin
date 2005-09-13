@@ -81,8 +81,8 @@ class AdminLogin extends AdminPage
 		else
 			$username = '';
 		
+		echo '<script type="text/javascript" src="admin/javascript/admin-login.js"></script>'."\n";
 		echo '<script type="text/javascript">';
-		require_once('Admin/javascript/admin-login.js');
 		echo "\n adminLogin('username', 'password', '{$username}');";
 		echo '</script>';
 	}
