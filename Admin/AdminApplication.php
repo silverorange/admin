@@ -120,6 +120,49 @@ class AdminApplication extends SwatApplication
 	}
 		
     // }}}
+    // {{{ public function replacePage()
+
+	/**
+	 * Replace the page object
+	 *
+	 * This method can be used to load another page to replace the current 
+	 * page. For example, this is used to load a confirmation page when 
+	 * processing an admin index page.
+	 */
+	public function replacePage($source)
+	{
+		$newpage = $this->instantiatePage($source);
+		$this->setPage($newpage);
+	}
+
+    // }}}
+    // {{{ public function replacePageNoAccess()
+
+	/**
+	 * Replace Page with No Access Admin Page
+	 *
+	 * This method is used to replace the current page with a No Access page
+	 * and an optional message.
+	 *
+	 * @param SwatMessage An optional {@link SwatMessage} to display.
+	 */
+	public function replacePageNoAccess($msg = null)
+	{
+		$this->replacePage('Admin/NoAccess');
+		$this->page->setMessage($msg);
+		$this->page->build();
+	}
+
+    // }}}
+    // {{{ protected function getServerName()
+	/*
+    protected function getServerName()
+    {
+        return ($this->live) ? $_SERVER['SERVER_NAME'] : $_SERVER['HTTP_HOST'];
+    }
+	*/
+
+    // }}}
     // {{{ private function instantiatePage()
 
 	private function instantiatePage($source)
@@ -277,49 +320,6 @@ class AdminApplication extends SwatApplication
 		$row = SwatDB::queryRow($this->db, $sql);
 		return $row;
 	}
-
-    // }}}
-    // {{{ public function replacePage()
-
-	/**
-	 * Replace the page object
-	 *
-	 * This method can be used to load another page to replace the current 
-	 * page. For example, this is used to load a confirmation page when 
-	 * processing an admin index page.
-	 */
-	public function replacePage($source)
-	{
-		$newpage = $this->instantiatePage($source);
-		$this->setPage($newpage);
-	}
-
-    // }}}
-    // {{{ public function replacePageNoAccess()
-
-	/**
-	 * Replace Page with No Access Admin Page
-	 *
-	 * This method is used to replace the current page with a No Access page
-	 * and an optional message.
-	 *
-	 * @param SwatMessage An optional {@link SwatMessage} to display.
-	 */
-	public function replacePageNoAccess($msg = null)
-	{
-		$this->replacePage('Admin/NoAccess');
-		$this->page->setMessage($msg);
-		$this->page->build();
-	}
-
-    // }}}
-    // {{{ protected function getServerName()
-	/*
-    protected function getServerName()
-    {
-        return ($this->live) ? $_SERVER['SERVER_NAME'] : $_SERVER['HTTP_HOST'];
-    }
-	*/
 
     // }}}
 }
