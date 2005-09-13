@@ -13,15 +13,6 @@ require_once 'Admin/AdminPage.php';
  */
 abstract class AdminEdit extends AdminPage
 {
-	protected function initInternal()
-	{
-		parent::initInternal();
-
-		$id = SwatApplication::initVar('id');
-		$this->navbar->createEntry(
-			($id == 0) ? Admin::_('Add') : Admin::_('Edit'));
-	}
-	
 	public function initDisplay()
 	{
 		$id = SwatApplication::initVar('id');
@@ -62,6 +53,15 @@ abstract class AdminEdit extends AdminPage
 				}
 			}
 		}
+	}
+
+	protected function initInternal()
+	{
+		parent::initInternal();
+
+		$id = SwatApplication::initVar('id');
+		$this->navbar->createEntry(
+			($id == 0) ? Admin::_('Add') : Admin::_('Edit'));
 	}
 
 	protected function initButton($id)

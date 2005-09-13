@@ -16,19 +16,6 @@ class AdminComponentsDetails extends AdminIndex
 {
 	private $id;
 
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML('Admin/AdminComponents/details.xml');
-
-		$this->id = intval(SwatApplication::initVar('id'));
-		assert($this->id !== null);
-
-		$form = $this->ui->getWidget('index_form');
-		$form->addHiddenField('id', $this->id);
-
-		$this->navbar->createEntry(Admin::_('Details'));
-	}
-
 	public function initDisplay()
 	{
 		$component_details = $this->ui->getWidget('component_details');
@@ -69,30 +56,17 @@ class AdminComponentsDetails extends AdminIndex
 		parent::initDisplay();
 	}
 
-	private function displayGroups($id)
+	protected function initInternal()
 	{
-		$sql = 'select id, title
-				from admingroups
-				where id in
-					(select groupnum from admincomponent_admingroup 
-					where component = %s)';
+		$this->ui->loadFromXML('Admin/AdminComponents/details.xml');
 
-		$sql = sprintf($sql, $this->app->db->quote($id, 'integer'));
-		
-		$rs = SwatDB::query($this->app->db, $sql);
+		$this->id = intval(SwatApplication::initVar('id'));
+		assert($this->id !== null);
 
-		echo '<ul>';
+		$form = $this->ui->getWidget('index_form');
+		$form->addHiddenField('id', $this->id);
 
-		foreach ($rs as $row) {
-			echo '<li>';
-			$anchor_tag = new SwatHtmlTag('a');
-			$anchor_tag->href = 'AdminGroups/Details?id='.$row->id;
-			$anchor_tag->content = $row->title;
-			$anchor_tag->display();
-			echo '</li>';
-		}
-
-		echo '<ul>';
+		$this->navbar->createEntry(Admin::_('Details'));
 	}
 
 	protected function getTableStore()
@@ -152,6 +126,32 @@ class AdminComponentsDetails extends AdminIndex
 		
 		if ($msg !== null)
 			$this->app->messages->add($msg);
+	}
+
+	private function displayGroups($id)
+	{
+		$sql = 'select id, title
+				from admingroups
+				where id in
+					(select groupnum from admincomponent_admingroup 
+					where component = %s)';
+
+		$sql = sprintf($sql, $this->app->db->quote($id, 'integer'));
+		
+		$rs = SwatDB::query($this->app->db, $sql);
+
+		echo '<ul>';
+
+		foreach ($rs as $row) {
+			echo '<li>';
+			$anchor_tag = new SwatHtmlTag('a');
+			$anchor_tag->href = 'AdminGroups/Details?id='.$row->id;
+			$anchor_tag->content = $row->title;
+			$anchor_tag->display();
+			echo '</li>';
+		}
+
+		echo '<ul>';
 	}
 }
 

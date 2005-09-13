@@ -15,13 +15,6 @@ require_once 'Admin/AdminPage.php';
  */
 abstract class AdminOrder extends AdminPage
 {
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML('Admin/Admin/order.xml');
-
-		$this->navbar->createEntry(Admin::_('Change Order'));
-	}
-
 	public function process()
 	{
 		$form = $this->ui->getWidget('order_form');
@@ -48,6 +41,13 @@ abstract class AdminOrder extends AdminPage
 		$form->action = $this->source;
 	}
 	
+	protected function initInternal()
+	{
+		$this->ui->loadFromXML('Admin/Admin/order.xml');
+
+		$this->navbar->createEntry(Admin::_('Change Order'));
+	}
+
 	protected function saveData()
 	{
 		$count = 0;

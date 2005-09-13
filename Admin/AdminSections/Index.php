@@ -13,28 +13,6 @@ require_once 'Admin/AdminTableStore.php';
  */
 class AdminSectionsIndex extends AdminIndex
 {
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML('Admin/AdminSections/index.xml');
-	}
-
-	protected function getTableStore()
-	{
-		$view = $this->ui->getWidget('index_view');
-
-		$sql = 'select id, title, show 
-				from adminsections 
-				order by displayorder';
-
-		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
-
-		if ($store->getRowCount() == 0)
-			$this->ui->getWidget('order_tool')->visible = false;
-
-
-		return $store;
-	}
-
 	public function processActions()
 	{
 		$view = $this->ui->getWidget('index_view');
@@ -72,6 +50,28 @@ class AdminSectionsIndex extends AdminIndex
 		
 		if ($msg !== null)
 			$this->app->messages->add($msg);
+	}
+
+	protected function initInternal()
+	{
+		$this->ui->loadFromXML('Admin/AdminSections/index.xml');
+	}
+
+	protected function getTableStore()
+	{
+		$view = $this->ui->getWidget('index_view');
+
+		$sql = 'select id, title, show 
+				from adminsections 
+				order by displayorder';
+
+		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
+
+		if ($store->getRowCount() == 0)
+			$this->ui->getWidget('order_tool')->visible = false;
+
+
+		return $store;
 	}
 }
 

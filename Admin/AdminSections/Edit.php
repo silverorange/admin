@@ -12,15 +12,6 @@ require_once 'MDB2.php';
  */
 class AdminSectionsEdit extends AdminDBEdit
 {
-	protected function initInternal()
-	{
-		parent::initInternal();
-
-		$this->ui->loadFromXML('Admin/AdminSections/edit.xml');
-		
-		$this->fields = array('title', 'boolean:show', 'description');
-	}
-
 	public function process()
 	{
 		$form = $this->ui->getWidget('edit_form');
@@ -32,6 +23,15 @@ class AdminSectionsEdit extends AdminDBEdit
 				$this->app->relocate($this->app->history->getHistory());
 			}
 		}
+	}
+
+	protected function initInternal()
+	{
+		parent::initInternal();
+
+		$this->ui->loadFromXML('Admin/AdminSections/edit.xml');
+		
+		$this->fields = array('title', 'boolean:show', 'description');
 	}
 
 	protected function saveDBData($id)

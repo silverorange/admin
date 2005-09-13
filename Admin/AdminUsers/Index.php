@@ -14,27 +14,6 @@ require_once 'Admin/AdminUsers/include/HistoryCellRenderer.php';
  */
 class AdminUsersIndex extends AdminIndex
 {
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML('Admin/AdminUsers/index.xml');
-	}
-
-	protected function getTableStore()
-	{
-		$sql = 'select adminusers.id, adminusers.username, adminusers.name,
-					adminusers.enabled, view_adminuser_lastlogin.lastlogin
-				from adminusers 
-				left outer join view_adminuser_lastlogin on
-					view_adminuser_lastlogin.usernum = adminusers.id
-				order by %s';
-
-		$sql = sprintf($sql, $this->getOrderByClause('adminusers.username'));
-
-		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
-
-		return $store;
-	}
-
 	public function processActions()
 	{
 		$view = $this->ui->getWidget('index_view');
@@ -72,6 +51,27 @@ class AdminUsersIndex extends AdminIndex
 		
 		if ($msg !== null)
 			$this->app->messages->add($msg);
+	}
+
+	protected function initInternal()
+	{
+		$this->ui->loadFromXML('Admin/AdminUsers/index.xml');
+	}
+
+	protected function getTableStore()
+	{
+		$sql = 'select adminusers.id, adminusers.username, adminusers.name,
+					adminusers.enabled, view_adminuser_lastlogin.lastlogin
+				from adminusers 
+				left outer join view_adminuser_lastlogin on
+					view_adminuser_lastlogin.usernum = adminusers.id
+				order by %s';
+
+		$sql = sprintf($sql, $this->getOrderByClause('adminusers.username'));
+
+		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
+
+		return $store;
 	}
 }
 

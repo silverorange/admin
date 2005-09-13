@@ -13,17 +13,6 @@ class AdminProfile extends AdminDBEdit
 {
 	private $fields;
 
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML('Admin/Admin/profile.xml');
-
-		$this->navbar->popEntry();
-		$this->navbar->createEntry(Admin::_('My Profile'));
-
-		$confirm = $this->ui->getWidget('confirmpassword');
-		$confirm->password_widget = $this->ui->getWidget('password');;
-	}
-	
 	public function initDisplay()
 	{
 		$form = $this->ui->getWidget('edit_form');
@@ -35,6 +24,17 @@ class AdminProfile extends AdminDBEdit
 		$this->initMessages();
 	}
 
+	protected function initInternal()
+	{
+		$this->ui->loadFromXML('Admin/Admin/profile.xml');
+
+		$this->navbar->popEntry();
+		$this->navbar->createEntry(Admin::_('My Profile'));
+
+		$confirm = $this->ui->getWidget('confirmpassword');
+		$confirm->password_widget = $this->ui->getWidget('password');;
+	}
+	
 	protected function relocate()
 	{
 		$this->app->relocate('');

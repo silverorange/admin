@@ -13,13 +13,6 @@ require_once 'SwatDB/SwatDB.php';
  */
 class AdminUsersDetails extends AdminIndex
 {
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML('Admin/AdminUsers/details.xml');
-
-		$this->navbar->createEntry(Admin::_('Details'));
-	}
-
 	public function initDisplay()
 	{
 		$id = $this->app->initVar('id');
@@ -32,7 +25,13 @@ class AdminUsersDetails extends AdminIndex
 		
 		parent::initDisplay();
 	}
-	
+
+	protected function initInternal()
+	{
+		$this->ui->loadFromXML('Admin/AdminUsers/details.xml');
+
+		$this->navbar->createEntry(Admin::_('Details'));
+	}
 	
 	protected function getTableStore()
 	{
