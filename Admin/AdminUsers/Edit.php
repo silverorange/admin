@@ -78,7 +78,10 @@ class AdminUsersEdit extends AdminDBEdit
 		SwatDB::updateBinding($this->app->db, 'adminuser_admingroup', 
 			'usernum', $id, 'groupnum', $group_list->values, 'admingroups', 'id');
 		
-		$msg = new SwatMessage(sprintf(Admin::_('User "%s" has been saved.'), $values['username']), SwatMessage::NOTIFICATION);
+		$msg = new SwatMessage(
+			sprintf(Admin::_('User &#8220;%s&#8221; has been saved.'),
+			$values['username']), SwatMessage::NOTIFICATION);
+
 		$this->app->messages->add($msg);	
 	}
 
