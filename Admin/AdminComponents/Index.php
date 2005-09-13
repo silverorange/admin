@@ -13,9 +13,8 @@ require_once 'SwatDB/SwatDB.php';
  */
 class AdminComponentsIndex extends AdminIndex
 {
-	public function init()
+	protected function initInternal()
 	{
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminComponents/index.xml');
 
 		$section_flydown = $this->ui->getWidget('section');

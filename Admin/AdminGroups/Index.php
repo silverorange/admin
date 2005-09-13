@@ -13,9 +13,8 @@ require_once 'Admin/AdminTableStore.php';
  */
 class AdminGroupsIndex extends AdminIndex
 {
-	public function init()
+	protected function initInternal()
 	{
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminGroups/index.xml');
 	}
 

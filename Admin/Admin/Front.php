@@ -11,9 +11,8 @@ require_once 'Admin/AdminUI.php';
  */
 class AdminFront extends AdminPage
 {
-	public function init()
+	protected function initInternal()
 	{
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/front.xml');
 
 		$this->navbar = new SwatNavBar();

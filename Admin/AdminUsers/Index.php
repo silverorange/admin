@@ -14,9 +14,8 @@ require_once 'Admin/AdminUsers/include/HistoryCellRenderer.php';
  */
 class AdminUsersIndex extends AdminIndex
 {
-	public function init()
+	protected function initInternal()
 	{
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminUsers/index.xml');
 	}
 

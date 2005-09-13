@@ -15,9 +15,8 @@ class AdminSubComponentsEdit extends AdminDBEdit
 	private $fields;
 	private $parent;
 
-	public function init()
+	protected function initInternal()
 	{
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminSubComponents/edit.xml');
 
 		$this->parent = SwatApplication::initVar('parent');

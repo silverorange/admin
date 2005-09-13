@@ -14,11 +14,10 @@ class AdminGroupsEdit extends AdminDBEdit
 {
 	private $fields;
 
-	public function init()
+	protected function initInternal()
 	{
-		parent::init();
+		parent::initInternal();
 
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminGroups/edit.xml');
 
 		$this->fields = array('title');

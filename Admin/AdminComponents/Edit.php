@@ -14,11 +14,10 @@ class AdminComponentsEdit extends AdminDBEdit
 {
 	private $fields;
 
-	public function init()
+	protected function initInternal()
 	{
-		parent::init();
+		parent::initInternal();
 
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminComponents/edit.xml');
 
 		$section_flydown = $this->ui->getWidget('section');

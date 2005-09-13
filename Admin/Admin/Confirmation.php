@@ -14,9 +14,8 @@ require_once 'Admin/AdminUI.php';
  */
 abstract class AdminConfirmation extends AdminPage
 {
-	public function init()
+	public function initInternal()
 	{
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/confirmation.xml');
 
 		$this->navbar->createEntry(Admin::_('Confirmation'));
