@@ -3,6 +3,7 @@
 require_once 'Swat/SwatPage.php';
 require_once 'Swat/SwatNavBar.php';
 require_once 'Admin/AdminMenu.php';
+require_once 'Admin/AdminUI.php';
 
 /**
  * Page of an administrator
@@ -59,6 +60,19 @@ abstract class AdminPage extends SwatPage
 		parent::__construct($app);
 
 		$this->navbar = new SwatNavbar();
+		$this->ui = new AdminUI();
+	}
+
+	// }}}
+	// {{{ public function init()
+
+	public function init()
+	{
+		parent::init();
+		
+		$this->initInternal();
+
+		$this->ui->init();
 	}
 
 	// }}}
@@ -186,6 +200,13 @@ abstract class AdminPage extends SwatPage
 	}
 	
     // }}}
+	// {{{ protected function initInternal()
+
+	protected function initInternal()
+	{
+	}
+
+	// }}}
     // {{{ protected function initMessages()
 
 	protected function initMessages()
