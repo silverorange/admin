@@ -13,22 +13,6 @@ require_once 'Swat/SwatLayout.php';
  */
 class AdminLogin extends AdminPage
 {
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML('Admin/Admin/login.xml');
-
-		$frame = $this->ui->getWidget('login_frame');
-		$frame->title = $this->app->title;
-
-		$username = $this->ui->getWidget('username');
-
-		if (isset($_COOKIE[$this->app->id.'_username']))
-			$username->value = $_COOKIE[$this->app->id.'_username'];
-		
-		$form = $this->ui->getWidget('login_form');
-		$form->action = $this->app->getUri();
-	}
-
 	public function process()
 	{
 		$form = $this->ui->getWidget('login_form');
@@ -66,6 +50,22 @@ class AdminLogin extends AdminPage
 		ob_start();
 		$this->displayJavascript();
 		$this->layout->javascript = ob_get_clean();
+	}
+
+	protected function initInternal()
+	{
+		$this->ui->loadFromXML('Admin/Admin/login.xml');
+
+		$frame = $this->ui->getWidget('login_frame');
+		$frame->title = $this->app->title;
+
+		$username = $this->ui->getWidget('username');
+
+		if (isset($_COOKIE[$this->app->id.'_username']))
+			$username->value = $_COOKIE[$this->app->id.'_username'];
+		
+		$form = $this->ui->getWidget('login_form');
+		$form->action = $this->app->getUri();
 	}
 
     protected function createLayout()

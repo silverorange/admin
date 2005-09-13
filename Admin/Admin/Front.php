@@ -11,14 +11,6 @@ require_once 'Admin/AdminUI.php';
  */
 class AdminFront extends AdminPage
 {
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML('Admin/Admin/front.xml');
-
-		$this->navbar = new SwatNavBar();
-		$this->navbar->createEntry('<h1>'.$this->app->title.'</h1>');
-	}
-
 	public function initDisplay()
 	{
 		$this->initMessages();
@@ -27,6 +19,14 @@ class AdminFront extends AdminPage
 
 	public function process()
 	{
+	}
+
+	protected function initInternal()
+	{
+		$this->ui->loadFromXML('Admin/Admin/front.xml');
+
+		$this->navbar = new SwatNavBar();
+		$this->navbar->createEntry('<h1>'.$this->app->title.'</h1>');
 	}
 }
 

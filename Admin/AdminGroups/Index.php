@@ -13,6 +13,19 @@ require_once 'Admin/AdminTableStore.php';
  */
 class AdminGroupsIndex extends AdminIndex
 {
+	public function processActions()
+	{
+		$view = $this->ui->getWidget('index_view');
+		$actions = $this->ui->getWidget('index_actions');
+
+		switch ($actions->selected->id) {
+			case 'delete':
+				$this->app->replacePage('AdminGroups/Delete');
+				$this->app->getPage()->setItems($view->checked_items);
+				break;
+		}
+	}
+
 	protected function initInternal()
 	{
 		$this->ui->loadFromXML('Admin/AdminGroups/index.xml');
@@ -29,19 +42,6 @@ class AdminGroupsIndex extends AdminIndex
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
 		return $store;
-	}
-
-	public function processActions()
-	{
-		$view = $this->ui->getWidget('index_view');
-		$actions = $this->ui->getWidget('index_actions');
-
-		switch ($actions->selected->id) {
-			case 'delete':
-				$this->app->replacePage('AdminGroups/Delete');
-				$this->app->getPage()->setItems($view->checked_items);
-				break;
-		}
 	}
 }
 

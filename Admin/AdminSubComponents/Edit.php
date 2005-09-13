@@ -15,18 +15,6 @@ class AdminSubComponentsEdit extends AdminDBEdit
 	private $fields;
 	private $parent;
 
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML('Admin/AdminSubComponents/edit.xml');
-
-		$this->parent = SwatApplication::initVar('parent');
-
-		$this->fields = array('title', 'shortname', 'boolean:show', 'integer:component');
-
-		$form = $this->ui->getWidget('edit_form');
-		$form->addHiddenField('parent', $this->parent);
-	}
-
 	public function initDisplay()
 	{
 		parent::initDisplay();
@@ -44,6 +32,18 @@ class AdminSubComponentsEdit extends AdminDBEdit
 			$this->navbar->createEntry('Add Sub-Component');
 		else
 			$this->navbar->createEntry('Edit Sub-Component');
+	}
+
+	protected function initInternal()
+	{
+		$this->ui->loadFromXML('Admin/AdminSubComponents/edit.xml');
+
+		$this->parent = SwatApplication::initVar('parent');
+
+		$this->fields = array('title', 'shortname', 'boolean:show', 'integer:component');
+
+		$form = $this->ui->getWidget('edit_form');
+		$form->addHiddenField('parent', $this->parent);
 	}
 	
 	protected function processPage($id)

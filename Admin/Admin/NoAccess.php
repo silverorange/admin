@@ -13,11 +13,6 @@ class AdminNoAccess extends AdminPage
 {
 	private $message = null;
 
-	protected function initInternal()
-	{
-		$this->app->getPage()->navbar->replaceElement(1, Admin::_('No Access'));
-	}
-
 	public function display()
 	{
 		$message_display = new SwatMessageDisplay();
@@ -36,6 +31,11 @@ class AdminNoAccess extends AdminPage
 	public function setMessage($msg)
 	{
 		$this->message = $msg;
+	}
+
+	protected function initInternal()
+	{
+		$this->app->getPage()->navbar->replaceElement(1, Admin::_('No Access'));
 	}
 }
 

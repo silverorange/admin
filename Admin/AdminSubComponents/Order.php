@@ -13,15 +13,6 @@ class AdminSubComponentsOrder extends AdminDBOrder
 {
 	private $parent;
 
-	protected function initInternal()
-	{
-		parent::initInternal();
-
-		$this->parent = SwatApplication::initVar('parent');
-		$form = $this->ui->getWidget('order_form');
-		$form->addHiddenField('parent', $this->parent);
-	}
-
 	public function initDisplay()
 	{
 		$frame = $this->ui->getWidget('order_frame');
@@ -58,6 +49,15 @@ class AdminSubComponentsOrder extends AdminDBOrder
 	{
 		SwatDB::updateColumn($this->app->db, 'adminsubcomponents', 'integer:displayorder',
 			$index, 'integer:id', array($id));
+	}
+
+	protected function initInternal()
+	{
+		parent::initInternal();
+
+		$this->parent = SwatApplication::initVar('parent');
+		$form = $this->ui->getWidget('order_form');
+		$form->addHiddenField('parent', $this->parent);
 	}
 }
 

@@ -29,17 +29,6 @@ abstract class AdminIndex extends AdminPage
 		$this->initMessages();
 	}
 
-	/**
-	 * Retrieve data to display.
-	 *
-	 * This method is called to load data to be displayed in the table view.
-	 * Sub-classes should implement this method and perform whatever actions
-	 * are necessary to obtain the data.
-	 *
-	 * @return SwatTableStore A new SwatTableStore containing the data.
-	 */
-	abstract protected function getTableStore();
-
 	public function process()
 	{
 		$form = $this->ui->getWidget('index_form');
@@ -59,6 +48,17 @@ abstract class AdminIndex extends AdminPage
 			$this->processActions();
 		}
 	}
+
+	/**
+	 * Retrieve data to display.
+	 *
+	 * This method is called to load data to be displayed in the table view.
+	 * Sub-classes should implement this method and perform whatever actions
+	 * are necessary to obtain the data.
+	 *
+	 * @return SwatTableStore A new SwatTableStore containing the data.
+	 */
+	abstract protected function getTableStore();
 
 	protected function getOrderByClause($default_orderby, $column_prefix = null, $column_map = array())
 	{

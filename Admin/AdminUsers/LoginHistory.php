@@ -14,13 +14,6 @@ require_once 'Admin/AdminUsers/include/HistoryCellRenderer.php';
  */
 class AdminUsersLoginHistory extends AdminIndex
 {
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML('Admin/AdminUsers/loginhistory.xml');
-
-		$this->navbar->createEntry(Admin::_('Login History'));
-	}
-	
 	public function process()
 	{
 		parent::process();
@@ -32,6 +25,13 @@ class AdminUsersLoginHistory extends AdminIndex
 		$pager->process();
 	}
 
+	protected function initInternal()
+	{
+		$this->ui->loadFromXML('Admin/AdminUsers/loginhistory.xml');
+
+		$this->navbar->createEntry(Admin::_('Login History'));
+	}
+	
 	protected function getTableStore()
 	{
 		$pager = $this->ui->getWidget('pager');
