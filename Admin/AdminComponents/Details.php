@@ -16,9 +16,8 @@ class AdminComponentsDetails extends AdminIndex
 {
 	private $id;
 
-	public function init()
+	protected function initInternal()
 	{
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminComponents/details.xml');
 
 		$this->id = intval(SwatApplication::initVar('id'));
@@ -28,8 +27,6 @@ class AdminComponentsDetails extends AdminIndex
 		$form->addHiddenField('id', $this->id);
 
 		$this->navbar->createEntry(Admin::_('Details'));
-
-		$this->ui->init();
 	}
 
 	public function initDisplay()

@@ -13,9 +13,9 @@ require_once 'Admin/AdminPage.php';
  */
 abstract class AdminEdit extends AdminPage
 {
-	public function init()
+	protected function initInternal()
 	{
-		parent::init();
+		parent::initInternal();
 
 		$id = SwatApplication::initVar('id');
 		$this->navbar->createEntry(

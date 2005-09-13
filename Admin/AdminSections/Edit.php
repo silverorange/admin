@@ -12,11 +12,10 @@ require_once 'MDB2.php';
  */
 class AdminSectionsEdit extends AdminDBEdit
 {
-	public function init()
+	protected function initInternal()
 	{
-		parent::init();
+		parent::initInternal();
 
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminSections/edit.xml');
 		
 		$this->fields = array('title', 'boolean:show', 'description');

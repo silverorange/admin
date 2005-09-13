@@ -14,9 +14,9 @@ class AdminSectionsOrder extends AdminDBOrder
 {
 	private $parent;
 
-	public function init()
+	protected function initInternal()
 	{
-		parent::init();
+		parent::initInternal();
 
 		$this->parent = SwatApplication::initVar('parent');
 		$form = $this->ui->getWidget('order_form');

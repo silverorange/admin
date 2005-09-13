@@ -13,9 +13,8 @@ require_once 'Swat/SwatLayout.php';
  */
 class AdminLogin extends AdminPage
 {
-	public function init()
+	protected function initInternal()
 	{
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/login.xml');
 
 		$frame = $this->ui->getWidget('login_frame');

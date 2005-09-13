@@ -15,9 +15,8 @@ require_once 'Admin/AdminPage.php';
  */
 abstract class AdminOrder extends AdminPage
 {
-	public function init()
+	protected function initInternal()
 	{
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/order.xml');
 
 		$this->navbar->createEntry(Admin::_('Change Order'));

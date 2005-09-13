@@ -13,7 +13,7 @@ class AdminNoAccess extends AdminPage
 {
 	private $message = null;
 
-	public function init()
+	protected function initInternal()
 	{
 		$this->app->getPage()->navbar->replaceElement(1, Admin::_('No Access'));
 	}

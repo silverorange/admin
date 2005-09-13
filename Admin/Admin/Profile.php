@@ -13,9 +13,8 @@ class AdminProfile extends AdminDBEdit
 {
 	private $fields;
 
-	public function init()
+	protected function initInternal()
 	{
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/Admin/profile.xml');
 
 		$this->navbar->popEntry();

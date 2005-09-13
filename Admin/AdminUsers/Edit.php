@@ -14,11 +14,10 @@ class AdminUsersEdit extends AdminDBEdit
 {
 	private $fields;
 
-	public function init()
+	protected function initInternal()
 	{
-		parent::init();
+		parent::initInternal();
 
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminUsers/edit.xml');
 
 		$this->fields = array('username', 'name', 'boolean:enabled');

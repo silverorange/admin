@@ -13,9 +13,8 @@ require_once 'SwatDB/SwatDB.php';
  */
 class AdminUsersDetails extends AdminIndex
 {
-	public function init()
+	protected function initInternal()
 	{
-		$this->ui = new AdminUI();
 		$this->ui->loadFromXML('Admin/AdminUsers/details.xml');
 
 		$this->navbar->createEntry(Admin::_('Details'));
