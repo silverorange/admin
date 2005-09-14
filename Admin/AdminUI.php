@@ -21,7 +21,7 @@ class AdminUI extends SwatUI {
 	public function __construct() {
 		parent::__construct();
 
-		$this->classmap = array('Admin' => 'Admin');
+		$this->class_map[] = array('Admin' => 'Admin');
 	}
 
 	/**
