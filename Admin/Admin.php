@@ -10,17 +10,17 @@ class Admin
 {
 	const GETTEXT_DOMAIN = 'admin';
 
-	function _($message)
+	public static function _($message)
 	{
 		return Admin::gettext($message);
 	}
 
-	function gettext($message)
+	public static function gettext($message)
 	{
 		return dgettext(Admin::GETTEXT_DOMAIN, $message);
 	}
 
-	function ngettext($singular_message, $plural_message, $number)
+	public static function ngettext($singular_message, $plural_message, $number)
 	{
 		return dngettext(Admin::GETTEXT_DOMAIN, $singular_message, $plural_message, $number);
 	}
