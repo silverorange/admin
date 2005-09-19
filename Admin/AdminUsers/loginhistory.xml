@@ -1,5 +1,6 @@
-<?xml version='1.0' standalone='yes'?>
-<swat-interface>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
+<swatml>
 	<widget class="SwatFrame" id="index_frame">
 		<property name="title" translatable="yes">Admin User Login History</property>
 		<widget class="SwatForm" id="index_form">
@@ -34,4 +35,4 @@
 		</widget>
 		<widget class="AdminPagination" id="pager" />
 	</widget>
-</swat-interface>
+</swatml>

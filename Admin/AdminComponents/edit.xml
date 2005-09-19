@@ -1,5 +1,6 @@
-<?xml version='1.0' standalone='yes'?>
-<swat-interface>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
+<swatml>
 	<widget class="SwatMessageDisplay" id="message_display" />
 	<widget class="SwatFrame" id="edit_frame">
 		<property name="title" translatable="yes">Component</property>
@@ -47,4 +48,4 @@
 			</widget>
 		</widget>
 	</widget>
-</swat-interface>
+</swatml>

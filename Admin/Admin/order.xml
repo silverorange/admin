@@ -1,5 +1,6 @@
-<?xml version='1.0' standalone='yes'?>
-<swat-interface>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
+<swatml>
 	<widget class="SwatFrame" id="order_frame">
 		<widget class="SwatForm" id="order_form">
 			<widget class="SwatFormField">
@@ -15,4 +16,4 @@
 			</widget>
 		</widget>
 	</widget>
-</swat-interface>
+</swatml>
