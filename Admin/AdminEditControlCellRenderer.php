@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Swat/SwatControlCellRenderer.php';
+require_once 'Swat/SwatImageLinkRenderer.php';
 require_once 'Admin/Admin.php';
 
 /**
@@ -11,9 +11,10 @@ require_once 'Admin/Admin.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminEditControlCellRenderer extends SwatControlCellRenderer {
-	
-	public function render() {
+class AdminEditControlCellRenderer extends SwatImageLinkCellRenderer
+{
+	public function render()
+	{
 		$this->width  = 28;
 		$this->height = 22;
 		$this->title = Admin::_('Edit Item');
