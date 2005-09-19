@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Swat/SwatImageLinkRenderer.php';
+require_once 'Swat/SwatImageLinkCellRenderer.php';
 require_once 'Admin/Admin.php';
 
 /**
