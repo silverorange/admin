@@ -51,7 +51,7 @@ class AdminProfile extends AdminDBEdit
 		}
 
 		SwatDB::updateRow($this->app->db, 'adminusers', array_keys($values),
-			$values, 'integer:userid', $_SESSION['userID']);
+			$values, 'integer:id', $_SESSION['user_id']);
 
 		$_SESSION['name'] = $values['name'];
 
@@ -62,7 +62,7 @@ class AdminProfile extends AdminDBEdit
 	protected function loadDBData($id)
 	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers', 
-			array('name'), 'integer:userid', $_SESSION['userID']);
+			array('name'), 'integer:id', $_SESSION['user_id']);
 
 		$this->ui->setValues(get_object_vars($row));
 	}
