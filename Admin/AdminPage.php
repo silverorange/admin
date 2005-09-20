@@ -60,7 +60,7 @@ abstract class AdminPage extends SwatPage
 	{
 		parent::__construct($app);
 
-		$this->navbar = new AdminNavbar();
+		$this->navbar = new AdminNavBar();
 		$this->ui = new AdminUI();
 	}
 
