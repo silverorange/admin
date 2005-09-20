@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Swat/SwatPage.php';
-require_once 'Swat/SwatNavBar.php';
+require_once 'Admin/AdminNavBar.php';
 require_once 'Admin/AdminMenu.php';
 require_once 'Admin/AdminUI.php';
 
@@ -37,7 +37,8 @@ abstract class AdminPage extends SwatPage
 
 	/**
 	 * Navbar of this page
-	 * @var SwatNavBar
+
+	 * @var AdminNavBar
 	 */
 	public $navbar;
 
@@ -59,7 +60,7 @@ abstract class AdminPage extends SwatPage
 	{
 		parent::__construct($app);
 
-		$this->navbar = new SwatNavbar();
+		$this->navbar = new AdminNavbar();
 		$this->ui = new AdminUI();
 	}
 
