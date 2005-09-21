@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Swat/SwatControlCellRenderer.php';
+require_once 'Swat/SwatImageLinkCellRenderer.php';
 require_once 'Admin/Admin.php';
 
 /**
@@ -11,11 +11,12 @@ require_once 'Admin/Admin.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminTreeControlCellRenderer extends SwatControlCellRenderer {
-	
+class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
+{
 	public $childcount = 0;
 	
-	public function render() {
+	public function render()
+	{
 		$this->width  = 28;
 		$this->height = 22;
 
