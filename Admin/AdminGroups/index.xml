@@ -7,6 +7,7 @@
 		<widget class="SwatToolLink">
 			<property name="title" translatable="yes">Create a New Group</property>
 			<property name="link">AdminGroups/Edit</property>
+			<property name="stock_id">create</property>
 		</widget>
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
