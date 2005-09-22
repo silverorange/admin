@@ -7,10 +7,12 @@
 		<widget class="SwatToolLink">
 			<property name="title" translatable="yes">Create a New Section</property>
 			<property name="link">AdminSections/Edit</property>
+			<property name="stock_id">create</property>
 		</widget>
 		<widget class="SwatToolLink" id="order_tool">
 			<property name="title" translatable="yes">Change Order</property>
 			<property name="link">AdminSections/Order</property>
+			<property name="stock_id">change-order</property>
 		</widget>
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
