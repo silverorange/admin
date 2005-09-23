@@ -22,7 +22,7 @@ abstract class AdminEdit extends AdminPage
 			$id = intval($id);
 
 		if ($id !== null)
-			if (!$form->hasBeenProcessed())
+			if (!$form->isProcessed())
 				$this->loadData($id);
 
 		$this->initFrame($id);
@@ -35,13 +35,15 @@ abstract class AdminEdit extends AdminPage
 
 	public function process()
 	{
+		$this->ui->process();
+
 		$form = $this->ui->getWidget('edit_form');
 		$id = SwatApplication::initVar('id');
 
 		if (is_numeric($id))
 			$id = intval($id);
 
-		if ($form->process()) {
+		if ($form->isProcessed()) {
 			$this->processPage($id);
 
 			if ($form->hasMessage()) {

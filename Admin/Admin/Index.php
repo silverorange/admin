@@ -37,7 +37,7 @@ abstract class AdminIndex extends AdminPage
 		$view = $this->ui->getWidget('index_view');
 		$actions = $this->ui->getWidget('index_actions', true);
 
-		if (!$form->hasBeenProcessed())
+		if (!$form->isProcessed())
 			return;
 
 		if (count($view->checked_items) == 0)

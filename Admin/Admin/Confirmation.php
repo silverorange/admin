@@ -35,9 +35,10 @@ abstract class AdminConfirmation extends AdminPage
 	
 	public function process()
 	{
+		$this->ui->process();
 		$form = $this->ui->getWidget('confirmation_form');
 
-		if (!$form->process())
+		if (!$form->isProcessed())
 			return;
 
 		$this->processResponse();
