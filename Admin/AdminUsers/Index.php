@@ -58,7 +58,7 @@ class AdminUsersIndex extends AdminIndex
 		$this->ui->loadFromXML('Admin/AdminUsers/index.xml');
 	}
 
-	protected function getTableStore()
+	protected function getTableStore($view)
 	{
 		$sql = 'select adminusers.id, adminusers.username, adminusers.name,
 					adminusers.enabled, view_adminuser_lastlogin.lastlogin
@@ -67,7 +67,7 @@ class AdminUsersIndex extends AdminIndex
 					view_adminuser_lastlogin.usernum = adminusers.id
 				order by %s';
 
-		$sql = sprintf($sql, $this->getOrderByClause('adminusers.username'));
+		$sql = sprintf($sql, $this->getOrderByClause($view, 'adminusers.username'));
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 

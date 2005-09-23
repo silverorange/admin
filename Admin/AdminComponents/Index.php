@@ -22,7 +22,7 @@ class AdminComponentsIndex extends AdminIndex
 			'adminsections', 'title', 'id', 'displayorder'));
 	}
 
-	protected function getTableStore()
+	protected function getTableStore($view)
 	{
 		$sql = 'select admincomponents.id,
 					admincomponents.title, 
@@ -37,7 +37,7 @@ class AdminComponentsIndex extends AdminIndex
 				order by adminsections.displayorder, adminsections.id, %s';
 
 		$sql = sprintf($sql,
-			$this->getOrderByClause('admincomponents.displayorder, admincomponents.title', 'admincomponents'));
+			$this->getOrderByClause($view, 'admincomponents.displayorder, admincomponents.title', 'admincomponents'));
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
@@ -105,7 +105,7 @@ class AdminComponentsIndex extends AdminIndex
 					$view->checked_items);
 
 				$title = SwatDB::queryOneFromTable($this->app->db, 'adminsections', 'text:title',
-					'sectionid', $new_section);
+					'id', $new_section);
 
 				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been moved to section \"%s\".", 
 					"%d components have been moved to section \"%s\".", $num), $num, $title));

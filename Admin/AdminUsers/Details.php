@@ -33,7 +33,7 @@ class AdminUsersDetails extends AdminIndex
 		$this->navbar->createEntry(Admin::_('Details'));
 	}
 	
-	protected function getTableStore()
+	protected function getTableStore($view)
 	{
 		$id = $this->app->initVar('id');
 	
@@ -44,7 +44,7 @@ class AdminUsersDetails extends AdminIndex
 
         $sql = sprintf($sql,
 			$this->app->db->quote($id, 'integer'),
-            $this->getOrderByClause('logindate desc'));
+            $this->getOrderByClause($view, 'logindate desc'));
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
