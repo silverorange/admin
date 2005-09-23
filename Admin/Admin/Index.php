@@ -15,15 +15,23 @@ abstract class AdminIndex extends AdminPage
 {
 	public function initDisplay()
 	{
-		$view = $this->ui->getWidget('index_view');
-		$view->model = $this->getTableStore();
+		$root = $this->ui->getRoot();
+		$views = $root->getDescendants('SwatTableView');
+		$forms = $root->getDescendants('SwatForm');
 
-		$form = $this->ui->getWidget('index_form');
-		$form->action = $this->source;
+		foreach ($views as $view)
+			$view->model = $this->getTableStore($view);
 
-		if ($view->model->getRowCount() == 0) {
-			$actions = $this->ui->getWidget('index_actions');
-			$actions->visible = false;
+		foreach ($forms as $form) {
+			$form->action = $this->source;
+			$view = $form->getFirstDescendant('SwatTableView');
+
+			if ($view !== null && $view->model->getRowCount() == 0) {
+				$actions = $form->getFirstDescendant('SwatActions');
+
+				if ($actions !== null)
+					$actions->visible = false;
+			}
 		}
 
 		$this->initMessages();
@@ -33,21 +41,17 @@ abstract class AdminIndex extends AdminPage
 	{
 		$this->ui->process();
 
-		$form = $this->ui->getWidget('index_form');
-		$view = $this->ui->getWidget('index_view');
-		$actions = $this->ui->getWidget('index_actions', true);
+		$root = $this->ui->getRoot();
+		$forms = $root->getDescendants('SwatForm');
 
-		if (!$form->isProcessed())
-			return;
+		foreach ($forms as $form) {
+			$view = $form->getFirstDescendant('SwatTableView');
+			$actions = $form->getFirstDescendant('SwatActions');
 
-		if (count($view->checked_items) == 0)
-			return;
-
-		if ($actions !== null) {
-			if ($actions->selected === null)
-				return;
-
-			$this->processActions();
+			if ($form->isProcessed() &&
+				($view !== null) && (count($view->checked_items) != 0) &&
+				($actions !== null) && ($actions->selected !== null))
+					$this->processActions($view, $actions);
 		}
 	}
 
@@ -60,11 +64,10 @@ abstract class AdminIndex extends AdminPage
 	 *
 	 * @return SwatTableStore A new SwatTableStore containing the data.
 	 */
-	abstract protected function getTableStore();
+	abstract protected function getTableStore($view);
 
-	protected function getOrderByClause($default_orderby, $column_prefix = null, $column_map = array())
+	protected function getOrderByClause($view, $default_orderby, $column_prefix = null, $column_map = array())
 	{
-		$view = $this->ui->getWidget('index_view');
 		$orderby = $default_orderby;
 
 		if ($view->orderby_column !== null) {
@@ -91,7 +94,7 @@ abstract class AdminIndex extends AdminPage
 	 * response to actions. Sub-classes should implement this method.
 	 * Widgets can be accessed through the $ui class variable.
 	 */
-	protected function processActions()
+	protected function processActions($form_id)
 	{
 	}
 }
