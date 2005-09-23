@@ -17,8 +17,10 @@ abstract class AdminOrder extends AdminPage
 {
 	public function process()
 	{
+		$this->ui->process();
 		$form = $this->ui->getWidget('order_form');
-		if ($form->process()) {
+
+		if ($form->isProcessed()) {
 			$this->saveData();
 			$this->app->relocate($this->app->history->getHistory());
 		}

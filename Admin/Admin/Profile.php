@@ -18,7 +18,7 @@ class AdminProfile extends AdminDBEdit
 		$form = $this->ui->getWidget('edit_form');
 		$form->action = $this->source;
 
-		if (!$form->hasBeenProcessed())
+		if (!$form->isProcessed())
 			$this->loadData(null);
 
 		$this->initMessages();

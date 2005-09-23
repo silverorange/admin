@@ -15,9 +15,10 @@ class AdminLogin extends AdminPage
 {
 	public function process()
 	{
+		$this->ui->process();
 		$form = $this->ui->getWidget('login_form');
 
-		if ($form->process()) {
+		if ($form->isProcessed()) {
 			if (!$form->hasMessage()) {
 				$username = $this->ui->getWidget('username')->value;
 				$password = $this->ui->getWidget('password')->value;
