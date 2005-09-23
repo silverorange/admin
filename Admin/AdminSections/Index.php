@@ -57,7 +57,7 @@ class AdminSectionsIndex extends AdminIndex
 		$this->ui->loadFromXML('Admin/AdminSections/index.xml');
 	}
 
-	protected function getTableStore()
+	protected function getTableStore($view)
 	{
 		$view = $this->ui->getWidget('index_view');
 

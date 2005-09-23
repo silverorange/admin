@@ -32,7 +32,7 @@ class AdminUsersLoginHistory extends AdminIndex
 		$this->navbar->createEntry(Admin::_('Login History'));
 	}
 	
-	protected function getTableStore()
+	protected function getTableStore($view)
 	{
 		$pager = $this->ui->getWidget('pager');
 		$this->app->db->setLimit($pager->page_size, $pager->current_record);
@@ -43,7 +43,7 @@ class AdminUsersLoginHistory extends AdminIndex
 				order by %s';
 
         $sql = sprintf($sql,
-            $this->getOrderByClause('logindate desc'));
+            $this->getOrderByClause($view, 'logindate desc'));
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 

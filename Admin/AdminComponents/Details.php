@@ -69,7 +69,7 @@ class AdminComponentsDetails extends AdminIndex
 		$this->navbar->createEntry(Admin::_('Details'));
 	}
 
-	protected function getTableStore()
+	protected function getTableStore($view)
 	{
 		$sql = 'select adminsubcomponents.id, 
 					adminsubcomponents.title, 
