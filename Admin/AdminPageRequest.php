@@ -24,8 +24,8 @@ class AdminPageRequest
 			$paths = explode(':', ini_get('include_path'));
 
 			foreach ($paths as $path) {
-				if (file_exists($path.'/Admin/'.$classfile)) {
-					$file = $classfile;
+				if (file_exists($path.'/Admin/components/'.$classfile)) {
+					$file = 'Admin/components/'.$classfile;
 					break;
 				}
 			}

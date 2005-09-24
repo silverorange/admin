@@ -8,8 +8,8 @@ require_once 'Admin/AdminApplicationHistoryModule.php';
 require_once 'Admin/AdminApplicationSessionModule.php';
 require_once 'Admin/AdminApplicationMessagesModule.php';
 require_once 'Admin/AdminApplicationDatabaseModule.php';
-require_once 'Admin/AdminPage.php';
 require_once 'Admin/AdminPageRequest.php';
+require_once 'Admin/pages/AdminPage.php';
 
 /**
  * Web application class for an administrator
