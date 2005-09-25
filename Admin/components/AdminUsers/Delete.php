@@ -12,22 +12,8 @@ require_once 'Admin/AdminDependency.php';
  */
 class AdminUsersDelete extends AdminDBDelete
 {
-	public function initDisplay()
-	{
-		$item_list = $this->getItemList('integer');
-		
-		$dep = new AdminDependency();
-		$dep->title = 'Admin User';
-		$dep->status_level = AdminDependency::DELETE;
-
-		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'adminusers',
-			'integer:id', null, 'text:name', 'name', 'id in ('.$item_list.')');
-
-		$message = $this->ui->getWidget('confirmation_message');
-		$message->content = $dep->getMessage();
-		
-		parent::initDisplay();
-	}
+	// process phase
+	// {{{ protected function processDBData
 
 	protected function processDBData()
 	{
@@ -44,6 +30,29 @@ class AdminUsersDelete extends AdminDBDelete
 
 		$this->app->messages->add($msg);	
 	}
+
+	// }}}
+
+	// build phase
+	// {{{ protected function initDisplay()
+
+	public function initDisplay()
+	{
+		parent::initDisplay();
+		$item_list = $this->getItemList('integer');
+		
+		$dep = new AdminDependency();
+		$dep->title = 'Admin User';
+		$dep->status_level = AdminDependency::DELETE;
+
+		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'adminusers',
+			'integer:id', null, 'text:name', 'name', 'id in ('.$item_list.')');
+
+		$message = $this->ui->getWidget('confirmation_message');
+		$message->content = $dep->getMessage();
+	}
+
+	// }}}
 }
 
 ?>

@@ -12,6 +12,9 @@ require_once 'Admin/pages/AdminOrder.php';
  */
 abstract class AdminDBOrder extends AdminOrder
 {
+	// process phase
+	// {{{ protected function saveData()
+
 	protected function saveData()
 	{
 		try {
@@ -41,6 +44,8 @@ abstract class AdminDBOrder extends AdminOrder
 		}
 		return true;
 	}
+
+	// }}}
 }
 
 ?>

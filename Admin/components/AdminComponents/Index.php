@@ -13,6 +13,8 @@ require_once 'SwatDB/SwatDB.php';
  */
 class AdminComponentsIndex extends AdminIndex
 {
+	// init phase
+	// {{{ protected function initInternal()
 	protected function initInternal()
 	{
 		$this->ui->loadFromXML(dirname(__FILE__).'/index.xml');
@@ -22,27 +24,10 @@ class AdminComponentsIndex extends AdminIndex
 			'adminsections', 'title', 'id', 'displayorder'));
 	}
 
-	protected function getTableStore($view)
-	{
-		$sql = 'select admincomponents.id,
-					admincomponents.title, 
-					admincomponents.shortname, 
-					admincomponents.section, 
-					admincomponents.show,
-					admincomponents.enabled,
-					adminsections.title as section_title
-				from admincomponents 
-				inner join adminsections 
-					on adminsections.id = admincomponents.section
-				order by adminsections.displayorder, adminsections.id, %s';
+	// }}}
 
-		$sql = sprintf($sql,
-			$this->getOrderByClause($view, 'admincomponents.displayorder, admincomponents.title', 'admincomponents'));
-
-		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
-
-		return $store;
-	}
+	// process phase
+	// {{{ protected function processActions()
 
 	protected function processActions()
 	{
@@ -116,6 +101,35 @@ class AdminComponentsIndex extends AdminIndex
 		if ($msg !== null)
 			$this->app->messages->add($msg);
 	}
+
+	// }}}
+
+	// build phase
+	// {{{ protected function getTableStore()
+
+	protected function getTableStore($view)
+	{
+		$sql = 'select admincomponents.id,
+					admincomponents.title, 
+					admincomponents.shortname, 
+					admincomponents.section, 
+					admincomponents.show,
+					admincomponents.enabled,
+					adminsections.title as section_title
+				from admincomponents 
+				inner join adminsections 
+					on adminsections.id = admincomponents.section
+				order by adminsections.displayorder, adminsections.id, %s';
+
+		$sql = sprintf($sql,
+			$this->getOrderByClause($view, 'admincomponents.displayorder, admincomponents.title', 'admincomponents'));
+
+		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
+
+		return $store;
+	}
+
+	// }}}
 }
 
 ?>

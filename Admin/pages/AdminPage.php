@@ -54,7 +54,6 @@ abstract class AdminPage extends SwatPage
 	protected $ui = null;
 
 	// }}}
-
 	// {{{ public function __construct()
 
 	public function __construct($app)
@@ -66,6 +65,16 @@ abstract class AdminPage extends SwatPage
 	}
 
 	// }}}
+	// {{{ protected function createLayout()
+
+	protected function createLayout()
+	{
+		return new SwatLayout('Admin/layouts/default.php');
+	}
+
+	// }}}
+
+// init phase
 	// {{{ public function init()
 
 	/**
@@ -86,6 +95,55 @@ abstract class AdminPage extends SwatPage
 	}
 
 	// }}}
+	// {{{ protected function initInternal()
+
+	/**
+	 * Initialize the page
+	 *
+	 * Sub-classes should implement this method to initialize the page. At
+	 * this point the {@link AdminPage::$ui} has been constructed but has not been
+	 * initialized.
+	 */
+	protected function initInternal()
+	{
+	}
+
+	// }}}
+
+// process phase
+	// {{{ public function process()
+
+	/**
+	 * Process the page
+	 *
+	 * Sub-classes should implement this method to process the page.
+	 * Sub-classes should call parent:process first which calls
+	 * {@link AdminPage::$ui->process()}.
+	 * Called after {@link AdminPage::init()}.
+	 */
+	public function process()
+	{
+		$this->ui->process();
+
+		$this->processInternal();
+	}
+
+	// }}}
+	// {{{ protected function processInternal()
+
+	/**
+	 * Processes the page
+	 *
+	 * Sub-classes should implement this method to process the page. At
+	 * this point the {@link AdminPage::$ui} has already been processed.
+	 */
+	protected function processInternal()
+	{
+	}
+
+	// }}}
+
+// build phase
 	// {{{ public function build()
 
 	public function build()
@@ -114,52 +172,6 @@ abstract class AdminPage extends SwatPage
 		ob_start();
 		$this->display();
 		$this->layout->content = ob_get_clean();
-	}
-
-	// }}}
-	// {{{ public function process()
-
-	/**
-	 * Process the page
-	 *
-	 * Sub-classes should implement this method to process the page.
-	 * Sub-classes should call parent:process first which calls
-	 * {@link AdminPage::$ui->process()}.
-	 * Called after {@link AdminPage::init()}.
-	 */
-	public function process()
-	{
-		$this->ui->process();
-
-		$this->processInternal();
-	}
-
-	// }}}
-
-	// {{{ protected function initInternal()
-
-	/**
-	 * Initialize the page
-	 *
-	 * Sub-classes should implement this method to initialize the page. At
-	 * this point the {@link AdminPage::$ui} has been constructed but has not been
-	 * initialized.
-	 */
-	protected function initInternal()
-	{
-	}
-
-	// }}}
-	// {{{ protected function processInternal()
-
-	/**
-	 * Processes the page
-	 *
-	 * Sub-classes should implement this method to process the page. At
-	 * this point the {@link AdminPage::$ui} has already been processed.
-	 */
-	protected function initInternal()
-	{
 	}
 
 	// }}}
@@ -237,14 +249,6 @@ abstract class AdminPage extends SwatPage
 				'AdminMenu');
 
 		$menu->display();
-	}
-
-	// }}}
-	// {{{ protected function createLayout()
-
-	protected function createLayout()
-	{
-		return new SwatLayout('Admin/layouts/default.php');
 	}
 
 	// }}}

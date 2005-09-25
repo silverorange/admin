@@ -13,6 +13,9 @@ require_once 'Admin/pages/AdminPage.php';
  */
 abstract class AdminEdit extends AdminPage
 {
+	// init phase
+	// {{{ protected function initInternal()
+
 	protected function initInternal()
 	{
 		parent::initInternal();
@@ -21,6 +24,12 @@ abstract class AdminEdit extends AdminPage
 		$this->navbar->createEntry(
 			($id == 0) ? Admin::_('Add') : Admin::_('Edit'));
 	}
+
+	// }}}
+
+	// process phase
+	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -32,7 +41,7 @@ abstract class AdminEdit extends AdminPage
 			$id = intval($id);
 
 		if ($form->isProcessed()) {
-			$this->processPage($id);
+			$this->validate($id);
 
 			if ($form->hasMessage()) {
 				$msg = new SwatMessage(Admin::_('REWRITE: There is a problem below.'), SwatMessage::ERROR);
@@ -45,13 +54,18 @@ abstract class AdminEdit extends AdminPage
 		}
 	}
 
+	// }}}
+	// {{{ protected function validate()
+
 	/**
-	 * Additional page-level processing
-	 * TODO: is this used? rename?
+	 * Sub-classes should implement this method to preform validation.
 	 */
-	protected function processPage($id)
+	protected function validate($id)
 	{
 	}
+
+	// }}}
+	// {{{ protected function saveData()
 
 	/**
 	 * Save the data
@@ -66,6 +80,9 @@ abstract class AdminEdit extends AdminPage
 	 */
 	abstract protected function saveData($id);
 
+	// }}}
+	// {{{ protected function relocate()
+
 	/**
 	 * Relocate after process
 	 */
@@ -73,6 +90,11 @@ abstract class AdminEdit extends AdminPage
 	{
 		$this->app->relocate($this->app->history->getHistory());
 	}
+
+	// }}}
+
+	// build phase
+	// {{{ protected function initDisplay()
 
 	protected function initDisplay()
 	{
@@ -95,6 +117,9 @@ abstract class AdminEdit extends AdminPage
 		$form->addHiddenField('id', $id);
 	}
 
+	// }}}
+	// {{{ protected function loadData()
+
 	/**
 	 * Load the data
 	 *
@@ -108,6 +133,9 @@ abstract class AdminEdit extends AdminPage
 	 */
 	abstract protected function loadData($id);
 
+	// }}}
+	// {{{ protected function initButton()
+
 	protected function initButton($id)
 	{
 		$button = $this->ui->getWidget('submit_button');
@@ -117,6 +145,9 @@ abstract class AdminEdit extends AdminPage
 		else
 			$button->setFromStock('apply');
 	}
+
+	// }}}
+	// {{{ protected function initFrame()
 
 	protected function initFrame($id)
 	{
@@ -128,6 +159,7 @@ abstract class AdminEdit extends AdminPage
 			$frame->title = sprintf(Admin::_('Edit %s'), $frame->title);
 	}
 
+	// }}}
 }
 
 ?>

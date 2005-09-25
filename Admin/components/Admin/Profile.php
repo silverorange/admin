@@ -11,11 +11,25 @@ require_once 'SwatDB/SwatDB.php';
  */
 class AdminProfile extends AdminDBEdit
 {
+	// {{{ private properties
+
 	private $fields;
 
-	public function init()
+	// }}}
+	// {{{ protected function relocate()
+
+	protected function relocate()
 	{
-		parent::init();
+		$this->app->relocate('');
+	}
+
+	// }}}
+
+	// init phase
+	// {{{ protected function initInternal()
+
+	protected function initInternal()
+	{
 		$this->ui->loadFromXML(dirname(__FILE__).'/profile.xml');
 
 		$this->navbar->popEntry();
@@ -24,28 +38,17 @@ class AdminProfile extends AdminDBEdit
 		$confirm = $this->ui->getWidget('confirmpassword');
 		$confirm->password_widget = $this->ui->getWidget('password');;
 	}
-	
-	public function initDisplay()
-	{
-		$form = $this->ui->getWidget('edit_form');
-		$form->action = $this->source;
 
-		if (!$form->isProcessed())
-			$this->loadData(null);
+	// }}}
 
-		$this->initMessages();
-	}
-
-	protected function relocate()
-	{
-		$this->app->relocate('');
-	}
+	// process phase
+	// {{{ protected function saveDBData()
 
 	protected function saveDBData($id)
 	{
 		$name = $this->ui->getWidget('name');
 		$values = array('name' => $name->value);
-		
+
 		$password = $this->ui->getWidget('password');
 		if ($password->value !== null) {
 			$values['password'] = md5($password->value);
@@ -57,8 +60,27 @@ class AdminProfile extends AdminDBEdit
 		$_SESSION['name'] = $values['name'];
 
 		$msg = new SwatMessage(Admin::_('Your user profile has been updated.'));
-		$this->app->messages->add($msg);	
+		$this->app->messages->add($msg);
 	}
+
+	// }}}
+
+	// build phase
+	// {{{ protected function initDisplay()
+
+	protected function initDisplay()
+	{
+		$form = $this->ui->getWidget('edit_form');
+		$form->action = $this->source;
+
+		if (!$form->isProcessed())
+			$this->loadData(null);
+
+		$this->initMessages();
+	}
+
+	// }}}
+	// {{{ protected function loadDBData()
 
 	protected function loadDBData($id)
 	{
@@ -67,6 +89,8 @@ class AdminProfile extends AdminDBEdit
 
 		$this->ui->setValues(get_object_vars($row));
 	}
+
+	// }}}
 }
 
 ?>

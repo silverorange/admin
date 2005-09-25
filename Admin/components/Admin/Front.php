@@ -11,15 +11,8 @@ require_once 'Admin/AdminUI.php';
  */
 class AdminFront extends AdminPage
 {
-	public function initDisplay()
-	{
-		$this->initMessages();
-	}
-
-
-	public function process()
-	{
-	}
+	// init phase
+	// {{{ protected function initInternal()
 
 	protected function initInternal()
 	{
@@ -28,6 +21,18 @@ class AdminFront extends AdminPage
 		$this->navbar = new SwatNavBar();
 		$this->navbar->createEntry('<h1>'.$this->app->title.'</h1>');
 	}
+
+	// }}}
+
+	// build phase
+	// {{{ protected function initDisplay()
+
+	protected function initDisplay()
+	{
+		$this->initMessages();
+	}
+
+	// }}}
 }
 
 ?>

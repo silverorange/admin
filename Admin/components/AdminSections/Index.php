@@ -13,7 +13,20 @@ require_once 'Admin/AdminTableStore.php';
  */
 class AdminSectionsIndex extends AdminIndex
 {
-	public function processActions()
+	// init phase
+	// {{{ protected function initInternal()
+
+	protected function initInternal()
+	{
+		$this->ui->loadFromXML(dirname(__FILE__).'/index.xml');
+	}
+
+	// }}}
+
+	// process phase
+	// {{{ protected function processActions()
+
+	protected function processActions()
 	{
 		$view = $this->ui->getWidget('index_view');
 		$actions = $this->ui->getWidget('index_actions');
@@ -47,15 +60,15 @@ class AdminSectionsIndex extends AdminIndex
 
 				break;
 		}
-		
+
 		if ($msg !== null)
 			$this->app->messages->add($msg);
 	}
 
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML(dirname(__FILE__).'/index.xml');
-	}
+	// }}}
+
+	// build phase
+	// {{{ protected function getTableStore()
 
 	protected function getTableStore($view)
 	{
@@ -70,9 +83,10 @@ class AdminSectionsIndex extends AdminIndex
 		if ($store->getRowCount() == 0)
 			$this->ui->getWidget('order_tool')->visible = false;
 
-
 		return $store;
 	}
+
+	// }}}
 }
 
 ?>

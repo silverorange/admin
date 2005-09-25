@@ -14,6 +14,9 @@ require_once 'Swat/SwatMessage.php';
  */
 abstract class AdminDBEdit extends AdminEdit
 {
+	// process phase
+	// {{{ protected function saveData()
+
 	protected function saveData($id)
 	{
 		try {
@@ -40,11 +43,8 @@ abstract class AdminDBEdit extends AdminEdit
 		return true;
 	}
 
-	protected function loadData($id)
-	{
-		$this->loadDBData($id);
-		return true;
-	}
+	// }}}
+	// {{{ protected function saveDBData()
 
 	/**
 	 * Save the data from the database
@@ -58,6 +58,20 @@ abstract class AdminDBEdit extends AdminEdit
 	 */
 	abstract protected function saveDBData($id);
 
+	// }}}
+
+	// build phase
+	// {{{ protected function loadData()
+
+	protected function loadData($id)
+	{
+		$this->loadDBData($id);
+		return true;
+	}
+
+	// }}}
+	// {{{ protected function loadDBData()
+
 	/**
 	 * Load the data from the database
 	 *
@@ -69,6 +83,8 @@ abstract class AdminDBEdit extends AdminEdit
 	 * @param integer $id An integer identifier of the data to retrieve.
 	 */
 	abstract protected function loadDBData($id);
+
+	// }}}
 }
 
 ?>

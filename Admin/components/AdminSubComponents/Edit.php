@@ -12,30 +12,19 @@ require_once 'SwatDB/SwatDB.php';
  */
 class AdminSubComponentsEdit extends AdminDBEdit
 {
+	// {{{ private properties
+
 	private $fields;
 	private $parent;
 
-	public function initDisplay()
-	{
-		parent::initDisplay();
-		
-		// rebuild the navbar
-		$parent_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',
-			'id', $this->parent);
+	// }}}
 
-		$this->navbar->popEntry();
-		$this->navbar->createEntry('Admin Components', 'AdminComponents');
-		$this->navbar->createEntry($parent_title, 'AdminComponents/Details?id='.$this->parent);
-
-		$id = $this->app->initVar('id');
-		if ($id == 0)
-			$this->navbar->createEntry('Add Sub-Component');
-		else
-			$this->navbar->createEntry('Edit Sub-Component');
-	}
+	// init phase
+	// {{{ protected function initInternal()
 
 	protected function initInternal()
 	{
+		parent::initInternal();
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
 
 		$this->parent = SwatApplication::initVar('parent');
@@ -45,9 +34,15 @@ class AdminSubComponentsEdit extends AdminDBEdit
 		$form = $this->ui->getWidget('edit_form');
 		$form->addHiddenField('parent', $this->parent);
 	}
-	
-	protected function processPage($id)
+
+	// }}}
+
+	// process phase
+	// {{{ protected function validate()
+
+	protected function validate($id)
 	{
+		parent::validate();
 		$shortname = $this->ui->getWidget('shortname');
 
 		$query = SwatDB::queryRow($this->app->db, sprintf('select shortname from
@@ -62,6 +57,9 @@ class AdminSubComponentsEdit extends AdminDBEdit
 			$shortname->addMessage($msg);
 		}
 	}
+
+	// }}}
+	// {{{ protected function saveDBData()
 
 	protected function saveDBData($id)
 	{
@@ -82,6 +80,33 @@ class AdminSubComponentsEdit extends AdminDBEdit
 		$this->app->messages->add($msg);
 	}
 
+	// }}}
+
+	// build phase
+	// {{{ protected function initDisplay()
+
+	protected function initDisplay()
+	{
+		parent::initDisplay();
+
+		// rebuild the navbar
+		$parent_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',
+			'id', $this->parent);
+
+		$this->navbar->popEntry();
+		$this->navbar->createEntry('Admin Components', 'AdminComponents');
+		$this->navbar->createEntry($parent_title, 'AdminComponents/Details?id='.$this->parent);
+
+		$id = $this->app->initVar('id');
+		if ($id == 0)
+			$this->navbar->createEntry('Add Sub-Component');
+		else
+			$this->navbar->createEntry('Edit Sub-Component');
+	}
+
+	// }}}
+	// {{{ protected function loadDBData()
+
 	protected function loadDBData($id)
 	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'adminsubcomponents', 
@@ -96,6 +121,8 @@ class AdminSubComponentsEdit extends AdminDBEdit
 		$form = $this->ui->getWidget('edit_form');
 		$form->addHiddenField('parent', $this->parent);
 	}
+
+	// }}}
 }
 
 ?>

@@ -12,7 +12,14 @@ require_once 'SwatDB/SwatDB.php';
  */
 class AdminUsersEdit extends AdminDBEdit
 {
+	// {{{ private properties
+
 	private $fields;
+
+	// }}}
+
+	// init phase
+	// {{{ protected function initInternal()
 
 	protected function initInternal()
 	{
@@ -40,7 +47,12 @@ class AdminUsersEdit extends AdminDBEdit
 		}
 	}
 
-	protected function processPage($id)
+	// }}}
+
+	// process phase
+	// {{{ protected function validate()
+
+	protected function validate($id)
 	{
 		$username = $this->ui->getWidget('username');
 
@@ -55,6 +67,9 @@ class AdminUsersEdit extends AdminDBEdit
 			$username->addMessage($msg);
 		}
 	}
+
+	// }}}
+	// {{{ protected function saveDBData()
 
 	protected function saveDBData($id)
 	{
@@ -85,6 +100,11 @@ class AdminUsersEdit extends AdminDBEdit
 		$this->app->messages->add($msg);	
 	}
 
+	// }}}
+
+	// build phase
+	// {{{ protected function loadDBData()
+
 	protected function loadDBData($id)
 	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers', 
@@ -99,6 +119,8 @@ class AdminUsersEdit extends AdminDBEdit
 		$group_list->values = SwatDB::queryColumn($this->app->db, 
 			'adminuser_admingroup', 'groupnum', 'usernum', $id);
 	}
+
+	// }}}
 }
 
 ?>

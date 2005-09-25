@@ -13,7 +13,10 @@ require_once 'Swat/SwatLayout.php';
  */
 class AdminLogin extends AdminPage
 {
-	public function init()
+	// init phase
+	// {{{ protected function initInternal()
+
+	protected function initInternal()
 	{
 		$this->ui->loadFromXML(dirname(__FILE__).'/login.xml');
 
@@ -24,16 +27,20 @@ class AdminLogin extends AdminPage
 
 		if (isset($_COOKIE[$this->app->id.'_username']))
 			$username->value = $_COOKIE[$this->app->id.'_username'];
-		
+
 		$form = $this->ui->getWidget('login_form');
 		$form->action = $this->app->getUri();
-
-		parent::init();
 	}
 
-	public function process()
+	// }}}
+
+	// process phase
+	// {{{ protected function processInternal()
+
+	protected function processInternal()
 	{
-		parent::process();
+		parent::processInternal();
+
 		$form = $this->ui->getWidget('login_form');
 
 		if ($form->isProcessed()) {
@@ -41,7 +48,7 @@ class AdminLogin extends AdminPage
 				$username = $this->ui->getWidget('username')->value;
 				$password = $this->ui->getWidget('password')->value;
 				$logged_in = $this->app->session->login($username, $password);
-				
+
 				if ($logged_in) {
 					$this->app->relocate($this->app->getUri());
 				} else {
@@ -52,6 +59,11 @@ class AdminLogin extends AdminPage
 			}
 		}
 	}
+
+	// }}}
+
+	// build phase
+	// {{{ public function build()
 
 	public function build()
 	{
@@ -71,10 +83,16 @@ class AdminLogin extends AdminPage
 		$this->layout->javascript = ob_get_clean();
 	}
 
-    protected function createLayout()
-    {
-        return new SwatLayout('Admin/layouts/login.php');
-    }
+	// }}}
+	// {{{ protected function createLayout()
+
+	protected function createLayout()
+	{
+		return new SwatLayout('Admin/layouts/login.php');
+	}
+
+	// }}}
+	// {{{ private function displayJavascript()
 
 	private function displayJavascript()
 	{
@@ -82,12 +100,14 @@ class AdminLogin extends AdminPage
 			$username = $_COOKIE[$this->app->id.'_username'];
 		else
 			$username = '';
-		
+
 		echo '<script type="text/javascript" src="admin/javascript/admin-login.js"></script>'."\n";
 		echo '<script type="text/javascript">';
 		echo "\n adminLogin('username', 'password', '{$username}');";
 		echo '</script>';
 	}
+
+	// }}}
 }
 
 ?>

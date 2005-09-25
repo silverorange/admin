@@ -13,7 +13,20 @@ require_once 'Admin/AdminTableStore.php';
  */
 class AdminGroupsIndex extends AdminIndex
 {
-	public function processActions()
+	// init phase
+	// {{{ protected function initInternal()
+
+	protected function initInternal()
+	{
+		$this->ui->loadFromXML(dirname(__FILE__).'/index.xml');
+	}
+
+	// }}}
+
+	// process phase
+	// {{{ protected function processActions()
+
+	protected function processActions($view)
 	{
 		$view = $this->ui->getWidget('index_view');
 		$actions = $this->ui->getWidget('index_actions');
@@ -26,10 +39,10 @@ class AdminGroupsIndex extends AdminIndex
 		}
 	}
 
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML(dirname(__FILE__).'/index.xml');
-	}
+	// }}}
+
+	// build phase
+	// {{{ protected function getTableStore()
 
 	protected function getTableStore($view)
 	{
@@ -43,6 +56,8 @@ class AdminGroupsIndex extends AdminIndex
 
 		return $store;
 	}
+
+	// }}}
 }
 
 ?>
