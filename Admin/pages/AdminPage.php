@@ -67,11 +67,17 @@ abstract class AdminPage extends SwatPage
 	// }}}
 	// {{{ public function init()
 
+	/**
+	 * Initialize the page
+	 *
+	 * Sub-classes should implement this method to initialize the page. At
+	 * this point the {@link AdminPage::$ui} has been constructed but has not been
+	 * initialized. Call parent::init() which will initialize {@link
+	 * AdminPage::$ui}.
+	 */
 	public function init()
 	{
 		parent::init();
-
-		$this->initInternal();
 
 		$this->ui->init();
 	}
@@ -198,13 +204,6 @@ abstract class AdminPage extends SwatPage
 	protected function createLayout()
 	{
 		return new SwatLayout('Admin/layouts/default.php');
-	}
-
-	// }}}
-	// {{{ protected function initInternal()
-
-	protected function initInternal()
-	{
 	}
 
 	// }}}
