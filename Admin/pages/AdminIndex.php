@@ -13,8 +13,9 @@ require_once 'Admin/pages/AdminPage.php';
  */
 abstract class AdminIndex extends AdminPage
 {
-	public function initDisplay()
+	protected function initDisplay()
 	{
+		parent::initDisplay();
 		$root = $this->ui->getRoot();
 		$views = $root->getDescendants('SwatTableView');
 		$forms = $root->getDescendants('SwatForm');
@@ -37,10 +38,20 @@ abstract class AdminIndex extends AdminPage
 		$this->initMessages();
 	}
 
-	public function process()
-	{
-		$this->ui->process();
+	/**
+	 * Retrieve data to display.
+	 *
+	 * This method is called to load data to be displayed in the table view.
+	 * Sub-classes should implement this method and perform whatever actions
+	 * are necessary to obtain the data.
+	 *
+	 * @return SwatTableStore A new SwatTableStore containing the data.
+	 */
+	abstract protected function getTableStore($view);
 
+	protected function processInternal()
+	{
+		parent::processInternal();
 		$root = $this->ui->getRoot();
 		$forms = $root->getDescendants('SwatForm');
 
@@ -56,15 +67,15 @@ abstract class AdminIndex extends AdminPage
 	}
 
 	/**
-	 * Retrieve data to display.
+	 * Process the actions.
 	 *
-	 * This method is called to load data to be displayed in the table view.
-	 * Sub-classes should implement this method and perform whatever actions
-	 * are necessary to obtain the data.
-	 *
-	 * @return SwatTableStore A new SwatTableStore containing the data.
+	 * This method is called to perform whatever processing is required in 
+	 * response to actions. Sub-classes should implement this method.
+	 * Widgets can be accessed through the $ui class variable.
 	 */
-	abstract protected function getTableStore($view);
+	protected function processActions($form_id)
+	{
+	}
 
 	protected function getOrderByClause($view, $default_orderby, $column_prefix = null, $column_map = array())
 	{
@@ -85,17 +96,6 @@ abstract class AdminIndex extends AdminPage
 		}
 
 		return $orderby;
-	}
-
-	/**
-	 * Process the actions.
-	 *
-	 * This method is called to perform whatever processing is required in 
-	 * response to actions. Sub-classes should implement this method.
-	 * Widgets can be accessed through the $ui class variable.
-	 */
-	protected function processActions($form_id)
-	{
 	}
 }
 

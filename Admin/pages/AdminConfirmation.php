@@ -14,41 +14,35 @@ require_once 'Admin/AdminUI.php';
  */
 abstract class AdminConfirmation extends AdminPage
 {
-	public function initInternal()
+	protected function initInternal()
 	{
+		parent::initInternal();
 		$this->ui->loadFromXML(dirname(__FILE__).'/confirmation.xml');
-
 		$this->navbar->createEntry(Admin::_('Confirmation'));
 	}
 
-	/**
-	 * Display the page
-	 *
-	 * Sub-classes should override this method to do whatever is necessary 
-	 * to generate the confirmation message and then call parent::initDisplay().
-	 */
-	public function initDisplay()
+	protected function processInternal()
 	{
-		$form = $this->ui->getWidget('confirmation_form');
-		$form->action = $this->source;
-	}
-	
-	public function process()
-	{
-		$this->ui->process();
+		parent::processInternal();
 		$form = $this->ui->getWidget('confirmation_form');
 
 		if (!$form->isProcessed())
 			return;
 
 		$this->processResponse();
-
 		$this->app->relocate($this->app->history->getHistory(0));
 	}
 
+	protected function initDisplay()
+	{
+		$form = $this->ui->getWidget('confirmation_form');
+		$form->action = $this->source;
+	}
+	
 	/**
+	 * TODO: rename this method switchToCancelButton()
 	 * Switch to a cancel button.
-	 *
+	 * 
 	 * Transforms the default Yes/No buttons in confirmation.xml into a cancel button.
 	 */
 	protected function displayCancelButton()
