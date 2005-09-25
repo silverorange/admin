@@ -15,7 +15,7 @@ require_once 'Admin/AdminUI.php';
  */
 abstract class AdminPage extends SwatPage
 {
-    // {{{ public properties
+	// {{{ public properties
 
 	/**
 	 * Source of this page
@@ -48,12 +48,12 @@ abstract class AdminPage extends SwatPage
 	 */
 	public $title;
 
-    // }}}
-    // {{{ protected properties
+	// }}}
+	// {{{ protected properties
 
 	protected $ui = null;
 
-    // }}}
+	// }}}
 	// {{{ public function __construct()
 
 	public function __construct($app)
@@ -70,22 +70,14 @@ abstract class AdminPage extends SwatPage
 	public function init()
 	{
 		parent::init();
-		
+
 		$this->initInternal();
 
 		$this->ui->init();
 	}
 
 	// }}}
-    // {{{ public function createLayout()
-
-    protected function createLayout()
-    {
-        return new SwatLayout('Admin/layouts/default.php');
-    }
-
-    // }}}
-    // {{{ public function initDisplay()
+	// {{{ public function initDisplay()
 
 	/**
 	 * Initialize the page before display
@@ -98,8 +90,8 @@ abstract class AdminPage extends SwatPage
 	{
 	}
 
-    // }}}
-    // {{{ public function build()
+	// }}}
+	// {{{ public function build()
 
 	public function build()
 	{
@@ -129,8 +121,8 @@ abstract class AdminPage extends SwatPage
 		$this->layout->content = ob_get_clean();
 	}
 
-    // }}}
-    // {{{ public function display()
+	// }}}
+	// {{{ public function display()
 
 	/**
 	 * Display the page
@@ -144,20 +136,9 @@ abstract class AdminPage extends SwatPage
 			$this->ui->display();
 		}
 	}
-	
-    // }}}
-	// {{{ abstract public function process()
 
-	/**
-	 * Process the page
-	 *
-	 * Sub-classes should implement this method to process the page.
-	 * Called after {@link AdminPage::init()}
-	 */
-	abstract public function process();
-
-    // }}}
-    // {{{ public function displayHeader()
+	// }}}
+	// {{{ public function displayHeader()
 
 	/**
 	 * Display admin page header
@@ -174,16 +155,16 @@ abstract class AdminPage extends SwatPage
 		echo '</div>';
 	}
 
-    // }}}
-    // {{{ public function displayNavBar()
+	// }}}
+	// {{{ public function displayNavBar()
 
 	public function displayNavBar()
 	{
 		$this->navbar->display();	
 	}
 
-    // }}}
-    // {{{ public function displayMenu()
+	// }}}
+	// {{{ public function displayMenu()
 
 	/**
 	 * Display admin page menu
@@ -199,8 +180,27 @@ abstract class AdminPage extends SwatPage
 
 		$menu->display();
 	}
-	
-    // }}}
+
+	// }}}
+	// {{{ abstract public function process()
+
+	/**
+	 * Process the page
+	 *
+	 * Sub-classes should implement this method to process the page.
+	 * Called after {@link AdminPage::init()}
+	 */
+	abstract public function process();
+
+	// }}}
+	// {{{ protected function createLayout()
+
+	protected function createLayout()
+	{
+		return new SwatLayout('Admin/layouts/default.php');
+	}
+
+	// }}}
 	// {{{ protected function initInternal()
 
 	protected function initInternal()
@@ -208,7 +208,7 @@ abstract class AdminPage extends SwatPage
 	}
 
 	// }}}
-    // {{{ protected function initMessages()
+	// {{{ protected function initMessages()
 
 	protected function initMessages()
 	{
@@ -221,7 +221,7 @@ abstract class AdminPage extends SwatPage
 			$message_display->add($message);
 	}
 
-    // }}}
+	// }}}
 }
 
 ?>
