@@ -12,18 +12,8 @@ require_once 'MDB2.php';
  */
 class AdminSectionsEdit extends AdminDBEdit
 {
-	public function process()
-	{
-		$form = $this->ui->getWidget('edit_form');
-		$id = intval(SwatApplication::initVar('id'));
-
-		if ($form->process()) {
-			if (!$form->hasMessage()) {
-				$this->saveData($id);
-				$this->app->relocate($this->app->history->getHistory());
-			}
-		}
-	}
+	// init phase
+	// {{{ protected function initInternal()
 
 	protected function initInternal()
 	{
@@ -33,6 +23,11 @@ class AdminSectionsEdit extends AdminDBEdit
 		
 		$this->fields = array('title', 'boolean:show', 'description');
 	}
+
+	// }}}
+
+	// process phase
+	// {{{ protected function saveDBData()
 
 	protected function saveDBData($id)
 	{
@@ -49,8 +44,13 @@ class AdminSectionsEdit extends AdminDBEdit
 			sprintf(Admin::_('Section &#8220;%s&#8221; has been saved.'),
 			$values['title']), SwatMessage::NOTIFICATION);
 
-		$this->app->messages->add($msg);	
+		$this->app->messages->add($msg);
 	}
+
+	// }}}
+
+	// build phase
+	// {{{ protected function loadDBData()
 
 	protected function loadDBData($id)
 	{
@@ -62,6 +62,8 @@ class AdminSectionsEdit extends AdminDBEdit
 
 		$this->ui->setValues(get_object_vars($row));
 	}
+
+	// }}}
 }
 
 ?>

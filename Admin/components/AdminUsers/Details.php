@@ -13,18 +13,8 @@ require_once 'SwatDB/SwatDB.php';
  */
 class AdminUsersDetails extends AdminIndex
 {
-	public function initDisplay()
-	{
-		$id = $this->app->initVar('id');
-
-		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers',
-			array('username','name'), 'id' , $id);
-
-		$frame = $this->ui->getWidget('index_frame');
-		$frame->title.=' - '.$row->name;
-		
-		parent::initDisplay();
-	}
+	// init phase
+	// {{{ protected function initInternal()
 
 	protected function initInternal()
 	{
@@ -32,7 +22,28 @@ class AdminUsersDetails extends AdminIndex
 
 		$this->navbar->createEntry(Admin::_('Details'));
 	}
-	
+
+	// }}}
+
+	// build phase
+	// {{{ protected function initDisplay()
+
+	protected function initDisplay()
+	{
+		parent::initDisplay();
+
+		$id = $this->app->initVar('id');
+
+		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers',
+			array('username','name'), 'id' , $id);
+
+		$frame = $this->ui->getWidget('index_frame');
+		$frame->title.=' - '.$row->name;
+	}
+
+	// }}}
+	// {{{ protected function getTableStore()
+
 	protected function getTableStore($view)
 	{
 		$id = $this->app->initVar('id');
@@ -49,6 +60,8 @@ class AdminUsersDetails extends AdminIndex
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
 		return $store;
-	}	
+	}
+
+	// }}}
 }
 ?>

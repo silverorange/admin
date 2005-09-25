@@ -4,20 +4,39 @@ require_once 'Admin/pages/AdminPage.php';
 require_once 'Swat/SwatMessageDisplay.php';
 
 /**
- * Administrator Not Access page
+ * Administrator No Access page
  *
  * @package Admin
  * @copyright silverorange 2004
  */
 class AdminNoAccess extends AdminPage
 {
+	// {{{ private properties
+
 	private $message = null;
 
-	public function init()
+	// }}}
+	// {{{ public function setMessage()
+
+	public function setMessage($msg)
+	{
+		$this->message = $msg;
+	}
+
+	// }}}
+
+	// init phase
+	// {{{ protected function initInternal()
+
+	protected function initInternal()
 	{
 		$this->app->getPage()->navbar->replaceElement(1, Admin::_('No Access'));
-		parent::init();
 	}
+
+	// }}}
+
+	// build phase
+	// {{{ protected function display()
 
 	protected function display()
 	{
@@ -30,10 +49,7 @@ class AdminNoAccess extends AdminPage
 		$message_display->display();
 	}
 
-	public function setMessage($msg)
-	{
-		$this->message = $msg;
-	}
+	// }}}
 }
 
 ?>

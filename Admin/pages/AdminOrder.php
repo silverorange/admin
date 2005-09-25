@@ -15,12 +15,20 @@ require_once 'Admin/pages/AdminPage.php';
  */
 abstract class AdminOrder extends AdminPage
 {
+	// init phase
+	// {{{ protected function initInternal()
+
 	protected function initInternal()
 	{
 		parent::initInternal();
 		$this->ui->loadFromXML(dirname(__FILE__).'/order.xml');
 		$this->navbar->createEntry(Admin::_('Change Order'));
 	}
+
+	// }}}
+
+	// process phase
+	// {{{ protected function processInternal()
 
 	protected function processInternal()
 	{
@@ -32,6 +40,9 @@ abstract class AdminOrder extends AdminPage
 			$this->app->relocate($this->app->history->getHistory());
 		}
 	}
+
+	// }}}
+	// {{{ protected function saveData()
 
 	protected function saveData()
 	{
@@ -47,6 +58,9 @@ abstract class AdminOrder extends AdminPage
 		}
 	}
 
+	// }}}
+	// {{{ protected function saveIndex()
+
 	/**
 	 * Save index
 	 *
@@ -59,6 +73,11 @@ abstract class AdminOrder extends AdminPage
 	 * @param integer $index The ordering index to store.
 	 */
 	abstract protected function saveIndex($id, $index);
+
+	// }}}
+
+	// build phase
+	// {{{ protected function initDisplay()
 
 	protected function initDisplay()
 	{
@@ -79,6 +98,9 @@ abstract class AdminOrder extends AdminPage
 		$form->action = $this->source;
 	}
 	
+	// }}}
+	// {{{ protected function loadData()
+
 	/**
 	 * Load the data
 	 *
@@ -88,6 +110,8 @@ abstract class AdminOrder extends AdminPage
 	 * $ui class variable.
 	 */
 	abstract protected function loadData();
+
+	// }}}
 }
 
 ?>

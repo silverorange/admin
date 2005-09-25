@@ -13,6 +13,45 @@ require_once 'Admin/pages/AdminPage.php';
  */
 abstract class AdminIndex extends AdminPage
 {
+	// process phase
+	// {{{ protected function processInternal()
+
+	protected function processInternal()
+	{
+		parent::processInternal();
+		$root = $this->ui->getRoot();
+		$forms = $root->getDescendants('SwatForm');
+
+		foreach ($forms as $form) {
+			$view = $form->getFirstDescendant('SwatTableView');
+			$actions = $form->getFirstDescendant('SwatActions');
+
+			if ($form->isProcessed() &&
+				($view !== null) && (count($view->checked_items) != 0) &&
+				($actions !== null) && ($actions->selected !== null))
+					$this->processActions($view, $actions);
+		}
+	}
+
+	// }}}
+	// {{{ protected function processActions()
+
+	/**
+	 * Process the actions.
+	 *
+	 * This method is called to perform whatever processing is required in 
+	 * response to actions. Sub-classes should implement this method.
+	 * Widgets can be accessed through the $ui class variable.
+	 */
+	protected function processActions($form_id)
+	{
+	}
+
+	// }}}
+
+	// build phase
+	// {{{ protected function initDisplay()
+
 	protected function initDisplay()
 	{
 		parent::initDisplay();
@@ -38,6 +77,9 @@ abstract class AdminIndex extends AdminPage
 		$this->initMessages();
 	}
 
+	// }}}
+	// {{{ protected function getTableStore()
+
 	/**
 	 * Retrieve data to display.
 	 *
@@ -49,33 +91,8 @@ abstract class AdminIndex extends AdminPage
 	 */
 	abstract protected function getTableStore($view);
 
-	protected function processInternal()
-	{
-		parent::processInternal();
-		$root = $this->ui->getRoot();
-		$forms = $root->getDescendants('SwatForm');
-
-		foreach ($forms as $form) {
-			$view = $form->getFirstDescendant('SwatTableView');
-			$actions = $form->getFirstDescendant('SwatActions');
-
-			if ($form->isProcessed() &&
-				($view !== null) && (count($view->checked_items) != 0) &&
-				($actions !== null) && ($actions->selected !== null))
-					$this->processActions($view, $actions);
-		}
-	}
-
-	/**
-	 * Process the actions.
-	 *
-	 * This method is called to perform whatever processing is required in 
-	 * response to actions. Sub-classes should implement this method.
-	 * Widgets can be accessed through the $ui class variable.
-	 */
-	protected function processActions($form_id)
-	{
-	}
+	// }}}
+	// {{{ protected function getOrderByClause()
 
 	protected function getOrderByClause($view, $default_orderby, $column_prefix = null, $column_map = array())
 	{
@@ -97,6 +114,8 @@ abstract class AdminIndex extends AdminPage
 
 		return $orderby;
 	}
+
+	// }}}
 }
 
 ?>

@@ -15,6 +15,9 @@ require_once('Admin/AdminDependency.php');
  */
 abstract class AdminDBConfirmation extends AdminConfirmation
 {
+	// process phase
+	// {{{ protected function processResponse()
+
 	protected function processResponse()
 	{
 		$form = $this->ui->getWidget('confirmation_form');
@@ -37,6 +40,10 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		}
 	}
 
+	// }}}
+	// {{{ protected function processGenerateMessage()
+
+	// TODO: rename
 	protected function processGenerateMessage(Exception $e)
 	{
 		if ($e instanceof SwatDBException)
@@ -47,6 +54,9 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		$this->app->messages->add($msg);	
 	}
 
+	// }}}
+	// {{{ protected function processDBData()
+
 	/**
 	 * Process data in the database
 	 *
@@ -55,6 +65,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 * are necessary process the repsonse.
 	 */
 	abstract protected function processDBData();
+
+	// }}}
 }
 
 ?>

@@ -9,15 +9,16 @@ require_once 'Admin/pages/AdminPage.php';
  */
 class AdminLogout extends AdminPage
 {
-	public function init()
-	{
-	}
+	// process phase
+	// {{{ protected functipn processInternal()
 
-	public function process()
+	protected function processInternal()
 	{
 		$this->app->session->logout();
 		$this->app->relocate($this->app->getBaseHref());
 	}
+
+	// }}}
 }
 
 ?>

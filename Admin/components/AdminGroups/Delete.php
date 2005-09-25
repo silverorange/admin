@@ -12,22 +12,8 @@ require_once 'Admin/AdminDependency.php';
  */
 class AdminGroupsDelete extends AdminDBDelete
 {
-	public function initDisplay()
-	{
-		$item_list = $this->getItemList('integer');
-		
-		$dep = new AdminDependency();
-		$dep->title = 'Admin Group';
-		$dep->status_level = AdminDependency::DELETE;
-
-		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'admingroups',
-			'integer:id', null, 'text:title', 'title', 'id in ('.$item_list.')');
-
-		$message = $this->ui->getWidget('confirmation_message');
-		$message->content = $dep->getMessage();
-		
-		parent::initDisplay();
-	}
+	// process phase
+	// {{{ protected function processDBData()
 
 	protected function processDBData()
 	{
@@ -42,8 +28,32 @@ class AdminGroupsDelete extends AdminDBDelete
 			"%d admin groups have been deleted.", $this->getItemCount()), $this->getItemCount()),
 			SwatMessage::NOTIFICATION);
 
-		$this->app->messages->add($msg);	
+		$this->app->messages->add($msg);
 	}
+
+	// }}}
+
+	// build phase
+	// {{{ protected function initDisplay()
+
+	protected function initDisplay()
+	{
+		parent::initDisplay();
+
+		$item_list = $this->getItemList('integer');
+		
+		$dep = new AdminDependency();
+		$dep->title = 'Admin Group';
+		$dep->status_level = AdminDependency::DELETE;
+
+		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'admingroups',
+			'integer:id', null, 'text:title', 'title', 'id in ('.$item_list.')');
+
+		$message = $this->ui->getWidget('confirmation_message');
+		$message->content = $dep->getMessage();
+	}
+
+	// }}}
 }
 
 ?>

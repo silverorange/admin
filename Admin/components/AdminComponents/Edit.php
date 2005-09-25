@@ -12,7 +12,14 @@ require_once 'SwatDB/SwatDB.php';
  */
 class AdminComponentsEdit extends AdminDBEdit
 {
+	// {{{ private properties
+
 	private $fields;
+
+	// }}}
+
+	// init phase
+	// {{{ protected function initInternal()
 
 	protected function initInternal()
 	{
@@ -32,7 +39,12 @@ class AdminComponentsEdit extends AdminDBEdit
 			'boolean:show', 'boolean:enabled', 'description');
 	}
 
-	protected function processPage($id)
+	// }}}
+
+	// process phase
+	// {{{ protected function validate()
+
+	protected function validate($id)
 	{
 		$shortname = $this->ui->getWidget('shortname');
 
@@ -47,6 +59,9 @@ class AdminComponentsEdit extends AdminDBEdit
 			$shortname->addMessage($msg);
 		}
 	}
+
+	// }}}
+	// {{{ protected function saveDBData()
 
 	protected function saveDBData($id)
 	{
@@ -64,13 +79,18 @@ class AdminComponentsEdit extends AdminDBEdit
 
 		SwatDB::updateBinding($this->app->db, 'admincomponent_admingroup', 
 			'component', $id, 'groupnum', $group_list->values, 'admingroups', 'id');
-		
+
 		$msg = new SwatMessage(
 			sprintf(Admin::_('Component &#8220;%s&8221; has been saved.'),
 			$values['title']), SwatMessage::NOTIFICATION);
-		
+
 		$this->app->messages->add($msg);
 	}
+
+	// }}}
+
+	// build phase
+	// {{{ protected function loadDBData()
 
 	protected function loadDBData($id)
 	{
@@ -86,6 +106,8 @@ class AdminComponentsEdit extends AdminDBEdit
 		$group_list->values = SwatDB::queryColumn($this->app->db, 
 			'admincomponent_admingroup', 'groupnum', 'component', $id);
 	}
+
+	// }}}
 }
 
 ?>

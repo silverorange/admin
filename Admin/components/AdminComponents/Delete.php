@@ -12,8 +12,34 @@ require_once 'Admin/AdminDependency.php';
  */
 class AdminComponentsDelete extends AdminDBDelete
 {
-	public function initDisplay()
+	// process phase
+	// {{{ protected function processDBData()
+
+	protected function processDBData()
 	{
+		parent::processDBData();
+
+		$sql = 'delete from admincomponents where id in (%s)';
+		$item_list = $this->getItemList('integer');
+		$sql = sprintf($sql, $item_list);
+		SwatDB::query($this->app->db, $sql);
+
+		$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been deleted.", 
+			"%d components have been deleted.", $this->getItemCount()), $this->getItemCount()),
+			SwatMessage::NOTIFICATION);
+
+		$this->app->messages->add($msg);
+	}
+
+	// }}}
+
+	// build phase
+	// {{{ protected function initDisplay()
+
+	protected function initDisplay()
+	{
+		parent::initDisplay();
+
 		$item_list = $this->getItemList('integer');
 		
 		$dep = new AdminDependency();
@@ -38,25 +64,9 @@ class AdminComponentsDelete extends AdminDBDelete
 		
 		if ($dep->getStatusLevelCount(AdminDependency::DELETE) == 0)
 			$this->displayCancelButton();
-
-		parent::initDisplay();
 	}
 
-	protected function processDBData()
-	{
-		parent::processDBData();
-
-		$sql = 'delete from admincomponents where id in (%s)';
-		$item_list = $this->getItemList('integer');
-		$sql = sprintf($sql, $item_list);
-		SwatDB::query($this->app->db, $sql);
-
-		$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been deleted.", 
-			"%d components have been deleted.", $this->getItemCount()), $this->getItemCount()),
-			SwatMessage::NOTIFICATION);
-
-		$this->app->messages->add($msg);	
-	}
+	// }}}
 }
 
 ?>

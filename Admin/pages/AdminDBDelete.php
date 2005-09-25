@@ -15,18 +15,12 @@ require_once 'SwatDB/SwatDBException.php';
  */
 abstract class AdminDBDelete extends AdminDBConfirmation
 {
+	// {{{ protected properties
+
 	protected $items = null;
 
-	/**
-	 * Set items 
-	 *
-	 * @param array $items Array of items
-	 */
-	public function setItems($items)
-	{
-		$this->items = $items;	
-		$this->setHiddenField($items);
-	}
+	// }}}
+	// {{{ public function setHiddenField()
 
 	/**
 	 * Set Hidden Field of Items
@@ -39,19 +33,22 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 		$form->addHiddenField('items', $items);
 	}
 
-	protected function initInternal()
+	// }}}
+	// {{{ public function setItems()
+
+	/**
+	 * Set items 
+	 *
+	 * @param array $items Array of items
+	 */
+	public function setItems($items)
 	{
-		parent::initInternal();
-
-		$yes_button = $this->ui->getWidget('yes_button');
-		$yes_button->setFromStock('delete');
-		
-		$no_button = $this->ui->getWidget('no_button');
-		$no_button->setFromStock('cancel');
-
-		$this->navbar->popEntry(1);
-		$this->navbar->createEntry(Admin::_('Delete'));
+		$this->items = $items;	
+		$this->setHiddenField($items);
 	}
+
+	// }}}
+	// {{{ protected function getItemList()
 
 	/**
 	 * Get quoted item list 
@@ -69,6 +66,9 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 		return implode(',',$items);
 	}
 
+	// }}}
+	// {{{ protected function getItemCount()
+
 	/**
 	 * Get the number of items
 	 *
@@ -79,11 +79,38 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 		return count($this->items);
 	}
 
+	// }}}
+
+	// init phase
+	// {{{ protected function initInternal()
+
+	protected function initInternal()
+	{
+		parent::initInternal();
+
+		$yes_button = $this->ui->getWidget('yes_button');
+		$yes_button->setFromStock('delete');
+		
+		$no_button = $this->ui->getWidget('no_button');
+		$no_button->setFromStock('cancel');
+
+		$this->navbar->popEntry(1);
+		$this->navbar->createEntry(Admin::_('Delete'));
+	}
+
+	// }}}
+
+	// process phase
+	// {{{ protected function processDBData()
+
 	protected function processDBData()
 	{
 		$form = $this->ui->getWidget('confirmation_form');
 		$this->items = $form->getHiddenField('items');
 	}
+
+	// }}}
+	// {{{ protected function processGenerateMessage()
 
 	protected function processGenerateMessage(Exception $e)
 	{
@@ -99,6 +126,8 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 
 		$this->app->messages->add($msg);	
 	}
+
+	// }}}
 }
 
 ?>

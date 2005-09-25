@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION "public"."tr_adminsections_delete" () RETURNS trigger AS ' 
     BEGIN
        
-		delete from admincomponents where section = OLD.sectionid;
+		delete from admincomponents where section = OLD.id;
 	   
         RETURN OLD;
     END;
