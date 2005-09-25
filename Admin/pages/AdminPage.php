@@ -54,6 +54,7 @@ abstract class AdminPage extends SwatPage
 	protected $ui = null;
 
 	// }}}
+
 	// {{{ public function __construct()
 
 	public function __construct($app)
@@ -70,30 +71,18 @@ abstract class AdminPage extends SwatPage
 	/**
 	 * Initialize the page
 	 *
-	 * Sub-classes should implement this method to initialize the page. At
-	 * this point the {@link AdminPage::$ui} has been constructed but has not been
-	 * initialized. Call parent::init() which will initialize {@link
-	 * AdminPage::$ui}.
+	 * Initializes {@link AdminPage::initInternal()} and {@link
+	 * AdminPage::$ui}. Sub-classes should implement
+	 * {@link SwatPage::initInternal()} to perform their own
+	 * initialization. 
 	 */
 	public function init()
 	{
 		parent::init();
 
+		$this->initInternal();
+
 		$this->ui->init();
-	}
-
-	// }}}
-	// {{{ public function initDisplay()
-
-	/**
-	 * Initialize the page before display
-	 *
-	 * Sub-classes should implement this method to initialize the page before display.
-	 * This method should be called before {@link AdminPage::display()} and always be
-	 * followed by a call to {@link AdminPage::display()}.
-	 */
-	public function initDisplay()
-	{
 	}
 
 	// }}}
@@ -134,11 +123,60 @@ abstract class AdminPage extends SwatPage
 	 * Process the page
 	 *
 	 * Sub-classes should implement this method to process the page.
+	 * Sub-classes should call parent:process first which calls
+	 * {@link AdminPage::$ui->process()}.
 	 * Called after {@link AdminPage::init()}.
 	 */
 	public function process()
 	{
 		$this->ui->process();
+
+		$this->processInternal();
+	}
+
+	// }}}
+
+	// {{{ protected function initInternal()
+
+	/**
+	 * Initialize the page
+	 *
+	 * Sub-classes should implement this method to initialize the page. At
+	 * this point the {@link AdminPage::$ui} has been constructed but has not been
+	 * initialized.
+	 */
+	protected function initInternal()
+	{
+	}
+
+	// }}}
+	// {{{ protected function processInternal()
+
+	/**
+	 * Processes the page
+	 *
+	 * Sub-classes should implement this method to process the page. At
+	 * this point the {@link AdminPage::$ui} has already been processed.
+	 */
+	protected function initInternal()
+	{
+	}
+
+	// }}}
+	// {{{ protected function initDisplay()
+
+	/**
+	 * Initialize the page before display
+	 *
+	 * Sub-classes should implement this method to initialize elements of
+	 * the page. This method is called at the beginning of {@link
+	 * AdminPage::build()}. This is useful to do database queries that are
+	 * only needed for {@link AdminPage::display()} and not {@link
+	 * AdminPage::process()}, while initialization needed for both display
+	 * and process should be included in {@link AdminPage::init()}.
+	 */
+	protected function initDisplay()
+	{
 	}
 
 	// }}}
