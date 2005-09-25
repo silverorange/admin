@@ -206,7 +206,7 @@ class AdminApplication extends SwatApplication
 		}
 	
 		if (!isset($page)) {
-			require_once 'Admin/NotFound.php';
+			require_once 'Admin/components/Admin/NotFound.php';
 			$page = new AdminNotFound($this);
 			$page->source = 'Admin/NotFound';
 			$page->title = Admin::_('Page not found');
