@@ -128,7 +128,21 @@ abstract class AdminPage extends SwatPage
 	}
 
 	// }}}
-	// {{{ public function display()
+	// {{{ public function process()
+
+	/**
+	 * Process the page
+	 *
+	 * Sub-classes should implement this method to process the page.
+	 * Called after {@link AdminPage::init()}.
+	 */
+	public function process()
+	{
+		$this->ui->process();
+	}
+
+	// }}}
+	// {{{ protected function display()
 
 	/**
 	 * Display the page
@@ -136,7 +150,7 @@ abstract class AdminPage extends SwatPage
 	 * Sub-classes should implement this method to display the contents of 
 	 * the page. Called after {@link AdminPage::init()}
 	 */
-	public function display()
+	protected function display()
 	{
 		if ($this->ui !== null) {
 			$this->ui->display();
@@ -144,7 +158,7 @@ abstract class AdminPage extends SwatPage
 	}
 
 	// }}}
-	// {{{ public function displayHeader()
+	// {{{ protected function displayHeader()
 
 	/**
 	 * Display admin page header
@@ -152,7 +166,7 @@ abstract class AdminPage extends SwatPage
 	 * Display common elements for the header of an admin page. Sub-classes
 	 * should call this from their implementation of {@link AdminPage::display()}.
 	 */
-	public function displayHeader()
+	protected function displayHeader()
 	{
 		echo '<div id="admin-syslinks">';
 		echo 'Welcome <a href="Admin/Profile">'.$_SESSION['name'].'</a> &nbsp;|&nbsp;';
@@ -162,15 +176,15 @@ abstract class AdminPage extends SwatPage
 	}
 
 	// }}}
-	// {{{ public function displayNavBar()
+	// {{{ protected function displayNavBar()
 
-	public function displayNavBar()
+	protected function displayNavBar()
 	{
 		$this->navbar->display();	
 	}
 
 	// }}}
-	// {{{ public function displayMenu()
+	// {{{ protected function displayMenu()
 
 	/**
 	 * Display admin page menu
@@ -178,7 +192,7 @@ abstract class AdminPage extends SwatPage
 	 * Display the menu of an admin page. Sub-classes should call this 
 	 * from their implementation of {@link AdminPage::display()}.
 	 */
-	public function displayMenu()
+	protected function displayMenu()
 	{		
 		$menu = SwatDB::executeStoredProc($this->app->db, 'sp_admin_menu',
 				$this->app->db->quote($_SESSION['user_id'], 'integer'),
@@ -186,17 +200,6 @@ abstract class AdminPage extends SwatPage
 
 		$menu->display();
 	}
-
-	// }}}
-	// {{{ abstract public function process()
-
-	/**
-	 * Process the page
-	 *
-	 * Sub-classes should implement this method to process the page.
-	 * Called after {@link AdminPage::init()}
-	 */
-	abstract public function process();
 
 	// }}}
 	// {{{ protected function createLayout()
