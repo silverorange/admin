@@ -13,8 +13,9 @@ require_once 'Admin/pages/AdminIndex.php';
  */
 abstract class AdminSearch extends AdminIndex
 {
-	public function process()
+	protected function processInternal()
 	{
+		parent::processInternal();
 		$form = $this->ui->getWidget('search_form', true);
 
 		if ($form !== null) {
@@ -22,12 +23,18 @@ abstract class AdminSearch extends AdminIndex
 				$this->saveState();
 			}
 		}
-
-		parent::process();
 	}
 
-	public function initDisplay()
+	protected function saveState()
 	{
+		$search_form = $this->ui->getWidget('search_form');
+		$search_state = $search_form->getDescendantStates();
+		$_SESSION[$this->source.'_search_state'] = $search_state;
+	}
+
+	protected function initDisplay()
+	{
+		parent::initDisplay();
 		$form = $this->ui->getWidget('search_form', true);
 
 		if ($form !== null) {
@@ -37,15 +44,6 @@ abstract class AdminSearch extends AdminIndex
 			}
 			$form->action = $this->source;
 		}
-
-		parent::initDisplay();
-	}
-
-	protected function saveState()
-	{
-		$search_form = $this->ui->getWidget('search_form');
-		$search_state = $search_form->getDescendantStates();
-		$_SESSION[$this->source.'_search_state'] = $search_state;
 	}
 
 	protected function loadState()

@@ -17,20 +17,6 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 {
 	protected $items = null;
 
-	public function init()
-	{
-		parent::init();
-
-		$yes_button = $this->ui->getWidget('yes_button');
-		$yes_button->setFromStock('delete');
-		
-		$no_button = $this->ui->getWidget('no_button');
-		$no_button->setFromStock('cancel');
-
-		$this->navbar->popEntry(1);
-		$this->navbar->createEntry(Admin::_('Delete'));
-	}
-
 	/**
 	 * Set items 
 	 *
@@ -51,6 +37,20 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 	{
 		$form = $this->ui->getWidget('confirmation_form');
 		$form->addHiddenField('items', $items);
+	}
+
+	protected function initInternal()
+	{
+		parent::initInternal();
+
+		$yes_button = $this->ui->getWidget('yes_button');
+		$yes_button->setFromStock('delete');
+		
+		$no_button = $this->ui->getWidget('no_button');
+		$no_button->setFromStock('cancel');
+
+		$this->navbar->popEntry(1);
+		$this->navbar->createEntry(Admin::_('Delete'));
 	}
 
 	/**

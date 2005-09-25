@@ -15,39 +15,22 @@ require_once 'Admin/pages/AdminPage.php';
  */
 abstract class AdminOrder extends AdminPage
 {
-	public function process()
+	protected function initInternal()
 	{
-		$this->ui->process();
+		parent::initInternal();
+		$this->ui->loadFromXML(dirname(__FILE__).'/order.xml');
+		$this->navbar->createEntry(Admin::_('Change Order'));
+	}
+
+	protected function processInternal()
+	{
+		parent::processInternal();
 		$form = $this->ui->getWidget('order_form');
 
 		if ($form->isProcessed()) {
 			$this->saveData();
 			$this->app->relocate($this->app->history->getHistory());
 		}
-	}
-
-	public function initDisplay()
-	{
-		$options_list = $this->ui->getWidget('options');
-		$options_list->options = array('auto'=>Admin::_('Automatically'), 'custom'=>Admin::_('Custom'));
-			
-		$order_widget = $this->ui->getWidget('order');
-		$order_widget->onclick = 'document.getElementById(\'options_custom\').checked = true;';
-		
-		$this->loadData();
-	
-		$button = $this->ui->getWidget('submit_button');
-		$button->title = Admin::_('Update Order');
-		
-		$form = $this->ui->getWidget('order_form');
-		$form->action = $this->source;
-	}
-	
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML(dirname(__FILE__).'/order.xml');
-
-		$this->navbar->createEntry(Admin::_('Change Order'));
 	}
 
 	protected function saveData()
@@ -77,6 +60,25 @@ abstract class AdminOrder extends AdminPage
 	 */
 	abstract protected function saveIndex($id, $index);
 
+	protected function initDisplay()
+	{
+		parent::initDisplay();
+
+		$options_list = $this->ui->getWidget('options');
+		$options_list->options = array('auto'=>Admin::_('Automatically'), 'custom'=>Admin::_('Custom'));
+			
+		$order_widget = $this->ui->getWidget('order');
+		$order_widget->onclick = 'document.getElementById(\'options_custom\').checked = true;';
+		
+		$this->loadData();
+	
+		$button = $this->ui->getWidget('submit_button');
+		$button->title = Admin::_('Update Order');
+		
+		$form = $this->ui->getWidget('order_form');
+		$form->action = $this->source;
+	}
+	
 	/**
 	 * Load the data
 	 *
