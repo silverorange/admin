@@ -30,21 +30,20 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 
 			} catch (SwatDBException $e) {
 				$this->app->db->rollback();
-				$this->processGenerateMessage($e);
+				$this->generateMessage($e);
 				$e->process();
 
 			} catch (SwatException $e) {
-				$this->processGenerateMessage($e);
+				$this->generateMessage($e);
 				$e->process();
 			}
 		}
 	}
 
 	// }}}
-	// {{{ protected function processGenerateMessage()
+	// {{{ protected function generateMessage()
 
-	// TODO: rename
-	protected function processGenerateMessage(Exception $e)
+	protected function generateMessage(Exception $e)
 	{
 		if ($e instanceof SwatDBException)
 			$msg = new SwatMessage(Admin::_('A database error has occured.'), SwatMessage::SYSTEM_ERROR);
