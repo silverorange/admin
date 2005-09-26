@@ -112,7 +112,8 @@ class AdminComponentsDetails extends AdminIndex
 		$component_details->data = $row;
 
 		$frame = $this->ui->getWidget('index_frame');
-		$frame->title = sprintf(Admin::_("Component: &#8220;%s&#8221;"), $row->title);
+		$frame->title = sprintf(Admin::_('Component: <span>%s</span>'),
+			$row->title);
 
 		foreach ($frame->getDescendants('SwatToolLink') as $tool)
 			$tool->value = $this->id;
