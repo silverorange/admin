@@ -51,6 +51,11 @@ abstract class AdminPage extends SwatPage
 	// }}}
 	// {{{ protected properties
 
+	/**
+	 * The user-interface of this page
+	 *
+	 * @var AdminUI
+	 */
 	protected $ui = null;
 
 	// }}}
