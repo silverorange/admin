@@ -63,7 +63,7 @@ class AdminComponentsDelete extends AdminDBDelete
 		$message->content = $dep->getMessage();
 		
 		if ($dep->getStatusLevelCount(AdminDependency::DELETE) == 0)
-			$this->displayCancelButton();
+			$this->switchToCancelButton();
 	}
 
 	// }}}
