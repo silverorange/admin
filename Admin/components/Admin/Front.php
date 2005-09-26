@@ -25,9 +25,9 @@ class AdminFront extends AdminPage
 	// }}}
 
 	// build phase
-	// {{{ protected function initDisplay()
+	// {{{ protected function buildInternal()
 
-	protected function initDisplay()
+	protected function buildInternal()
 	{
 		$this->initMessages();
 	}

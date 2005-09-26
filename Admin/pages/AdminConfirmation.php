@@ -57,11 +57,11 @@ abstract class AdminConfirmation extends AdminPage
 	// }}}
 
 	// build phase
-	// {{{ protected function initDisplay()
+	// {{{ protected function buildInternal()
 
-	protected function initDisplay()
+	protected function buildInternal()
 	{
-		parent::initDisplay();
+		parent::buildInternal();
 		$form = $this->ui->getWidget('confirmation_form');
 		$form->action = $this->source;
 	}

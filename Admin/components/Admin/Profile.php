@@ -66,9 +66,9 @@ class AdminProfile extends AdminDBEdit
 	// }}}
 
 	// build phase
-	// {{{ protected function initDisplay()
+	// {{{ protected function buildInternal()
 
-	protected function initDisplay()
+	protected function buildInternal()
 	{
 		$form = $this->ui->getWidget('edit_form');
 		$form->action = $this->source;

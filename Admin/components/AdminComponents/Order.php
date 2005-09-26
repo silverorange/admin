@@ -44,12 +44,12 @@ class AdminComponentsOrder extends AdminDBOrder
 	// }}}
 
 	// build phase
-	// {{{ protected function initDisplay()
-	protected function initDisplay()
+	// {{{ protected function buildInternal()
+	protected function buildInternal()
 	{
 		$frame = $this->ui->getWidget('order_frame');
 		$frame->title = Admin::_('Order Components');
-		parent::initDisplay();
+		parent::buildInternal();
 	}
 
 	// }}}

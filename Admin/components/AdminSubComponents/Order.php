@@ -42,11 +42,11 @@ class AdminSubComponentsOrder extends AdminDBOrder
 	// }}}
 
 	// build phase
-	// {{{ protected function initDisplay()
+	// {{{ protected function buildInternal()
 
-	protected function initDisplay()
+	protected function buildInternal()
 	{
-		parent::initDisplay();
+		parent::buildInternal();
 		$frame = $this->ui->getWidget('order_frame');
 		$frame->title = Admin::_('Order Sub-Components');
 

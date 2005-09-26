@@ -83,11 +83,11 @@ class AdminSubComponentsEdit extends AdminDBEdit
 	// }}}
 
 	// build phase
-	// {{{ protected function initDisplay()
+	// {{{ protected function buildInternal()
 
-	protected function initDisplay()
+	protected function buildInternal()
 	{
-		parent::initDisplay();
+		parent::buildInternal();
 
 		// rebuild the navbar
 		$parent_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',

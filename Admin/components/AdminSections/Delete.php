@@ -34,11 +34,11 @@ class AdminSectionsDelete extends AdminDBDelete
 	// }}}
 
 	// build phase
-	// {{{ protected function initDisplay()
+	// {{{ protected function buildInternal()
 
-	protected function initDisplay()
+	protected function buildInternal()
 	{
-		parent::initDisplay();
+		parent::buildInternal();
 
 		$item_list = $this->getItemList('integer');
 		

@@ -77,11 +77,11 @@ abstract class AdminOrder extends AdminPage
 	// }}}
 
 	// build phase
-	// {{{ protected function initDisplay()
+	// {{{ protected function buildInternal()
 
-	protected function initDisplay()
+	protected function buildInternal()
 	{
-		parent::initDisplay();
+		parent::buildInternal();
 
 		$options_list = $this->ui->getWidget('options');
 		$options_list->options = array('auto'=>Admin::_('Automatically'), 'custom'=>Admin::_('Custom'));

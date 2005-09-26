@@ -50,11 +50,11 @@ abstract class AdminIndex extends AdminPage
 	// }}}
 
 	// build phase
-	// {{{ protected function initDisplay()
+	// {{{ protected function buildInternal()
 
-	protected function initDisplay()
+	protected function buildInternal()
 	{
-		parent::initDisplay();
+		parent::buildInternal();
 		$root = $this->ui->getRoot();
 		$views = $root->getDescendants('SwatTableView');
 		$forms = $root->getDescendants('SwatForm');

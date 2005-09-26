@@ -148,7 +148,7 @@ abstract class AdminPage extends SwatPage
 
 	public function build()
 	{
-		$this->initDisplay();
+		$this->buildInternal();
 
 		ob_start();
 		$this->ui->getRoot()->displayHtmlHeadEntries();
@@ -175,7 +175,7 @@ abstract class AdminPage extends SwatPage
 	}
 
 	// }}}
-	// {{{ protected function initDisplay()
+	// {{{ protected function buildInternal()
 
 	/**
 	 * Initialize the page before display
@@ -187,7 +187,7 @@ abstract class AdminPage extends SwatPage
 	 * AdminPage::process()}, while initialization needed for both display
 	 * and process should be included in {@link AdminPage::init()}.
 	 */
-	protected function initDisplay()
+	protected function buildInternal()
 	{
 	}
 
