@@ -11,11 +11,17 @@ require_once 'Admin/AdminDependency.php';
  */
 class AdminSubComponentsDelete extends AdminDBDelete
 {
-	// {{{ public properties
+	// {{{ private properties
 
-	// TODO: this looks hacky:
-	public $parent;
+	private $parent;
 
+	// }}}
+	// {{{ public function setParent()
+
+	public function setParent($parent)
+	{
+		$this->parent = $parent;
+	}
 	// }}}
 
 	// process phase
