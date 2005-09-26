@@ -67,15 +67,14 @@ abstract class AdminConfirmation extends AdminPage
 	}
 	
 	// }}}
-	// {{{ protected function displayCancelButton()
+	// {{{ protected function switchToCancelButton()
 
 	/**
-	 * TODO: rename this method switchToCancelButton()
 	 * Switch to a cancel button.
 	 * 
 	 * Transforms the default Yes/No buttons in confirmation.xml into a cancel button.
 	 */
-	protected function displayCancelButton()
+	protected function switchToCancelButton()
 	{
 		$this->ui->getWidget('yes_button')->visible = false;
 		$this->ui->getWidget('no_button')->title = Admin::_('Cancel');

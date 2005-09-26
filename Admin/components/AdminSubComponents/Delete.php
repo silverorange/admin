@@ -60,7 +60,7 @@ class AdminSubComponentsDelete extends AdminDBDelete
 		$message->content = $dep->getMessage();
 
 		if ($dep->getStatusLevelCount(AdminDependency::DELETE) == 0)
-			$this->displayCancelButton();
+			$this->switchToCancelButton();
 
 		// rebuild the navbar
 		$component_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',
