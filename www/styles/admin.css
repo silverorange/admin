@@ -125,3 +125,7 @@ img { border: 0; }
 	width: 25em;
 	margin: 4em auto 1em auto;
 }
+
+.swat-frame h2 span {
+	font-weight: normal;
+}
