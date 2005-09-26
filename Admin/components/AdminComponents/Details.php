@@ -28,7 +28,6 @@ class AdminComponentsDetails extends AdminIndex
 		$this->ui->loadFromXML(dirname(__FILE__).'/details.xml');
 
 		$this->id = intval(SwatApplication::initVar('id'));
-		assert($this->id !== null);
 	}
 
 	// }}}
@@ -103,7 +102,9 @@ class AdminComponentsDetails extends AdminIndex
 		$row = SwatDB::queryRow($this->app->db, $sql);
 
 		if ($row === null)
-			return $this->app->replacePageNoAccess();
+			return $this->app->replacePageNoAccess(
+				new SwatMessage(sprintf(Admin::_("Component with id '%s' ".
+					'not found.'), $this->id), SwatMessage::ERROR));
 
 		ob_start();
 		$this->displayGroups($this->id);
