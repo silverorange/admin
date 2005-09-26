@@ -30,7 +30,9 @@ class AdminNoAccess extends AdminPage
 
 	protected function initInternal()
 	{
-		$this->app->getPage()->navbar->replaceElement(1, Admin::_('No Access'));
+		// do not link this sub-component's navbar to the base component
+		$this->navbar->replaceEntryByPosition(1,
+			new SwatNavBarEntry(Admin::_('No Access')));
 	}
 
 	// }}}
