@@ -110,9 +110,9 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 	}
 
 	// }}}
-	// {{{ protected function processGenerateMessage()
+	// {{{ protected function generateMessage()
 
-	protected function processGenerateMessage(Exception $e)
+	protected function generateMessage(Exception $e)
 	{
 		if ($e instanceof SwatDBException) {
 			$msg = new SwatMessage(Admin::_('A database error has occured.
