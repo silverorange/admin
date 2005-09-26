@@ -26,11 +26,11 @@ class AdminUsersDetails extends AdminIndex
 	// }}}
 
 	// build phase
-	// {{{ protected function initDisplay()
+	// {{{ protected function buildInternal()
 
-	protected function initDisplay()
+	protected function buildInternal()
 	{
-		parent::initDisplay();
+		parent::buildInternal();
 
 		$id = $this->app->initVar('id');
 

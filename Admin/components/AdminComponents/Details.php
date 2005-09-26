@@ -77,11 +77,11 @@ class AdminComponentsDetails extends AdminIndex
 	// }}}
 
 	// build phase
-	// {{{ protected function initDisplay()
+	// {{{ protected function buildInternal()
 
-	protected function initDisplay()
+	protected function buildInternal()
 	{
-		parent::initDisplay();
+		parent::buildInternal();
 
 		$form = $this->ui->getWidget('index_form');
 		$form->addHiddenField('id', $this->id);

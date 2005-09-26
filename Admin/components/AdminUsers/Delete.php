@@ -34,11 +34,11 @@ class AdminUsersDelete extends AdminDBDelete
 	// }}}
 
 	// build phase
-	// {{{ protected function initDisplay()
+	// {{{ protected function buildInternal()
 
-	public function initDisplay()
+	public function buildInternal()
 	{
-		parent::initDisplay();
+		parent::buildInternal();
 		$item_list = $this->getItemList('integer');
 		
 		$dep = new AdminDependency();

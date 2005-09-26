@@ -65,11 +65,11 @@ abstract class AdminSearch extends AdminIndex
 	// }}}
 
 	// build phase
-	// {{{ protected function initDisplay()
+	// {{{ protected function buildInternal()
 
-	protected function initDisplay()
+	protected function buildInternal()
 	{
-		parent::initDisplay();
+		parent::buildInternal();
 
 		$form = $this->ui->getWidget('search_form', true);
 
