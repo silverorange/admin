@@ -1,7 +1,7 @@
 body {
 	font-family: sans-serif;
 	font-size: 13px;
-	background: #FFF;
+	background: #f7f5f3;
 	color: #333;
 	margin: 0;
 	padding: 0;
@@ -75,23 +75,24 @@ img { border: 0; }
 }
 
 #admin-menu ul span {
-	background: #fff;
-	position: relative;
-	top: -0.7em;
-	padding: 0 6px;
+	display: block;
+	background: #fff url(../../swat/images/swat-frame-header.png) bottom left repeat-x;
+	padding: 1px 6px 3px 6px;
+	margin: 1px 1px 6px 1px;
 	font-weight: bold;
 }
 
 #admin-menu ul li {
 	border: 1px solid #e7ddc8;
-	padding: 0 12px 12px 12px;
-	margin-bottom: 1.5em;
+	padding-bottom: 6px;
+	margin-bottom: 1em;
+	background: #fff;
 }
 
 #admin-menu li li {
 	border: 0;
 	padding: 0;
-	margin: 0;
+	margin: 0 6px 0 6px;
 }
 
 #admin-menu ul ul {
@@ -101,10 +102,6 @@ img { border: 0; }
 
 #admin-menu ul ul ul {
 	padding-bottom: 0;
-}
-
-#admin-menu li {
-	padding-top: 0.2em;
 }
 
 #admin-menu ul ul ul li {
