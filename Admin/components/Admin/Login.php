@@ -52,9 +52,10 @@ class AdminLogin extends AdminPage
 				if ($logged_in) {
 					$this->app->relocate($this->app->getUri());
 				} else {
-					$frame = $this->ui->getWidget('login_frame');
+					$message_display = $this->ui->getWidget('message_display');
 					$msg = new SwatMessage(Admin::_('Login failed'), SwatMessage::ERROR);
-					$frame->addMessage($msg);
+					$msg->secondary_content = Admin::_('Check your password and try again.');
+					$message_display->add($msg);
 				}
 			}
 		}

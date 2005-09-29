@@ -18,6 +18,8 @@
 					<property name="size" type="integer">25</property>
 				</widget>
 			</widget>
+			<widget class="SwatMessageDisplay" id="message_display">
+			</widget>
 			<widget class="SwatFormFooterField">
 				<widget class="SwatButton" id="login_button">
 					<property name="title" translatable="yes">Login</property>
