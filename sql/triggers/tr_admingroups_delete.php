@@ -1,8 +1,8 @@
 CREATE OR REPLACE FUNCTION "public"."tr_admingroups_delete" () RETURNS trigger AS ' 
     BEGIN
        
-		delete from admincomponent_admingroup where groupnum = OLD.groupid;
-		delete from adminuser_admingroup where groupnum = OLD.groupid;
+		delete from admincomponent_admingroup where groupnum = OLD.id;
+		delete from adminuser_admingroup where groupnum = OLD.id;
 	   
         RETURN OLD;
     END;
