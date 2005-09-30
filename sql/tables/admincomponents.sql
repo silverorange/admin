@@ -15,7 +15,7 @@ SET search_path = public, pg_catalog;
 --
 
 CREATE TABLE admincomponents (
-    componentid serial NOT NULL,
+    id serial NOT NULL,
     shortname character varying(255),
     title character varying(255),
     description text,
@@ -31,11 +31,11 @@ CREATE TABLE admincomponents (
 -- Name: admincomponents; Type: TABLE DATA; Schema: public; Owner: php
 --
 
-INSERT INTO admincomponents (componentid, shortname, title, description, displayorder, section, enabled, "show") VALUES (44, 'AdminSubComponents', 'Admin Sub-Components', NULL, 5, 1, true, false);
-INSERT INTO admincomponents (componentid, shortname, title, description, displayorder, section, enabled, "show") VALUES (3, 'AdminSections', 'Admin Sections', NULL, 3, 1, true, true);
-INSERT INTO admincomponents (componentid, shortname, title, description, displayorder, section, enabled, "show") VALUES (4, 'AdminComponents', 'Admin Components', NULL, 4, 1, true, true);
-INSERT INTO admincomponents (componentid, shortname, title, description, displayorder, section, enabled, "show") VALUES (1, 'AdminUsers', 'Admin Users', 'Users Tool', 1, 1, false, true);
-INSERT INTO admincomponents (componentid, shortname, title, description, displayorder, section, enabled, "show") VALUES (52, 'AdminGroups', 'Admin Groups', NULL, 2, 1, false, true);
+INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, "show") VALUES (44, 'AdminSubComponents', 'Admin Sub-Components', NULL, 5, 1, true, false);
+INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, "show") VALUES (3, 'AdminSections', 'Admin Sections', NULL, 3, 1, true, true);
+INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, "show") VALUES (4, 'AdminComponents', 'Admin Components', NULL, 4, 1, true, true);
+INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, "show") VALUES (1, 'AdminUsers', 'Admin Users', 'Users Tool', 1, 1, false, true);
+INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, "show") VALUES (52, 'AdminGroups', 'Admin Groups', NULL, 2, 1, false, true);
 
 
 --
@@ -44,7 +44,7 @@ INSERT INTO admincomponents (componentid, shortname, title, description, display
 --
 
 ALTER TABLE ONLY admincomponents
-    ADD CONSTRAINT admincomponents_pkey PRIMARY KEY (componentid);
+    ADD CONSTRAINT admincomponents_pkey PRIMARY KEY (id);
 
 
 --
@@ -53,7 +53,7 @@ ALTER TABLE ONLY admincomponents
 --
 
 ALTER TABLE ONLY admincomponents
-    ADD CONSTRAINT "$1" FOREIGN KEY (section) REFERENCES adminsections(sectionid);
+    ADD CONSTRAINT "$1" FOREIGN KEY (section) REFERENCES adminsections(id);
 
 
 --
@@ -72,6 +72,6 @@ CREATE TRIGGER tr_delete
 -- Name: admincomponents_componentid_seq; Type: SEQUENCE SET; Schema: public; Owner: php
 --
 
-SELECT pg_catalog.setval('admincomponents_componentid_seq', 73, true);
+SELECT pg_catalog.setval('admincomponents_id_seq', 73, true);
 
 

@@ -10,5 +10,5 @@ create table adminsubcomponents (
 );
 
 -- default sub-components
-insert into adminsubcomponents (subcomponentid, component, title, shortname, show, displayorder)
+insert into adminsubcomponents (id, component, title, shortname, show, displayorder)
 	values (8, 1, 'Login History', 'LoginHistory', true, 0);

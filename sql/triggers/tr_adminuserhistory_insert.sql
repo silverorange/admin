@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION "public"."tr_adminuserhistory_insert" () RETURNS trig
     BEGIN
        
 		delete from adminuserhistory where usernum = NEW.usernum
-			AND historyid not in (select historyid from adminuserhistory
+			AND id not in (select id from adminuserhistory
 				where usernum = NEW.usernum order by logindate desc limit 9);
 	   
         RETURN NEW;

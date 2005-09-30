@@ -4,12 +4,12 @@
  *
  * @param_current_item INTEGER: The current branch to start building tree information from.
  *
- * @returned_row type_article_tree: Contains levelnum, children, articleid, parent, displayorder and title.
+ * @returned_row type_article_tree: Contains levelnum, children, id, parent, displayorder and title.
  *
  * Returns a set of returned_rows.
  */
 DROP TYPE type_article_tree CASCADE;
-CREATE TYPE type_article_tree AS (articleid INTEGER, title VARCHAR(255), levelnum INTEGER);
+CREATE TYPE type_article_tree AS (id INTEGER, title VARCHAR(255), levelnum INTEGER);
 
 --DROP FUNCTION sp_article_tree(INTEGER);
 CREATE OR REPLACE FUNCTION sp_article_tree(INTEGER) RETURNS SETOF type_article_tree AS '
@@ -44,9 +44,9 @@ CREATE OR REPLACE FUNCTION sp_article_tree(INTEGER) RETURNS SETOF type_article_t
 						END IF;
 
 						-- Insert new rows on the stack for the current item''s children.
-						INSERT INTO stack SELECT articleid, local_level + 1, parent
+						INSERT INTO stack SELECT id, local_level + 1, parent
 						FROM articles
-						INNER JOIN article_parent ON articleid = article
+						INNER JOIN article_parent ON id = article
 						WHERE parent = local_current_item
 						ORDER BY displayorder ASC, title ASC;
 
@@ -71,10 +71,10 @@ CREATE OR REPLACE FUNCTION sp_article_tree(INTEGER) RETURNS SETOF type_article_t
 
 		-- Return result set.
 		FOR returned_row IN
-		SELECT articleid, title, out.levelnum
+		SELECT id, title, out.levelnum
 		FROM out
-		INNER JOIN articles ON articles.articleid = item
-		INNER JOIN article_parent ON articleid = article
+		INNER JOIN articles ON articles.id = item
+		INNER JOIN article_parent ON id = article
 		ORDER BY out.displayorder, article_parent.displayorder, articles.title
 		LOOP
 			RETURN NEXT returned_row;
