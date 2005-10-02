@@ -127,7 +127,7 @@ img { border: 0; }
 	font-weight: normal;
 }
 
-.admin-group-link-renderer {
+.admin-group-link-cell-renderer {
 	padding: 0 0.6em;
 	background: #f9f6f0 url(../images/swat-tool-link.png) top left repeat-x;
 	border-top: 1px solid #eee;
