@@ -129,12 +129,12 @@ img { border: 0; }
 
 .admin-group-link-cell-renderer {
 	padding: 0 0.6em;
-	background: #f9f6f0 url(../images/swat-tool-link.png) top left repeat-x;
+	background: #f9f6f0 url(../images/admin-group-link-cell-renderer.png) top left repeat-x;
 	border-top: 1px solid #eee;
 	border-left: 1px solid #eee;
 	border-bottom: 1px solid #ccc;
 	border-right: 1px solid #ccc;
 	font-weight: normal;
 	text-decoration: none;
-	margin-right: 0.5em;
+	margin-left: 0.5em;
 }
