@@ -13,10 +13,13 @@
 			<widget class="SwatTableView" id="index_view">
 				<object class="SwatTableViewGroup">
 					<property name="group_by">section</property>
-					<object class="AdminGroupHeaderCellRenderer">
-						<property name="title" type="data" translatable="yes">section_title</property>
-						<property name="order_link">AdminComponents/Order?parent=%s</property>
-						<property name="order_value" type="data">section</property>
+					<object class="SwatTextCellRenderer">
+						<property name="value" type="data">section_title</property>
+					</object>
+					<object class="AdminGroupLinkCellRenderer">
+						<property name="title" translatable="yes">Change Order</property>
+						<property name="link">AdminComponents/Order?parent=%s</property>
+						<property name="value" type="data">section</property>
 					</object>
 				</object>
 				<object class="SwatTableViewColumn" id="controls">
