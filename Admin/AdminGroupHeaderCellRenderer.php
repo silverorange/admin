@@ -7,11 +7,13 @@ require_once 'Admin/Admin.php';
 /**
  * Group header cell renderer
  *
+ * This combines a title with a link to change order of rows within the group.
+ *
  * @package Admin
  * @copyright silverorange 2005
  */
-class AdminGroupHeaderCellRenderer extends SwatCellRenderer {
-
+class AdminGroupHeaderCellRenderer extends SwatCellRenderer
+{
 	/**
 	 * Header title
 	 *
@@ -36,8 +38,8 @@ class AdminGroupHeaderCellRenderer extends SwatCellRenderer {
 	 */
 	public $order_value = null;
 
-	public function render() {
-	
+	public function render()
+	{
 		echo $this->title;
 
 		if ($this->order_link !== null) {
