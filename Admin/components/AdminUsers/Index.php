@@ -20,6 +20,11 @@ class AdminUsersIndex extends AdminIndex
 	protected function initInternal()
 	{
 		$this->ui->loadFromXML(dirname(__FILE__).'/index.xml');
+
+		// set a default order on the table view
+		$index_view = $this->ui->getWidget('index_view');
+		$index_view->getColumn('username')->setDirection(
+			SwatTableViewOrderableColumn::ORDER_BY_DIR_ASCENDING);
 	}
 
 	// }}}
