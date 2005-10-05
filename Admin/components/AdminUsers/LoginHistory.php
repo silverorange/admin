@@ -23,8 +23,8 @@ class AdminUsersLoginHistory extends AdminIndex
 
 		// set a default order on the table view
 		$index_view = $this->ui->getWidget('index_view');
-		$index_view->getColumn('logindate')->setDirection(
-			SwatTableViewOrderableColumn::ORDER_BY_DIR_DESCENDING);
+		$index_view->setDefaultOrderbyColumn(
+			$index_view->getColumn('logindate'));
 
 		$this->navbar->createEntry(Admin::_('Login History'));
 	}

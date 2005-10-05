@@ -23,7 +23,8 @@ class AdminUsersIndex extends AdminIndex
 
 		// set a default order on the table view
 		$index_view = $this->ui->getWidget('index_view');
-		$index_view->getColumn('username')->setDirection(
+		$index_view->setDefaultOrderbyColumn(
+			$index_view->getColumn('username'),
 			SwatTableViewOrderableColumn::ORDER_BY_DIR_ASCENDING);
 	}
 
