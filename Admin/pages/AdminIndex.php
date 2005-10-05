@@ -94,20 +94,20 @@ abstract class AdminIndex extends AdminPage
 	// }}}
 	// {{{ protected function getOrderByClause()
 
-	protected function getOrderByClause($view, $default_orderby, $column_prefix = null, $column_map = array())
+	protected function getOrderByClause($view, $default_orderby,
+		$column_prefix = null, $column_map = array())
 	{
 		$orderby = $default_orderby;
 
 		if ($view->orderby_column !== null) {
-
-			if ($view->orderby_column->id === null) 
-				throw new SwatException('Orderable column missing id');
-			elseif (isset($column_map[$view->orderby_column->id]))
+			if (isset($column_map[$view->orderby_column->id])) {
 				$orderby = $column_map[$view->orderby_column->id];
-			elseif ($column_prefix !== null)
-				$orderby = $column_prefix.'.'.$this->app->db->escape($view->orderby_column->id);
-			else
+			} elseif ($column_prefix !== null) {
+				$orderby = $column_prefix.'.'.
+					$this->app->db->escape($view->orderby_column->id);
+			} else {
 				$orderby = $this->app->db->escape($view->orderby_column->id);
+			}
 
 			$orderby .= ' '.$view->orderby_column->getDirectionAsString();
 		}
