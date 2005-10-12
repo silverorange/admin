@@ -43,7 +43,7 @@ class AdminUsersDetails extends AdminIndex
 			array('username','name'), 'id' , $id);
 
 		$frame = $this->ui->getWidget('index_frame');
-		$frame->title.=' - '.$row->name;
+		$frame->title.=': <span>'.$row->name.'</span>';
 	}
 
 	// }}}
