@@ -38,7 +38,7 @@ abstract class AdminConfirmation extends AdminPage
 			return;
 
 		$this->processResponse();
-		$this->app->relocate($this->app->history->getHistory(0));
+		$this->relocate();
 	}
 
 	// }}}
@@ -53,6 +53,17 @@ abstract class AdminConfirmation extends AdminPage
 	 * Sub-classes should implement this method.
 	 */
 	abstract protected function processResponse();
+
+	// }}}
+	// {{{ protected function relocate()
+
+	/**
+	 * Relocate after process
+	 */
+	protected function relocate()
+	{
+		$this->app->relocate($this->app->history->getHistory(0));
+	}
 
 	// }}}
 

@@ -20,6 +20,11 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 	protected $items = null;
 
 	// }}}
+	// {{{ private properties
+
+	private $single_delete = false;
+
+	// }}}
 	// {{{ public function setHiddenField()
 
 	/**
@@ -43,7 +48,7 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 	 */
 	public function setItems($items)
 	{
-		$this->items = $items;	
+		$this->items = $items;
 		$this->setHiddenField($items);
 	}
 
@@ -88,6 +93,17 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 	{
 		parent::initInternal();
 
+		$this->single_delete = (boolean)SwatApplication::initVar('single_delete', false, SwatApplication::VAR_POST);
+
+		$id = SwatApplication::initVar('id', null, SwatApplication::VAR_GET);
+
+		if ($id !== null) {
+			$this->setItems(array($id));
+			$this->single_delete = true;
+			$form = $this->ui->getWidget('confirmation_form');
+			$form->addHiddenField('single_delete', $this->single_delete);
+		}
+
 		$yes_button = $this->ui->getWidget('yes_button');
 		$yes_button->setFromStock('delete');
 		
@@ -125,6 +141,20 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 		}
 
 		$this->app->messages->add($msg);	
+	}
+
+	// }}}
+	// {{{ protected function relocate()
+
+	/**
+	 * Relocate after process
+	 */
+	protected function relocate()
+	{
+		if ($this->single_delete)
+			$this->app->relocate($this->app->history->getHistory());
+		else
+			parent::relocate();
 	}
 
 	// }}}
