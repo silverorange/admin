@@ -6,11 +6,11 @@
 		<widget class="SwatForm" id="confirmation_form">
 			<widget class="SwatContentBlock" id="confirmation_message" />
 			<widget class="SwatFormFooterField">
-				<widget class="SwatButton" id="yes_button">
-					<property name="title" translatable="yes">Yes</property>
-				</widget>
 				<widget class="SwatButton" id="no_button">
 					<property name="title" translatable="yes">No</property>
+				</widget>
+				<widget class="SwatButton" id="yes_button">
+					<property name="title" translatable="yes">Yes</property>
 				</widget>
 			</widget>
 		</widget>
