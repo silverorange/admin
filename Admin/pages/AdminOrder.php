@@ -84,11 +84,12 @@ abstract class AdminOrder extends AdminPage
 		parent::buildInternal();
 
 		$options_list = $this->ui->getWidget('options');
-		$options_list->options = array('auto'=>Admin::_('Automatically'), 'custom'=>Admin::_('Custom'));
+		$options_list->addOptionsByArray(array('auto'=>Admin::_('Automatically'), 'custom'=>Admin::_('Custom')));
 			
 		$order_widget = $this->ui->getWidget('order');
+		//TODO: make this work with its own javascript, as the SwatChangeOrder onclick is going to disappear
 		$order_widget->onclick = 'document.getElementById(\'options_custom\').checked = true;';
-		
+	
 		$this->loadData();
 	
 		$button = $this->ui->getWidget('submit_button');
