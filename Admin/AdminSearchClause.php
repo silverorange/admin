@@ -29,6 +29,13 @@ class AdminSearchClause {
 	public $value;
 	
 	/**
+	 * Table prefix for the field.
+	 *
+	 * @var string
+	 */
+	public $table = null;
+	
+	/**
 	 * Case sensitive
 	 *
 	 * Whether or not the search match should be case-sensitive
@@ -74,7 +81,8 @@ class AdminSearchClause {
 		if ($this->value === null)
 			return '';
 		
-		$field = $this->field->name;
+		$field = ($this->table === null) ? '' : $this->table.'.';
+		$field .= $this->field->name;
 		$value = $this->value;
 	
 		if ($this->field->type == 'text') {
