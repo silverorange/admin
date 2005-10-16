@@ -66,7 +66,7 @@ class AdminSubComponentsEdit extends AdminDBEdit
 		$values = $this->ui->getValues(array('title', 'shortname', 'show'));
 		$values['component'] = $this->parent;
 
-		if ($id == 0)
+		if ($id === null)
 			$id = SwatDB::insertRow($this->app->db, 'adminsubcomponents', $this->fields,
 				$values, 'integer:id');
 		else
@@ -98,7 +98,7 @@ class AdminSubComponentsEdit extends AdminDBEdit
 		$this->navbar->createEntry($parent_title, 'AdminComponents/Details?id='.$this->parent);
 
 		$id = $this->app->initVar('id');
-		if ($id == 0)
+		if ($id === null)
 			$this->navbar->createEntry('Add Sub-Component');
 		else
 			$this->navbar->createEntry('Edit Sub-Component');
