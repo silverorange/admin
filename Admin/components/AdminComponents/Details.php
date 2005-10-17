@@ -110,6 +110,8 @@ class AdminComponentsDetails extends AdminIndex
 		$this->displayGroups($this->id);
 		$row->groups = ob_get_clean();
 
+		$row->description = SwatString::condense(SwatString::toXHTML($row->description));
+
 		$component_details->data = $row;
 
 		$frame = $this->ui->getWidget('index_frame');
@@ -118,13 +120,6 @@ class AdminComponentsDetails extends AdminIndex
 
 		foreach ($frame->getDescendants('SwatToolLink') as $tool)
 			$tool->value = $this->id;
-
-		$description = $this->ui->getWidget('component_description');
-
-		if (strlen($row->description) == 0)
-			$description->parent->visible = false;
-		else
-			$description->content = SwatString::toXHTML($row->description);
 	}
 
 	// }}}
