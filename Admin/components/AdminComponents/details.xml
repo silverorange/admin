@@ -89,7 +89,7 @@
 					<object class="SwatTableViewColumn" id="shortname">
 						<property name="title" translatable="yes">Short Name</property>
 						<object class="SwatTextCellRenderer">
-							<property name="value" type="data">shortname</property>
+							<property name="text" type="data">shortname</property>
 						</object>
 					</object>
 					<object class="SwatTableViewColumn" id="show">
