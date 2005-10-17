@@ -68,7 +68,7 @@ class AdminComponentsEdit extends AdminDBEdit
 		$values = $this->ui->getValues(array('title', 'shortname', 'section', 
 			'show', 'enabled', 'description'));
 
-		if ($id == 0)
+		if ($id === null)
 			$id = SwatDB::insertRow($this->app->db, 'admincomponents', $this->fields,
 				$values, 'integer:id');
 		else
