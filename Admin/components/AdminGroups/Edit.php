@@ -50,7 +50,7 @@ class AdminGroupsEdit extends AdminDBEdit
 	{
 		$values = $this->ui->getValues(array('title'));
 
-		if ($id == 0)
+		if ($id === null)
 			$id = SwatDB::insertRow($this->app->db, 'admingroups', $this->fields,
 				$values, 'integer:id');
 		else

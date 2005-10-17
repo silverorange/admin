@@ -81,7 +81,7 @@ class AdminUsersEdit extends AdminDBEdit
 			$this->fields[] = 'password';
 		}
 
-		if ($id == 0)
+		if ($id === null)
 			$id = SwatDB::insertRow($this->app->db, 'adminusers', $this->fields,
 				$values, 'integer:id');
 		else
