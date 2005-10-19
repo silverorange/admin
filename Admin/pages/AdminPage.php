@@ -1,7 +1,6 @@
 <?php
 
 require_once 'Swat/SwatPage.php';
-require_once 'Swat/SwatHtmlHeadEntry.php';
 require_once 'Admin/AdminNavBar.php';
 require_once 'Admin/AdminMenu.php';
 require_once 'Admin/AdminUI.php';
@@ -59,16 +58,6 @@ abstract class AdminPage extends SwatPage
 	 */
 	protected $ui = null;
 
-	/**
-	 * An array of HTML head entries needed by this widget
-	 *
-	 * Entries are stored in a data object called SwatHtmlHeadEntry. This
-	 * property contains an array of such objects.
-	 *
-	 * @var array
-	 */
-	protected $html_head_entries = array();
-
 	// }}}
 	// {{{ public function __construct()
 
@@ -86,36 +75,6 @@ abstract class AdminPage extends SwatPage
 	protected function createLayout()
 	{
 		return new SwatLayout('Admin/layouts/default.php');
-	}
-
-	// }}}
-	// {{{ public function addStyleSheet()
-
-	/**
-	 * Adds a stylesheet to the list of stylesheets needed by this page
-	 *
-	 * @param string $stylesheet the uri of the stylesheet.
-	 */
-	public function addStyleSheet($stylesheet)
-	{
-		$this->html_head_entries[$stylesheet] =
-			new SwatHtmlHeadEntry($stylesheet, SwatHtmlHeadEntry::TYPE_STYLE);
-	}
-
-	// }}}
-	// {{{ public function addJavaScript()
-
-	/**
-	 * Adds a JavaScript include to the list of JavaScript includes needed
-	 * by this page
-	 *
-	 * @param string $javascript the uri of the JavaScript include.
-	 */
-	public function addJavaScript($javascript)
-	{
-		$this->html_head_entries[$javascript] =
-			new SwatHtmlHeadEntry($javascript,
-			SwatHtmlHeadEntry::TYPE_JAVASCRIPT);
 	}
 
 	// }}}
@@ -198,7 +157,6 @@ abstract class AdminPage extends SwatPage
 
 		ob_start();
 		$this->ui->getRoot()->displayHtmlHeadEntries();
-		$this->displayHtmlHeadEntries();
 		$this->layout->html_head_entries = ob_get_clean();
 
 		$this->layout->title = $this->app->title.' | '.$this->title;
@@ -270,17 +228,6 @@ abstract class AdminPage extends SwatPage
 		echo '<a href="Admin/Profile">Customize</a> &nbsp;|&nbsp;';
 		echo '<a href="Admin/Logout"><strong>Logout</strong></a>';
 		echo '</div>';
-	}
-
-	// }}}
-	// {{{ protected function displayHtmlHeadEntries()
-
-	protected function displayHtmlHeadEntries()
-	{
-		foreach ($this->html_head_entries as $head_entry) {
-			$head_entry->display();
-			echo "\n";
-		}
 	}
 
 	// }}}
