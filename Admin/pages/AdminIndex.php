@@ -63,7 +63,7 @@ abstract class AdminIndex extends AdminPage
 			$view->model = $this->getTableStore($view);
 
 		foreach ($forms as $form) {
-			$form->action = $this->source;
+			$form->action = $this->app->getUri();
 			$view = $form->getFirstDescendant('SwatTableView');
 
 			if ($view !== null && $view->model->getRowCount() == 0) {
