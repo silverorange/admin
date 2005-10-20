@@ -90,6 +90,7 @@ class AdminMenuSection
 			$component->display();
 
 		echo '</ul>';
+		echo '</li>';
 	}
 }
 
