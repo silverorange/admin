@@ -113,7 +113,8 @@ class AdminComponentsDetails extends AdminIndex
 		$this->displayGroups($this->id);
 		$row->groups = ob_get_clean();
 
-		$row->description = SwatString::condense(SwatString::toXHTML($row->description));
+		if ($row->description !== null)
+			$row->description = SwatString::condense(SwatString::toXHTML($row->description));
 
 		$component_details->data = $row;
 
