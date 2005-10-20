@@ -83,6 +83,9 @@ class AdminComponentsDetails extends AdminIndex
 	{
 		parent::buildInternal();
 
+		$this->ui->getWidget('details_toolbar')->setToolLinkValues($this->id);
+		$this->ui->getWidget('sub_components_toolbar')->setToolLinkValues($this->id);
+
 		$form = $this->ui->getWidget('index_form');
 		$form->addHiddenField('id', $this->id);
 
@@ -114,12 +117,9 @@ class AdminComponentsDetails extends AdminIndex
 
 		$component_details->data = $row;
 
-		$frame = $this->ui->getWidget('index_frame');
+		$frame = $this->ui->getWidget('details_frame');
 		$frame->title = sprintf(Admin::_('Component: <span>%s</span>'),
 			$row->title);
-
-		foreach ($frame->getDescendants('SwatToolLink') as $tool)
-			$tool->value = $this->id;
 	}
 
 	// }}}
