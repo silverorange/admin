@@ -141,3 +141,7 @@ img { border: 0; }
 	text-decoration: none;
 	margin-left: 0.5em;
 }
+
+.admin-null-text-cell-renderer-null {
+	color: #ccc;
+}
