@@ -32,7 +32,7 @@ $result = $package->setOptions(
 );
 
 $package->setPackage('Admin');
-$package->setSummary('swat based adminstration framework');
+$package->setSummary('Swat based adminstration framework');
 $package->setDescription($description);
 $package->setChannel('pear.silverorange.com');
 $package->setPackageType('php');
