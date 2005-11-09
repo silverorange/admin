@@ -8,7 +8,7 @@ $notes = <<<EOT
 EOT;
 
 $description =<<<EOT
-Admin is a swat based framework for building administration sites.
+Admin is a Swat based framework for building administration sites.
 
 * An OO-style API
 * A set of user-interface widgets
