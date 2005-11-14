@@ -22,7 +22,8 @@ class AdminSearchOperatorFlydown extends SwatFlydown {
 	 */
 	public $operators = array(AdminSearchClause::OP_CONTAINS,
 	                          AdminSearchClause::OP_STARTS_WITH,
-	                          AdminSearchClause::OP_ENDS_WITH);
+	                          AdminSearchClause::OP_ENDS_WITH,
+	                          AdminSearchClause::OP_EQUALS);
 	
 	public function display() {
 		$this->options = array();
@@ -36,7 +37,7 @@ class AdminSearchOperatorFlydown extends SwatFlydown {
 
 	private static function getOperatorTitle($id) {
 		switch ($id) {
-			case AdminSearchClause::OP_EQUALS:      return '=';
+			case AdminSearchClause::OP_EQUALS:      return Admin::_('is');
 			case AdminSearchClause::OP_GT:          return '>';
 			case AdminSearchClause::OP_GTE:         return '>=';
 			case AdminSearchClause::OP_LT:          return '<';
