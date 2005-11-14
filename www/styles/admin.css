@@ -51,7 +51,7 @@ img { border: 0; }
 
 #admin-header #admin-syslinks {
 	float: right;
-	margin: 0.3em 0 0 2em;
+	margin: 0.1em 0 0 2em;
 }
 
 #admin-header h1 {
@@ -64,7 +64,7 @@ img { border: 0; }
 }
 
 #admin-navbar {
-	font-size: 140%;
+	font-size: 120%;
 }
 
 
