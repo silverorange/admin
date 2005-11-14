@@ -38,7 +38,7 @@
 				<object class="AdminTableViewOrderableColumn" id="title">
 					<property name="title" translatable="yes">Title</property>
 					<object class="SwatLinkCellRenderer">
-						<property name="title" type="data" translatable="yes">title</property>
+						<property name="text" type="data" translatable="yes">title</property>
 						<property name="link">AdminComponents/Details?id=%s</property>
 						<property name="value" type="data">id</property>
 					</object>

@@ -87,7 +87,7 @@
 					<object class="SwatTableViewColumn">
 						<property name="title" translatable="yes">Title</property>
 						<object class="SwatLinkCellRenderer">
-							<property name="title" type="data" translatable="yes">title</property>
+							<property name="text" type="data" translatable="yes">title</property>
 							<property name="link">AdminSubComponents/Edit?id=%s</property>
 							<property name="value" type="data">id</property>
 						</object>
