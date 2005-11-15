@@ -19,7 +19,7 @@
 						<property name="text" type="data">section_title</property>
 					</object>
 					<object class="AdminGroupLinkCellRenderer">
-						<property name="title" translatable="yes">Change Order</property>
+						<property name="text" translatable="yes">Change Order</property>
 						<property name="link">AdminComponents/Order?parent=%s</property>
 						<property name="value" type="data">section</property>
 					</object>
