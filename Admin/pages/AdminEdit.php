@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Admin/pages/AdminPage.php';
+require_once 'Swat/SwatString.php';
 
 /**
  * Generic admin edit page
@@ -89,6 +90,55 @@ abstract class AdminEdit extends AdminPage
 	protected function relocate()
 	{
 		$this->app->relocate($this->app->history->getHistory());
+	}
+
+	// }}}
+	// {{{ protected function generateShortname()
+
+	/**
+	 * Generate a shortname
+	 *
+	 * This method allows edit pages to easily generate a unique shortname by 
+	 * calling this method during their processing phase. The shortname is 
+	 * generated from the text provided using SwatString::condenseToName() and
+	 * validated with AdminEdit::validateShortname().  If the initial shortname
+	 * is not valid an integer is appended and incremented until the shortname
+	 * is valid.  Sub-classes should override validateShortname() to perform
+	 * whatever checks are necessary to validate the shortname.
+	 *
+	 * @param string $text Text to generate the shortname from.
+	 * @param integer $id An identifier of the data object being edited.
+	 * @return string A shortname.
+	 */
+	protected function generateShortname($text, $id)
+	{
+		$shortname_base = SwatString::condenseToName($text);
+		$count = 1;
+		$shortname = $shortname_base;
+
+		while ($this->validateShortname($shortname, $id) === false)
+			$shortname = $shortname_base.$count++;
+
+		return $shortname;
+	}
+
+	// }}}
+	// {{{ protected function validateShortname()
+
+	/**
+	 * Validate a shortname
+	 *
+	 * This method is called by AdminEdit::generateShortname().
+	 * Sub-classes should override this method to perform
+	 * whatever checks are necessary to validate the shortname.
+	 *
+	 * @param string $shortname The shortname to validate.
+	 * @param integer $id An identifier of the data object being edited.
+	 * @return boolean Whether the shortname is valid.
+	 */
+	protected function validateShortname($shortname, $id)
+	{
+		return true;
 	}
 
 	// }}}
