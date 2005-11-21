@@ -42,6 +42,11 @@ class AdminUsersDetails extends AdminIndex
 		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers',
 			array('username','name'), 'id' , $id);
 
+		if ($row === null)
+			return $this->app->replacePageNoAccess(
+				new SwatMessage(sprintf(Admin::_("User with id '%s' ".
+					'not found.'), $id), SwatMessage::ERROR));
+
 		$frame = $this->ui->getWidget('index_frame');
 		$frame->title.=': <span>'.$row->name.'</span>';
 	}
@@ -58,9 +63,9 @@ class AdminUsersDetails extends AdminIndex
 				where usernum = %s
 				order by %s';
 
-        $sql = sprintf($sql,
+        	$sql = sprintf($sql,
 			$this->app->db->quote($id, 'integer'),
-            $this->getOrderByClause($view, 'logindate desc'));
+			$this->getOrderByClause($view, 'logindate desc'));
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
