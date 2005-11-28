@@ -296,12 +296,12 @@ class AdminDependency
 	 *        standard MDB2 datatype. If type is ommitted, then integer is 
 	 *        assummed for this field.
 	 *
-	 * @param string $parent_field The name of the database field to query for 
-	 *        the parent, or null. The values in this field should correspond
-	 *        to ids in a parent AdminDependency object.  This field can be 
-	 *        given in the form type:name where type is a standard MDB2
-	 *        datatype. If type is ommitted, then integer is assummed for
-	 *        this field.
+	 * @param string $parent_field The name of the database field to query to
+	 *        link the child dependencies to the parent, or null. The values
+	 *        in this field should correspond to ids in a parent
+	 *        AdminDependency object.  This field can be given in the form
+	 *        type:name where type is a standard MDB2 datatype. If type is
+	 *        ommitted, then integer is assummed for this field.
 	 *
 	 * @param string $title_field The name of the database field to query for 
 	 *        the title. Can be given in the form type:name where type is a
