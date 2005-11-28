@@ -15,7 +15,79 @@ require_once('Admin/AdminDependency.php');
  */
 abstract class AdminDBConfirmation extends AdminConfirmation
 {
-	// process phase
+	// {{{ protected properties
+
+	protected $items = null;
+
+	// }}}
+	// {{{ private properties
+
+	private $single_delete = false;
+
+	// }}}
+	// {{{ public function setHiddenField()
+
+	/**
+	 * Set Hidden Field of Items
+	 *
+	 * @param array $items
+	 */
+	public function setHiddenField($items)
+	{
+		$form = $this->ui->getWidget('confirmation_form');
+		$form->addHiddenField('items', $items);
+	}
+
+	// }}}
+	// {{{ public function setItems()
+
+	/**
+	 * Set items 
+	 *
+	 * @param array $items Array of items
+	 */
+	public function setItems($items)
+	{
+		$this->items = $items;
+		$this->setHiddenField($items);
+	}
+
+	// }}}
+	// {{{ protected function getItemList()
+
+	/**
+	 * Get quoted item list 
+	 *
+	 * @param string $type MDB2 datatype used to quote the items.
+	 * @return string Comma-seperated and MDB2 quoted list of items.
+	 */
+	protected function getItemList($type)
+	{
+		$items = $this->items;
+		
+		foreach ($items as &$id)
+			$id = $this->app->db->quote($id, $type);
+
+		return implode(',',$items);
+	}
+
+	// }}}
+
+	// init phase
+	// {{{ protected function initInternal()
+
+	protected function initInternal()
+	{
+		parent::initInternal();
+
+		$id = SwatApplication::initVar('id', null, SwatApplication::VAR_GET);
+
+		if ($id !== null) 
+			$this->setItems(array($id));
+	}
+
+	// }}}
+
 	// {{{ protected function processResponse()
 
 	protected function processResponse()
@@ -63,7 +135,25 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 * Sub-classes should implement this method and perform whatever actions
 	 * are necessary process the repsonse.
 	 */
-	abstract protected function processDBData();
+	protected function processDBData()
+	{
+		$form = $this->ui->getWidget('confirmation_form');
+		$this->items = $form->getHiddenField('items');
+	}
+
+	// }}}
+	// {{{ protected function relocate()
+
+	/**
+	 * Relocate after process
+	 */
+	protected function relocate()
+	{
+		if ($this->single_delete)
+			$this->app->relocate($this->app->history->getHistory());
+		else
+			parent::relocate();
+	}
 
 	// }}}
 }

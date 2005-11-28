@@ -15,77 +15,6 @@ require_once 'SwatDB/SwatDBException.php';
  */
 abstract class AdminDBDelete extends AdminDBConfirmation
 {
-	// {{{ protected properties
-
-	protected $items = null;
-
-	// }}}
-	// {{{ private properties
-
-	private $single_delete = false;
-
-	// }}}
-	// {{{ public function setHiddenField()
-
-	/**
-	 * Set Hidden Field of Items
-	 *
-	 * @param array $items
-	 */
-	public function setHiddenField($items)
-	{
-		$form = $this->ui->getWidget('confirmation_form');
-		$form->addHiddenField('items', $items);
-	}
-
-	// }}}
-	// {{{ public function setItems()
-
-	/**
-	 * Set items 
-	 *
-	 * @param array $items Array of items
-	 */
-	public function setItems($items)
-	{
-		$this->items = $items;
-		$this->setHiddenField($items);
-	}
-
-	// }}}
-	// {{{ protected function getItemList()
-
-	/**
-	 * Get quoted item list 
-	 *
-	 * @param string $type MDB2 datatype used to quote the items.
-	 * @return string Comma-seperated and MDB2 quoted list of items.
-	 */
-	protected function getItemList($type)
-	{
-		$items = $this->items;
-		
-		foreach ($items as &$id)
-			$id = $this->app->db->quote($id, $type);
-
-		return implode(',',$items);
-	}
-
-	// }}}
-	// {{{ protected function getItemCount()
-
-	/**
-	 * Get the number of items
-	 *
-	 * @return integer Number of items.
-	 */
-	protected function getItemCount()
-	{
-		return count($this->items);
-	}
-
-	// }}}
-
 	// init phase
 	// {{{ protected function initInternal()
 
@@ -117,15 +46,6 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 	// }}}
 
 	// process phase
-	// {{{ protected function processDBData()
-
-	protected function processDBData()
-	{
-		$form = $this->ui->getWidget('confirmation_form');
-		$this->items = $form->getHiddenField('items');
-	}
-
-	// }}}
 	// {{{ protected function generateMessage()
 
 	protected function generateMessage(Exception $e)
@@ -141,20 +61,6 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 		}
 
 		$this->app->messages->add($msg);	
-	}
-
-	// }}}
-	// {{{ protected function relocate()
-
-	/**
-	 * Relocate after process
-	 */
-	protected function relocate()
-	{
-		if ($this->single_delete)
-			$this->app->relocate($this->app->history->getHistory());
-		else
-			parent::relocate();
 	}
 
 	// }}}
