@@ -72,6 +72,19 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	}
 
 	// }}}
+	// {{{ protected function getItemCount()
+
+	/**
+	* Get the number of items
+	*
+	* @return integer Number of items.
+	*/
+	protected function getItemCount()
+	{
+		return count($this->items);
+	}
+
+	// }}}
 
 	// init phase
 	// {{{ protected function initInternal()
