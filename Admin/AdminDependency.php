@@ -247,7 +247,7 @@ class AdminDependency
 		if ($count != 0) {
 			echo '<ul><li>';
 			if ($this->title !== null) {
-				printf(Admin::ngettext('%d dependent %s', '%d Dependent %s(s)', $count), 
+				printf(Admin::ngettext('%d dependent %s', '%d dependent %s(s)', $count), 
 					$count, $this->title);
 
 			} else {
