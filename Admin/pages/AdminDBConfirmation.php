@@ -20,11 +20,6 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	protected $items = null;
 
 	// }}}
-	// {{{ private properties
-
-	private $single_delete = false;
-
-	// }}}
 	// {{{ public function setHiddenField()
 
 	/**
@@ -152,20 +147,6 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	{
 		$form = $this->ui->getWidget('confirmation_form');
 		$this->items = $form->getHiddenField('items');
-	}
-
-	// }}}
-	// {{{ protected function relocate()
-
-	/**
-	 * Relocate after process
-	 */
-	protected function relocate()
-	{
-		if ($this->single_delete)
-			$this->app->relocate($this->app->history->getHistory());
-		else
-			parent::relocate();
 	}
 
 	// }}}
