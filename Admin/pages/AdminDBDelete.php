@@ -15,6 +15,12 @@ require_once 'SwatDB/SwatDBException.php';
  */
 abstract class AdminDBDelete extends AdminDBConfirmation
 {
+	// {{{ private properties
+
+	private $single_delete = false;
+
+	// }}}
+
 	// init phase
 	// {{{ protected function initInternal()
 
@@ -61,6 +67,20 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 		}
 
 		$this->app->messages->add($msg);	
+	}
+
+	// }}}
+	// {{{ protected function relocate()
+
+	/**
+	 * Relocate after process
+	 */
+	protected function relocate()
+	{
+		if ($this->single_delete)
+			$this->app->relocate($this->app->history->getHistory());
+		else
+			parent::relocate();
 	}
 
 	// }}}
