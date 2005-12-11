@@ -13,19 +13,20 @@ require_once 'Swat/SwatUI.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminUI extends SwatUI {
-
+class AdminUI extends SwatUI
+{
 	/**
-	 * Create a new AdminUI object
+	 * Creates a new AdminUI object
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		parent::__construct();
 
 		$this->class_map['Admin'] = 'Admin';
 	}
 
 	/**
-	 * Get values from widgets
+	 * Gets values from widgets
 	 *
  	 * Convenience method to retrive values from multiple widgets at once.
 	 * This method is useful when using {@link SwatDB::rowInsert()} and
@@ -36,7 +37,8 @@ class AdminUI extends SwatUI {
 	 * @return array Array of values with widget ids as the keys.
 	 * @param array $ids Array of widget ids to retrieve values from.
 	 */
-	public function getValues($ids) {
+	public function getValues($ids)
+	{
 		$values = array();
 
 		foreach ($ids as $widget_id)
@@ -46,7 +48,7 @@ class AdminUI extends SwatUI {
 	}
 
 	/**
-	 * Set values of widgets
+	 * Sets values of widgets
 	 *
  	 * Convenience method to set values of multiple widgets at once.
 	 * This method is useful when using {@link SwatDB::rowQuery()}
@@ -55,7 +57,8 @@ class AdminUI extends SwatUI {
 	 *
 	 * @param array $values Array of values with widget ids as the keys.
 	 */
-	public function setValues($values) {
+	public function setValues($values)
+	{
 		foreach ($values as $id => $value) {
 			$widget = $this->getWidget($id, true);
 
