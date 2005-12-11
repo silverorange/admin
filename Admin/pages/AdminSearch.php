@@ -20,9 +20,8 @@ abstract class AdminSearch extends AdminIndex
 	{
 		parent::processInternal();
 
-		$form = $this->ui->getWidget('search_form', true);
-
-		if ($form !== null) {
+		try {
+			$form = $this->ui->getWidget('search_form');
 			$form->process();
 
 			if ($form->isProcessed())
@@ -32,6 +31,7 @@ abstract class AdminSearch extends AdminIndex
 				$index = $this->ui->getWidget('results_frame');
 				$index->visible = true;
 			}
+		} catch (SwatWidgetNotFoundException $e) {
 		}
 	}
 
@@ -71,10 +71,11 @@ abstract class AdminSearch extends AdminIndex
 	{
 		parent::buildInternal();
 
-		$form = $this->ui->getWidget('search_form', true);
-
-		if ($form !== null)
+		try {
+			$form = $this->ui->getWidget('search_form', true);
 			$form->action = $this->source;
+		} catch (SwatWidgetNotFoundException $e) {
+		}
 	}
 
 	// }}}
