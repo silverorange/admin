@@ -60,10 +60,11 @@ class AdminUI extends SwatUI
 	public function setValues($values)
 	{
 		foreach ($values as $id => $value) {
-			$widget = $this->getWidget($id, true);
-
-			if ($widget !== null)
+			try {
+				$widget = $this->getWidget($id);
 				$widget->value = $values[$id];
+			} catch (SwatWidgetNotFoundException $e) {
+			}
 		}
 	}
 }
