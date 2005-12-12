@@ -261,13 +261,13 @@ abstract class AdminPage extends SwatPage
 
 	protected function initMessages()
 	{
-		$message_display = $this->ui->getWidget('message_display', true);
+		try {
+			$message_display = $this->ui->getWidget('message_display');
+			foreach ($this->app->messages->getAll() as $message)
+				$message_display->add($message);
 
-		if ($message_display == null)
-			return;
-
-		foreach ($this->app->messages->getAll() as $message)
-			$message_display->add($message);
+		} catch (SwatWidgetNotFoundException $e) {
+		}
 	}
 
 	// }}}
