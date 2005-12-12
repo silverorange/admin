@@ -55,26 +55,46 @@ abstract class AdminIndex extends AdminPage
 	protected function buildInternal()
 	{
 		parent::buildInternal();
+
+		$this->buildViews();
+		$this->buildForms();
+		$this->initMessages();
+	}
+
+	// }}}
+	// {{{ protected function buildViews()
+
+	/**
+	 * Builds tables views for this index page
+	 */
+	protected function buildViews()
+	{
 		$root = $this->ui->getRoot();
 		$views = $root->getDescendants('SwatTableView');
-		$forms = $root->getDescendants('SwatForm');
-
 		foreach ($views as $view)
 			$view->model = $this->getTableStore($view);
+	}
 
+	// }}}
+	// {{{ protected function buildForms()
+
+	/**
+	 * Builds forms for this index page
+	 */
+	protected function buildForms()
+	{
+		$root = $this->ui->getRoot();
+		$forms = $root->getDescendants('SwatForm');
 		foreach ($forms as $form) {
 			$form->action = $this->app->getUri();
 			$view = $form->getFirstDescendant('SwatTableView');
 
 			if ($view !== null && $view->model->getRowCount() == 0) {
 				$actions = $form->getFirstDescendant('SwatActions');
-
 				if ($actions !== null)
 					$actions->visible = false;
 			}
 		}
-
-		$this->initMessages();
 	}
 
 	// }}}

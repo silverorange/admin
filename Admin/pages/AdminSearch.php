@@ -27,7 +27,8 @@ abstract class AdminSearch extends AdminIndex
 			if ($form->isProcessed())
 				$this->saveState();
 
-			if ($this->loadState()) {
+			if ($this->hasState()) {
+				$this->loadState();
 				$index = $this->ui->getWidget('results_frame');
 				$index->visible = true;
 			}
@@ -48,18 +49,41 @@ abstract class AdminSearch extends AdminIndex
 	// }}}
 	// {{{ protected function loadState()
 
+	/**
+	 * Loads a saved search state for this page
+	 *
+	 * @return boolean true if a saved state exists for this page and false if
+	 *                  it does not.
+	 *
+	 * @see AdminSearchPage::hasState()
+	 */
 	protected function loadState()
 	{
-		$ret = false;
+		$return = false;
 		$search_form = $this->ui->getWidget('search_form');
 		$key = $this->source.'_search_state';
 
-		if (isset($_SESSION[$key])) {
+		if ($this->hasState()) {
 			$search_form->setDescendantStates($_SESSION[$key]);
-			$ret = true;
+			$return = true;
 		}
 
-		return $ret;
+		return $return;
+	}
+
+	// }}}
+	// {{{ protected function hasState()
+
+	/**
+	 * Checks if this search page has stored search information
+	 *
+	 * @return boolean true if this page has stored search information and
+	 *                  false if it does not.
+	 */
+	protected function hasState()
+	{
+		$key = $this->source.'_search_state';
+		return isset($_SESSION[$key]);
 	}
 
 	// }}}
@@ -75,6 +99,27 @@ abstract class AdminSearch extends AdminIndex
 			$form = $this->ui->getWidget('search_form', true);
 			$form->action = $this->source;
 		} catch (SwatWidgetNotFoundException $e) {
+		}
+	}
+
+	// }}}
+	// {{{ protected function buildViews()
+
+	/**
+	 * Builds views for this search page
+	 *
+	 * View models are initialized to an empty table store unless a saved
+	 * search state is available.
+	 */
+	protected function buildViews()
+	{
+		if ($this->hasState()) {
+			parent::buildViews();
+		} else {
+			$root = $this->ui->getRoot();
+			$views = $root->getDescendants('SwatTableView');
+			foreach ($views as $view)
+				$view->model = new SwatTableStore();
 		}
 	}
 
