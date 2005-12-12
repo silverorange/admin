@@ -10,11 +10,10 @@ require_once 'Swat/SwatTableStore.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminTableStore extends SwatTableStore {
-
-	function __construct($rs) {
-		parent::__construct();
-
+class AdminTableStore extends SwatTableStore
+{
+	function __construct($rs)
+	{
 		if (MDB2::isError($rs)) 
 			throw new Exception($rs->getMessage());
 
