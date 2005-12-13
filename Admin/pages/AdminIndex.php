@@ -1,6 +1,8 @@
 <?php
 
 require_once 'Admin/pages/AdminPage.php';
+require_once 'Swat/SwatTableView.php';
+require_once 'Swat/SwatActions.php';
 
 /**
  * Generic admin index page
@@ -37,13 +39,16 @@ abstract class AdminIndex extends AdminPage
 	// {{{ protected function processActions()
 
 	/**
-	 * Process the actions.
+	 * Processes index actions
 	 *
 	 * This method is called to perform whatever processing is required in 
 	 * response to actions. Sub-classes should implement this method.
 	 * Widgets can be accessed through the $ui class variable.
+	 *
+	 * @param SwatTableView $view the table view to get selected items from.
+	 * @param SwatActions $actions the actions list widget.
 	 */
-	protected function processActions($form_id)
+	protected function processActions(SwatTableView $view, SwatActions $actions)
 	{
 	}
 
