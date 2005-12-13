@@ -43,20 +43,18 @@ class AdminLogin extends AdminPage
 
 		$form = $this->ui->getWidget('login_form');
 
-		if ($form->isProcessed()) {
-			if (!$form->hasMessage()) {
-				$username = $this->ui->getWidget('username')->value;
-				$password = $this->ui->getWidget('password')->value;
-				$logged_in = $this->app->session->login($username, $password);
+		if ($form->isProcessed() && !$form->hasMessage()) {
+			$username = $this->ui->getWidget('username')->value;
+			$password = $this->ui->getWidget('password')->value;
+			$logged_in = $this->app->session->login($username, $password);
 
-				if ($logged_in) {
-					$this->app->relocate($this->app->getUri());
-				} else {
-					$message_display = $this->ui->getWidget('message_display');
-					$msg = new SwatMessage(Admin::_('Login failed'), SwatMessage::ERROR);
-					$msg->secondary_content = Admin::_('Check your password and try again.');
-					$message_display->add($msg);
-				}
+			if ($logged_in) {
+				$this->app->relocate($this->app->getUri());
+			} else {
+				$message_display = $this->ui->getWidget('message_display');
+				$msg = new SwatMessage(Admin::_('Login failed'), SwatMessage::ERROR);
+				$msg->secondary_content = Admin::_('Check your password and try again.');
+				$message_display->add($msg);
 			}
 		}
 	}
@@ -80,8 +78,12 @@ class AdminLogin extends AdminPage
 		$this->layout->ui = ob_get_clean();
 
 		ob_start();
-		$this->displayJavascript();
-		$this->layout->javascript = ob_get_clean();
+		$this->displayJavascriptIncludes();
+		$this->layout->javascript_includes = ob_get_clean();
+
+		ob_start();
+		$this->displayLoginJavascript();
+		$this->layout->login_javascript = ob_get_clean();
 	}
 
 	// }}}
@@ -93,18 +95,25 @@ class AdminLogin extends AdminPage
 	}
 
 	// }}}
-	// {{{ private function displayJavascript()
+	// {{{ private function displayJavascriptIncludes()
 
-	private function displayJavascript()
+	private function displayJavascriptIncludes()
+	{
+		echo '<script type="text/javascript" src="admin/javascript/admin-login.js"></script>'."\n";
+	}
+
+	// }}}
+	// {{{ private function displayLoginJavascript()
+
+	private function displayLoginJavascript()
 	{
 		if (isset($_COOKIE[$this->app->id.'_username']))
 			$username = $_COOKIE[$this->app->id.'_username'];
 		else
 			$username = '';
 
-		echo '<script type="text/javascript" src="admin/javascript/admin-login.js"></script>'."\n";
 		echo '<script type="text/javascript">';
-		echo "\n adminLogin('username', 'password', '{$username}');";
+		echo "\nadminLogin('username', 'password', '{$username}');";
 		echo '</script>';
 	}
 
