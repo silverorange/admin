@@ -33,11 +33,8 @@ class AdminUsersIndex extends AdminIndex
 	// process phase
 	// {{{ protected function processActions()
 
-	protected function processActions()
+	protected function processActions(SwatTableView $view, SwatActions $actions)
 	{
-		$view = $this->ui->getWidget('index_view');
-		$actions = $this->ui->getWidget('index_actions');
-
 		$num = count($view->checked_items);
 		$msg = null;
 		

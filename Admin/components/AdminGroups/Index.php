@@ -26,11 +26,8 @@ class AdminGroupsIndex extends AdminIndex
 	// process phase
 	// {{{ protected function processActions()
 
-	protected function processActions($view)
+	protected function processActions(SwatTableView $view, SwatActions $actions)
 	{
-		$view = $this->ui->getWidget('index_view');
-		$actions = $this->ui->getWidget('index_actions');
-
 		switch ($actions->selected->id) {
 			case 'delete':
 				$this->app->replacePage('AdminGroups/Delete');
