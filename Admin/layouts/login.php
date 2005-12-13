@@ -4,15 +4,16 @@
 	<title><?=$this->title?></title>
 	<base href="<?=$this->basehref?>" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<?=$this->javascript_includes?>
 	<?=$this->html_head_entries?>
 	<style type="text/css" media="all">@import "admin/styles/admin.css";</style>
-	<?=$this->javascript?>
 </head>
 <body id="admin-login-page">
 
 <div id="admin-login">
 	<?=$this->ui?>
 </div>
+<?=$this->login_javascript?>
 
 </body>
 </html>
