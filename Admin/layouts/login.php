@@ -4,8 +4,8 @@
 	<title><?=$this->title?></title>
 	<base href="<?=$this->basehref?>" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<?=$this->javascript_includes?>
 	<?=$this->html_head_entries?>
+	<?=$this->javascript_includes?>
 	<style type="text/css" media="all">@import "admin/styles/admin.css";</style>
 </head>
 <body id="admin-login-page">
