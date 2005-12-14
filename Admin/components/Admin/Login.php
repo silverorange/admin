@@ -113,7 +113,7 @@ class AdminLogin extends AdminPage
 			$username = '';
 
 		echo '<script type="text/javascript">';
-		echo "\nadminLogin('username', 'password', '{$username}');";
+		echo "\nadminLogin('username', 'password', 'login_button', '{$username}');";
 		echo '</script>';
 	}
 
