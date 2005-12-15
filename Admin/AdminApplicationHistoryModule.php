@@ -30,7 +30,7 @@ class AdminApplicationHistoryModule extends SwatApplicationModule
 			$history = array();
 
 		$has_querystring = strpos($url, '?');
-	
+
 		if (count($history) > 0) {
 			end($history);
 			$last = current($history);
@@ -64,7 +64,6 @@ class AdminApplicationHistoryModule extends SwatApplicationModule
 
 	public function getHistory($index = 1)
 	{
-
 		for ($i = 0; $i <= $index; $i++)
 			$url = array_pop($_SESSION['history']);
 
