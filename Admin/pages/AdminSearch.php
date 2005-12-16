@@ -37,6 +37,18 @@ abstract class AdminSearch extends AdminIndex
 	}
 
 	// }}}
+	// {{{ protected function clearState()
+
+	/**
+	 * Clears a saved search state
+	 */
+	protected function clearState()
+	{
+		if ($this->hasState())
+			unset($_SESSION[$this->source.'_search_state']);
+	}
+
+	// }}}
 	// {{{ protected function saveState()
 
 	protected function saveState()
