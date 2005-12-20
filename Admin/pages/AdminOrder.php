@@ -21,6 +21,7 @@ abstract class AdminOrder extends AdminPage
 	protected function initInternal()
 	{
 		parent::initInternal();
+		$this->ui->getRoot()->addJavaScript('admin/javascript/admin-order.js');
 		$this->ui->loadFromXML(dirname(__FILE__).'/order.xml');
 		$this->navbar->createEntry(Admin::_('Change Order'));
 	}
@@ -84,12 +85,10 @@ abstract class AdminOrder extends AdminPage
 		parent::buildInternal();
 
 		$options_list = $this->ui->getWidget('options');
-		$options_list->addOptionsByArray(array('auto'=>Admin::_('Automatically'), 'custom'=>Admin::_('Custom')));
+		$options_list->addOptionsByArray(array(
+			'auto'=>Admin::_('Automatically'),
+			'custom'=>Admin::_('Custom')));
 			
-		$order_widget = $this->ui->getWidget('order');
-		//TODO: make this work with its own javascript, as the SwatChangeOrder onclick is going to disappear
-		$order_widget->onclick = 'document.getElementById(\'options_custom\').checked = true;';
-	
 		$this->loadData();
 	
 		$button = $this->ui->getWidget('submit_button');
@@ -113,6 +112,25 @@ abstract class AdminOrder extends AdminPage
 	abstract protected function loadData();
 
 	// }}}
+	// {{{ protected function display()
+
+	protected function display()
+	{
+		parent::display();
+		$this->displayJavaScript();
+	}
+
+	// }}}
+	// {{{ private function displayJavaScript()
+
+	private function displayJavaScript()
+	{
+		echo '<script type="text/javascript">'."\n";
+
+		printf("AdminOrder('options_custom', order_obj);\n");
+
+		echo '</script>';
+	}
 }
 
 ?>
