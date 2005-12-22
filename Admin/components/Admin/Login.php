@@ -78,11 +78,11 @@ class AdminLogin extends AdminPage
 		$this->layout->ui = ob_get_clean();
 
 		ob_start();
-		$this->displayJavascriptIncludes();
+		$this->displayJavaScriptIncludes();
 		$this->layout->javascript_includes = ob_get_clean();
 
 		ob_start();
-		$this->displayLoginJavascript();
+		$this->displayLoginJavaScript();
 		$this->layout->login_javascript = ob_get_clean();
 	}
 
@@ -95,17 +95,17 @@ class AdminLogin extends AdminPage
 	}
 
 	// }}}
-	// {{{ private function displayJavascriptIncludes()
+	// {{{ private function displayJavaScriptIncludes()
 
-	private function displayJavascriptIncludes()
+	private function displayJavaScriptIncludes()
 	{
 		echo '<script type="text/javascript" src="admin/javascript/admin-login.js"></script>'."\n";
 	}
 
 	// }}}
-	// {{{ private function displayLoginJavascript()
+	// {{{ private function displayLoginJavaScript()
 
-	private function displayLoginJavascript()
+	private function displayLoginJavaScript()
 	{
 		if (isset($_COOKIE[$this->app->id.'_username']))
 			$username = $_COOKIE[$this->app->id.'_username'];
