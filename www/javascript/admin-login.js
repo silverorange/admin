@@ -5,7 +5,7 @@ SwatForm.prototype.setDefaultFocus = function()
 {
 }
 
-function adminLogin(login_id, password_id, submit_name, username)
+function AdminLogin(login_id, password_id, submit_name, username)
 {
 	window.setTimeout(
 	"login = document.getElementById('" + login_id + "');"+
