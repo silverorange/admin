@@ -19,6 +19,7 @@ class AdminLogin extends AdminPage
 	protected function initInternal()
 	{
 		$this->ui->loadFromXML(dirname(__FILE__).'/login.xml');
+		$this->ui->getWidget('login_form')->addJavaScript('admin/javascript/admin-login.js');
 
 		$frame = $this->ui->getWidget('login_frame');
 		$frame->title = $this->app->title;
@@ -76,14 +77,6 @@ class AdminLogin extends AdminPage
 		ob_start();
 		$this->display();
 		$this->layout->ui = ob_get_clean();
-
-		ob_start();
-		$this->displayJavaScriptIncludes();
-		$this->layout->javascript_includes = ob_get_clean();
-
-		ob_start();
-		$this->displayLoginJavaScript();
-		$this->layout->login_javascript = ob_get_clean();
 	}
 
 	// }}}
@@ -95,17 +88,18 @@ class AdminLogin extends AdminPage
 	}
 
 	// }}}
-	// {{{ private function displayJavaScriptIncludes()
+	// {{{ protected function display()
 
-	private function displayJavaScriptIncludes()
+	protected function display()
 	{
-		echo '<script type="text/javascript" src="admin/javascript/admin-login.js"></script>'."\n";
+		parent::display();
+		$this->displayJavaScript();
 	}
 
 	// }}}
-	// {{{ private function displayLoginJavaScript()
+	// {{{ private function displayJavaScript()
 
-	private function displayLoginJavaScript()
+	private function displayJavaScript()
 	{
 		if (isset($_COOKIE[$this->app->id.'_username']))
 			$username = $_COOKIE[$this->app->id.'_username'];
@@ -113,7 +107,7 @@ class AdminLogin extends AdminPage
 			$username = '';
 
 		echo '<script type="text/javascript">';
-		echo "\nadminLogin('username', 'password', 'login_button', '{$username}');";
+		echo "\nAdminLogin('username', 'password', 'login_button', '{$username}');";
 		echo '</script>';
 	}
 
