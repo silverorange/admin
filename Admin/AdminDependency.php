@@ -11,8 +11,8 @@ require_once 'Admin/AdminDependencyEntry.php';
  * The items can be categorized into status levels (eg, DELETE and NODELETE)
  * based upon the existence of dependencies.
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2005 silverorange
  */
 class AdminDependency
 {
@@ -20,9 +20,7 @@ class AdminDependency
 	const NODELETE = 1;
 
 	/**
-	 * Title
-	 *
-	 * Visible title for the type of entries this dependency object deals with.
+	 * Visible title for the type of entries this dependency object deals with
 	 *
 	 * @var string
 	 */
@@ -89,7 +87,7 @@ class AdminDependency
 	private $dependencies = array();
 
 	/**
-	 * Get dependency message
+	 * Gets the dependency message
 	 *
 	 * Retrieves the dependency message ready for display. When using a tree of 
 	 * {@link AdminDependency} objects, this should be called on the
@@ -103,9 +101,12 @@ class AdminDependency
 			return '';
 
 		if ($this->status_levels === null) {
-			$this->status_levels = array();
-			$this->status_levels[AdminDependency::DELETE] = Admin::_('The following %s(s) will be deleted:');
-			$this->status_levels[AdminDependency::NODELETE] = Admin::_('The following %s(s) can not be deleted:');
+			$this->status_levels = array(
+				self::DELETE =>
+					Admin::_('The following %s(s) will be deleted:'),
+				self::NODELETE =>
+					Admin::_('The following %s(s) can not be deleted:')
+			);
 		}
 
 		$this->processDependencies();
@@ -117,9 +118,7 @@ class AdminDependency
 	}
 
 	/**
-	 * Get count at status level
-	 *
-	 * Retrieves the number of items at the given status level.
+	 * Gets the number of items at the given status level.
 	 *
 	 * @param int $status_level The status level to count items in.
 	 * @returns int Number of items at $status_level.
@@ -145,8 +144,8 @@ class AdminDependency
 
 			if ($parent === null || $entry->parent == $parent) {
 				foreach ($this->dependencies as $dep) {
-					$entry->status_level = 
-						max($entry->status_level, $dep->processDependencies($entry->id));
+					$entry->status_level = max($entry->status_level,
+						$dep->processDependencies($entry->id));
 				}
 				
 				$ret = max($ret, $entry->status_level);
@@ -175,7 +174,9 @@ class AdminDependency
 				
 				if ($first) {
 					echo '<h3>';
-					printf($this->status_levels[$entry->status_level], $this->title);
+					printf($this->status_levels[$entry->status_level],
+						$this->title);
+
 					echo '</h3>';
 					echo '<ul>';
 					$first = false;
@@ -208,7 +209,8 @@ class AdminDependency
 		$first = true;
 	
 		foreach ($this->entries as $entry) {
-			if ($entry->parent == $parent && $entry->status_level == $status_level) {
+			if ($entry->parent == $parent &&
+				$entry->status_level == $status_level) {
 				
 				if ($first) {
 					echo '<br />';
@@ -241,23 +243,25 @@ class AdminDependency
 		$count = 0;
 		
 		foreach ($this->entries as $entry)
-			if ($entry->parent == $parent && $entry->status_level == $status_level)
+			if ($entry->parent == $parent &&
+				$entry->status_level == $status_level)
 				$count++;
 		
 		if ($count != 0) {
 			echo '<ul><li>';
 			if ($this->title !== null) {
-				printf(Admin::ngettext('%d dependent %s', '%d dependent %s(s)', $count), 
-					$count, $this->title);
+				printf(Admin::ngettext('%d dependent %s', '%d dependent %s(s)',
+					$count), $count, $this->title);
 
 			} else {
-				printf(Admin::ngettext('%d dependent item', '%d dependent items', 
+				printf(Admin::ngettext('%d dependent item', '%d dependent items',
 					$count), $count);
 			}
 		}
 		
 		foreach ($this->entries as $entry)
-			if ($entry->parent == $parent && $entry->status_level == $status_level)
+			if ($entry->parent == $parent &&
+				$entry->status_level == $status_level)
 				foreach ($this->dependencies as $dep)
 					$dep->displayDependencyCount($entry->id, $status_level);
 					
@@ -266,7 +270,7 @@ class AdminDependency
 	}
 	
 	/**
-	 * Add a sub-dependency
+	 * Adds a sub-dependency
 	 *
 	 * Add another AdminDependency object as a sub-dependency of this one. The
 	 * parent fields within the entries of the sub-dependency object should
@@ -281,7 +285,7 @@ class AdminDependency
 	}
 
 	/**
-	 * Query for entries.
+	 * Queries for dependency entries
 	 *
  	 * Convenience method to query for an array for {@link AdminDependencyEntry}
 	 * objects. The returned entry array can be directly assigned to the
@@ -324,17 +328,20 @@ class AdminDependency
 		$where_clause = null)
 	{
 
-		$items = SwatDB::getOptionArray($db, $table, $title_field, $id_field, $order_by_clause, $where_clause);
+		$items = SwatDB::getOptionArray($db, $table, $title_field, $id_field,
+			$order_by_clause, $where_clause);
+
 		if ($parent_field === null)
 			$parents = null;
 		else
-			$parents = SwatDB::getOptionArray($db, $table, $parent_field, $id_field, $order_by_clause, $where_clause);
+			$parents = SwatDB::getOptionArray($db, $table, $parent_field,
+				$id_field, $order_by_clause, $where_clause);
 		
 		return self::buildDependencyArray($items, $parents);
 	}
 
 	/**
-	 * Build a dependency array.
+	 * Builds a dependency array
 	 *
  	 * Convenience method to create an array for {@link AdminDependencyEntry} 
 	 * objects. The returned entry array can be directly assigned to the
