@@ -1,8 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
 <swatml>
-	<widget class="SwatFrame">
-		<property name="title" translatable="yes">Confirmation</property>
+	<widget class="SwatFrame" id="confirmation_frame">
 		<widget class="SwatForm" id="confirmation_form">
 			<widget class="SwatContentBlock" id="confirmation_message" />
 			<widget class="SwatFormFooterField">
