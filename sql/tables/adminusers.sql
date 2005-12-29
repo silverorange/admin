@@ -1,11 +1,11 @@
 create table adminusers (
-    id serial not null,
-    username varchar(50) not null,
-    name varchar(100) not null,
+	id serial not null,
+	username varchar(50) not null,
+	name varchar(100) not null,
 	email varchar(255) not null,
-    password varchar(50) not null,
-    force_password boolean not null default true,
-    enabled boolean not null default true,
+	password varchar(50) not null,
+	force_password boolean not null default true,
+	enabled boolean not null default true,
 	primary key(id)
 );
 
