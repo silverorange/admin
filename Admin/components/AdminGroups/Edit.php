@@ -34,11 +34,11 @@ class AdminGroupsEdit extends AdminDBEdit
 			'adminusers', 'name', 'id', 'name');
 
 		$component_list = $this->ui->getWidget('components');
-		$component_list->tree = SwatDB::getGroupedOptionArray($this->app->db, 
+		$component_list->setTree(SwatDB::getGroupedOptionArray($this->app->db, 
 			'admincomponents', 'title', 'id',
 			'adminsections', 'title', 'id', 'section',
 			'adminsections.displayorder, adminsections.title,
-			admincomponents.displayorder,  admincomponents.title');
+			admincomponents.displayorder,  admincomponents.title'));
 	}
 
 	// }}}
