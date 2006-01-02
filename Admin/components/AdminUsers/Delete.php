@@ -2,13 +2,13 @@
 
 require_once 'Admin/pages/AdminDBDelete.php';
 require_once 'SwatDB/SwatDB.php';
-require_once 'Admin/AdminDependency.php';
+require_once 'Admin/AdminListDependency.php';
 
 /**
  * Delete confirmation page for AdminUsers component
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004 silverorange
  */
 class AdminUsersDelete extends AdminDBDelete
 {
@@ -39,14 +39,15 @@ class AdminUsersDelete extends AdminDBDelete
 	public function buildInternal()
 	{
 		parent::buildInternal();
-		$item_list = $this->getItemList('integer');
-		
-		$dep = new AdminDependency();
-		$dep->title = 'Admin User';
-		$dep->status_level = AdminDependency::DELETE;
 
-		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'adminusers',
-			'integer:id', null, 'text:name', 'name', 'id in ('.$item_list.')');
+		$item_list = $this->getItemList('integer');
+
+		$dep = new AdminListDependency();
+		$dep->title = 'Admin User';
+		$dep->default_status_level = AdminDependency::DELETE;
+		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db,
+			'adminusers', 'integer:id', null, 'text:name', 'name',
+			'id in ('.$item_list.')');
 
 		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = $dep->getMessage();

@@ -2,7 +2,7 @@
 
 require_once 'Admin/pages/AdminDBDelete.php';
 require_once 'Admin/pages/AdminConfirmation.php';
-require_once 'Admin/AdminDependency.php';
+require_once 'Admin/AdminListDependency.php';
 
 /**
  * Delete confirmation page for AdminSubComponents
@@ -52,15 +52,15 @@ class AdminSubComponentsDelete extends AdminDBDelete
 	protected function buildInternal()
 	{
 		parent::buildInternal();
+
 		$item_list = $this->getItemList('integer');
 
-		$dep = new AdminDependency();
+		$dep = new AdminListDependency();
 		$dep->title = Admin::_('Sub-Component');
-		$dep->status_level = AdminDependency::DELETE;
-
-		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'adminsubcomponents',
-			'integer:id', null, 'text:title', 'displayorder, title', 
-			'id in ('.$item_list.')');
+		$dep->default_status_level = AdminDependency::DELETE;
+		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db,
+			'adminsubcomponents', 'integer:id', null, 'text:title',
+			'displayorder, title', 'id in ('.$item_list.')');
 
 		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = $dep->getMessage();

@@ -2,7 +2,8 @@
 
 require_once 'Admin/pages/AdminDBDelete.php';
 require_once 'SwatDB/SwatDB.php';
-require_once 'Admin/AdminDependency.php';
+require_once 'Admin/AdminListDependency.php';
+require_once 'Admin/AdminSummaryDependency.php';
 
 /**
  * Delete confirmation page for AdminComponents
@@ -42,20 +43,19 @@ class AdminComponentsDelete extends AdminDBDelete
 
 		$item_list = $this->getItemList('integer');
 		
-		$dep = new AdminDependency();
+		$dep = new AdminListDependency();
 		$dep->title = 'component';
-		$dep->status_level = AdminDependency::DELETE;
+		$dep->default_status_level = AdminDependency::DELETE;
+		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db,
+			'admincomponents', 'integer:id', null, 'text:title',
+			'displayorder, title', 'id in ('.$item_list.')');
 
-		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'admincomponents',
-			'integer:id', null, 'text:title', 'displayorder, title', 'id in ('.$item_list.')');
-
-		$dep_subcomponents = new AdminDependency();
+		$dep_subcomponents = new AdminSummaryDependency();
 		$dep_subcomponents->title = 'sub-component';
-		$dep_subcomponents->status_level = AdminDependency::DELETE;
-		$dep_subcomponents->display_count = true;
-
-		$dep_subcomponents->entries = AdminDependency::queryDependencyEntries($this->app->db, 'adminsubcomponents',
-			'integer:id', 'integer:component', 'text:title', 'title', 'component in ('.$item_list.')');
+		$dep_subcomponents->default_status_level = AdminDependency::DELETE;
+		$dep_subcomponents->entries = AdminDependency::queryDependencyEntries($this->app->db,
+			'adminsubcomponents', 'integer:id', 'integer:component',
+			'text:title', 'title', 'component in ('.$item_list.')');
 
 		$dep->addDependency($dep_subcomponents);
 
