@@ -2,7 +2,7 @@
 
 require_once 'Admin/pages/AdminDBDelete.php';
 require_once 'SwatDB/SwatDB.php';
-require_once 'Admin/AdminDependency.php';
+require_once 'Admin/AdminListDependency.php';
 
 /**
  * Delete confirmation page for AdminGroups component
@@ -42,12 +42,12 @@ class AdminGroupsDelete extends AdminDBDelete
 
 		$item_list = $this->getItemList('integer');
 		
-		$dep = new AdminDependency();
+		$dep = new AdminListDependency();
 		$dep->title = 'Admin Group';
-		$dep->status_level = AdminDependency::DELETE;
-
-		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db, 'admingroups',
-			'integer:id', null, 'text:title', 'title', 'id in ('.$item_list.')');
+		$dep->default_status_level = AdminDependency::DELETE;
+		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db,
+			'admingroups', 'integer:id', null, 'text:title', 'title',
+			'id in ('.$item_list.')');
 
 		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = $dep->getMessage();
