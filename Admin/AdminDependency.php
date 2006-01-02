@@ -1,90 +1,128 @@
 <?php
 
 require_once 'Admin/Admin.php';
+require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/AdminDependencyEntry.php';
 
 /**
  * Dependency message class
  *
  * This class provides a standard way to display hierachal dependencies.
- * A typical use is for displaying items to be deleted on a confirmation page.
+ * The typical use for this class is for displaying items to be deleted on a
+ * delete confirmation page.
+ *
  * The items can be categorized into status levels (eg, DELETE and NODELETE)
  * based upon the existence of dependencies.
  *
  * @package   Admin
  * @copyright 2004-2005 silverorange
+ * @see       AdminDBDelete, AdminDependencyEntry
  */
-class AdminDependency
+abstract class AdminDependency
 {
-	const DELETE = 0;
-	const NODELETE = 1;
+	// {{{ constants
 
 	/**
-	 * Visible title for the type of entries this dependency object deals with
+	 * Dependency entries at this status level may be deleted
+	 */
+	const DELETE = 0;
+
+	/**
+	 * Dependency entries at this status level can not be deleted
+	 */
+	const NODELETE = 1;
+
+	// }}}
+	// {{{ public properties
+
+	/**
+	 * A visible title for the type of entries this dependency object deals
+	 * with
+	 *
+	 * If you are not using a sub-class, attempt to use titles that can be
+	 * pluralized by adding a single 's'.
+	 *
+	 * This title is never required. If you use a sub-class that defines its
+	 * own text methods you can choose to ignore this property. If you do not
+	 * use this property and do not use a sub-class that defines its own text
+	 * methods, generic text is used instead.
 	 *
 	 * @var string
 	 */
 	public $title = null;
 
 	/**
-	 * Status Levels
+	 * An array of possible status levels. Status levels are the categories
+	 * that dependency entries are sorted into when this dependency is
+	 * displayed. The two most common levels -- also the default levels -- are
+	 * "DELETE" and "NODELETE".
 	 *
-	 * Array of possible status levels. These are the categories that items are
-	 * sorted into when displayed. The two most common levels, and the default,
-	 * are "DELETE" and not "NODELETE". Array keys are integers where a high
-	 * number gives the status a higher priority relative to other status
-	 * levels.  Array elements are visible descriptions of the status levels.
-	 * The description can optionally contain a %s placeholder that will be
-	 * filled with the {AdminDependency::$title}.
+	 * Status levels are integers where a higher value indicates a higher
+	 * priority as compared to other status levels.
 	 *
-	 * By default two status levels are setup:
+	 * By default two status levels are available:
 	 *
 	 * <code>
 	 * array(
-	 *     AdminDependency::DELETE =>
-	 *         Admin::_('The following %s will be deleted:'),
-	 *     AdminDependency::NODELETE =>
-	 *         Admin::_('The following %s can't be deleted:')
+	 *     self::DELETE,
+	 *     self::NODELETE
 	 * );
-	 *</code>
+	 * </code>
 	 *
 	 * @var array
 	 */
 	public $status_levels = null;
 
 	/**
-	 * Entries
+	 * Array of {@link AdminDependencyEntry} objects to be displayed
 	 *
-	 * Array of {@link AdminDependencyEntry} objects to be displayed. Such an
-	 * array can be constructed from database data by calling the static
-	 * convenience method {@link AdminDependendy::queryDependencyEntries()}.
+	 * While this is a flat array, the objects in the array contain tree
+	 * structure information in their properties.
+	 *
+	 * Such an array can be automatically constructed from database data by
+	 * calling the static convenience method
+	 * {@link AdminDependendy::queryDependencyEntries()}.
 	 *
 	 * @var array
+	 * @see AdminDependencyEntry
 	 */
 	public $entries = null;
 
 	/**
-	 * Default status level
-	 *
-	 * The default status level to assign to entries that do not already have
-	 * it set. This value should correspond to the keys of the
+	 * The status level to assign to dependency entries that do not have a
+	 * status level assigned. This value should correspond to a value in the
 	 * {@link AdminDependendy::$status_levels} array.
 	 *
-	 * @var int
+	 * @var integer
 	 */
-	public $status_level = AdminDependency::DELETE;
+	public $default_status_level = self::DELETE;
+
+	// }}}
+	// {{{ private properties
 
 	/**
-	 * Display count only
+	 * An array of sub-dependencies of this dependency
 	 *
-	 * When true, a one line count of dependent items is displayed rather than
-	 * a list of all items.
+	 * This is an array of {@link AdminDependency} objects that allows a tree
+	 * of {@link AdminDependencyEntry} trees to be created.
 	 *
-	 * @var boolean
+	 * @var array
 	 */
-	public $display_count = false;
-	
-	private $dependencies = array();
+	protected $dependencies = array();
+
+	// }}}
+	// {{{ public function __construct()
+
+	/**
+	 * Creates a new dependency object
+	 */
+	public function __construct()
+	{
+		$this->status_levels = array(self::DELETE, self::NODELETE);
+	}
+
+	// }}}
+	// {{{ public function getMessage()
 
 	/**
 	 * Gets the dependency message
@@ -93,40 +131,33 @@ class AdminDependency
 	 * {@link AdminDependency} objects, this should be called on the
 	 * root object.
 	 *
-	 * @returns string HTML structured dependency message.
+	 * @return string the XHTML structured dependency message.
 	 */
 	public function getMessage()
 	{
 		if ($this->entries === null)
 			return '';
 
-		if ($this->status_levels === null) {
-			$this->status_levels = array(
-				self::DELETE =>
-					Admin::_('The following %s(s) will be deleted:'),
-				self::NODELETE =>
-					Admin::_('The following %s(s) can not be deleted:')
-			);
-		}
-
 		$this->processDependencies();
-		
+
 		ob_start();
 		$this->display();
-
 		return ob_get_clean();
 	}
 
+	// }}}
+	// {{{ public function getStatusLevelCount()
+
 	/**
-	 * Gets the number of items at the given status level.
+	 * Gets the number of entries at a given status level
 	 *
-	 * @param int $status_level The status level to count items in.
-	 * @returns int Number of items at $status_level.
+	 * @param integer $status_level the status level to count entries in.
+	 *
+	 * @return integer the number of entries at the given status level.
 	 */
 	public function getStatusLevelCount($status_level)
 	{
 		$count = 0;
-		
 		foreach ($this->entries as $entry)
 			if ($entry->status_level == $status_level)
 				$count++;
@@ -134,146 +165,33 @@ class AdminDependency
 		return $count;
 	}
 
-	private function processDependencies($parent = null)
+	// }}}
+	// {{{ public function display()
+
+	/**
+	 * Displays this dependency and all its dependency entries and
+	 * sub-dependencies
+	 */
+	public function display()
 	{
-		$ret = 0;
-		
-		foreach ($this->entries as $entry) {
-			if ($entry->status_level === null);
-				$entry->status_level = $this->status_level;
+		$dependency_div = new SwatHtmlTag('div');
+		$dependency_div->class = 'admin-dependency';
+		$dependency_div->open();
 
-			if ($parent === null || $entry->parent == $parent) {
-				foreach ($this->dependencies as $dep) {
-					$entry->status_level = max($entry->status_level,
-						$dep->processDependencies($entry->id));
-				}
-				
-				$ret = max($ret, $entry->status_level);
-			}
-		}
-		
-		return $ret;
-	}
-
-	private function display()
-	{
-		echo '<div class="admin-dependency">';
-
-		foreach ($this->status_levels as $status_level => $title)
+		foreach ($this->status_levels as $status_level)
 			$this->displayStatusLevel($status_level);
 
-		echo '</div>';
+		$dependency_div->close();
 	}
 
-	private function displayStatusLevel($status_level)
-	{
-		$first = true;
-		
-		foreach ($this->entries as $entry) {
-			if ($entry->status_level == $status_level) {
-				
-				if ($first) {
-					echo '<h3>';
-					printf($this->status_levels[$entry->status_level],
-						$this->title);
+	// }}}
+	// {{{ public function addDependency()
 
-					echo '</h3>';
-					echo '<ul>';
-					$first = false;
-				}
-
-				echo '<li>'.$entry->title;
-				
-				foreach ($this->dependencies as $dep)
-					$dep->displayDependencies($entry->id, $status_level);
-
-				echo '</li>';
-			}
-		}
-
-		if (!$first)
-			echo '</ul>';
-		
-	}
-	
-	private function displayDependencies($parent, $status_level)
-	{
-		if ($this->display_count)
-			$this->displayDependencyCount($parent, $status_level);
-		else
-			$this->displayDependencyList($parent, $status_level);
-	}
-
-	private function displayDependencyList($parent, $status_level)
-	{
-		$first = true;
-	
-		foreach ($this->entries as $entry) {
-			if ($entry->parent == $parent &&
-				$entry->status_level == $status_level) {
-				
-				if ($first) {
-					echo '<br />';
-					
-					if ($this->title !== null)
-						printf(Admin::_('Dependent %s(s):'), $this->title);
-					else
-						echo Admin::_('Dependent item(s):');
-						
-					echo '<ul>';
-					$first = false;
-				}
-
-				echo '<li>'.$entry->title;
-				
-				foreach ($this->dependencies as $dep)
-					$dep->displayDependencies($entry->id, $status_level);
-
-				echo '</li>';
-			}
-		}
-
-		if (!$first)
-			echo '</ul>';
-		
-	}
-	
-	private function displayDependencyCount($parent, $status_level)
-	{
-		$count = 0;
-		
-		foreach ($this->entries as $entry)
-			if ($entry->parent == $parent &&
-				$entry->status_level == $status_level)
-				$count++;
-		
-		if ($count != 0) {
-			echo '<ul><li>';
-			if ($this->title !== null) {
-				printf(Admin::ngettext('%d dependent %s', '%d dependent %s(s)',
-					$count), $count, $this->title);
-
-			} else {
-				printf(Admin::ngettext('%d dependent item', '%d dependent items',
-					$count), $count);
-			}
-		}
-		
-		foreach ($this->entries as $entry)
-			if ($entry->parent == $parent &&
-				$entry->status_level == $status_level)
-				foreach ($this->dependencies as $dep)
-					$dep->displayDependencyCount($entry->id, $status_level);
-					
-		if ($count != 0)
-			echo '</ul>';
-	}
-	
 	/**
 	 * Adds a sub-dependency
 	 *
-	 * Add another AdminDependency object as a sub-dependency of this one. The
-	 * parent fields within the entries of the sub-dependency object should
+	 * Addis another AdminDependency object as a sub-dependency of this one.
+	 * The parent fields within the entries of the sub-dependency object should
 	 * correspond to the id fields of the entries of this object.
 	 *
 	 * @param AdminDependency $dep AdminDependency object to add as a
@@ -283,6 +201,152 @@ class AdminDependency
 	{
 		$this->dependencies[] = $dep;
 	}
+
+	// }}}
+	// {{{ protected function getStatusLevelText()
+
+	/**
+	 * Gets the text representing a status level of this dependency
+	 *
+	 * Sub-classes may override this method to have more descriptive or
+	 * meaningful text. If the text for a non-existant status level in this
+	 * dependency is requested an exception is thrown.
+	 *
+	 * @param integer $status_level the status level to get the textual
+	 *                               representation of.
+	 * @param integer $count the number of entries at the given status level.
+	 *
+	 * @return string the textual representation of the given status level.
+	 *
+	 * @thows SwatException
+	 */
+	protected function getStatusLevelText($status_level, $count)
+	{
+		switch ($status_level) {
+		case self::DELETE:
+			if ($this->title === null) {
+				$message =
+					Admin::ngettext('The following item will be deleted:',
+					'The following items will be deleted:', $count);
+			} else {
+				$message = Admin::ngettext('The following %s will be deleted:',
+					'The following %ss will be deleted:', $count);
+
+				$message = sprintf($message, $this->title);
+			}
+			break;
+
+		case self::NODELETE:
+			if ($this->title === null) {
+				$message =
+					Admin::ngettext('The following item can not be deleted:',
+					'The following items can not be deleted:', $count);
+			} else {
+				$message =
+					Admin::ngettext('The following %s can not be deleted:',
+					'The following %ss can not be deleted:', $count);
+
+				$message = sprintf($message, $this->title);
+			}
+			break;
+
+		default:
+			throw new SwatException('Unknown status level text requested in '.
+				'AdminDependency.');
+		}
+		return $message;
+	}
+
+	// }}}
+	// {{{ protected abstract function displayDependencies()
+
+	/**
+	 * Displays the dependency entries of this dependency for a given parent
+	 * at a given status level
+	 * 
+	 * @param integer $parent the id of the parent to display the dependency
+	 *                         entries for.
+	 * @param integer $status_level the status level to display the dependency
+	 *                               entries for.
+	 */
+	protected abstract function displayDependencies($parent, $status_level);
+
+	// }}}
+	// {{{ private function processDependencies()
+
+	/**
+	 * Figures out the status level of all dependency entries of this
+	 * dependency
+	 *
+	 * If any child elements have a higher priority status than their parents,
+	 * the status level of the parent is set to the status level of the
+	 * children with the highest priority.
+	 *
+	 * @param integer $parent the id of the parent entry to process. If the
+	 *                         parent id is not specified, all entries are
+	 *                         processed.
+	 *
+	 * @return integer the highest priority status level of the processed
+	 *                  entries.
+	 */
+	private function processDependencies($parent = null)
+	{
+		$return = 0;
+		foreach ($this->entries as $entry) {
+			if ($entry->status_level === null)
+				$entry->status_level = $this->default_status_level;
+
+			if ($parent === null || $entry->parent == $parent) {
+				foreach ($this->dependencies as $dep) {
+					$entry->status_level = max($entry->status_level,
+						$dep->processDependencies($entry->id));
+				}
+				$return = max($return, $entry->status_level);
+			}
+		}
+		return $return;
+	}
+
+	// }}}
+	// {{{ private function displayStatusLevel()
+
+	/**
+	 * Displays all the dependency entries at a single status level for this
+	 * dependency
+	 *
+	 * @param integer $status_level the status level to display dependency
+	 *                               entries for.
+	 */
+	private function displayStatusLevel($status_level)
+	{
+		$count = $this->getStatusLevelCount($status_level);
+		$first = true;
+		foreach ($this->entries as $entry) {
+			if ($entry->status_level == $status_level) {
+				if ($first) {
+					$header_tag = new SwatHtmlTag('h3');
+					$header_tag->content =
+						$this->getStatusLevelText($status_level, $count);
+
+					$header_tag->display();
+					echo '<ul>';
+					$first = false;
+				}
+
+				echo '<li>'.$entry->title;
+
+				foreach ($this->dependencies as $dep)
+					$dep->displayDependencies($entry->id, $status_level);
+
+				echo '</li>';
+			}
+		}
+		if ($count > 0)
+			echo '</ul>';
+	}
+
+	// }}}
+	// {{{ public static function queryDependencyEntries()
 
 	/**
 	 * Queries for dependency entries
@@ -336,40 +400,50 @@ class AdminDependency
 		else
 			$parents = SwatDB::getOptionArray($db, $table, $parent_field,
 				$id_field, $order_by_clause, $where_clause);
-		
+
 		return self::buildDependencyArray($items, $parents);
 	}
+
+	// }}}
+	// {{{ public static function buildDependencyEntry()
 
 	/**
 	 * Builds a dependency array
 	 *
- 	 * Convenience method to create an array for {@link AdminDependencyEntry} 
-	 * objects. The returned entry array can be directly assigned to the
- 	 * {@link AdminDependency::$entries} property.
+ 	 * Convenience method to create a flat array of {@link AdminDependencyEntry}
+	 * objects. The returned array of dependency entries may be directly
+	 * assigned to the {@link AdminDependency::$entries} property of an
+	 * {@link AdminDependency} object.
 	 *
-	 * @param array $items An associative array in the form of id=>title
-	 * @param array $parents An associative array in the form of id=>parent
+	 * @param array $items an associative array of dependent items in the form
+	 *                      of id => title. This array is usually constructed
+	 *                      from the result of a database query.
+	 * @param array $parents an associative array containing tree information
+	 *                        for the items array in the form of id = >parent.
+	 *                        This array is usually constructed from the result
+	 *                        of a database query.
 	 *
-	 * @return array An array of {@link AdminDependencyEntries}.
+	 * @return array a flat array of {@link AdminDependencyEntry} objects that
+	 *                contains dependency tree information.
 	 */
 	public static function buildDependencyArray($items, $parents)
 	{
 		$entries = array();
-		
 		foreach ($items as $id => $title) {
 			if ($parents === null || array_key_exists($id, $parents)) {
-				
+
 				$entry = new AdminDependencyEntry();
 				$entry->id = $id;
 				$entry->title = $title;
 				$entry->parent = ($parents === null) ? null : $parents[$id];
-				
+
 				$entries[] = $entry;
-				
 			}
 		}
 		return $entries;
 	}
+
+	// }}}
 }
 
 ?>
