@@ -405,7 +405,7 @@ abstract class AdminDependency
 	}
 
 	// }}}
-	// {{{ public static function buildDependencyEntry()
+	// {{{ public static function buildDependencyArray()
 
 	/**
 	 * Builds a dependency array
