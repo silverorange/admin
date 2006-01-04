@@ -6,8 +6,8 @@ require_once 'Swat/SwatMessageDisplay.php';
 /**
  * Administrator Not Found page
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004 silverorange
  */
 class AdminNotFound extends AdminPage
 {
@@ -25,18 +25,19 @@ class AdminNotFound extends AdminPage
 
 	// }}}
 
-	// build phase
-	// {{{ protected function display()
+	// init phase
+	// {{{ protected function initInternal()
 
-	protected function display()
+	protected function initInternal()
 	{
 		$message_display = new SwatMessageDisplay();
-		$message_display->title = 'Not Found';
 
 		if ($this->message !== null)
 			$message_display->add($this->message);
+		else
+			$message_display->add(Admin::_('Not Found'));
 
-		$message_display->display();
+		$this->ui->getRoot()->add($message_display);
 	}
 
 	// }}}
