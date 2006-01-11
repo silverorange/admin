@@ -39,10 +39,10 @@ img { border: 0; }
 /* Header Styles */
 
 #admin-header {
-	background: #426c9e;
+	background: #426c9e url(../images/admin-header-back.png) bottom repeat-x;
 	padding: 0.5em 1em;
 	color: #ddd;
-	border-bottom: 4px solid #81aed5;
+	border-bottom: 1px solid #81aed5;
 }
 
 #admin-header a { color: #fff; }
@@ -88,7 +88,7 @@ img { border: 0; }
 #admin-menu ul li {
 	border: 1px solid #e7ddc8;
 	padding-bottom: 6px;
-	margin-bottom: 1em;
+	margin-bottom: 6px;
 	background: #fff;
 }
 
@@ -111,8 +111,14 @@ img { border: 0; }
 	font-size: 85%;
 }
 
-#admin-menu a {
+#admin-menu a:link,
+#admin-menu a:visited {
+	display: block;
 	text-decoration: none;
+}
+
+#admin-menu a:hover {
+	text-decoration: underline;
 }
 
 /* Content Styles */
