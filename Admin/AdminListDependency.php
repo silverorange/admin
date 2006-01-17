@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Admin/AdminDependency.php';
+require_once 'Swat/SwatString.php';
 
 /**
  * A dependency that displays its dependencies as a list
@@ -57,12 +58,13 @@ class AdminListDependency extends AdminDependency
 
 				if ($first) {
 					echo '<br />';
-					echo $this->getDependencyText($count);
+					echo SwatString::minimizeEntities($this->getDependencyText($count));
 					echo '<ul>';
 					$first = false;
 				}
 
-				echo '<li>'.$entry->title;
+				echo '<li>';
+				echo SwatString::minimizeEntities($entry->title);
 
 				foreach ($this->dependencies as $dep)
 					$dep->displayDependencies($entry->id, $status_level);
@@ -70,6 +72,7 @@ class AdminListDependency extends AdminDependency
 				echo '</li>';
 			}
 		}
+
 		if ($count > 0)
 			echo '</ul>';
 	}

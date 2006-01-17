@@ -1,5 +1,6 @@
 <?php
 
+require_once 'Swat/SwatHtmlTag.php';
 require_once 'Admin/AdminDependency.php';
 
 /**
@@ -54,8 +55,13 @@ class AdminSummaryDependency extends AdminDependency
 
 		if ($count != 0) {
 			// TODO: class here
-			echo ' <span style="color:#888;">(';
-			echo $this->getDependencyText($count);
+			$span_tag = new SwatHtmlTag('span');
+			$span_tag->style = 'color:#888;';
+			$span_tag->setContent($this->getDependencyText($count));
+
+			$span_tag->open();
+			echo '(';
+			$span_tag->displayContent();
 		}
 
 		foreach ($this->entries as $entry)
@@ -64,8 +70,10 @@ class AdminSummaryDependency extends AdminDependency
 				foreach ($this->dependencies as $dep)
 					$dep->displayDependencies($entry->id, $status_level);
 
-		if ($count != 0)
-			echo ')</span>';
+		if ($count != 0) {
+			echo ')';
+			$span_tag->close();
+		}
 	}
 }
 

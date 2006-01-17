@@ -1,8 +1,9 @@
 <?php
 
 require_once 'Admin/Admin.php';
-require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/AdminDependencyEntry.php';
+require_once 'SwatDB/SwatDB.php';
+require_once 'Swat/SwatString.php';
 
 /**
  * Dependency message class
@@ -325,15 +326,16 @@ abstract class AdminDependency
 			if ($entry->status_level == $status_level) {
 				if ($first) {
 					$header_tag = new SwatHtmlTag('h3');
-					$header_tag->content =
-						$this->getStatusLevelText($status_level, $count);
+					$header_tag->setContent(
+						$this->getStatusLevelText($status_level, $count));
 
 					$header_tag->display();
 					echo '<ul>';
 					$first = false;
 				}
 
-				echo '<li>'.$entry->title;
+				echo '<li>';
+				echo SwatString::minimizeEntities($entry->title);
 
 				foreach ($this->dependencies as $dep)
 					$dep->displayDependencies($entry->id, $status_level);

@@ -20,7 +20,7 @@ class AdminUsersHistoryCellRenderer extends SwatCellRenderer
 		if ($this->date !== null) {
 			echo ' (';
 			$anchor = new SwatHtmlTag('a');
-			$anchor->content = $this->title;
+			$anchor->setContent($this->title);
 			$anchor->href = sprintf('AdminUsers/Details&id=%s', $this->user);
 			$anchor->display();
 			echo ')';

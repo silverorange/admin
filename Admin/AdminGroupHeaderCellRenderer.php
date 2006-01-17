@@ -2,6 +2,7 @@
 
 require_once 'Swat/SwatCellRenderer.php';
 require_once 'Swat/SwatHtmlTag.php';
+require_once 'Swat/SwatString.php';
 require_once 'Admin/Admin.php';
 
 /**
@@ -40,11 +41,11 @@ class AdminGroupHeaderCellRenderer extends SwatCellRenderer
 
 	public function render()
 	{
-		echo $this->title;
+		echo SwatString::minimizeEntities($this->title);
 
 		if ($this->order_link !== null) {
 			$anchor = new SwatHtmlTag('a');
-			$anchor->content = Admin::_('Change Order');
+			$anchor->setContent(Admin::_('Change Order'));
 			$anchor->href = sprintf($this->order_link, $this->order_value);
 
 			echo ' - ';
