@@ -97,9 +97,13 @@ class AdminSearchClause {
 				$value = "{$value}%";
 			elseif ($this->operator == self::OP_ENDS_WITH)
 				$value = "%{$value}";
+
+		} elseif ($this->field->type == 'date') {
+			if (is_object($value) && $value instanceof SwatDate)
+				$value = $value->getDate();
 		}
 
-		$value = $db->quote($value);
+		$value = $db->quote($value, $this->field->type);
 		$operator = self::getOperatorString($this->operator);
 		$clause = " {$logic_operator} {$field} {$operator} {$value} ";
 
