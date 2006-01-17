@@ -41,7 +41,7 @@ class AdminApplicationDatabaseModule extends SwatApplicationModule
 		$this->mdb2->options['debug'] = true;
 
 		if (MDB2::isError($this->mdb2))
-			throw new Exception('Unable to connect to database.');
+			throw new SwatDBException($this->mdb2);
 	}
 
     // }}}
