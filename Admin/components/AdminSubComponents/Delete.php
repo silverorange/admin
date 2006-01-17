@@ -64,6 +64,7 @@ class AdminSubComponentsDelete extends AdminDBDelete
 
 		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = $dep->getMessage();
+		$message->content_type = 'text/xml';
 
 		if ($dep->getStatusLevelCount(AdminDependency::DELETE) == 0)
 			$this->switchToCancelButton();
