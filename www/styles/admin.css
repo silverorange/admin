@@ -132,10 +132,6 @@ img { border: 0; }
 	margin: 4em auto 1em auto;
 }
 
-.swat-frame h2 span {
-	font-weight: normal;
-}
-
 .admin-group-link-cell-renderer {
 	padding: 0 0.6em;
 	background: #f9f6f0 url(../images/admin-group-link-cell-renderer.png) top left repeat-x;
