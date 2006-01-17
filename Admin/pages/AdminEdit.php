@@ -31,7 +31,6 @@ abstract class AdminEdit extends AdminPage
 	// process phase
 	// {{{ protected function processInternal()
 
-
 	protected function processInternal()
 	{
 		parent::processInternal();
