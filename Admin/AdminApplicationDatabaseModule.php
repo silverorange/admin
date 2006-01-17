@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Swat/SwatApplicationModule.php';
+require_once 'SwatDB/exceptions/SwatDBException.php';
 require_once 'MDB2.php';
 
 /**
