@@ -83,7 +83,11 @@ class AdminMenuSection
 
 	public function display()
 	{
-		echo '<li><span>'.$this->title.'</span>';
+		$span_tag = new SwatHtmlTag('span');
+		$span_tag->setContent($this->title);
+
+		echo '<li>';
+		$span_tag->display();
 		echo '<ul>';
 
 		foreach ($this->components as $component)
@@ -116,9 +120,12 @@ class AdminMenuComponent
 
 	public function display()
 	{
-		echo '<li><a href="'.$this->shortname.'">';
-		echo $this->title;
-		echo '</a>';
+		$anchor_tag = new SwatHtmlTag('a');
+		$anchor_tag->href = $this->shortname;
+		$anchor_tag->setContent($this->title);
+
+		echo '<li>';
+		$anchor_tag->display();
 
 		if (count($this->subcomponents)) {
 			echo '<ul>';
@@ -151,9 +158,13 @@ class AdminMenuSubcomponent
 
 	public function display($component_shortname)
 	{
-		echo '<li><a href="'.$component_shortname.'/'.$this->shortname.'">';
-		echo $this->title;
-		echo '</a></li>';
+		$anchor_tag = new SwatHtmlTag('a');
+		$anchor_tag->href = $component_shortname.'/'.$this->shortname;
+		$anchor_tag->setContent($this->title);
+
+		echo '<li>';
+		$anchor_tag->display();
+		echo '</li>';
 	}
 }
 

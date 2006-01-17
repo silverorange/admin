@@ -165,7 +165,7 @@ class AdminComponentsDetails extends AdminIndex
 			echo '<li>';
 			$anchor_tag = new SwatHtmlTag('a');
 			$anchor_tag->href = 'AdminGroups/Details?id='.$row->id;
-			$anchor_tag->content = $row->title;
+			$anchor_tag->setContent($row->title);
 			$anchor_tag->display();
 			echo '</li>';
 		}

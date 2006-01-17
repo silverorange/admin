@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Swat/SwatNavBar.php';
+require_once 'Swat/SwatString.php';
 require_once 'Admin/AdminImportantNavBarEntry.php';
 
 /**
@@ -30,11 +31,11 @@ class AdminNavBar extends SwatNavBar
 				echo '<h1>';
 				$link_tag = new SwatHtmlTag('a');
 				$link_tag->href = $entry->link;
-				$link_tag->content = $entry->title;
+				$link_tag->setContent($entry->title);
 				$link_tag->display();
 				echo '</h1>';
 			} else {
-				echo $entry->title;
+				echo SwatString::minimizeEntities($entry->title);
 			}
 		} else {
 			parent::displayEntry($entry, $link);
