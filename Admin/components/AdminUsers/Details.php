@@ -48,7 +48,7 @@ class AdminUsersDetails extends AdminIndex
 					'not found.'), $id), SwatMessage::ERROR));
 
 		$frame = $this->ui->getWidget('index_frame');
-		$frame->title.=': <span>'.$row->name.'</span>';
+		$frame->subtitle = $row->name;
 	}
 
 	// }}}
