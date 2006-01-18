@@ -2,7 +2,7 @@
 	border: 1px solid;
 	margin: 1em 0;
 	min-height: 38px;
-	padding: 6px 6px 6px 42px;
+	padding: 12px 6px 6px 42px;
 	background-position: 12px 12px;
 	background-repeat: no-repeat;
 	-moz-border-radius: 8px;
@@ -20,7 +20,4 @@
 
 .admin-note-title {
 	margin: 0;
-	margin-top: 0;
-	font-weight: bold;
-	margin-top: 8px;
 }
