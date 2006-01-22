@@ -51,6 +51,7 @@
 				<property name="title">Groups</property>
 				<object class="AdminNullTextCellRenderer">
 					<property name="text" type="data">groups</property>
+					<property name="content_type">text/xml</property>
 				</object>
 			</object>
 		</widget>
