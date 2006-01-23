@@ -147,3 +147,25 @@ img { border: 0; }
 .admin-null-text-cell-renderer-null {
 	color: #888;
 }
+/* AdminTitleLinkCellRenderer Styles */
+
+.swat-table-view td.admin-title-link-cell-renderer {
+	padding: 0;
+}
+
+td.admin-title-link-cell-renderer a:link,
+td.admin-title-link-cell-renderer a:visited {
+	display: block;
+	border: 1px solid transparent;
+	padding: 0.4em 0.2em;
+}
+
+td.admin-title-link-cell-renderer a:hover {
+	background: #f6f2ea url(../images/admin-title-link-cell-renderer-back.png) top repeat-x;
+	border: 1px solid #f0eade;
+}
+
+td.admin-title-link-cell-renderer a:active {
+	background: #f3efe5;
+}
+
