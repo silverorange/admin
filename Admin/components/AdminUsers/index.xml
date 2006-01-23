@@ -16,7 +16,7 @@
 				<object class="SwatTableViewColumn">
 					<object class="AdminEditControlCellRenderer">
 						<property name="link">AdminUsers/Edit?id=%s</property>
-						<property name="value" type="data">id</property>
+						<property name="link_value" type="data">id</property>
 					</object>
 				</object>
 				<object class="SwatTableViewCheckboxColumn" id="checkbox">
