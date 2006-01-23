@@ -26,7 +26,7 @@
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="username">
 					<property name="title" translatable="yes">Username</property>
-					<object class="SwatLinkCellRenderer">
+					<object class="AdminTitleLinkCellRenderer">
 						<property name="text" type="data">username</property>
 						<property name="link">AdminUsers/Edit?id=%s</property>
 						<property name="value" type="data">id</property>

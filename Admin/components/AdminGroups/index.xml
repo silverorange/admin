@@ -26,7 +26,7 @@
 				</object>
 				<object class="SwatTableViewColumn">
 					<property name="title" translatable="yes">Title</property>
-					<object class="SwatLinkCellRenderer">
+					<object class="AdminTitleLinkCellRenderer">
 						<property name="text" type="data" translatable="yes">title</property>
 						<property name="link">AdminGroups/Edit?id=%s</property>
 						<property name="value" type="data">id</property>
