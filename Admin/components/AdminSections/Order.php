@@ -58,8 +58,8 @@ class AdminSectionsOrder extends AdminDBOrder
 	protected function loadData()
 	{
 		$order_widget = $this->ui->getWidget('order');
-		$order_widget->options = SwatDB::getOptionArray($this->app->db, 
-			'adminsections', 'title', 'id', 'displayorder, title');
+		$order_widget->addOptionsByArray(SwatDB::getOptionArray($this->app->db, 
+			'adminsections', 'title', 'id', 'displayorder, title'));
 
 		$sql = 'select sum(displayorder) from adminsections';
 		$sum = SwatDB::queryOne($this->app->db, $sql, 'integer');

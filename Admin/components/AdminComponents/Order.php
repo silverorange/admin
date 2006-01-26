@@ -61,8 +61,8 @@ class AdminComponentsOrder extends AdminDBOrder
 			$this->app->db->quote($this->parent, 'integer'));
 
 		$order_widget = $this->ui->getWidget('order');
-		$order_widget->options = SwatDB::getOptionArray($this->app->db, 
-			'admincomponents', 'title', 'id', 'displayorder, title', $where_clause);
+		$order_widget->addOptionsByArray(SwatDB::getOptionArray($this->app->db, 
+			'admincomponents', 'title', 'id', 'displayorder, title', $where_clause));
 
 		$sql = 'select sum(displayorder) from admincomponents where '.$where_clause;
 		$sum = SwatDB::queryOne($this->app->db, $sql, 'integer');
