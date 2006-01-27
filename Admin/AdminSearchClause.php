@@ -127,7 +127,7 @@ class AdminSearchClause
 			case self::OP_ENDS_WITH:   return 'like';
 
 			default:
-				throw new Exception('AdminSearchClause: unknown operator '.$id);
+				throw new Exception('Unknown operator in clause: '.$id);
 		}
 	}
 }
