@@ -8,8 +8,8 @@ require_once 'SwatDB/SwatDBField.php';
  * @package Admin
  * @copyright silverorange 2005
  */
-class AdminSearchClause {
-
+class AdminSearchClause
+{
 	const OP_EQUALS      = 1;
 	const OP_GT          = 2;
 	const OP_GTE         = 3;
@@ -63,7 +63,8 @@ class AdminSearchClause {
 	 *
 	 * @param mixed $value The value of the search clause.
 	 */
-	function __construct($field, $value = null) {
+	function __construct($field, $value = null)
+	{
 		$this->field = new SwatDBField($field);
 		$this->value = $value;
 		$this->operator = self::OP_EQUALS;
@@ -77,7 +78,8 @@ class AdminSearchClause {
 	 * 
 	 * @return string SQL search clause
 	 */
-	public function getClause($db, $logic_operator = 'and') {
+	public function getClause($db, $logic_operator = 'and')
+	{
 		if ($this->value === null)
 			return '';
 		
@@ -110,7 +112,8 @@ class AdminSearchClause {
 		return $clause;
 	}
 
-	private static function getOperatorString($id) {
+	private static function getOperatorString($id)
+	{
 		$id = intval($id);
 
 		switch ($id) {
