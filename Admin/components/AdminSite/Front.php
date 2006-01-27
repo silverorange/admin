@@ -9,7 +9,7 @@ require_once 'Admin/AdminUI.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminFront extends AdminPage
+class AdminSiteFront extends AdminPage
 {
 	// init phase
 	// {{{ protected function initInternal()
@@ -17,9 +17,7 @@ class AdminFront extends AdminPage
 	protected function initInternal()
 	{
 		$this->ui->loadFromXML(dirname(__FILE__).'/front.xml');
-
-		$this->navbar = new SwatNavBar();
-		$this->navbar->createEntry('<h1>'.$this->app->title.'</h1>');
+		$this->navbar->popEntry();
 	}
 
 	// }}}

@@ -7,7 +7,7 @@ require_once 'Admin/pages/AdminPage.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminLogout extends AdminPage
+class AdminSiteLogout extends AdminPage
 {
 	// process phase
 	// {{{ protected functipn processInternal()

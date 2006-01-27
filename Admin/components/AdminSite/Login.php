@@ -11,7 +11,7 @@ require_once 'Swat/SwatLayout.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminLogin extends AdminPage
+class AdminSiteLogin extends AdminPage
 {
 	// init phase
 	// {{{ protected function initInternal()

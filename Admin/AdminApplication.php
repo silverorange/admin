@@ -10,6 +10,8 @@ require_once 'Admin/AdminApplicationMessagesModule.php';
 require_once 'Admin/AdminApplicationDatabaseModule.php';
 require_once 'Admin/AdminPageRequest.php';
 require_once 'Admin/pages/AdminPage.php';
+require_once 'Admin/exceptions/AdminException.php';
+require_once 'Admin/exceptions/AdminNotFoundException.php';
 
 /**
  * Web application class for an administrator
@@ -100,7 +102,35 @@ class AdminApplication extends SwatApplication
 		$this->db = $this->database->mdb2;
 
 		// call this last
-		$this->initPage();
+		try {
+			$this->initPage();
+		}
+		catch (AdminException $e) {
+			$this->replacePage('AdminSite/Exception');
+			$this->page->setException($e);
+			$this->initPage();
+		}
+	}
+
+    // }}}
+    // {{{ public function run()
+
+	/**
+	 * Run the application
+	 */
+	public function run()
+	{
+		try {
+			$this->getPage()->process();
+			$this->getPage()->build();
+		}
+		catch (AdminException $e) {
+			$this->replacePage('AdminSite/Exception');
+			$this->page->setException($e);
+			$this->page->build();
+		}
+
+		$this->getPage()->layout->display();
 	}
 
     // }}}
@@ -116,7 +146,16 @@ class AdminApplication extends SwatApplication
 	public function resolvePage()
 	{
 		$source = self::initVar('source', null, self::VAR_GET);
-		return $this->instantiatePage($source);
+
+		try {
+			$page = $this->instantiatePage($source);
+		}
+		catch (AdminException $e) {
+			$page = $this->instantiatePage('AdminSite/Exception');
+			$page->setException($e);
+		}
+
+		return $page;
 	}
 		
     // }}}
@@ -136,24 +175,6 @@ class AdminApplication extends SwatApplication
 	}
 
     // }}}
-    // {{{ public function replacePageNoAccess()
-
-	/**
-	 * Replace Page with No Access Admin Page
-	 *
-	 * This method is used to replace the current page with a No Access page
-	 * and an optional message.
-	 *
-	 * @param SwatMessage An optional {@link SwatMessage} to display.
-	 */
-	public function replacePageNoAccess($msg = null)
-	{
-		$this->replacePage('Admin/NoAccess');
-		$this->page->setMessage($msg);
-		$this->page->build();
-	}
-
-    // }}}
     // {{{ protected function getServerName()
 	/*
     protected function getServerName()
@@ -169,52 +190,36 @@ class AdminApplication extends SwatApplication
 	{
 		$request = $this->getRequest($source);
 		
-		if ($request === null) {
-			$err = new SwatMessage(Admin::_('Component not found.'),
-				SwatMessage::SYSTEM_ERROR);
-		} else {
-			$file = $request->getFilename();
-			
-			if ($file === null) {
-				$err = new SwatMessage(Admin::_('File not found.'),
-					SwatMessage::SYSTEM_ERROR);
-			
-			} else {
-				require_once $file;
+		if ($request === null)
+			throw new AdminNotFoundException(
+				sprintf(Admin::_("Component not found for soure '%s'."), $source));
 
-				$classname = $request->getClassname();
-				if ($classname === null) {
-					$err = new SwatMessage(
-						sprintf(Admin::_('Class \'%s\' does not exist in the included file.'),
-							$request->component.$request->subcomponent),
-						SwatMessage::SYSTEM_ERROR);
-				} else {
-					$page = new $classname($this);
-					$page->title = $request->title;
-
-					if ($page instanceof AdminPage) {
-						$page->source = $request->source;
-						$page->component = $request->component;
-						$page->subcomponent = $request->subcomponent;
-						$page->navbar->addEntry(new AdminImportantNavBarEntry($this->title, ''));
-						$page->navbar->addEntry(new SwatNavBarEntry($request->title, 
-							($request->subcomponent == 'Index') ? null : $request->component));
-					}
-				}	
-			}
-		}
-	
-		if (!isset($page)) {
-			require_once 'Admin/components/Admin/NotFound.php';
-			$page = new AdminNotFound($this);
-			$page->source = 'Admin/NotFound';
-			$page->title = Admin::_('Page not found');
-			$page->component = 'Admin';
-			$page->subcomponent = 'NotFound';
-			$page->setMessage($err);
-			$page->navbar->createEntry($this->title, '');
-		}
+		$file = $request->getFilename();
 			
+		if ($file === null)
+			throw new AdminNotFoundException(
+				sprintf(Admin::_("File not found for soure '%s'."), $source));
+			
+		require_once $file;
+		$classname = $request->getClassname();
+
+		if ($classname === null)
+			throw new AdminNotFoundException(
+				sprintf(Admin::_("Class '%s' does not exist in the included file."),
+					$request->component.$request->subcomponent));
+
+		$page = new $classname($this);
+		$page->title = $request->title;
+
+		if ($page instanceof AdminPage) {
+			$page->source = $request->source;
+			$page->component = $request->component;
+			$page->subcomponent = $request->subcomponent;
+			$page->navbar->addEntry(new AdminImportantNavBarEntry($this->title, ''));
+			$page->navbar->addEntry(new SwatNavBarEntry($request->title, 
+				($request->subcomponent == 'Index') ? null : $request->component));
+		}
+
 		if (isset($_SERVER['HTTP_REFERER']))
 			$this->history->storeHistory($_SERVER['HTTP_REFERER']);
 
@@ -227,13 +232,16 @@ class AdminApplication extends SwatApplication
 	private function getRequest($source)
 	{
 		$request = null;
-	
+
 		if ($source === null) {
 			if (isset($_GET['source']))
 				$source = $_GET['source'];
 			else
-				$source = 'Admin/Front';
+				$source = 'AdminSite/Front';
 		}
+
+		if ($source === 'index.html')
+			$source = 'AdminSite/Front';
 
 		if ($this->session->isLoggedIn()) {
 			$source_exp = explode('/', $source);
@@ -247,13 +255,12 @@ class AdminApplication extends SwatApplication
 				return null;
 			}
 
-			if ($component == 'Admin') {
+			if ($component == 'AdminSite') {
 				$admin_titles = array(
 					'Profile'  => Admin::_('Edit User Profile'),
 					'Logout'   => Admin::_('Logout'),
 					'Login'    => Admin::_('Login'),
-					'NoAccess' => Admin::_('No Access'),
-					'NotFound' => Admin::_('Not Found'),
+					'Exception' => Admin::_('Exception'),
 					'Front'    => Admin::_('Index'));
 
 				if (isset($admin_titles[$subcomponent])) {
@@ -281,7 +288,7 @@ class AdminApplication extends SwatApplication
 
 		} else {
 			$request = new AdminPageRequest();
-			$request->component = 'Admin';
+			$request->component = 'AdminSite';
 			$request->subcomponent = 'Login';
 			$request->title = Admin::_('Login');
 		}
