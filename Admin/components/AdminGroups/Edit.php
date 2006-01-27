@@ -2,6 +2,7 @@
 
 require_once 'Admin/pages/AdminDBEdit.php';
 require_once 'Admin/AdminUI.php';
+require_once 'Admin/exceptions/AdminNotFoundException.php';
 require_once 'SwatDB/SwatDB.php';
 
 /**
@@ -85,7 +86,8 @@ class AdminGroupsEdit extends AdminDBEdit
 			$this->fields, 'integer:id', $id);
 
 		if ($row === null)
-			return $this->app->replacePageNoAccess();
+			throw new AdminNotFoundException(
+				sprintf(Admin::_("Group with id '%s' not found."), $id));
 
 		$this->ui->setValues(get_object_vars($row));
 

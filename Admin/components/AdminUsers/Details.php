@@ -3,6 +3,7 @@
 require_once 'Admin/AdminUI.php';
 require_once 'Admin/pages/AdminIndex.php';
 require_once 'Admin/AdminTableStore.php';
+require_once 'Admin/exceptions/AdminNotFoundException.php';
 require_once 'SwatDB/SwatDB.php';
 
 /**
@@ -43,9 +44,8 @@ class AdminUsersDetails extends AdminIndex
 			array('username','name'), 'id' , $id);
 
 		if ($row === null)
-			return $this->app->replacePageNoAccess(
-				new SwatMessage(sprintf(Admin::_("User with id '%s' ".
-					'not found.'), $id), SwatMessage::ERROR));
+			throw new AdminNotFoundException(
+				sprintf(Admin::_("User with id '%s' not found."), $id));
 
 		$frame = $this->ui->getWidget('index_frame');
 		$frame->subtitle = $row->name;

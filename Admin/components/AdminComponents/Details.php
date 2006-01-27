@@ -3,6 +3,7 @@
 require_once 'Admin/AdminUI.php';
 require_once 'Admin/pages/AdminIndex.php';
 require_once 'Admin/AdminTableStore.php';
+require_once 'Admin/exceptions/AdminNotFoundException.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Swat/SwatString.php';
 
@@ -103,9 +104,8 @@ class AdminComponentsDetails extends AdminIndex
 		$row = SwatDB::queryRow($this->app->db, $sql);
 
 		if ($row === null)
-			return $this->app->replacePageNoAccess(
-				new SwatMessage(sprintf(Admin::_("Component with id '%s' ".
-					'not found.'), $this->id), SwatMessage::ERROR));
+			throw new AdminNotFoundException(
+				sprintf(Admin::_("Component with id '%s' not found."), $this->id));
 
 		ob_start();
 		$this->displayGroups($this->id);
