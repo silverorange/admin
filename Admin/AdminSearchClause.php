@@ -53,7 +53,6 @@ class AdminSearchClause
 	 */
 	public $operator;
 
-
 	/**
 	 * The database object
 	 *
@@ -69,7 +68,6 @@ class AdminSearchClause
 		$this->value = $value;
 		$this->operator = self::OP_EQUALS;
 	}
-
 
 	/**
 	 * Get a formatted search clause
