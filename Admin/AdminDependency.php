@@ -204,6 +204,104 @@ abstract class AdminDependency
 	}
 
 	// }}}
+	// {{{ public static function queryDependencyEntries()
+
+	/**
+	 * Queries for dependency entries
+	 *
+ 	 * Convenience method to query for an array for {@link AdminDependencyEntry}
+	 * objects. The returned entry array can be directly assigned to the
+ 	 * {@link AdminDependency::$entries} property.
+	 *
+	 * @param MDB2_Driver_Common $db The database connection.
+	 *
+	 * @param string $table The database table to query.
+	 *
+	 * @param string $id_field The name of the database field to query for 
+	 *        the id. Can be given in the form type:name where type is a
+	 *        standard MDB2 datatype. If type is ommitted, then integer is 
+	 *        assummed for this field.
+	 *
+	 * @param string $parent_field The name of the database field to query to
+	 *        link the child dependencies to the parent, or null. The values
+	 *        in this field should correspond to ids in a parent
+	 *        AdminDependency object.  This field can be given in the form
+	 *        type:name where type is a standard MDB2 datatype. If type is
+	 *        ommitted, then integer is assummed for this field.
+	 *
+	 * @param string $title_field The name of the database field to query for 
+	 *        the title. Can be given in the form type:name where type is a
+	 *        standard MDB2 datatype. If type is ommitted, then text is 
+	 *        assummed for this field.
+	 *
+	 * @param string $order_by_clause Optional comma deliminated list of 
+	 *        database field names to use in the <i>order by</i> clause.
+	 *        Do not include "order by" in the string; only include the list
+	 *        of field names. Pass null to skip over this paramater.
+	 *
+	 * @param string $where_clause Optional <i>where</i> clause to limit the 
+	 *        returned results.  Do not include "where" in the string; only 
+	 *        include the conditionals.
+	 *
+	 * @return array An array of {@link AdminDependencyEntries}.
+	 */
+	public static function queryDependencyEntries($db, $table, $id_field,
+		$parent_field, $title_field, $order_by_clause = null,
+		$where_clause = null)
+	{
+
+		$items = SwatDB::getOptionArray($db, $table, $title_field, $id_field,
+			$order_by_clause, $where_clause);
+
+		if ($parent_field === null)
+			$parents = null;
+		else
+			$parents = SwatDB::getOptionArray($db, $table, $parent_field,
+				$id_field, $order_by_clause, $where_clause);
+
+		return self::buildDependencyArray($items, $parents);
+	}
+
+	// }}}
+	// {{{ public static function buildDependencyArray()
+
+	/**
+	 * Builds a dependency array
+	 *
+ 	 * Convenience method to create a flat array of {@link AdminDependencyEntry}
+	 * objects. The returned array of dependency entries may be directly
+	 * assigned to the {@link AdminDependency::$entries} property of an
+	 * {@link AdminDependency} object.
+	 *
+	 * @param array $items an associative array of dependent items in the form
+	 *                      of id => title. This array is usually constructed
+	 *                      from the result of a database query.
+	 * @param array $parents an associative array containing tree information
+	 *                        for the items array in the form of id = >parent.
+	 *                        This array is usually constructed from the result
+	 *                        of a database query.
+	 *
+	 * @return array a flat array of {@link AdminDependencyEntry} objects that
+	 *                contains dependency tree information.
+	 */
+	public static function buildDependencyArray($items, $parents)
+	{
+		$entries = array();
+		foreach ($items as $id => $title) {
+			if ($parents === null || array_key_exists($id, $parents)) {
+
+				$entry = new AdminDependencyEntry();
+				$entry->id = $id;
+				$entry->title = $title;
+				$entry->parent = ($parents === null) ? null : $parents[$id];
+
+				$entries[] = $entry;
+			}
+		}
+		return $entries;
+	}
+
+	// }}}
 	// {{{ protected function getStatusLevelText()
 
 	/**
@@ -345,104 +443,6 @@ abstract class AdminDependency
 		}
 		if ($count > 0)
 			echo '</ul>';
-	}
-
-	// }}}
-	// {{{ public static function queryDependencyEntries()
-
-	/**
-	 * Queries for dependency entries
-	 *
- 	 * Convenience method to query for an array for {@link AdminDependencyEntry}
-	 * objects. The returned entry array can be directly assigned to the
- 	 * {@link AdminDependency::$entries} property.
-	 *
-	 * @param MDB2_Driver_Common $db The database connection.
-	 *
-	 * @param string $table The database table to query.
-	 *
-	 * @param string $id_field The name of the database field to query for 
-	 *        the id. Can be given in the form type:name where type is a
-	 *        standard MDB2 datatype. If type is ommitted, then integer is 
-	 *        assummed for this field.
-	 *
-	 * @param string $parent_field The name of the database field to query to
-	 *        link the child dependencies to the parent, or null. The values
-	 *        in this field should correspond to ids in a parent
-	 *        AdminDependency object.  This field can be given in the form
-	 *        type:name where type is a standard MDB2 datatype. If type is
-	 *        ommitted, then integer is assummed for this field.
-	 *
-	 * @param string $title_field The name of the database field to query for 
-	 *        the title. Can be given in the form type:name where type is a
-	 *        standard MDB2 datatype. If type is ommitted, then text is 
-	 *        assummed for this field.
-	 *
-	 * @param string $order_by_clause Optional comma deliminated list of 
-	 *        database field names to use in the <i>order by</i> clause.
-	 *        Do not include "order by" in the string; only include the list
-	 *        of field names. Pass null to skip over this paramater.
-	 *
-	 * @param string $where_clause Optional <i>where</i> clause to limit the 
-	 *        returned results.  Do not include "where" in the string; only 
-	 *        include the conditionals.
-	 *
-	 * @return array An array of {@link AdminDependencyEntries}.
-	 */
-	public static function queryDependencyEntries($db, $table, $id_field,
-		$parent_field, $title_field, $order_by_clause = null,
-		$where_clause = null)
-	{
-
-		$items = SwatDB::getOptionArray($db, $table, $title_field, $id_field,
-			$order_by_clause, $where_clause);
-
-		if ($parent_field === null)
-			$parents = null;
-		else
-			$parents = SwatDB::getOptionArray($db, $table, $parent_field,
-				$id_field, $order_by_clause, $where_clause);
-
-		return self::buildDependencyArray($items, $parents);
-	}
-
-	// }}}
-	// {{{ public static function buildDependencyArray()
-
-	/**
-	 * Builds a dependency array
-	 *
- 	 * Convenience method to create a flat array of {@link AdminDependencyEntry}
-	 * objects. The returned array of dependency entries may be directly
-	 * assigned to the {@link AdminDependency::$entries} property of an
-	 * {@link AdminDependency} object.
-	 *
-	 * @param array $items an associative array of dependent items in the form
-	 *                      of id => title. This array is usually constructed
-	 *                      from the result of a database query.
-	 * @param array $parents an associative array containing tree information
-	 *                        for the items array in the form of id = >parent.
-	 *                        This array is usually constructed from the result
-	 *                        of a database query.
-	 *
-	 * @return array a flat array of {@link AdminDependencyEntry} objects that
-	 *                contains dependency tree information.
-	 */
-	public static function buildDependencyArray($items, $parents)
-	{
-		$entries = array();
-		foreach ($items as $id => $title) {
-			if ($parents === null || array_key_exists($id, $parents)) {
-
-				$entry = new AdminDependencyEntry();
-				$entry->id = $id;
-				$entry->title = $title;
-				$entry->parent = ($parents === null) ? null : $parents[$id];
-
-				$entries[] = $entry;
-			}
-		}
-		return $entries;
 	}
 
 	// }}}
