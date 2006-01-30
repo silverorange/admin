@@ -63,6 +63,14 @@ class AdminApplication extends SwatApplication
 	 * @var MDB2_Connection Database connection object (readonly)
 	 */
 	public $db;
+
+	/**
+	 * Source of the front page.
+	 *
+	 * @var string the page to load as the front page of the admin.
+	 */
+	public $front_source = 'AdminSite/Front';
+
     // }}}
     // {{{ public function __construct()
 
@@ -192,13 +200,13 @@ class AdminApplication extends SwatApplication
 		
 		if ($request === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("Component not found for soure '%s'."), $source));
+				sprintf(Admin::_("Component not found for source '%s'."), $source));
 
 		$file = $request->getFilename();
 			
 		if ($file === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("File not found for soure '%s'."), $source));
+				sprintf(Admin::_("File not found for source '%s'."), $source));
 			
 		require_once $file;
 		$classname = $request->getClassname();
@@ -237,11 +245,11 @@ class AdminApplication extends SwatApplication
 			if (isset($_GET['source']))
 				$source = $_GET['source'];
 			else
-				$source = 'AdminSite/Front';
+				$source = $this->front_source;
 		}
 
 		if ($source === 'index.html')
-			$source = 'AdminSite/Front';
+			$source = $this->front_source;
 
 		if ($this->session->isLoggedIn()) {
 			$source_exp = explode('/', $source);
