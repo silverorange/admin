@@ -37,13 +37,13 @@
 			</object>
 			<object class="SwatDetailsViewField">
 				<property name="title">Show in Menu?</property>
-				<object class="SwatCheckCellRenderer">
+				<object class="SwatBooleanCellRenderer">
 					<property name="value" type="data">show</property>
 				</object>
 			</object>
 			<object class="SwatDetailsViewField">
 				<property name="title">Enabled?</property>
-				<object class="SwatCheckCellRenderer">
+				<object class="SwatBooleanCellRenderer">
 					<property name="value" type="data">enabled</property>
 				</object>
 			</object>
@@ -101,7 +101,7 @@
 					</object>
 					<object class="SwatTableViewColumn">
 						<property name="title" translatable="yes">Show in Menu</property>
-						<object class="SwatCheckCellRenderer">
+						<object class="SwatBooleanCellRenderer">
 							<property name="value" type="data">show</property>
 						</object>
 					</object>
