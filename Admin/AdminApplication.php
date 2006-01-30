@@ -196,6 +196,9 @@ class AdminApplication extends SwatApplication
 
 	private function instantiatePage($source)
 	{
+		if ($source === 'index.html')
+			$source = $this->front_source;
+
 		$request = $this->getRequest($source);
 		
 		if ($request === null)
@@ -241,14 +244,7 @@ class AdminApplication extends SwatApplication
 	{
 		$request = null;
 
-		if ($source === null) {
-			if (isset($_GET['source']))
-				$source = $_GET['source'];
-			else
-				$source = $this->front_source;
-		}
-
-		if ($source === 'index.html')
+		if ($source === null)
 			$source = $this->front_source;
 
 		if ($this->session->isLoggedIn()) {
