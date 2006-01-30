@@ -39,9 +39,11 @@
 				<property name="title" translatable="yes">Description</property>
 				<widget class="SwatTextarea" id="description" />
 			</widget>
-			<widget class="SwatFormField">
+			<widget class="SwatFieldset">
 				<property name="title" translatable="yes">Groups</property>
-				<widget class="SwatCheckboxList" id="groups" />
+				<widget class="SwatFormField">
+					<widget class="SwatCheckboxList" id="groups" />
+				</widget>
 			</widget>
 			<widget class="SwatFormFooterField">
 				<widget class="SwatButton" id="submit_button" />
