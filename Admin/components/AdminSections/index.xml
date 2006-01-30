@@ -39,7 +39,7 @@
 				</object>
 				<object class="SwatTableViewColumn">
 					<property name="title" translatable="yes">Show in Menu</property>
-					<object class="SwatCheckCellRenderer">
+					<object class="SwatBooleanCellRenderer">
 						<property name="value" type="data">show</property>
 					</object>
 				</object>

@@ -40,7 +40,7 @@
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="enabled">
 					<property name="title" translatable="yes">Enabled</property>
-					<object class="SwatCheckCellRenderer">
+					<object class="SwatBooleanCellRenderer">
 						<property name="value" type="data">enabled</property>
 					</object>
 				</object>

@@ -51,13 +51,13 @@
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="show">
 					<property name="title" translatable="yes">Show in Menu</property>
-					<object class="SwatCheckCellRenderer">
+					<object class="SwatBooleanCellRenderer">
 						<property name="value" type="data">show</property>
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="enabled">
 					<property name="title" translatable="yes">Enabled</property>
-					<object class="SwatCheckCellRenderer">
+					<object class="SwatBooleanCellRenderer">
 						<property name="value" type="data">enabled</property>
 					</object>
 				</object>
