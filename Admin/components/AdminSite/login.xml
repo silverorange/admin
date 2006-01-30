@@ -20,7 +20,7 @@
 			</widget>
 			<widget class="SwatMessageDisplay" id="message_display">
 			</widget>
-			<widget class="SwatFormFooterField">
+			<widget class="SwatFooterFormField">
 				<widget class="SwatButton" id="login_button">
 					<property name="title" translatable="yes">Login</property>
 				</widget>

@@ -4,7 +4,7 @@
 	<widget class="SwatFrame" id="confirmation_frame">
 		<widget class="SwatForm" id="confirmation_form">
 			<widget class="SwatContentBlock" id="confirmation_message" />
-			<widget class="SwatFormFooterField">
+			<widget class="SwatFooterFormField">
 				<widget class="SwatButton" id="no_button">
 					<property name="title" translatable="yes">No</property>
 				</widget>

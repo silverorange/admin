@@ -45,7 +45,7 @@
 					<widget class="SwatCheckboxList" id="groups" />
 				</widget>
 			</widget>
-			<widget class="SwatFormFooterField">
+			<widget class="SwatFooterFormField">
 				<widget class="SwatButton" id="submit_button" />
 			</widget>
 		</widget>

@@ -22,7 +22,7 @@
 				<property name="note">Leave Password fields blank for them to remain the same.</property>
 				<widget class="SwatConfirmPasswordEntry" id="confirmpassword" />
 			</widget>
-			<widget class="SwatFormFooterField">
+			<widget class="SwatFooterFormField">
 				<widget class="SwatButton" id="submit_button">
 					<property name="title" translatable="yes">Update Profile</property>
 				</widget>
