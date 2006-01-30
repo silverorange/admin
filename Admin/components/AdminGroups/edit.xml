@@ -21,7 +21,7 @@
 				<property name="open" type="boolean">false</property>
 				<widget class="SwatCheckboxList" id="users" />
 			</widget>
-			<widget class="SwatFormFooterField">
+			<widget class="SwatFooterFormField">
 				<widget class="SwatButton" id="submit_button" />
 			</widget>
 		</widget>
