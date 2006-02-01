@@ -13,7 +13,6 @@ require_once 'Swat/SwatLinkCellRenderer.php';
  */
 class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 {
-
 	/**
 	 * Gets TD-tag attributes
 	 *
@@ -23,6 +22,20 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 *                renderer.
 	 */
 	public function getTdAttributes()
+	{
+		return array('class' => 'admin-title-link-cell-renderer');
+	}
+
+	/**
+	 * Gets TH-tag attributes
+	 *
+	 * Overridden here to provide a custom CSS hook for admin title link header
+	 * cells.
+	 *
+	 * @return array an array of attributes to apply to the TH tag of this cell
+	 *                renderer.
+	 */
+	public function getThAttributes()
 	{
 		return array('class' => 'admin-title-link-cell-renderer');
 	}
