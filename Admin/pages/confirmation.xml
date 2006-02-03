@@ -4,12 +4,15 @@
 	<widget class="SwatFrame" id="confirmation_frame">
 		<widget class="SwatForm" id="confirmation_form">
 			<widget class="SwatContentBlock" id="confirmation_message" />
+			<widget class="AdminNote" id="note">
+				<property name="visible" type="boolean">false</property>
+			</widget>
 			<widget class="SwatFooterFormField">
 				<widget class="SwatButton" id="yes_button">
-                    <property name="stock_id">apply</property>
+					<property name="stock_id">apply</property>
 				</widget>
 				<widget class="SwatButton" id="no_button">
-                    <property name="stock_id">cancel</property>
+					<property name="stock_id">cancel</property>
 				</widget>
 			</widget>
 		</widget>
