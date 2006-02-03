@@ -54,13 +54,12 @@ class AdminSummaryDependency extends AdminDependency
 				$count++;
 
 		if ($count != 0) {
-			// TODO: class here
 			$span_tag = new SwatHtmlTag('span');
-			$span_tag->style = 'color:#888;';
+			$span_tag->class = 'admin-light';
 			$span_tag->setContent($this->getDependencyText($count));
 
 			$span_tag->open();
-			echo '(';
+			echo ' (';
 			$span_tag->displayContent();
 		}
 
