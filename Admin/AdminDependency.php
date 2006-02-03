@@ -302,6 +302,20 @@ abstract class AdminDependency
 	}
 
 	// }}}
+	// {{{ public abstract function displayDependencies()
+
+	/**
+	 * Displays the dependency entries of this dependency for a given parent
+	 * at a given status level
+	 * 
+	 * @param integer $parent the id of the parent to display the dependency
+	 *                         entries for.
+	 * @param integer $status_level the status level to display the dependency
+	 *                               entries for.
+	 */
+	public abstract function displayDependencies($parent, $status_level);
+
+	// }}}
 	// {{{ protected function getStatusLevelText()
 
 	/**
@@ -355,20 +369,6 @@ abstract class AdminDependency
 		}
 		return $message;
 	}
-
-	// }}}
-	// {{{ protected abstract function displayDependencies()
-
-	/**
-	 * Displays the dependency entries of this dependency for a given parent
-	 * at a given status level
-	 * 
-	 * @param integer $parent the id of the parent to display the dependency
-	 *                         entries for.
-	 * @param integer $status_level the status level to display the dependency
-	 *                               entries for.
-	 */
-	protected abstract function displayDependencies($parent, $status_level);
 
 	// }}}
 	// {{{ private function processDependencies()
