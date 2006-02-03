@@ -147,6 +147,7 @@ img { border: 0; }
 .admin-null-text-cell-renderer-null {
 	color: #888;
 }
+
 /* AdminTitleLinkCellRenderer Styles */
 
 .swat-table-view td.admin-title-link-cell-renderer {
@@ -171,4 +172,10 @@ td.admin-title-link-cell-renderer a:active {
 
 .admin-light {
 	color: #666;
+}
+
+/* AdminDependency */
+
+.admin-dependency h3 {
+	margin-top: 0;
 }
