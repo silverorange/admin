@@ -45,7 +45,7 @@ class AdminSummaryDependency extends AdminDependency
 	 * @param integer $parent the id of the parent to display the summary for.
 	 * @param integer $status_level the status level to display the summary for.
 	 */
-	protected function displayDependencies($parent, $status_level)
+	public function displayDependencies($parent, $status_level)
 	{
 		$count = 0;
 		foreach ($this->entries as $entry)

@@ -42,7 +42,7 @@ class AdminListDependency extends AdminDependency
 	 * @param integer $parent the id of the parent to display the list for.
 	 * @param integer $status_level the status level to display the list for.
 	 */
-	protected function displayDependencies($parent, $status_level)
+	public function displayDependencies($parent, $status_level)
 	{
 		$count = 0;
 		foreach ($this->entries as $entry)
