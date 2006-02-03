@@ -6,10 +6,10 @@
 			<widget class="SwatContentBlock" id="confirmation_message" />
 			<widget class="SwatFooterFormField">
 				<widget class="SwatButton" id="yes_button">
-					<property name="title" translatable="yes">Yes</property>
+                    <property name="stock_id">apply</property>
 				</widget>
 				<widget class="SwatButton" id="no_button">
-					<property name="title" translatable="yes">No</property>
+                    <property name="stock_id">cancel</property>
 				</widget>
 			</widget>
 		</widget>

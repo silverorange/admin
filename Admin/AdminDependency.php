@@ -339,11 +339,11 @@ abstract class AdminDependency
 		case self::DELETE:
 			if ($this->title === null) {
 				$message =
-					Admin::ngettext('The following item will be deleted:',
-					'The following items will be deleted:', $count);
+					Admin::ngettext('Delete the following item?',
+					'Delete the following items?:', $count);
 			} else {
-				$message = Admin::ngettext('The following %s will be deleted:',
-					'The following %ss will be deleted:', $count);
+				$message = Admin::ngettext('Delete the following %s?',
+					'Delete the following %ss?', $count);
 
 				$message = sprintf($message, $this->title);
 			}
