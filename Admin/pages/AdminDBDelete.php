@@ -15,9 +15,9 @@ require_once 'SwatDB/exceptions/SwatDBException.php';
  */
 abstract class AdminDBDelete extends AdminDBConfirmation
 {
-	// {{{ private properties
+	// {{{ protected properties
 
-	private $single_delete = false;
+	protected $single_delete = false;
 
 	// }}}
 
