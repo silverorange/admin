@@ -224,9 +224,9 @@ abstract class AdminPage extends SwatPage
 	protected function displayHeader()
 	{
 		echo '<div id="admin-syslinks">';
-		echo 'Welcome <a href="Admin/Profile">'.$_SESSION['name'].'</a> &nbsp;|&nbsp;';
-		echo '<a href="Admin/Profile">Customize</a> &nbsp;|&nbsp;';
-		echo '<a href="Admin/Logout"><strong>Logout</strong></a>';
+		echo 'Welcome <a href="AdminSite/Profile">'.$_SESSION['name'].'</a> &nbsp;|&nbsp;';
+		echo '<a href="AdminSite/Profile">Customize</a> &nbsp;|&nbsp;';
+		echo '<a href="AdminSite/Logout"><strong>Logout</strong></a>';
 		echo '</div>';
 	}
 
