@@ -80,6 +80,20 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	}
 
 	// }}}
+	// {{{ protected function getFirstItem()
+
+	/**
+	 * Get first item in the item list
+	 *
+	 * @return mixed the first item.
+	 */
+	protected function getFirstItem()
+	{
+		reset($this->items);
+		return current($this->items);
+	}
+
+	// }}}
 
 	// init phase
 	// {{{ protected function initInternal()
