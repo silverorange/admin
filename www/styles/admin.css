@@ -174,8 +174,6 @@ td.admin-title-link-cell-renderer a:active {
 	color: #666;
 }
 
-/* AdminDependency */
-
-.admin-dependency h3 {
+#confirmation_frame h3 {
 	margin-top: 0;
 }
