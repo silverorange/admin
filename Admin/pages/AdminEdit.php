@@ -81,17 +81,6 @@ abstract class AdminEdit extends AdminPage
 	abstract protected function saveData($id);
 
 	// }}}
-	// {{{ protected function relocate()
-
-	/**
-	 * Relocate after process
-	 */
-	protected function relocate()
-	{
-		$this->app->relocate($this->app->history->getHistory());
-	}
-
-	// }}}
 	// {{{ protected function generateShortname()
 
 	/**
@@ -141,6 +130,19 @@ abstract class AdminEdit extends AdminPage
 	}
 
 	// }}}
+	// {{{ protected function relocate()
+
+	/**
+	 * Relocate after process
+	 */
+	protected function relocate()
+	{
+		$form = $this->ui->getWidget('edit_form');
+		$url = $form->getHiddenField(self::RELOCATE_URL_FIELD);
+		$this->app->relocate($url);
+	}
+
+	// }}}
 
 	// build phase
 	// {{{ protected function buildInternal()
@@ -149,23 +151,35 @@ abstract class AdminEdit extends AdminPage
 	{
 		parent::buildInternal();
 		$id = SwatApplication::initVar('id');
-		$form = $this->ui->getWidget('edit_form');
 
 		if (is_numeric($id))
 			$id = intval($id);
+
+		$this->buildForm($id);
+		$this->buildFrame($id);
+		$this->buildButton($id);
+		$this->buildMessages();
+	}
+
+	// }}}
+	// {{{ protected function buildForm()
+
+	protected function buildForm($id)
+	{
+		$form = $this->ui->getWidget('edit_form');
 
 		if ($id !== null)
 			if (!$form->isProcessed())
 				$this->loadData($id);
 
-		$this->initFrame($id);
-		$this->initButton($id);
-		$this->initMessages();
-
 		$form->action = $this->source;
 		$form->addHiddenField('id', $id);
-	}
 
+		if ($form->getHiddenField(self::RELOCATE_URL_FIELD) === null) {
+			$url = $this->getRefererURL();
+			$form->addHiddenField(self::RELOCATE_URL_FIELD, $url);
+		}
+	}
 	// }}}
 	// {{{ protected function loadData()
 
@@ -183,9 +197,9 @@ abstract class AdminEdit extends AdminPage
 	abstract protected function loadData($id);
 
 	// }}}
-	// {{{ protected function initButton()
+	// {{{ protected function buildButton()
 
-	protected function initButton($id)
+	protected function buildButton($id)
 	{
 		$button = $this->ui->getWidget('submit_button');
 
@@ -196,9 +210,9 @@ abstract class AdminEdit extends AdminPage
 	}
 
 	// }}}
-	// {{{ protected function initFrame()
+	// {{{ protected function buildFrame()
 
-	protected function initFrame($id)
+	protected function buildFrame($id)
 	{
 		$frame = $this->ui->getWidget('edit_frame');
 

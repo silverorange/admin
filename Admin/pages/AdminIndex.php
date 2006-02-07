@@ -63,7 +63,7 @@ abstract class AdminIndex extends AdminPage
 
 		$this->buildViews();
 		$this->buildForms();
-		$this->initMessages();
+		$this->buildMessages();
 	}
 
 	// }}}
@@ -91,7 +91,7 @@ abstract class AdminIndex extends AdminPage
 		$root = $this->ui->getRoot();
 		$forms = $root->getDescendants('SwatForm');
 		foreach ($forms as $form) {
-			$form->action = $this->app->getUri();
+			$form->action = $this->getRelativeURL();
 			$view = $form->getFirstDescendant('SwatTableView');
 
 			if ($view !== null && $view->model->getRowCount() == 0) {
