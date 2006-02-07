@@ -62,7 +62,9 @@ abstract class AdminConfirmation extends AdminPage
 	 */
 	protected function relocate()
 	{
-		$this->app->relocate($this->app->history->getHistory(0));
+		$form = $this->ui->getWidget('confirmation_form');
+		$url = $form->getHiddenField(self::RELOCATE_URL_FIELD);
+		$this->app->relocate($url);
 	}
 
 	// }}}
@@ -73,10 +75,22 @@ abstract class AdminConfirmation extends AdminPage
 	protected function buildInternal()
 	{
 		parent::buildInternal();
-		$form = $this->ui->getWidget('confirmation_form');
-		$form->action = $this->source;
+		$this->buildForm();
 	}
 	
+	// }}}
+	// {{{ protected function buildForm()
+
+	protected function buildForm($id)
+	{
+		$form = $this->ui->getWidget('confirmation_form');
+		$form->action = $this->source;
+
+		if ($form->getHiddenField(self::RELOCATE_URL_FIELD) === null) {
+			$url = $this->getRefererURL();
+			$form->addHiddenField(self::RELOCATE_URL_FIELD, $url);
+		}
+	}
 	// }}}
 	// {{{ protected function switchToCancelButton()
 

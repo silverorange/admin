@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Swat/SwatPage.php';
+require_once 'Swat/SwatForm.php';
 require_once 'Admin/AdminNavBar.php';
 require_once 'Admin/AdminMenu.php';
 require_once 'Admin/AdminUI.php';
@@ -15,6 +16,8 @@ require_once 'Admin/AdminUI.php';
  */
 abstract class AdminPage extends SwatPage
 {
+	const RELOCATE_URL_FIELD = '_admin_relocate_url';
+
 	// {{{ public properties
 
 	/**
@@ -78,8 +81,37 @@ abstract class AdminPage extends SwatPage
 	}
 
 	// }}}
+	// {{{ public function getRelativeURL()
 
-// init phase
+	public function getRelativeURL()
+	{
+		$url = $this->source.'?';
+
+		foreach ($_GET as $name => $value)
+			if ($name != 'source')
+				$url.= $name.'='.$value;
+
+		$url = substr($url, 0, -1);
+
+		return $url;
+	}
+
+	// }}}
+	// {{{ public function getRefererURL()
+
+	public function getRefererURL()
+	{
+		if (isset($_SERVER['HTTP_REFERER'])) {
+			return $_SERVER['HTTP_REFERER'];
+		} else {
+			$source_exp = explode('/', $source);
+			return $source_exp[0];
+		}
+	}
+
+	// }}}
+
+	// init phase
 	// {{{ public function init()
 
 	/**
@@ -93,9 +125,7 @@ abstract class AdminPage extends SwatPage
 	public function init()
 	{
 		parent::init();
-
 		$this->initInternal();
-
 		$this->ui->init();
 	}
 
@@ -115,7 +145,7 @@ abstract class AdminPage extends SwatPage
 
 	// }}}
 
-// process phase
+	// process phase
 	// {{{ public function process()
 
 	/**
@@ -129,7 +159,6 @@ abstract class AdminPage extends SwatPage
 	public function process()
 	{
 		$this->ui->process();
-
 		$this->processInternal();
 	}
 
@@ -148,7 +177,7 @@ abstract class AdminPage extends SwatPage
 
 	// }}}
 
-// build phase
+	// build phase
 	// {{{ public function build()
 
 	public function build()
@@ -257,9 +286,9 @@ abstract class AdminPage extends SwatPage
 	}
 
 	// }}}
-	// {{{ protected function initMessages()
+	// {{{ protected function buildMessages()
 
-	protected function initMessages()
+	protected function buildMessages()
 	{
 		try {
 			$message_display = $this->ui->getWidget('message_display');

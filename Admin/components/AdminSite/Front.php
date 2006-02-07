@@ -27,7 +27,7 @@ class AdminSiteFront extends AdminPage
 
 	protected function buildInternal()
 	{
-		$this->initMessages();
+		$this->buildMessages();
 	}
 
 	// }}}

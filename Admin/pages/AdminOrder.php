@@ -38,7 +38,7 @@ abstract class AdminOrder extends AdminPage
 
 		if ($form->isProcessed()) {
 			$this->saveData();
-			$this->app->relocate($this->app->history->getHistory());
+			$this->relocate();
 		}
 	}
 
@@ -76,6 +76,19 @@ abstract class AdminOrder extends AdminPage
 	abstract protected function saveIndex($id, $index);
 
 	// }}}
+	// {{{ protected function relocate()
+
+	/**
+	 * Relocate after process
+	 */
+	protected function relocate()
+	{
+		$form = $this->ui->getWidget('order_form');
+		$url = $form->getHiddenField(self::RELOCATE_URL_FIELD);
+		$this->app->relocate($url);
+	}
+
+	// }}}
 
 	// build phase
 	// {{{ protected function buildInternal()
@@ -83,21 +96,42 @@ abstract class AdminOrder extends AdminPage
 	protected function buildInternal()
 	{
 		parent::buildInternal();
+		$this->buildOptionList();
+		$this->buildButton();
+		$this->buildForm();
+		$this->loadData();
+	}
+	
+	// }}}
+	// {{{ protected function buildOptionList()
 
+	protected function buildOptionList()
+	{
 		$options_list = $this->ui->getWidget('options');
 		$options_list->addOptionsByArray(array(
 			'auto'=>Admin::_('Automatically'),
 			'custom'=>Admin::_('Custom')));
-			
-		$this->loadData();
-	
+	}
+	// {{{ protected function buildButton()
+
+	protected function buildButton()
+	{
 		$button = $this->ui->getWidget('submit_button');
 		$button->title = Admin::_('Update Order');
-		
+	}
+	// }}}
+	// {{{ protected function buildForm()
+
+	protected function buildForm()
+	{
 		$form = $this->ui->getWidget('order_form');
 		$form->action = $this->source;
+
+		if ($form->getHiddenField(self::RELOCATE_URL_FIELD) === null) {
+			$url = $this->getRefererURL();
+			$form->addHiddenField(self::RELOCATE_URL_FIELD, $url);
+		}
 	}
-	
 	// }}}
 	// {{{ protected function loadData()
 

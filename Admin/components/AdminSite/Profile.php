@@ -76,7 +76,7 @@ class AdminSiteProfile extends AdminDBEdit
 		if (!$form->isProcessed())
 			$this->loadData(null);
 
-		$this->initMessages();
+		$this->buildMessages();
 	}
 
 	// }}}

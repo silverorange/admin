@@ -70,20 +70,6 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 	}
 
 	// }}}
-	// {{{ protected function relocate()
-
-	/**
-	 * Relocate after process
-	 */
-	protected function relocate()
-	{
-		if ($this->single_delete)
-			$this->app->relocate($this->app->history->getHistory());
-		else
-			parent::relocate();
-	}
-
-	// }}}
 }
 
 ?>

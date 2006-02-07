@@ -4,7 +4,6 @@ require_once 'Swat/SwatApplication.php';
 require_once 'MDB2.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/Admin.php';
-require_once 'Admin/AdminApplicationHistoryModule.php';
 require_once 'Admin/AdminApplicationSessionModule.php';
 require_once 'Admin/AdminApplicationMessagesModule.php';
 require_once 'Admin/AdminApplicationDatabaseModule.php';
@@ -28,13 +27,6 @@ class AdminApplication extends SwatApplication
 	 * @var string
 	 */
 	public $title;
-
-	/**
-	 * Convenience reference to the built-in AdminApplicationHistoryModule
-	 *
-	 * @var AdminApplicationHistoryModule (readonly)
-	 */
-	public $history;
 
 	/**
 	 * Convenience reference to the built-in AdminApplicationSessionModule
@@ -83,13 +75,11 @@ class AdminApplication extends SwatApplication
     {
 		parent::__construct($id);
 
-		$this->addModule(new AdminApplicationHistoryModule($this));
 		$this->addModule(new AdminApplicationSessionModule($this));
 		$this->addModule(new AdminApplicationMessagesModule($this));
 		$this->addModule(new AdminApplicationDatabaseModule($this));
 
 		// set up convenience references
-		$this->history = $this->modules['AdminApplicationHistoryModule'];
 		$this->session = $this->modules['AdminApplicationSessionModule'];
 		$this->messages = $this->modules['AdminApplicationMessagesModule'];
 		$this->database = $this->modules['AdminApplicationDatabaseModule'];
@@ -230,9 +220,6 @@ class AdminApplication extends SwatApplication
 			$page->navbar->addEntry(new SwatNavBarEntry($request->title, 
 				($request->subcomponent == 'Index') ? null : $request->component));
 		}
-
-		if (isset($_SERVER['HTTP_REFERER']))
-			$this->history->storeHistory($_SERVER['HTTP_REFERER']);
 
 		return $page;
 	}
