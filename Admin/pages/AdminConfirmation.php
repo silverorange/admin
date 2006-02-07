@@ -81,7 +81,7 @@ abstract class AdminConfirmation extends AdminPage
 	// }}}
 	// {{{ protected function buildForm()
 
-	protected function buildForm($id)
+	protected function buildForm()
 	{
 		$form = $this->ui->getWidget('confirmation_form');
 		$form->action = $this->source;
