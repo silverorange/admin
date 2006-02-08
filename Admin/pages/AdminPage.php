@@ -89,7 +89,7 @@ abstract class AdminPage extends SwatPage
 
 		foreach ($_GET as $name => $value)
 			if ($name != 'source')
-				$url.= $name.'='.$value;
+				$url.= $name.'='.$value.'&';
 
 		$url = substr($url, 0, -1);
 
