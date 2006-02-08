@@ -23,7 +23,7 @@ abstract class AdminEdit extends AdminPage
 
 		$id = SwatApplication::initVar('id');
 		$this->navbar->createEntry(
-			($id === null) ? Admin::_('Add') : Admin::_('Edit'));
+			($id === null) ? Admin::_('New') : Admin::_('Edit'));
 	}
 
 	// }}}
@@ -217,7 +217,7 @@ abstract class AdminEdit extends AdminPage
 		$frame = $this->ui->getWidget('edit_frame');
 
 		if ($id === null)
-			$frame->title = sprintf(Admin::_('New %s'), $frame->title);
+			$frame->title = sprintf(Admin::_('Create a New %s'), $frame->title);
 		else
 			$frame->title = sprintf(Admin::_('Edit %s'), $frame->title);
 	}
