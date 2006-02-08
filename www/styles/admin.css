@@ -113,7 +113,6 @@ img { border: 0; }
 
 #admin-menu a:link,
 #admin-menu a:visited {
-	display: block;
 	text-decoration: none;
 }
 
