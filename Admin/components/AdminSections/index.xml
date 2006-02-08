@@ -6,7 +6,7 @@
 		<property name="title" translatable="yes">Sections</property>
 		<widget class="SwatToolbar" id="index_toolbar">
 			<widget class="SwatToolLink">
-				<property name="title" translatable="yes">Create a New Section</property>
+				<property name="title" translatable="yes">New Section</property>
 				<property name="link">AdminSections/Edit</property>
 				<property name="stock_id">create</property>
 			</widget>
