@@ -21,11 +21,21 @@ class AdminNullTextCellRenderer extends SwatTextCellRenderer
 	public $null_text = '&lt;none&gt;';
 
 	/**
+	 * Whether to test the {@link SwatTextCellRenderer::$text} property for
+	 * null using strict equality.
+	 *
+	 * @var boolean
+	 */
+	public $strict = true;
+
+	/**
 	 * Renders this cell renderer
 	 */
 	public function render()
 	{
-		if ($this->text === null) {
+		if (($this->strict && $this->text === null) ||
+			(!$this->strict && $this->text == null)) {
+
 			$this->text = $this->null_text;
 
 			echo '<span class="admin-null-text-cell-renderer-null">';
