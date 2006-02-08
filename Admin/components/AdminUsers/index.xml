@@ -6,7 +6,7 @@
 		<property name="title" translatable="yes">Admin Users</property>
 		<widget class="SwatToolbar" id="index_toolbar">
 			<widget class="SwatToolLink">
-				<property name="title" translatable="yes">Create a New User</property>
+				<property name="title" translatable="yes">New User</property>
 				<property name="link">AdminUsers/Edit</property>
 				<property name="stock_id">create</property>
 			</widget>
