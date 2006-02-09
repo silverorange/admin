@@ -8,6 +8,3 @@ CREATE OR REPLACE FUNCTION "public"."tr_admincomponents_delete" () RETURNS trigg
     END;
 ' LANGUAGE 'plpgsql';
 
-
-CREATE TRIGGER tr_delete BEFORE DELETE ON admincomponents
-    FOR EACH ROW EXECUTE PROCEDURE tr_admincomponents_delete();

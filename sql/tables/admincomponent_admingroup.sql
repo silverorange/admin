@@ -1,7 +1,7 @@
 create table admincomponent_admingroup (
     component integer not null
 		constraint admincomponent_admingroup_component references admincomponents(id),
-    groupnum integer not null,
+    groupnum integer not null
 		constraint admincomponent_admingroup_groupnum references admingroups(id),
 	primary key(component, groupnum)
 );
