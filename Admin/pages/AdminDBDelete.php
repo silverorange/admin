@@ -28,7 +28,8 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 	{
 		parent::initInternal();
 
-		$this->single_delete = (boolean)SwatApplication::initVar('single_delete', false, SwatApplication::VAR_POST);
+		$this->single_delete = (boolean)SwatApplication::initVar(
+			'single_delete', false, SwatApplication::VAR_POST);
 
 		$id = SwatApplication::initVar('id', null, SwatApplication::VAR_GET);
 
