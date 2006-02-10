@@ -19,7 +19,6 @@ cat ${SOURCE}/triggers/tr_admincomponents_delete.sql >> ./create_db.sql
 cat ${SOURCE}/tables/admincomponents.sql >> ./create_db.sql
 cat ${SOURCE}/tables/adminsubcomponents.sql >> ./create_db.sql
 cat ${SOURCE}/tables/adminuserhistory.sql >> ./create_db.sql
-cat ${SOURCE}/tables/adminhelp.sql >> ./create_db.sql
 cat ${SOURCE}/tables/adminuser_admingroup.sql >> ./create_db.sql
 cat ${SOURCE}/tables/admincomponent_admingroup.sql >> ./create_db.sql
 
