@@ -26,7 +26,7 @@ class AdminNullTextCellRenderer extends SwatTextCellRenderer
 	 *
 	 * @var boolean
 	 */
-	public $strict = true;
+	public $strict = false;
 
 	/**
 	 * Renders this cell renderer
