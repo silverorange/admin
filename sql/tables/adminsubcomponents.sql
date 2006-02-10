@@ -10,5 +10,7 @@ create table adminsubcomponents (
 );
 
 -- default sub-components
-insert into adminsubcomponents (id, component, title, shortname, show, displayorder)
-	values (8, 1, 'Login History', 'LoginHistory', true, 0);
+insert into adminsubcomponents (id, component, title, shortname, show, displayorder) values (1, 1, 'Login History', 'LoginHistory', true, 0);
+
+SELECT pg_catalog.setval('adminsubcomponents_id_seq', 1, true);
+

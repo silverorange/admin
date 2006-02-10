@@ -8,7 +8,8 @@ create table admincomponent_admingroup (
 
 -- default admincomponent_admingroup bindings
 insert into admincomponent_admingroup (component, groupnum) values (1, 1);
-insert into admincomponent_admingroup (component, groupnum) values (4, 1);
-insert into admincomponent_admingroup (component, groupnum) values (52, 1);
+insert into admincomponent_admingroup (component, groupnum) values (2, 1);
 insert into admincomponent_admingroup (component, groupnum) values (3, 1);
-insert into admincomponent_admingroup (component, groupnum) values (44, 1);
+insert into admincomponent_admingroup (component, groupnum) values (4, 1);
+insert into admincomponent_admingroup (component, groupnum) values (5, 1);
+
