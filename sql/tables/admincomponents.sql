@@ -11,12 +11,14 @@ CREATE TABLE admincomponents (
 );
 
 
-INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, show) VALUES (1, 'AdminUsers', 'Admin Users', 'Users Tool', 1, 1, false, true);
-INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, show) VALUES (2, 'AdminGroups', 'Admin Groups', NULL, 2, 1, false, true);
-INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, show) VALUES (3, 'AdminSections', 'Admin Sections', NULL, 3, 1, true, true);
-INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, show) VALUES (4, 'AdminComponents', 'Admin Components', NULL, 4, 1, true, true);
-INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, show) VALUES (5, 'AdminSubComponents', 'Admin Sub-Components', NULL, 5, 1, true, false);
+INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, show) VALUES (1, 'AdminUsers', 'Admin Users', NULL, 4, 3, true, true);
+INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, show) VALUES (2, 'AdminGroups', 'Admin Groups', NULL, 5, 3, true, true);
+INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, show) VALUES (3, 'AdminSections', 'Admin Sections', NULL, 3, 3, true, true);
+INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, show) VALUES (4, 'AdminComponents', 'Admin Components', NULL, 1, 3, true, true);
+INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, show) VALUES (5, 'AdminSubComponents', 'Admin Sub-Components', NULL, 2, 3, true, false);
+INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, show) VALUES (6, 'Front', 'Front Page', NULL, 0, 3, true, false);
 
+SELECT pg_catalog.setval('admincomponents_id_seq', 6, true);
 
 CREATE TRIGGER tr_delete
     BEFORE DELETE ON admincomponents
@@ -24,6 +26,5 @@ CREATE TRIGGER tr_delete
     EXECUTE PROCEDURE tr_admincomponents_delete();
 
 
-SELECT pg_catalog.setval('admincomponents_id_seq', 5, true);
 
 

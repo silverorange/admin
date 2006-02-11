@@ -12,4 +12,5 @@ insert into admincomponent_admingroup (component, groupnum) values (2, 1);
 insert into admincomponent_admingroup (component, groupnum) values (3, 1);
 insert into admincomponent_admingroup (component, groupnum) values (4, 1);
 insert into admincomponent_admingroup (component, groupnum) values (5, 1);
+insert into admincomponent_admingroup (component, groupnum) values (6, 1);
 
