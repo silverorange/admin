@@ -1,8 +1,6 @@
 create table adminuser_admingroup (
-    usernum integer not null
-		constraint adminuser_admingroup_usernum references adminusers(id),
-    groupnum integer not null
-		constraint adminuser_admingroup_groupnum references admingroups(id),
+    usernum integer not null constraint adminuser_admingroup_usernum references adminusers(id),
+    groupnum integer not null constraint adminuser_admingroup_groupnum references admingroups(id),
 	primary key(usernum, groupnum)
 );
 
