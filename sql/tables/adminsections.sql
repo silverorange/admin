@@ -7,8 +7,7 @@ create table adminsections (
 	primary key(id)
 );
 
--- default adminsections
-insert into adminsections (id, title, description, displayorder, show) values (1, 'Site Content', null, 4, true);
-insert into adminsections (id, title, description, displayorder, show) values (2, 'Store Settings', null, 5, true);
-insert into adminsections (id, title, description, displayorder, show) values (3, 'Admin Settings', null, 6, true);
+insert into adminsections (id, title, description, displayorder, show) values (1, 'Admin Settings', null, 100, true);
+
+SELECT setval('adminsections_id_seq', max(id)) FROM adminsections;
 

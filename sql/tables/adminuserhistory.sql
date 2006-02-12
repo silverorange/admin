@@ -7,3 +7,4 @@ create table adminuserhistory (
 	remoteip varchar(15),
 	primary key(id)
 );
+
