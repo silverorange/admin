@@ -5,15 +5,6 @@ create table adminuser_admingroup (
 );
 
 -- default adminuser_admingroup bindings
-insert into adminuser_admingroup (usernum, groupnum) values (1, 1);
-insert into adminuser_admingroup (usernum, groupnum) values (2, 1);
-insert into adminuser_admingroup (usernum, groupnum) values (3, 1);
-insert into adminuser_admingroup (usernum, groupnum) values (4, 1);
-insert into adminuser_admingroup (usernum, groupnum) values (5, 1);
-insert into adminuser_admingroup (usernum, groupnum) values (6, 1);
-insert into adminuser_admingroup (usernum, groupnum) values (7, 1);
-insert into adminuser_admingroup (usernum, groupnum) values (8, 1);
-insert into adminuser_admingroup (usernum, groupnum) values (9, 1);
-insert into adminuser_admingroup (usernum, groupnum) values (10, 1);
-insert into adminuser_admingroup (usernum, groupnum) values (11, 1);
+insert into adminuser_admingroup (usernum, groupnum)
+	select adminusers.id, admingroups.id from adminusers, admingroups;
 
