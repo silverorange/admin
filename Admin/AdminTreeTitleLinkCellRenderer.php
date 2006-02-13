@@ -14,10 +14,12 @@ class AdminTreeTitleLinkCellRenderer extends AdminTitleLinkCellRenderer
 
 	public function render()
 	{
-		if ($this->childcount > 0)
-			$this->stock_id = 'document-with-contents';
-		else
-			$this->stock_id = 'document';
+		if ($this->stock_id === null) {
+			if ($this->childcount > 0)
+				$this->stock_id = 'document-with-contents';
+			else
+				$this->stock_id = 'document';
+		}
 
 		parent::render();
 	}
