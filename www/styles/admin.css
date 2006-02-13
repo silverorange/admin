@@ -153,11 +153,15 @@ img { border: 0; }
 	padding: 0;
 }
 
+.swat-table-view th.admin-title-link-cell-renderer {
+	padding-left: 36px;
+}
+
 td.admin-title-link-cell-renderer a:link,
 td.admin-title-link-cell-renderer a:visited {
 	display: block;
 	border: 1px solid transparent;
-	padding: 0.4em 0.2em;
+	/* TODO: fix this border so it works in IE */
 }
 
 td.admin-title-link-cell-renderer a:hover {
@@ -167,6 +171,38 @@ td.admin-title-link-cell-renderer a:hover {
 
 td.admin-title-link-cell-renderer a:active {
 	background: #f3efe5;
+}
+
+span.admin-title-link-cell-renderer-contents {
+	display: block;
+	padding: 0.4em 0.2em 0.4em 36px;
+	background-image: url(../images/admin-generic-document.png);
+	background-position: 4px 50%;
+	background-repeat: no-repeat;
+}
+
+a.admin-title-link-cell-renderer-document span.admin-title-link-cell-renderer-contents {
+	background-image: url(../images/admin-generic-document.png);
+}
+
+a.admin-title-link-cell-renderer-document-with-contents span.admin-title-link-cell-renderer-contents {
+	background-image: url(../images/admin-document-with-contents.png);
+}
+
+a.admin-title-link-cell-renderer-edit span.admin-title-link-cell-renderer-contents {
+	background-image: url(../images/admin-edit.png);
+}
+
+a.admin-title-link-cell-renderer-folder-with-contents span.admin-title-link-cell-renderer-contents {
+	background-image: url(../images/admin-folder-with-contents.png);
+}
+
+a.admin-title-link-cell-renderer-folder span.admin-title-link-cell-renderer-contents {
+	background-image: url(../images/admin-folder.png);
+}
+
+a.admin-title-link-cell-renderer-person span.admin-title-link-cell-renderer-contents {
+	background-image: url(../images/admin-person.png);
 }
 
 .admin-light {

@@ -11,22 +11,28 @@ require_once 'Admin/AdminTitleLinkCellRenderer.php';
 class AdminTreeTitleLinkCellRenderer extends AdminTitleLinkCellRenderer
 {
 	public $childcount = 0;
+	public $base_stock_id = 'document';
 
 	public function render()
 	{
-		if ($this->stock_id === null) {
-			if ($this->childcount > 0)
-				$this->stock_id = 'document-with-contents';
-			else
-				$this->stock_id = 'document';
-		}
-
+		$this->setStockType();
 		parent::render();
+	}
+
+	protected function setStockType()
+	{
+		if (intval($this->childcount) > 0)
+			$this->setFromStock($this->base_stock_id.'-with-contents');
+		else
+			$this->setFromStock($this->base_stock_id);
 	}
 
 	protected function getTitle()
 	{
-		$this->title = sprintf(Swat::ngettext('View Details (%d sub-item)', 'View Details (%d sub-items)', 
+		if (intval($this->childcount) == 0)
+			return Admin::gettext('no sub-items');
+
+		return sprintf(Admin::ngettext('%d sub-item', '%d sub-items', 
 			$this->childcount), $this->childcount);
 	}
 }
