@@ -205,6 +205,10 @@ a.admin-title-link-cell-renderer-person span.admin-title-link-cell-renderer-cont
 	background-image: url(../images/admin-person.png);
 }
 
+a.admin-title-link-cell-renderer-product span.admin-title-link-cell-renderer-contents {
+	background-image: url(../images/admin-product.png);
+}
+
 .admin-light {
 	color: #666;
 }
