@@ -128,6 +128,36 @@ class AdminApplicationSessionModule extends SwatApplicationModule
 	}
 
     // }}}
+    // {{{ public function getUsername()
+
+	/**
+	 * Retrieve the current user username
+	 * @return varchar current username, or null if not logged in.
+	 */
+	public function getUsername()
+	{
+		if (!$this->isLoggedIn())
+			return null;
+
+		return $_SESSION['username'];
+	}
+
+    // }}}
+    // {{{ public function getName()
+
+	/**
+	 * Retrieve the current user name
+	 * @return varchar current name, or null if not logged in.
+	 */
+	public function getName()
+	{
+		if (!$this->isLoggedIn())
+			return null;
+
+		return $_SESSION['name'];
+	}
+
+    // }}}
 }
 
 ?>
