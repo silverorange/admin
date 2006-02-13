@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Admin/AdminTreeLinkCellRenderer.php';
+require_once 'Admin/AdminTitleLinkCellRenderer.php';
 
 /**
  * A title link cell renderer for tree index pages
