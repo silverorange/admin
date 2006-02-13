@@ -7,7 +7,7 @@ require_once 'Admin/Admin.php';
  * A unique text entry widget
  *
  * @package   Admin
- * @copyright 2005 silverorange
+ * @copyright 2004-2005 silverorange
  */
 class AdminUniqueEntry extends SwatEntry
 {

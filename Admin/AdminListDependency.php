@@ -7,7 +7,7 @@ require_once 'Swat/SwatString.php';
  * A dependency that displays its dependencies as a list
  *
  * @package   Admin
- * @copyright 2005 silverorange
+ * @copyright 2006 silverorange
  */
 class AdminListDependency extends AdminDependency
 {

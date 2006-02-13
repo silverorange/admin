@@ -9,7 +9,7 @@ require_once 'Admin/AdminSummaryDependency.php';
  * Delete confirmation page for AdminComponents
  *
  * @package Admin
- * @copyright 2004-2006 silverorange
+ * @copyright 2005-2006 silverorange
  */
 class AdminComponentsDelete extends AdminDBDelete
 {

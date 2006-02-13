@@ -8,7 +8,7 @@ require_once 'Admin/AdminListDependency.php';
  * Delete confirmation page for AdminGroups component
  *
  * @package Admin
- * @copyright 2004-2006 silverorange
+ * @copyright 2005-2006 silverorange
  */
 class AdminGroupsDelete extends AdminDBDelete
 {
