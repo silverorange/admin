@@ -15,11 +15,11 @@ class AdminEditControlCellRenderer extends SwatImageLinkCellRenderer
 {
 	public function render()
 	{
-		$this->width  = 28;
+		$this->width  = 22;
 		$this->height = 22;
 		$this->title = Admin::_('Edit Item');
 		$this->alt = Admin::_('Edit');
-		$this->image = 'admin/images/b_edit.png';
+		$this->image = 'admin/images/admin-edit.png';
 	
 		parent::render();
 	}
