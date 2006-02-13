@@ -7,7 +7,7 @@ require_once 'Swat/SwatTextCellRenderer.php';
  * null text
  *
  * @package   admin
- * @copyright render a null string.-2006 silverorange
+ * @copyright 2005-2006 silverorange
  */
 class AdminNullTextCellRenderer extends SwatTextCellRenderer
 {
