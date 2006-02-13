@@ -9,7 +9,7 @@ require_once 'Swat/SwatMessage.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminApplicationMessagesModule extends SwatApplicationModule
+class AdminMessagesModule extends SwatApplicationModule
 {
     // {{{ public function init()
 

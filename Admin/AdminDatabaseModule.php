@@ -10,7 +10,7 @@ require_once 'MDB2.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminApplicationDatabaseModule extends SwatApplicationModule
+class AdminDatabaseModule extends SwatApplicationModule
 {
     // {{{ public properties
 	

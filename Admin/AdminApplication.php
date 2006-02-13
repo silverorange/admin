@@ -4,9 +4,9 @@ require_once 'Swat/SwatApplication.php';
 require_once 'MDB2.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/Admin.php';
-require_once 'Admin/AdminApplicationSessionModule.php';
-require_once 'Admin/AdminApplicationMessagesModule.php';
-require_once 'Admin/AdminApplicationDatabaseModule.php';
+require_once 'Admin/AdminSessionModule.php';
+require_once 'Admin/AdminMessagesModule.php';
+require_once 'Admin/AdminDatabaseModule.php';
 require_once 'Admin/AdminPageRequest.php';
 require_once 'Admin/pages/AdminPage.php';
 require_once 'Admin/exceptions/AdminException.php';
@@ -29,28 +29,28 @@ class AdminApplication extends SwatApplication
 	public $title;
 
 	/**
-	 * Convenience reference to the built-in AdminApplicationSessionModule
+	 * Convenience reference to the built-in AdminSessionModule
 	 *
-	 * @var AdminApplicationSessionModule (readonly)
+	 * @var AdminSessionModule (readonly)
 	 */
 	public $session;
 
 	/**
-	 * Convenience reference to the built-in AdminApplicationMessagesModule
+	 * Convenience reference to the built-in AdminMessagesModule
 	 *
-	 * @var AdminApplicationMessagesModule (readonly)
+	 * @var AdminMessagesModule (readonly)
 	 */
 	public $messages;
 
 	/**
-	 * Convenience reference to the built-in AdminApplicationDatabaseModule
+	 * Convenience reference to the built-in AdminDatabaseModule
 	 *
-	 * @var AdminApplicationDatabaseModule (readonly)
+	 * @var AdminDatabaseModule (readonly)
 	 */
 	public $database;
 
 	/**
-	 * Convenience reference to MDB2 object within the built-in AdminApplicationDatabaseModule
+	 * Convenience reference to MDB2 object within the built-in AdminDatabaseModule
 	 *
 	 * @var MDB2_Connection Database connection object (readonly)
 	 */
@@ -75,14 +75,14 @@ class AdminApplication extends SwatApplication
     {
 		parent::__construct($id);
 
-		$this->addModule(new AdminApplicationSessionModule($this));
-		$this->addModule(new AdminApplicationMessagesModule($this));
-		$this->addModule(new AdminApplicationDatabaseModule($this));
+		$this->addModule(new AdminSessionModule($this));
+		$this->addModule(new AdminMessagesModule($this));
+		$this->addModule(new AdminDatabaseModule($this));
 
 		// set up convenience references
-		$this->session = $this->modules['AdminApplicationSessionModule'];
-		$this->messages = $this->modules['AdminApplicationMessagesModule'];
-		$this->database = $this->modules['AdminApplicationDatabaseModule'];
+		$this->session = $this->modules['AdminSessionModule'];
+		$this->messages = $this->modules['AdminMessagesModule'];
+		$this->database = $this->modules['AdminDatabaseModule'];
 	}
 
     // }}}
@@ -169,6 +169,8 @@ class AdminApplication extends SwatApplication
 	public function replacePage($source)
 	{
 		$newpage = $this->instantiatePage($source);
+		$_GET = array();
+		$_POST = array();
 		$this->setPage($newpage);
 	}
 
