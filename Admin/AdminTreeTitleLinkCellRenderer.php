@@ -15,7 +15,7 @@ class AdminTreeTitleLinkCellRenderer extends AdminTitleLinkCellRenderer
 	public function render()
 	{
 		if ($this->childcount > 0)
-			$this->setFromStock('document-with-sub-documents');
+			$this->setFromStock('document-with-contents');
 		else
 			$this->setFromStock('document');
 
