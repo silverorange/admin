@@ -14,12 +14,71 @@ require_once 'Swat/SwatLinkCellRenderer.php';
 class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 {
 	/**
+	 * The stock id of this AdminTitleCellRenderer
+	 *
+	 * Specifying a stock id initializes this title link renderer with a set of
+	 * stock values.
+	 *
+	 * @var string
+	 *
+	 * @see AdminTitleCellRenderer::setFromStock()
+	 */
+	public $stock_id = null;
+
+	/**
+	 * Sets the values of this title link cell renderer to a stock type
+	 *
+	 * Valid stock type ids are:
+	 *
+	 * - document (default)
+	 * - edit
+	 * - folder-contents
+	 * - folder-empty
+	 *
+	 * @param string $stock_id the identifier of the stock type to use.
+	 * @param boolean $overwrite_properties whether to overwrite properties if
+	 *                                       they are already set.
+	 *
+	 * @throws SwatUndefinedStockTypeException
+	 */
+	public function setFromStock($stock_id, $overwrite_properties = true)
+	{
+		switch ($stock_id) {
+		case 'document':
+			$class = 'admin-title-link-cell-renderer-document';
+			break;
+
+		case 'edit':
+			$class = 'admin-title-link-cell-renderer-edit';
+			break;
+
+		case 'folder-contents':
+			$class = 'admin-title-link-cell-renderer-folder-contents';
+			break;
+
+		case 'folder-empty':
+			$class = 'admin-title-link-cell-renderer-folder-empty';
+			break;
+
+		default:
+			throw new SwatUndefinedStockTypeException(
+				"Stock type with id of '{$stock_id}' not found.",
+				0, $stock_id);
+		}
+
+		if ($overwrite_properties || ($this->class === null))
+			$this->class = $class;
+	}
+
+	/**
 	 * Gets TD-tag attributes
 	 *
-	 * Overridden here to provide a custom CSS hook for admin title link cells.
+	 * Sub-classes can redefine this to set attributes on the TD tag.
 	 *
-	 * @return array an array of attributes to apply to the TD tag of this cell
-	 *                renderer.
+	 * The returned array is of the form 'attribute' => value.
+	 *
+	 * @return array an array of attributes to apply to the TD tag of the
+	 *                column that contains this cell renderer.
 	 */
 	public function getTdAttributes()
 	{
@@ -29,15 +88,52 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	/**
 	 * Gets TH-tag attributes
 	 *
-	 * Overridden here to provide a custom CSS hook for admin title link header
-	 * cells.
+	 * Sub-classes can redefine this to set attributes on the TH tag.
 	 *
-	 * @return array an array of attributes to apply to the TH tag of this cell
-	 *                renderer.
+	 * The returned array is of the form 'attribute' => value.
+	 *
+	 * @return array an array of attributes to apply to the TH tag of the
+	 *                column that contains this cell renderer.
 	 */
 	public function getThAttributes()
 	{
 		return array('class' => 'admin-title-link-cell-renderer');
+	}
+
+	/**
+	 * Renders the contents of this cell
+	 *
+	 * @see SwatCellRenderer::render()
+	 */
+	public function render()
+	{
+		if ($this->stock_id === null)
+			$this->setFromStock('document', false);
+		else
+			$this->setFromStock($this->stock_id, false);
+
+		$contents_span = new SwatHtmlTag('span');
+		$contents_span->class = 'admin-title-link-cell-renderer-contents';
+		$contents_span->setContent($this->getText(), $this->content_type);
+
+		if ($this->sensitive && ($this->link !== null)) {
+			$anchor = new SwatHtmlTag('a');
+			$anchor->href = $this->getLink();
+			$anchor->class = $this->class;
+
+			$anchor->open();
+			$contents_span->display();
+			$anchor->close();
+		} else {
+			$span_tag = new SwatHtmlTag('span');
+			$span_tag->class = 'swat-link-cell-renderer-insensitive';
+			if ($this->class !== null)
+				$span_tag->class.= ' '.$this->class;
+
+			$span_tag->open();
+			$contents_span->display();
+			$span_tag->close();
+		}
 	}
 }
 
