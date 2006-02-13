@@ -7,7 +7,7 @@ require_once 'Admin/AdminDependency.php';
  * A dependency that displays its dependencies as a one line summary
  *
  * @package   Admin
- * @copyright 2005 silverorange
+ * @copyright 2006 silverorange
  */
 class AdminSummaryDependency extends AdminDependency
 {

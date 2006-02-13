@@ -16,7 +16,7 @@ require_once 'Swat/SwatString.php';
  * based upon the existence of dependencies.
  *
  * @package   Admin
- * @copyright 2004-2005 silverorange
+ * @copyright 2005-2006 silverorange
  * @see       AdminDBDelete, AdminDependencyEntry
  */
 abstract class AdminDependency
