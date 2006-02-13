@@ -94,7 +94,7 @@ abstract class AdminIndex extends AdminPage
 			$form->action = $this->getRelativeURL();
 			$view = $form->getFirstDescendant('SwatTableView');
 
-			if ($view !== null && $view->model->getRowCount() == 0) {
+			if ($view !== null && $view->model !== null && $view->model->getRowCount() == 0) {
 				$actions = $form->getFirstDescendant('SwatActions');
 				if ($actions !== null)
 					$actions->visible = false;
