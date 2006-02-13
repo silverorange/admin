@@ -104,7 +104,7 @@ abstract class AdminPage extends SwatPage
 		if (isset($_SERVER['HTTP_REFERER'])) {
 			return $_SERVER['HTTP_REFERER'];
 		} else {
-			$source_exp = explode('/', $source);
+			$source_exp = explode('/', $this->source);
 			return $source_exp[0];
 		}
 	}
