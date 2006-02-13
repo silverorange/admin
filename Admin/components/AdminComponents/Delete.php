@@ -23,10 +23,11 @@ class AdminComponentsDelete extends AdminDBDelete
 		$sql = 'delete from admincomponents where id in (%s)';
 		$item_list = $this->getItemList('integer');
 		$sql = sprintf($sql, $item_list);
-		SwatDB::query($this->app->db, $sql);
+		$num = SwatDB::exec($this->app->db, $sql);
 
-		$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been deleted.", 
-			"%d components have been deleted.", $this->getItemCount()), $this->getItemCount()),
+		$msg = new SwatMessage(sprintf(Admin::ngettext(
+			"%d component has been deleted.", 
+			"%d components have been deleted.", $num), $num),
 			SwatMessage::NOTIFICATION);
 
 		$this->app->messages->add($msg);
