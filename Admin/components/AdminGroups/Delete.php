@@ -22,10 +22,11 @@ class AdminGroupsDelete extends AdminDBDelete
 		$sql = 'delete from admingroups where id in (%s)';
 		$item_list = $this->getItemList('integer');
 		$sql = sprintf($sql, $item_list);
-		SwatDB::query($this->app->db, $sql);
+		$num = SwatDB::exec($this->app->db, $sql);
 
-		$msg = new SwatMessage(sprintf(Admin::ngettext("%d admin group has been deleted.", 
-			"%d admin groups have been deleted.", $this->getItemCount()), $this->getItemCount()),
+		$msg = new SwatMessage(sprintf(Admin::ngettext(
+			"%d admin group has been deleted.", 
+			"%d admin groups have been deleted.", $num), $num),
 			SwatMessage::NOTIFICATION);
 
 		$this->app->messages->add($msg);
