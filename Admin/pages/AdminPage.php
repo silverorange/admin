@@ -49,7 +49,7 @@ abstract class AdminPage extends SwatPage
 	 * Title of this page
 	 * @var Title
 	 */
-	public $title;
+	public $title = null;
 
 	// }}}
 	// {{{ protected properties
@@ -188,7 +188,8 @@ abstract class AdminPage extends SwatPage
 		$this->ui->getRoot()->displayHtmlHeadEntries();
 		$this->layout->html_head_entries = ob_get_clean();
 
-		$this->layout->title = $this->app->title.' | '.$this->title;
+		$page_title = ($this->title === null) ? $this->navbar->getLastEntry() : $this->title;
+		$this->layout->title = $this->app->title.' | '.$page_title;
 		$this->layout->basehref = $this->app->getBaseHref();
 
 		ob_start();

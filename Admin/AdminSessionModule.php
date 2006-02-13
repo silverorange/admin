@@ -10,7 +10,7 @@ require_once 'Date.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminApplicationSessionModule extends SwatApplicationModule
+class AdminSessionModule extends SwatApplicationModule
 {
     // {{{ public function init()
 
