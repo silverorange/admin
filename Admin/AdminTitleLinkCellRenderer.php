@@ -31,9 +31,11 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 * Valid stock type ids are:
 	 *
 	 * - document (default)
+	 * - document-with-contents
 	 * - edit
-	 * - folder-contents
-	 * - folder-empty
+	 * - folder
+	 * - folder-with-contents
+	 * - person
 	 *
 	 * @param string $stock_id the identifier of the stock type to use.
 	 * @param boolean $overwrite_properties whether to overwrite properties if
@@ -48,16 +50,24 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 			$class = 'admin-title-link-cell-renderer-document';
 			break;
 
+		case 'document-with-contents':
+			$class = 'admin-title-link-cell-renderer-document-with-contents';
+			break;
+
 		case 'edit':
 			$class = 'admin-title-link-cell-renderer-edit';
 			break;
 
-		case 'folder-contents':
-			$class = 'admin-title-link-cell-renderer-folder-contents';
+		case 'folder-with-contents':
+			$class = 'admin-title-link-cell-renderer-folder-with-contents';
 			break;
 
-		case 'folder-empty':
-			$class = 'admin-title-link-cell-renderer-folder-empty';
+		case 'folder':
+			$class = 'admin-title-link-cell-renderer-folder';
+			break;
+
+		case 'person':
+			$class = 'admin-title-link-cell-renderer-person';
 			break;
 
 		default:
@@ -120,6 +130,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 			$anchor = new SwatHtmlTag('a');
 			$anchor->href = $this->getLink();
 			$anchor->class = $this->class;
+			$anchor->title = $this->getTitle();
 
 			$anchor->open();
 			$contents_span->display();
@@ -127,6 +138,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		} else {
 			$span_tag = new SwatHtmlTag('span');
 			$span_tag->class = 'swat-link-cell-renderer-insensitive';
+			$span_tag->title = $this->getTitle();
 			if ($this->class !== null)
 				$span_tag->class.= ' '.$this->class;
 
