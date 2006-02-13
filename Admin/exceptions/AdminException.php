@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Swat/exceptions/SwatException.php';
+require_once 'PEAR.php';
 
 /**
  * An exception in Admin
@@ -12,4 +13,16 @@ require_once 'Swat/exceptions/SwatException.php';
 class AdminException extends SwatException
 {
 	public $title = null;
+
+	public function __construct($message = null, $code = 0)
+	{
+		if (is_object($message) && ($message instanceof PEAR_Error)) {
+			$error = $message;
+			$message = $error->getMessage();
+			$message .= "\n".$error->getUserInfo();
+			$code = $error->getCode();
+		}
+
+		parent::__construct($message, $code);
+	}
 }
