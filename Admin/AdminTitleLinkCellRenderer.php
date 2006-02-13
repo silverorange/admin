@@ -36,6 +36,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 * - folder
 	 * - folder-with-contents
 	 * - person
+	 * - product
 	 *
 	 * @param string $stock_id the identifier of the stock type to use.
 	 * @param boolean $overwrite_properties whether to overwrite properties if
@@ -68,6 +69,10 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 
 		case 'person':
 			$class = 'admin-title-link-cell-renderer-person';
+			break;
+
+		case 'product':
+			$class = 'admin-title-link-cell-renderer-product';
 			break;
 
 		default:
