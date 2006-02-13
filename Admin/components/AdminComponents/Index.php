@@ -35,65 +35,65 @@ class AdminComponentsIndex extends AdminIndex
 		$msg = null;
 
 		switch ($actions->selected->id) {
-			case 'delete':
-				$this->app->replacePage('AdminComponents/Delete');
-				$this->app->getPage()->setItems($view->checked_items);
-				break;
+		case 'delete':
+			$this->app->replacePage('AdminComponents/Delete');
+			$this->app->getPage()->setItems($view->checked_items);
+			break;
 
-			case 'show':
-				SwatDB::updateColumn($this->app->db, 'admincomponents', 
-					'boolean:show', true, 'id', 
-					$view->checked_items);
+		case 'show':
+			SwatDB::updateColumn($this->app->db, 'admincomponents', 
+				'boolean:show', true, 'id', 
+				$view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been shown.", 
-					"%d components have been shown.", $num), $num));
+			$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been shown.", 
+				"%d components have been shown.", $num), $num));
 
-				break;
+			break;
 
-			case 'hide':
-				SwatDB::updateColumn($this->app->db, 'admincomponents', 
-					'boolean:show', false, 'id', 
-					$view->checked_items);
+		case 'hide':
+			SwatDB::updateColumn($this->app->db, 'admincomponents', 
+				'boolean:show', false, 'id', 
+				$view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been hidden.", 
-					"%d components have been hidden.", $num), $num));
+			$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been hidden.", 
+				"%d components have been hidden.", $num), $num));
 
-				break;
+			break;
 
-			case 'enable':
-				SwatDB::updateColumn($this->app->db, 'admincomponents', 
-					'boolean:enabled', true, 'id', 
-					$view->checked_items);
+		case 'enable':
+			SwatDB::updateColumn($this->app->db, 'admincomponents', 
+				'boolean:enabled', true, 'id', 
+				$view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been enabled.", 
-					"%d components have been enabled.", $num), $num));
+			$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been enabled.", 
+				"%d components have been enabled.", $num), $num));
 
-				break;
+			break;
 
-			case 'disable':
-				SwatDB::updateColumn($this->app->db, 'admincomponents', 
-					'boolean:enabled', false, 'id', 
-					$view->checked_items);
+		case 'disable':
+			SwatDB::updateColumn($this->app->db, 'admincomponents', 
+				'boolean:enabled', false, 'id', 
+				$view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been disabled.", 
-					"%d components have been disabled.", $num), $num));
+			$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been disabled.", 
+				"%d components have been disabled.", $num), $num));
 
-				break;
+			break;
 
-			case 'change_section':
-				$new_section = $actions->selected->widget->value;
+		case 'change_section':
+			$new_section = $actions->selected->widget->value;
 
-				SwatDB::updateColumn($this->app->db, 'admincomponents', 
-					'integer:section', $new_section, 'id', 
-					$view->checked_items);
+			SwatDB::updateColumn($this->app->db, 'admincomponents', 
+				'integer:section', $new_section, 'id', 
+				$view->checked_items);
 
-				$title = SwatDB::queryOneFromTable($this->app->db, 'adminsections', 'text:title',
-					'id', $new_section);
+			$title = SwatDB::queryOneFromTable($this->app->db, 'adminsections', 'text:title',
+				'id', $new_section);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been moved to section \"%s\".", 
-					"%d components have been moved to section \"%s\".", $num), $num, $title));
+			$msg = new SwatMessage(sprintf(Admin::ngettext("%d component has been moved to section \"%s\".", 
+				"%d components have been moved to section \"%s\".", $num), $num, $title));
 
-				break;
+			break;
 		}
 
 		if ($msg !== null)
