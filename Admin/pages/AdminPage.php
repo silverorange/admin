@@ -189,7 +189,7 @@ abstract class AdminPage extends SwatPage
 		$this->layout->html_head_entries = ob_get_clean();
 
 		$page_title = ($this->title === null) ? $this->navbar->getLastEntry() : $this->title;
-		$this->layout->title = $this->app->title.' | '.$page_title;
+		$this->layout->title = $page_title.' - '.$this->app->title;
 		$this->layout->basehref = $this->app->getBaseHref();
 
 		ob_start();
