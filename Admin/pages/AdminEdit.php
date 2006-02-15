@@ -14,6 +14,12 @@ require_once 'Swat/SwatString.php';
  */
 abstract class AdminEdit extends AdminPage
 {
+	// {{{ protected variables
+
+	protected $id;
+
+	// }}}
+
 	// init phase
 	// {{{ protected function initInternal()
 
@@ -21,9 +27,10 @@ abstract class AdminEdit extends AdminPage
 	{
 		parent::initInternal();
 
-		$id = SwatApplication::initVar('id');
-		$this->navbar->createEntry(
-			($id === null) ? Admin::_('New') : Admin::_('Edit'));
+		$this->id = SwatApplication::initVar('id');
+
+		if (is_numeric($this->id))
+			$this->id = intval($this->id);
 	}
 
 	// }}}
@@ -35,19 +42,15 @@ abstract class AdminEdit extends AdminPage
 	{
 		parent::processInternal();
 		$form = $this->ui->getWidget('edit_form');
-		$id = SwatApplication::initVar('id');
-
-		if (is_numeric($id))
-			$id = intval($id);
 
 		if ($form->isProcessed()) {
-			$this->validate($id);
+			$this->validate();
 
 			if ($form->hasMessage()) {
 				$msg = new SwatMessage(Admin::_('REWRITE: There is a problem below.'), SwatMessage::ERROR);
 				$this->app->messages->add($msg);
 			} else {
-				if ($this->saveData($id)) {
+				if ($this->saveData()) {
 					$this->relocate();
 				}
 			}
@@ -60,7 +63,7 @@ abstract class AdminEdit extends AdminPage
 	/**
 	 * Sub-classes should implement this method to preform validation.
 	 */
-	protected function validate($id)
+	protected function validate()
 	{
 	}
 
@@ -75,10 +78,9 @@ abstract class AdminEdit extends AdminPage
 	 * are necessary to store the data. Widgets can be accessed through the
 	 * $ui class variable.
 	 *
-	 * @param integer $id An integer identifier of the data to store.
 	 * @return boolean True if save was successful.
 	 */
-	abstract protected function saveData($id);
+	abstract protected function saveData();
 
 	// }}}
 	// {{{ protected function generateShortname()
@@ -95,16 +97,15 @@ abstract class AdminEdit extends AdminPage
 	 * whatever checks are necessary to validate the shortname.
 	 *
 	 * @param string $text Text to generate the shortname from.
-	 * @param integer $id An identifier of the data object being edited.
 	 * @return string A shortname.
 	 */
-	protected function generateShortname($text, $id)
+	protected function generateShortname($text)
 	{
 		$shortname_base = SwatString::condenseToName($text);
 		$count = 1;
 		$shortname = $shortname_base;
 
-		while ($this->validateShortname($shortname, $id) === false)
+		while ($this->validateShortname($shortname) === false)
 			$shortname = $shortname_base.$count++;
 
 		return $shortname;
@@ -121,10 +122,9 @@ abstract class AdminEdit extends AdminPage
 	 * whatever checks are necessary to validate the shortname.
 	 *
 	 * @param string $shortname The shortname to validate.
-	 * @param integer $id An identifier of the data object being edited.
 	 * @return boolean Whether the shortname is valid.
 	 */
-	protected function validateShortname($shortname, $id)
+	protected function validateShortname($shortname)
 	{
 		return true;
 	}
@@ -150,30 +150,27 @@ abstract class AdminEdit extends AdminPage
 	protected function buildInternal()
 	{
 		parent::buildInternal();
-		$id = SwatApplication::initVar('id');
 
-		if (is_numeric($id))
-			$id = intval($id);
-
-		$this->buildForm($id);
-		$this->buildFrame($id);
-		$this->buildButton($id);
+		$this->buildForm();
+		$this->buildFrame();
+		$this->buildButton();
 		$this->buildMessages();
+		$this->buildNavBar();
 	}
 
 	// }}}
 	// {{{ protected function buildForm()
 
-	protected function buildForm($id)
+	protected function buildForm()
 	{
 		$form = $this->ui->getWidget('edit_form');
 
-		if ($id !== null)
+		if ($this->id !== null)
 			if (!$form->isProcessed())
-				$this->loadData($id);
+				$this->loadData();
 
 		$form->action = $this->source;
-		$form->addHiddenField('id', $id);
+		$form->addHiddenField('id', $this->id);
 
 		if ($form->getHiddenField(self::RELOCATE_URL_FIELD) === null) {
 			$url = $this->getRefererURL();
@@ -191,19 +188,18 @@ abstract class AdminEdit extends AdminPage
 	 * are necessary to obtain the data. Widgets can be accessed through the
 	 * $ui class variable.
 	 *
-	 * @param integer $id An integer identifier of the data to retrieve.
 	 * @return boolean True if load was successful.
 	 */
-	abstract protected function loadData($id);
+	abstract protected function loadData();
 
 	// }}}
 	// {{{ protected function buildButton()
 
-	protected function buildButton($id)
+	protected function buildButton()
 	{
 		$button = $this->ui->getWidget('submit_button');
 
-		if ($id === null)
+		if ($this->id === null)
 			$button->setFromStock('create');
 		else
 			$button->setFromStock('apply');
@@ -212,14 +208,27 @@ abstract class AdminEdit extends AdminPage
 	// }}}
 	// {{{ protected function buildFrame()
 
-	protected function buildFrame($id)
+	protected function buildFrame()
 	{
 		$frame = $this->ui->getWidget('edit_frame');
 
-		if ($id === null)
+		if ($this->id === null)
 			$frame->title = sprintf(Admin::_('New %s'), $frame->title);
 		else
 			$frame->title = sprintf(Admin::_('Edit %s'), $frame->title);
+	}
+
+	// }}}
+	// {{{ protected function buildNavBar()
+
+	protected function buildNavBar()
+	{
+		if ($this->id === null)
+			$title = Admin::_('New');
+		else
+			$title = Admin::_('Edit');
+
+		$this->navbar->createEntry($title);
 	}
 
 	// }}}
