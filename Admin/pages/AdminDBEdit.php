@@ -17,11 +17,11 @@ abstract class AdminDBEdit extends AdminEdit
 	// process phase
 	// {{{ protected function saveData()
 
-	protected function saveData($id)
+	protected function saveData()
 	{
 		try {
 			$this->app->db->beginTransaction();
-			$this->saveDBData($id);
+			$this->saveDBData();
 			$this->app->db->commit();
 
 		} catch (SwatDBException $e) {
@@ -59,19 +59,17 @@ abstract class AdminDBEdit extends AdminEdit
 	 * Sub-classes should implement this method and perform whatever actions
 	 * are necessary to store the data. Widgets can be accessed through the
 	 * $ui class variable.
-	 *
-	 * @param integer $id An integer identifier of the data to store.
 	 */
-	abstract protected function saveDBData($id);
+	abstract protected function saveDBData();
 
 	// }}}
 
 	// build phase
 	// {{{ protected function loadData()
 
-	protected function loadData($id)
+	protected function loadData()
 	{
-		$this->loadDBData($id);
+		$this->loadDBData();
 		return true;
 	}
 
@@ -85,10 +83,8 @@ abstract class AdminDBEdit extends AdminEdit
 	 * Sub-classes should implement this method and perform whatever actions
 	 * are necessary to obtain the data. Widgets can be accessed through the
 	 * $ui class variable.
-	 *
-	 * @param integer $id An integer identifier of the data to retrieve.
 	 */
-	abstract protected function loadDBData($id);
+	abstract protected function loadDBData();
 
 	// }}}
 }
