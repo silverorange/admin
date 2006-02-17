@@ -8,8 +8,8 @@ require_once 'SwatDB/SwatDB.php';
 /**
  * Edit page for AdminUsers component
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2006 silverorange
  */
 class AdminUsersEdit extends AdminDBEdit
 {
@@ -37,14 +37,14 @@ class AdminUsersEdit extends AdminDBEdit
 		$confirm = $this->ui->getWidget('confirm_password');
 		$confirm->password_widget = $this->ui->getWidget('password');;
 		
-		$id = SwatApplication::initVar('id');
-		if ($id === null) {
+		if ($this->id === null) {
 			$this->ui->getWidget('password')->required = true;
 			$confirm->required = true;
 			
 			$this->ui->getWidget('confirm_password_field')->note = null;
 			$this->ui->getWidget('password_disclosure')->open = true;
-			$this->ui->getWidget('password_disclosure')->title = Admin::_('Set Password');
+			$this->ui->getWidget('password_disclosure')->title =
+				Admin::_('Set Password');
 		}
 	}
 
@@ -53,18 +53,21 @@ class AdminUsersEdit extends AdminDBEdit
 	// process phase
 	// {{{ protected function validate()
 
-	protected function validate($id)
+	protected function validate()
 	{
 		$username = $this->ui->getWidget('username');
 
 		$query = SwatDB::query($this->app->db, sprintf('select username from
 			adminusers where username = %s and id %s %s',
 			$this->app->db->quote($username->value, 'text'),
-			SwatDB::equalityOperator($id, true),
-			$this->app->db->quote($id, 'integer')));
+			SwatDB::equalityOperator($this->id, true),
+			$this->app->db->quote($this->id, 'integer')));
 
 		if ($query->getCount() > 0) {
-			$msg = new SwatMessage(Admin::_('Username already exists and must be unique.'), SwatMessage::ERROR);
+			$msg = new SwatMessage(
+				Admin::_('Username already exists and must be unique.'),
+				SwatMessage::ERROR);
+
 			$username->addMessage($msg);
 		}
 	}
@@ -72,7 +75,7 @@ class AdminUsersEdit extends AdminDBEdit
 	// }}}
 	// {{{ protected function saveDBData()
 
-	protected function saveDBData($id)
+	protected function saveDBData()
 	{
 		$values = $this->ui->getValues(array('username', 'name', 'enabled'));
 
@@ -82,17 +85,18 @@ class AdminUsersEdit extends AdminDBEdit
 			$this->fields[] = 'password';
 		}
 
-		if ($id === null)
-			$id = SwatDB::insertRow($this->app->db, 'adminusers', $this->fields,
-				$values, 'integer:id');
+		if ($this->id === null)
+			$this->id = SwatDB::insertRow($this->app->db, 'adminusers',
+				$this->fields, $values, 'integer:id');
 		else
 			SwatDB::updateRow($this->app->db, 'adminusers', $this->fields,
-				$values, 'integer:id', $id);
+				$values, 'integer:id', $this->id);
 
 		$group_list = $this->ui->getWidget('groups');
 
 		SwatDB::updateBinding($this->app->db, 'adminuser_admingroup', 
-			'usernum', $id, 'groupnum', $group_list->values, 'admingroups', 'id');
+			'usernum', $this->id, 'groupnum', $group_list->values,
+			'admingroups', 'id');
 		
 		$msg = new SwatMessage(
 			sprintf(Admin::_('User “%s” has been saved.'),
@@ -106,20 +110,20 @@ class AdminUsersEdit extends AdminDBEdit
 	// build phase
 	// {{{ protected function loadDBData()
 
-	protected function loadDBData($id)
+	protected function loadDBData()
 	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers', 
-			$this->fields, 'integer:id', $id);
+			$this->fields, 'integer:id', $this->id);
 
 		if ($row === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("User with id '%s' not found."), $id));
+				sprintf(Admin::_("User with id '%s' not found."), $this->id));
 
 		$this->ui->setValues(get_object_vars($row));
 		
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->values = SwatDB::queryColumn($this->app->db, 
-			'adminuser_admingroup', 'groupnum', 'usernum', $id);
+			'adminuser_admingroup', 'groupnum', 'usernum', $this->id);
 	}
 
 	// }}}

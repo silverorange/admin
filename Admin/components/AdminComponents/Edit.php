@@ -8,8 +8,8 @@ require_once 'SwatDB/SwatDB.php';
 /**
  * Edit page for AdminComponents
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2006 silverorange
  */
 class AdminComponentsEdit extends AdminDBEdit
 {
@@ -45,18 +45,21 @@ class AdminComponentsEdit extends AdminDBEdit
 	// process phase
 	// {{{ protected function validate()
 
-	protected function validate($id)
+	protected function validate()
 	{
 		$shortname = $this->ui->getWidget('shortname');
 
 		$query = SwatDB::query($this->app->db, sprintf('select shortname from
 			admincomponents where shortname = %s and id %s %s',
 			$this->app->db->quote($shortname->value, 'text'),
-			SwatDB::equalityOperator($id, true),
-			$this->app->db->quote($id, 'integer')));
+			SwatDB::equalityOperator($this->id, true),
+			$this->app->db->quote($this->id, 'integer')));
 
 		if ($query->getCount() > 0) {
-			$msg = new SwatMessage(Admin::_('Shortname already exists and must be unique.'), SwatMessage::ERROR);
+			$msg = new SwatMessage(
+				Admin::_('Shortname already exists and must be unique.'),
+				SwatMessage::ERROR);
+
 			$shortname->addMessage($msg);
 		}
 	}
@@ -64,22 +67,23 @@ class AdminComponentsEdit extends AdminDBEdit
 	// }}}
 	// {{{ protected function saveDBData()
 
-	protected function saveDBData($id)
+	protected function saveDBData()
 	{
 		$values = $this->ui->getValues(array('title', 'shortname', 'section', 
 			'show', 'enabled', 'description'));
 
-		if ($id === null)
-			$id = SwatDB::insertRow($this->app->db, 'admincomponents', $this->fields,
-				$values, 'integer:id');
+		if ($this->id === null)
+			$this->id = SwatDB::insertRow($this->app->db, 'admincomponents',
+				$this->fields, $values, 'integer:id');
 		else
 			SwatDB::updateRow($this->app->db, 'admincomponents', $this->fields,
-				$values, 'integer:id', $id);
+				$values, 'integer:id', $this->id);
 
 		$group_list = $this->ui->getWidget('groups');
 
 		SwatDB::updateBinding($this->app->db, 'admincomponent_admingroup', 
-			'component', $id, 'groupnum', $group_list->values, 'admingroups', 'id');
+			'component', $this->id, 'groupnum', $group_list->values,
+			'admingroups', 'id');
 
 		$msg = new SwatMessage(
 			sprintf(Admin::_('Component “%s” has been saved.'),
@@ -93,20 +97,21 @@ class AdminComponentsEdit extends AdminDBEdit
 	// build phase
 	// {{{ protected function loadDBData()
 
-	protected function loadDBData($id)
+	protected function loadDBData()
 	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'admincomponents', 
-			$this->fields, 'integer:id', $id);
+			$this->fields, 'integer:id', $this->id);
 
 		if ($row === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("Component with id '%s' not found."), $id));
+				sprintf(Admin::_("Component with id '%s' not found."),
+				$this->id));
 
 		$this->ui->setValues(get_object_vars($row));
 
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->values = SwatDB::queryColumn($this->app->db, 
-			'admincomponent_admingroup', 'groupnum', 'component', $id);
+			'admincomponent_admingroup', 'groupnum', 'component', $this->id);
 	}
 
 	// }}}

@@ -74,12 +74,6 @@
 			</widget>
 			<widget class="SwatForm" id="index_form">
 				<widget class="SwatTableView" id="index_view">
-					<object class="SwatTableViewColumn" id="controls">
-						<object class="AdminEditControlCellRenderer">
-							<property name="link">AdminSubComponents/Edit?id=%s</property>
-							<property name="link_value" type="data">id</property>
-						</object>
-					</object>
 					<object class="SwatTableViewCheckboxColumn" id="checkbox">
 						<object class="SwatCheckboxCellRenderer" id="items">
 							<property name="value" type="data">id</property>
@@ -91,6 +85,7 @@
 							<property name="text" type="data" translatable="yes">title</property>
 							<property name="link">AdminSubComponents/Edit?id=%s</property>
 							<property name="link_value" type="data">id</property>
+							<property name="stock_id">edit</property>
 						</object>
 					</object>
 					<object class="SwatTableViewColumn">
