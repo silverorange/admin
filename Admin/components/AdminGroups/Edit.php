@@ -8,8 +8,8 @@ require_once 'SwatDB/SwatDB.php';
 /**
  * Edit page for AdminGroups component
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2006 silverorange
  */
 class AdminGroupsEdit extends AdminDBEdit
 {
@@ -47,26 +47,28 @@ class AdminGroupsEdit extends AdminDBEdit
 	// process phase
 	// {{{ protected function saveDBData()
 
-	protected function saveDBData($id)
+	protected function saveDBData()
 	{
 		$values = $this->ui->getValues(array('title'));
 
-		if ($id === null)
-			$id = SwatDB::insertRow($this->app->db, 'admingroups', $this->fields,
-				$values, 'integer:id');
+		if ($this->id === null)
+			$this->id = SwatDB::insertRow($this->app->db, 'admingroups',
+				$this->fields, $values, 'integer:id');
 		else
 			SwatDB::updateRow($this->app->db, 'admingroups', $this->fields,
-				$values, 'integer:id', $id);
+				$values, 'integer:id', $this->id);
 
 		$user_list = $this->ui->getWidget('users');
 
 		SwatDB::updateBinding($this->app->db, 'adminuser_admingroup', 
-			'groupnum', $id, 'usernum', $user_list->values, 'adminusers', 'id');
+			'groupnum', $this->id, 'usernum', $user_list->values,
+			'adminusers', 'id');
 
 		$component_list = $this->ui->getWidget('components');
 
 		SwatDB::updateBinding($this->app->db, 'admincomponent_admingroup', 
-			'groupnum', $id, 'component', $component_list->values, 'admincomponents', 'id');
+			'groupnum', $this->id, 'component', $component_list->values,
+			'admincomponents', 'id');
 
 		$msg = new SwatMessage(
 			sprintf(Admin::_('Group “%s” has been saved.'),
@@ -80,24 +82,24 @@ class AdminGroupsEdit extends AdminDBEdit
 	// build phase
 	// {{{ protected function loadDBData()
 
-	protected function loadDBData($id)
+	protected function loadDBData()
 	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'admingroups', 
-			$this->fields, 'integer:id', $id);
+			$this->fields, 'integer:id', $this->id);
 
 		if ($row === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("Group with id '%s' not found."), $id));
+				sprintf(Admin::_("Group with id '%s' not found."), $this->id));
 
 		$this->ui->setValues(get_object_vars($row));
 
 		$user_list = $this->ui->getWidget('users');
 		$user_list->values = SwatDB::queryColumn($this->app->db, 
-			'adminuser_admingroup', 'usernum', 'groupnum', $id);
+			'adminuser_admingroup', 'usernum', 'groupnum', $this->id);
 
 		$component_list = $this->ui->getWidget('components');
 		$component_list->values = SwatDB::queryColumn($this->app->db, 
-			'admincomponent_admingroup', 'component', 'groupnum', $id);
+			'admincomponent_admingroup', 'component', 'groupnum', $this->id);
 	}
 
 	// }}}

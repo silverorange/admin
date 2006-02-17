@@ -5,9 +5,10 @@ require_once 'Admin/AdminUI.php';
 require_once 'SwatDB/SwatDB.php';
 
 /**
- * Edit page for Admin user profile
- * @package Admin
- * @copyright silverorange 2004
+ * Edit page for the current admin user profile
+ *
+ * @package   Admin
+ * @copyright 2004-2006 silverorange
  */
 class AdminSiteProfile extends AdminDBEdit
 {
@@ -30,13 +31,15 @@ class AdminSiteProfile extends AdminDBEdit
 
 	protected function initInternal()
 	{
+		parent::initInternal();
+
 		$this->ui->loadFromXML(dirname(__FILE__).'/profile.xml');
 
-		$this->navbar->popEntry();
-		$this->navbar->createEntry(Admin::_('My Profile'));
-
 		$confirm = $this->ui->getWidget('confirmpassword');
-		$confirm->password_widget = $this->ui->getWidget('password');;
+		$confirm->password_widget = $this->ui->getWidget('password');
+
+		$this->id = SwatApplication::initVar('user_id',
+			null, SwatApplication::VAR_SESSION);
 	}
 
 	// }}}
@@ -44,7 +47,7 @@ class AdminSiteProfile extends AdminDBEdit
 	// process phase
 	// {{{ protected function saveDBData()
 
-	protected function saveDBData($id)
+	protected function saveDBData()
 	{
 		$name = $this->ui->getWidget('name');
 		$values = array('name' => $name->value);
@@ -55,7 +58,7 @@ class AdminSiteProfile extends AdminDBEdit
 		}
 
 		SwatDB::updateRow($this->app->db, 'adminusers', array_keys($values),
-			$values, 'integer:id', $_SESSION['user_id']);
+			$values, 'integer:id', $this->id);
 
 		$_SESSION['name'] = $values['name'];
 
@@ -66,28 +69,30 @@ class AdminSiteProfile extends AdminDBEdit
 	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
+	// {{{ protected function buildFrame()
 
-	protected function buildInternal()
+	protected function buildFrame()
 	{
-		$form = $this->ui->getWidget('edit_form');
-		$form->action = $this->source;
-
-		if (!$form->isProcessed())
-			$this->loadData(null);
-
-		$this->buildMessages();
 	}
 
 	// }}}
 	// {{{ protected function loadDBData()
 
-	protected function loadDBData($id)
+	protected function loadDBData()
 	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers', 
-			array('name'), 'integer:id', $_SESSION['user_id']);
+			array('name'), 'integer:id', $this->id);
 
 		$this->ui->setValues(get_object_vars($row));
+	}
+
+	// }}}
+	// {{{ protected function buildNavBar()
+
+	protected function buildNavBar()
+	{
+		$this->navbar->popEntry();
+		$this->navbar->createEntry(Admin::_('My Profile'));
 	}
 
 	// }}}

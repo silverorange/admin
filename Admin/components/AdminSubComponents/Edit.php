@@ -8,8 +8,8 @@ require_once 'SwatDB/SwatDB.php';
 /**
  * Edit page for AdminSubComponents
  *
- * @package Admin
- * @copyright silverorange 2005
+ * @package   Admin
+ * @copyright 2005-2006 silverorange
  */
 class AdminSubComponentsEdit extends AdminDBEdit
 {
@@ -26,6 +26,7 @@ class AdminSubComponentsEdit extends AdminDBEdit
 	protected function initInternal()
 	{
 		parent::initInternal();
+
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
 
 		$this->parent = SwatApplication::initVar('parent');
@@ -41,17 +42,19 @@ class AdminSubComponentsEdit extends AdminDBEdit
 	// process phase
 	// {{{ protected function validate()
 
-	protected function validate($id)
+	protected function validate()
 	{
 		parent::validate();
 		$shortname = $this->ui->getWidget('shortname');
 
-		$query = SwatDB::queryRow($this->app->db, sprintf('select shortname from
-			adminsubcomponents where shortname = %s and id %s %s and component = %s',
+		$sql = sprintf('select shortname from adminsubcomponents
+				where shortname = %s and id %s %s and component = %s',
 			$this->app->db->quote($shortname->value, 'text'),
-			SwatDB::equalityOperator($id, true),
-			$this->app->db->quote($id, 'integer'),
-			$this->app->db->quote($this->parent, 'integer')));
+			SwatDB::equalityOperator($this->id, true),
+			$this->app->db->quote($this->id, 'integer'),
+			$this->app->db->quote($this->parent, 'integer'));
+
+		$query = SwatDB::queryRow($this->app->db, $sql);
 
 		if ($query !== null) {
 			$msg = new SwatMessage(Admin::_('Shortname already exists and must be unique.'), SwatMessage::ERROR);
@@ -62,17 +65,17 @@ class AdminSubComponentsEdit extends AdminDBEdit
 	// }}}
 	// {{{ protected function saveDBData()
 
-	protected function saveDBData($id)
+	protected function saveDBData()
 	{
 		$values = $this->ui->getValues(array('title', 'shortname', 'show'));
 		$values['component'] = $this->parent;
 
-		if ($id === null)
-			$id = SwatDB::insertRow($this->app->db, 'adminsubcomponents', $this->fields,
+		if ($this->id === null)
+			$this->id = SwatDB::insertRow($this->app->db, 'adminsubcomponents', $this->fields,
 				$values, 'integer:id');
 		else
-			SwatDB::updateRow($this->app->db, 'adminsubcomponents', $this->fields,
-				$values, 'integer:id', $id);
+			SwatDB::updateRow($this->app->db, 'adminsubcomponents',
+				$this->fields, $values, 'integer:id', $this->id);
 
 		$msg = new SwatMessage(
 			sprintf(Admin::_('Sub-Component “%s” has been saved.'),
@@ -84,44 +87,41 @@ class AdminSubComponentsEdit extends AdminDBEdit
 	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
-
-	protected function buildInternal()
-	{
-		parent::buildInternal();
-
-		// rebuild the navbar
-		$parent_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',
-			'id', $this->parent);
-
-		$this->navbar->popEntries(2);
-		$this->navbar->createEntry('Admin Components', 'AdminComponents');
-		$this->navbar->createEntry($parent_title, 'AdminComponents/Details?id='.$this->parent);
-
-		$id = $this->app->initVar('id');
-		if ($id === null)
-			$this->navbar->createEntry('Add Sub-Component');
-		else
-			$this->navbar->createEntry('Edit Sub-Component');
-	}
-
-	// }}}
 	// {{{ protected function loadDBData()
 
-	protected function loadDBData($id)
+	protected function loadDBData()
 	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'adminsubcomponents', 
-			$this->fields, 'integer:id', $id);
+			$this->fields, 'integer:id', $this->id);
 
 		if ($row === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("Sub-component with id '%s' not found."), $id));
+				sprintf(Admin::_("Sub-component with id '%s' not found."),
+				$this->id));
 
 		$this->ui->setValues(get_object_vars($row));
 
 		$this->parent = intval($row->component);
 		$form = $this->ui->getWidget('edit_form');
 		$form->addHiddenField('parent', $this->parent);
+	}
+
+	// }}}
+	// {{{ protected function buildNavBar()
+
+	protected function buildNavBar()
+	{
+		$parent_title = SwatDB::queryOneFromTable($this->app->db,
+			'admincomponents', 'text:title', 'id', $this->parent);
+
+		$this->navbar->popEntry();
+		$this->navbar->createEntry('Admin Components', 'AdminComponents');
+		$this->navbar->createEntry($parent_title, 'AdminComponents/Details?id='.$this->parent);
+
+		if ($this->id === null)
+			$this->navbar->createEntry('Add Sub-Component');
+		else
+			$this->navbar->createEntry('Edit Sub-Component');
 	}
 
 	// }}}

@@ -8,8 +8,8 @@ require_once 'MDB2.php';
 /**
  * Edit page for AdminSections
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2006 silverorange
  */
 class AdminSectionsEdit extends AdminDBEdit
 {
@@ -21,7 +21,7 @@ class AdminSectionsEdit extends AdminDBEdit
 		parent::initInternal();
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
-		
+
 		$this->fields = array('title', 'boolean:show', 'description');
 	}
 
@@ -30,16 +30,16 @@ class AdminSectionsEdit extends AdminDBEdit
 	// process phase
 	// {{{ protected function saveDBData()
 
-	protected function saveDBData($id)
+	protected function saveDBData()
 	{
 		$values = $this->ui->getValues(array('title', 'show', 'description'));
 
-		if ($id === null)
-			$id = SwatDB::insertRow($this->app->db, 'adminsections', $this->fields,
-				$values, 'integer:id');
+		if ($this->id === null)
+			$this->id = SwatDB::insertRow($this->app->db, 'adminsections',
+				$this->fields, $values, 'integer:id');
 		else
 			SwatDB::updateRow($this->app->db, 'adminsections', $this->fields,
-				$values, 'integer:id', $id);
+				$values, 'integer:id', $this->id);
 
 		$msg = new SwatMessage(
 			sprintf(Admin::_('Section “%s” has been saved.'),
@@ -53,14 +53,15 @@ class AdminSectionsEdit extends AdminDBEdit
 	// build phase
 	// {{{ protected function loadDBData()
 
-	protected function loadDBData($id)
+	protected function loadDBData()
 	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'adminsections', 
-			$this->fields, 'integer:id', $id);
+			$this->fields, 'integer:id', $this->id);
 
 		if ($row === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("Section with id '%s' not found."), $id));
+				sprintf(Admin::_("Section with id '%s' not found."),
+				$this->id));
 
 		$this->ui->setValues(get_object_vars($row));
 	}
