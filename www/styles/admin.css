@@ -161,12 +161,22 @@ td.admin-title-link-cell-renderer a:link,
 td.admin-title-link-cell-renderer a:visited {
 	display: block;
 	border: 1px solid transparent;
-	/* TODO: fix this border so it works in IE */
+}
+* html td.admin-title-link-cell-renderer a:link,
+* html td.admin-title-link-cell-renderer a:visited {
+	/* IE hack */
+	border: 0;
+	margin: 1px;
 }
 
 td.admin-title-link-cell-renderer a:hover {
 	background: #f6f2ea url(../images/admin-title-link-cell-renderer-back.png) top repeat-x;
 	border: 1px solid #f0eade;
+}
+* html td.admin-title-link-cell-renderer a:hover {
+	/* IE hack */
+	border: 1px solid #f0eade;
+	margin: 0;
 }
 
 td.admin-title-link-cell-renderer a:active {
