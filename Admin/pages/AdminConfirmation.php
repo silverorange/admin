@@ -91,6 +91,7 @@ abstract class AdminConfirmation extends AdminPage
 			$form->addHiddenField(self::RELOCATE_URL_FIELD, $url);
 		}
 	}
+
 	// }}}
 	// {{{ protected function switchToCancelButton()
 
