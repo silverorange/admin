@@ -174,9 +174,10 @@ td.admin-title-link-cell-renderer a:hover {
 	border: 1px solid #f0eade;
 }
 * html td.admin-title-link-cell-renderer a:hover {
-	/* IE hack */
+	/* IE hacks */
 	border: 1px solid #f0eade;
 	margin: 0;
+	cursor: hand;
 }
 
 td.admin-title-link-cell-renderer a:active {
@@ -185,6 +186,7 @@ td.admin-title-link-cell-renderer a:active {
 
 span.admin-title-link-cell-renderer-contents {
 	display: block;
+	width: 100%;
 	padding: 0.4em 0.2em 0.4em 36px;
 	background-image: url(../images/admin-generic-document.png);
 	background-position: 4px 50%;
