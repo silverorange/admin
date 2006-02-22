@@ -15,11 +15,11 @@ class AdminDetailsControlCellRenderer extends SwatImageLinkCellRenderer
 {
 	public function render()
 	{
-		$this->width  = 28;
+		$this->width  = 22;
 		$this->height = 22;
 		$this->title = Admin::_('View Details');
 		$this->alt = Admin::_('Details');
-		$this->image = 'admin/images/b_details.png';
+		$this->image = 'admin/images/admin-generic-document.png';
 	
 		parent::render();
 	}
