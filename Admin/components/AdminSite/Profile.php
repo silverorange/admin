@@ -92,7 +92,7 @@ class AdminSiteProfile extends AdminDBEdit
 	protected function buildNavBar()
 	{
 		$this->navbar->popEntry();
-		$this->navbar->createEntry(Admin::_('My Profile'));
+		$this->navbar->createEntry(Admin::_('Login Settings'));
 	}
 
 	// }}}
