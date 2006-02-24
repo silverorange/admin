@@ -167,6 +167,7 @@ td.admin-title-link-cell-renderer a:visited {
 	/* IE hack */
 	border: 0;
 	margin: 1px;
+	width: 99%;
 }
 
 td.admin-title-link-cell-renderer a:hover {
@@ -178,6 +179,7 @@ td.admin-title-link-cell-renderer a:hover {
 	border: 1px solid #f0eade;
 	margin: 0;
 	cursor: hand;
+	width: 99%;
 }
 
 td.admin-title-link-cell-renderer a:active {
@@ -186,7 +188,6 @@ td.admin-title-link-cell-renderer a:active {
 
 span.admin-title-link-cell-renderer-contents {
 	display: block;
-	width: 100%;
 	padding: 0.4em 0.2em 0.4em 36px;
 	background-image: url(../images/admin-generic-document.png);
 	background-position: 4px 50%;
