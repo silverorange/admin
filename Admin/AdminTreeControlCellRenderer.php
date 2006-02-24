@@ -17,19 +17,19 @@ class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
 	
 	public function render()
 	{
-		$this->width  = 28;
+		$this->width  = 22;
 		$this->height = 22;
 
 		if ($this->childcount == 0) {
 			$this->title = Admin::_('View Details');
 			$this->alt = Admin::_('Details');
-			$this->image = 'admin/images/b_details.png';
+			$this->image = 'admin/images/admin-generic-document.png';
 		} else {
 			$this->title = sprintf(Swat::ngettext('View Details (%d sub-item)', 'View Details (%d sub-items)', 
 				$this->childcount), $this->childcount);
 
 			$this->alt = Admin::_('Details');
-			$this->image = 'admin/images/b_details_folder.png';
+			$this->image = 'admin/images/admin-document-with-contents.png';
 		}
 	
 		parent::render();
