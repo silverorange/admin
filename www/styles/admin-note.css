@@ -9,9 +9,14 @@
 	border-radius: 8px;
 	border-color: #f0dca1;
 	background-color: #fffbc9;
-	background-image: url(../../swat/images/tango/22/dialog-information.png);
 	color: #947140;
+	background-image: url(../../swat/images/tango/22/dialog-information.png);
 }
+
+* html .admin-note {
+	background-image: url(../../swat/images/tango/22/dialog-information-256.png);
+}
+
 
 /* Hack for min-height in IE  */
 * html .admin-note {
