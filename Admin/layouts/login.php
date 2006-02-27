@@ -9,9 +9,7 @@
 </head>
 <body id="admin-login-page">
 
-<div id="admin-login">
-	<?=$this->ui?>
-</div>
+<?=$this->ui?>
 
 </body>
 </html>
