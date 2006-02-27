@@ -123,8 +123,8 @@ img { border: 0; }
 
 /* Login Page Styles */
 
-#admin-login {
-	width: 25em;
+#login_frame {
+	width: 18em;
 	margin: 4em auto 1em auto;
 }
 
