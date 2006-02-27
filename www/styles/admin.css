@@ -18,13 +18,11 @@ img { border: 0; }
 /* Basic Layout */
 
 #admin-body {
-	position: relative;
-	border: 1px solid #f7f5f3; /* a border is required for IE to respect the position */
 }
 
 #admin-menu {
 	position: absolute;
-	top: 0;
+	top: 3em;
 	left: 0;
 	width: 160px;
 	color: #666;
@@ -57,14 +55,13 @@ img { border: 0; }
 #admin-header h1 {
 	margin: 0;
 	padding: 0;
-	font-size: 100%;
+	font-size: 120%;
 	color: #fff;
 	display: inline;
 	font-weight: bold;
 }
 
 #admin-navbar {
-	font-size: 120%;
 }
 
 
