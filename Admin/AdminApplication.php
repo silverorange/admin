@@ -184,9 +184,9 @@ class AdminApplication extends SwatApplication
 	*/
 
     // }}}
-    // {{{ private function instantiatePage()
+    // {{{ public function instantiatePage()
 
-	private function instantiatePage($source)
+	public function instantiatePage($source)
 	{
 		if ($source === 'index.html')
 			$source = $this->front_source;
