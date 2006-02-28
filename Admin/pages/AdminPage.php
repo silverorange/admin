@@ -22,32 +22,36 @@ abstract class AdminPage extends SwatPage
 
 	/**
 	 * Source of this page
+	 *
 	 * @var string
 	 */
 	public $source;
 
 	/**
 	 * Component name of this page
+	 *
 	 * @var string
 	 */
 	public $component;
 
 	/**
 	 * Subcomponent name of this page
+	 *
 	 * @var string
 	 */
 	public $subcomponent;
 
 	/**
 	 * Navbar of this page
-
+	 *
 	 * @var AdminNavBar
 	 */
 	public $navbar;
 
 	/**
 	 * Title of this page
-	 * @var Title
+	 *
+	 * @var string
 	 */
 	public $title = null;
 
