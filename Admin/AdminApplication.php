@@ -63,6 +63,12 @@ class AdminApplication extends SwatApplication
 	 */
 	public $front_source = 'AdminSite/Front';
 
+	/**
+	 * Class to instantiate for menu.
+	 * @var Title
+	 */
+	public $menu_class = 'AdminMenu';
+
     // }}}
     // {{{ public function __construct()
 

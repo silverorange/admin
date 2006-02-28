@@ -281,7 +281,7 @@ abstract class AdminPage extends SwatPage
 	{		
 		$menu = SwatDB::executeStoredProc($this->app->db, 'sp_admin_menu',
 				$this->app->db->quote($_SESSION['user_id'], 'integer'),
-				'AdminMenu');
+				$this->app->menu_class);
 
 		$menu->display();
 	}
