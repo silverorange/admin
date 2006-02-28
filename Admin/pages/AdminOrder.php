@@ -99,6 +99,7 @@ abstract class AdminOrder extends AdminPage
 		$this->buildOptionList();
 		$this->buildButton();
 		$this->buildForm();
+		$this->buildNavBar();
 		$this->loadData();
 	}
 	
@@ -112,6 +113,8 @@ abstract class AdminOrder extends AdminPage
 			'auto'=>Admin::_('Automatically'),
 			'custom'=>Admin::_('Custom')));
 	}
+
+	// }}}
 	// {{{ protected function buildButton()
 
 	protected function buildButton()
@@ -132,6 +135,15 @@ abstract class AdminOrder extends AdminPage
 			$form->addHiddenField(self::RELOCATE_URL_FIELD, $url);
 		}
 	}
+
+	// }}}
+	// {{{ protected function buildNavBar()
+
+	protected function buildNavBar()
+	{
+
+	}
+
 	// }}}
 	// {{{ protected function loadData()
 
