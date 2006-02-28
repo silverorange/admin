@@ -1,6 +1,7 @@
 <?php
 
 require_once 'SwatDB/SwatDBField.php';
+require_once 'Admin/exceptions/AdminException.php';
 
 /**
  * Class for building search clauses
@@ -125,7 +126,7 @@ class AdminSearchClause
 			case self::OP_ENDS_WITH:   return 'like';
 
 			default:
-				throw new Exception('Unknown operator in clause: '.$id);
+				throw new AdminException('Unknown operator in clause: '.$id);
 		}
 	}
 }
