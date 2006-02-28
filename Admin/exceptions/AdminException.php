@@ -12,8 +12,6 @@ require_once 'PEAR.php';
  */
 class AdminException extends SwatException
 {
-	public $title = null;
-
 	public function __construct($message = null, $code = 0)
 	{
 		if (is_object($message) && ($message instanceof PEAR_Error)) {

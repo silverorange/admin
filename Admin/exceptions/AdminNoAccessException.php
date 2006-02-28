@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Admin/exceptions/AdminException.php';
+require_once 'Admin/exceptions/AdminUserException.php';
 
 /**
  * Thrown when access to a page is not allowed
@@ -9,7 +9,7 @@ require_once 'Admin/exceptions/AdminException.php';
  * @copyright 2006 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
-class AdminNoAccessException extends AdminException
+class AdminNoAccessException extends AdminUserException
 {
 	/**
 	 * Creates a new no access exception
@@ -20,7 +20,7 @@ class AdminNoAccessException extends AdminException
 	public function __construct($message = null, $code = 0)
 	{
 		parent::__construct($message, $code);
-		$this->title = _('No Access');
+		$this->title = Admin::_('No Access');
 	}
 }
 

@@ -9,7 +9,7 @@ require_once 'Admin/AdminMessagesModule.php';
 require_once 'Admin/AdminDatabaseModule.php';
 require_once 'Admin/AdminPageRequest.php';
 require_once 'Admin/pages/AdminPage.php';
-require_once 'Admin/exceptions/AdminException.php';
+require_once 'Admin/exceptions/AdminUserException.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
 
 /**
@@ -114,7 +114,7 @@ class AdminApplication extends SwatApplication
 		try {
 			$this->initPage();
 		}
-		catch (AdminException $e) {
+		catch (AdminUserException $e) {
 			$this->replacePage('AdminSite/Exception');
 			$this->page->setException($e);
 			$this->initPage();
