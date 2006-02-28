@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Admin/exceptions/AdminException.php';
+require_once 'Admin/exceptions/AdminUserException.php';
 
 /**
  * Thrown when something is not found
@@ -9,7 +9,7 @@ require_once 'Admin/exceptions/AdminException.php';
  * @copyright 2006 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
-class AdminNotFoundException extends AdminException
+class AdminNotFoundException extends AdminUserException
 {
 	/**
 	 * Creates a new not found exception
@@ -20,7 +20,7 @@ class AdminNotFoundException extends AdminException
 	public function __construct($message = null, $code = 0)
 	{
 		parent::__construct($message, $code);
-		$this->title = _('Not Found');
+		$this->title = Admin::_('Not Found');
 	}
 }
 
