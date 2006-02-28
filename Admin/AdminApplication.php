@@ -24,6 +24,7 @@ class AdminApplication extends SwatApplication
 	
 	/**
 	 * A visble title for this admin
+	 *
 	 * @var string
 	 */
 	public $title;
@@ -64,8 +65,12 @@ class AdminApplication extends SwatApplication
 	public $front_source = 'AdminSite/Front';
 
 	/**
-	 * Class to instantiate for menu.
-	 * @var Title
+	 * Name of the class to instantiate for menu.
+	 *
+	 * If you want to use a custom {@link AdminMenu} sub-class then set this
+	 * property to the name of the sub-class.
+	 *
+	 * @var string
 	 */
 	public $menu_class = 'AdminMenu';
 
