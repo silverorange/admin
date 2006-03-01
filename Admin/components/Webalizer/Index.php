@@ -19,6 +19,7 @@ class WebalizerIndex extends AdminPage
 	protected function initInternal()
 	{
 		$this->ui->loadFromXML(dirname(__FILE__).'/index.xml');
+		$this->ui->getRoot()->addStyleSheet('admin/styles/webalizer.css');
 	}
 
 	// }}}
