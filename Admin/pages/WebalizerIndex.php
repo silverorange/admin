@@ -112,10 +112,14 @@ class WebalizerIndex extends AdminPage
 	private function displayFile($filename = '/tmp/index.html')
 	{
 		$lines = file($filename);
+		$relative_url = $this->getRelativeURL();
 
 		foreach ($lines as $line) {
 			$line = eregi_replace('(usage_.*)\.html',
 				$this->source.'?id=\\1', $line);
+
+			$line = eregi_replace('(href=")#',
+				'\\1'.$relative_url.'#', $line);
 
 			$line = eregi_replace('img src="',
 				'img src="webalizer/images/', $line);
