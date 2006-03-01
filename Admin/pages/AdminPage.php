@@ -191,6 +191,7 @@ abstract class AdminPage extends SwatPage
 
 		ob_start();
 		$this->ui->getRoot()->displayHtmlHeadEntries();
+		$this->app->getMenuView()->displayHtmlHeadEntries();
 		$this->layout->html_head_entries = ob_get_clean();
 
 		$page_title = ($this->title === null) ? $this->navbar->getLastEntry() : $this->title;

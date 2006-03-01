@@ -32,6 +32,10 @@ class AdminMenuView
 		echo '</ul>';
 	}
 
+	public function displayHtmlHeadEntries()
+	{
+	}
+
 	public function displaySection($section)
 	{
 		$span_tag = new SwatHtmlTag('span');
