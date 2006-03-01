@@ -1,6 +1,8 @@
 <?php
 
 require_once 'Admin/pages/AdminPage.php';
+require_once 'Admin/exceptions/AdminNotFoundException.php';
+require_once 'Swat/SwatDate.php';
 
 /**
  * Page for Webalizer component
@@ -12,6 +14,8 @@ class WebalizerIndex extends AdminPage
 {
 	private $siteroot = '';
 	private $sitename = '';
+
+	private $id;
 	
 	// init phase
 	// {{{ protected function initInternal()
@@ -20,6 +24,11 @@ class WebalizerIndex extends AdminPage
 	{
 		$this->ui->loadFromXML(dirname(__FILE__).'/index.xml');
 		$this->ui->getRoot()->addStyleSheet('admin/styles/webalizer.css');
+
+		$this->id = SwatApplication::initVar('id', null, SwatApplication::VAR_GET);
+
+		$this->sitename = preg_replace('/admin$/', '', $this->app->id);
+		$this->siteroot = '/so/webalizer/www/'.$this->sitename;		
 	}
 
 	// }}}
@@ -31,10 +40,17 @@ class WebalizerIndex extends AdminPage
 	{
 		parent::buildinternal();
 
+		$this->buildNavBar();
+
 		$stats_content = $this->ui->getWidget('stats_content');
 
 		ob_start();
-		$this->displayStats();
+
+		if ($this->id === null)
+			$this->displayIndex();
+		else
+			$this->displayStats();
+
 		$stats_content->content = ob_get_clean();
 	}
 
@@ -43,83 +59,101 @@ class WebalizerIndex extends AdminPage
 
 	protected function displayStats()
 	{
-		$this->sitename = preg_replace('/admin$/', '', $this->app->id);
-		$this->siteroot = '/so/webalizer/www/'.$this->sitename;
-		
-		if (isset($_GET['year'])) {
-			$filename = $this->siteroot.'/index_'.$_GET['year'].'.html';
-			$this->outputFile($filename);
-		} else if (isset($_GET['file'])) {
-			$filename = $this->siteroot.'/'.$_GET['file'];
-			$this->outputFile($filename);
-		} else {
-			$links = $this->buildYearIndex();
-			arsort($links);
+		echo '<div id="webalizer-content">';
 
-			foreach ($links as $link) {
-				$year = substr($link, 6, 4);
-				echo '<a href="Webalizer?year='.$year.'">'.$year.'</a><br>';
-			}
-		}
+		$filename = $this->siteroot.'/'.$this->id.'.html';
+
+		if (file_exists($filename))
+			$this->displayFile($filename);
+		else
+			throw new AdminNotFoundException("Unable to find stats file '$filename'.");
+
+		echo '</div>';
 	}
 
 	// }}}
-	// {{{ private function buildYearIndex()
+	// {{{ private function displayIndex()
 
-	private function buildYearIndex()
+	protected function displayIndex()
 	{
-		$matches = $this->scanDir($this->siteroot, '/^index_[0-9]{4}\.html$/i', 'name', 1);
+		$links = $this->findIndexFiles();
+		arsort($links);
+		echo '<ul>';
+
+		foreach ($links as $link) {
+			$id = substr($link, 0, 10);
+			$year = substr($link, 6, 4);
+			$anchor = new SwatHtmlTag('a');
+			$anchor->href = $this->source.'?id='.$id;
+			$anchor->setContent($year);
+
+			echo '<li>';
+			$anchor->display();
+			echo '</li>';
+		}
+
+		echo '</ul>';
+	}
+
+	// }}}
+	// {{{ private function findIndexFiles()
+
+	private function findIndexFiles()
+	{
+		$matches = array();
+		$expression = '/^index_[0-9]{4}\.html$/i';
+
+		foreach (scandir($this->siteroot) as $filename)
+			if (preg_match($expression, $filename))
+				$matches[] = $filename;
+
 		return $matches;
 	}
 
 	// }}}
-	// {{{ private function scanDir()
+	// {{{ private function displayFile()
 
-	private function scanDir($directory = '/tmp', $expression = '.*', $how = 'name')
+	private function displayFile($filename = '/tmp/index.html')
 	{
-		$matches = array();
-		$dirhandle = opendir($directory);
+		$lines = file($filename);
 
-		if ($dirhandle) {
-			while (($filename = readdir($dirhandle)) !== false) {
-				if (preg_match($expression, $filename)) {
-					$stat = stat("$directory/$filename");
-					$matches[$filename] = ($how == 'name') ? $filename: $stat[$how];
-				}
-			}
+		foreach ($lines as $line) {
+			$line = eregi_replace('(usage_.*)\.html',
+				$this->source.'?id=\\1', $line);
 
-			closedir($dirhandle);
-	   }
+			$line = eregi_replace('img src="',
+				'img src="images/webalizer_'.$this->sitename.'/', $line);
 
-	   return(array_keys($matches));
+			echo $line;
+		}
 	}
 
 	// }}}
-	// {{{ private function outputIndex()
+	// {{{ protected function buildNavBar()
 
-	private function outputFile($filename = '/tmp/index.html')
+	protected function buildNavBar()
 	{
-		if ($filehandle = fopen($filename, "r")) {
-			$buffer = file_get_contents($filename);
-			$lines = explode("\n", $buffer);
+		if ($this->id === null)
+			return;
 
-			echo '<div id="webalizer-content">';
+		$component_entry = $this->navbar->popEntry();
+		$component_entry->link = $this->source;
+		$this->navbar->addEntry($component_entry);
 
-			foreach ($lines as $line) {
-				if (eregi("usage_", $line)) {
-					$line = eregi_replace('(usage_.*\.html)', 'Webalizer?file=\\1', $line);
-				}
+		if (strncmp($this->id, 'index', 5) == 0) {
+			$year = substr($this->id, 6, 4);
+			$this->navbar->createEntry($year);
+		}
 
-				if (eregi("img src=\"", $line)) {
-					$line = eregi_replace('img src="', 'img src="images/webalizer_'.$this->sitename.'/', $line);
-				}
+		if (strncmp($this->id, 'usage', 5) == 0) {
+			$date = new SwatDate();
+			$year = substr($this->id, 6, 4);
+			$month = substr($this->id, 10, 2);
+			$date->setYear($year);
+			$date->setMonth($month);
 
-				echo $line;
-			}
-
-			echo '</div>';
-		} else {
-			echo "File can not be found";
+			$this->navbar->createEntry($year, $this->source.'?id=index_'.$year);
+			$this->navbar->createEntry($date->format('%B'));
 		}
 	}
 
