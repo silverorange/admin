@@ -3,7 +3,8 @@
 require_once 'Swat/SwatPage.php';
 require_once 'Swat/SwatForm.php';
 require_once 'Admin/AdminNavBar.php';
-require_once 'Admin/AdminMenu.php';
+require_once 'Admin/AdminMenuStore.php';
+require_once 'Admin/AdminMenuView.php';
 require_once 'Admin/AdminUI.php';
 
 /**
@@ -283,11 +284,7 @@ abstract class AdminPage extends SwatPage
 	 */
 	protected function displayMenu()
 	{		
-		$menu = SwatDB::executeStoredProc($this->app->db, 'sp_admin_menu',
-				$this->app->db->quote($_SESSION['user_id'], 'integer'),
-				$this->app->menu_class);
-
-		$menu->display();
+		$this->app->getMenuView()->display();
 	}
 
 	// }}}

@@ -8,6 +8,8 @@ require_once 'Admin/AdminSessionModule.php';
 require_once 'Admin/AdminMessagesModule.php';
 require_once 'Admin/AdminDatabaseModule.php';
 require_once 'Admin/AdminPageRequest.php';
+require_once 'Admin/AdminMenuStore.php';
+require_once 'Admin/AdminMenuView.php';
 require_once 'Admin/pages/AdminPage.php';
 require_once 'Admin/exceptions/AdminUserException.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
@@ -64,15 +66,15 @@ class AdminApplication extends SwatApplication
 	 */
 	public $front_source = 'AdminSite/Front';
 
+	// }}}
+	// {{{ protected properties
+
 	/**
-	 * Name of the class to instantiate for menu.
+	 * This application's menu view
 	 *
-	 * If you want to use a custom {@link AdminMenu} sub-class then set this
-	 * property to the name of the sub-class.
-	 *
-	 * @var string
+	 * @var AdminMenuView
 	 */
-	public $menu_class = 'AdminMenu';
+	protected $menu = null;
 
     // }}}
     // {{{ public function __construct()
@@ -110,11 +112,12 @@ class AdminApplication extends SwatApplication
 		// set up convenience references
 		$this->db = $this->database->mdb2;
 
+		$this->initMenu();
+
 		// call this last
 		try {
 			$this->initPage();
-		}
-		catch (AdminUserException $e) {
+		} catch (AdminUserException $e) {
 			$this->replacePage('AdminSite/Exception');
 			$this->page->setException($e);
 			$this->initPage();
@@ -132,8 +135,7 @@ class AdminApplication extends SwatApplication
 		try {
 			$this->getPage()->process();
 			$this->getPage()->build();
-		}
-		catch (AdminException $e) {
+		} catch (AdminException $e) {
 			$this->replacePage('AdminSite/Exception');
 			$this->page->setException($e);
 			$this->page->build();
@@ -158,8 +160,7 @@ class AdminApplication extends SwatApplication
 
 		try {
 			$page = $this->instantiatePage($source);
-		}
-		catch (AdminException $e) {
+		} catch (AdminException $e) {
 			$page = $this->instantiatePage('AdminSite/Exception');
 			$page->setException($e);
 		}
@@ -238,6 +239,55 @@ class AdminApplication extends SwatApplication
 	}
 
     // }}}
+    // {{{ public function instantiateMenu()
+
+	/**
+	 * Creates and returns the menu view for this application
+	 *
+	 * Admin applications that want a custom menu should over-ride this method.
+	 *
+	 * @param AdminMenuStore $menu_store the menu data object to view.
+	 *
+	 * @return AdminMenuView
+	 */
+	public function instantiateMenu(AdminMenuStore $menu_store)
+	{
+		$menu_view = new AdminMenuView($menu_store);
+
+		return $menu_view;
+	}
+
+    // }}}
+	// {{{ protected function initMenu()
+
+	/**
+	 * Initializes this application's menu view
+	 */
+	protected function initMenu()
+	{
+		if ($this->menu === null) {
+			$menu_store = SwatDB::executeStoredProc($this->db,
+				'sp_admin_menu', $this->db->quote($_SESSION['user_id'],
+				'integer'), 'AdminMenuStore');
+
+			$this->menu = $this->instantiateMenu($menu_store);
+		}
+	}
+
+	// }}}
+	// {{{ public function getMenuView()
+
+	/**
+	 * Gets this application's menu view
+	 *
+	 * @return AdminMenuView the menu view of this application.
+	 */
+	public function getMenuView()
+	{
+		return $this->menu;
+	}
+
+	// }}}
     // {{{ private function getRequest()
 
 	private function getRequest($source)

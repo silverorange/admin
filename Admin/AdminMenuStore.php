@@ -1,16 +1,21 @@
 <?php
 
 /**
- * Primary navigation menu
+ * Data store for primary navigation menu
  *
  * Designed to be used as a MDB2 result wrapper class.
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2006 silverorange
  */
-class AdminMenu
+class AdminMenuStore
 {
-	private $sections;
+	/**
+	 * Sections in this menu
+	 *
+	 * @var AdminMenuSection
+	 */
+	public $sections;
 
 	/**
 	 * @param MDB2_Result $rs A recordset containing the menu.
@@ -46,27 +51,12 @@ class AdminMenu
 			}
 		}
 	}
-
-	/**
-	 * Displays this menu
-	 *
-	 * Outputs the HTML of the menu
-	 */
-	public function display()
-	{
-		echo '<ul>';
-
-		foreach ($this->sections as $section)
-			$section->display();
-
-		echo '</ul>';
-	}
 }
 
 /**
  * Admin menu section
  *
- * Internal data/display class used internally within {@link AdminMenu}
+ * Internal data class used internally within {@link AdminMenuStore}.
  */
 class AdminMenuSection
 {
@@ -80,28 +70,12 @@ class AdminMenuSection
 		$this->title = $title;
 		$this->components = array();
 	}
-
-	public function display()
-	{
-		$span_tag = new SwatHtmlTag('span');
-		$span_tag->setContent($this->title);
-
-		echo '<li>';
-		$span_tag->display();
-		echo '<ul>';
-
-		foreach ($this->components as $component)
-			$component->display();
-
-		echo '</ul>';
-		echo '</li>';
-	}
 }
 
 /**
  * Admin menu component
  *
- * Internal data/display class used internally within {@link AdminMenu}
+ * Internal data class used internally within {@link AdminMenuStore}.
  */
 class AdminMenuComponent
 {
@@ -117,33 +91,12 @@ class AdminMenuComponent
 		$this->title = $title;
 		$this->subcomponents = array();
 	}
-
-	public function display()
-	{
-		$anchor_tag = new SwatHtmlTag('a');
-		$anchor_tag->href = $this->shortname;
-		$anchor_tag->setContent($this->title);
-
-		echo '<li>';
-		$anchor_tag->display();
-
-		if (count($this->subcomponents)) {
-			echo '<ul>';
-
-			foreach ($this->subcomponents as $subcomponent)
-				$subcomponent->display($this->shortname);
-
-			echo '</ul>';
-		}
-
-		echo '</li>';
-	}
 }
 
 /**
  * Admin menu sub component
  *
- * Internal data/display class used internally within {@link AdminMenu}
+ * Internal data class used internally within {@link AdminMenuStore}.
  */
 class AdminMenuSubcomponent
 {
@@ -154,17 +107,6 @@ class AdminMenuSubcomponent
 	{
 		$this->shortname = $shortname;
 		$this->title = $title;
-	}
-
-	public function display($component_shortname)
-	{
-		$anchor_tag = new SwatHtmlTag('a');
-		$anchor_tag->href = $component_shortname.'/'.$this->shortname;
-		$anchor_tag->setContent($this->title);
-
-		echo '<li>';
-		$anchor_tag->display();
-		echo '</li>';
 	}
 }
 
