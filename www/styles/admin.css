@@ -77,14 +77,13 @@ img { border: 0; }
 #admin-menu ul span {
 	display: block;
 	background: #fff url(../../swat/images/swat-frame-header.png) bottom left repeat-x;
-	padding: 1px 6px 3px 6px;
-	margin: 1px 1px 6px 1px;
+	padding: 1px 4px 3px 4px;
+	margin: 1px 1px 4px 1px;
 	font-weight: bold;
 }
 
 #admin-menu ul li {
 	border: 1px solid #e7ddc8;
-	padding-bottom: 6px;
 	margin-bottom: 6px;
 	background: #fff;
 }
@@ -92,7 +91,7 @@ img { border: 0; }
 #admin-menu li li {
 	border: 0;
 	padding: 0;
-	margin: 0 6px 0 6px;
+	margin: 0 4px 0 4px;
 }
 
 #admin-menu ul ul {
