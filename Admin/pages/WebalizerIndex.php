@@ -122,7 +122,7 @@ class WebalizerIndex extends AdminPage
 				'\\1'.$relative_url.'#', $line);
 
 			$line = eregi_replace('img src="',
-				'img src="webalizer/images/', $line);
+				'img src="webalizer/', $line);
 
 			echo $line;
 		}
