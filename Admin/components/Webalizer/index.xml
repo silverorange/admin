@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
+<swatml>
+	<widget class="SwatMessageDisplay" id="message_display" />
+	<widget class="SwatFrame">
+		<property name="title" translatable="yes">Web Statitics</property>
+		<widget class="SwatContentBlock" id="stats_content">
+			<property name="content_type">text/xml</property>
+		</widget>
+	</widget>
+</swatml>
