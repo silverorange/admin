@@ -1,0 +1,15 @@
+#webalizer-content table {
+	width: 99%;
+}
+
+#webalizer-content th,
+#webalizer-content td {
+	padding: 0.2em;
+}
+
+#webalizer-content td {
+	font-size: 85%;	
+	background-image: url(../../swat/images/swat-table-view-cell-back.png);
+	background-position: bottom;
+	background-repeat: repeat-x;
+}
