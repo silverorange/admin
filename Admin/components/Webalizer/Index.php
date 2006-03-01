@@ -102,7 +102,7 @@ class WebalizerIndex extends AdminPage
 			$buffer = file_get_contents($filename);
 			$lines = explode("\n", $buffer);
 
-			echo '<div id="admin_stats">';
+			echo '<div id="webalizer-content">';
 
 			foreach ($lines as $line) {
 				if (eregi("usage_", $line)) {
