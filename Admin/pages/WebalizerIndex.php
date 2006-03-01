@@ -12,8 +12,7 @@ require_once 'Swat/SwatDate.php';
  */
 class WebalizerIndex extends AdminPage
 {
-	private $siteroot = '';
-	private $sitename = '';
+	public $webalizer_root = '';
 
 	private $id;
 	
@@ -22,13 +21,10 @@ class WebalizerIndex extends AdminPage
 
 	protected function initInternal()
 	{
-		$this->ui->loadFromXML(dirname(__FILE__).'/index.xml');
+		$this->ui->loadFromXML(dirname(__FILE__).'/webalizer.xml');
 		$this->ui->getRoot()->addStyleSheet('admin/styles/webalizer.css');
 
 		$this->id = SwatApplication::initVar('id', null, SwatApplication::VAR_GET);
-
-		$this->sitename = preg_replace('/admin$/', '', $this->app->id);
-		$this->siteroot = '/so/webalizer/www/'.$this->sitename;		
 	}
 
 	// }}}
@@ -61,7 +57,7 @@ class WebalizerIndex extends AdminPage
 	{
 		echo '<div id="webalizer-content">';
 
-		$filename = $this->siteroot.'/'.$this->id.'.html';
+		$filename = $this->webalizer_root.$this->id.'.html';
 
 		if (file_exists($filename))
 			$this->displayFile($filename);
@@ -103,7 +99,7 @@ class WebalizerIndex extends AdminPage
 		$matches = array();
 		$expression = '/^index_[0-9]{4}\.html$/i';
 
-		foreach (scandir($this->siteroot) as $filename)
+		foreach (scandir($this->webalizer_root) as $filename)
 			if (preg_match($expression, $filename))
 				$matches[] = $filename;
 
@@ -122,7 +118,7 @@ class WebalizerIndex extends AdminPage
 				$this->source.'?id=\\1', $line);
 
 			$line = eregi_replace('img src="',
-				'img src="images/webalizer_'.$this->sitename.'/', $line);
+				'img src="webalizer/images/', $line);
 
 			echo $line;
 		}
