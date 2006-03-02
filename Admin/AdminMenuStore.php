@@ -56,6 +56,16 @@ class AdminMenuStore
 			}
 		}
 	}
+
+	public function getComponentByName($name)
+	{
+		foreach ($this->sections as $section)
+			foreach ($section->components as $component)
+				if ($component->shortname === $name)
+					return $component;
+
+		return null;
+	}
 }
 
 /**
