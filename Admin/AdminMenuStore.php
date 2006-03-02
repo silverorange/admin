@@ -34,20 +34,25 @@ class AdminMenuStore
 
 		while ($row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT)) {
 			if ($section === null || $row->section != $section->id) {
-				$section = new AdminMenuSection($row->section, $row->section_title);
-				$this->sections[] = $section;
+				$section = new AdminMenuSection($row->section,
+					$row->section_title);
+
+				$this->sections[$row->section] = $section;
 			}
 
 			if ($component === null || $row->component_id != $component->id) {
 				$component = new AdminMenuComponent($row->component_id,
 					$row->shortname, $row->title);
-				$section->components[] = $component;
+
+				$section->components[$row->shortname] = $component;
 			}
 
 			if (strlen($row->subcomponent_shortname) != 0) {
-				$subcomponent = new AdminMenuSubcomponent($row->subcomponent_shortname, 
-					$row->subcomponent_title);
-				$component->subcomponents[] = $subcomponent;
+				$subcomponent = new AdminMenuSubcomponent(
+					$row->subcomponent_shortname, $row->subcomponent_title);
+
+				$component->subcomponents[$row->subcomponent_shortname] =
+					$subcomponent;
 			}
 		}
 	}

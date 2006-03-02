@@ -10,7 +10,7 @@
  */
 class AdminMenuView
 {
-	private $store;
+	protected $store;
 
 	public function __construct($store)
 	{
