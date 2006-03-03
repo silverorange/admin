@@ -37,7 +37,7 @@ img { border: 0; }
 /* Header Styles */
 
 #admin-header {
-	background: #426c9e url(../images/admin-header-back.png) bottom repeat-x;
+	background: #426c9e url(../images/admin-header-background.png) bottom repeat-x;
 	padding: 0.5em 1em;
 	color: #ddd;
 	border-bottom: 1px solid #81aed5;
@@ -167,7 +167,7 @@ td.admin-title-link-cell-renderer a:visited {
 }
 
 td.admin-title-link-cell-renderer a:hover {
-	background: #f6f2ea url(../images/admin-title-link-cell-renderer-back.png) top repeat-x;
+	background: #f6f2ea url(../images/admin-title-link-cell-renderer-background.png) top repeat-x;
 	border: 1px solid #f0eade;
 }
 * html td.admin-title-link-cell-renderer a:hover {
