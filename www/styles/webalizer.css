@@ -9,7 +9,7 @@
 
 #webalizer-content td {
 	font-size: 85%;	
-	background-image: url(../../swat/images/swat-table-view-cell-back.png);
+	background-image: url(../../swat/images/swat-table-view-cell-background.png);
 	background-position: bottom;
 	background-repeat: repeat-x;
 }
