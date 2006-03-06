@@ -134,7 +134,10 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		if ($this->sensitive && ($this->link !== null)) {
 			$anchor = new SwatHtmlTag('a');
 			$anchor->href = $this->getLink();
-			$anchor->class = $this->class;
+			if ($this->class !== null)
+				$anchor->class = $this->class.' ';
+
+			$anchor->class.= 'admin-title-link-cell-renderer';
 			$anchor->title = $this->getTitle();
 
 			$anchor->open();
