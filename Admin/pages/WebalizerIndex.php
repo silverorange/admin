@@ -78,26 +78,23 @@ class WebalizerIndex extends AdminPage
 	{
 		$links = $this->findIndexFiles();
 		arsort($links);
-		echo '<ul>';
+
+		$prototype_tool_link = $this->ui->getWidget('year_link');
+		$toolbar = $prototype_tool_link->parent;
+		$toolbar->remove($prototype_tool_link);
 
 		foreach ($links as $link) {
 			$id = substr($link, 0, 10);
 			$year = substr($link, 6, 4);
+			$tool_link = clone $prototype_tool_link;
+			$tool_link->link = $this->source.'?id='.$id;
+			$toolbar->packEnd($tool_link);
 
-			if ($id === $this->id) {
-				echo '<li>', $year, '</li>';
-			} else {
-				$anchor = new SwatHtmlTag('a');
-				$anchor->href = $this->source.'?id='.$id;
-				$anchor->setContent($year);
+			if ($id === $this->id)
+				$tool_link->sensitive = false;
 
-				echo '<li>';
-				$anchor->display();
-				echo '</li>';
-			}
+			$tool_link->title = $year;
 		}
-
-		echo '</ul>';
 	}
 
 	// }}}
