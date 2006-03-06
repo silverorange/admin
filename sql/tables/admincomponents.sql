@@ -23,8 +23,6 @@ INSERT INTO admincomponents (id, shortname, title, description, displayorder, se
 	VALUES (5, 'AdminSubComponents', 'Admin Sub-Components', NULL, 2, 1, true, false);
 INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, show)
 	VALUES (6, 'Front', 'Front Page', NULL, 0, 1, true, false);
-INSERT INTO admincomponents (id, shortname, title, description, displayorder, section, enabled, show)
-	VALUES (7, 'Webalizer', 'Web Statistics', NULL, 0, 1, true, true);
 
 SELECT setval('admincomponents_id_seq', max(id)) FROM admincomponents;
 
