@@ -36,21 +36,17 @@ class WebalizerIndex extends AdminPage
 	{
 		parent::buildinternal();
 
-		$this->buildNavBar();
-
-		$stats_content = $this->ui->getWidget('stats_content');
-
-		ob_start();
-
 		if ($this->id === null) {
 			$date = new SwatDate();
 			$this->id = sprintf('index_%s', $date->getYear());
 		}
-
 		
+		$this->buildNavBar();
+		$stats_content = $this->ui->getWidget('stats_content');
+
+		ob_start();
 		$this->displayIndex();
 		$this->displayStats();
-
 		$stats_content->content = ob_get_clean();
 	}
 
@@ -88,12 +84,11 @@ class WebalizerIndex extends AdminPage
 			$year = substr($link, 6, 4);
 			$tool_link = clone $prototype_tool_link;
 			$tool_link->link = $this->source.'?id='.$id;
+			$tool_link->title = $year;
 			$toolbar->packEnd($tool_link);
 
 			if ($id === $this->id)
 				$tool_link->sensitive = false;
-
-			$tool_link->title = $year;
 		}
 	}
 
