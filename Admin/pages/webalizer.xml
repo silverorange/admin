@@ -4,6 +4,12 @@
 	<widget class="SwatMessageDisplay" id="message_display" />
 	<widget class="SwatFrame">
 		<property name="title" translatable="yes">Web Statitics</property>
+		<widget class="SwatToolbar" id="webalizer_toolbar">
+			<widget class="SwatToolLink" id="year_link">
+				<property name="title">Year</property>
+				<property name="link">%s</property>
+			</widget>
+		</widget>
 		<widget class="SwatContentBlock" id="stats_content">
 			<property name="content_type">text/xml</property>
 		</widget>
