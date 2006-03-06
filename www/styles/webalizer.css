@@ -14,6 +14,7 @@
 	background-repeat: repeat-x;
 }
 
-#webalizer-content #years li {
-	
+#webalizer-content h2 {
+	margin: 0;
+	font-size: 130%;
 }
