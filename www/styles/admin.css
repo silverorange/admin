@@ -153,24 +153,24 @@ img { border: 0; }
 	padding-left: 36px;
 }
 
-td.admin-title-link-cell-renderer a:link,
-td.admin-title-link-cell-renderer a:visited {
+td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:link,
+td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:visited {
 	display: block;
 	border: 1px solid transparent;
 }
-* html td.admin-title-link-cell-renderer a:link,
-* html td.admin-title-link-cell-renderer a:visited {
+* html td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:link,
+* html td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:visited {
 	/* IE hack */
 	border: 0;
 	margin: 1px;
 	width: 99%;
 }
 
-td.admin-title-link-cell-renderer a:hover {
+td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:hover {
 	background: #f6f2ea url(../images/admin-title-link-cell-renderer-background.png) top repeat-x;
 	border: 1px solid #f0eade;
 }
-* html td.admin-title-link-cell-renderer a:hover {
+* html td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:hover {
 	/* IE hacks */
 	border: 1px solid #f0eade;
 	margin: 0;
@@ -178,7 +178,7 @@ td.admin-title-link-cell-renderer a:hover {
 	width: 99%;
 }
 
-td.admin-title-link-cell-renderer a:active {
+td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:active {
 	background: #f3efe5;
 }
 
