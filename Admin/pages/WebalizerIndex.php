@@ -42,10 +42,14 @@ class WebalizerIndex extends AdminPage
 
 		ob_start();
 
-		if ($this->id === null)
-			$this->displayIndex();
-		else
-			$this->displayStats();
+		if ($this->id === null) {
+			$date = new SwatDate();
+			$this->id = sprintf('index_%s', $date->getYear());
+		}
+
+		
+		$this->displayIndex();
+		$this->displayStats();
 
 		$stats_content->content = ob_get_clean();
 	}
@@ -79,13 +83,18 @@ class WebalizerIndex extends AdminPage
 		foreach ($links as $link) {
 			$id = substr($link, 0, 10);
 			$year = substr($link, 6, 4);
-			$anchor = new SwatHtmlTag('a');
-			$anchor->href = $this->source.'?id='.$id;
-			$anchor->setContent($year);
 
-			echo '<li>';
-			$anchor->display();
-			echo '</li>';
+			if ($id === $this->id) {
+				echo '<li>', $year, '</li>';
+			} else {
+				$anchor = new SwatHtmlTag('a');
+				$anchor->href = $this->source.'?id='.$id;
+				$anchor->setContent($year);
+
+				echo '<li>';
+				$anchor->display();
+				echo '</li>';
+			}
 		}
 
 		echo '</ul>';
