@@ -33,6 +33,16 @@ img { border: 0; }
 	padding: 1em 16px 1em 200px;
 }
 
+/* Menu-hiding styles */
+
+body.hide-menu #admin-menu {
+	display: none;
+} 
+
+body.hide-menu #admin-content {
+	padding-left: 16px;
+} 
+
 
 /* Header Styles */
 
@@ -220,6 +230,14 @@ a.admin-title-link-cell-renderer-product span.admin-title-link-cell-renderer-con
 
 .admin-light {
 	color: #666;
+}
+
+/* Confirmation dialogs */
+
+#confirmation_frame div.admin-dependency {
+	background: url(../../swat/images/tango/48/dialog-question.png) top left no-repeat;
+	padding: 0 0 0 64px;
+
 }
 
 #confirmation_frame h3 {
