@@ -9,24 +9,28 @@
 </head>
 <body>
 
+<div id="admin-wrapper">
+
 <div id="admin-header">
 	<?=$this->header?>
 	<div id="admin-navbar">
 		<?=$this->navbar?>
-	</div>
-</div>
+	</div><!-- end admin-navbar -->
+</div><!-- end admin-header -->
 
 <div id="admin-body">
 
 	<div id="admin-content">
 		<?=$this->content?>
-	</div>
+	</div><!-- end admin-content -->
 
 	<div id="admin-menu">
 		<?=$this->menu?>
-	</div>
+	</div><!-- end admin-menu -->
 
-</div>
+</div><!-- end admin-body -->
+
+</div><!-- end admin-wrapper -->
 
 </body>
 </html>
