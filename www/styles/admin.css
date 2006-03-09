@@ -18,11 +18,16 @@ img { border: 0; }
 /* Basic Layout */
 
 #admin-body {
+	position: relative;
+	width: 100%
+}
+
+#admin-body {
 }
 
 #admin-menu {
 	position: absolute;
-	top: 3em;
+	top: 0;
 	left: 0;
 	width: 160px;
 	color: #666;
