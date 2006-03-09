@@ -128,10 +128,6 @@ body.hide-menu #admin-content {
 
 /* Content Styles */
 
-.admin-null-text-cell-renderer-null {
-	color: #888;
-}
-
 .admin-light {
 	color: #666;
 }

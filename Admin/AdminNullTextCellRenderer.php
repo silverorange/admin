@@ -29,6 +29,14 @@ class AdminNullTextCellRenderer extends SwatTextCellRenderer
 	public $strict = false;
 
 	/**
+	 * Creates a null text cell renderer
+	 */
+	public function __construct()
+	{
+		$this->addStyleSheet('admin/styles/admin-null-text-cell-renderer.css');
+	}
+
+	/**
 	 * Renders this cell renderer
 	 */
 	public function render()
@@ -38,7 +46,7 @@ class AdminNullTextCellRenderer extends SwatTextCellRenderer
 
 			$this->text = $this->null_text;
 
-			echo '<span class="admin-null-text-cell-renderer-null">';
+			echo '<span class="admin-null-text-cell-renderer">';
 			parent::render();
 			echo '</span>';
 
