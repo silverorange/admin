@@ -115,7 +115,6 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		return array('class' => 'admin-title-link-cell-renderer');
 	}
 
-
 	/**
 	 * Creates a title link cell renderer
 	 */
