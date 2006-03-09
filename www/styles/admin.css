@@ -130,12 +130,6 @@ body.hide-menu #admin-content {
 
 
 
-/* Login Page Styles */
-
-#login_frame {
-	width: 18em;
-	margin: 4em auto 1em auto;
-}
 
 .admin-group-link-cell-renderer {
 	padding: 0 0.6em;
