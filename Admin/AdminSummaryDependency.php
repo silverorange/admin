@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Swat/SwatHtmlTag.php';
+require_once 'Swat/SwatString.php';
 require_once 'Admin/AdminDependency.php';
 
 /**
@@ -25,15 +26,16 @@ class AdminSummaryDependency extends AdminDependency
 	protected function getDependencyText($count)
 	{
 		if ($this->title === null) {
-			$message = Admin::ngettext('%d dependent item',
-				'%d dependent items', $count);
+			$message = Admin::ngettext('%s dependent item',
+				'%s dependent items', $count);
 
-			$message = sprintf($message, $count);
+			$message = sprintf($message, SwatString::numberFormat($count));
 		} else {
-			$message = Admin::ngettext('%d dependent %s',
-				'%d dependent %ss', $count);
+			$message = Admin::ngettext('%s dependent %s',
+				'%s dependent %ss', $count);
 
-			$message = sprintf($message, $count, $this->title);
+			$message = sprintf($message, SwatString::numberFormat($count),
+				$this->title);
 		}
 		return $message;
 	}
