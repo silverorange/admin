@@ -45,7 +45,22 @@ body.hide-menu #admin-menu {
 } 
 
 body.hide-menu #admin-content {
-	padding-left: 16px;
+	padding-left: 36px;
+}
+
+body #admin-menu-hide img {
+	display: block;
+} 
+
+body #admin-menu-show {
+	display: none;
+} 
+
+body.hide-menu #admin-menu-show {
+	display: block;
+	position: absolute;
+	top: 2em;
+	left: 0;
 } 
 
 
