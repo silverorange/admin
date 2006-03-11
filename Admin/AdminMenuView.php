@@ -32,6 +32,12 @@ class AdminMenuView
 		echo '</ul>';
 	}
 
+	/**
+	 * Displays contents of the XHTML head section required by this menu view
+	 *
+	 * Subclasses should over-ride this method to include custom CSS or
+	 * JavaScript.
+	 */
 	public function displayHtmlHeadEntries()
 	{
 	}
