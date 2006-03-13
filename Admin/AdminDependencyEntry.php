@@ -1,13 +1,39 @@
 <?php
 
+require_once 'Admin/AdminDependencyItem.php';
+
 /**
- * @package Admin
- * @copyright silverorange 2005
+ * An entry in an admin dependency
+ *
+ * @package   Admin
+ * @copyright 2005-2006 silverorange
  */
-class AdminDependencyEntry
+class AdminDependencyEntry extends AdminDependencyItem
 {
 	/**
-	 * Unique ID for this entry
+	 * Creates a new AdminDependencyEntry
+	 *
+	 * This constructor enables the entry to be used in a MDB2 data wrapper
+	 * to automatically create objects from a result set.
+	 *
+	 * @param mixed $data the MDB2 row containing the data for this entry
+	 *                     object.
+	 */
+	public function __construct($data = null)
+	{
+		if ($data !== null) {
+			$this->id = $data->id;
+			$this->title = $data->title;
+			$this->parent = $data->parent;
+			$this->status_level = $data->status_level;
+		}
+	}
+
+	/**
+	 * Identifier for this entry
+	 *
+	 * This is usually a database primary key value or a single field value in
+	 * a binding table.
 	 *
 	 * @var mixed
 	 */
@@ -19,27 +45,6 @@ class AdminDependencyEntry
 	 * @var string
 	 */
 	public $title;
-
-	/**
-	 * ID of the parent
-	 *
-	 * Reference to the parent entry in a parent {@link AdminDependency}
-	 * object.
-	 *
-	 * @var mixed
-	 */
-	public $parent = null;
-
-	/**
-	 * Status level
-	 *
-	 * Initial status level of this entry (eg, DELETE, NODELETE). Typically it
-	 * is easier to set the initial status level for all entries by setting 
-	 * {@link AdminDependency::$status_level}.
-	 *
-	 * @var int
-	 */
-	public $status_level = null;
 }
 
 ?>
