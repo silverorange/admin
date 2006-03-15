@@ -227,7 +227,7 @@ class AdminListDependency extends AdminDependency
 	}
 
 	/**
-	 * Builds a dependency array
+	 * Builds an array of dependency entries
 	 *
  	 * Convenience method to create a flat array of {@link AdminDependencyEntry}
 	 * objects. The returned array of dependency entries may be directly
@@ -245,7 +245,7 @@ class AdminListDependency extends AdminDependency
 	 * @return array a flat array of {@link AdminDependencyEntry} objects that
 	 *                contains dependency tree information.
 	 */
-	public function &buildDependencyArray(&$items, &$parents,
+	public function &buildEntriesArray(&$items, &$parents,
 		$status_level = AdminDependency::NODELETE)
 	{
 		$entries = array();
