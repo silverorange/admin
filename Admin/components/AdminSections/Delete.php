@@ -46,27 +46,26 @@ class AdminSectionsDelete extends AdminDBDelete
 
 		$dep = new AdminListDependency();
 		$dep->title = 'Admin Section';
-		$dep->default_status_level = AdminDependency::DELETE;
-		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db,
+		$dep->entries = AdminListDependency::queryEntries($this->app->db,
 			'adminsections', 'integer:id', null, 'text:title', 'title',
-			'id in ('.$item_list.')');
+			'id in ('.$item_list.')', AdminDependency::DELETE);
 
-		$dep_components = new AdminSummaryDependency();
+		$dep_components = new AdminListDependency();
 		$dep_components->title = 'component';
-		$dep_components->default_status_level = AdminDependency::DELETE;
-		$dep_components->entries = AdminDependency::queryDependencyEntries($this->app->db,
-			'admincomponents', 'integer:id', 'integer:section', 'text:title',
-			'title', 'section in ('.$item_list.')');
+		$dep_components->entries = AdminListDependency::queryEntries(
+			$this->app->db, 'admincomponents', 'integer:id', 'integer:section',
+			'text:title', 'title', 'section in ('.$item_list.')',
+			AdminDependency::DELETE);
 
 		$dep->addDependency($dep_components);
 
 		$dep_subcomponents = new AdminSummaryDependency();
 		$dep_subcomponents->title = 'sub-component';
-		$dep_subcomponents->default_status_level = AdminDependency::DELETE;
-		$dep_subcomponents->entries = AdminDependency::queryDependencyEntries($this->app->db,
-			'adminsubcomponents', 'integer:id', 'integer:component',
-			'text:title', 'title',
-			'component in (select id from admincomponents where section in ('.$item_list.'))');
+		$dep_subcomponents->summaries = AdminSummaryDependency::querySummaries(
+			$this->app->db, 'adminsubcomponents', 'integer:id',
+			'integer:component',
+			'component in (select id from admincomponents where section in ('.
+			$item_list.'))', AdminDependency::DELETE);
 
 		$dep_components->addDependency($dep_subcomponents);
 

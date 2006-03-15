@@ -45,10 +45,9 @@ class AdminGroupsDelete extends AdminDBDelete
 		
 		$dep = new AdminListDependency();
 		$dep->title = 'Admin Group';
-		$dep->default_status_level = AdminDependency::DELETE;
-		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db,
+		$dep->entries = AdminListDependency::queryEntries($this->app->db,
 			'admingroups', 'integer:id', null, 'text:title', 'title',
-			'id in ('.$item_list.')');
+			'id in ('.$item_list.')', AdminDependency::DELETE);
 
 		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = $dep->getMessage();

@@ -46,24 +46,24 @@ class AdminComponentsDelete extends AdminDBDelete
 		
 		$dep = new AdminListDependency();
 		$dep->title = 'component';
-		$dep->default_status_level = AdminDependency::DELETE;
-		$dep->entries = AdminDependency::queryDependencyEntries($this->app->db,
+		$dep->entries = AdminListDependency::queryEntries($this->app->db,
 			'admincomponents', 'integer:id', null, 'text:title',
-			'displayorder, title', 'id in ('.$item_list.')');
+			'displayorder, title', 'id in ('.$item_list.')',
+			AdminDependency::DELETE);
 
 		$dep_subcomponents = new AdminSummaryDependency();
 		$dep_subcomponents->title = 'sub-component';
-		$dep_subcomponents->default_status_level = AdminDependency::DELETE;
-		$dep_subcomponents->entries = AdminDependency::queryDependencyEntries($this->app->db,
-			'adminsubcomponents', 'integer:id', 'integer:component',
-			'text:title', 'title', 'component in ('.$item_list.')');
+		$dep_subcomponents->summaries = AdminSummaryDependency::querySummaries(
+			$this->app->db, 'adminsubcomponents', 'integer:id',
+			'integer:component', 'component in ('.$item_list.')',
+			AdminDependency::DELETE);
 
 		$dep->addDependency($dep_subcomponents);
 
 		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = $dep->getMessage();
 		$message->content_type = 'text/xml';
-		
+
 		if ($dep->getStatusLevelCount(AdminDependency::DELETE) == 0)
 			$this->switchToCancelButton();
 	}
