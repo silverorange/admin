@@ -135,7 +135,7 @@ class AdminSummaryDependency extends AdminDependency
 		}
 
 		$sql = sprintf('select count(%s) as count, %s as parent,
-				%s as status_level from %s',
+				%s::integer as status_level from %s',
 			$id_field->name, $parent_value, $status_level, $table);
 
 		if ($where_clause !== null)
