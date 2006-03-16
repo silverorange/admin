@@ -124,7 +124,11 @@ class AdminListDependency extends AdminDependency
 				}
 
 				echo '<li>';
-				echo SwatString::minimizeEntities($entry->title);
+				echo ' foo';
+				if ($entry->content_type == 'text/xml')
+					echo $entry->title;
+				else
+					echo SwatString::minimizeEntities($entry->title);
 
 				foreach ($this->dependencies as $dep)
 					$dep->displayDependencies($entry->id, $status_level);
