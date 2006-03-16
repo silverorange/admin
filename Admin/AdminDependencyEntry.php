@@ -45,6 +45,15 @@ class AdminDependencyEntry extends AdminDependencyItem
 	 * @var string
 	 */
 	public $title;
+
+	/**
+	 * Content type of the title
+	 *
+	 * Defaults to 'text/plain'. Use 'text/xml' for XHTML fragments.
+	 *
+	 * @var string
+	 */
+	public $content_type = 'text/plain';
 }
 
 ?>

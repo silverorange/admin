@@ -257,6 +257,8 @@ abstract class AdminDependency
 	 *
 	 * @param integer $status_level the status level to display dependency
 	 *                               entries for.
+	 *
+	 * TODO: this is in the wring place.
 	 */
 	private function displayStatusLevel($status_level)
 	{
@@ -275,7 +277,10 @@ abstract class AdminDependency
 				}
 
 				echo '<li>';
-				echo SwatString::minimizeEntities($entry->title);
+				if ($entry->content_type == 'text/xml')
+					echo $entry->title;
+				else
+					echo SwatString::minimizeEntities($entry->title);
 
 				foreach ($this->dependencies as $dep)
 					$dep->displayDependencies($entry->id, $status_level);
