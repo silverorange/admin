@@ -53,9 +53,12 @@ abstract class AdminSearch extends AdminIndex
 
 	protected function saveState()
 	{
-		$search_form = $this->ui->getWidget('search_form');
-		$search_state = $search_form->getDescendantStates();
-		$_SESSION[$this->source.'_search_state'] = $search_state;
+		try {
+			$search_form = $this->ui->getWidget('search_form');
+			$search_state = $search_form->getDescendantStates();
+			$_SESSION[$this->source.'_search_state'] = $search_state;
+		} catch (SwatWidgetNotFoundException $e) {
+		}
 	}
 
 	// }}}
@@ -72,12 +75,16 @@ abstract class AdminSearch extends AdminIndex
 	protected function loadState()
 	{
 		$return = false;
-		$search_form = $this->ui->getWidget('search_form');
-		$key = $this->source.'_search_state';
 
-		if ($this->hasState()) {
-			$search_form->setDescendantStates($_SESSION[$key]);
-			$return = true;
+		try {
+			$search_form = $this->ui->getWidget('search_form');
+			$key = $this->source.'_search_state';
+
+			if ($this->hasState()) {
+				$search_form->setDescendantStates($_SESSION[$key]);
+				$return = true;
+			}
+		} catch (SwatWidgetNotFoundException $e) {
 		}
 
 		return $return;
