@@ -132,14 +132,19 @@ abstract class AdminSearch extends AdminIndex
 	 */
 	protected function buildViews()
 	{
-		$frame = $this->ui->getWidget('results_frame');
+		try {
+			$results_frame = $this->ui->getWidget('results_frame');
 
-		if (!$frame->visible) {
-			$views = $frame->getDescendants('SwatTableView');
-			foreach ($views as $view)
-				$view->model = new SwatTableStore();
+			// set non-visible results frame views to have empty models
+			if (!$results_frame->visible) {
+				$views = $results_frame->getDescendants('SwatTableView');
+				foreach ($views as $view)
+					$view->model = new SwatTableStore();
+			}
+		} catch (SwatWidgetNotFoundException $e) {
 		}
 
+		// build other views normally
 		parent::buildViews();
 	}
 
