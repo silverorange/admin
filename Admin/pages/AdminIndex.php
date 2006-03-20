@@ -77,7 +77,8 @@ abstract class AdminIndex extends AdminPage
 		$root = $this->ui->getRoot();
 		$views = $root->getDescendants('SwatTableView');
 		foreach ($views as $view)
-			$view->model = $this->getTableStore($view);
+			if ($view->model === null)
+				$view->model = $this->getTableStore($view);
 	}
 
 	// }}}
