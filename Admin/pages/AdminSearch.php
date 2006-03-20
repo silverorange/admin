@@ -29,8 +29,8 @@ abstract class AdminSearch extends AdminIndex
 
 			if ($this->hasState()) {
 				$this->loadState();
-				$index = $this->ui->getWidget('results_frame');
-				$index->visible = true;
+				$frame = $this->ui->getWidget('results_frame');
+				$frame->visible = true;
 			}
 		} catch (SwatWidgetNotFoundException $e) {
 		}
@@ -132,14 +132,15 @@ abstract class AdminSearch extends AdminIndex
 	 */
 	protected function buildViews()
 	{
-		if ($this->hasState()) {
-			parent::buildViews();
-		} else {
-			$root = $this->ui->getRoot();
-			$views = $root->getDescendants('SwatTableView');
+		$frame = $this->ui->getWidget('results_frame');
+
+		if (!$frame->visible) {
+			$views = $frame->getDescendants('SwatTableView');
 			foreach ($views as $view)
 				$view->model = new SwatTableStore();
 		}
+
+		parent::buildViews();
 	}
 
 	// }}}
