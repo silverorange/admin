@@ -2,7 +2,6 @@
 
 require_once 'Admin/pages/AdminIndex.php';
 
-// test
 /**
  * Generic admin search page
  *
