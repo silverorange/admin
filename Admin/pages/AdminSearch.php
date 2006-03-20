@@ -8,8 +8,8 @@ require_once 'Admin/pages/AdminIndex.php';
  * This class is intended to be a convenience base class. For a fully custom 
  * search page, inherit directly from AdminPage instead.
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2006 silverorange
  */
 abstract class AdminSearch extends AdminIndex
 {
