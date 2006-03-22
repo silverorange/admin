@@ -66,6 +66,13 @@ class AdminApplication extends SwatApplication
 	 */
 	public $front_source = 'AdminSite/Front';
 
+	/**
+	 * Default locale.
+	 *
+	 * @var string the locale to use by default (xx_XX).
+	 */
+	public $default_locale = null;
+
 	// }}}
 	// {{{ protected properties
 
@@ -106,6 +113,9 @@ class AdminApplication extends SwatApplication
 	 */
 	public function init()
 	{
+		if ($this->default_locale !== null)
+			setlocale(LC_ALL, $this->default_locale);
+
 		$this->initBaseHref(4);
 		$this->initModules();
 
