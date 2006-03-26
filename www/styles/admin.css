@@ -104,12 +104,23 @@ body.hide-menu #admin-menu-show {
 	color: #837352;
 }
 
-#admin-menu ul span {
+#admin-menu ul a.menu-section-title {
 	display: block;
 	background: #fff url(../../swat/images/swat-frame-header.png) bottom left repeat-x;
-	padding: 1px 4px 3px 4px;
 	margin: 1px 1px 4px 1px;
 	font-weight: bold;
+	text-decoration: none;
+	color: #837352;
+}
+
+#admin-menu ul a.menu-section-title span {
+	display: block;
+	background: url(../images/admin-menu-section-toggle.png) 100% 0 no-repeat;
+	padding: 1px 4px 3px 4px;
+}
+
+#admin-menu ul a.menu-section-title:hover span {
+	background: url(../images/admin-menu-section-toggle.png) 100% -100px no-repeat;
 }
 
 #admin-menu ul li {
@@ -127,6 +138,11 @@ body.hide-menu #admin-menu-show {
 #admin-menu ul ul {
 	padding: 0 0 0.5em 1.3em;
 	list-style-type: circle;
+	display: block;
+}
+
+#admin-menu ul ul.hide-menu-section {
+	display: none;
 }
 
 #admin-menu ul ul ul {
@@ -145,6 +161,12 @@ body.hide-menu #admin-menu-show {
 #admin-menu a:hover {
 	text-decoration: underline;
 }
+
+#admin-menu a.menu-section-toggle {
+	border: 1px dotted #F00;
+}
+
+
 
 /* Content Styles */
 

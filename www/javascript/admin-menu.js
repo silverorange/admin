@@ -1,8 +1,6 @@
 function AdminMenu()
 {
-	
 }
-
 
 AdminMenu.prototype.toggle = function()
 {
@@ -12,5 +10,17 @@ AdminMenu.prototype.toggle = function()
 		bodytag.className += ' hide-menu';
 	} else {
 		bodytag.className = bodytag.className.replace(/hide-menu/, '');
+	}
+}
+
+AdminMenu.prototype.toggleSection = function(id)
+{
+	var sectionTag = document.getElementById(id);
+
+	if (sectionTag.className.indexOf('hide-menu-section') == -1) {
+		sectionTag.className += ' hide-menu-section';
+	} else {
+		sectionTag.className =
+			sectionTag.className.replace(/hide-menu-section/, '');
 	}
 }
