@@ -24,6 +24,10 @@ class AdminMenuView
 	 */
 	public function display()
 	{
+		echo '<script type="text/javascript">';
+		echo '	var menu = new AdminMenu();';
+		echo '	var section = new AdminMenuSection();';
+		echo '</script>';
 		echo '<ul>';
 
 		foreach ($this->store->sections as $section)
@@ -40,16 +44,25 @@ class AdminMenuView
 	 */
 	public function displayHtmlHeadEntries()
 	{
+		echo '<script type="text/javascript" src="admin/javascript/admin-menu.js"></script>';
 	}
 
 	public function displaySection($section)
 	{
-		$span_tag = new SwatHtmlTag('span');
-		$span_tag->setContent($section->title);
+		$section_title_tag = new SwatHtmlTag('a');
+		$section_title_tag->class = 'menu-section-title';
+		$section_title_tag->href =
+			'javascript:menu.toggleSection("admin_menu_section_'.$section->id.'");';
+
+		$section_title_span_tag = new SwatHtmlTag('span');
+		$section_title_span_tag->setContent($section->title);
 
 		echo '<li>';
-		$span_tag->display();
-		echo '<ul>';
+		$section_title_tag->open();
+		$section_title_span_tag->display();
+		$section_title_tag->close();
+
+		echo '<ul id="admin_menu_section_'.$section->id.'">';
 
 		foreach ($section->components as $component)
 			$this->displayComponent($component);

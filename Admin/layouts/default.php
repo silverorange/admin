@@ -24,13 +24,16 @@
 		<?=$this->content?>
 	</div><!-- end admin-content -->
 
+	<a href="javascript:menu.toggle();" id="admin-menu-show"><img src="admin/images/admin-menu-show.png" alt="Show Menu" height="86" width="19" /></a>
+
 	<div id="admin-menu">
+	<a href="javascript:menu.toggle();" id="admin-menu-hide"><img src="admin/images/admin-menu-hide.png" alt="Hide Menu" height="20" width="87"/></a>
 		<?=$this->menu?>
 	</div><!-- end admin-menu -->
 
 </div><!-- end admin-body -->
 
-</div><!-- end admin-wrapper -->
 
+</div><!-- end admin-wrapper -->
 </body>
 </html>
