@@ -106,7 +106,7 @@ body.hide-menu #admin-menu-show {
 
 #admin-menu ul a.menu-section-title {
 	display: block;
-	background: #fff url(../../swat/images/swat-frame-header.png) bottom left repeat-x;
+	background: #f8f6f0 url(../../swat/images/swat-frame-header.png) bottom left repeat-x;
 	margin: 1px 1px 4px 1px;
 	font-weight: bold;
 	text-decoration: none;
