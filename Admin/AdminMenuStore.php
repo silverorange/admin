@@ -78,12 +78,14 @@ class AdminMenuSection
 	public $id;
 	public $title;
 	public $components;
+	public $show;
 
 	public function __construct($id, $title)
 	{
 		$this->id = $id;
 		$this->title = $title;
 		$this->components = array();
+		$this->show = true;
 	}
 }
 

@@ -7,7 +7,7 @@
 	<?=$this->html_head_entries?>
 	<style type="text/css" media="all">@import "admin/styles/admin.css";</style>
 </head>
-<body>
+<body class="<?=$this->body_class?>">
 
 <div id="admin-wrapper">
 
@@ -24,12 +24,7 @@
 		<?=$this->content?>
 	</div><!-- end admin-content -->
 
-	<a href="javascript:menu.toggle();" id="admin-menu-show"><img src="admin/images/admin-menu-show.png" alt="Show Menu" height="86" width="19" /></a>
-
-	<div id="admin-menu">
-	<a href="javascript:menu.toggle();" id="admin-menu-hide"><img src="admin/images/admin-menu-hide.png" alt="Hide Menu" height="20" width="87"/></a>
-		<?=$this->menu?>
-	</div><!-- end admin-menu -->
+	<?=$this->menu?>
 
 </div><!-- end admin-body -->
 

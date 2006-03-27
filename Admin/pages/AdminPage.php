@@ -132,6 +132,7 @@ abstract class AdminPage extends SwatPage
 		parent::init();
 		$this->initInternal();
 		$this->ui->init();
+		$this->app->getMenuView()->init();
 	}
 
 	// }}}
@@ -188,6 +189,9 @@ abstract class AdminPage extends SwatPage
 	public function build()
 	{
 		$this->buildInternal();
+
+		$this->layout->body_class =
+			($this->app->getMenuView()->isShown()) ? '' : 'hide-menu';
 
 		ob_start();
 		$this->ui->getRoot()->displayHtmlHeadEntries();
