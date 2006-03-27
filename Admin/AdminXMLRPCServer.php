@@ -14,9 +14,12 @@ require_once 'Admin/exceptions/AdminNotFoundException.php';
  */
 class AdminXMLRPCServer extends SwatXMLRPCServer
 {
-	public function build()
+	/**
+	 * @xmlrpc.hidden
+	 */
+	public function init()
 	{
-		if (!isset($HTTP_RAW_POST_DATA))
+		if (!isset($GLOBALS['HTTP_RAW_POST_DATA']))
 			throw new AdminNotFoundException(Admin::_('Page not found.'));
 	}
 }
