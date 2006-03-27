@@ -5,8 +5,8 @@
  *
  * Displays the primary navigation menu.
  *
- * @package Admin
- * @copyright silverorange 2006
+ * @package   Admin
+ * @copyright 2006 silverorange
  */
 class AdminMenuView
 {
@@ -24,16 +24,14 @@ class AdminMenuView
 	 */
 	public function display()
 	{
-		echo '<script type="text/javascript">';
-		echo '	var menu = new AdminMenu();';
-		echo '	var section = new AdminMenuSection();';
-		echo '</script>';
 		echo '<ul>';
 
 		foreach ($this->store->sections as $section)
 			$this->displaySection($section);
 
 		echo '</ul>';
+
+		$this->displayJavaScript();
 	}
 
 	/**
@@ -101,6 +99,13 @@ class AdminMenuView
 		echo '<li>';
 		$anchor_tag->display();
 		echo '</li>';
+	}
+
+	private function displayJavaScript()
+	{
+		echo '<script type="text/javascript">'."\n";
+		echo 'var menu = new AdminMenu();'."\n";
+		echo '</script>';
 	}
 }
 
