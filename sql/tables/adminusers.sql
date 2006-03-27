@@ -11,7 +11,7 @@ create table adminusers (
 -- default adminusers
 insert into adminusers (id, username, name, password, enabled) values (1, 'nick', 'Nick Burka', 'f12d534540fdc2b0cd8389c4a54ad1fe', true);
 insert into adminusers (id, username, name, password, enabled) values (2, 'nrf', 'Nathan', 'bfc4fd79ea7fdf1240db016e29ae417a', true);
-insert into adminusers (id, username, name, password, enabled) values (3, 'isaac', 'Isaac', 'A4478ADF55CCF937A1C9AA86493D56DF', true);
+insert into adminusers (id, username, name, password, enabled) values (3, 'isaac', 'Isaac', '64097f46b63fe377b590fa1ad00c8de2', true);
 insert into adminusers (id, username, name, password, enabled) values (4, 'dan', 'Dan', '7497FC213559C07F355432A21C21745A', true);
 insert into adminusers (id, username, name, password, enabled) values (5, 'desroches', 'Stephen DesRoches', 'f1d5981e34c60eb678516587a27bdb53', true);
 insert into adminusers (id, username, name, password, enabled) values (6, 'gauthierm', 'Mike', '9b5ec8bf901d37eaf29c3c775ecab513', true);
