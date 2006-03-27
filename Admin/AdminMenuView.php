@@ -1,5 +1,6 @@
 <?php
 
+require_once 'XML/RPCAjax.php';
 require_once 'Swat/SwatObject.php';
 require_once 'AdminMenuViewStateStore.php';
 
@@ -90,6 +91,9 @@ class AdminMenuView extends SwatObject
 	{
 		echo '<script type="text/javascript" src="admin/javascript/admin-menu.js"></script>';
 		echo '<style type="text/css" media="all">@import "admin/styles/admin-menu.css";</style>';
+
+		$ajax = new XML_RPCAjax();
+		$ajax->display();
 	}
 
 	/**
@@ -102,7 +106,7 @@ class AdminMenuView extends SwatObject
 		$section_title_tag = new SwatHtmlTag('a');
 		$section_title_tag->class = 'menu-section-title';
 		$section_title_tag->href = sprintf(
-			'javascript:%s_obj.toggleSection(\'admin_menu_section_%s\');',
+			'javascript:%s_obj.toggleSection(\'%s\');',
 			$this->id, $section->id);
 
 		$section_title_span_tag = new SwatHtmlTag('span');
@@ -115,7 +119,9 @@ class AdminMenuView extends SwatObject
 		$section_title_tag->close();
 
 		$section_content = new SwatHtmlTag('ul');
-		$section_content->id = 'admin_menu_section_'.$section->id;
+		$section_content->id = sprintf('%s_section_%s', $this->id,
+			$section->id);
+
 		if (!$section->show)
 			$section_content->class = 'hide-menu-section';
 
@@ -309,7 +315,7 @@ class AdminMenuView extends SwatObject
 	protected function displayJavaScript()
 	{
 		echo '<script type="text/javascript">'."\n";
-		printf('var %s_obj = new AdminMenu();', $this->id);
+		printf("var %s_obj = new AdminMenu('%s');\n", $this->id, $this->id);
 		echo '</script>';
 	}
 }

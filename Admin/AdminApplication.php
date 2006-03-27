@@ -321,11 +321,12 @@ class AdminApplication extends SwatApplication
 
 			if ($component == 'AdminSite') {
 				$admin_titles = array(
-					'Profile'  => Admin::_('Edit User Profile'),
-					'Logout'   => Admin::_('Logout'),
-					'Login'    => Admin::_('Login'),
-					'Exception' => Admin::_('Exception'),
-					'Front'    => Admin::_('Index'));
+					'Profile'        => Admin::_('Edit User Profile'),
+					'Logout'         => Admin::_('Logout'),
+					'Login'          => Admin::_('Login'),
+					'Exception'      => Admin::_('Exception'),
+					'Front'          => Admin::_('Index'),
+					'MenuViewServer' => Admin::_(''));
 
 				if (isset($admin_titles[$subcomponent])) {
 					$request = new AdminPageRequest();
