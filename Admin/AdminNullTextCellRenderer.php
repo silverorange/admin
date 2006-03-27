@@ -6,7 +6,7 @@ require_once 'Swat/SwatTextCellRenderer.php';
  * A cell renderer that displays a message if it is asked to display
  * null text
  *
- * @package   admin
+ * @package   Admin
  * @copyright 2005-2006 silverorange
  */
 class AdminNullTextCellRenderer extends SwatTextCellRenderer
