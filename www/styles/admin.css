@@ -25,43 +25,9 @@ img { border: 0; }
 #admin-body {
 }
 
-#admin-menu {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 160px;
-	color: #666;
-	padding: 2em 16px;
-}
-
 #admin-content {
 	padding: 1em 16px 1em 200px;
 }
-
-/* Menu-hiding styles */
-
-body.hide-menu #admin-menu {
-	display: none;
-} 
-
-body.hide-menu #admin-content {
-	padding-left: 36px;
-}
-
-body #admin-menu-hide img {
-	display: block;
-} 
-
-body #admin-menu-show {
-	display: none;
-} 
-
-body.hide-menu #admin-menu-show {
-	display: block;
-	position: absolute;
-	top: 2em;
-	left: 0;
-} 
 
 
 /* Header Styles */
@@ -93,79 +59,6 @@ body.hide-menu #admin-menu-show {
 
 #admin-navbar {
 }
-
-
-/* Menu Styles */
-
-#admin-menu ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	color: #837352;
-}
-
-#admin-menu ul a.menu-section-title {
-	display: block;
-	background: #f8f6f0 url(../../swat/images/swat-frame-header.png) bottom left repeat-x;
-	margin: 1px 1px 4px 1px;
-	font-weight: bold;
-	text-decoration: none;
-	color: #837352;
-}
-
-#admin-menu ul a.menu-section-title span {
-	display: block;
-	background: url(../images/admin-menu-section-toggle.png) 100% 0 no-repeat;
-	padding: 1px 4px 3px 4px;
-}
-
-#admin-menu ul a.menu-section-title:hover span {
-	background: url(../images/admin-menu-section-toggle.png) 100% -100px no-repeat;
-}
-
-#admin-menu ul li {
-	border: 1px solid #e7ddc8;
-	margin-bottom: 6px;
-	background: #fff;
-}
-
-#admin-menu li li {
-	border: 0;
-	padding: 0;
-	margin: 0 4px 0 4px;
-}
-
-#admin-menu ul ul {
-	padding: 0 0 0.5em 1.3em;
-	list-style-type: circle;
-	display: block;
-}
-
-#admin-menu ul ul.hide-menu-section {
-	display: none;
-}
-
-#admin-menu ul ul ul {
-	padding-bottom: 0;
-}
-
-#admin-menu ul ul ul li {
-	font-size: 85%;
-}
-
-#admin-menu a:link,
-#admin-menu a:visited {
-	text-decoration: none;
-}
-
-#admin-menu a:hover {
-	text-decoration: underline;
-}
-
-#admin-menu a.menu-section-toggle {
-	border: 1px dotted #F00;
-}
-
 
 
 /* Content Styles */
