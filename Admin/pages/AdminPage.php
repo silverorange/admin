@@ -66,6 +66,15 @@ abstract class AdminPage extends SwatPage
 	 */
 	protected $ui = null;
 
+	/**
+	 * The logout form for this page
+	 *
+	 * This form is responsible for displaying the admin logout button.
+	 *
+	 * @var SwatForm
+	 */
+	protected $logout_form = null;
+
 	// }}}
 	// {{{ public function __construct()
 
@@ -75,6 +84,7 @@ abstract class AdminPage extends SwatPage
 
 		$this->navbar = new AdminNavBar();
 		$this->ui = new AdminUI();
+		$this->buildLogoutForm();
 	}
 
 	// }}}
@@ -196,6 +206,7 @@ abstract class AdminPage extends SwatPage
 		ob_start();
 		$this->ui->getRoot()->displayHtmlHeadEntries();
 		$this->app->getMenuView()->displayHtmlHeadEntries();
+		$this->logout_form->displayHtmlHeadEntries();
 		$this->layout->html_head_entries = ob_get_clean();
 
 		$page_title = ($this->title === null) ? $this->navbar->getLastEntry() : $this->title;
@@ -266,7 +277,9 @@ abstract class AdminPage extends SwatPage
 		echo '<div id="admin-syslinks">';
 		echo 'Welcome '.$_SESSION['name'].' &nbsp;|&nbsp; ';
 		echo '<a href="AdminSite/Profile">Login Settings</a> &nbsp;|&nbsp; ';
-		echo '<a href="AdminSite/Logout"><strong>Logout</strong></a>';
+
+		$this->logout_form->display();
+
 		echo '</div>';
 	}
 
@@ -304,6 +317,21 @@ abstract class AdminPage extends SwatPage
 
 		} catch (SwatWidgetNotFoundException $e) {
 		}
+	}
+
+	// }}}
+	// {{{ protected function buildLogoutForm()
+
+	protected function buildLogoutForm()
+	{
+		$this->logout_form = new SwatForm('logout');
+		$this->logout_form->action = 'AdminSite/Logout';
+
+		$button = new SwatButton('logout_button');
+		$button->style ='text-decoration:underline;';
+		$button->title = 'Logout';
+
+		$this->logout_form->add($button);
 	}
 
 	// }}}
