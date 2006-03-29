@@ -117,6 +117,7 @@ abstract class AdminSearch extends AdminIndex
 		try {
 			$form = $this->ui->getWidget('search_form', true);
 			$form->action = $this->source;
+			$form->autofocus = true;
 		} catch (SwatWidgetNotFoundException $e) {
 		}
 	}
