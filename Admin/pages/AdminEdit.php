@@ -166,18 +166,22 @@ abstract class AdminEdit extends AdminPage
 
 	protected function buildForm()
 	{
-		$form = $this->ui->getWidget('edit_form');
+		try {
+			$form = $this->ui->getWidget('edit_form');
 
-		if ($this->id !== null)
-			if (!$form->isProcessed())
-				$this->loadData();
+			if ($this->id !== null)
+				if (!$form->isProcessed())
+					$this->loadData();
 
-		$form->action = $this->source;
-		$form->addHiddenField('id', $this->id);
+			$form->action = $this->source;
+			$form->autofocus = true;
+			$form->addHiddenField('id', $this->id);
 
-		if ($form->getHiddenField(self::RELOCATE_URL_FIELD) === null) {
-			$url = $this->getRefererURL();
-			$form->addHiddenField(self::RELOCATE_URL_FIELD, $url);
+			if ($form->getHiddenField(self::RELOCATE_URL_FIELD) === null) {
+				$url = $this->getRefererURL();
+				$form->addHiddenField(self::RELOCATE_URL_FIELD, $url);
+			}
+		} catch (SwatWidgetNotFoundException $e) {
 		}
 	}
 	// }}}
