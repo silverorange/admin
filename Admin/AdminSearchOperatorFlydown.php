@@ -7,11 +7,11 @@ require_once 'Admin/AdminSearchClause.php';
 /**
  * A flydown selection widget for search operators.
  *
- * @package Admin
- * @copyright silverorange 2005
+ * @package   Admin
+ * @copyright 2005-2006 silverorange
  */
-class AdminSearchOperatorFlydown extends SwatFlydown {
-
+class AdminSearchOperatorFlydown extends SwatFlydown
+{
 	/**
 	 * Operators
 	 *
@@ -25,17 +25,20 @@ class AdminSearchOperatorFlydown extends SwatFlydown {
 	                          AdminSearchClause::OP_ENDS_WITH,
 	                          AdminSearchClause::OP_EQUALS);
 	
-	public function display() {
+	public function display()
+	{
 		$this->options = array();
 		$this->show_blank = false;
 
 		foreach ($this->operators as $op)
-			$this->addOption($op, AdminSearchOperatorFlydown::getOperatorTitle($op));
+			$this->addOption($op,
+				AdminSearchOperatorFlydown::getOperatorTitle($op));
 
 		parent::display();
 	}
 
-	private static function getOperatorTitle($id) {
+	private static function getOperatorTitle($id)
+	{
 		switch ($id) {
 			case AdminSearchClause::OP_EQUALS:      return Admin::_('is');
 			case AdminSearchClause::OP_GT:          return '>';
@@ -50,7 +53,6 @@ class AdminSearchOperatorFlydown extends SwatFlydown {
 				throw new Exception('AdminSearchOperatorFlydown: unknown operator');
 		}
 	}
-
 }
 
 ?>
