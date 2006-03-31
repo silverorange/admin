@@ -168,7 +168,7 @@ abstract class AdminPage extends SwatPage
 	 * Process the page
 	 *
 	 * Sub-classes should implement this method to process the page.
-	 * Sub-classes should call parent:process first which calls
+	 * Sub-classes should call parent::process first which calls
 	 * {@link AdminPage::$ui->process()}.
 	 * Called after {@link AdminPage::init()}.
 	 */
