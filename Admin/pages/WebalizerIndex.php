@@ -116,13 +116,13 @@ class WebalizerIndex extends AdminPage
 		$relative_url = $this->getRelativeURL();
 
 		foreach ($lines as $line) {
-			$line = eregi_replace('(usage_.*)\.html',
-				$this->source.'?id=\\1', $line);
+			$line = preg_replace('/(usage_.*)\.html/ui',
+				$this->source.'?id=\1', $line);
 
-			$line = eregi_replace('(href=")#',
-				'\\1'.$relative_url.'#', $line);
+			$line = preg_replace('/(href=")#/ui',
+				'\1'.$relative_url.'#', $line);
 
-			$line = eregi_replace('img src="',
+			$line = preg_replace('/img src="/ui',
 				'img src="webalizer/', $line);
 
 			echo $line;
