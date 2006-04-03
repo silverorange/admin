@@ -327,11 +327,14 @@ abstract class AdminPage extends SwatPage
 		$this->logout_form = new SwatForm('logout');
 		$this->logout_form->action = 'AdminSite/Logout';
 
-		$button = new SwatButton('logout_button');
-		$button->style ='text-decoration:underline;';
-		$button->title = 'Logout';
+		$form_field = new SwatFormField('logout_button_container');
 
-		$this->logout_form->add($button);
+		$button = new SwatButton('logout_button');
+		$button->title = Admin::_('Logout');
+
+		$form_field->add($button);
+
+		$this->logout_form->add($form_field);
 	}
 
 	// }}}
