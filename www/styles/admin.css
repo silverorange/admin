@@ -87,6 +87,12 @@ address { font-style: normal; }
 	padding: 0;
 }
 
+#logout div.swat-form-field,
+#logout div.swat-form-field-contents {
+	display: inline;
+	margin: 0;
+}
+
 #logout input {
 	margin: 0;
 	padding: 0 0.2em;
