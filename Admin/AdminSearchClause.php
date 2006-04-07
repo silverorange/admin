@@ -25,6 +25,8 @@ class AdminSearchClause
 	/**
 	 * Value of the search clause
 	 *
+	 * this value is always passed through trim
+	 *
 	 * @var mixed
 	 */
 	public $value;
@@ -79,12 +81,12 @@ class AdminSearchClause
 	 */
 	public function getClause($db, $logic_operator = 'and')
 	{
-		if ($this->value === null)
+		if ($this->value === null || strlen(trim($this->value)) == 0)
 			return '';
 		
 		$field = ($this->table === null) ? '' : $this->table.'.';
 		$field .= $this->field->name;
-		$value = $this->value;
+		$value = trim($this->value);
 	
 		if ($this->field->type == 'text') {
 			if (!$this->case_sensitive) {
