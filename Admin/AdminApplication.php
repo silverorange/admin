@@ -217,20 +217,22 @@ class AdminApplication extends SwatApplication
 		
 		if ($request === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("Component not found for source '%s'."), $source));
+				sprintf(Admin::_("Component not found for source '%s'."),
+				$source));
 
 		$file = $request->getFilename();
-			
+
 		if ($file === null)
 			throw new AdminNotFoundException(
 				sprintf(Admin::_("File not found for source '%s'."), $source));
-			
+
 		require_once $file;
 		$classname = $request->getClassname();
 
 		if ($classname === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("Class '%s' does not exist in the included file."),
+				sprintf(Admin::_(
+					"Class '%s' does not exist in the included file."),
 					$request->component.$request->subcomponent));
 
 		$page = new $classname($this);
