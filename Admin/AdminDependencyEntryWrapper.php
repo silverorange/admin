@@ -5,12 +5,14 @@ require_once 'Admin/AdminDependencyEntry.php';
 
 /**
  *
+ * @package   Admin
+ * @copyright 2006 silverorange
  */
 class AdminDependencyEntryWrapper extends SwatDBRecordsetWrapper
 {
-	public function __construct($rs)
+	protected function init()
 	{
+		parent::init();
 		$this->row_wrapper_class = 'AdminDependencyEntry';
-		parent::__construct($rs);
 	}
 }
