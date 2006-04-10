@@ -23,7 +23,6 @@ abstract class AdminOrder extends AdminPage
 		parent::initInternal();
 		$this->ui->getRoot()->addJavaScript('admin/javascript/admin-order.js');
 		$this->ui->loadFromXML(dirname(__FILE__).'/order.xml');
-		$this->navbar->createEntry(Admin::_('Change Order'));
 	}
 
 	// }}}
@@ -141,7 +140,7 @@ abstract class AdminOrder extends AdminPage
 
 	protected function buildNavBar()
 	{
-
+		$this->navbar->createEntry(Admin::_('Change Order'));
 	}
 
 	// }}}
