@@ -57,6 +57,7 @@ class AdminPagination extends SwatPagination
 		$vars = $_GET;
 
 		$this->unset_get_vars[] = $this->id;
+		$this->unset_get_vars[] = 'source';
 
 		foreach($vars as $name => $value)
 			if (in_array($name, $this->unset_get_vars))
