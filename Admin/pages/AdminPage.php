@@ -204,9 +204,7 @@ abstract class AdminPage extends SwatPage
 			($this->app->getMenuView()->isShown()) ? '' : 'hide-menu';
 
 		ob_start();
-		$this->ui->getRoot()->displayHtmlHeadEntries();
-		$this->app->getMenuView()->displayHtmlHeadEntries();
-		$this->logout_form->displayHtmlHeadEntries();
+		$this->displayHtmlHeadEntries();
 		$this->layout->html_head_entries = ob_get_clean();
 
 		$page_title = ($this->title === null) ? $this->navbar->getLastEntry() : $this->title;
@@ -335,6 +333,31 @@ abstract class AdminPage extends SwatPage
 		$form_field->add($button);
 
 		$this->logout_form->add($form_field);
+	}
+
+	// }}}
+	// {{{ protected function displayHtmlHeadEntries()
+
+	/**
+	 * Displays the HTML head entries needed by this page
+	 *
+	 * Several page elements have HTML head entries. This method is responsible
+	 * for merging all the entries together and displaying them in an
+	 * appropriate manner. The default implementation checks the menu view,
+	 * the page ui and the logout form for HTML head entries. Subclasses may
+	 * choose to check other entities by overriding this method.
+	 */
+	protected function displayHtmlHeadEntries()
+	{
+		$entries = $this->ui->getRoot()->getHtmlHeadEntries();
+		$entries = array_merge($entries,
+			$this->logout_form->getHtmlHeadEntries());
+
+		$entries = array_merge($entries,
+			$this->app->getMenuView()->getHtmlHeadEntries());
+
+		foreach($entries as $html_head_entry)
+			$html_head_entry->display();
 	}
 
 	// }}}
