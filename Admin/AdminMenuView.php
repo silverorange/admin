@@ -37,6 +37,13 @@ class AdminMenuView extends SwatObject
 	private $show;
 
 	/**
+	 * An array of HTML head entries required by this menu-view
+	 *
+	 * @var array
+	 */
+	protected $html_head_entries = array();
+
+	/**
 	 * Creates a new menu-view object with a given menu-store and id.
 	 *
 	 * @param AdminMenuStore $store the menu-store this view will view.
@@ -50,6 +57,18 @@ class AdminMenuView extends SwatObject
 		$this->show = true;
 		if ($id !== null)
 			$this->id = $id;
+
+		// initialize html head entries
+		$this->html_head_entries['admin/javascript/admin-menu.js'] =
+			new SwatHtmlHeadEntry('admin/javascript/admin-menu.js',
+				SwatHtmlHeadEntry::TYPE_JAVASCRIPT);
+
+		$this->html_head_entries['admin/styles/admin-menu.css'] =
+			new SwatHtmlHeadEntry('admin/styles/admin-menu.css',
+				SwatHtmlHeadEntry::TYPE_STYLE);
+
+		$this->html_head_entries = array_merge($this->html_head_entries,
+			XML_RPCAjax::getHtmlHeadEntries());
 	}
 
 	/**
@@ -82,18 +101,14 @@ class AdminMenuView extends SwatObject
 	}
 
 	/**
-	 * Displays contents of the XHTML head section required by this menu view
+	 * Gets the HTML head entries required by this menu-view
 	 *
 	 * Subclasses should override this method to include custom CSS or
 	 * JavaScript.
 	 */
-	public function displayHtmlHeadEntries()
+	public function &getHtmlHeadEntries()
 	{
-		echo '<script type="text/javascript" src="admin/javascript/admin-menu.js"></script>';
-		echo '<style type="text/css" media="all">@import "admin/styles/admin-menu.css";</style>';
-
-		$ajax = new XML_RPCAjax();
-		$ajax->display();
+		return $this->html_head_entries;
 	}
 
 	/**
