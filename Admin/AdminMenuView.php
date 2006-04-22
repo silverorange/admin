@@ -30,18 +30,18 @@ class AdminMenuView extends SwatObject
 	protected $store;
 
 	/**
-	 * Whether of not this menu-view is shown (not collapsed) or not
-	 *
-	 * @var boolean
-	 */
-	private $show;
-
-	/**
 	 * An array of HTML head entries required by this menu-view
 	 *
 	 * @var array
 	 */
 	protected $html_head_entries = array();
+
+	/**
+	 * Whether of not this menu-view is shown (not collapsed) or not
+	 *
+	 * @var boolean
+	 */
+	private $show;
 
 	/**
 	 * Creates a new menu-view object with a given menu-store and id.
