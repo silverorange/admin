@@ -17,8 +17,8 @@ require_once 'Admin/exceptions/AdminNotFoundException.php';
 /**
  * Web application class for an administrator
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2006 silverorange
  */
 class AdminApplication extends SwatApplication
 {
