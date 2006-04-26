@@ -6,7 +6,7 @@ require_once 'Admin/AdminMenuViewStateStore.php';
 /**
  * Updates menu-view state stored in the user's session
  *
- * @package   admin
+ * @package   Admin
  * @copyright 2006 silverorange
  */
 class AdminSiteMenuViewServer extends AdminXMLRPCServer
