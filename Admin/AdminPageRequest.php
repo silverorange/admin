@@ -1,12 +1,14 @@
 <?php
 
+require 'Site/SiteObject.php';
+
 /**
  * Page request
  *
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminPageRequest
+class AdminPageRequest extends SiteObject
 {
 	public $source;
 	public $component;
