@@ -27,7 +27,7 @@ abstract class AdminEdit extends AdminPage
 	{
 		parent::initInternal();
 
-		$this->id = SwatApplication::initVar('id');
+		$this->id = SiteApplication::initVar('id');
 
 		if (is_numeric($this->id))
 			$this->id = intval($this->id);

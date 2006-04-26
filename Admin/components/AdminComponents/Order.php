@@ -25,7 +25,7 @@ class AdminComponentsOrder extends AdminDBOrder
 	{
 		parent::initInternal();
 
-		$this->parent = SwatApplication::initVar('parent');
+		$this->parent = SiteApplication::initVar('parent');
 		$form = $this->ui->getWidget('order_form');
 		$form->addHiddenField('parent', $this->parent);
 	}

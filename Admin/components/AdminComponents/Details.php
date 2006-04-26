@@ -28,7 +28,7 @@ class AdminComponentsDetails extends AdminIndex
 	{
 		$this->ui->loadFromXML(dirname(__FILE__).'/details.xml');
 
-		$this->id = intval(SwatApplication::initVar('id'));
+		$this->id = intval(SiteApplication::initVar('id'));
 	}
 
 	// }}}
