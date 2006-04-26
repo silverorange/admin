@@ -24,7 +24,7 @@ class WebalizerIndex extends AdminPage
 		$this->ui->loadFromXML(dirname(__FILE__).'/webalizer.xml');
 		$this->ui->getRoot()->addStyleSheet('admin/styles/webalizer.css');
 
-		$this->id = SwatApplication::initVar('id', null, SwatApplication::VAR_GET);
+		$this->id = SiteApplication::initVar('id', null, SiteApplication::VAR_GET);
 	}
 
 	// }}}
