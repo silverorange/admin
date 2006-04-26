@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Swat/SwatXMLRPCServer.php';
+require_once 'Site/SiteXMLRPCServer.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
 
 /**
@@ -12,7 +12,7 @@ require_once 'Admin/exceptions/AdminNotFoundException.php';
  * @package   Admin
  * @copyright 2006 silverorange
  */
-class AdminXMLRPCServer extends SwatXMLRPCServer
+class AdminXMLRPCServer extends SiteXMLRPCServer
 {
 	/**
 	 * @xmlrpc.hidden

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Swat/SwatApplication.php';
+require_once 'Site/SiteApplication.php';
 require_once 'MDB2.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/Admin.php';
@@ -20,7 +20,7 @@ require_once 'Admin/exceptions/AdminNotFoundException.php';
  * @package   Admin
  * @copyright 2004-2006 silverorange
  */
-class AdminApplication extends SwatApplication
+class AdminApplication extends SiteApplication
 {
     // {{{ public properties
 	
