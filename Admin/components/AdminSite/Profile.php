@@ -38,8 +38,8 @@ class AdminSiteProfile extends AdminDBEdit
 		$confirm = $this->ui->getWidget('confirmpassword');
 		$confirm->password_widget = $this->ui->getWidget('password');
 
-		$this->id = SwatApplication::initVar('user_id',
-			null, SwatApplication::VAR_SESSION);
+		$this->id = SiteApplication::initVar('user_id',
+			null, SiteApplication::VAR_SESSION);
 	}
 
 	// }}}

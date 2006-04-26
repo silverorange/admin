@@ -29,7 +29,7 @@ class AdminSubComponentsEdit extends AdminDBEdit
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
 
-		$this->parent = SwatApplication::initVar('parent');
+		$this->parent = SiteApplication::initVar('parent');
 
 		$this->fields = array('title', 'shortname', 'boolean:show', 'integer:component');
 

@@ -105,7 +105,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		$form = $this->ui->getWidget('confirmation_form');
 		$this->items = $form->getHiddenField('items');
 
-		$id = SwatApplication::initVar('id', null, SwatApplication::VAR_GET);
+		$id = SiteApplication::initVar('id', null, SiteApplication::VAR_GET);
 
 		if ($id !== null)
 			$this->setItems(array($id));
