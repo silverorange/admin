@@ -1,6 +1,6 @@
 <?php
 
-require 'Site/SiteObject.php';
+require_once 'Site/SiteObject.php';
 
 /**
  * Page request
