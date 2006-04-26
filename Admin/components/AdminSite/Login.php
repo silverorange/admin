@@ -3,7 +3,7 @@
 require_once 'Admin/pages/AdminPage.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Swat/SwatMessage.php';
-require_once 'Swat/SwatLayout.php';
+require_once 'Site/SiteLayout.php';
 
 /**
  * Administrator login page
@@ -84,7 +84,7 @@ class AdminSiteLogin extends AdminPage
 
 	protected function createLayout()
 	{
-		return new SwatLayout('Admin/layouts/login.php');
+		return new SiteLayout('Admin/layouts/login.php');
 	}
 
 	// }}}

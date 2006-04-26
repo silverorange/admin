@@ -1,6 +1,7 @@
 <?php
 
-require_once 'Swat/SwatPage.php';
+require_once 'Site/SitePage.php';
+require_once 'Site/SiteLayout.php';
 require_once 'Swat/SwatForm.php';
 require_once 'Admin/AdminNavBar.php';
 require_once 'Admin/AdminMenuStore.php';
@@ -15,7 +16,7 @@ require_once 'Admin/AdminUI.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-abstract class AdminPage extends SwatPage
+abstract class AdminPage extends SitePage
 {
 	const RELOCATE_URL_FIELD = '_admin_relocate_url';
 
@@ -92,7 +93,7 @@ abstract class AdminPage extends SwatPage
 
 	protected function createLayout()
 	{
-		return new SwatLayout('Admin/layouts/default.php');
+		return new SiteLayout('Admin/layouts/default.php');
 	}
 
 	// }}}
@@ -134,7 +135,7 @@ abstract class AdminPage extends SwatPage
 	 *
 	 * Initializes {@link AdminPage::initInternal()} and {@link
 	 * AdminPage::$ui}. Sub-classes should implement
-	 * {@link SwatPage::initInternal()} to perform their own
+	 * {@link SitePage::initInternal()} to perform their own
 	 * initialization. 
 	 */
 	public function init()

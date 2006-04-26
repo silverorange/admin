@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Swat/SwatApplicationModule.php';
+require_once 'Site/SiteApplicationModule.php';
 require_once 'Swat/SwatMessage.php';
 
 /**
@@ -9,7 +9,7 @@ require_once 'Swat/SwatMessage.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminMessagesModule extends SwatApplicationModule
+class AdminMessagesModule extends SiteApplicationModule
 {
     // {{{ public function init()
 
