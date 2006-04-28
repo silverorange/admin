@@ -12,7 +12,7 @@ DROP TYPE type_article_tree CASCADE;
 CREATE TYPE type_article_tree AS (id INTEGER, title VARCHAR(255), levelnum INTEGER);
 
 --DROP FUNCTION sp_article_tree(INTEGER);
-CREATE OR REPLACE FUNCTION sp_article_tree(INTEGER) RETURNS SETOF type_article_tree AS '
+CREATE OR REPLACE FUNCTION getArticleTree(INTEGER) RETURNS SETOF type_article_tree AS '
 	DECLARE
 		param_current_item ALIAS FOR $1;
 		local_level INTEGER;
