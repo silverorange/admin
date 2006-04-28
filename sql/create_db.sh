@@ -6,41 +6,40 @@
 # createdb -U php <database>
 # createlang -U postgres plpgsql <database>
 
-SOURCE="/so/packages/admin/work-dave/sql"
+SOURCE="/so/packages/admin/dbrename/sql"
 
 #
 # TABLES
 #
 
-cat ${SOURCE}/tables/adminusers.sql > ${SOURCE}/create_db.sql
-cat ${SOURCE}/tables/admingroups.sql >> ${SOURCE}/create_db.sql
-cat ${SOURCE}/tables/adminsections.sql >> ${SOURCE}/create_db.sql
-cat ${SOURCE}/triggers/tr_admincomponents_delete.sql >> ${SOURCE}/create_db.sql
-cat ${SOURCE}/tables/admincomponents.sql >> ${SOURCE}/create_db.sql
-cat ${SOURCE}/tables/adminsubcomponents.sql >> ${SOURCE}/create_db.sql
-cat ${SOURCE}/tables/adminuserhistory.sql >> ${SOURCE}/create_db.sql
-cat ${SOURCE}/tables/adminuser_admingroup.sql >> ${SOURCE}/create_db.sql
-cat ${SOURCE}/tables/admincomponent_admingroup.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/tables/AdminUser.sql > ${SOURCE}/create_db.sql
+cat ${SOURCE}/tables/AdminGroup.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/tables/AdminSection.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/triggers/AdminComponentDeleteTrigger.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/tables/AdminComponent.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/tables/AdminSubComponent.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/tables/AdminUserHistory.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/tables/AdminUserAdminGroupBinding.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/tables/AdminComponentAdminGroupBinding.sql >> ${SOURCE}/create_db.sql
 
 #
 # VIEWS
 #
 
-cat ${SOURCE}/views/view_adminuser_lastlogin.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/views/AdminUserLastLoginView.sql >> ${SOURCE}/create_db.sql
 
 #
-# STORED PROCEDURES
+# FUNCTIONS
 #
 
-cat ${SOURCE}/stored_procedures/sp_admin_menu.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/functions/getAdminMenu.sql >> ${SOURCE}/create_db.sql
 
 #
 # TRIGGERS
 #
 
-cat ${SOURCE}/triggers/tr_adminsections_delete.sql >> ${SOURCE}/create_db.sql
-cat ${SOURCE}/triggers/tr_admincomponents_delete.sql >> ${SOURCE}/create_db.sql
-cat ${SOURCE}/triggers/tr_admingroups_delete.sql >> ${SOURCE}/create_db.sql
-cat ${SOURCE}/triggers/tr_adminuserhistory_insert.sql >> ${SOURCE}/create_db.sql
-cat ${SOURCE}/triggers/tr_adminusers_delete.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/triggers/AdminSectionDeleteTrigger.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/triggers/AdminGroupDeleteTrigger.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/triggers/AdminUserHistoryInsertTrigger.sql >> ${SOURCE}/create_db.sql
+cat ${SOURCE}/triggers/AdminUserDeleteTrigger.sql >> ${SOURCE}/create_db.sql
 
