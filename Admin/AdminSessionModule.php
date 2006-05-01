@@ -8,7 +8,7 @@ require_once 'Date.php';
  * Web application module for sessions
  *
  * @package Admin
- * @copyright silverorange 2004
+ * @copyright 2004-2006 silverorange
  */
 class AdminSessionModule extends SiteApplicationModule
 {
@@ -27,7 +27,8 @@ class AdminSessionModule extends SiteApplicationModule
 			$_SESSION['username'] = '';
 			$_SESSION['history'] = array();
 		} elseif ($_SESSION['user_id'] != 0) {	
-			setcookie($this->app->id.'_username', $_SESSION['username'], time() + 86400, '/', '', 0);
+			setcookie($this->app->id.'_username', $_SESSION['username'], 
+				time() + 86400, '/', '', 0);
 		}
 	}
 
@@ -46,7 +47,7 @@ class AdminSessionModule extends SiteApplicationModule
 	
 		$md5_password = md5($password);
 		
-		$sql = "select id, name, username from adminusers
+		$sql = "select id, name, username from AdminUser
 				where username = %s and password = %s and enabled = %s";
 
 		$sql = sprintf($sql, 
@@ -74,15 +75,19 @@ class AdminSessionModule extends SiteApplicationModule
 
 	private function insertUserHistory($userid)
 	{
-		$user_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ? $_SERVER['HTTP_USER_AGENT'] : null;
-		$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : null;
+		$user_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ? 
+			$_SERVER['HTTP_USER_AGENT'] : null;
+		$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ? 
+			$_SERVER['REMOTE_ADDR'] : null;
 		$login_date = new Date();
 		$login_date->toUTC();
 
-		SwatDB::insertRow($this->app->db, 'adminuserhistory',
-			array('integer:usernum','date:logindate', 'loginagent', 'remoteip'),
-			array('usernum' => $userid, 'logindate' => $login_date->getDate(),
-				'loginagent' => $user_agent, 'remoteip' => $remote_ip));
+		$fields = array('integer:usernum','date:login_date', 'login_agent', 
+			'remote_ip');
+		$values = array('usernum' => $userid, 
+			'logindate' => $login_date->getDate(), 'loginagent' => $user_agent, 
+			'remoteip' => $remote_ip)
+		SwatDB::insertRow($this->app->db, 'AdminUserHistory', $fields, $values);
 	}
 
     // }}}

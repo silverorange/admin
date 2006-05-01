@@ -10,7 +10,7 @@ require_once 'SwatDB/SwatDB.php';
  * Details page for AdminUsers component
  *
  * @package Admin
- * @copyright silverorange 2005
+ * @copyright 2005-2006 silverorange
  */
 class AdminUsersDetails extends AdminIndex
 {
@@ -24,7 +24,7 @@ class AdminUsersDetails extends AdminIndex
 		// set a default order on the table view
 		$index_view = $this->ui->getWidget('index_view');
 		$index_view->setDefaultOrderbyColumn(
-			$index_view->getColumn('logindate'));
+			$index_view->getColumn('login_date'));
 
 		$this->navbar->createEntry(Admin::_('Details'));
 	}
@@ -40,7 +40,7 @@ class AdminUsersDetails extends AdminIndex
 
 		$id = $this->app->initVar('id');
 
-		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers',
+		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminUser',
 			array('username','name'), 'id' , $id);
 
 		if ($row === null)
@@ -58,14 +58,14 @@ class AdminUsersDetails extends AdminIndex
 	{
 		$id = $this->app->initVar('id');
 	
-		$sql = 'select logindate, loginagent, remoteip
-				from adminuserhistory
+		$sql = 'select login_date, login_agent, remote_ip
+				from AdminUserHistory
 				where usernum = %s
 				order by %s';
 
         	$sql = sprintf($sql,
 			$this->app->db->quote($id, 'integer'),
-			$this->getOrderByClause($view, 'logindate desc'));
+			$this->getOrderByClause($view, 'login_date desc'));
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 

@@ -19,7 +19,7 @@ class AdminUsersDelete extends AdminDBDelete
 	{
 		parent::processDBData();
 
-		$sql = 'delete from adminusers where id in (%s)';
+		$sql = 'delete from AdminUser where id in (%s)';
 		$item_list = $this->getItemList('integer');
 		$sql = sprintf($sql, $item_list);
 		$num = SwatDB::exec($this->app->db, $sql);
@@ -46,7 +46,7 @@ class AdminUsersDelete extends AdminDBDelete
 		$dep = new AdminListDependency();
 		$dep->title = 'Admin User';
 		$dep->entries = AdminListDependency::queryEntries($this->app->db,
-			'adminusers', 'integer:id', null, 'text:name', 'name',
+			'AdminUser', 'integer:id', null, 'text:name', 'name',
 			'id in ('.$item_list.')', AdminDependency::DELETE);
 
 		$message = $this->ui->getWidget('confirmation_message');

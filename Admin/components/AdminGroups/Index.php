@@ -9,7 +9,7 @@ require_once 'Admin/AdminTableStore.php';
  * Index page for AdminGroups component
  *
  * @package Admin
- * @copyright silverorange 2004
+ * @copyright 2004-2006 silverorange
  */
 class AdminGroupsIndex extends AdminIndex
 {
@@ -46,7 +46,7 @@ class AdminGroupsIndex extends AdminIndex
 		$view = $this->ui->getWidget('index_view');
 
 		$sql = 'select id, title 
-				from admingroups 
+				from AdminGroup 
 				order by title';
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');

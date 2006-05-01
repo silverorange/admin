@@ -58,7 +58,7 @@
 			</widget>
 			<widget class="SwatActions" id="index_actions">
 				<widget class="SwatActionItem" id="delete">
-					<property name="title" translatable="yes">delete...</property>
+					<property name="title" translatable="yes">delete…</property>
 				</widget>
 				<widget class="SwatActionItem" id="show">
 					<property name="title" translatable="yes">show</property>
@@ -73,7 +73,7 @@
 					<property name="title" translatable="yes">disable</property>
 				</widget>
 				<widget class="SwatActionItem" id="change_section">
-					<property name="title" translatable="yes">change section...</property>
+					<property name="title" translatable="yes">change section…</property>
 					<widget class="SwatFlydown" id="section">
 						<property name="show_blank" type="boolean">false</property>
 					</widget>

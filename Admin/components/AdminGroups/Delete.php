@@ -19,7 +19,7 @@ class AdminGroupsDelete extends AdminDBDelete
 	{
 		parent::processDBData();
 
-		$sql = 'delete from admingroups where id in (%s)';
+		$sql = 'delete from AdminGroup where id in (%s)';
 		$item_list = $this->getItemList('integer');
 		$sql = sprintf($sql, $item_list);
 		$num = SwatDB::exec($this->app->db, $sql);
@@ -46,7 +46,7 @@ class AdminGroupsDelete extends AdminDBDelete
 		$dep = new AdminListDependency();
 		$dep->title = 'Admin Group';
 		$dep->entries = AdminListDependency::queryEntries($this->app->db,
-			'admingroups', 'integer:id', null, 'text:title', 'title',
+			'AdminGroup', 'integer:id', null, 'text:title', 'title',
 			'id in ('.$item_list.')', AdminDependency::DELETE);
 
 		$message = $this->ui->getWidget('confirmation_message');

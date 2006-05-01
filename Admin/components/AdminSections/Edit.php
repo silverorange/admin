@@ -35,10 +35,10 @@ class AdminSectionsEdit extends AdminDBEdit
 		$values = $this->ui->getValues(array('title', 'show', 'description'));
 
 		if ($this->id === null)
-			$this->id = SwatDB::insertRow($this->app->db, 'adminsections',
+			$this->id = SwatDB::insertRow($this->app->db, 'AdminSection',
 				$this->fields, $values, 'integer:id');
 		else
-			SwatDB::updateRow($this->app->db, 'adminsections', $this->fields,
+			SwatDB::updateRow($this->app->db, 'AdminSection', $this->fields,
 				$values, 'integer:id', $this->id);
 
 		$msg = new SwatMessage(
@@ -55,7 +55,7 @@ class AdminSectionsEdit extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$row = SwatDB::queryRowFromTable($this->app->db, 'adminsections', 
+		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminSection', 
 			$this->fields, 'integer:id', $this->id);
 
 		if ($row === null)

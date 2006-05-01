@@ -32,7 +32,7 @@ class AdminUsersEdit extends AdminDBEdit
 		
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->options = SwatDB::getOptionArray($this->app->db, 
-			'admingroups', 'title', 'id', 'title');
+			'AdminGroup', 'title', 'id', 'title');
 		
 		$confirm = $this->ui->getWidget('confirm_password');
 		$confirm->password_widget = $this->ui->getWidget('password');;
@@ -58,7 +58,7 @@ class AdminUsersEdit extends AdminDBEdit
 		$username = $this->ui->getWidget('username');
 
 		$query = SwatDB::query($this->app->db, sprintf('select username from
-			adminusers where username = %s and id %s %s',
+			AdminUser where username = %s and id %s %s',
 			$this->app->db->quote($username->value, 'text'),
 			SwatDB::equalityOperator($this->id, true),
 			$this->app->db->quote($this->id, 'integer')));
@@ -86,17 +86,17 @@ class AdminUsersEdit extends AdminDBEdit
 		}
 
 		if ($this->id === null)
-			$this->id = SwatDB::insertRow($this->app->db, 'adminusers',
+			$this->id = SwatDB::insertRow($this->app->db, 'AdminUser',
 				$this->fields, $values, 'integer:id');
 		else
-			SwatDB::updateRow($this->app->db, 'adminusers', $this->fields,
+			SwatDB::updateRow($this->app->db, 'AdminUser', $this->fields,
 				$values, 'integer:id', $this->id);
 
 		$group_list = $this->ui->getWidget('groups');
 
-		SwatDB::updateBinding($this->app->db, 'adminuser_admingroup', 
+		SwatDB::updateBinding($this->app->db, 'AdminUserAdminGroupBinding', 
 			'usernum', $this->id, 'groupnum', $group_list->values,
-			'admingroups', 'id');
+			'AdminGroup', 'id');
 		
 		$msg = new SwatMessage(
 			sprintf(Admin::_('User “%s” has been saved.'),
@@ -112,7 +112,7 @@ class AdminUsersEdit extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers', 
+		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminUser', 
 			$this->fields, 'integer:id', $this->id);
 
 		if ($row === null)
@@ -123,7 +123,7 @@ class AdminUsersEdit extends AdminDBEdit
 		
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->values = SwatDB::queryColumn($this->app->db, 
-			'adminuser_admingroup', 'groupnum', 'usernum', $this->id);
+			'AdminUserAdminGroupBinding', 'groupnum', 'usernum', $this->id);
 	}
 
 	// }}}

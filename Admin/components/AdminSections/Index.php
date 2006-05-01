@@ -38,21 +38,21 @@ class AdminSectionsIndex extends AdminIndex
 				break;
 
 			case 'show':
-				SwatDB::updateColumn($this->app->db, 'adminsections', 
-					'boolean:show', true, 'id', 
-					$view->checked_items);
+				SwatDB::updateColumn($this->app->db, 'AdminSection', 
+					'boolean:show', true, 'id', $view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext("%d section has been shown.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext(
+					"%d section has been shown.", 
 					"%d sections have been shown.", $num), $num));
 
 				break;
 
 			case 'hide':
-				SwatDB::updateColumn($this->app->db, 'adminsections', 
-					'boolean:show', false, 'id', 
-					$view->checked_items);
+				SwatDB::updateColumn($this->app->db, 'AdminSection', 
+					'boolean:show', false, 'id', $view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext("%d section has been hidden.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext(
+					"%d section has been hidden.", 
 					"%d sections have been hidden.", $num), $num));
 
 				break;
@@ -72,7 +72,7 @@ class AdminSectionsIndex extends AdminIndex
 		$view = $this->ui->getWidget('index_view');
 
 		$sql = 'select id, title, show 
-				from adminsections 
+				from AdminSection 
 				order by displayorder';
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');

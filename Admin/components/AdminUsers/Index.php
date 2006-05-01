@@ -10,7 +10,7 @@ require_once 'include/HistoryCellRenderer.php';
  * Index page for AdminUsers component
  *
  * @package Admin
- * @copyright silverorange 2004
+ * @copyright 2004-2006 silverorange
  */
 class AdminUsersIndex extends AdminIndex
 {
@@ -76,14 +76,14 @@ class AdminUsersIndex extends AdminIndex
 
 	protected function getTableStore($view)
 	{
-		$sql = 'select adminusers.id, adminusers.username, adminusers.name,
-					adminusers.enabled, view_adminuser_lastlogin.lastlogin
-				from adminusers 
-				left outer join view_adminuser_lastlogin on
-					view_adminuser_lastlogin.usernum = adminusers.id
+		$sql = 'select AdminUser.id, AdminUser.username, AdminUser.name,
+					AdminUser.enabled, AdminUserLastLoginView.last_login
+				from AdminUser 
+				left outer join AdminUserLastLoginView on
+					AdminUserLastLoginView.usernum = AdminUser.id
 				order by %s';
 
-		$sql = sprintf($sql, $this->getOrderByClause($view, 'adminusers.username'));
+		$sql = sprintf($sql, $this->getOrderByClause($view, 'AdminUser.username'));
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 

@@ -38,8 +38,8 @@ class AdminSiteProfile extends AdminDBEdit
 		$confirm = $this->ui->getWidget('confirmpassword');
 		$confirm->password_widget = $this->ui->getWidget('password');
 
-		$this->id = SiteApplication::initVar('user_id',
-			null, SiteApplication::VAR_SESSION);
+		$this->id = SiteApplication::initVar('user_id', null, 
+			SiteApplication::VAR_SESSION);
 	}
 
 	// }}}
@@ -57,7 +57,7 @@ class AdminSiteProfile extends AdminDBEdit
 			$values['password'] = md5($password->value);
 		}
 
-		SwatDB::updateRow($this->app->db, 'adminusers', array_keys($values),
+		SwatDB::updateRow($this->app->db, 'AdminUser', array_keys($values),
 			$values, 'integer:id', $this->id);
 
 		$_SESSION['name'] = $values['name'];
@@ -80,7 +80,7 @@ class AdminSiteProfile extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$row = SwatDB::queryRowFromTable($this->app->db, 'adminusers', 
+		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminUser', 
 			array('name'), 'integer:id', $this->id);
 
 		$this->ui->setValues(get_object_vars($row));

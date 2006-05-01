@@ -31,7 +31,8 @@ class AdminSubComponentsEdit extends AdminDBEdit
 
 		$this->parent = SiteApplication::initVar('parent');
 
-		$this->fields = array('title', 'shortname', 'boolean:show', 'integer:component');
+		$this->fields = array('title', 'shortname', 'boolean:show', 
+			'integer:component');
 
 		$form = $this->ui->getWidget('edit_form');
 		$form->addHiddenField('parent', $this->parent);
@@ -47,7 +48,7 @@ class AdminSubComponentsEdit extends AdminDBEdit
 		parent::validate();
 		$shortname = $this->ui->getWidget('shortname');
 
-		$sql = sprintf('select shortname from adminsubcomponents
+		$sql = sprintf('select shortname from AdminSubComponent
 				where shortname = %s and id %s %s and component = %s',
 			$this->app->db->quote($shortname->value, 'text'),
 			SwatDB::equalityOperator($this->id, true),
@@ -57,7 +58,9 @@ class AdminSubComponentsEdit extends AdminDBEdit
 		$query = SwatDB::queryRow($this->app->db, $sql);
 
 		if ($query !== null) {
-			$msg = new SwatMessage(Admin::_('Shortname already exists and must be unique.'), SwatMessage::ERROR);
+			$msg = new SwatMessage(
+				Admin::_('Shortname already exists and must be unique.'), 
+				SwatMessage::ERROR);
 			$shortname->addMessage($msg);
 		}
 	}
@@ -71,10 +74,10 @@ class AdminSubComponentsEdit extends AdminDBEdit
 		$values['component'] = $this->parent;
 
 		if ($this->id === null)
-			$this->id = SwatDB::insertRow($this->app->db, 'adminsubcomponents', $this->fields,
-				$values, 'integer:id');
+			$this->id = SwatDB::insertRow($this->app->db, 'AdminSubComponent', 
+				$this->fields, $values, 'integer:id');
 		else
-			SwatDB::updateRow($this->app->db, 'adminsubcomponents',
+			SwatDB::updateRow($this->app->db, 'AdminSubComponent', 
 				$this->fields, $values, 'integer:id', $this->id);
 
 		$msg = new SwatMessage(
@@ -91,7 +94,7 @@ class AdminSubComponentsEdit extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$row = SwatDB::queryRowFromTable($this->app->db, 'adminsubcomponents', 
+		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminSubComponent', 
 			$this->fields, 'integer:id', $this->id);
 
 		if ($row === null)
@@ -112,7 +115,7 @@ class AdminSubComponentsEdit extends AdminDBEdit
 	protected function buildNavBar()
 	{
 		$parent_title = SwatDB::queryOneFromTable($this->app->db,
-			'admincomponents', 'text:title', 'id', $this->parent);
+			'AdminComponent', 'text:title', 'id', $this->parent);
 
 		$this->navbar->popEntry();
 		$this->navbar->createEntry('Admin Components', 'AdminComponents');

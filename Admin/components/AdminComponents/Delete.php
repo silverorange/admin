@@ -20,7 +20,7 @@ class AdminComponentsDelete extends AdminDBDelete
 	{
 		parent::processDBData();
 
-		$sql = 'delete from admincomponents where id in (%s)';
+		$sql = 'delete from AdminComponent where id in (%s)';
 		$item_list = $this->getItemList('integer');
 		$sql = sprintf($sql, $item_list);
 		$num = SwatDB::exec($this->app->db, $sql);
@@ -47,14 +47,14 @@ class AdminComponentsDelete extends AdminDBDelete
 		$dep = new AdminListDependency();
 		$dep->title = 'component';
 		$dep->entries = AdminListDependency::queryEntries($this->app->db,
-			'admincomponents', 'integer:id', null, 'text:title',
+			'AdminComponents', 'integer:id', null, 'text:title',
 			'displayorder, title', 'id in ('.$item_list.')',
 			AdminDependency::DELETE);
 
 		$dep_subcomponents = new AdminSummaryDependency();
 		$dep_subcomponents->title = 'sub-component';
 		$dep_subcomponents->summaries = AdminSummaryDependency::querySummaries(
-			$this->app->db, 'adminsubcomponents', 'integer:id',
+			$this->app->db, 'AdminSubComponent', 'integer:id',
 			'integer:component', 'component in ('.$item_list.')',
 			AdminDependency::DELETE);
 

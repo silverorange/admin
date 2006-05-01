@@ -16,12 +16,6 @@
 					<property name="value" type="boolean">true</property>
 				</widget>
 			</widget>
-			<!-- widget class="SwatFormField">
-				<property name="title" translatable="yes">Colour</property>
-				<widget class="SwatColorEntry" id="color">
-					<property name="required" type="boolean">true</property>
-				</widget>
-			</widget -->
 			<widget class="SwatFormField">
 				<property name="title" translatable="yes">Description</property>
 				<widget class="SwatTextarea" id="description" />
