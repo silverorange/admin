@@ -42,18 +42,18 @@
 				<object class="AdminTableViewOrderableColumn" id="lastlogin">
 					<property name="title" translatable="yes">Last Login</property>
 					<object class="SwatDateCellRenderer">
-						<property name="date" type="data">lastlogin</property>
+						<property name="date" type="data">last_login</property>
 					</object>
 					<object class="AdminUsersHistoryCellRenderer">
 						<property name="title" translatable="yes">history</property>
 						<property name="user" type="data">id</property>
-						<property name="date" type="data">lastlogin</property>
+						<property name="date" type="data">last_login</property>
 					</object>
 				</object>
 			</widget>
 			<widget class="SwatActions" id="index_actions">
 				<widget class="SwatActionItem" id="delete">
-					<property name="title" translatable="yes">delete...</property>
+					<property name="title" translatable="yes">delete…</property>
 				</widget>
 				<widget class="SwatActionItem" id="enable">
 					<property name="title" translatable="yes">enable</property>

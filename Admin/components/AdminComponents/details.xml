@@ -103,7 +103,7 @@
 				</widget>
 				<widget class="SwatActions" id="index_actions">
 					<widget class="SwatActionItem" id="delete">
-						<property name="title" translatable="yes">delete...</property>
+						<property name="title" translatable="yes">delete…</property>
 					</widget>
 					<widget class="SwatActionItem" id="show">
 						<property name="title" translatable="yes">show</property>

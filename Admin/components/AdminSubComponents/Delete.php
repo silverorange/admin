@@ -33,7 +33,7 @@ class AdminSubComponentsDelete extends AdminDBDelete
 
 		$item_list = $this->getItemList('integer');
 
-		$sql = 'delete from adminsubcomponents where id in (%s)';
+		$sql = 'delete from AdminSubComponent where id in (%s)';
 
 		$sql = sprintf($sql, $item_list);
 		$num = SwatDB::exec($this->app->db, $sql);
@@ -60,7 +60,7 @@ class AdminSubComponentsDelete extends AdminDBDelete
 		$dep = new AdminListDependency();
 		$dep->title = Admin::_('Sub-Component');
 		$dep->entries = AdminListDependency::queryEntries($this->app->db,
-			'adminsubcomponents', 'integer:id', null, 'text:title',
+			'AdminSubComponent', 'integer:id', null, 'text:title',
 			'displayorder, title', 'id in ('.$item_list.')',
 			AdminDependency::DELETE);
 
@@ -72,8 +72,8 @@ class AdminSubComponentsDelete extends AdminDBDelete
 			$this->switchToCancelButton();
 
 		// rebuild the navbar
-		$component_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',
-			'id', $this->parent);
+		$component_title = SwatDB::queryOneFromTable($this->app->db, 
+			'AdminComponent', 'text:title', 'id', $this->parent);
 
 		// pop two entries because the AdminDBOrder base class adds an entry
 		$this->navbar->popEntries(2);

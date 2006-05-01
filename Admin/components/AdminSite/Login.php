@@ -9,7 +9,7 @@ require_once 'Site/SiteLayout.php';
  * Administrator login page
  *
  * @package Admin
- * @copyright silverorange 2004
+ * @copyright 2004-2006 silverorange
  */
 class AdminSiteLogin extends AdminPage
 {
@@ -19,7 +19,8 @@ class AdminSiteLogin extends AdminPage
 	protected function initInternal()
 	{
 		$this->ui->loadFromXML(dirname(__FILE__).'/login.xml');
-		$this->ui->getWidget('login_form')->addJavaScript('admin/javascript/admin-login.js');
+		$this->ui->getWidget('login_form')->addJavaScript(
+			'admin/javascript/admin-login.js');
 
 		$frame = $this->ui->getWidget('login_frame');
 		$frame->title = $this->app->title;
@@ -53,8 +54,10 @@ class AdminSiteLogin extends AdminPage
 				$this->app->relocate($this->app->getUri());
 			} else {
 				$message_display = $this->ui->getWidget('message_display');
-				$msg = new SwatMessage(Admin::_('Login failed'), SwatMessage::ERROR);
-				$msg->secondary_content = Admin::_('Check your password and try again.');
+				$msg = new SwatMessage(Admin::_('Login failed'), 
+					SwatMessage::ERROR);
+				$msg->secondary_content = 
+					Admin::_('Check your password and try again.');
 				$message_display->add($msg);
 			}
 		}

@@ -11,7 +11,7 @@ require_once 'Swat/SwatString.php';
  * Details page for AdminComponents
  *
  * @package Admin
- * @copyright silverorange 2004
+ * @copyright 2004-2006 silverorange
  */
 class AdminComponentsDetails extends AdminIndex
 {
@@ -49,21 +49,21 @@ class AdminComponentsDetails extends AdminIndex
 				break;
 
 			case 'show':
-				SwatDB::updateColumn($this->app->db, 'adminsubcomponents', 
-					'boolean:show', true, 'id', 
-					$view->checked_items);
+				SwatDB::updateColumn($this->app->db, 'AdminSubComponent', 
+					'boolean:show', true, 'id', $view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext("%d sub-component has been shown.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext(
+					"%d sub-component has been shown.", 
 					"%d sub-components have been shown.", $num), $num));
 
 				break;
 
 			case 'hide':
-				SwatDB::updateColumn($this->app->db, 'adminsubcomponents', 
-					'boolean:show', false, 'id', 
-					$view->checked_items);
+				SwatDB::updateColumn($this->app->db, 'AdminSubComponent', 
+					'boolean:show', false, 'id', $view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext("%d sub-component has been hidden.", 
+				$msg = new SwatMessage(sprintf(Admin::ngettext(
+					"%d sub-component has been hidden.", 
 					"%d sub-components have been hidden.", $num), $num));
 
 				break;
@@ -83,7 +83,8 @@ class AdminComponentsDetails extends AdminIndex
 		parent::buildInternal();
 
 		$this->ui->getWidget('details_toolbar')->setToolLinkValues($this->id);
-		$this->ui->getWidget('sub_components_toolbar')->setToolLinkValues($this->id);
+		$this->ui->getWidget('sub_components_toolbar')->setToolLinkValues(
+			$this->id);
 
 		$form = $this->ui->getWidget('index_form');
 		$form->addHiddenField('id', $this->id);
@@ -92,12 +93,12 @@ class AdminComponentsDetails extends AdminIndex
 
 		$component_details = $this->ui->getWidget('component_details');
 
-		$sql = 'select admincomponents.*,
-					adminsections.title as section_title
-				from admincomponents
-					inner join adminsections on
-						adminsections.id = admincomponents.section
-				where admincomponents.id = %s';
+		$sql = 'select AdminComponent.*,
+					AdminSection.title as section_title
+				from AdminComponent
+					inner join AdminSection on
+						AdminSection.id = AdminComponent.section
+				where AdminComponent.id = %s';
 
 		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
 
@@ -105,14 +106,16 @@ class AdminComponentsDetails extends AdminIndex
 
 		if ($row === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("Component with id '%s' not found."), $this->id));
+				sprintf(Admin::_("Component with id '%s' not found."), 
+					$this->id));
 
 		ob_start();
 		$this->displayGroups($this->id);
 		$row->groups = ob_get_clean();
 
 		if ($row->description !== null)
-			$row->description = SwatString::condense(SwatString::toXHTML($row->description));
+			$row->description = SwatString::condense(SwatString::toXHTML(
+				$row->description));
 
 		$component_details->data = $row;
 
@@ -126,13 +129,13 @@ class AdminComponentsDetails extends AdminIndex
 
 	protected function getTableStore($view)
 	{
-		$sql = 'select adminsubcomponents.id, 
-					adminsubcomponents.title, 
-					adminsubcomponents.shortname, 
-					adminsubcomponents.show
-				from adminsubcomponents 
+		$sql = 'select AdminSubComponent.id, 
+					AdminSubComponent.title, 
+					AdminSubComponent.shortname, 
+					AdminSubComponent.show
+				from AdminSubComponent 
 				where component = %s
-				order by adminsubcomponents.displayorder';
+				order by AdminSubComponent.displayorder';
 
 		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
 
@@ -150,9 +153,9 @@ class AdminComponentsDetails extends AdminIndex
 	private function displayGroups($id)
 	{
 		$sql = 'select id, title
-				from admingroups
+				from AdminGroup
 				where id in
-					(select groupnum from admincomponent_admingroup 
+					(select groupnum from AdminComponentAdminGroupBinding 
 					where component = %s)';
 
 		$sql = sprintf($sql, $this->app->db->quote($id, 'integer'));

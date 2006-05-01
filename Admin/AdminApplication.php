@@ -279,7 +279,7 @@ class AdminApplication extends SiteApplication
 	{
 		if ($this->menu === null) {
 			$menu_store = SwatDB::executeStoredProc($this->db,
-				'sp_admin_menu', $this->db->quote($_SESSION['user_id'],
+				'getAdminMenu', $this->db->quote($_SESSION['user_id'],
 				'integer'), 'AdminMenuStore');
 
 			$this->menu = $this->instantiateMenu($menu_store);
@@ -371,18 +371,20 @@ class AdminApplication extends SiteApplication
 	private function queryForPage($component)
 	{
 		// TODO: move this page query into a stored procedure
-		$sql = "SELECT admincomponents.title as component_title, admincomponents.shortname,
-				adminsections.title as section_title
-			FROM admincomponents
-				INNER JOIN adminsections ON admincomponents.section = adminsections.id
-			WHERE admincomponents.enabled = %s
-				AND admincomponents.shortname = %s
-				AND admincomponents.id IN (
+		$sql = "SELECT AdminComponent.title as component_title, 
+				AdminComponent.shortname, AdminSection.title as section_title
+			FROM AdminComponent
+				INNER JOIN AdminSection ON 
+					AdminComponent.section = AdminSection.id
+			WHERE AdminComponent.enabled = %s
+				AND AdminComponent.shortname = %s
+				AND AdminComponent.id IN (
 					SELECT component
-					FROM admincomponent_admingroup
-					INNER JOIN adminuser_admingroup
-						ON admincomponent_admingroup.groupnum = adminuser_admingroup.groupnum
-					WHERE adminuser_admingroup.usernum = %s
+					FROM AdminComponentAdminGroupBinding
+					INNER JOIN AdminUserAdminGroupBinding
+						ON AdminComponentAdminGroupBinding.groupnum = 
+							AdminUserAdminGroupBinding.groupnum
+					WHERE AdminUserAdminGroupBinding.usernum = %s
 				)";
 
 		$sql = sprintf($sql,

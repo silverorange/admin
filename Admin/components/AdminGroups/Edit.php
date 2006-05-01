@@ -32,14 +32,13 @@ class AdminGroupsEdit extends AdminDBEdit
 
 		$user_list = $this->ui->getWidget('users');
 		$user_list->options = SwatDB::getOptionArray($this->app->db, 
-			'adminusers', 'name', 'id', 'name');
+			'AdminUser', 'name', 'id', 'name');
 
 		$component_list = $this->ui->getWidget('components');
 		$component_list->setTree(SwatDB::getGroupedOptionArray($this->app->db, 
-			'admincomponents', 'title', 'id',
-			'adminsections', 'title', 'id', 'section',
-			'adminsections.displayorder, adminsections.title,
-			admincomponents.displayorder,  admincomponents.title'));
+			'AdminComponent', 'title', 'id', 'AdminSection', 'title', 'id', 
+			'section', 'AdminSection.displayorder, Adminsections.title,
+			AdminComponent.displayorder,  AdminComponent.title'));
 	}
 
 	// }}}
@@ -52,23 +51,23 @@ class AdminGroupsEdit extends AdminDBEdit
 		$values = $this->ui->getValues(array('title'));
 
 		if ($this->id === null)
-			$this->id = SwatDB::insertRow($this->app->db, 'admingroups',
+			$this->id = SwatDB::insertRow($this->app->db, 'AdminGroup',
 				$this->fields, $values, 'integer:id');
 		else
-			SwatDB::updateRow($this->app->db, 'admingroups', $this->fields,
+			SwatDB::updateRow($this->app->db, 'AdminGroup', $this->fields,
 				$values, 'integer:id', $this->id);
 
 		$user_list = $this->ui->getWidget('users');
 
-		SwatDB::updateBinding($this->app->db, 'adminuser_admingroup', 
-			'groupnum', $this->id, 'usernum', $user_list->values,
-			'adminusers', 'id');
+		SwatDB::updateBinding($this->app->db, 'AdminUserAdminGroupBinding', 
+			'groupnum', $this->id, 'usernum', $user_list->values, 'AdminUser', 
+			'id');
 
 		$component_list = $this->ui->getWidget('components');
 
-		SwatDB::updateBinding($this->app->db, 'admincomponent_admingroup', 
+		SwatDB::updateBinding($this->app->db, 'AdminComponentAdminGroupBinding', 
 			'groupnum', $this->id, 'component', $component_list->values,
-			'admincomponents', 'id');
+			'AdminComponent', 'id');
 
 		$msg = new SwatMessage(
 			sprintf(Admin::_('Group “%s” has been saved.'),
@@ -84,7 +83,7 @@ class AdminGroupsEdit extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$row = SwatDB::queryRowFromTable($this->app->db, 'admingroups', 
+		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminGroup', 
 			$this->fields, 'integer:id', $this->id);
 
 		if ($row === null)
@@ -95,11 +94,12 @@ class AdminGroupsEdit extends AdminDBEdit
 
 		$user_list = $this->ui->getWidget('users');
 		$user_list->values = SwatDB::queryColumn($this->app->db, 
-			'adminuser_admingroup', 'usernum', 'groupnum', $this->id);
+			'AdminUserAdminGroupBinding', 'usernum', 'groupnum', $this->id);
 
 		$component_list = $this->ui->getWidget('components');
 		$component_list->values = SwatDB::queryColumn($this->app->db, 
-			'admincomponent_admingroup', 'component', 'groupnum', $this->id);
+			'AdminComponentAdminGroupBinding', 'component', 'groupnum', 
+			$this->id);
 	}
 
 	// }}}

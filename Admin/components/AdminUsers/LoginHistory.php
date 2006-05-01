@@ -10,7 +10,7 @@ require_once 'Admin/components/AdminUsers/include/HistoryCellRenderer.php';
  * Login history page for AdminUsers component
  *
  * @package Admin
- * @copyright silverorange 2005
+ * @copyright 2005-2006 silverorange
  */
 class AdminUsersLoginHistory extends AdminIndex
 {
@@ -24,7 +24,7 @@ class AdminUsersLoginHistory extends AdminIndex
 		// set a default order on the table view
 		$index_view = $this->ui->getWidget('index_view');
 		$index_view->setDefaultOrderbyColumn(
-			$index_view->getColumn('logindate'));
+			$index_view->getColumn('login_date'));
 
 		$this->navbar->createEntry(Admin::_('Login History'));
 	}
@@ -39,7 +39,7 @@ class AdminUsersLoginHistory extends AdminIndex
 		parent::processInternal();
 
 		$pager = $this->ui->getWidget('pager');
-		$sql = 'select count(id) from adminuserhistory';
+		$sql = 'select count(id) from AdminUserHistory';
 		$pager->total_records = SwatDB::queryOne($this->app->db, $sql);
 		$pager->link = 'AdminUsers/LoginHistory';
 		$pager->process();
@@ -55,13 +55,14 @@ class AdminUsersLoginHistory extends AdminIndex
 		$pager = $this->ui->getWidget('pager');
 		$this->app->db->setLimit($pager->page_size, $pager->current_record);
 
-		$sql = 'select usernum, logindate, loginagent, remoteip, username, name
-				from adminuserhistory
-				inner join adminusers on adminusers.id = adminuserhistory.usernum
+		$sql = 'select usernum, login_date, login_agent, remote_ip, username, 
+					name
+				from AdminUserHistory
+				inner join AdminUser on AdminUser.id = AdminUserHistory.usernum
 				order by %s';
 
 		$sql = sprintf($sql,
-			$this->getOrderByClause($view, 'logindate desc'));
+			$this->getOrderByClause($view, 'login_date desc'));
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 

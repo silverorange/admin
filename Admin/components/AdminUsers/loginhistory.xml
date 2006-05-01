@@ -16,19 +16,19 @@
 				<object class="AdminTableViewOrderableColumn" id="logindate">
 					<property name="title" translatable="yes">Login Time</property>
 					<object class="SwatDateCellRenderer">
-						<property name="date" type="data">logindate</property>
+						<property name="date" type="data">login_date</property>
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="loginagent">
 					<property name="title" translatable="yes">Agent</property>
 					<object class="SwatTextCellRenderer">
-						<property name="text" type="data">loginagent</property>
+						<property name="text" type="data">login_agent</property>
 					</object>
 				</object>
 				<object class="AdminTableViewOrderableColumn" id="remoteip">
 					<property name="title" translatable="yes">Remote IP</property>
 					<object class="SwatTextCellRenderer">
-						<property name="text" type="data">remoteip</property>
+						<property name="text" type="data">remote_ip</property>
 					</object>
 				</object>
 			</widget>

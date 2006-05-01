@@ -35,8 +35,8 @@ class AdminSubComponentsOrder extends AdminDBOrder
 
 	protected function saveIndex($id, $index)
 	{
-		SwatDB::updateColumn($this->app->db, 'adminsubcomponents', 'integer:displayorder',
-			$index, 'integer:id', array($id));
+		SwatDB::updateColumn($this->app->db, 'AdminSubComponent', 
+			'integer:displayorder', $index, 'integer:id', array($id));
 	}
 
 	// }}}
@@ -51,13 +51,14 @@ class AdminSubComponentsOrder extends AdminDBOrder
 		$frame->title = Admin::_('Order Sub-Components');
 
 		// rebuild the navbar
-		$parent_title = SwatDB::queryOneFromTable($this->app->db, 'admincomponents', 'text:title',
-			'id', $this->parent);
+		$parent_title = SwatDB::queryOneFromTable($this->app->db, 
+			'AdminComponent', 'text:title', 'id', $this->parent);
 
 		// pop two entries because the AdminDBOrder base class adds an entry
 		$this->navbar->popEntries(2);
 		$this->navbar->createEntry('Admin Components', 'AdminComponents');
-		$this->navbar->createEntry($parent_title, 'AdminComponents/Details?id='.$this->parent);
+		$this->navbar->createEntry($parent_title, 
+			'AdminComponents/Details?id='.$this->parent);
 		$this->navbar->createEntry('Order Sub-Components');
 	}
 
@@ -70,10 +71,12 @@ class AdminSubComponentsOrder extends AdminDBOrder
 			$this->app->db->quote($this->parent, 'integer'));
 
 		$order_list = $this->ui->getWidget('order');
-		$order_list->options = SwatDB::getOptionArray($this->app->db, 'adminsubcomponents', 
-			'title', 'id', 'displayorder, title', $where_clause);
+		$order_list->options = SwatDB::getOptionArray($this->app->db, 
+			'AdminSubComponent', 'title', 'id', 'displayorder, title', 
+			$where_clause);
 
-		$sql = 'select sum(displayorder) from adminsubcomponents where '.$where_clause;
+		$sql = 'select sum(displayorder) from AdminSubComponent 
+			where '.$where_clause;
 		$sum = SwatDB::queryOne($this->app->db, $sql, 'integer');
 		$radio_list = $this->ui->getWidget('options');
 		$radio_list->value = ($sum == 0) ? 'auto' : 'custom';
