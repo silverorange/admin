@@ -44,10 +44,10 @@ CREATE OR REPLACE FUNCTION getAdminMenu(integer) RETURNS SETOF type_admin_menu A
 				
 		AND AdminComponent.id IN (
 			SELECT component
-			FROM admincomponent_admingroup
-				INNER JOIN adminuser_admingroup ON
-					admincomponent_admingroup.groupnum = adminuser_admingroup.groupnum
-			WHERE adminuser_admingroup.usernum = param_userid
+			FROM AdminComponentAdminGroupBinding
+				INNER JOIN AdminUserAdminGroupBinding ON
+					AdminComponentAdminGroupBinding.groupnum = AdminUserAdminGroupBinding.groupnum
+			WHERE AdminUserAdminGroupBinding.usernum = param_userid
 		)
 				
 		ORDER BY AdminSection.displayorder, AdminSection.title,
