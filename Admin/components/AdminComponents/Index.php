@@ -21,7 +21,7 @@ class AdminComponentsIndex extends AdminIndex
 
 		$section_flydown = $this->ui->getWidget('section');
 		$section_flydown->addOptionsByArray(SwatDB::getOptionArray(
-			$this->app->db, 'AdminSections', 'title', 'id', 'displayorder'));
+			$this->app->db, 'AdminSection', 'title', 'id', 'displayorder'));
 	}
 
 	// }}}
