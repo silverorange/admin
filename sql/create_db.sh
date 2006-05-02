@@ -6,7 +6,7 @@
 # createdb -U php <database>
 # createlang -U postgres plpgsql <database>
 
-SOURCE="/so/packages/admin/dbrename/sql"
+SOURCE="/so/packages/admin/work-dave/sql"
 
 #
 # TABLES
