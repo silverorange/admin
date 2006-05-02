@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SOURCE="/so/packages/admin/work-dave/sql"
+SRC="/so/packages/admin/work-dave/sql"
 
 if [ -z $1 ]; then
 	echo "need destination db name"
@@ -15,7 +15,7 @@ echo
 echo
 
 echo "Generating the SQL"
-${SOURCE}/create_db.sh
+${SRC}/generate_sql.sh
 sleep 1
 
 echo "Dropping the old database"
@@ -28,6 +28,6 @@ createlang -U postgres plpgsql $DB
 sleep 1
 
 echo "Creating the generic admin"
-psql -U php -f ${SOURCE}/create_db.sql $DB
-rm ${SOURCE}/create_db.sql
+psql -U php -f ${SRC}/statements.sql $DB
+rm ${SRC}/statements.sql
 
