@@ -37,7 +37,7 @@ class AdminGroupsEdit extends AdminDBEdit
 		$component_list = $this->ui->getWidget('components');
 		$component_list->setTree(SwatDB::getGroupedOptionArray($this->app->db, 
 			'AdminComponent', 'title', 'id', 'AdminSection', 'title', 'id', 
-			'section', 'AdminSection.displayorder, Adminsections.title,
+			'section', 'AdminSection.displayorder, AdminSection.title,
 			AdminComponent.displayorder,  AdminComponent.title'));
 	}
 
