@@ -75,7 +75,7 @@ class AdminSessionModule extends SiteApplicationModule
 
 	private function insertUserHistory($userid)
 	{
-		$user_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ? 
+		$login_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ? 
 			$_SERVER['HTTP_USER_AGENT'] : null;
 		$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ? 
 			$_SERVER['REMOTE_ADDR'] : null;
@@ -85,8 +85,8 @@ class AdminSessionModule extends SiteApplicationModule
 		$fields = array('integer:usernum','date:login_date', 'login_agent', 
 			'remote_ip');
 		$values = array('usernum' => $userid, 
-			'logindate' => $login_date->getDate(), 'loginagent' => $user_agent, 
-			'remoteip' => $remote_ip);
+			'login_date' => $login_date->getDate(), 'login_agent' => $login_agent, 
+			'remote_ip' => $remote_ip);
 		SwatDB::insertRow($this->app->db, 'AdminUserHistory', $fields, $values);
 	}
 
