@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION AdminUserHistoryInsertTrigger () RETURNS trigger AS '
        
 		delete from AdminUserHistory where usernum = NEW.usernum
 			AND id not in (select id from AdminUserHistory
-				where usernum = NEW.usernum order by logindate desc limit 9);
+				where usernum = NEW.usernum order by login_date desc limit 9);
 	   
         RETURN NEW;
     END;
