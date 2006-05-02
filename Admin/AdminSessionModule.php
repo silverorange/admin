@@ -85,7 +85,8 @@ class AdminSessionModule extends SiteApplicationModule
 		$fields = array('integer:usernum','date:login_date', 'login_agent', 
 			'remote_ip');
 		$values = array('usernum' => $userid, 
-			'login_date' => $login_date->getDate(), 'login_agent' => $login_agent, 
+			'login_date' => $login_date->getDate(), 
+			'login_agent' => $login_agent, 
 			'remote_ip' => $remote_ip);
 		SwatDB::insertRow($this->app->db, 'AdminUserHistory', $fields, $values);
 	}
