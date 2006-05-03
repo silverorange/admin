@@ -11,7 +11,7 @@ require_once 'SwatDB/SwatDB.php';
  * @package   Admin
  * @copyright 2005-2006 silverorange
  */
-class AdminSubComponentsEdit extends AdminDBEdit
+class AdminSubComponentEdit extends AdminDBEdit
 {
 	// {{{ private properties
 
@@ -118,8 +118,9 @@ class AdminSubComponentsEdit extends AdminDBEdit
 			'AdminComponent', 'text:title', 'id', $this->parent);
 
 		$this->navbar->popEntry();
-		$this->navbar->createEntry('Admin Components', 'AdminComponents');
-		$this->navbar->createEntry($parent_title, 'AdminComponents/Details?id='.$this->parent);
+		$this->navbar->createEntry('Admin Components', 'AdminComponent');
+		$this->navbar->createEntry($parent_title, 
+			'AdminComponent/Details?id='.$this->parent);
 
 		if ($this->id === null)
 			$this->navbar->createEntry('Add Sub-Component');

@@ -11,7 +11,7 @@ require_once 'SwatDB/SwatDB.php';
  * @package   Admin
  * @copyright 2004-2006 silverorange
  */
-class AdminUsersEdit extends AdminDBEdit
+class AdminUserEdit extends AdminDBEdit
 {
 	// {{{ private properties
 
@@ -57,8 +57,8 @@ class AdminUsersEdit extends AdminDBEdit
 	{
 		$username = $this->ui->getWidget('username');
 
-		$query = SwatDB::query($this->app->db, sprintf('select username from
-			AdminUser where username = %s and id %s %s',
+		$query = SwatDB::query($this->app->db, sprintf('select username 
+			from AdminUser where username = %s and id %s %s',
 			$this->app->db->quote($username->value, 'text'),
 			SwatDB::equalityOperator($this->id, true),
 			$this->app->db->quote($this->id, 'integer')));

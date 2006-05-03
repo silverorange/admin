@@ -7,7 +7,7 @@
 		<widget class="SwatToolbar" id="index_toolbar">
 			<widget class="SwatToolLink">
 				<property name="title" translatable="yes">New User</property>
-				<property name="link">AdminUsers/Edit</property>
+				<property name="link">AdminUser/Edit</property>
 				<property name="stock_id">create</property>
 			</widget>
 		</widget>
@@ -22,7 +22,7 @@
 					<property name="title" translatable="yes">Username</property>
 					<object class="AdminTitleLinkCellRenderer">
 						<property name="text" type="data">username</property>
-						<property name="link">AdminUsers/Edit?id=%s</property>
+						<property name="link">AdminUser/Edit?id=%s</property>
 						<property name="link_value" type="data">id</property>
 						<property name="stock_id">person</property>
 					</object>

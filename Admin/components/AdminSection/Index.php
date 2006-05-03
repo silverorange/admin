@@ -11,7 +11,7 @@ require_once 'Admin/AdminTableStore.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminSectionsIndex extends AdminIndex
+class AdminSectionIndex extends AdminIndex
 {
 	// init phase
 	// {{{ protected function initInternal()
@@ -33,7 +33,7 @@ class AdminSectionsIndex extends AdminIndex
 		
 		switch ($actions->selected->id) {
 			case 'delete':
-				$this->app->replacePage('AdminSections/Delete');
+				$this->app->replacePage('AdminSection/Delete');
 				$this->app->getPage()->setItems($view->checked_items);
 				break;
 

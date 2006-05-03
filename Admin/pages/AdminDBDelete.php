@@ -46,7 +46,7 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 		$no_button = $this->ui->getWidget('no_button');
 		$no_button->setFromStock('cancel');
 
-		$this->navbar->popEntry(1);
+		$this->navbar->popEntry();
 		$this->navbar->createEntry(Admin::_('Delete'));
 	}
 

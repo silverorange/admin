@@ -11,7 +11,7 @@ require_once 'SwatDB/SwatDB.php';
  * @package Admin
  * @copyright 2004-2006 silverorange
  */
-class AdminComponentsIndex extends AdminIndex
+class AdminComponentIndex extends AdminIndex
 {
 	// init phase
 	// {{{ protected function initInternal()
@@ -36,7 +36,7 @@ class AdminComponentsIndex extends AdminIndex
 
 		switch ($actions->selected->id) {
 		case 'delete':
-			$this->app->replacePage('AdminComponents/Delete');
+			$this->app->replacePage('AdminComponent/Delete');
 			$this->app->getPage()->setItems($view->checked_items);
 			break;
 

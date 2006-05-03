@@ -9,7 +9,7 @@ require_once 'SwatDB/SwatDB.php';
  * @package Admin
  * @copyright silverorange 2005
  */
-class AdminSubComponentsOrder extends AdminDBOrder
+class AdminSubComponentOrder extends AdminDBOrder
 {
 	// {{{ private properties
 
@@ -56,9 +56,9 @@ class AdminSubComponentsOrder extends AdminDBOrder
 
 		// pop two entries because the AdminDBOrder base class adds an entry
 		$this->navbar->popEntries(2);
-		$this->navbar->createEntry('Admin Components', 'AdminComponents');
+		$this->navbar->createEntry('Admin Components', 'AdminComponent');
 		$this->navbar->createEntry($parent_title, 
-			'AdminComponents/Details?id='.$this->parent);
+			'AdminComponent/Details?id='.$this->parent);
 		$this->navbar->createEntry('Order Sub-Components');
 	}
 

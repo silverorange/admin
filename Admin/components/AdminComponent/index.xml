@@ -7,7 +7,7 @@
 		<widget class="SwatToolbar" id="index_toolbar">
 			<widget class="SwatToolLink">
 				<property name="title" translatable="yes">New Component</property>
-				<property name="link">AdminComponents/Edit</property>
+				<property name="link">AdminComponent/Edit</property>
 				<property name="stock_id">create</property>
 			</widget>
 		</widget>
@@ -20,7 +20,7 @@
 					</object>
 					<object class="AdminGroupLinkCellRenderer">
 						<property name="text" translatable="yes">Change Order</property>
-						<property name="link">AdminComponents/Order?parent=%s</property>
+						<property name="link">AdminComponent/Order?parent=%s</property>
 						<property name="link_value" type="data">section</property>
 					</object>
 				</object>
@@ -33,7 +33,7 @@
 					<property name="title" translatable="yes">Title</property>
 					<object class="AdminTitleLinkCellRenderer">
 						<property name="text" type="data" translatable="yes">title</property>
-						<property name="link">AdminComponents/Details?id=%s</property>
+						<property name="link">AdminComponent/Details?id=%s</property>
 						<property name="link_value" type="data">id</property>
 					</object>
 				</object>

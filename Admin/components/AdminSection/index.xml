@@ -3,12 +3,17 @@
 <swatml>
 	<widget class="SwatMessageDisplay" id="message_display" />
 	<widget class="SwatFrame">
-		<property name="title" translatable="yes">Groups</property>
+		<property name="title" translatable="yes">Sections</property>
 		<widget class="SwatToolbar" id="index_toolbar">
 			<widget class="SwatToolLink">
-				<property name="title" translatable="yes">New Group</property>
-				<property name="link">AdminGroups/Edit</property>
+				<property name="title" translatable="yes">New Section</property>
+				<property name="link">AdminSection/Edit</property>
 				<property name="stock_id">create</property>
+			</widget>
+			<widget class="SwatToolLink" id="order_tool">
+				<property name="title" translatable="yes">Change Order</property>
+				<property name="link">AdminSection/Order</property>
+				<property name="stock_id">change-order</property>
 			</widget>
 		</widget>
 		<widget class="SwatForm" id="index_form">
@@ -22,15 +27,27 @@
 					<property name="title" translatable="yes">Title</property>
 					<object class="AdminTitleLinkCellRenderer">
 						<property name="text" type="data" translatable="yes">title</property>
-						<property name="link">AdminGroups/Edit?id=%s</property>
+						<property name="link">AdminSection/Edit?id=%s</property>
 						<property name="link_value" type="data">id</property>
 						<property name="stock_id">edit</property>
+					</object>
+				</object>
+				<object class="SwatTableViewColumn">
+					<property name="title" translatable="yes">Show in Menu</property>
+					<object class="SwatBooleanCellRenderer">
+						<property name="value" type="data">show</property>
 					</object>
 				</object>
 			</widget>
 			<widget class="SwatActions" id="index_actions">
 				<widget class="SwatActionItem" id="delete">
 					<property name="title" translatable="yes">delete…</property>
+				</widget>
+				<widget class="SwatActionItem" id="show">
+					<property name="title" translatable="yes">show</property>
+				</widget>
+				<widget class="SwatActionItem" id="hide">
+					<property name="title" translatable="yes">hide</property>
 				</widget>
 			</widget>
 		</widget>

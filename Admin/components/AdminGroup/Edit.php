@@ -11,7 +11,7 @@ require_once 'SwatDB/SwatDB.php';
  * @package   Admin
  * @copyright 2004-2006 silverorange
  */
-class AdminGroupsEdit extends AdminDBEdit
+class AdminGroupEdit extends AdminDBEdit
 {
 	// {{{ private properties
 
