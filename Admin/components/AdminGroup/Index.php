@@ -11,7 +11,7 @@ require_once 'Admin/AdminTableStore.php';
  * @package Admin
  * @copyright 2004-2006 silverorange
  */
-class AdminGroupsIndex extends AdminIndex
+class AdminGroupIndex extends AdminIndex
 {
 	// init phase
 	// {{{ protected function initInternal()
@@ -30,7 +30,7 @@ class AdminGroupsIndex extends AdminIndex
 	{
 		switch ($actions->selected->id) {
 			case 'delete':
-				$this->app->replacePage('AdminGroups/Delete');
+				$this->app->replacePage('AdminGroup/Delete');
 				$this->app->getPage()->setItems($view->checked_items);
 				break;
 		}
@@ -45,9 +45,7 @@ class AdminGroupsIndex extends AdminIndex
 	{
 		$view = $this->ui->getWidget('index_view');
 
-		$sql = 'select id, title 
-				from AdminGroup 
-				order by title';
+		$sql = 'select id, title from AdminGroup order by title';
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 

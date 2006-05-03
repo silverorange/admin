@@ -10,7 +10,7 @@ require_once 'SwatDB/SwatDB.php';
  * @package Admin
  * @copyright 2004-2006 silverorange
  */
-class AdminSectionsOrder extends AdminDBOrder
+class AdminSectionOrder extends AdminDBOrder
 {
 	// {{{ private properties
 

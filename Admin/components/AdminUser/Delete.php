@@ -10,7 +10,7 @@ require_once 'Admin/AdminListDependency.php';
  * @package   Admin
  * @copyright 2005-2006 silverorange
  */
-class AdminUsersDelete extends AdminDBDelete
+class AdminUserDelete extends AdminDBDelete
 {
 	// process phase
 	// {{{ protected function processDBData

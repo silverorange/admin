@@ -11,7 +11,7 @@ require_once 'MDB2.php';
  * @package   Admin
  * @copyright 2004-2006 silverorange
  */
-class AdminSectionsEdit extends AdminDBEdit
+class AdminSectionEdit extends AdminDBEdit
 {
 	// init phase
 	// {{{ protected function initInternal()

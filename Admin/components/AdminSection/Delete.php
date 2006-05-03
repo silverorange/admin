@@ -11,7 +11,7 @@ require_once 'Admin/AdminSummaryDependency.php';
  * @package   Admin
  * @copyright 2005-2006 silverorange
  */
-class AdminSectionsDelete extends AdminDBDelete
+class AdminSectionDelete extends AdminDBDelete
 {
 	// init phase
 	// {{{ protected function processDBData()

@@ -12,7 +12,7 @@ require_once 'Admin/components/AdminUsers/include/HistoryCellRenderer.php';
  * @package Admin
  * @copyright 2005-2006 silverorange
  */
-class AdminUsersLoginHistory extends AdminIndex
+class AdminUserLoginHistory extends AdminIndex
 {
 	// init phase
 	// {{{ protected function initInternal()
@@ -41,7 +41,7 @@ class AdminUsersLoginHistory extends AdminIndex
 		$pager = $this->ui->getWidget('pager');
 		$sql = 'select count(id) from AdminUserHistory';
 		$pager->total_records = SwatDB::queryOne($this->app->db, $sql);
-		$pager->link = 'AdminUsers/LoginHistory';
+		$pager->link = 'AdminUser/LoginHistory';
 		$pager->process();
 	}
 

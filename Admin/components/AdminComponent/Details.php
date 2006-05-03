@@ -13,7 +13,7 @@ require_once 'Swat/SwatString.php';
  * @package Admin
  * @copyright 2004-2006 silverorange
  */
-class AdminComponentsDetails extends AdminIndex
+class AdminComponentDetails extends AdminIndex
 {
 	// {{{ private properties
 
@@ -43,7 +43,7 @@ class AdminComponentsDetails extends AdminIndex
 
 		switch ($actions->selected->id) {
 			case 'delete':
-				$this->app->replacePage('AdminSubComponents/Delete');
+				$this->app->replacePage('AdminSubComponent/Delete');
 				$this->app->getPage()->setItems($view->checked_items);
 				$this->app->getPage()->setParent($this->id);
 				break;
