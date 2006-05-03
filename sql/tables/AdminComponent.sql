@@ -12,15 +12,15 @@ CREATE TABLE AdminComponent (
 
 
 INSERT INTO AdminComponent (id, shortname, title, description, displayorder, section, enabled, show)
-	VALUES (1, 'AdminUsers', 'Admin Users', NULL, 4, 1, true, true);
+	VALUES (1, 'AdminUser', 'Admin Users', NULL, 4, 1, true, true);
 INSERT INTO AdminComponent (id, shortname, title, description, displayorder, section, enabled, show)
-	VALUES (2, 'AdminGroups', 'Admin Groups', NULL, 5, 1, true, true);
+	VALUES (2, 'AdminGroup', 'Admin Groups', NULL, 5, 1, true, true);
 INSERT INTO AdminComponent (id, shortname, title, description, displayorder, section, enabled, show)
-	VALUES (3, 'AdminSections', 'Admin Sections', NULL, 3, 1, true, true);
+	VALUES (3, 'AdminSection', 'Admin Sections', NULL, 3, 1, true, true);
 INSERT INTO AdminComponent (id, shortname, title, description, displayorder, section, enabled, show)
-	VALUES (4, 'AdminComponents', 'Admin Components', NULL, 1, 1, true, true);
+	VALUES (4, 'AdminComponent', 'Admin Components', NULL, 1, 1, true, true);
 INSERT INTO AdminComponent (id, shortname, title, description, displayorder, section, enabled, show)
-	VALUES (5, 'AdminSubComponents', 'Admin Sub-Components', NULL, 2, 1, true, false);
+	VALUES (5, 'AdminSubComponent', 'Admin Sub-Components', NULL, 2, 1, true, false);
 INSERT INTO AdminComponent (id, shortname, title, description, displayorder, section, enabled, show)
 	VALUES (6, 'Front', 'Front Page', NULL, 0, 1, true, false);
 
