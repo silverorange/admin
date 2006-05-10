@@ -124,7 +124,7 @@ class AdminListDependency extends AdminDependency
 				}
 
 				echo '<li>';
-				echo ' foo';
+
 				if ($entry->content_type == 'text/xml')
 					echo $entry->title;
 				else
