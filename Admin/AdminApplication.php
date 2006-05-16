@@ -22,7 +22,7 @@ require_once 'Admin/exceptions/AdminNotFoundException.php';
  */
 class AdminApplication extends SiteApplication
 {
-    // {{{ public properties
+	// {{{ public properties
 	
 	/**
 	 * A visble title for this admin
@@ -83,16 +83,16 @@ class AdminApplication extends SiteApplication
 	 */
 	protected $menu = null;
 
-    // }}}
-    // {{{ public function __construct()
+	// }}}
+	// {{{ public function __construct()
 
-    /**
-     * Creates a new application object
-     *
-     * @param string $id a unique identifier for this application.
-     */
-    public function __construct($id)
-    {
+	/**
+	 * Creates a new application object
+	 *
+	 * @param string $id a unique identifier for this application.
+	 */
+	public function __construct($id)
+	{
 		parent::__construct($id);
 
 		$this->addModule(new AdminSessionModule($this));
@@ -105,8 +105,8 @@ class AdminApplication extends SiteApplication
 		$this->database = $this->modules['AdminDatabaseModule'];
 	}
 
-    // }}}
-    // {{{ public function init()
+	// }}}
+	// {{{ public function init()
 
 	/**
 	 * Initialize the application
@@ -134,8 +134,8 @@ class AdminApplication extends SiteApplication
 		}
 	}
 
-    // }}}
-    // {{{ public function run()
+	// }}}
+	// {{{ public function run()
 
 	/**
 	 * Run the application
@@ -154,8 +154,8 @@ class AdminApplication extends SiteApplication
 		$this->getPage()->layout->display();
 	}
 
-    // }}}
-    // {{{ public function resolvePage()
+	// }}}
+	// {{{ public function resolvePage()
 
 	/**
 	 * Get the page object
@@ -178,8 +178,8 @@ class AdminApplication extends SiteApplication
 		return $page;
 	}
 		
-    // }}}
-    // {{{ public function replacePage()
+	// }}}
+	// {{{ public function replacePage()
 
 	/**
 	 * Replace the page object
@@ -196,17 +196,8 @@ class AdminApplication extends SiteApplication
 		$this->setPage($newpage);
 	}
 
-    // }}}
-    // {{{ protected function getServerName()
-	/*
-    protected function getServerName()
-    {
-        return ($this->live) ? $_SERVER['SERVER_NAME'] : $_SERVER['HTTP_HOST'];
-    }
-	*/
-
-    // }}}
-    // {{{ public function instantiatePage()
+	// }}}
+	// {{{ public function instantiatePage()
 
 	public function instantiatePage($source)
 	{
@@ -250,8 +241,8 @@ class AdminApplication extends SiteApplication
 		return $page;
 	}
 
-    // }}}
-    // {{{ public function instantiateMenu()
+	// }}}
+	// {{{ public function instantiateMenu()
 
 	/**
 	 * Creates and returns the menu view for this application
@@ -269,7 +260,20 @@ class AdminApplication extends SiteApplication
 		return $menu_view;
 	}
 
-    // }}}
+	// }}}
+	// {{{ public function getMenuView()
+
+	/**
+	 * Gets this application's menu view
+	 *
+	 * @return AdminMenuView the menu view of this application.
+	 */
+	public function getMenuView()
+	{
+		return $this->menu;
+	}
+
+	// }}}
 	// {{{ protected function initMenu()
 
 	/**
@@ -287,20 +291,17 @@ class AdminApplication extends SiteApplication
 	}
 
 	// }}}
-	// {{{ public function getMenuView()
+	// {{{ protected function getServerName()
 
-	/**
-	 * Gets this application's menu view
-	 *
-	 * @return AdminMenuView the menu view of this application.
-	 */
-	public function getMenuView()
+	/*
+	protected function getServerName()
 	{
-		return $this->menu;
+		return ($this->live) ? $_SERVER['SERVER_NAME'] : $_SERVER['HTTP_HOST'];
 	}
+	*/
 
 	// }}}
-    // {{{ private function getRequest()
+	// {{{ private function getRequest()
 
 	private function getRequest($source)
 	{
@@ -365,8 +366,8 @@ class AdminApplication extends SiteApplication
 		return $request;
 	}
 
-    // }}}
-    // {{{ private function queryForPage()
+	// }}}
+	// {{{ private function queryForPage()
 
 	private function queryForPage($component)
 	{
@@ -396,7 +397,7 @@ class AdminApplication extends SiteApplication
 		return $row;
 	}
 
-    // }}}
+	// }}}
 }
 
 ?>
