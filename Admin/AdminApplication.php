@@ -1,12 +1,12 @@
 <?php
 
 require_once 'Site/SiteApplication.php';
+require_once 'Site/SiteDatabaseModule.php';
 require_once 'MDB2.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/Admin.php';
 require_once 'Admin/AdminSessionModule.php';
 require_once 'Admin/AdminMessagesModule.php';
-require_once 'Admin/AdminDatabaseModule.php';
 require_once 'Admin/AdminPageRequest.php';
 require_once 'Admin/AdminMenuStore.php';
 require_once 'Admin/AdminMenuView.php';
@@ -95,14 +95,9 @@ class AdminApplication extends SiteApplication
 	{
 		parent::__construct($id);
 
-		$this->addModule(new AdminSessionModule($this));
-		$this->addModule(new AdminMessagesModule($this));
-		$this->addModule(new AdminDatabaseModule($this));
-
-		// set up convenience references
-		$this->session = $this->modules['AdminSessionModule'];
-		$this->messages = $this->modules['AdminMessagesModule'];
-		$this->database = $this->modules['AdminDatabaseModule'];
+		$this->addModule(new AdminSessionModule($this), 'session');
+		$this->addModule(new AdminMessagesModule($this), 'messages');
+		$this->addModule(new SiteDatabaseModule($this), 'database');
 	}
 
 	// }}}
