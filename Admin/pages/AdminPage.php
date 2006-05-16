@@ -323,6 +323,10 @@ abstract class AdminPage extends SitePage
 
 	protected function buildLogoutForm()
 	{
+		require_once 'Swat/SwatForm.php';
+		require_once 'Swat/SwatFormField.php';
+		require_once 'Swat/SwatButton.php';
+
 		$this->logout_form = new SwatForm('logout');
 		$this->logout_form->action = 'AdminSite/Logout';
 
