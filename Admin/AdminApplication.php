@@ -32,27 +32,6 @@ class AdminApplication extends SiteApplication
 	public $title;
 
 	/**
-	 * Convenience reference to the built-in AdminSessionModule
-	 *
-	 * @var AdminSessionModule (readonly)
-	 */
-	public $session;
-
-	/**
-	 * Convenience reference to the built-in AdminMessagesModule
-	 *
-	 * @var AdminMessagesModule (readonly)
-	 */
-	public $messages;
-
-	/**
-	 * Convenience reference to the built-in AdminDatabaseModule
-	 *
-	 * @var AdminDatabaseModule (readonly)
-	 */
-	public $database;
-
-	/**
 	 * Convenience reference to MDB2 object within the built-in AdminDatabaseModule
 	 *
 	 * @var MDB2_Connection Database connection object (readonly)
@@ -98,7 +77,7 @@ class AdminApplication extends SiteApplication
 		$this->initModules();
 
 		// set up convenience references
-		$this->db = $this->database->mdb2;
+		$this->db = $this->database->getConnection();
 
 		$this->initMenu();
 
