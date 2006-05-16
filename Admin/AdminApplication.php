@@ -84,23 +84,6 @@ class AdminApplication extends SiteApplication
 	protected $menu = null;
 
 	// }}}
-	// {{{ public function __construct()
-
-	/**
-	 * Creates a new application object
-	 *
-	 * @param string $id a unique identifier for this application.
-	 */
-	public function __construct($id)
-	{
-		parent::__construct($id);
-
-		$this->addModule(new AdminSessionModule($this), 'session');
-		$this->addModule(new AdminMessagesModule($this), 'messages');
-		$this->addModule(new SiteDatabaseModule($this), 'database');
-	}
-
-	// }}}
 	// {{{ public function init()
 
 	/**
@@ -294,6 +277,23 @@ class AdminApplication extends SiteApplication
 		return ($this->live) ? $_SERVER['SERVER_NAME'] : $_SERVER['HTTP_HOST'];
 	}
 	*/
+
+	// }}}
+	// {{{ protected function getDefaultModuleList()
+
+	/**
+	 * Gets the list of default modules to load for this applicaiton
+	 *
+	 * @return array
+	 * @see    SiteApplication::getDefaultModuleList()
+	 */
+	protected function getDefaultModuleList()
+	{
+		return array(
+			'session'  => 'AdminSessionModule',
+			'messages' => 'AdminMessagesModule',
+			'database' => 'SiteDatabaseModule');
+	}
 
 	// }}}
 	// {{{ private function getRequest()
