@@ -19,7 +19,7 @@
 			</widget>
 			<widget class="SwatFormField">
 				<property name="title" translatable="yes">Confirm Password</property>
-				<property name="note">Leave Password fields blank for them to remain the same.</property>
+				<property name="note" translatable="yes">Leave Password fields blank for them to remain the same.</property>
 				<widget class="SwatConfirmPasswordEntry" id="confirmpassword" />
 			</widget>
 			<widget class="SwatFooterFormField">
