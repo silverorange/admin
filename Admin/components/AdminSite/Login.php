@@ -1,9 +1,9 @@
 <?php
 
 require_once 'Admin/pages/AdminPage.php';
+require_once 'Admin/layouts/AdminLayout.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Swat/SwatMessage.php';
-require_once 'Site/SiteLayout.php';
 
 /**
  * Administrator login page
@@ -13,6 +13,15 @@ require_once 'Site/SiteLayout.php';
  */
 class AdminSiteLogin extends AdminPage
 {
+	// {{{ protected function createLayout()
+
+	protected function createLayout()
+	{
+		return new SiteLayout($this->app, 'Admin/layouts/xhtml/login.php');
+	}
+
+	// }}}
+
 	// init phase
 	// {{{ protected function initInternal()
 
@@ -66,31 +75,6 @@ class AdminSiteLogin extends AdminPage
 	// }}}
 
 	// build phase
-	// {{{ public function build()
-
-	public function build()
-	{
-		ob_start();
-		$this->ui->getRoot()->displayHtmlHeadEntries();
-		$this->layout->html_head_entries = ob_get_clean();
-
-		$this->layout->title = $this->app->title.' | '.$this->title;
-		$this->layout->basehref = $this->app->getBaseHref();
-
-		ob_start();
-		$this->display();
-		$this->layout->ui = ob_get_clean();
-	}
-
-	// }}}
-	// {{{ protected function createLayout()
-
-	protected function createLayout()
-	{
-		return new SiteLayout('Admin/layouts/login.php');
-	}
-
-	// }}}
 	// {{{ protected function display()
 
 	protected function display()

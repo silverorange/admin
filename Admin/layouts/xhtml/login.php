@@ -10,7 +10,7 @@
 </head>
 <body id="admin-login-page">
 
-<?=$this->ui?>
+<?=$this->content?>
 
 </body>
 </html>

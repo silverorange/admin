@@ -1,12 +1,11 @@
 <?php
 
-require_once 'Site/SitePage.php';
-require_once 'Site/SiteLayout.php';
+require_once 'Site/pages/SitePage.php';
 require_once 'Swat/SwatForm.php';
-require_once 'Admin/AdminNavBar.php';
 require_once 'Admin/AdminMenuStore.php';
 require_once 'Admin/AdminMenuView.php';
 require_once 'Admin/AdminUI.php';
+require_once 'Admin/layouts/AdminLayout.php';
 
 /**
  * Page of an administrator
@@ -44,18 +43,22 @@ abstract class AdminPage extends SitePage
 	public $subcomponent;
 
 	/**
-	 * Navbar of this page
-	 *
-	 * @var AdminNavBar
-	 */
-	public $navbar;
-
-	/**
 	 * Title of this page
 	 *
 	 * @var string
 	 */
 	public $title = null;
+
+	/**
+	 * Reference to the navbar object
+	 *
+	 * Officially the navbar now lives in the layout object, but this
+	 * reference is very useful for backwards compatibility with 
+	 * exisitng code.
+	 *
+	 * @var AdminNavBar
+	 */
+	public $navbar = null;
 
 	// }}}
 	// {{{ protected properties
@@ -67,33 +70,19 @@ abstract class AdminPage extends SitePage
 	 */
 	protected $ui = null;
 
-	/**
-	 * The logout form for this page
-	 *
-	 * This form is responsible for displaying the admin logout button.
-	 *
-	 * @var SwatForm
-	 */
-	protected $logout_form = null;
-
 	// }}}
 	// {{{ public function __construct()
 
-	public function __construct($app)
+	public function __construct(SiteApplication $app)
 	{
 		parent::__construct($app);
+		$this->layout = $this->createLayout();
 
-		$this->navbar = new AdminNavBar();
+		// see comment above on navbar class var
+		if (isset($this->layout->navbar))
+			$this->navbar = $this->layout->navbar;
+
 		$this->ui = new AdminUI();
-		$this->buildLogoutForm();
-	}
-
-	// }}}
-	// {{{ protected function createLayout()
-
-	protected function createLayout()
-	{
-		return new SiteLayout('Admin/layouts/default.php');
 	}
 
 	// }}}
@@ -126,6 +115,14 @@ abstract class AdminPage extends SitePage
 	}
 
 	// }}}
+	// {{{ protected function createLayout()
+
+	protected function createLayout()
+	{
+		return new AdminLayout($this->app, 'Admin/layouts/xhtml/default.php');
+	}
+
+	// }}}
 
 	// init phase
 	// {{{ public function init()
@@ -143,7 +140,6 @@ abstract class AdminPage extends SitePage
 		parent::init();
 		$this->initInternal();
 		$this->ui->init();
-		$this->app->getMenuView()->init();
 	}
 
 	// }}}
@@ -175,6 +171,7 @@ abstract class AdminPage extends SitePage
 	 */
 	public function process()
 	{
+		parent::process();
 		$this->ui->process();
 		$this->processInternal();
 	}
@@ -199,41 +196,22 @@ abstract class AdminPage extends SitePage
 
 	public function build()
 	{
+		parent::build();
 		$this->buildInternal();
 
-		$this->layout->body_class =
-			($this->app->getMenuView()->isShown()) ? '' : 'hide-menu';
+		$this->layout->addHtmlHeadEntries(
+			$this->ui->getRoot()->getHtmlHeadEntries());
 
-		ob_start();
-		$this->displayHtmlHeadEntries();
-		$this->layout->html_head_entries = ob_get_clean();
-
-		$page_title = ($this->title === null) ? $this->navbar->getLastEntry() : $this->title;
-		$this->layout->title = $page_title.' - '.$this->app->title;
-		$this->layout->basehref = $this->app->getBaseHref();
-
-		ob_start();
-		$this->displayHeader();
-		$this->layout->header = ob_get_clean();
-
-		ob_start();
-		$this->navbar->display();	
-		$this->layout->navbar = ob_get_clean();
-
-		ob_start();
-		$this->displayMenu();
-		$this->layout->menu = ob_get_clean();
-
-		ob_start();
+		$this->layout->startCapture('content');
 		$this->display();
-		$this->layout->content = ob_get_clean();
+		$this->layout->endCapture();
 	}
 
 	// }}}
 	// {{{ protected function buildInternal()
 
 	/**
-	 * Initialize the page before display
+	 * Build the page for display
 	 *
 	 * Sub-classes should implement this method to initialize elements of
 	 * the page. This method is called at the beginning of {@link
@@ -244,6 +222,19 @@ abstract class AdminPage extends SitePage
 	 */
 	protected function buildInternal()
 	{
+	}
+
+	// }}}
+	// {{{ protected function buildMessages()
+
+	protected function buildMessages()
+	{
+		try {
+			$message_display = $this->ui->getWidget('message_display');
+			foreach ($this->app->messages->getAll() as $message)
+				$message_display->add($message);
+		} catch (SwatWidgetNotFoundException $e) {
+		}
 	}
 
 	// }}}
@@ -260,109 +251,6 @@ abstract class AdminPage extends SitePage
 		if ($this->ui !== null) {
 			$this->ui->display();
 		}
-	}
-
-	// }}}
-	// {{{ protected function displayHeader()
-
-	/**
-	 * Display admin page header
-	 *
-	 * Display common elements for the header of an admin page. Sub-classes
-	 * should call this from their implementation of {@link AdminPage::display()}.
-	 */
-	protected function displayHeader()
-	{
-		echo '<div id="admin-syslinks">';
-		echo 'Welcome '.$_SESSION['name'].' &nbsp;|&nbsp; ';
-		echo '<a href="AdminSite/Profile">Login Settings</a> &nbsp;|&nbsp; ';
-
-		$this->logout_form->display();
-
-		echo '</div>';
-	}
-
-	// }}}
-	// {{{ protected function displayNavBar()
-
-	protected function displayNavBar()
-	{
-		$this->navbar->display();	
-	}
-
-	// }}}
-	// {{{ protected function displayMenu()
-
-	/**
-	 * Display admin page menu
-	 *
-	 * Display the menu of an admin page. Sub-classes should call this 
-	 * from their implementation of {@link AdminPage::display()}.
-	 */
-	protected function displayMenu()
-	{		
-		$this->app->getMenuView()->display();
-	}
-
-	// }}}
-	// {{{ protected function buildMessages()
-
-	protected function buildMessages()
-	{
-		try {
-			$message_display = $this->ui->getWidget('message_display');
-			foreach ($this->app->messages->getAll() as $message)
-				$message_display->add($message);
-
-		} catch (SwatWidgetNotFoundException $e) {
-		}
-	}
-
-	// }}}
-	// {{{ protected function buildLogoutForm()
-
-	protected function buildLogoutForm()
-	{
-		require_once 'Swat/SwatForm.php';
-		require_once 'Swat/SwatFormField.php';
-		require_once 'Swat/SwatButton.php';
-
-		$this->logout_form = new SwatForm('logout');
-		$this->logout_form->action = 'AdminSite/Logout';
-
-		$form_field = new SwatFormField('logout_button_container');
-
-		$button = new SwatButton('logout_button');
-		$button->title = Admin::_('Logout');
-
-		$form_field->add($button);
-
-		$this->logout_form->add($form_field);
-	}
-
-	// }}}
-	// {{{ protected function displayHtmlHeadEntries()
-
-	/**
-	 * Displays the HTML head entries needed by this page
-	 *
-	 * Several page elements have HTML head entries. This method is responsible
-	 * for merging all the entries together and displaying them in an
-	 * appropriate manner. The default implementation checks the menu view,
-	 * the page ui and the logout form for HTML head entries. Subclasses may
-	 * choose to check other entities by overriding this method.
-	 */
-	protected function displayHtmlHeadEntries()
-	{
-		$entries = $this->ui->getRoot()->getHtmlHeadEntries();
-		$entries = array_merge($entries,
-			$this->logout_form->getHtmlHeadEntries());
-
-		$entries = array_merge($entries,
-			$this->app->getMenuView()->getHtmlHeadEntries());
-
-		foreach($entries as $html_head_entry)
-			$html_head_entry->display();
 	}
 
 	// }}}

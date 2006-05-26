@@ -16,9 +16,9 @@ class AdminSiteLogout extends AdminPage
 
 	protected function processInternal()
 	{
-		$this->logout_form->process();
+		$this->layout->logout_form->process();
 
-		if ($this->logout_form->isProcessed()) {
+		if ($this->layout->logout_form->isProcessed()) {
 			$this->app->session->logout();
 			$this->app->relocate($this->app->getBaseHref());
 		} else {
