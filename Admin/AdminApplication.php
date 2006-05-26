@@ -8,9 +8,8 @@ require_once 'Admin/Admin.php';
 require_once 'Admin/AdminSessionModule.php';
 require_once 'Admin/AdminMessagesModule.php';
 require_once 'Admin/AdminPageRequest.php';
-require_once 'Admin/AdminMenuStore.php';
-require_once 'Admin/AdminMenuView.php';
 require_once 'Admin/pages/AdminPage.php';
+require_once 'Admin/layouts/AdminLayout.php';
 require_once 'Admin/exceptions/AdminUserException.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
 
@@ -52,89 +51,36 @@ class AdminApplication extends SiteApplication
 	 */
 	public $default_locale = null;
 
-	// }}}
-	// {{{ protected properties
-
 	/**
-	 * This application's menu view
+	 * Class to use for the menu.
 	 *
-	 * @var AdminMenuView
+	 * @var string the menu class name.
 	 */
-	protected $menu = null;
+	public $menu_class = 'AdminMenuView';
 
 	// }}}
-	// {{{ public function init()
+    // {{{ public function __construct()
 
-	/**
-	 * Initialize the application
-	 */
-	public function init()
+    public function __construct($id)
 	{
+		parent::__construct($id);
+
 		if ($this->default_locale !== null)
 			setlocale(LC_ALL, $this->default_locale);
 
-		$this->initBaseHref(4);
-		$this->initModules();
+		$this->exception_page_source = 'AdminSite/Exception';
+	}
 
+	// }}}
+	// {{{ protected function initModules()
+
+	protected function initModules()
+	{
+		parent::initModules();
 		// set up convenience references
 		$this->db = $this->database->getConnection();
-
-		$this->initMenu();
-
-		// call this last
-		try {
-			$this->initPage();
-		} catch (AdminUserException $e) {
-			$this->replacePage('AdminSite/Exception');
-			$this->page->setException($e);
-			$this->initPage();
-		}
 	}
 
-	// }}}
-	// {{{ public function run()
-
-	/**
-	 * Run the application
-	 */
-	public function run()
-	{
-		try {
-			$this->getPage()->process();
-			$this->getPage()->build();
-		} catch (AdminException $e) {
-			$this->replacePage('AdminSite/Exception');
-			$this->page->setException($e);
-			$this->page->build();
-		}
-
-		$this->getPage()->layout->display();
-	}
-
-	// }}}
-	// {{{ public function resolvePage()
-
-	/**
-	 * Get the page object
-	 *
-	 * Uses the $_GET variables to decide which page subclass to instantiate.
-	 *
-	 * @return AdminPage A subclass of {@link AdminPage} is returned.
-	 */
-	public function resolvePage()
-	{
-		$source = self::initVar('source', null, self::VAR_GET);
-
-		try {
-			$page = $this->instantiatePage($source);
-		} catch (AdminException $e) {
-			$page = $this->instantiatePage('AdminSite/Exception');
-			$page->setException($e);
-		}
-
-		return $page;
-	}
-		
 	// }}}
 	// {{{ public function replacePage()
 
@@ -147,16 +93,15 @@ class AdminApplication extends SiteApplication
 	 */
 	public function replacePage($source)
 	{
-		$newpage = $this->instantiatePage($source);
+		parent::replacePage($source);
 		$_GET = array();
 		$_POST = array();
-		$this->setPage($newpage);
 	}
 
 	// }}}
-	// {{{ public function instantiatePage()
+	// {{{ public function resolvePage()
 
-	public function instantiatePage($source)
+	public function resolvePage($source)
 	{
 		if ($source === 'index.html')
 			$source = $this->front_source;
@@ -190,72 +135,16 @@ class AdminApplication extends SiteApplication
 			$page->source = $request->source;
 			$page->component = $request->component;
 			$page->subcomponent = $request->subcomponent;
-			$page->navbar->addEntry(new AdminImportantNavBarEntry($this->title, '.'));
-			$page->navbar->addEntry(new SwatNavBarEntry($request->title, 
-				($request->subcomponent == 'Index') ? null : $request->component));
+
+			if ($page->layout instanceof AdminLayout) {
+				$page->layout->navbar->addEntry(new AdminImportantNavBarEntry($this->title, '.'));
+				$page->layout->navbar->addEntry(new SwatNavBarEntry($request->title, 
+					($request->subcomponent == 'Index') ? null : $request->component));
+			}
 		}
 
 		return $page;
 	}
-
-	// }}}
-	// {{{ public function instantiateMenu()
-
-	/**
-	 * Creates and returns the menu view for this application
-	 *
-	 * Admin applications that want a custom menu should over-ride this method.
-	 *
-	 * @param AdminMenuStore $menu_store the menu data object to view.
-	 *
-	 * @return AdminMenuView
-	 */
-	public function instantiateMenu(AdminMenuStore $menu_store)
-	{
-		$menu_view = new AdminMenuView($menu_store);
-
-		return $menu_view;
-	}
-
-	// }}}
-	// {{{ public function getMenuView()
-
-	/**
-	 * Gets this application's menu view
-	 *
-	 * @return AdminMenuView the menu view of this application.
-	 */
-	public function getMenuView()
-	{
-		return $this->menu;
-	}
-
-	// }}}
-	// {{{ protected function initMenu()
-
-	/**
-	 * Initializes this application's menu view
-	 */
-	protected function initMenu()
-	{
-		if ($this->menu === null) {
-			$menu_store = SwatDB::executeStoredProc($this->db,
-				'getAdminMenu', $this->db->quote($_SESSION['user_id'],
-				'integer'), 'AdminMenuStore');
-
-			$this->menu = $this->instantiateMenu($menu_store);
-		}
-	}
-
-	// }}}
-	// {{{ protected function getServerName()
-
-	/*
-	protected function getServerName()
-	{
-		return ($this->live) ? $_SERVER['SERVER_NAME'] : $_SERVER['HTTP_HOST'];
-	}
-	*/
 
 	// }}}
 	// {{{ protected function getDefaultModuleList()
