@@ -26,6 +26,15 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	public $stock_id = null;
 
 	/**
+	 * Creates a title link cell renderer
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->addStyleSheet('admin/styles/admin-title-link-cell-renderer.css');
+	}
+
+	/**
 	 * Sets the values of this title link cell renderer to a stock type
 	 *
 	 * Valid stock type ids are:
@@ -113,14 +122,6 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	public function getThAttributes()
 	{
 		return array('class' => 'admin-title-link-cell-renderer');
-	}
-
-	/**
-	 * Creates a title link cell renderer
-	 */
-	public function __construct()
-	{
-		$this->addStyleSheet('admin/styles/admin-title-link-cell-renderer.css');
 	}
 
 	/**
