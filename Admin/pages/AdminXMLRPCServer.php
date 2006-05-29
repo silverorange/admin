@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Site/SiteXMLRPCServer.php';
+require_once 'Site/pages/SiteXMLRPCServer.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
 
 /**

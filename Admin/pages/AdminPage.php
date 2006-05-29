@@ -76,7 +76,6 @@ abstract class AdminPage extends SitePage
 	public function __construct(SiteApplication $app)
 	{
 		parent::__construct($app);
-		$this->layout = $this->createLayout();
 
 		// see comment above on navbar class var
 		if (isset($this->layout->navbar))

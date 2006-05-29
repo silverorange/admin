@@ -1,6 +1,7 @@
 <?php
 
-require_once 'Admin/AdminXMLRPCServer.php';
+require_once 'Admin/pages/AdminXMLRPCServer.php';
+require_once 'Admin/layouts/AdminMenuXMLRPCServerLayout.php';
 require_once 'Admin/AdminMenuViewStateStore.php';
 
 /**
@@ -11,6 +12,14 @@ require_once 'Admin/AdminMenuViewStateStore.php';
  */
 class AdminSiteMenuViewServer extends AdminXMLRPCServer
 {
+	/**
+	 * @xmlrpc.hidden
+	 */
+	protected function createLayout()
+	{
+		return new AdminMenuXMLRPCServerLayout($this->app);
+	}
+
 	/**
 	 * Sets the shown state of the entire menu-view
 	 *
