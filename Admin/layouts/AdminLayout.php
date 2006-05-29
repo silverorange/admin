@@ -55,7 +55,7 @@ class AdminLayout extends SiteLayout
 	{
 		parent::init();
 
-		$this->layout->data->body_classes = array();
+		$this->data->body_classes = array();
 		
 		$this->initLogoutForm();
 		$this->initMenu();
@@ -123,10 +123,6 @@ class AdminLayout extends SiteLayout
 		$this->displayMenu();
 		$this->endCapture();
 
-		$this->startCapture('content');
-		print_r($_SESSION);
-		$this->endCapture();
-
 		$page_title = $this->navbar->getLastEntry()->title;
 		$this->data->title = $page_title.' - '.$this->app->title;
 	}
@@ -170,8 +166,8 @@ class AdminLayout extends SiteLayout
 	 */
 	protected function displayMenu()
 	{		
-		if ($this->menu->isShown())
-			$this->layout->data->body_classes[] = 'hide-menu';
+		if (!$this->menu->isShown())
+			$this->data->body_classes[] = 'hide-menu';
 
 		$this->menu->display();
 	}
