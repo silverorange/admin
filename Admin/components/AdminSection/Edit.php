@@ -9,7 +9,7 @@ require_once 'MDB2.php';
  * Edit page for AdminSections
  *
  * @package   Admin
- * @copyright 2004-2006 silverorange
+ * @copyright 2005-2006 silverorange
  */
 class AdminSectionEdit extends AdminDBEdit
 {

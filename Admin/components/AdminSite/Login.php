@@ -9,7 +9,7 @@ require_once 'Swat/SwatMessage.php';
  * Administrator login page
  *
  * @package Admin
- * @copyright 2004-2006 silverorange
+ * @copyright 2005-2006 silverorange
  */
 class AdminSiteLogin extends AdminPage
 {

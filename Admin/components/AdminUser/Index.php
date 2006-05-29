@@ -10,7 +10,7 @@ require_once 'include/HistoryCellRenderer.php';
  * Index page for AdminUsers component
  *
  * @package Admin
- * @copyright 2004-2006 silverorange
+ * @copyright 2005-2006 silverorange
  */
 class AdminUserIndex extends AdminIndex
 {

@@ -8,7 +8,7 @@ require_once 'Date.php';
  * Web application module for sessions
  *
  * @package Admin
- * @copyright 2004-2006 silverorange
+ * @copyright 2005-2006 silverorange
  */
 class AdminSessionModule extends SiteApplicationModule
 {

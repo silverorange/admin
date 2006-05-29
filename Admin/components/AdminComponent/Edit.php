@@ -9,7 +9,7 @@ require_once 'SwatDB/SwatDB.php';
  * Edit page for AdminComponents
  *
  * @package   Admin
- * @copyright 2004-2006 silverorange
+ * @copyright 2005-2006 silverorange
  */
 class AdminComponentEdit extends AdminDBEdit
 {
