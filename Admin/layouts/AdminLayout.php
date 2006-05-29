@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @package   Admin
- * @copyright 2006 silverorange
- */
 require_once 'Swat/SwatForm.php';
 require_once 'Swat/SwatFormField.php';
 require_once 'Swat/SwatButton.php';
@@ -12,6 +8,10 @@ require_once 'Admin/AdminNavBar.php';
 require_once 'Admin/AdminMenuStore.php';
 require_once 'Admin/AdminMenuView.php';
 
+/**
+ * @package   Admin
+ * @copyright 2006 silverorange
+ */
 class AdminLayout extends SiteLayout
 {
 	// {{{ public properties
@@ -60,8 +60,8 @@ class AdminLayout extends SiteLayout
 		$this->initLogoutForm();
 		$this->initMenu();
 
-		$this->addHtmlHeadEntries($this->logout_form->getHtmlHeadEntries());
-		$this->addHtmlHeadEntries($this->menu->getHtmlHeadEntries());
+		$this->addHtmlHeadEntrySet($this->logout_form->getHtmlHeadEntries());
+		$this->addHtmlHeadEntrySet($this->menu->getHtmlHeadEntries());
 	}
 
 	// }}}
@@ -192,4 +192,5 @@ class AdminLayout extends SiteLayout
 
 	// }}}
 }
+
 ?>
