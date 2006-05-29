@@ -198,7 +198,7 @@ abstract class AdminPage extends SitePage
 		parent::build();
 		$this->buildInternal();
 
-		$this->layout->addHtmlHeadEntries(
+		$this->layout->addHtmlHeadEntrySet(
 			$this->ui->getRoot()->getHtmlHeadEntries());
 
 		$this->layout->startCapture('content');
