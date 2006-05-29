@@ -7,7 +7,7 @@
 	<?=$this->html_head_entries?>
 	<style type="text/css" media="all">@import "admin/styles/admin.css";</style>
 </head>
-<body class="<?=$this->body_class?>">
+<body class="<?= implode(' ', $this->body_classes) ?>">
 
 <div id="admin-wrapper">
 
