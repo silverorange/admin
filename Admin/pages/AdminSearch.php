@@ -9,7 +9,7 @@ require_once 'Admin/pages/AdminIndex.php';
  * search page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2004-2006 silverorange
+ * @copyright 2005-2006 silverorange
  */
 abstract class AdminSearch extends AdminIndex
 {

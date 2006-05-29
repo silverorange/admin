@@ -11,7 +11,7 @@ require_once 'Swat/SwatActions.php';
  * index page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2004 silverorange
+ * @copyright 2005-2006 silverorange
  */
 abstract class AdminIndex extends AdminPage
 {

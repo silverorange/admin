@@ -6,7 +6,7 @@
  * Designed to be used as a MDB2 result wrapper class.
  *
  * @package   Admin
- * @copyright 2004-2006 silverorange
+ * @copyright 2005-2006 silverorange
  */
 class AdminMenuStore
 {

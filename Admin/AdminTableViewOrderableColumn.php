@@ -6,7 +6,7 @@ require_once 'Swat/SwatTableViewOrderableColumn.php';
  * An orderable column
  *
  * @package   Admin
- * @copyright 2005 silverorange
+ * @copyright 2005-2006 silverorange
  */
 class AdminTableViewOrderableColumn extends SwatTableViewOrderableColumn
 {

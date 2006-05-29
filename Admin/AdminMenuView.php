@@ -11,7 +11,7 @@ require_once 'AdminMenuViewStateStore.php';
  * different menu styles.
  *
  * @package   Admin
- * @copyright 2006 silverorange
+ * @copyright 2005-2006 silverorange
  */
 class AdminMenuView extends SwatObject
 {
