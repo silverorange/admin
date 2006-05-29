@@ -63,7 +63,7 @@ class AdminMenuView extends SwatObject
 			new SwatJavaScriptHtmlHeadEntry('admin/javascript/admin-menu.js');
 
 		$this->html_head_entries['admin/styles/admin-menu.css'] =
-			new SwatJavaScriptHtmlHeadEntry('admin/styles/admin-menu.css');
+			new SwatStyleSheetHtmlHeadEntry('admin/styles/admin-menu.css');
 
 		$this->html_head_entries = array_merge($this->html_head_entries,
 			XML_RPCAjax::getHtmlHeadEntries());
