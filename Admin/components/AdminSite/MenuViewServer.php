@@ -30,7 +30,6 @@ class AdminSiteMenuViewServer extends AdminXMLRPCServer
 	public function setShown($state)
 	{
 		$menu = $this->layout->menu;
-		$menu->init();
 		$state_store = $menu->getState();
 		$state_store->show = (boolean)$state;
 		$menu->setState($state_store);
@@ -51,7 +50,6 @@ class AdminSiteMenuViewServer extends AdminXMLRPCServer
 	public function setSectionShown($section_id, $state)
 	{
 		$menu = $this->layout->menu;
-		$menu->init();
 		$state_store = $menu->getState();
 		if (isset($state_store->sections_show[$section_id])) {
 			$state_store->sections_show[$section_id] = (boolean)$state;

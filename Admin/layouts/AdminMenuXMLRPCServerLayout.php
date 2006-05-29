@@ -33,7 +33,7 @@ class AdminMenuXMLRPCServerLayout extends SiteXMLRPCServerLayout
 	// {{{ protected function initMenu()
 
 	/**
-	 * Initializes this application's menu view
+	 * Initializes layout menu view
 	 */
 	protected function initMenu()
 	{
@@ -45,6 +45,8 @@ class AdminMenuXMLRPCServerLayout extends SiteXMLRPCServerLayout
 			$class = $this->app->menu_class;
 			$this->menu = new $class($menu_store);
 		}
+
+		$this->menu->init();
 	}
 
 	// }}}

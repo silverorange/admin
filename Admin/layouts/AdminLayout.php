@@ -55,7 +55,7 @@ class AdminLayout extends SiteLayout
 	{
 		parent::init();
 
-		$this->data->body_class = '';
+		$this->layout->data->body_classes = array();
 		
 		$this->initLogoutForm();
 		$this->initMenu();
@@ -86,7 +86,7 @@ class AdminLayout extends SiteLayout
 	// {{{ protected function initMenu()
 
 	/**
-	 * Initializes this application's menu view
+	 * Initializes layout menu view
 	 */
 	protected function initMenu()
 	{
@@ -98,6 +98,8 @@ class AdminLayout extends SiteLayout
 			$class = $this->app->menu_class;
 			$this->menu = new $class($menu_store);
 		}
+
+		$this->menu->init();
 	}
 
 	// }}}
@@ -119,6 +121,10 @@ class AdminLayout extends SiteLayout
 
 		$this->startCapture('menu');
 		$this->displayMenu();
+		$this->endCapture();
+
+		$this->startCapture('content');
+		print_r($_SESSION);
 		$this->endCapture();
 
 		$page_title = $this->navbar->getLastEntry()->title;
@@ -164,8 +170,8 @@ class AdminLayout extends SiteLayout
 	 */
 	protected function displayMenu()
 	{		
-		$this->layout->body_class =
-			($this->menu->isShown()) ? '' : 'hide-menu';
+		if ($this->menu->isShown())
+			$this->layout->data->body_classes[] = 'hide-menu';
 
 		$this->menu->display();
 	}
