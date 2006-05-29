@@ -10,8 +10,8 @@ require_once 'Swat/SwatActions.php';
  * This class is intended to be a convenience base class. For a fully custom 
  * index page, inherit directly from AdminPage instead.
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004 silverorange
  */
 abstract class AdminIndex extends AdminPage
 {
