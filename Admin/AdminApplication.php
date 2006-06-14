@@ -234,27 +234,10 @@ class AdminApplication extends SiteApplication
 
 	private function queryForPage($component)
 	{
-		// TODO: move this page query into a stored procedure
-		$sql = "SELECT AdminComponent.title as component_title, 
-				AdminComponent.shortname, AdminSection.title as section_title
-			FROM AdminComponent
-				INNER JOIN AdminSection ON 
-					AdminComponent.section = AdminSection.id
-			WHERE AdminComponent.enabled = %s
-				AND AdminComponent.shortname = %s
-				AND AdminComponent.id IN (
-					SELECT component
-					FROM AdminComponentAdminGroupBinding
-					INNER JOIN AdminUserAdminGroupBinding
-						ON AdminComponentAdminGroupBinding.groupnum = 
-							AdminUserAdminGroupBinding.groupnum
-					WHERE AdminUserAdminGroupBinding.usernum = %s
-				)";
-
-		$sql = sprintf($sql,
-			$this->db->quote(true, 'boolean'),
-			$this->db->quote($component, 'text'),
-			$this->db->quote($_SESSION['user_id'], 'integer'));	
+		$sql = sprintf('select * from getAdminPage(%s, %s, %s)',
+            $this->db->quote(true, 'boolean'),
+            $this->db->quote($component, 'text'),
+            $this->db->quote($_SESSION['user_id'], 'integer'));
 
 		$row = SwatDB::queryRow($this->db, $sql);
 		return $row;
