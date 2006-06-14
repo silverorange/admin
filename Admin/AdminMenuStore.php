@@ -10,12 +10,17 @@
  */
 class AdminMenuStore
 {
+	// {{{ public properties
+
 	/**
 	 * Sections in this menu
 	 *
 	 * @var AdminMenuSection
 	 */
 	public $sections;
+
+	// }}}
+	// {{{ public function __constrcut()
 
 	/**
 	 * @param MDB2_Result $rs A recordset containing the menu.
@@ -57,6 +62,9 @@ class AdminMenuStore
 		}
 	}
 
+	// }}}
+	// {{{ public function getComponentByName()
+
 	public function getComponentByName($name)
 	{
 		foreach ($this->sections as $section)
@@ -66,6 +74,8 @@ class AdminMenuStore
 
 		return null;
 	}
+
+	// }}}
 }
 
 /**
@@ -75,10 +85,15 @@ class AdminMenuStore
  */
 class AdminMenuSection
 {
+	// {{{ public properties
+
 	public $id;
 	public $title;
 	public $components;
 	public $show;
+
+	// }}}
+	// {{{ public function __construct()
 
 	public function __construct($id, $title)
 	{
@@ -87,6 +102,8 @@ class AdminMenuSection
 		$this->components = array();
 		$this->show = true;
 	}
+
+	// }}}
 }
 
 /**
@@ -96,10 +113,15 @@ class AdminMenuSection
  */
 class AdminMenuComponent
 {
+	// {{{ public properties
+
 	public $id;
 	public $shortname;
 	public $title;
 	public $subcomponents;
+
+	// }}}
+	// {{{ public function __construct()
 
 	public function __construct($id, $shortname, $title)
 	{
@@ -108,6 +130,8 @@ class AdminMenuComponent
 		$this->title = $title;
 		$this->subcomponents = array();
 	}
+
+	// }}}
 }
 
 /**
@@ -117,14 +141,21 @@ class AdminMenuComponent
  */
 class AdminMenuSubcomponent
 {
+	// {{{ public properties
+
 	public $shortname;
 	public $title;
+
+	// }}}
+	// {{{ public function __construct()
 
 	public function __construct($shortname, $title)
 	{
 		$this->shortname = $shortname;
 		$this->title = $title;
 	}
+
+	// }}}
 }
 
 ?>
