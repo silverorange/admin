@@ -28,6 +28,8 @@ cat ${SRC}/views/AdminUserLastLoginView.sql >> $DST
 #
 
 cat ${SRC}/functions/getAdminMenu.sql >> $DST
+cat ${SRC}/functions/getAdminPage.sql >> $DST
+# cat ${SRC}/functions/getArticleTree.sql >> $DST
 
 #
 # TRIGGERS
