@@ -15,6 +15,8 @@ require_once 'Admin/Admin.php';
  */
 class AdminGroupHeaderCellRenderer extends SwatCellRenderer
 {
+	// {{{ public properties
+
 	/**
 	 * Header title
 	 *
@@ -39,6 +41,9 @@ class AdminGroupHeaderCellRenderer extends SwatCellRenderer
 	 */
 	public $order_value = null;
 
+	// }}}
+	// {{{ public function render()
+
 	public function render()
 	{
 		echo SwatString::minimizeEntities($this->title);
@@ -52,6 +57,8 @@ class AdminGroupHeaderCellRenderer extends SwatCellRenderer
 			$anchor->display();
 		}
 	}
+
+	// }}}
 }
 
 ?>
