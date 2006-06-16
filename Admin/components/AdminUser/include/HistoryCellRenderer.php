@@ -11,9 +11,14 @@ require_once 'Swat/SwatHtmlTag.php';
  */
 class AdminUsersHistoryCellRenderer extends SwatCellRenderer
 {
+	// {{{ public properties
+
 	public $date;
 	public $user;
 	public $title;
+
+	// }}}
+	// {{{ public function render()
 
 	public function render()
 	{
@@ -26,6 +31,8 @@ class AdminUsersHistoryCellRenderer extends SwatCellRenderer
 			echo ')';
 		}
 	}
+
+	// }}}
 }
 
 ?>
