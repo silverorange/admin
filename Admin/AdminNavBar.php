@@ -15,6 +15,8 @@ require_once 'Admin/AdminImportantNavBarEntry.php';
  */
 class AdminNavBar extends SwatNavBar
 {
+	// {{{ protected function displayEntry()
+
 	/**
 	 * Displays an entry in this navigational bar
 	 *
@@ -41,6 +43,8 @@ class AdminNavBar extends SwatNavBar
 			parent::displayEntry($entry, $link);
 		}
 	}
+
+	// }}}
 }
 
 ?>

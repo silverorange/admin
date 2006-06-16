@@ -12,6 +12,8 @@ require_once 'Swat/SwatTableStore.php';
  */
 class AdminTableStore extends SwatTableStore
 {
+	// {{{ function __construct()
+
 	function __construct($rs)
 	{
 		if (MDB2::isError($rs)) 
@@ -20,6 +22,8 @@ class AdminTableStore extends SwatTableStore
 		while ($row = $rs->fetchRow(MDB2_FETCHMODE_OBJECT))
 			$this->addRow($row);
 	}
+
+	// }}}
 }
 
 ?>

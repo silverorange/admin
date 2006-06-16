@@ -15,12 +15,17 @@ require_once 'AdminMenuViewStateStore.php';
  */
 class AdminMenuView extends SwatObject
 {
+	// {{{ public properties
+
 	/**
 	 * The unique identifier of this menu-view
 	 *
 	 * @var string
 	 */
 	public $id = 'admin_menu';
+
+	// }}}
+	// {{{ protected properties
 
 	/**
 	 * The menu-store this menu-view is viewing
@@ -36,12 +41,18 @@ class AdminMenuView extends SwatObject
 	 */
 	protected $html_head_entries = array();
 
+	// }}}
+	// {{{ private properties
+
 	/**
 	 * Whether of not this menu-view is shown (not collapsed) or not
 	 *
 	 * @var boolean
 	 */
 	private $show;
+
+	// }}}
+	// {{{ public function __construct()
 
 	/**
 	 * Creates a new menu-view object with a given menu-store and id.
@@ -70,6 +81,9 @@ class AdminMenuView extends SwatObject
 			XML_RPCAjax::getHtmlHeadEntries());
 	}
 
+	// }}}
+	// {{{ public function init()
+
 	/**
 	 * Initializes this menu-view
 	 */
@@ -77,6 +91,9 @@ class AdminMenuView extends SwatObject
 	{
 		$this->loadState();
 	}
+
+	// }}}
+	// {{{ public function display()
 
 	/**
 	 * Displays this menu
@@ -99,6 +116,9 @@ class AdminMenuView extends SwatObject
 		$menu_div->close();
 	}
 
+	// }}}
+	// {{{ public function &getHtmlHeadEntries()
+
 	/**
 	 * Gets the HTML head entries required by this menu-view
 	 *
@@ -109,6 +129,9 @@ class AdminMenuView extends SwatObject
 	{
 		return $this->html_head_entries;
 	}
+
+	// }}}
+	// {{{ public function displaySection()
 
 	/**
 	 * Displays a single menu section
@@ -149,6 +172,9 @@ class AdminMenuView extends SwatObject
 		echo '</li>';
 	}
 
+	// }}}
+	// {{{ public function displayComponent()
+
 	/**
 	 * Displays a single menu component
 	 *
@@ -175,6 +201,9 @@ class AdminMenuView extends SwatObject
 		echo '</li>';
 	}
 
+	// }}}
+	// {{{ public function displaySubcomponent()
+
 	/**
 	 * Displays a single menu subcomponent
 	 *
@@ -193,6 +222,9 @@ class AdminMenuView extends SwatObject
 		echo '</li>';
 	}
 
+	// }}}
+	// {{{ public function getState()
+
 	/**
 	 * Gets the current state of this menu-view
 	 *
@@ -208,6 +240,9 @@ class AdminMenuView extends SwatObject
 		return $state;
 	}
 
+	// }}}
+	// {{{ public function setState()
+
 	/**
 	 * Sets the state of this menu-view to a developer specified state
 	 *
@@ -221,6 +256,9 @@ class AdminMenuView extends SwatObject
 				$section->show = $state->sections_show[$section->id];
 	}
 
+	// }}}
+	// {{{ public function isShown()
+
 	/**
 	 * Whether or not this menu view is shown (not collapsed) or not
 	 *
@@ -232,6 +270,9 @@ class AdminMenuView extends SwatObject
 		return $this->show;
 	}
 
+	// }}}
+	// {{{ public function saveState()
+
 	/**
 	 * Save this menu-view's state to the user's session
 	 */
@@ -239,6 +280,9 @@ class AdminMenuView extends SwatObject
 	{
 		$this->getState()->saveToSession();
 	}
+
+	// }}}
+	// {{{ protected function displayMenuContent()
 
 	/**
 	 * Displays the content of this menu-view
@@ -252,6 +296,9 @@ class AdminMenuView extends SwatObject
 
 		echo '</ul>';
 	}
+
+	// }}}
+	// {{{ protected function displayShowLink()
 
 	/**
 	 * Displays the 'show' link of this menu-view
@@ -276,6 +323,9 @@ class AdminMenuView extends SwatObject
 		$anchor_tag->close();
 	}
 
+	// }}}
+	// {{{ protected function displayHideLink()
+
 	/**
 	 * Displays the 'hide' link of this menu-view
 	 *
@@ -299,6 +349,9 @@ class AdminMenuView extends SwatObject
 		$anchor_tag->close();
 	}
 
+	// }}}
+	// {{{ protected function loadState()
+
 	/**
 	 * Loads this menu-view's state from the user's session
 	 */
@@ -315,6 +368,9 @@ class AdminMenuView extends SwatObject
 			$this->setState($menu_state);
 	}
 
+	// }}}
+	// {{{ protected function clearState()
+
 	/**
 	 * Clears this menu-view's state from the user's session
 	 */
@@ -322,6 +378,9 @@ class AdminMenuView extends SwatObject
 	{
 		unset($_SESSION[$this->id.'_state']);
 	}
+
+	// }}}
+	// {{{ protected function displayJavaScript()
 
 	/**
 	 * Displays the JavaScript required for this menu-view to function
@@ -332,6 +391,8 @@ class AdminMenuView extends SwatObject
 		printf("var %s_obj = new AdminMenu('%s');\n", $this->id, $this->id);
 		echo '</script>';
 	}
+
+	// }}}
 }
 
 ?>

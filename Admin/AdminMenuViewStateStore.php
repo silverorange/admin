@@ -12,6 +12,8 @@
  */
 class AdminMenuViewStateStore
 {
+	// {{{ public properties
+
 	/**
 	 * The identifier of this menu-view state store
 	 *
@@ -39,6 +41,9 @@ class AdminMenuViewStateStore
 	 */
 	public $sections_show = array();
 
+	// }}}
+	// {{{ public function __construct()
+
 	/**
 	 * Creates a new menu-view state store with the given id
 	 *
@@ -48,6 +53,9 @@ class AdminMenuViewStateStore
 	{
 		$this->id = $id;
 	}
+
+	// }}}
+	// {{{ public function saveToSession()
 
 	/**
 	 * Saves this state to the user's session
@@ -59,6 +67,9 @@ class AdminMenuViewStateStore
 		$serial_state = serialize($this);
 		$_SESSION[$this->id] = $serial_state;
 	}
+
+	// }}}
+	// {{{ public static function loadFromSession()
 
 	/**
 	 * Loads a menu-view state store from the user's session
@@ -86,6 +97,8 @@ class AdminMenuViewStateStore
 
 		return $state;
 	}
+
+	// }}}
 }
 
 ?>

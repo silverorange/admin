@@ -13,7 +13,12 @@ require_once 'Admin/Admin.php';
  */
 class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
 {
+	// {{{ public properties
+
 	public $childcount = 0;
+
+	// }}}
+	// {{{ public function render()
 	
 	public function render()
 	{
@@ -34,6 +39,8 @@ class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
 	
 		parent::render();
 	}
+
+	// }}}
 }
 
 ?>

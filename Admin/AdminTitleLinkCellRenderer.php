@@ -13,6 +13,8 @@ require_once 'Swat/SwatLinkCellRenderer.php';
  */
 class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 {
+	// {{{ public properties
+
 	/**
 	 * The stock id of this AdminTitleCellRenderer
 	 *
@@ -25,6 +27,9 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 */
 	public $stock_id = null;
 
+	// }}}
+	// {{{ public function __construct()
+
 	/**
 	 * Creates a title link cell renderer
 	 */
@@ -33,6 +38,9 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		parent::__construct();
 		$this->addStyleSheet('admin/styles/admin-title-link-cell-renderer.css');
 	}
+
+	// }}}
+	// {{{ public function setFromStock()
 
 	/**
 	 * Sets the values of this title link cell renderer to a stock type
@@ -94,6 +102,9 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 			$this->class = $class;
 	}
 
+	// }}}
+	// {{{ public function getTdAttributes()
+
 	/**
 	 * Gets TD-tag attributes
 	 *
@@ -109,6 +120,9 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		return array('class' => 'admin-title-link-cell-renderer');
 	}
 
+	// }}}
+	// {{{ public function getThAttributes()
+
 	/**
 	 * Gets TH-tag attributes
 	 *
@@ -123,6 +137,9 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	{
 		return array('class' => 'admin-title-link-cell-renderer');
 	}
+
+	// }}}
+	// {{{ public function render()
 
 	/**
 	 * Renders the contents of this cell
@@ -164,6 +181,8 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 			$span_tag->close();
 		}
 	}
+
+	// }}}
 }
 
 ?>

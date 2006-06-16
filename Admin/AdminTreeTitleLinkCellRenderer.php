@@ -10,14 +10,22 @@ require_once 'Admin/AdminTitleLinkCellRenderer.php';
  */
 class AdminTreeTitleLinkCellRenderer extends AdminTitleLinkCellRenderer
 {
+	// {{{ public properties
+
 	public $child_count = 0;
 	public $base_stock_id = 'document';
+
+	// }}}
+	// {{{ public function render()
 
 	public function render()
 	{
 		$this->setStockType();
 		parent::render();
 	}
+
+	// }}}
+	// {{{ protected function setStockType()
 
 	protected function setStockType()
 	{
@@ -27,6 +35,9 @@ class AdminTreeTitleLinkCellRenderer extends AdminTitleLinkCellRenderer
 			$this->setFromStock($this->base_stock_id);
 	}
 
+	// }}}
+	// {{{ protected function getTitle()
+
 	protected function getTitle()
 	{
 		if (intval($this->child_count) == 0)
@@ -35,6 +46,8 @@ class AdminTreeTitleLinkCellRenderer extends AdminTitleLinkCellRenderer
 		return sprintf(Admin::ngettext('%d sub-item', '%d sub-items', 
 			$this->child_count), $this->child_count);
 	}
+
+	// }}}
 }
 
 ?>

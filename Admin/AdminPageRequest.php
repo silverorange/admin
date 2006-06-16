@@ -10,10 +10,15 @@ require_once 'Site/SiteObject.php';
  */
 class AdminPageRequest extends SiteObject
 {
+	// {{{ public properties
+
 	public $source;
 	public $component;
 	public $subcomponent;
 	public $title;
+
+	// }}}
+	// {{{ public function getFilename()
 
 	public function getFilename()
 	{
@@ -36,6 +41,9 @@ class AdminPageRequest extends SiteObject
 		return $file;
 	}
 
+	// }}}
+	// {{{ public function getClassname()
+
 	public function getClassname()
 	{
 		$classname = $this->component.$this->subcomponent;
@@ -45,6 +53,8 @@ class AdminPageRequest extends SiteObject
 		else
 			return null;
 	}
+
+	// }}}
 }
 
 ?>
