@@ -14,6 +14,8 @@ require_once 'Admin/exceptions/AdminNotFoundException.php';
  */
 class AdminXMLRPCServer extends SiteXMLRPCServer
 {
+	// {{{ public function init()
+
 	/**
 	 * @xmlrpc.hidden
 	 */
@@ -22,6 +24,8 @@ class AdminXMLRPCServer extends SiteXMLRPCServer
 		if (!isset($GLOBALS['HTTP_RAW_POST_DATA']))
 			throw new AdminNotFoundException(Admin::_('Page not found.'));
 	}
+
+	// }}}
 }
 
 ?>
