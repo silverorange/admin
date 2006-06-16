@@ -11,6 +11,8 @@ require_once 'Admin/exceptions/AdminUserException.php';
  */
 class AdminNoAccessException extends AdminUserException
 {
+	// {{{ public function __construct()
+
 	/**
 	 * Creates a new no access exception
 	 *
@@ -22,6 +24,8 @@ class AdminNoAccessException extends AdminUserException
 		parent::__construct($message, $code);
 		$this->title = Admin::_('No Access');
 	}
+
+	// }}}
 }
 
 ?>

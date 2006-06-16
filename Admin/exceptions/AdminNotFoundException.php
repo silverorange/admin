@@ -11,6 +11,8 @@ require_once 'Admin/exceptions/AdminUserException.php';
  */
 class AdminNotFoundException extends AdminUserException
 {
+	// {{{ public function __construct()
+
 	/**
 	 * Creates a new not found exception
 	 *
@@ -22,6 +24,8 @@ class AdminNotFoundException extends AdminUserException
 		parent::__construct($message, $code);
 		$this->title = Admin::_('Not Found');
 	}
+
+	// }}}
 }
 
 ?>
