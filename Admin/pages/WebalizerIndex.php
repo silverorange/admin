@@ -12,9 +12,16 @@ require_once 'Swat/SwatDate.php';
  */
 class WebalizerIndex extends AdminPage
 {
+	// {{{ public properties
+
 	public $webalizer_root = '';
 
+	// }}}
+	// {{{ private properties
+
 	private $id;
+
+	// }}}
 	
 	// init phase
 	// {{{ protected function initInternal()
