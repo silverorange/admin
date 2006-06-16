@@ -11,6 +11,8 @@ require_once 'Swat/SwatTextCellRenderer.php';
  */
 class AdminNullTextCellRenderer extends SwatTextCellRenderer
 {
+	// {{{ public properties
+
 	/**
 	 * The text to display in this cell if the
 	 * {@link SwatTextCellRenderer::$text} proeprty is null when the render()
@@ -28,6 +30,9 @@ class AdminNullTextCellRenderer extends SwatTextCellRenderer
 	 */
 	public $strict = false;
 
+	// }}}
+	// {{{ public function __construct()
+
 	/**
 	 * Creates a null text cell renderer
 	 */
@@ -36,6 +41,9 @@ class AdminNullTextCellRenderer extends SwatTextCellRenderer
 		parent::__construct();
 		$this->addStyleSheet('admin/styles/admin-null-text-cell-renderer.css');
 	}
+
+	// }}}
+	// {{{ public function render()
 
 	/**
 	 * Renders this cell renderer
@@ -55,6 +63,8 @@ class AdminNullTextCellRenderer extends SwatTextCellRenderer
 			parent::render();
 		}
 	}
+
+	// }}}
 }
 
 ?>

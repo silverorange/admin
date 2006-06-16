@@ -20,7 +20,12 @@ class AdminSearchClause
 	const OP_STARTS_WITH = 7;
 	const OP_ENDS_WITH   = 8;
 
+	// {{{ private properties
+
 	private $field;
+
+	// }}}
+	// {{{ public properties
 	
 	/**
 	 * Value of the search clause
@@ -56,6 +61,9 @@ class AdminSearchClause
 	 */
 	public $operator;
 
+	// }}}
+	// {{{ publuc function __construct()
+
 	/**
 	 * The database object
 	 *
@@ -71,6 +79,9 @@ class AdminSearchClause
 		$this->value = $value;
 		$this->operator = self::OP_EQUALS;
 	}
+
+	// }}}
+	// {{{ public function getClause()
 
 	/**
 	 * Get a formatted search clause
@@ -113,6 +124,9 @@ class AdminSearchClause
 		return $clause;
 	}
 
+	// }}}
+	// {{{ private static function getOperatorString()
+
 	private static function getOperatorString($id)
 	{
 		$id = intval($id);
@@ -131,6 +145,8 @@ class AdminSearchClause
 				throw new AdminException('Unknown operator in clause: '.$id);
 		}
 	}
+
+	// }}}
 }
 
 ?>

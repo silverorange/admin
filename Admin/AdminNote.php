@@ -12,12 +12,17 @@ require_once 'Swat/SwatHtmlTag.php';
  */
 class AdminNote extends SwatContentBlock
 {
+	// {{{ public properties
+
 	/**
 	 * User visible title of this widget
 	 *
 	 * @var string
 	 */
 	public $title = '';
+
+	// }}}
+	// {{{ public function __construct()
 
 	/**
 	 * Creates a new note
@@ -31,6 +36,9 @@ class AdminNote extends SwatContentBlock
 		parent::__construct($id);
 		$this->addStyleSheet('admin/styles/admin-note.css');
 	}
+
+	// }}}
+	// {{{ public function display()
 
 	/**
 	 * Displays this content
@@ -60,6 +68,8 @@ class AdminNote extends SwatContentBlock
 
 		$div->close();
 	}
+
+	// }}}
 }
 
 ?>

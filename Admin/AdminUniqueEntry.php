@@ -11,6 +11,8 @@ require_once 'Admin/Admin.php';
  */
 class AdminUniqueEntry extends SwatEntry
 {
+	// {{{ public properties
+
 	/**
 	 * Whether of not this entry is alphanumeric
 	 *
@@ -22,11 +24,17 @@ class AdminUniqueEntry extends SwatEntry
 	 */
 	public $alphanum = true;
 
+	// }}}
+	// {{{ public function init()
+
 	public function init()
 	{
 		parent::init();
 		$this->size = 20;
 	}
+
+	// }}}
+	// {{{ public function process()
 
 	/**
 	 * Processes this unique entry
@@ -46,6 +54,8 @@ class AdminUniqueEntry extends SwatEntry
 			$this->addMessage(new SwatMessage($msg, SwatMessage::ERROR));
 		}
 	}
+
+	// }}}
 }
 
 ?>
