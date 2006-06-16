@@ -11,6 +11,8 @@ require_once 'AdminDependency.php';
  */
 abstract class AdminDependencyItem
 {
+	// {{{ public properties
+
 	/**
 	 * Initial status level of this entry (eg, DELETE, NODELETE).
 	 *
@@ -29,6 +31,8 @@ abstract class AdminDependencyItem
 	 * @var mixed
 	 */
 	public $parent = null;
+
+	// }}}
 }
 
 ?>

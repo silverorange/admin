@@ -10,6 +10,18 @@ require_once 'Admin/AdminDependencyItem.php';
  */
 class AdminDependencySummary extends AdminDependencyItem
 {
+	// {{{ public properties
+
+	/**
+	 * The number of items in this summary
+	 *
+	 * @var integer
+	 */
+	public $count;
+
+	// }}}
+	// {{{ public function __construct()
+
 	/**
 	 * Creates a new AdminDependencySummary
 	 *
@@ -28,12 +40,8 @@ class AdminDependencySummary extends AdminDependencyItem
 		}
 	}
 
-	/**
-	 * The number of items in this summary
-	 *
-	 * @var integer
-	 */
-	public $count;
+	// }}}
+
 }
 
 ?>

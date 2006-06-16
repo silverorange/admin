@@ -10,11 +10,15 @@ require_once 'Admin/AdminDependencySummary.php';
  */
 class AdminDependencySummaryWrapper extends SwatDBRecordsetWrapper
 {
+	// {{{ protected function init()
+
 	protected function init()
 	{
 		parent::init();
 		$this->row_wrapper_class = 'AdminDependencySummary';
 	}
+
+	// }}}
 }
 
 ?>
