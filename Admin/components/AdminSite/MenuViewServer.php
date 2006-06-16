@@ -12,6 +12,8 @@ require_once 'Admin/AdminMenuViewStateStore.php';
  */
 class AdminSiteMenuViewServer extends AdminXMLRPCServer
 {
+	// {{{ protected function createLayout()
+
 	/**
 	 * @xmlrpc.hidden
 	 */
@@ -19,6 +21,9 @@ class AdminSiteMenuViewServer extends AdminXMLRPCServer
 	{
 		return new AdminMenuXMLRPCServerLayout($this->app);
 	}
+
+	// }}}
+	// {{{ public function setShown()
 
 	/**
 	 * Sets the shown state of the entire menu-view
@@ -37,6 +42,9 @@ class AdminSiteMenuViewServer extends AdminXMLRPCServer
 
 		return true;
 	}
+
+	// }}}
+	// {{{ public function setSectionShown()
 
 	/**
 	 * Sets the shown state of a section in the menu-view
@@ -59,6 +67,8 @@ class AdminSiteMenuViewServer extends AdminXMLRPCServer
 
 		return true;
 	}
+
+	// }}}
 }
 
 ?>
