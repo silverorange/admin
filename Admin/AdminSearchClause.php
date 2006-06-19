@@ -11,6 +11,8 @@ require_once 'Admin/exceptions/AdminException.php';
  */
 class AdminSearchClause
 {
+	// {{{ constants
+
 	const OP_EQUALS      = 1;
 	const OP_GT          = 2;
 	const OP_GTE         = 3;
@@ -20,6 +22,7 @@ class AdminSearchClause
 	const OP_STARTS_WITH = 7;
 	const OP_ENDS_WITH   = 8;
 
+	// }}}
 	// {{{ private properties
 
 	private $field;

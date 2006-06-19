@@ -8,8 +8,11 @@
  */
 class Admin
 {
+	// {{{ constants
+
 	const GETTEXT_DOMAIN = 'admin';
 
+	// }}}
 	// {{{ public static function _()
 
 	public static function _($message)
