@@ -60,8 +60,8 @@ class AdminLayout extends SiteLayout
 		$this->initLogoutForm();
 		$this->initMenu();
 
-		$this->addHtmlHeadEntrySet($this->logout_form->getHtmlHeadEntries());
-		$this->addHtmlHeadEntrySet($this->menu->getHtmlHeadEntries());
+		$this->addHtmlHeadEntrySet($this->logout_form->getHtmlHeadEntrySet());
+		$this->addHtmlHeadEntrySet($this->menu->getHtmlHeadEntrySet());
 	}
 
 	// }}}

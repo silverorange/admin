@@ -1,7 +1,7 @@
 <?php
 
 require_once 'XML/RPCAjax.php';
-require_once 'Swat/SwatObject.php';
+require_once 'Swat/SwatUIObject.php';
 require_once 'AdminMenuViewStateStore.php';
 
 /**
@@ -13,7 +13,7 @@ require_once 'AdminMenuViewStateStore.php';
  * @package   Admin
  * @copyright 2005-2006 silverorange
  */
-class AdminMenuView extends SwatObject
+class AdminMenuView extends SwatUIObject
 {
 	// {{{ public properties
 
@@ -33,13 +33,6 @@ class AdminMenuView extends SwatObject
 	 * @var AdminMenuStore
 	 */
 	protected $store;
-
-	/**
-	 * An array of HTML head entries required by this menu-view
-	 *
-	 * @var array
-	 */
-	protected $html_head_entries = array();
 
 	// }}}
 	// {{{ private properties
@@ -64,21 +57,18 @@ class AdminMenuView extends SwatObject
 	 */
 	public function __construct($store, $id = null)
 	{
+		parent::__construct();
+
 		$this->store = $store;
 		$this->show = true;
 		if ($id !== null)
 			$this->id = $id;
 
-		// initialize html head entries
-		$this->html_head_entries = new SwatHtmlHeadEntrySet();
-		$this->html_head_entries->addEntry(
-			new SwatJavaScriptHtmlHeadEntry('admin/javascript/admin-menu.js'));
-
-		$this->html_head_entries->addEntry(
-			new SwatStyleSheetHtmlHeadEntry('admin/styles/admin-menu.css'));
-
-		$this->html_head_entries->addEntrySet(
-			XML_RPCAjax::getHtmlHeadEntries());
+		// add html head entries
+		$this->addJavaScript('admin/javascript/admin-menu.js');
+		$this->addStyleSheet('admin/styles/admin-menu.css');
+		$this->html_head_entry_set->addEntrySet(
+			XML_RPCAjax::getHtmlHeadEntrySet());
 	}
 
 	// }}}
@@ -114,20 +104,6 @@ class AdminMenuView extends SwatObject
 		$this->displayJavaScript();
 
 		$menu_div->close();
-	}
-
-	// }}}
-	// {{{ public function &getHtmlHeadEntries()
-
-	/**
-	 * Gets the HTML head entries required by this menu-view
-	 *
-	 * Subclasses should override this method to include custom CSS or
-	 * JavaScript.
-	 */
-	public function &getHtmlHeadEntries()
-	{
-		return $this->html_head_entries;
 	}
 
 	// }}}

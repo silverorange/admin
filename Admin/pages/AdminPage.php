@@ -199,7 +199,7 @@ abstract class AdminPage extends SitePage
 		$this->buildInternal();
 
 		$this->layout->addHtmlHeadEntrySet(
-			$this->ui->getRoot()->getHtmlHeadEntries());
+			$this->ui->getRoot()->getHtmlHeadEntrySet());
 
 		$this->layout->startCapture('content');
 		$this->display();
