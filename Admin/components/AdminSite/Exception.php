@@ -20,6 +20,22 @@ class AdminSiteException extends SiteExceptionPage
 	}
 
 	// }}}
+
+	// build phase
+
+	// {{{ protected function display()
+
+	protected function display($status)
+	{
+		printf('<p>%s</p>', $this->getSummary($status));
+
+		echo '<p>This error has been reported.</p>';
+
+		if ($this->exception !== null)
+			$this->exception->process(false);
+	}
+
+	// }}}
 }
 
 ?>
