@@ -39,7 +39,7 @@ class AdminNullTextCellRenderer extends SwatTextCellRenderer
 	public function __construct()
 	{
 		parent::__construct();
-		$this->addStyleSheet('admin/styles/admin-null-text-cell-renderer.css');
+		$this->addStyleSheet('packages/admin/styles/admin-null-text-cell-renderer.css');
 	}
 
 	// }}}
