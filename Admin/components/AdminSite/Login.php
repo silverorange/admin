@@ -29,7 +29,7 @@ class AdminSiteLogin extends AdminPage
 	{
 		$this->ui->loadFromXML(dirname(__FILE__).'/login.xml');
 		$this->ui->getWidget('login_form')->addJavaScript(
-			'admin/javascript/admin-login.js');
+			'packages/admin/javascript/admin-login.js');
 
 		$frame = $this->ui->getWidget('login_frame');
 		$frame->title = $this->app->title;

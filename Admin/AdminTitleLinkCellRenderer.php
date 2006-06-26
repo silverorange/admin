@@ -36,7 +36,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	public function __construct()
 	{
 		parent::__construct();
-		$this->addStyleSheet('admin/styles/admin-title-link-cell-renderer.css');
+		$this->addStyleSheet('packages/admin/styles/admin-title-link-cell-renderer.css');
 	}
 
 	// }}}

@@ -65,8 +65,8 @@ class AdminMenuView extends SwatUIObject
 			$this->id = $id;
 
 		// add html head entries
-		$this->addJavaScript('admin/javascript/admin-menu.js');
-		$this->addStyleSheet('admin/styles/admin-menu.css');
+		$this->addJavaScript('packages/admin/javascript/admin-menu.js');
+		$this->addStyleSheet('packages/admin/styles/admin-menu.css');
 		$this->html_head_entry_set->addEntrySet(
 			XML_RPCAjax::getHtmlHeadEntrySet());
 	}
@@ -290,7 +290,7 @@ class AdminMenuView extends SwatUIObject
 		$anchor_tag->open();
 
 		$img_tag = new SwatHtmlTag('img');
-		$img_tag->src = 'admin/images/admin-menu-show.png';
+		$img_tag->src = 'packages/admin/images/admin-menu-show.png';
 		$img_tag->alt = Admin::_('Show Menu');
 		$img_tag->height = 86;
 		$img_tag->width = 19;
@@ -316,7 +316,7 @@ class AdminMenuView extends SwatUIObject
 		$anchor_tag->open();
 
 		$img_tag = new SwatHtmlTag('img');
-		$img_tag->src = 'admin/images/admin-menu-hide.png';
+		$img_tag->src = 'packages/admin/images/admin-menu-hide.png';
 		$img_tag->alt = Admin::_('Hide Menu');
 		$img_tag->height = 20;
 		$img_tag->width = 87;

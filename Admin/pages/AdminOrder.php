@@ -21,7 +21,7 @@ abstract class AdminOrder extends AdminPage
 	protected function initInternal()
 	{
 		parent::initInternal();
-		$this->ui->getRoot()->addJavaScript('admin/javascript/admin-order.js');
+		$this->ui->getRoot()->addJavaScript('packages/admin/javascript/admin-order.js');
 		$this->ui->loadFromXML(dirname(__FILE__).'/order.xml');
 	}
 
