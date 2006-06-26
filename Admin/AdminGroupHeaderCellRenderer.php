@@ -46,6 +46,9 @@ class AdminGroupHeaderCellRenderer extends SwatCellRenderer
 
 	public function render()
 	{
+		if (!$this->visible)
+			return;
+
 		echo SwatString::minimizeEntities($this->title);
 
 		if ($this->order_link !== null) {

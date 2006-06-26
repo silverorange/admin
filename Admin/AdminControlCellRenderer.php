@@ -32,6 +32,9 @@ class AdminControlCellRenderer extends SwatImageLinkCellRenderer
 
 	public function render()
 	{
+		if (!$this->visible)
+			return;
+
 		if ($this->stock_id === null)
 			$this->setFromStock('details', false);
 		else
