@@ -50,6 +50,9 @@ class AdminNullTextCellRenderer extends SwatTextCellRenderer
 	 */
 	public function render()
 	{
+		if (!$this->visible)
+			return;
+
 		if (($this->strict && $this->text === null) ||
 			(!$this->strict && $this->text == null)) {
 

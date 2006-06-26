@@ -22,6 +22,9 @@ class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
 	
 	public function render()
 	{
+		if (!$this->visible)
+			return;
+
 		$this->width  = 22;
 		$this->height = 22;
 

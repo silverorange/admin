@@ -148,6 +148,9 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 */
 	public function render()
 	{
+		if (!$this->visible)
+			return;
+
 		if ($this->stock_id === null)
 			$this->setFromStock('document', false);
 		else

@@ -20,6 +20,9 @@ class AdminTreeTitleLinkCellRenderer extends AdminTitleLinkCellRenderer
 
 	public function render()
 	{
+		if (!$this->visible)
+			return;
+
 		$this->setStockType();
 		parent::render();
 	}
