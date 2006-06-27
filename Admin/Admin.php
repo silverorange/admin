@@ -31,9 +31,11 @@ class Admin
 	// }}}
 	// {{{ public static function ngettext()
 
-	public static function ngettext($singular_message, $plural_message, $number)
+	public static function ngettext($singular_message,
+		$plural_message, $number)
 	{
-		return dngettext(Admin::GETTEXT_DOMAIN, $singular_message, $plural_message, $number);
+		return dngettext(Admin::GETTEXT_DOMAIN,
+			$singular_message, $plural_message, $number);
 	}
 
 	// }}}

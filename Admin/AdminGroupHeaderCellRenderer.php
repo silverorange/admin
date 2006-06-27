@@ -28,7 +28,8 @@ class AdminGroupHeaderCellRenderer extends SwatCellRenderer
 	/**
 	 * Change order link href
 	 *
-	 * When not null, this will produce a link to re-order the items within this group. 
+	 * When not null, this will produce a link to
+	 * re-order the items within this group. 
 	 * @var string
 	 */
 	public $order_link = null;

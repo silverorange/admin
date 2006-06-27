@@ -143,9 +143,11 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	protected function generateMessage(Exception $e)
 	{
 		if ($e instanceof SwatDBException)
-			$msg = new SwatMessage(Admin::_('A database error has occured.'), SwatMessage::SYSTEM_ERROR);
+			$msg = new SwatMessage(Admin::_('A database error has occured.'),
+				SwatMessage::SYSTEM_ERROR);
 		else
-			$msg = new SwatMessage(Admin::_('An error has occured.'), SwatMessage::SYSTEM_ERROR);
+			$msg = new SwatMessage(Admin::_('An error has occured.'),
+				SwatMessage::SYSTEM_ERROR);
 
 		$this->app->messages->add($msg);	
 	}
@@ -156,9 +158,9 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	/**
 	 * Process data in the database
 	 *
-	 * This method is called to process data after an affirmative confirmation response.
-	 * Sub-classes should implement this method and perform whatever actions
-	 * are necessary process the repsonse.
+	 * This method is called to process data after an affirmative
+	 * confirmation response.  Sub-classes should implement this method and
+	 * perform whatever actions are necessary process the repsonse.
 	 */
 	protected function processDBData()
 	{

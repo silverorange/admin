@@ -98,7 +98,8 @@ abstract class AdminConfirmation extends AdminPage
 	/**
 	 * Switch to a cancel button.
 	 * 
-	 * Transforms the default Yes/No buttons in confirmation.xml into a cancel button.
+	 * Transforms the default Yes/No buttons in
+	 * confirmation.xml into a cancel button.
 	 */
 	protected function switchToCancelButton()
 	{
