@@ -141,8 +141,9 @@ class AdminApplication extends SiteApplication
 			$entry = new AdminImportantNavBarEntry($this->title, '.');
 			$page->layout->navbar->addEntry($entry);
 
-			$page = new SwatNavBarEntry($request->title, 
-				($request->subcomponent == 'Index') ? null : $request->component);
+			$entry = new SwatNavBarEntry($request->title, 
+				($request->subcomponent == 'Index') ?
+				null : $request->component);
 
 			$page->layout->navbar->addEntry($entry);
 		}
