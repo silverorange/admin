@@ -33,7 +33,8 @@ class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
 			$this->alt = Admin::_('Details');
 			$this->image = 'packages/admin/images/admin-generic-document.png';
 		} else {
-			$this->title = sprintf(Swat::ngettext('View Details (%d sub-item)', 'View Details (%d sub-items)', 
+			$this->title = sprintf(Swat::ngettext('View Details (%d sub-item)',
+				'View Details (%d sub-items)',
 				$this->childcount), $this->childcount);
 
 			$this->alt = Admin::_('Details');
