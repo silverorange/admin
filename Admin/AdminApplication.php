@@ -138,12 +138,13 @@ class AdminApplication extends SiteApplication
 		}
 
 		if ($page->layout instanceof AdminLayout) {
-			$page->layout->navbar->addEntry(
-				new AdminImportantNavBarEntry($this->title, '.'));
+			$entry = new AdminImportantNavBarEntry($this->title, '.');
+			$page->layout->navbar->addEntry($entry);
 
-			$page->layout->navbar->addEntry(
-				new SwatNavBarEntry($request->title, 
-				($request->subcomponent == 'Index') ? null : $request->component));
+			$page = new SwatNavBarEntry($request->title, 
+				($request->subcomponent == 'Index') ? null : $request->component);
+
+			$page->layout->navbar->addEntry($entry);
 		}
 
 		return $page;
