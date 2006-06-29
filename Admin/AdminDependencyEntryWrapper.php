@@ -20,3 +20,5 @@ class AdminDependencyEntryWrapper extends SwatDBRecordsetWrapper
 
 	// }}}
 }
+
+?>

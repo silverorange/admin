@@ -28,3 +28,5 @@ class AdminException extends SwatException
 
 	// }}}
 }
+
+?>
