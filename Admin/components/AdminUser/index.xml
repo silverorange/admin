@@ -44,7 +44,7 @@
 					<object class="SwatDateCellRenderer">
 						<property name="date" type="data">last_login</property>
 					</object>
-					<object class="AdminUsersHistoryCellRenderer">
+					<object class="AdminUserHistoryCellRenderer">
 						<property name="title" translatable="yes">history</property>
 						<property name="user" type="data">id</property>
 						<property name="date" type="data">last_login</property>
