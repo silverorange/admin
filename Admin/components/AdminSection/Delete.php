@@ -64,7 +64,7 @@ class AdminSectionDelete extends AdminDBDelete
 		$dep_subcomponents->summaries = AdminSummaryDependency::querySummaries(
 			$this->app->db, 'AdminSubComponent', 'integer:id', 
 			'integer:component', 
-			'component in (select id from admincomponents where section in ('.
+			'component in (select id from AdminComponent where section in ('.
 			$item_list.'))', AdminDependency::DELETE);
 
 		$dep_components->addDependency($dep_subcomponents);
