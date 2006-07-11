@@ -9,7 +9,7 @@ require_once 'Swat/SwatHtmlTag.php';
  * @package Admin
  * @copyright silverorange 2005
  */
-class AdminUsersHistoryCellRenderer extends SwatCellRenderer
+class AdminUserHistoryCellRenderer extends SwatCellRenderer
 {
 	// {{{ public properties
 
@@ -26,7 +26,7 @@ class AdminUsersHistoryCellRenderer extends SwatCellRenderer
 			echo ' (';
 			$anchor = new SwatHtmlTag('a');
 			$anchor->setContent($this->title);
-			$anchor->href = sprintf('AdminUsers/Details&id=%s', $this->user);
+			$anchor->href = sprintf('AdminUser/Details&id=%s', $this->user);
 			$anchor->display();
 			echo ')';
 		}
