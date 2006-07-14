@@ -45,7 +45,12 @@ class AdminApplication extends SiteApplication
 	public $front_source = 'AdminSite/Front';
 
 	/**
-	 * Default locale.
+	 * Default locale
+	 *
+	 * This locale is used for translations, collation and locale-specific
+	 * formatting. The locale is a five character identifier composed of a
+	 * language code (ISO 639) an underscore and a country code (ISO 3166). For
+	 * example, use 'en_CA' for Canadian English.
 	 *
 	 * @var string the locale to use by default (xx_XX).
 	 */
