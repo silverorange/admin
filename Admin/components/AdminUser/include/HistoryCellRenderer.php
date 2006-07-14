@@ -6,8 +6,8 @@ require_once 'Swat/SwatHtmlTag.php';
 /**
  * Custom cell renderer for the history link on AdminUsers index page
  *
- * @package Admin
- * @copyright silverorange 2005
+ * @package   Admin
+ * @copyright 2005 silverorange
  */
 class AdminUserHistoryCellRenderer extends SwatCellRenderer
 {
