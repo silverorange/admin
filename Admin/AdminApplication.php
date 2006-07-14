@@ -68,9 +68,11 @@ class AdminApplication extends SiteApplication
 	 * format. For example, if this application is based in Halifax, Canada,
 	 * use 'America/Halifax' as the time zone.
 	 *
-	 * @var string
+	 * By default, the time zone is 'UTC'.
+	 *
+	 * @var Date_TimeZone 
 	 */
-	public $default_time_zone = 'Europe/London';
+	public $default_time_zone = null;
 
 	/**
 	 * Class to use for the menu.
@@ -86,6 +88,9 @@ class AdminApplication extends SiteApplication
 	{
 		parent::__construct($id);
 
+		$this->default_time_zone = new Date_TimeZone('UTC');
+
+		// TODO: default_locale is not set at this point
 		if ($this->default_locale !== null)
 			setlocale(LC_ALL, $this->default_locale);
 
