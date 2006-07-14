@@ -14,7 +14,7 @@ require_once 'Admin/exceptions/AdminUserException.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
 
 /**
- * Web application class for an administrator
+ * Web application class for an administration application
  *
  * @package   Admin
  * @copyright 2004-2006 silverorange
