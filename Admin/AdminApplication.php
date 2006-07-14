@@ -72,16 +72,6 @@ class AdminApplication extends SiteApplication
 	}
 
 	// }}}
-	// {{{ protected function initModules()
-
-	protected function initModules()
-	{
-		parent::initModules();
-		// set up convenience references
-		$this->db = $this->database->getConnection();
-	}
-
-	// }}}
 	// {{{ public function replacePage()
 
 	/**
@@ -166,6 +156,16 @@ class AdminApplication extends SiteApplication
 			'session'  => 'AdminSessionModule',
 			'messages' => 'AdminMessagesModule',
 			'database' => 'SiteDatabaseModule');
+	}
+
+	// }}}
+	// {{{ protected function initModules()
+
+	protected function initModules()
+	{
+		parent::initModules();
+		// set up convenience references
+		$this->db = $this->database->getConnection();
 	}
 
 	// }}}
