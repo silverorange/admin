@@ -52,9 +52,25 @@ class AdminApplication extends SiteApplication
 	 * language code (ISO 639) an underscore and a country code (ISO 3166). For
 	 * example, use 'en_CA' for Canadian English.
 	 *
-	 * @var string the locale to use by default (xx_XX).
+	 * @var string
 	 */
 	public $default_locale = null;
+
+	/**
+	 * Default time zone
+	 *
+	 * This time zone is used to display dates that have no time zone
+	 * information. For example, the login history times are displayed in this
+	 * time zone.
+	 *
+	 * Time zones may be specified in any format accepted by
+	 * PEAR::Date_TimeZone but it is recommended to use the continent/city
+	 * format. For example, if this application is based in Halifax, Canada,
+	 * use 'America/Halifax' as the time zone.
+	 *
+	 * @var string
+	 */
+	public $default_time_zone = 'Europe/London';
 
 	/**
 	 * Class to use for the menu.
