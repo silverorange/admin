@@ -40,15 +40,15 @@ class AdminUserDetails extends AdminIndex
 
 		$id = $this->app->initVar('id');
 
-		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminUser',
-			array('username','name'), 'id' , $id);
+		$user = SwatDB::queryRowFromTable($this->app->db, 'AdminUser',
+			array('username', 'name'), 'id' , $id);
 
-		if ($row === null)
+		if ($user === null)
 			throw new AdminNotFoundException(
 				sprintf(Admin::_("User with id '%s' not found."), $id));
 
 		$frame = $this->ui->getWidget('index_frame');
-		$frame->subtitle = $row->name;
+		$frame->subtitle = $user->name;
 
 		// set default time zone
 		$date_column =
