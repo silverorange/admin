@@ -1,5 +1,7 @@
 <?php
 
+
+require_once 'Date/TimeZone.php';
 require_once 'Site/SiteApplication.php';
 require_once 'Site/SiteDatabaseModule.php';
 require_once 'MDB2.php';
@@ -63,14 +65,14 @@ class AdminApplication extends SiteApplication
 	 * information. For example, the login history times are displayed in this
 	 * time zone.
 	 *
-	 * Time zones may be specified in any format accepted by
-	 * PEAR::Date_TimeZone but it is recommended to use the continent/city
-	 * format. For example, if this application is based in Halifax, Canada,
-	 * use 'America/Halifax' as the time zone.
+	 * Time zones are specified as {@link Date_TimeZone} objects and it is
+	 * recommended to use the continent/city time zone format. For example,
+	 * if this application is based in Halifax, Canada, use 'America/Halifax'
+	 * as the time zone.
 	 *
-	 * By default, the time zone is 'UTC'.
+	 * If unspecified, the default time zone is set to 'UTC'.
 	 *
-	 * @var Date_TimeZone 
+	 * @var Date_TimeZone
 	 */
 	public $default_time_zone = null;
 
