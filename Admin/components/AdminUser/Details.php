@@ -45,7 +45,7 @@ class AdminUserDetails extends AdminIndex
 
 		if ($user === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("User with id '%s' not found."), $id));
+				sprintf(Admin::_('User with id “%s” not found.'), $id));
 
 		$frame = $this->ui->getWidget('index_frame');
 		$frame->subtitle = $user->name;
