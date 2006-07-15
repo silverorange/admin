@@ -39,7 +39,7 @@
 						<property name="value" type="data">enabled</property>
 					</object>
 				</object>
-				<object class="AdminTableViewOrderableColumn" id="lastlogin">
+				<object class="AdminTableViewOrderableColumn" id="last_login">
 					<property name="title" translatable="yes">Last Login</property>
 					<object class="SwatDateCellRenderer">
 						<property name="date" type="data">last_login</property>
