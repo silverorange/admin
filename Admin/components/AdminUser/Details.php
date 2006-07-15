@@ -49,6 +49,13 @@ class AdminUserDetails extends AdminIndex
 
 		$frame = $this->ui->getWidget('index_frame');
 		$frame->subtitle = $row->name;
+
+		// set default time zone
+		$date_column =
+			$this->ui->getWidget('index_view')->getColumn('login_date');
+
+		$date_renderer = $date_column->getRendererByPosition();
+		$date_renderer->display_time_zone = $this->app->default_time_zone;
 	}
 
 	// }}}
