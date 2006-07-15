@@ -48,7 +48,6 @@ class AdminUserLoginHistory extends AdminIndex
 	// }}}
 
 	// build phase
-
 	// {{{ protected function buildInternal()
 
 	protected function buildInternal()
