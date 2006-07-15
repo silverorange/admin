@@ -2,7 +2,7 @@
 <!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
 <swatml>
 	<widget class="SwatFrame" id="index_frame">
-		<property name="title" translatable="yes">Login History: </property>
+		<property name="title" translatable="yes">Login History</property>
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
 				<object class="AdminTableViewOrderableColumn" id="login_date">
