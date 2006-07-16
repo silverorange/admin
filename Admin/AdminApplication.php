@@ -91,12 +91,18 @@ class AdminApplication extends SiteApplication
 		parent::__construct($id);
 
 		$this->default_time_zone = new Date_TimeZone('UTC');
+		$this->exception_page_source = 'AdminSite/Exception';
+	}
 
-		// TODO: default_locale is not set at this point
+	// }}}
+	// {{{ public function run()
+
+	public function run()
+	{
 		if ($this->default_locale !== null)
 			setlocale(LC_ALL, $this->default_locale);
 
-		$this->exception_page_source = 'AdminSite/Exception';
+		parent::run();
 	}
 
 	// }}}
