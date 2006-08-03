@@ -103,24 +103,6 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	}
 
 	// }}}
-	// {{{ public function getTdAttributes()
-
-	/**
-	 * Gets TD-tag attributes
-	 *
-	 * Sub-classes can redefine this to set attributes on the TD tag.
-	 *
-	 * The returned array is of the form 'attribute' => value.
-	 *
-	 * @return array an array of attributes to apply to the TD tag of the
-	 *                column that contains this cell renderer.
-	 */
-	public function getTdAttributes()
-	{
-		return array('class' => 'admin-title-link-cell-renderer');
-	}
-
-	// }}}
 	// {{{ public function getThAttributes()
 
 	/**
@@ -183,6 +165,22 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 			$contents_span->display();
 			$span_tag->close();
 		}
+	}
+
+	// }}}
+	// {{{ protected function getCSSClassNames()
+
+	/**
+	 * Gets additional CSS classes for this cell renderer's TD tag
+	 *
+	 * @return array an array of CSS class names to apply to the TD tag of the
+	 *                column that contains this cell renderer.
+	 */
+	protected function getCSSClassNames()
+	{
+		$classes = parent::getCSSClassNames();
+		array_unshift($classes, 'admin-title-link-cell-renderer');
+		return $classes;
 	}
 
 	// }}}
