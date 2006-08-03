@@ -1,20 +1,27 @@
 <?php
 
 require_once 'Swat/SwatImageLinkCellRenderer.php';
+require_once 'Swat/SwatString.php';
 require_once 'Admin/Admin.php';
 
 /**
- * Tree Details Control
+ * Cell renderer for renderering tree details links
  *
- * Convenience class for a tree details button
+ * This cell renderer also displays a could of children in the details
+ * link title attribute.
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2006 silverorange
  */
 class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
 {
 	// {{{ public properties
 
+	/**
+	 * The number of children the item this renderer is rendering for has
+	 *
+	 * @var integer
+	 */
 	public $childcount = 0;
 
 	// }}}
@@ -25,7 +32,7 @@ class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
 		if (!$this->visible)
 			return;
 
-		$this->width  = 22;
+		$this->width = 22;
 		$this->height = 22;
 
 		if ($this->childcount == 0) {
@@ -33,14 +40,16 @@ class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
 			$this->alt = Admin::_('Details');
 			$this->image = 'packages/admin/images/admin-generic-document.png';
 		} else {
-			$this->title = sprintf(Swat::ngettext('View Details (%d sub-item)',
-				'View Details (%d sub-items)', $this->childcount),
-				$this->childcount);
+			$this->title = sprintf(Admin::ngettext(
+				'View Details (%s sub-item)',
+				'View Details (%s sub-items)', $this->childcount),
+				SwatString::numberFormat($this->childcount));
 
 			$this->alt = Admin::_('Details');
-			$this->image = 'packages/admin/images/admin-document-with-contents.png';
+			$this->image =
+				'packages/admin/images/admin-document-with-contents.png';
 		}
-	
+
 		parent::render();
 	}
 
