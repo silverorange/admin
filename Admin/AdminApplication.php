@@ -4,6 +4,7 @@
 require_once 'Date/TimeZone.php';
 require_once 'Site/SiteApplication.php';
 require_once 'Site/SiteDatabaseModule.php';
+require_once 'Site/SiteConfigModule.php';
 require_once 'MDB2.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/Admin.php';
@@ -189,7 +190,9 @@ class AdminApplication extends SiteApplication
 		return array(
 			'session'  => 'AdminSessionModule',
 			'messages' => 'AdminMessagesModule',
-			'database' => 'SiteDatabaseModule');
+			'database' => 'SiteDatabaseModule',
+			'config'   => 'SiteConfigModule',
+		);
 	}
 
 	// }}}
