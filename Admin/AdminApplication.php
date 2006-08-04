@@ -131,6 +131,8 @@ class AdminApplication extends SiteApplication
 		if ($source === 'index.html')
 			$source = $this->front_source;
 
+		$this->checkSecure($source);
+
 		$request = $this->getRequest($source);
 		
 		if ($request === null)
@@ -203,6 +205,20 @@ class AdminApplication extends SiteApplication
 		parent::initModules();
 		// set up convenience references
 		$this->db = $this->database->getConnection();
+	}
+
+	// }}}
+	// {{{ protected function getSecureSourceList()
+
+	/**
+	 * @see SiteApplication::getSecureSourceList()
+	 */
+	protected function getSecureSourceList()
+	{
+		$list = parent::getSecureSourceList();
+		$list[] = '.*'; // all sources
+
+		return $list;
 	}
 
 	// }}}
