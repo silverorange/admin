@@ -51,7 +51,8 @@ class AdminNote extends SwatContentBlock
 			return;
 
 		$div = new SwatHtmlTag('div');
-		$div->class = 'admin-note';
+		$div->id = $this->id;
+		$div->class = $this->getCSSClassString();
 		$div->open();
 
 		$header_tag = new SwatHtmlTag('h3');
@@ -67,6 +68,21 @@ class AdminNote extends SwatContentBlock
 		}
 
 		$div->close();
+	}
+
+	// }}}
+	// {{{ protected function getCSSClassNames()
+
+	/**
+	 * Gets the array of CSS classes that are applied to this note
+	 *
+	 * @return array the array of CSS classes that are applied to this note.
+	 */
+	protected function getCSSClassNames()
+	{
+		$classes = array('admin-note');
+		$classes = array_merge($classes, $this->classes);
+		return $classes;
 	}
 
 	// }}}
