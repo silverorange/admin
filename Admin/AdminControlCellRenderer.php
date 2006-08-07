@@ -72,7 +72,7 @@ class AdminControlCellRenderer extends SwatImageLinkCellRenderer
 			break;
 
 		case 'edit':
-			$title = Admin::_('View Edit');
+			$title = Admin::_('Edit');
 			$alt = Admin::_('Edit');
 			$image = 'packages/admin/images/admin-edit.png';
 			$width = '22';
