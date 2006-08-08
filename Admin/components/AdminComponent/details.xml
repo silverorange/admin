@@ -19,19 +19,19 @@
 		<widget class="SwatDetailsView" id="component_details">
 			<object class="SwatDetailsViewVerticalField">
 				<property name="title">Description</property>
-				<object class="AdminNullTextCellRenderer">
+				<object class="SwatNullTextCellRenderer">
 					<property name="text" type="data">description</property>
 				</object>
 			</object>
 			<object class="SwatDetailsViewField">
 				<property name="title">Short Name</property>
-				<object class="AdminNullTextCellRenderer">
+				<object class="SwatNullTextCellRenderer">
 					<property name="text" type="data">shortname</property>
 				</object>
 			</object>
 			<object class="SwatDetailsViewField">
 				<property name="title">Section</property>
-				<object class="AdminNullTextCellRenderer">
+				<object class="SwatNullTextCellRenderer">
 					<property name="text" type="data">section_title</property>
 				</object>
 			</object>
@@ -49,7 +49,7 @@
 			</object>
 			<object class="SwatDetailsViewField">
 				<property name="title">Groups</property>
-				<object class="AdminNullTextCellRenderer">
+				<object class="SwatNullTextCellRenderer">
 					<property name="text" type="data">groups</property>
 					<property name="content_type">text/xml</property>
 				</object>
