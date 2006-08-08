@@ -28,6 +28,23 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	public $stock_id = null;
 
 	// }}}
+	// {{{ protected properties
+
+	/**
+	 * A CSS class set by the stock_id of this title link cell renderer
+	 *
+	 * @var string
+	 */
+	protected $stock_class = null;
+
+	/**
+	 * The last stock_id used in a render call
+	 *
+	 * @var string
+	 */
+	protected $last_stock_id = null;
+
+	// }}}
 	// {{{ public function __construct()
 
 	/**
@@ -63,6 +80,11 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 */
 	public function setFromStock($stock_id, $overwrite_properties = true)
 	{
+		if ($stock_id === $this->last_stock_id)
+			return;
+
+		$class = null;
+
 		switch ($stock_id) {
 		case 'document':
 			$class = 'admin-title-link-cell-renderer-document';
@@ -98,8 +120,8 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 				0, $stock_id);
 		}
 
-		if ($overwrite_properties || ($this->class === null))
-			$this->class = $class;
+		$this->stock_class = $class;
+		$this->last_stock_id = $stock_id;
 	}
 
 	// }}}
@@ -121,6 +143,22 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	}
 
 	// }}}
+	// {{{ public function init()
+
+	/**
+	 * Initializes this admin title link cell renderer
+	 */
+	public function init()
+	{
+		parent::init();
+
+		if ($this->stock_id === null)
+			$this->setFromStock('document', false);
+		else
+			$this->setFromStock($this->stock_id, false);
+	}
+
+	// }}}
 	// {{{ public function render()
 
 	/**
@@ -133,9 +171,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		if (!$this->visible)
 			return;
 
-		if ($this->stock_id === null)
-			$this->setFromStock('document', false);
-		else
+		if ($this->stock_id !== null)
 			$this->setFromStock($this->stock_id, false);
 
 		$contents_span = new SwatHtmlTag('span');
@@ -145,8 +181,8 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		if ($this->sensitive && ($this->link !== null)) {
 			$anchor = new SwatHtmlTag('a');
 			$anchor->href = $this->getLink();
-			if ($this->class !== null)
-				$anchor->class = $this->class.' ';
+			if ($this->stock_class !== null)
+				$anchor->class = $this->stock_class.' ';
 
 			$anchor->class.= 'admin-title-link-cell-renderer';
 			$anchor->title = $this->getTitle();
@@ -158,8 +194,8 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 			$span_tag = new SwatHtmlTag('span');
 			$span_tag->class = 'swat-link-cell-renderer-insensitive';
 			$span_tag->title = $this->getTitle();
-			if ($this->class !== null)
-				$span_tag->class.= ' '.$this->class;
+			if ($this->stock_class !== null)
+				$span_tag->class.= ' '.$this->stock_class;
 
 			$span_tag->open();
 			$contents_span->display();
@@ -168,7 +204,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	}
 
 	// }}}
-	// {{{ protected function getCSSClassNames()
+	// {{{ public function getBaseCSSClassNames()
 
 	/**
 	 * Gets additional CSS classes for this cell renderer's TD tag
@@ -176,10 +212,13 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 * @return array an array of CSS class names to apply to the TD tag of the
 	 *                column that contains this cell renderer.
 	 */
-	protected function getCSSClassNames()
+	public function getBaseCSSClassNames()
 	{
-		$classes = parent::getCSSClassNames();
-		array_unshift($classes, 'admin-title-link-cell-renderer');
+		$classes = array('admin-title-link-cell-renderer');
+
+		if ($this->stock_class !== null)
+			$classes[] = $this->stock_class;
+
 		return $classes;
 	}
 
