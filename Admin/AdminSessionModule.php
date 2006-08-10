@@ -84,7 +84,7 @@ class AdminSessionModule extends SiteSessionModule
 	 */
 	public function logout()
 	{
-		$_SESSION = array();
+		$this->clear();
 		$this->user_id = 0;
 	}
 
