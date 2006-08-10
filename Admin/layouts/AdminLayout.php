@@ -60,6 +60,9 @@ class AdminLayout extends SiteLayout
 		$this->initLogoutForm();
 		$this->initMenu();
 
+		$this->addHtmlHeadEntry(new SwatStyleSheetHtmlHeadEntry(
+			'packages/admin/styles/admin.css'));
+
 		$this->addHtmlHeadEntrySet($this->logout_form->getHtmlHeadEntrySet());
 		$this->addHtmlHeadEntrySet($this->menu->getHtmlHeadEntrySet());
 	}
