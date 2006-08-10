@@ -5,11 +5,11 @@ require_once 'Date/TimeZone.php';
 require_once 'Site/SiteApplication.php';
 require_once 'Site/SiteDatabaseModule.php';
 require_once 'Site/SiteConfigModule.php';
+require_once 'Site/SiteMessagesModule.php';
 require_once 'MDB2.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/Admin.php';
 require_once 'Admin/AdminSessionModule.php';
-require_once 'Admin/AdminMessagesModule.php';
 require_once 'Admin/AdminPageRequest.php';
 require_once 'Admin/pages/AdminPage.php';
 require_once 'Admin/layouts/AdminLayout.php';
@@ -191,7 +191,7 @@ class AdminApplication extends SiteApplication
 	{
 		return array(
 			'session'  => 'AdminSessionModule',
-			'messages' => 'AdminMessagesModule',
+			'messages' => 'SiteMessagesModule',
 			'database' => 'SiteDatabaseModule',
 			'config'   => 'SiteConfigModule',
 		);
