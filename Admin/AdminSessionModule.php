@@ -77,40 +77,6 @@ class AdminSessionModule extends SiteSessionModule
 	}
 
     // }}}
-    // {{{ protected function insertUserHistory()
-
-	/**
-	 * Inserts login history for a user identifier
-	 *
-	 * @param integer $user_id the user identifier of the user to record
-	 *                          login history for.
-	 */
-	protected function insertUserHistory($user_id)
-	{
-		$login_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ? 
-			$_SERVER['HTTP_USER_AGENT'] : null;
-
-		$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ? 
-			$_SERVER['REMOTE_ADDR'] : null;
-
-		$login_date = new Date();
-		$login_date->toUTC();
-
-		$fields = array('integer:usernum','date:login_date',
-			'text:login_agent', 'text:remote_ip');
-
-		$values = array(
-			'usernum'     => $user_id, 
-			'login_date'  => $login_date->getDate(), 
-			'login_agent' => $login_agent, 
-			'remote_ip'   => $remote_ip,
-		);
-
-		SwatDB::insertRow($this->app->db, 'AdminUserHistory', $fields,
-			$values);
-	}
-
-    // }}}
     // {{{ public function logout()
 
 	/**
@@ -185,6 +151,40 @@ class AdminSessionModule extends SiteSessionModule
 			return null;
 
 		return $this->name;
+	}
+
+    // }}}
+    // {{{ protected function insertUserHistory()
+
+	/**
+	 * Inserts login history for a user identifier
+	 *
+	 * @param integer $user_id the user identifier of the user to record
+	 *                          login history for.
+	 */
+	protected function insertUserHistory($user_id)
+	{
+		$login_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ? 
+			$_SERVER['HTTP_USER_AGENT'] : null;
+
+		$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ? 
+			$_SERVER['REMOTE_ADDR'] : null;
+
+		$login_date = new Date();
+		$login_date->toUTC();
+
+		$fields = array('integer:usernum','date:login_date',
+			'text:login_agent', 'text:remote_ip');
+
+		$values = array(
+			'usernum'     => $user_id, 
+			'login_date'  => $login_date->getDate(), 
+			'login_agent' => $login_agent, 
+			'remote_ip'   => $remote_ip,
+		);
+
+		SwatDB::insertRow($this->app->db, 'AdminUserHistory', $fields,
+			$values);
 	}
 
     // }}}
