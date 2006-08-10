@@ -1,25 +1,22 @@
 <?php
 
-require_once 'Site/SiteApplicationModule.php';
+require_once 'Site/SiteSessionModule.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Date.php';
 
 /**
  * Web application module for sessions
  *
- * @package Admin
+ * @package   Admin
  * @copyright 2005-2006 silverorange
  */
-class AdminSessionModule extends SiteApplicationModule
+class AdminSessionModule extends SiteSessionModule
 {
     // {{{ public function init()
 
 	public function init()
 	{
-		session_cache_limiter('');
-		session_save_path('/so/phpsessions/'.$this->app->id);
-		session_name($this->app->id);
-		session_start();
+		parent::init();
 
 		if (!isset($_SESSION['user_id'])) {
 			$_SESSION['user_id'] = 0;
