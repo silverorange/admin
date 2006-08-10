@@ -18,13 +18,17 @@ class AdminSessionModule extends SiteSessionModule
 	{
 		parent::init();
 
-		if (!isset($_SESSION['user_id'])) {
-			$_SESSION['user_id'] = 0;
-			$_SESSION['name'] = '';
-			$_SESSION['username'] = '';
-			$_SESSION['history'] = array();
-		} elseif ($_SESSION['user_id'] != 0) {	
-			setcookie($this->app->id.'_username', $_SESSION['username'], 
+		// always activate the session for an admin
+		if (!$this->isActive())
+			$this->activate();
+
+		if (!isset($this->user_id)) {
+			$this->user_id =  0;
+			$this->name =     '';
+			$this->username = '';
+			$this->history = array();
+		} elseif ($this->user_id !== 0) {	
+			setcookie($this->app->id.'_username', $this->username, 
 				time() + 86400, '/', '', 0);
 		}
 	}
@@ -33,19 +37,24 @@ class AdminSessionModule extends SiteSessionModule
     // {{{ public function login()
 
 	/**
-	 * Authenticate user
+	 * Logs an admin user into an admin
+	 *
 	 * @param string $username
 	 * @param string $password
-	 * @return bool True if login is successful.
+	 *
+	 * @return boolean true if the admin user was logged in is successfully and
+	 *                  false if the admin user could not log in.
 	 */
 	public function login($username, $password)
 	{
+		$logged_in = false;
+
 		$this->logout(); //make sure user is logged out before logging in
 	
 		$md5_password = md5($password);
 		
-		$sql = "select id, name, username from AdminUser
-				where username = %s and password = %s and enabled = %s";
+		$sql = 'select id, name, username from AdminUser
+			where username = %s and password = %s and enabled = %s';
 
 		$sql = sprintf($sql, 
 			$this->app->db->quote($username, 'text'),
@@ -55,109 +64,127 @@ class AdminSessionModule extends SiteSessionModule
 		$row = SwatDB::queryRow($this->app->db, $sql);
 		
 		if ($row !== null) {
-			$_SESSION['user_id'] = $row->id;
-			$_SESSION['name']   = $row->name;
-			$_SESSION['username']   = $row->username;
+			$this->user_id  = $row->id;
+			$this->name     = $row->name;
+			$this->username = $row->username;
 
 			$this->insertUserHistory($row->id);
 
-			return true;
-		} else {
-			return false;
+			$logged_in = true;
 		}
+
+		return $logged_in;
 	}
 
     // }}}
-    // {{{ private function insertUserHistory()
+    // {{{ protected function insertUserHistory()
 
-	private function insertUserHistory($userid)
+	/**
+	 * Inserts login history for a user identifier
+	 *
+	 * @param integer $user_id the user identifier of the user to record
+	 *                          login history for.
+	 */
+	protected function insertUserHistory($user_id)
 	{
 		$login_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ? 
 			$_SERVER['HTTP_USER_AGENT'] : null;
+
 		$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ? 
 			$_SERVER['REMOTE_ADDR'] : null;
+
 		$login_date = new Date();
 		$login_date->toUTC();
 
-		$fields = array('integer:usernum','date:login_date', 'login_agent', 
-			'remote_ip');
-		$values = array('usernum' => $userid, 
-			'login_date' => $login_date->getDate(), 
+		$fields = array('integer:usernum','date:login_date',
+			'text:login_agent', 'text:remote_ip');
+
+		$values = array(
+			'usernum'     => $user_id, 
+			'login_date'  => $login_date->getDate(), 
 			'login_agent' => $login_agent, 
-			'remote_ip' => $remote_ip);
-		SwatDB::insertRow($this->app->db, 'AdminUserHistory', $fields, $values);
+			'remote_ip'   => $remote_ip,
+		);
+
+		SwatDB::insertRow($this->app->db, 'AdminUserHistory', $fields,
+			$values);
 	}
 
     // }}}
     // {{{ public function logout()
 
 	/**
-	 * Set the user as logged-out 
+	 * Logs the current admin user out of an admin
 	 */
 	public function logout()
 	{
 		$_SESSION = array();
-		$_SESSION['user_id'] = 0;
+		$this->user_id = 0;
 	}
 
     // }}}
     // {{{ public function isLoggedIn()
 
 	/**
-	 * Check the user's logged-in status
-	 * @return bool True if user is logged in. 
+	 * Whether or not an admin user is logged in
+	 *
+	 * @return boolean true if an admin user is logged in and false if an
+	 *                  admin user is not logged in.
 	 */
 	public function isLoggedIn()
 	{
-		if (isset($_SESSION['user_id']))
-			return ($_SESSION['user_id'] != 0);
-
-		return false;
+		return (isset($this->user_id) && $this->user_id !== 0);
 	}
 
     // }}}
     // {{{ public function getUserID()
 
 	/**
-	 * Retrieve the current user ID
-	 * @return integer current user ID, or null if not logged in.
+	 * Gets the current admin user's user identifier 
+	 *
+	 * @return string the current admin user's user identifier, or null if an
+	 *                 admin user is not logged in.
 	 */
 	public function getUserID()
 	{
 		if (!$this->isLoggedIn())
 			return null;
 
-		return $_SESSION['user_id'];
+		return $this->user_id;
 	}
 
     // }}}
     // {{{ public function getUsername()
 
 	/**
-	 * Retrieve the current user username
-	 * @return varchar current username, or null if not logged in.
+	 * Gets the current admin user's username
+	 *
+	 * @return string the current admin user's username, or null if an admin
+	 *                 user is not logged in.
 	 */
 	public function getUsername()
 	{
 		if (!$this->isLoggedIn())
 			return null;
 
-		return $_SESSION['username'];
+		return $this->username;
 	}
 
     // }}}
     // {{{ public function getName()
 
 	/**
-	 * Retrieve the current user name
-	 * @return varchar current name, or null if not logged in.
+	 * Gets the current admin user's name
+	 *
+	 * @return string the current admin user's name, or null if an admin user
+	 *                 is not logged in.
 	 */
 	public function getName()
 	{
 		if (!$this->isLoggedIn())
 			return null;
 
-		return $_SESSION['name'];
+		return $this->name;
 	}
 
     // }}}
