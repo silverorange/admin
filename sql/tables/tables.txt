@@ -1,6 +1,7 @@
 AdminUser.sql
 AdminGroup.sql
 AdminSection.sql
+../triggers/AdminComponentDeleteTrigger.sql
 AdminComponent.sql
 AdminSubComponent.sql
 AdminUserHistory.sql

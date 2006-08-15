@@ -1,4 +1,3 @@
-AdminComponentDeleteTrigger.sql
 AdminSectionDeleteTrigger.sql
 AdminGroupDeleteTrigger.sql
 AdminUserHistoryInsertTrigger.sql
