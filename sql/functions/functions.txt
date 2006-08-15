@@ -1,0 +1,2 @@
+getAdminMenu.sql
+getAdminPage.sql
