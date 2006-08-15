@@ -1,0 +1,8 @@
+AdminUser.sql
+AdminGroup.sql
+AdminSection.sql
+AdminComponent.sql
+AdminSubComponent.sql
+AdminUserHistory.sql
+AdminUserAdminGroupBinding.sql
+AdminComponentAdminGroupBinding.sql
