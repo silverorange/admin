@@ -10,5 +10,5 @@ CREATE OR REPLACE FUNCTION updateAdminUserHistory() RETURNS trigger AS '
 ' LANGUAGE 'plpgsql';
 
 
-CREATE TRIGGER AdminUserHistoryUpdateTrigger AFTER INSERT ON AdminUserHistory
+CREATE TRIGGER AdminUserHistoryInsertTrigger AFTER INSERT ON AdminUserHistory
     FOR EACH ROW EXECUTE PROCEDURE updateAdminUserHistory();
