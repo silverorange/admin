@@ -1,4 +1,0 @@
-AdminSectionDeleteTrigger.sql
-AdminGroupDeleteTrigger.sql
-AdminUserHistoryInsertTrigger.sql
-AdminUserDeleteTrigger.sql
