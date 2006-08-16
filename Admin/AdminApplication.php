@@ -118,9 +118,9 @@ class AdminApplication extends SiteApplication
 	 */
 	public function replacePage($source)
 	{
-		parent::replacePage($source);
 		$_GET = array();
 		$_POST = array();
+		parent::replacePage($source);
 	}
 
 	// }}}
