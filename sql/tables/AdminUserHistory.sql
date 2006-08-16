@@ -1,7 +1,8 @@
 create table AdminUserHistory (
 	id serial,
 	usernum integer not null
-		constraint fk_adminuserhistory_usernum references AdminUser(id),
+		constraint AdminUserHistory_usernum references AdminUser(id)
+		on delete cascade,
 	login_date timestamp,
 	login_agent varchar(255),
 	remote_ip varchar(15),

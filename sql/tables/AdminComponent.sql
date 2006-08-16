@@ -4,7 +4,9 @@ CREATE TABLE AdminComponent (
     title character varying(255),
     description text,
     displayorder integer DEFAULT 0,
-    section integer NOT NULL references AdminSection(id),
+    section integer NOT NULL
+		constraint AdminComponent_section references AdminSection(id)
+		on delete cascade,
     enabled boolean DEFAULT true NOT NULL,
     "show" boolean DEFAULT true NOT NULL,
 	primary key(id)
@@ -25,9 +27,3 @@ INSERT INTO AdminComponent (id, shortname, title, description, displayorder, sec
 	VALUES (6, 'Front', 'Front Page', NULL, 0, 1, true, false);
 
 SELECT setval('admincomponent_id_seq', max(id)) FROM AdminComponent;
-
-CREATE TRIGGER tr_delete
-    BEFORE DELETE ON AdminComponent
-    FOR EACH ROW
-    EXECUTE PROCEDURE AdminComponentDeleteTrigger();
-

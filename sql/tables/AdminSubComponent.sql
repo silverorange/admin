@@ -1,6 +1,8 @@
 create table AdminSubComponent (
 	id serial not null,
-	component integer not null constraint fk_adminsubcomponent_component references AdminComponent(id),
+	component integer not null
+		constraint AdminSubcomponent_component references AdminComponent(id)
+		on delete cascade,
 	title varchar(255),
 	shortname varchar(50),
 	show boolean default false not null,
