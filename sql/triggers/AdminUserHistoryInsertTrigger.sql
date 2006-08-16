@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION AdminUserHistoryInsertTrigger () RETURNS trigger AS ' 
+CREATE OR REPLACE FUNCTION updateAdminUserHistory() RETURNS trigger AS ' 
     BEGIN
        
 		delete from AdminUserHistory where usernum = NEW.usernum
@@ -10,5 +10,5 @@ CREATE OR REPLACE FUNCTION AdminUserHistoryInsertTrigger () RETURNS trigger AS '
 ' LANGUAGE 'plpgsql';
 
 
-CREATE TRIGGER tr_insert AFTER INSERT ON AdminUserHistory
-    FOR EACH ROW EXECUTE PROCEDURE AdminUserHistoryInsertTrigger();
+CREATE TRIGGER AdminUserHistoryUpdateTrigger AFTER INSERT ON AdminUserHistory
+    FOR EACH ROW EXECUTE PROCEDURE updateAdminUserHistory();
