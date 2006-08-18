@@ -1,9 +1,9 @@
 <?php
 
-require_once('Admin/pages/AdminConfirmation.php');
-require_once('SwatDB/SwatDB.php');
-require_once('SwatDB/SwatDBTransaction.php');
-require_once('Admin/AdminDependency.php');
+require_once 'Admin/pages/AdminConfirmation.php';
+require_once 'SwatDB/SwatDB.php';
+require_once 'SwatDB/SwatDBTransaction.php';
+require_once 'Admin/AdminDependency.php';
 
 /**
  * Generic admin database confirmation page
