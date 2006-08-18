@@ -8,8 +8,11 @@ require_once 'Admin/Admin.php';
  *
  * Convenience class for a Details button
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2006 silverorange
+ *
+ * @deprecated Use {@link AdminTitleLinkCellRenderer} or one of its subclasses
+ *              instead.
  */
 class AdminControlCellRenderer extends SwatImageLinkCellRenderer
 {
