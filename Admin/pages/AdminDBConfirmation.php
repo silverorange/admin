@@ -2,6 +2,7 @@
 
 require_once('Admin/pages/AdminConfirmation.php');
 require_once('SwatDB/SwatDB.php');
+require_once('SwatDB/SwatDBTransaction.php');
 require_once('Admin/AdminDependency.php');
 
 /**
@@ -121,12 +122,12 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 
 		if ($form->button->id == 'yes_button') {
 			try {
-				$this->app->db->beginTransaction();
+				$transaction = new SwatDBTransaction($this->app->db);
 				$this->processDBData();
-				$this->app->db->commit();
+				$transaction->commit();
 
 			} catch (SwatDBException $e) {
-				$this->app->db->rollback();
+				$transaction->rollback();
 				$this->generateMessage($e);
 				$e->process();
 
