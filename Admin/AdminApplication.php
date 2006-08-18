@@ -60,24 +60,6 @@ class AdminApplication extends SiteApplication
 	public $default_locale = null;
 
 	/**
-	 * Default time zone
-	 *
-	 * This time zone is used to display dates that have no time zone
-	 * information. For example, the login history times are displayed in this
-	 * time zone.
-	 *
-	 * Time zones are specified as {@link Date_TimeZone} objects and it is
-	 * recommended to use the continent/city time zone format. For example,
-	 * if this application is based in Halifax, Canada, use 'America/Halifax'
-	 * as the time zone.
-	 *
-	 * If unspecified, the default time zone is set to 'UTC'.
-	 *
-	 * @var Date_TimeZone
-	 */
-	public $default_time_zone = null;
-
-	/**
 	 * Class to use for the menu.
 	 *
 	 * @var string the menu class name.
@@ -91,7 +73,6 @@ class AdminApplication extends SiteApplication
 	{
 		parent::__construct($id);
 
-		$this->default_time_zone = new Date_TimeZone('UTC');
 		$this->exception_page_source = 'AdminSite/Exception';
 	}
 
