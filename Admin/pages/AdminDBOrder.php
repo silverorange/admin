@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Admin/pages/AdminOrder.php';
+require_once 'SwatDB/SwatDBTransaction.php';
 
 /**
  * DB admin ordering page
@@ -18,12 +19,12 @@ abstract class AdminDBOrder extends AdminOrder
 	protected function saveData()
 	{
 		try {
-			$this->app->db->beginTransaction();
+			$transaction = new SwatDBTransaction($this->app->db);
 			parent::saveData();
-			$this->app->db->commit();
+			$transaction->commit();
 
 		} catch (SwatDBException $e) {
-			$this->app->db->rollback();
+			$transaction->rollback();
 
 			$msg = new SwatMessage(
 				Admin::_('A database error has occured. The item was not saved.'),

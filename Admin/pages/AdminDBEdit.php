@@ -2,6 +2,7 @@
 
 require_once 'Admin/pages/AdminEdit.php';
 require_once 'Swat/SwatMessage.php';
+require_once 'SwatDB/SwatDBTransaction.php';
 
 /**
  * Generic admin database edit page
@@ -20,12 +21,12 @@ abstract class AdminDBEdit extends AdminEdit
 	protected function saveData()
 	{
 		try {
-			$this->app->db->beginTransaction();
+			$transaction = new SwatDBTransaction($this->app->db);
 			$this->saveDBData();
-			$this->app->db->commit();
+			$transaction->commit();
 
 		} catch (SwatDBException $e) {
-			$this->app->db->rollback();
+			$transaction->rollback();
 
 			$msg = new SwatMessage(Admin::_(
 				'A database error has occured. The item was not saved.'),
