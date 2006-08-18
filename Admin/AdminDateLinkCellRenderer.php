@@ -60,6 +60,14 @@ class AdminDateLinkCellRenderer extends AdminTitleLinkCellRenderer
 	}
 
 	// }}}
+	// {{{ protected function getTitle()
+
+	protected function getTitle()
+	{
+		return parent::getText();
+	}
+
+	// }}}
 }
 
 ?>
