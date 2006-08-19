@@ -120,7 +120,7 @@ class AdminComponentDetails extends AdminIndex
 		$component_details->data = $row;
 
 		$frame = $this->ui->getWidget('details_frame');
-		$frame->title = Admin::_('Component: ');
+		$frame->title = Admin::_('Component');
 		$frame->subtitle = $row->title;
 	}
 
