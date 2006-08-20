@@ -1,7 +1,5 @@
 <?php
 
-
-require_once 'Date/TimeZone.php';
 require_once 'Site/SiteApplication.php';
 require_once 'Site/SiteDatabaseModule.php';
 require_once 'Site/SiteConfigModule.php';
