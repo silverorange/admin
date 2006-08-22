@@ -4,17 +4,14 @@ CREATE TYPE type_admin_page AS (
 	section_title varchar(255)
 );
 
-CREATE OR REPLACE FUNCTION getAdminPage(boolean, varchar, integer) RETURNS SETOF type_admin_page AS '
-
+CREATE OR REPLACE FUNCTION getAdminPage(boolean, varchar, integer) RETURNS SETOF type_admin_page AS $$
 	DECLARE
-	param_enabled ALIAS FOR $1;
-	param_shortname ALIAS FOR $2;
-	param_userid ALIAS FOR $3;
-	
-	returned_row type_admin_page%ROWTYPE;
-
+		param_enabled ALIAS FOR $1;
+		param_shortname ALIAS FOR $2;
+		param_userid ALIAS FOR $3;
+		
+		returned_row type_admin_page%ROWTYPE;
 	BEGIN
-
 		FOR returned_row IN
 		SELECT AdminComponent.title as component_title,
 			AdminComponent.shortname, AdminSection.title as section_title
@@ -41,4 +38,4 @@ CREATE OR REPLACE FUNCTION getAdminPage(boolean, varchar, integer) RETURNS SETOF
 
 		RETURN;
 	END;
-' LANGUAGE 'plpgsql';
+$$ LANGUAGE 'plpgsql';

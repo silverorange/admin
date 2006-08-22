@@ -10,7 +10,7 @@
  */
 CREATE TYPE type_article_tree AS (id INTEGER, title VARCHAR(255), levelnum INTEGER);
 
-CREATE OR REPLACE FUNCTION getArticleTree(INTEGER) RETURNS SETOF type_article_tree AS '
+CREATE OR REPLACE FUNCTION getArticleTree(INTEGER) RETURNS SETOF type_article_tree AS $$
 	DECLARE
 		param_current_item ALIAS FOR $1;
 		local_level INTEGER;
@@ -41,7 +41,7 @@ CREATE OR REPLACE FUNCTION getArticleTree(INTEGER) RETURNS SETOF type_article_tr
 							DELETE FROM stack WHERE levelnum = local_level AND item = local_current_item;
 						END IF;
 
-						-- Insert new rows on the stack for the current item''s children.
+						-- Insert new rows on the stack for the current item's children.
 						INSERT INTO stack SELECT id, local_level + 1, parent
 						FROM articles
 						INNER JOIN article_parent ON id = article
@@ -84,4 +84,4 @@ CREATE OR REPLACE FUNCTION getArticleTree(INTEGER) RETURNS SETOF type_article_tr
 
 		RETURN;
 	END;
-' LANGUAGE 'plpgsql';
+$$ LANGUAGE 'plpgsql';

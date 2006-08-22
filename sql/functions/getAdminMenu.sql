@@ -8,12 +8,10 @@ CREATE TYPE type_admin_menu AS (
 	subcomponent_shortname varchar(255)
 );
 
-CREATE OR REPLACE FUNCTION getAdminMenu(integer) RETURNS SETOF type_admin_menu AS '
-
+CREATE OR REPLACE FUNCTION getAdminMenu(integer) RETURNS SETOF type_admin_menu AS $$
 	DECLARE
-	param_userid ALIAS FOR $1;
-	returned_row type_admin_menu%ROWTYPE;
-
+		param_userid ALIAS FOR $1;
+		returned_row type_admin_menu%ROWTYPE;
 	BEGIN
 	
 		FOR returned_row IN
@@ -30,15 +28,15 @@ CREATE OR REPLACE FUNCTION getAdminMenu(integer) RETURNS SETOF type_admin_menu A
 		INNER JOIN AdminSection ON
 			AdminComponent.section = AdminSection.id
 
-		WHERE AdminSection.show = ''1''
+		WHERE AdminSection.show = '1'
 
-		AND AdminComponent.enabled = ''1''
+		AND AdminComponent.enabled = '1'
 		
-		AND AdminComponent.show = ''1''
+		AND AdminComponent.show = '1'
 
 
 		AND (
-			AdminSubComponent.show = ''1''
+			AdminSubComponent.show = '1'
 			OR AdminSubComponent.show is  null
 		)
 				
@@ -60,4 +58,4 @@ CREATE OR REPLACE FUNCTION getAdminMenu(integer) RETURNS SETOF type_admin_menu A
 
 		RETURN;
 	END;
-' LANGUAGE 'plpgsql';
+$$ LANGUAGE 'plpgsql';
