@@ -13,7 +13,6 @@ CREATE OR REPLACE FUNCTION getAdminMenu(integer) RETURNS SETOF type_admin_menu A
 		param_userid ALIAS FOR $1;
 		returned_row type_admin_menu%ROWTYPE;
 	BEGIN
-	
 		FOR returned_row IN
 		SELECT AdminComponent.shortname, AdminComponent.title,
 			AdminComponent.section, AdminSection.title AS sectiontitle,
@@ -28,25 +27,18 @@ CREATE OR REPLACE FUNCTION getAdminMenu(integer) RETURNS SETOF type_admin_menu A
 		INNER JOIN AdminSection ON
 			AdminComponent.section = AdminSection.id
 
-		WHERE AdminSection.show = '1'
-
-		AND AdminComponent.enabled = '1'
-		
-		AND AdminComponent.show = '1'
-
-
-		AND (
-			AdminSubComponent.show = '1'
-			OR AdminSubComponent.show is  null
-		)
-				
-		AND AdminComponent.id IN (
+		WHERE AdminSection.show = true AND
+			AdminComponent.enabled = true AND
+			AdminComponent.show = true AND
+			(AdminSubComponent.show = true OR
+			AdminSubComponent.show is null) AND
+			AdminComponent.id IN (
 			SELECT component
 			FROM AdminComponentAdminGroupBinding
 				INNER JOIN AdminUserAdminGroupBinding ON
-					AdminComponentAdminGroupBinding.groupnum = AdminUserAdminGroupBinding.groupnum
-			WHERE AdminUserAdminGroupBinding.usernum = param_userid
-		)
+					AdminComponentAdminGroupBinding.groupnum =
+						AdminUserAdminGroupBinding.groupnum
+			WHERE AdminUserAdminGroupBinding.usernum = param_userid)
 				
 		ORDER BY AdminSection.displayorder, AdminSection.title,
 			AdminComponent.section, AdminComponent.displayorder,
