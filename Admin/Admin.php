@@ -1,5 +1,8 @@
 <?php
 
+require_once 'Swat/Swat.php';
+require_once 'Site/Site.php';
+
 /**
  * Container for package wide static methods
  *
@@ -9,6 +12,11 @@
 class Admin
 {
 	// {{{ constants
+
+	/**
+	 * The package identifier
+	 */
+	const PACKAGE_ID = 'Admin';
 
 	const GETTEXT_DOMAIN = 'admin';
 
@@ -36,6 +44,19 @@ class Admin
 	{
 		return dngettext(Admin::GETTEXT_DOMAIN,
 			$singular_message, $plural_message, $number);
+	}
+
+	// }}}
+	// {{{ public static function getDependencies()
+
+	/**
+	 * Gets the packages this package depends on
+	 *
+	 * @return array an array of package IDs that this package depends on.
+	 */
+	public static function getDependencies()
+	{
+		return array(Swat::PACKAGE_ID, Site::PACKAGE_ID);
 	}
 
 	// }}}

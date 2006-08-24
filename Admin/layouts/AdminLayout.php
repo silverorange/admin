@@ -59,12 +59,6 @@ class AdminLayout extends SiteLayout
 		
 		$this->initLogoutForm();
 		$this->initMenu();
-
-		$this->addHtmlHeadEntry(new SwatStyleSheetHtmlHeadEntry(
-			'packages/admin/styles/admin.css'));
-
-		$this->addHtmlHeadEntrySet($this->logout_form->getHtmlHeadEntrySet());
-		$this->addHtmlHeadEntrySet($this->menu->getHtmlHeadEntrySet());
 	}
 
 	// }}}
@@ -113,6 +107,12 @@ class AdminLayout extends SiteLayout
 	public function build()
 	{
 		parent::build();
+
+		$this->addHtmlHeadEntry(new SwatStyleSheetHtmlHeadEntry(
+			'packages/admin/styles/admin.css', Admin::PACKAGE_ID));
+
+		$this->addHtmlHeadEntrySet($this->logout_form->getHtmlHeadEntrySet());
+		$this->addHtmlHeadEntrySet($this->menu->getHtmlHeadEntrySet());
 
 		$this->startCapture('navbar');
 		$this->navbar->display();	
