@@ -113,6 +113,34 @@ class AdminLayout extends SiteLayout
 
 		$this->addHtmlHeadEntrySet($this->logout_form->getHtmlHeadEntrySet());
 		$this->addHtmlHeadEntrySet($this->menu->getHtmlHeadEntrySet());
+	}
+
+	// }}}
+	// {{{ protected function buildLogoutForm()
+
+	protected function buildLogoutForm()
+	{
+		$this->logout_form = new SwatForm('logout');
+		$this->logout_form->action = 'AdminSite/Logout';
+
+		$form_field = new SwatFormField('logout_button_container');
+
+		$button = new SwatButton('logout_button');
+		$button->title = Admin::_('Logout');
+
+		$form_field->add($button);
+
+		$this->logout_form->add($form_field);
+	}
+
+	// }}}
+
+	// finalize phase
+	// {{{ public function finalize()
+
+	public function finalize()
+	{
+		parent::finalize();
 
 		$this->startCapture('navbar');
 		$this->navbar->display();	
@@ -173,24 +201,6 @@ class AdminLayout extends SiteLayout
 			$this->data->body_classes[] = 'hide-menu';
 
 		$this->menu->display();
-	}
-
-	// }}}
-	// {{{ protected function buildLogoutForm()
-
-	protected function buildLogoutForm()
-	{
-		$this->logout_form = new SwatForm('logout');
-		$this->logout_form->action = 'AdminSite/Logout';
-
-		$form_field = new SwatFormField('logout_button_container');
-
-		$button = new SwatButton('logout_button');
-		$button->title = Admin::_('Logout');
-
-		$form_field->add($button);
-
-		$this->logout_form->add($form_field);
 	}
 
 	// }}}
