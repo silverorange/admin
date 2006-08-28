@@ -20,8 +20,14 @@ abstract class AdminSearch extends AdminIndex
 	{
 		parent::processInternal();
 
+		$form_found = true;
 		try {
 			$form = $this->ui->getWidget('search_form');
+		} catch (SwatWidgetNotFoundException $e) {
+			$form_found = false;
+		}
+
+		if ($form_found) {
 			$form->process();
 
 			if ($form->isProcessed())
@@ -32,7 +38,6 @@ abstract class AdminSearch extends AdminIndex
 				$frame = $this->ui->getWidget('results_frame');
 				$frame->visible = true;
 			}
-		} catch (SwatWidgetNotFoundException $e) {
 		}
 	}
 
@@ -53,11 +58,16 @@ abstract class AdminSearch extends AdminIndex
 
 	protected function saveState()
 	{
+		$form_found = true;
 		try {
 			$search_form = $this->ui->getWidget('search_form');
+		} catch (SwatWidgetNotFoundException $e) {
+			$form_found = false;
+		}
+
+		if ($form_found) {
 			$search_state = $search_form->getDescendantStates();
 			$_SESSION[$this->source.'_search_state'] = $search_state;
-		} catch (SwatWidgetNotFoundException $e) {
 		}
 	}
 
@@ -76,15 +86,20 @@ abstract class AdminSearch extends AdminIndex
 	{
 		$return = false;
 
+		$form_found = true;
 		try {
 			$search_form = $this->ui->getWidget('search_form');
+		} catch (SwatWidgetNotFoundException $e) {
+			$form_found = false;
+		}
+
+		if ($form_found) {
 			$key = $this->source.'_search_state';
 
 			if ($this->hasState()) {
 				$search_form->setDescendantStates($_SESSION[$key]);
 				$return = true;
 			}
-		} catch (SwatWidgetNotFoundException $e) {
 		}
 
 		return $return;
@@ -133,16 +148,20 @@ abstract class AdminSearch extends AdminIndex
 	 */
 	protected function buildViews()
 	{
+		$form_found = true;
 		try {
 			$results_frame = $this->ui->getWidget('results_frame');
+		} catch (SwatWidgetNotFoundException $e) {
+			$form_found = false;
+		}
 
+		if ($form_found) {
 			// set non-visible results frame views to have empty models
 			if (!$results_frame->visible) {
 				$views = $results_frame->getDescendants('SwatTableView');
 				foreach ($views as $view)
 					$view->model = new SwatTableStore();
 			}
-		} catch (SwatWidgetNotFoundException $e) {
 		}
 
 		// build other views normally
