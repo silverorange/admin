@@ -166,9 +166,14 @@ abstract class AdminEdit extends AdminPage
 
 	protected function buildForm()
 	{
+		$form_found = true;
 		try {
 			$form = $this->ui->getWidget('edit_form');
+		} catch (SwatWidgetNotFoundException $e) {
+			$form_found = false;
+		}
 
+		if ($form_found) {
 			if ($this->id !== null)
 				if (!$form->isProcessed())
 					$this->loadData();
@@ -181,7 +186,6 @@ abstract class AdminEdit extends AdminPage
 				$url = $this->getRefererURL();
 				$form->addHiddenField(self::RELOCATE_URL_FIELD, $url);
 			}
-		} catch (SwatWidgetNotFoundException $e) {
 		}
 	}
 	// }}}
