@@ -34,6 +34,15 @@ class AdminDateLinkCellRenderer extends AdminTitleLinkCellRenderer
 	public $format = SwatDate::DF_DATE_TIME;
 
 	/**
+	 * Time Zone Format
+	 *
+	 * A time zone format class constant from SwatDate.
+	 *
+	 * @var integer
+	 */
+	public $time_zone_format = null;
+
+	/**
 	 * The time zone to render the date in
 	 *
 	 * The time zone may be specified either as a time zone identifier valid
@@ -52,6 +61,7 @@ class AdminDateLinkCellRenderer extends AdminTitleLinkCellRenderer
 		$date_renderer = new SwatDateCellRenderer();
 		$date_renderer->date = $this->date;
 		$date_renderer->format = $this->format;
+		$date_renderer->time_zone_format = $this->time_zone_format;
 		$date_rendeer->display_time_zone = $this->display_time_zone;
 
 		ob_start();
