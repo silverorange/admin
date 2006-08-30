@@ -26,3 +26,8 @@
 .admin-note-title {
 	margin: 0;
 }
+
+.admin-note dd {
+	margin-bottom: 0.5em;
+	margin-left: 1em;
+}
