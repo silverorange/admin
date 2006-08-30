@@ -2,7 +2,7 @@
 
 require_once 'Site/SiteSessionModule.php';
 require_once 'SwatDB/SwatDB.php';
-require_once 'Date.php';
+require_once 'Swat/SwatDate.php';
 
 /**
  * Web application module for sessions
@@ -170,7 +170,7 @@ class AdminSessionModule extends SiteSessionModule
 		$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ? 
 			$_SERVER['REMOTE_ADDR'] : null;
 
-		$login_date = new Date();
+		$login_date = new SwatDate();
 		$login_date->toUTC();
 
 		$fields = array('integer:usernum','date:login_date',
