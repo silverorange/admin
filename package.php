@@ -53,6 +53,8 @@ $package->setPhpDep('5.1.5');
 $package->setPearinstallerDep('1.4.0');
 $package->addPackageDepWithChannel('required', 'Swat', 'pear.silverorange.com', '0.9.1');
 $package->addPackageDepWithChannel('required', 'Site', 'pear.silverorange.com', '0.9.1');
+$package->addPackageDepWithChannel('required', 'MDB2', 'pear.php.net', '2.2.2');
+$package->addPackageDepWithChannel('required', 'XML_RPCAjax', 'pear.silverorange.com', '0.9.1');
 $package->generateContents();
 
 if (isset($_GET['make']) || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
