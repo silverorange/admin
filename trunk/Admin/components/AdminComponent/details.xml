@@ -1,0 +1,118 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
+<swatml>
+	<widget class="SwatMessageDisplay" id="message_display" />
+	<widget class="SwatFrame" id="details_frame">
+
+		<widget class="SwatToolbar" id="details_toolbar">
+			<widget class="SwatToolLink">
+				<property name="title" translatable="yes">Edit Component</property>
+				<property name="link">AdminComponent/Edit?id=%s</property>
+				<property name="stock_id" type="string">edit</property>
+			</widget>
+			<widget class="SwatToolLink">
+				<property name="title" translatable="yes">Delete Component</property>
+				<property name="link">AdminComponent/Delete?id=%s</property>
+				<property name="stock_id" type="string">delete</property>
+			</widget>
+		</widget>
+		<widget class="SwatDetailsView" id="component_details">
+			<object class="SwatDetailsViewVerticalField">
+				<property name="title">Description</property>
+				<object class="SwatNullTextCellRenderer">
+					<property name="text" type="data">description</property>
+				</object>
+			</object>
+			<object class="SwatDetailsViewField">
+				<property name="title">Short Name</property>
+				<object class="SwatNullTextCellRenderer">
+					<property name="text" type="data">shortname</property>
+				</object>
+			</object>
+			<object class="SwatDetailsViewField">
+				<property name="title">Section</property>
+				<object class="SwatNullTextCellRenderer">
+					<property name="text" type="data">section_title</property>
+				</object>
+			</object>
+			<object class="SwatDetailsViewField">
+				<property name="title">Show in Menu?</property>
+				<object class="SwatBooleanCellRenderer">
+					<property name="value" type="data">show</property>
+				</object>
+			</object>
+			<object class="SwatDetailsViewField">
+				<property name="title">Enabled?</property>
+				<object class="SwatBooleanCellRenderer">
+					<property name="value" type="data">enabled</property>
+				</object>
+			</object>
+			<object class="SwatDetailsViewField">
+				<property name="title">Groups</property>
+				<object class="SwatNullTextCellRenderer">
+					<property name="text" type="data">groups</property>
+					<property name="content_type">text/xml</property>
+				</object>
+			</object>
+		</widget>
+
+		<!-- Sub-Components -->
+
+		<widget class="SwatFrame">
+			<property name="title" translatable="yes">Sub-Components</property>
+			<widget class="SwatToolbar" id="sub_components_toolbar">
+				<widget class="SwatToolLink">
+					<property name="title" translatable="yes">Create a New Sub-Component</property>
+					<property name="link">AdminSubComponent/Edit?parent=%s</property>
+					<property name="stock_id" type="string">create</property>
+				</widget>
+				<widget class="SwatToolLink" id="order_tool">
+					<property name="title" translatable="yes">Change Sub-Component Order</property>
+					<property name="link">AdminSubComponent/Order?parent=%s</property>
+					<property name="stock_id" type="string">change-order</property>
+				</widget>
+			</widget>
+			<widget class="SwatForm" id="index_form">
+				<widget class="SwatTableView" id="index_view">
+					<object class="SwatTableViewCheckboxColumn" id="checkbox">
+						<object class="SwatCheckboxCellRenderer" id="items">
+							<property name="value" type="data">id</property>
+						</object>
+					</object>
+					<object class="SwatTableViewColumn">
+						<property name="title" translatable="yes">Title</property>
+						<object class="AdminTitleLinkCellRenderer">
+							<property name="text" type="data" translatable="yes">title</property>
+							<property name="link">AdminSubComponent/Edit?id=%s</property>
+							<property name="link_value" type="data">id</property>
+							<property name="stock_id">edit</property>
+						</object>
+					</object>
+					<object class="SwatTableViewColumn">
+						<property name="title" translatable="yes">Short Name</property>
+						<object class="SwatTextCellRenderer">
+							<property name="text" type="data">shortname</property>
+						</object>
+					</object>
+					<object class="SwatTableViewColumn">
+						<property name="title" translatable="yes">Show in Menu</property>
+						<object class="SwatBooleanCellRenderer">
+							<property name="value" type="data">show</property>
+						</object>
+					</object>
+				</widget>
+				<widget class="SwatActions" id="index_actions">
+					<widget class="SwatActionItem" id="delete">
+						<property name="title" translatable="yes">delete…</property>
+					</widget>
+					<widget class="SwatActionItem" id="show">
+						<property name="title" translatable="yes">show</property>
+					</widget>
+					<widget class="SwatActionItem" id="hide">
+						<property name="title" translatable="yes">hide</property>
+					</widget>
+				</widget>
+			</widget>
+		</widget>
+	</widget>
+</swatml>

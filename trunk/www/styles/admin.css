@@ -1,0 +1,104 @@
+body {
+	font-family: sans-serif;
+	font-size: 13px;
+	background: #f7f5f3;
+	color: #333;
+	margin: 0;
+	padding: 0;
+}
+
+a:link { color: #3F5ACE; }
+a:visited { color: #3F5ACE; }
+a:hover { color: #333; }
+a:active { color: #000; }
+
+img { border: 0; }
+
+
+/* Basic Layout */
+
+#admin-body {
+	position: relative;
+	width: 100%
+}
+
+#admin-body {
+}
+
+#admin-content {
+	padding: 1em 16px 1em 200px;
+}
+
+
+/* Header Styles */
+
+#admin-header {
+	background: #426c9e url(../images/admin-header-background.png) bottom repeat-x;
+	padding: 0.5em 1em;
+	color: #ddd;
+	border-bottom: 1px solid #81aed5;
+}
+
+#admin-header a { color: #fff; }
+#admin-header a:hover { color: #ddd; }
+#admin-header a:active { color: #ccc; }
+
+#admin-header #admin-syslinks {
+	float: right;
+	margin: 0.1em 0 0 2em;
+}
+
+#admin-header h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 120%;
+	color: #fff;
+	display: inline;
+	font-weight: bold;
+}
+
+#admin-navbar {
+}
+
+
+/* Content Styles */
+
+.admin-light {
+	color: #666;
+}
+
+/* Confirmation dialogs */
+
+#confirmation_frame div.admin-dependency {
+	background: url(../../swat/images/tango/48/dialog-question.png) top left no-repeat;
+	padding: 0 0 0 64px;
+
+}
+
+#confirmation_frame h3 {
+	margin-top: 0;
+}
+
+address { font-style: normal; }
+
+#logout {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#logout div.swat-form-field,
+#logout div.swat-form-field-contents {
+	display: inline;
+	margin: 0;
+}
+
+#logout input {
+	margin: 0;
+	padding: 0 0.2em;
+	vertical-align: middle;
+	font-size: 85%;
+	position: relative;
+	top: -2px;
+}
+
