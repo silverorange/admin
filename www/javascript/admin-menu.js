@@ -16,7 +16,7 @@ AdminMenu.prototype.toggle = function()
 		shown = 1;
 	}
 
-	this.client.callProcedure('setShown', [shown], null); 
+	this.client.callProcedure('setShown', null, [shown]);
 }
 
 AdminMenu.prototype.toggleSection = function(id)
@@ -33,5 +33,5 @@ AdminMenu.prototype.toggleSection = function(id)
 		shown = 1;
 	}
 
-	this.client.callProcedure('setSectionShown', [id, shown], null); 
+	this.client.callProcedure('setSectionShown', null, [id, shown]);
 }
