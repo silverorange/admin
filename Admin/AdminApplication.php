@@ -103,9 +103,9 @@ class AdminApplication extends SiteApplication
 	}
 
 	// }}}
-	// {{{ public function resolvePage()
+	// {{{ protected function resolvePage()
 
-	public function resolvePage($source)
+	protected function resolvePage($source)
 	{
 		if ($source === 'index.html')
 			$source = $this->front_source;
@@ -134,7 +134,8 @@ class AdminApplication extends SiteApplication
 					"Class '%s' does not exist in the included file."),
 					$request->component.$request->subcomponent));
 
-		$page = new $classname($this);
+		$layout = $this->resolveLayout($source);
+		$page = new $classname($this, $layout);
 		$page->title = $request->title;
 
 		if ($page instanceof AdminPage) {
