@@ -73,9 +73,9 @@ abstract class AdminPage extends SitePage
 	// }}}
 	// {{{ public function __construct()
 
-	public function __construct(SiteApplication $app)
+	public function __construct(SiteApplication $app, SiteLayout $layout = null)
 	{
-		parent::__construct($app);
+		parent::__construct($app, $layout);
 
 		// see comment above on navbar class var
 		if (isset($this->layout->navbar))
