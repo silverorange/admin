@@ -71,7 +71,8 @@ class AdminUserEdit extends AdminDBEdit
 			$username->addMessage($msg);
 		}
 
-		if ($this->ui->getWidget('confirm_password_field')->hasMessage())
+		if ($this->ui->getWidget('confirm_password_field')->hasMessage() ||
+			$this->ui->getWidget('password')->hasMessage())
 			$this->ui->getWidget('password_disclosure')->open = true;
 	}
 
