@@ -65,7 +65,8 @@ class AdminMenuView extends SwatUIObject
 			$this->id = $id;
 
 		// add html head entries
-		$this->addJavaScript('packages/admin/javascript/admin-menu.js');
+		$this->addJavaScript('packages/admin/javascript/admin-menu.js',
+			Admin::PACKAGE_ID);
 
 		$this->addStyleSheet('packages/admin/styles/admin-menu.css',
 			Admin::PACKAGE_ID);
