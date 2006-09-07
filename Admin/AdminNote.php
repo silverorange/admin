@@ -34,7 +34,8 @@ class AdminNote extends SwatContentBlock
 	public function __construct($id = null)
 	{
 		parent::__construct($id);
-		$this->addStyleSheet('packages/admin/styles/admin-note.css');
+		$this->addStyleSheet('packages/admin/styles/admin-note.css',
+			Admin::PACKAGE_ID);
 	}
 
 	// }}}
