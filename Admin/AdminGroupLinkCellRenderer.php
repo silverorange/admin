@@ -15,7 +15,10 @@ class AdminGroupLinkCellRenderer extends SwatLinkCellRenderer
 	public function __construct()
 	{
 		parent::__construct();
-		$this->addStyleSheet('packages/admin/styles/admin-group-link-cell-renderer.css');
+
+		$this->addStyleSheet('packages/admin/styles/admin-group-link-cell-renderer.css',
+			Admin::PACKAGE_ID);
+
 		$this->class = 'admin-group-link-cell-renderer';
 	}
 
