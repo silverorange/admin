@@ -9,12 +9,14 @@
 				<property name="title" translatable="yes">Title</property>
 				<widget class="SwatEntry" id="title">
 					<property name="required" type="boolean">true</property>
+					<property name="maxlength" type="integer">255</property>
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
 				<property name="title" translatable="yes">Short Name</property>
 				<widget class="AdminUniqueEntry" id="shortname">
 					<property name="required" type="boolean">true</property>
+					<property name="maxlength" type="integer">255</property>
 				</widget>
 			</widget>
 			<widget class="SwatFormField">

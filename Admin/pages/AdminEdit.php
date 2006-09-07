@@ -64,7 +64,7 @@ abstract class AdminEdit extends AdminPage
 	// {{{ protected function validate()
 
 	/**
-	 * Sub-classes should implement this method to preform validation.
+	 * Sub-classes should implement this method to perform validation.
 	 */
 	protected function validate()
 	{
