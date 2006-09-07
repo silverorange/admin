@@ -40,15 +40,20 @@ class AdminUserDetails extends AdminIndex
 
 		$id = $this->app->initVar('id');
 
-		$user = SwatDB::queryRowFromTable($this->app->db, 'AdminUser',
-			array('username', 'name'), 'id' , $id);
+		$username = SwatDB::queryOneFromTable($this->app->db, 'AdminUser',
+			'text:name', 'id', $id);
 
-		if ($user === null)
+		if ($username === null)
 			throw new AdminNotFoundException(
 				sprintf(Admin::_('User with id “%s” not found.'), $id));
 
 		$frame = $this->ui->getWidget('index_frame');
-		$frame->subtitle = $user->name;
+		$frame->subtitle = sprintf($username);
+
+		// rebuild the navbar
+		$this->navbar->popEntry();
+		$this->navbar->createEntry('Login History', 'AdminUser/LoginHistory');
+		$this->navbar->createEntry($username);
 
 		// set default time zone
 		$date_column =
