@@ -177,6 +177,8 @@ abstract class AdminOrder extends AdminPage
 
 		echo '</script>';
 	}
+
+	// }}}
 }
 
 ?>
