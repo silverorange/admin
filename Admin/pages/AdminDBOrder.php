@@ -20,7 +20,7 @@ abstract class AdminDBOrder extends AdminOrder
 	{
 		try {
 			$transaction = new SwatDBTransaction($this->app->db);
-			parent::saveData();
+			$this->saveDBData();
 			$transaction->commit();
 
 		} catch (SwatDBException $e) {
@@ -32,7 +32,6 @@ abstract class AdminDBOrder extends AdminOrder
 
 			$this->app->messages->add($msg);	
 			$e->process();
-			return false;
 
 		} catch (SwatException $e) {
 			$msg = new SwatMessage(
@@ -41,9 +40,15 @@ abstract class AdminDBOrder extends AdminOrder
 
 			$this->app->messages->add($msg);	
 			$e->process();
-			return false;
 		}
-		return true;
+	}
+
+	// }}}
+	// {{{ protected function saveDBData()
+
+	protected function saveDBData()
+	{
+		parent::saveIndexes();
 	}
 
 	// }}}
