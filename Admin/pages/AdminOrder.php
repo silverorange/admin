@@ -45,7 +45,23 @@ abstract class AdminOrder extends AdminPage
 	// }}}
 	// {{{ protected function saveData()
 
+	/**
+	 * Saves ordering information
+	 */
 	protected function saveData()
+	{
+		$this->saveIndexes();
+	}
+
+	// }}}
+	// {{{ protected function saveIndexes()
+
+	/**
+	 * Saves the updated ordering indexes of each option
+	 *
+	 * @see AdminOrder::saveIndex()
+	 */
+	protected function saveIndexes()
 	{
 		$count = 0;
 		$order_widget = $this->ui->getWidget('order');
@@ -65,13 +81,13 @@ abstract class AdminOrder extends AdminPage
 	/**
 	 * Save index
 	 *
-	 * This method is called by {@link AdminOrder::saveData()} to save a single 
-	 * ordering index. Sub-classes should implement this method and perform 
-	 * whatever actions are necessary to store the ordering index. Widgets can
-	 * be accessed through the $ui class variable.
+	 * This method is called by {@link AdminOrder::saveIndexes()} to save a
+	 * single ordering index. Sub-classes should implement this method and
+	 * perform whatever actions are necessary to store the ordering index.
 	 *
-	 * @param integer $id An integer identifier of the data to store.
-	 * @param integer $index The ordering index to store.
+	 * @param mixed $id an integer identifier of the option to which
+	 *                   ordering information is saved.
+	 * @param integer $index the ordering index to store.
 	 */
 	abstract protected function saveIndex($id, $index);
 
@@ -79,7 +95,7 @@ abstract class AdminOrder extends AdminPage
 	// {{{ protected function relocate()
 
 	/**
-	 * Relocate after process
+	 * Relocates after processing is complete
 	 */
 	protected function relocate()
 	{
