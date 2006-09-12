@@ -1,0 +1,4933 @@
+2006-09-10  gauthierm
+
+	* [r10753] admin/trunk/Admin/pages/AdminDBOrder.php:
+	  - make more subclassable with a saveDBData() method similar to
+	  AdminDBEdit
+	  - don't return a boolean since the parent method doesn't return
+	  a boolean
+	* [r10752] admin/trunk/Admin/pages/AdminOrder.php:
+	  - moved saving indexes into its own method
+	  - updated/tidied docs
+	* [r10751] admin/trunk/Admin/pages/AdminOrder.php:
+	  fix folding
+
+2006-09-07  nick
+
+	* [r10660] admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php,
+	  admin/trunk/Admin/pages/AdminOrder.php,
+	  admin/trunk/Admin/pages/WebalizerIndex.php:
+	  Added more package-ids to js and css
+	* [r10656] admin/trunk/Admin/AdminGroupLinkCellRenderer.php,
+	  admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/AdminNote.php,
+	  admin/trunk/Admin/AdminTitleLinkCellRenderer.php:
+	  added package info to css includes
+
+2006-09-07  isaac
+
+	* [r10654] admin/trunk/Admin/components/AdminUser/Edit.php:
+	  keep the disclosure open if the error is on the password entry
+	  too
+	* [r10653] admin/trunk/Admin/components/AdminComponent/edit.xml,
+	  admin/trunk/Admin/components/AdminGroup/edit.xml,
+	  admin/trunk/Admin/components/AdminSection/edit.xml,
+	  admin/trunk/Admin/components/AdminSubComponent/edit.xml,
+	  admin/trunk/Admin/components/AdminUser/Details.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php,
+	  admin/trunk/Admin/components/AdminUser/edit.xml,
+	  admin/trunk/Admin/pages/AdminEdit.php:
+	  - set maxlength on fields where necessary
+	  - updated the navbar on the login history details, and cleaned
+	  up the sql a bit
+	  - made the password disclosure open if there is an error on edit
+	  - fixed a typo in a comment in AdminEdit
+
+2006-09-06  nick
+
+	* [r10647] admin/trunk/Admin/pages/AdminPage.php:
+	  Fix constructor so it will load the layout correctly as per
+	  nathan's changes
+
+2006-09-06  nrf
+
+	* [r10626] admin/trunk/Admin/AdminApplication.php:
+	  Reflect changes to SiteApplication API.
+
+2006-09-06  gauthierm
+
+	* [r10621] admin/trunk/www/javascript/admin-menu.js:
+	  Use booleans where appropriate and specify types in remote
+	  procedure calls.
+
+2006-09-05  gauthierm
+
+	* [r10610] admin/trunk/www/javascript/admin-menu.js:
+	  respect xml-rpc-ajax api changes
+
+2006-09-05  nrf
+
+	* [r10592] admin/trunk/package.php:
+	  prepare for release
+	* [r10531] admin/trunk/package.php:
+	  Prepare for RC1
+
+2006-08-30  nrf
+
+	* [r10477] admin/trunk/Admin/AdminDateLinkCellRenderer.php:
+	  Add $time_zone_format property.
+	* [r10462] admin/trunk/Admin/AdminSessionModule.php:
+	  Use SwatDate
+
+2006-08-30  steven
+
+	* [r10454] admin/trunk/www/styles/admin-note.css:
+	  style up some spacing for definition lists in admin-notes
+
+2006-08-28  gauthierm
+
+	* [r10317] admin/trunk/Admin/pages/AdminSearch.php:
+	  prevent silent death if there is a SwatWidgetNotFoundException
+	  inside a
+	  internal methods.
+	* [r10316] admin/trunk/Admin/pages/AdminEdit.php:
+	  prevent silent death if there is a SwatWidgetNotFoundException
+	  inside a
+	  loadData() method.
+
+2006-08-25  nrf
+
+	* [r10260] admin/trunk/Admin/layouts/AdminLayout.php:
+	  Trival regression. This fixes all the navbars in the admin.
+
+2006-08-24  nrf
+
+	* [r10168] admin/trunk/Admin/Admin.php,
+	  admin/trunk/Admin/layouts/AdminLayout.php:
+	  - Use new package identifying and dependency mechanism.
+
+2006-08-22  gauthierm
+
+	* [r10060] admin/trunk/sql/functions/getAdminMenu.sql:
+	  modernize
+	* [r10059] admin/trunk/sql/functions/getArticleTree.sql:
+	  this function is out of date an not used
+	* [r10058] admin/trunk/sql/functions/getAdminMenu.sql,
+	  admin/trunk/sql/functions/getAdminPage.sql,
+	  admin/trunk/sql/functions/getArticleTree.sql,
+	  admin/trunk/sql/triggers/AdminUserHistoryInsertTrigger.sql:
+	  update for postgresql 8.x
+
+2006-08-20  gauthierm
+
+	* [r9965] admin/trunk/Admin/AdminApplication.php:
+	  - remove excess whitespace
+	  - remove require Date/TimeZone.php as SiteApplication requires
+	  this now.
+
+2006-08-19  gauthierm
+
+	* [r9949] admin/trunk/Admin/components/AdminComponent/Details.php:
+	  SwatFrame automatically formats this correctly
+
+2006-08-18  gauthierm
+
+	* [r9928] admin/trunk/Admin/AdminControlCellRenderer.php:
+	  DEPRECATED
+	* [r9926] admin/trunk/Admin/AdminDateLinkCellRenderer.php:
+	  show regular text as anchor title for date link renderers
+	* [r9924] admin/trunk/Admin/AdminDateLinkCellRenderer.php:
+	  new cell renderer that renders date links in admin.
+	* [r9921] admin/trunk/Admin/AdminApplication.php:
+	  moved upstream
+	* [r9862] admin/trunk/Admin/pages/AdminDBConfirmation.php:
+	  fix require statements
+	* [r9861] admin/trunk/Admin/pages/AdminDBConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBEdit.php,
+	  admin/trunk/Admin/pages/AdminDBOrder.php:
+	  use new transaction object
+
+2006-08-16  nrf
+
+	* [r9742] admin/trunk/Admin/AdminApplication.php:
+	  Clear GET and POST vars before replacing the pages.
+	  Isaac, this fixes at least some of your problem... single_delete
+	  is now false and the navbar is correct.
+
+2006-08-16  dave
+
+	* [r9730] admin/trunk/sql/create_sql.sh,
+	  admin/trunk/sql/functions/functions.txt,
+	  admin/trunk/sql/tables/tables.txt,
+	  admin/trunk/sql/triggers/triggers.txt,
+	  admin/trunk/sql/views/views.txt:
+	  creation makes this obsolete
+	* [r9729] admin/trunk/sql/functions/getArticleTree.sql:
+	  remove drop statements
+
+2006-08-16  gauthierm
+
+	* [r9720]
+	  admin/trunk/sql/triggers/AdminUserHistoryInsertTrigger.sql:
+	  update could mean an update trigger. In this case that is not
+	  true. Rename to
+	  cause less confusion.
+	* [r9719]
+	  admin/trunk/sql/triggers/AdminUserHistoryInsertTrigger.sql:
+	  use more conventional naming
+	* [r9718] admin/trunk/sql/tables/AdminComponent.sql,
+	  admin/trunk/sql/tables/AdminComponentAdminGroupBinding.sql,
+	  admin/trunk/sql/tables/AdminSubComponent.sql,
+	  admin/trunk/sql/tables/AdminUserAdminGroupBinding.sql,
+	  admin/trunk/sql/tables/AdminUserHistory.sql:
+	  - added cascading deletes
+	  - wrap lines
+	  - added named constraints to all foreign keys
+	  - fix constraint names
+	  - removed delete trigger from AdminComponent
+	* [r9717]
+	  admin/trunk/sql/triggers/AdminComponentDeleteTrigger.sql,
+	  admin/trunk/sql/triggers/AdminGroupDeleteTrigger.sql,
+	  admin/trunk/sql/triggers/AdminSectionDeleteTrigger.sql,
+	  admin/trunk/sql/triggers/AdminUserDeleteTrigger.sql:
+	  remove triggers that are replaced by cascading deletes
+	* [r9716] admin/trunk/sql/views/AdminUserLastLoginView.sql:
+	  wrap long line
+
+2006-08-16  steven
+
+	* [r9701] admin/trunk/www/styles/login.css:
+	  fix widths of input fields on login page, so they don't stick
+	  out over the edge of the box even if the box is tiny (font
+	  size/dpi weirdness)
+
+2006-08-15  dave
+
+	* [r9629] admin/trunk/sql/create_sql.sh:
+	  make admin stand alone - projects should create databases, not
+	  packages, even though this one will almost always be run first
+	* [r9628] admin/trunk/sql/tables/tables.txt,
+	  admin/trunk/sql/triggers/triggers.txt:
+	  trigger needs to exist before a table
+	* [r9620] admin/trunk/sql/create_sql.sh,
+	  admin/trunk/sql/functions/functions.txt,
+	  admin/trunk/sql/generate_sql.sh,
+	  admin/trunk/sql/tables/tables.txt,
+	  admin/trunk/sql/triggers/triggers.txt,
+	  admin/trunk/sql/views/views.txt:
+	  simplify create scripts - move to text lists and a single shell
+	  script
+
+2006-08-10  gauthierm
+
+	* [r9458] admin/trunk/Admin/layouts/xhtml/default.php:
+	  This is included properly as a html head entry now.
+	* [r9457] admin/trunk/Admin/layouts/AdminLayout.php:
+	  Include admin.css properly.
+	* [r9450] admin/trunk/Admin/AdminSessionModule.php:
+	  Use new clear() method.
+	* [r9449] admin/trunk/Admin/AdminSessionModule.php:
+	  protected after public.
+	* [r9446] admin/trunk/Admin/AdminSessionModule.php:
+	  Cleanups to AdminSessionModule.
+	  - use auto get/set from SiteSessionModule
+	  - respect coding conventions
+	  - fix docblocks
+	  - always start the session so it is possible to login
+	  - field type fixes on insertLoginHistory()
+	* [r9419] admin/trunk/Admin/AdminSessionModule.php:
+	  extend SiteSessionModule. This can be made better in the future.
+	* [r9414] admin/trunk/Admin/AdminApplication.php:
+	  Messages module moved to site.
+	* [r9412] admin/trunk/Admin/AdminMessagesModule.php,
+	  site/trunk/Site/SiteMessagesModule.php:
+	  Move this module to site.
+
+2006-08-08  steven
+
+	* [r9270]
+	  admin/trunk/www/styles/admin-title-link-cell-renderer.css:
+	  This file was removed by accident in commit #9228
+	* [r9228] admin/trunk/Admin/AdminNullTextCellRenderer.php,
+	  admin/trunk/Admin/components/AdminComponent/details.xml,
+	  admin/trunk/www/styles/admin-null-text-cell-renderer.css,
+	  admin/trunk/www/styles/admin-title-link-cell-renderer.css:
+	  Switch from AdminNullTextCellRenderer to SwatNullTextCellRenderer
+
+2006-08-08  gauthierm
+
+	* [r9222] admin/trunk/Admin/AdminTitleLinkCellRenderer.php:
+	  Respect Swat API changes.
+
+2006-08-07  gauthierm
+
+	* [r9191] admin/trunk/Admin/AdminTreeTitleLinkCellRenderer.php:
+	  - fix gettext call.
+	  - since we're using inval() use strict equality.
+	* [r9190] admin/trunk/Admin/AdminControlCellRenderer.php:
+	  Fix title for edit stock type.
+	* [r9160] admin/trunk/Admin/AdminNote.php:
+	  Use new Swat conventions for CSS classes and Ids.
+
+2006-08-04  nrf
+
+	* [r9092] admin/trunk/Admin/AdminApplication.php:
+	  Henceforth all admins are secure.
+
+2006-08-03  gauthierm
+
+	* [r9038] admin/trunk/Admin/AdminTitleLinkCellRenderer.php:
+	  Override getCSSClassNames() instead of getTdAttributes().
+
+2006-08-03  nrf
+
+	* [r9031] admin/trunk/Admin/AdminApplication.php:
+	  Use new SiteConfigModule and follow multi-line array conventions.
+
+2006-08-03  gauthierm
+
+	* [r8979] admin/trunk/Admin/AdminTreeControlCellRenderer.php:
+	  Misc. fixes.
+	  - update copright and docblock comments
+	  - use Admin::ngettext().
+	  - added documentation.
+	  - wrap long lines.
+
+2006-07-16  gauthierm
+
+	* [r8141] admin/trunk/Admin/AdminApplication.php:
+	  Actually call setlocale() on the default_locale. This fixes bug
+	  4420 on the
+	  Veseys2 admin checklist.
+
+2006-07-15  gauthierm
+
+	* [r8130] admin/trunk/Admin/components/AdminUser/index.xml:
+	  Rename column.
+	* [r8129] admin/trunk/Admin/components/AdminUser/Index.php:
+	  Use defualt time zone on index page.
+	* [r8128] admin/trunk/Admin/components/AdminUser/details.xml:
+	  Colon is not needed here anymore.
+	* [r8127] admin/trunk/Admin/components/AdminUser/Details.php:
+	  Use curly quotes for page not found message.
+	* [r8126] admin/trunk/Admin/components/AdminUser/Details.php:
+	  - added space.
+	  - renamed $row to $user.
+	* [r8125] admin/trunk/Admin/components/AdminUser/Details.php:
+	  Set default time zone on user details page.
+	* [r8124] admin/trunk/Admin/components/AdminUser/LoginHistory.php:
+	  Remove extra line
+	* [r8123] admin/trunk/Admin/components/AdminComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php:
+	  Remove use of getCount().
+	* [r8122] admin/trunk/Admin/components/AdminUser/LoginHistory.php:
+	  Set display_time_zone to default time zone on login time cell
+	  renderer.
+	  
+	  I forgot to commit this earlier.
+	* [r8116] admin/trunk/Admin/AdminApplication.php:
+	  Documentation updates and add require dependency.
+
+2006-07-14  gauthierm
+
+	* [r8099] admin/trunk/Admin/AdminApplication.php:
+	  Make time zone an object.
+	* [r8091]
+	  admin/trunk/Admin/components/AdminUser/include/HistoryCellRenderer.php:
+	  
+	  Fix docblock.
+	* [r8090] admin/trunk/Admin/AdminApplication.php:
+	  Added default time zone property.
+	* [r8085] admin/trunk/Admin/AdminApplication.php:
+	  More descriptive.
+	* [r8084] admin/trunk/Admin/AdminApplication.php:
+	  Added documentation.
+	* [r8083] admin/trunk/Admin/AdminApplication.php:
+	  Move protected methods below public.
+
+2006-07-11  dave
+
+	* [r7906] admin/trunk/Admin/components/AdminSection/Delete.php:
+	  name change that got missed long ago
+	* [r7905]
+	  admin/trunk/Admin/components/AdminUser/include/HistoryCellRenderer.php,
+	  admin/trunk/Admin/components/AdminUser/index.xml:
+	  get login history pages working again - left over from naming
+	  convetion change
+
+2006-06-29  gauthierm
+
+	* [r7679] admin/trunk/Admin/AdminDependencyEntryWrapper.php,
+	  admin/trunk/Admin/exceptions/AdminException.php:
+	  Close PHP files.
+
+2006-06-27  gauthierm
+
+	* [r7635] admin/trunk/Admin/AdminApplication.php:
+	  Fix typo introduced in 7584.
+
+2006-06-27  nrf
+
+	* [r7584] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminTreeControlCellRenderer.php:
+	  Split wrapped lines into multiple statements.
+
+2006-06-27  dave
+
+	* [r7582] admin/trunk/Admin/Admin.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminGroupHeaderCellRenderer.php,
+	  admin/trunk/Admin/AdminTreeControlCellRenderer.php,
+	  admin/trunk/Admin/pages/AdminConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBConfirmation.php,
+	  admin/trunk/Admin/pages/AdminIndex.php:
+	  wrap long lines
+
+2006-06-26  nrf
+
+	* [r7562] admin/trunk/Admin/layouts/xhtml/default.php,
+	  admin/trunk/Admin/layouts/xhtml/login.php:
+	  Change include path.
+	  TODO: include these using SiteLayout::addHtmlHeadEntry()
+	* [r7557] admin/trunk/Admin/AdminControlCellRenderer.php,
+	  admin/trunk/Admin/AdminGroupLinkCellRenderer.php,
+	  admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/AdminNote.php,
+	  admin/trunk/Admin/AdminNullTextCellRenderer.php,
+	  admin/trunk/Admin/AdminTitleLinkCellRenderer.php,
+	  admin/trunk/Admin/AdminTreeControlCellRenderer.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php,
+	  admin/trunk/Admin/pages/AdminOrder.php,
+	  admin/trunk/Admin/pages/WebalizerIndex.php:
+	  Change include path.
+
+2006-06-26  gauthierm
+
+	* [r7511] admin/trunk/Admin/AdminControlCellRenderer.php,
+	  admin/trunk/Admin/AdminGroupHeaderCellRenderer.php,
+	  admin/trunk/Admin/AdminNullTextCellRenderer.php,
+	  admin/trunk/Admin/AdminTitleLinkCellRenderer.php,
+	  admin/trunk/Admin/AdminTreeControlCellRenderer.php,
+	  admin/trunk/Admin/AdminTreeTitleLinkCellRenderer.php:
+	  respect new visible property
+
+2006-06-22  nick
+
+	* [r7355] admin/trunk/Admin/components/AdminSite/Exception.php:
+	  Slightly better message for admin users
+
+2006-06-22  nrf
+
+	* [r7353] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/components/AdminSite/Exception.php,
+	  admin/trunk/Admin/components/AdminSite/exception.xml:
+	  Fix up admin exceptions.
+
+2006-06-20  nrf
+
+	* [r7278] admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/layouts/AdminLayout.php,
+	  admin/trunk/Admin/pages/AdminPage.php:
+	  Reflect changes to Swat API.
+
+2006-06-19  dave
+
+	* [r7193] admin/trunk/Admin/Admin.php,
+	  admin/trunk/Admin/AdminSearchClause.php,
+	  admin/trunk/package.php:
+	  be consistant with constant folding
+
+2006-06-16  dave
+
+	* [r7149] admin/trunk/Admin/pages/AdminXMLRPCServer.php,
+	  admin/trunk/Admin/pages/WebalizerIndex.php:
+	  folding added
+	* [r7148] admin/trunk/Admin/exceptions/AdminException.php,
+	  admin/trunk/Admin/exceptions/AdminNoAccessException.php,
+	  admin/trunk/Admin/exceptions/AdminNotFoundException.php,
+	  admin/trunk/Admin/exceptions/AdminUserException.php:
+	  folding added
+	* [r7144]
+	  admin/trunk/Admin/components/AdminUser/include/HistoryCellRenderer.php:
+	  
+	  folding added
+	* [r7143]
+	  admin/trunk/Admin/components/AdminSite/MenuViewServer.php:
+	  folding added
+	* [r7142] admin/trunk/Admin/Admin.php,
+	  admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/AdminMenuViewStateStore.php,
+	  admin/trunk/Admin/AdminNavBar.php,
+	  admin/trunk/Admin/AdminNote.php,
+	  admin/trunk/Admin/AdminNullTextCellRenderer.php,
+	  admin/trunk/Admin/AdminPageRequest.php,
+	  admin/trunk/Admin/AdminSearchClause.php,
+	  admin/trunk/Admin/AdminSearchOperatorFlydown.php,
+	  admin/trunk/Admin/AdminSummaryDependency.php,
+	  admin/trunk/Admin/AdminTableStore.php,
+	  admin/trunk/Admin/AdminTableViewOrderableColumn.php,
+	  admin/trunk/Admin/AdminTitleLinkCellRenderer.php,
+	  admin/trunk/Admin/AdminTreeControlCellRenderer.php,
+	  admin/trunk/Admin/AdminTreeTitleLinkCellRenderer.php,
+	  admin/trunk/Admin/AdminUI.php,
+	  admin/trunk/Admin/AdminUniqueEntry.php:
+	  more folds than a paper airplane
+	* [r7135] admin/trunk/Admin/AdminControlCellRenderer.php,
+	  admin/trunk/Admin/AdminDependencyEntry.php,
+	  admin/trunk/Admin/AdminDependencyEntryWrapper.php,
+	  admin/trunk/Admin/AdminDependencyItem.php,
+	  admin/trunk/Admin/AdminDependencySummary.php,
+	  admin/trunk/Admin/AdminDependencySummaryWrapper.php,
+	  admin/trunk/Admin/AdminGroupHeaderCellRenderer.php,
+	  admin/trunk/Admin/AdminGroupLinkCellRenderer.php,
+	  admin/trunk/Admin/AdminListDependency.php:
+	  add folding
+
+2006-06-14  dave
+
+	* [r7058] admin/trunk/Admin/AdminApplication.php:
+	  use function in 7057, one less TODO to do
+	* [r7057] admin/trunk/sql/functions/getAdminPage.sql,
+	  admin/trunk/sql/generate_sql.sh:
+	  moved query into a function; what's up with getArtcileTree? it
+	  wasn't in the sql create scripts and currently throws errors -
+	  should be deleted or made to work?
+	* [r7055] admin/trunk/Admin/AdminMenuStore.php:
+	  add folding
+	* [r7054] admin/trunk/sql/tables/AdminUser.sql:
+	  give dan a password that he knows
+
+2006-05-31  dave
+
+	* [r6408] admin/trunk/package.php:
+	  current release version
+
+2006-05-29  nrf
+
+	* [r6316] admin/trunk/Admin/AdminMenuStore.php,
+	  admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/AdminSessionModule.php,
+	  admin/trunk/Admin/AdminTableViewOrderableColumn.php,
+	  admin/trunk/Admin/AdminUniqueEntry.php,
+	  admin/trunk/Admin/components/AdminComponent/Details.php,
+	  admin/trunk/Admin/components/AdminComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminComponent/Index.php,
+	  admin/trunk/Admin/components/AdminComponent/Order.php,
+	  admin/trunk/Admin/components/AdminGroup/Edit.php,
+	  admin/trunk/Admin/components/AdminGroup/Index.php,
+	  admin/trunk/Admin/components/AdminSection/Edit.php,
+	  admin/trunk/Admin/components/AdminSection/Order.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php,
+	  admin/trunk/Admin/components/AdminSite/Logout.php,
+	  admin/trunk/Admin/components/AdminSite/Profile.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php,
+	  admin/trunk/Admin/components/AdminUser/Index.php,
+	  admin/trunk/Admin/pages/AdminIndex.php,
+	  admin/trunk/Admin/pages/AdminSearch.php:
+	  Update copyright tags from SVN logs.
+
+2006-05-29  gauthierm
+
+	* [r6301] admin/trunk/Admin/AdminGroupLinkCellRenderer.php,
+	  admin/trunk/Admin/AdminNullTextCellRenderer.php,
+	  admin/trunk/Admin/AdminTitleLinkCellRenderer.php:
+	  Call parent::__construct() when overriding the constructor. This
+	  is required
+	  now.
+	* [r6300] admin/trunk/Admin/AdminTableViewOrderableColumn.php:
+	  Use coding conventions.
+	* [r6298] admin/trunk/Admin/pages/AdminIndex.php:
+	  Fix docblock.
+	* [r6286] admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/layouts/AdminLayout.php,
+	  admin/trunk/Admin/pages/AdminPage.php:
+	  Respect changes in Site/Swat APIs regarding HTML head entries.
+
+2006-05-29  nrf
+
+	* [r6277] admin/trunk/Admin/layouts/AdminLayout.php:
+	  This is what I meant to commit... admin menu ajaxy works again.
+	* [r6275]
+	  admin/trunk/Admin/components/AdminSite/MenuViewServer.php,
+	  admin/trunk/Admin/layouts/AdminLayout.php,
+	  admin/trunk/Admin/layouts/AdminMenuXMLRPCServerLayout.php,
+	  admin/trunk/Admin/layouts/xhtml/default.php:
+	  - Init admin menu in layout
+	  - Handle body_classes as array (same as veseys store page)
+	* [r6271] admin/trunk/Admin/AdminXMLRPCServer.php,
+	  admin/trunk/Admin/components/AdminSite/MenuViewServer.php,
+	  admin/trunk/Admin/layouts/AdminMenuXMLRPCServerLayout.php,
+	  admin/trunk/Admin/pages/AdminPage.php,
+	  admin/trunk/Admin/pages/AdminXMLRPCServer.php:
+	  Get Ajaxy stuff working... sort of
+
+2006-05-29  gauthierm
+
+	* [r6265] admin/trunk/Admin/AdminMenuView.php:
+	  JavaScript/StyleSheet
+	* [r6263] admin/trunk/Admin/AdminMenuView.php:
+	  Respect Swat API changes.
+
+2006-05-26  nrf
+
+	* [r6173] admin/trunk/Admin/layouts/AdminLayout.php:
+	  This was missing in previous commit.
+	* [r6170] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php,
+	  admin/trunk/Admin/components/AdminSite/Logout.php,
+	  admin/trunk/Admin/components/AdminSite/MenuViewServer.php,
+	  admin/trunk/Admin/layouts/custom.php,
+	  admin/trunk/Admin/layouts/default.php,
+	  admin/trunk/Admin/layouts/login.php,
+	  admin/trunk/Admin/layouts/msword.php,
+	  admin/trunk/Admin/layouts/xhtml,
+	  admin/trunk/Admin/layouts/xhtml/custom.php,
+	  admin/trunk/Admin/layouts/xhtml/default.php,
+	  admin/trunk/Admin/layouts/xhtml/login.php,
+	  admin/trunk/Admin/layouts/xhtml/msword.php,
+	  admin/trunk/Admin/pages/AdminPage.php:
+	  Major refactoring of the site framework across all packages.
+	  This is still a bit rough, but both the Veseys frontend and the
+	  admin are running on it. While the Admin package was changed
+	  heavily to work with the new Site package, its interface did not
+	  change much so admin site code requires minimal changes to work.
+	  
+	  - Go upstream! Site package does more now.
+	  - Remove duplicated functionality form Store and Admin packages.
+	  - SiteLayout and subclasses are now responsible for the "site
+	  trim".
+	  - HtmlHeadEntry API moved to SiteLayout and now used by Admin
+	  too.
+	  - Single point of page sub-classing from StorePage to VeseysPage
+	  is gone allowing other base page subclasses in Store.
+	  - The *Internal() methods are gone from Store,
+	  init()/proccess()/build() are now sub-classed directly.
+
+2006-05-25  steven
+
+	* [r6110] admin/trunk/Admin/AdminApplication.php:
+	  Use a "." rather than empty "" href for root navbar entry link
+
+2006-05-23  nick
+
+	* [r5943] admin/trunk/Admin/components/AdminSite/profile.xml:
+	  The password note should be translatable
+
+2006-05-16  gauthierm
+
+	* [r5690] admin/trunk/Admin/AdminDatabaseModule.php:
+	  Remove AdminDatabaseModule. This exists in Site now.
+	* [r5686] admin/trunk/Admin/pages/AdminPage.php:
+	  Require swat widgets for build logout button. This didn't break
+	  on veseys
+	  because we have all those widgets on the quick sku search in the
+	  menu.
+	* [r5681] admin/trunk/Admin/AdminApplication.php:
+	  - Respect SiteDatabaseModule API changes.
+	  - Remove public properties for application modules. These are
+	  handled by the
+	  magic __get() method of SiteApplication.
+	* [r5678] admin/trunk/Admin/AdminApplication.php:
+	  Use the getDefaultModuleList method and remove the unnecessary
+	  constructor.
+	* [r5676] admin/trunk/Admin/AdminApplication.php:
+	  Respect Site API changes.
+	* [r5675] admin/trunk/Admin/AdminApplication.php:
+	  - Ordered method as:
+	  public
+	  private
+	  protected
+	  
+	  - Use tabs instead of spaces for indenting.
+
+2006-05-10  dave
+
+	* [r5550] admin/trunk/Admin/AdminListDependency.php:
+	  debug code in trunk... for shame
+
+2006-05-05  dave
+
+	* [r5375] admin/trunk/sql/tables/AdminUser.sql:
+	  set default password for Dennis correctly
+
+2006-05-03  dave
+
+	* [r5284] admin/trunk/Admin/components/AdminUser/Index.php,
+	  admin/trunk/Admin/components/AdminUser/LoginHistory.php,
+	  admin/trunk/package.php,
+	  admin/trunk/sql/tables/AdminComponent.sql,
+	  admin/trunk/sql/tables/AdminSection.sql:
+	  fix a few name change cases that got missed
+
+2006-05-03  isaac
+
+	* [r5257] admin/trunk/Admin/components/AdminComponent,
+	  admin/trunk/Admin/components/AdminComponent/Delete.php,
+	  admin/trunk/Admin/components/AdminComponent/Details.php,
+	  admin/trunk/Admin/components/AdminComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminComponent/Index.php,
+	  admin/trunk/Admin/components/AdminComponent/Order.php,
+	  admin/trunk/Admin/components/AdminComponent/details.xml,
+	  admin/trunk/Admin/components/AdminComponent/index.xml,
+	  admin/trunk/Admin/components/AdminComponents,
+	  admin/trunk/Admin/components/AdminGroup,
+	  admin/trunk/Admin/components/AdminGroup/Delete.php,
+	  admin/trunk/Admin/components/AdminGroup/Edit.php,
+	  admin/trunk/Admin/components/AdminGroup/Index.php,
+	  admin/trunk/Admin/components/AdminGroup/index.xml,
+	  admin/trunk/Admin/components/AdminGroups,
+	  admin/trunk/Admin/components/AdminSection,
+	  admin/trunk/Admin/components/AdminSection/Delete.php,
+	  admin/trunk/Admin/components/AdminSection/Edit.php,
+	  admin/trunk/Admin/components/AdminSection/Index.php,
+	  admin/trunk/Admin/components/AdminSection/Order.php,
+	  admin/trunk/Admin/components/AdminSection/index.xml,
+	  admin/trunk/Admin/components/AdminSections,
+	  admin/trunk/Admin/components/AdminSubComponent,
+	  admin/trunk/Admin/components/AdminSubComponent/Delete.php,
+	  admin/trunk/Admin/components/AdminSubComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminSubComponent/Order.php,
+	  admin/trunk/Admin/components/AdminSubComponents,
+	  admin/trunk/Admin/components/AdminUser,
+	  admin/trunk/Admin/components/AdminUser/Delete.php,
+	  admin/trunk/Admin/components/AdminUser/Details.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php,
+	  admin/trunk/Admin/components/AdminUser/Index.php,
+	  admin/trunk/Admin/components/AdminUser/LoginHistory.php,
+	  admin/trunk/Admin/components/AdminUser/index.xml,
+	  admin/trunk/Admin/components/AdminUser/loginhistory.xml,
+	  admin/trunk/Admin/components/AdminUsers,
+	  admin/trunk/Admin/pages/AdminDBDelete.php:
+	  components now have become singular as well
+
+2006-05-02  dave
+
+	* [r5216] admin/trunk/sql/create_db.sh,
+	  admin/trunk/sql/create_sql.sh, admin/trunk/sql/generate_sql.sh,
+	  admin/trunk/sql/reset.sh:
+	  clean up the sql create process
+	* [r5183] admin/trunk/sql/create_db.sh:
+	  go back to using my working copy
+	* [r5176] admin/trunk/Admin/AdminSessionModule.php:
+	  wrap long line
+	* [r5174] admin/trunk/Admin/components/AdminGroups/Edit.php:
+	  fix typo on table name
+	* [r5170] admin/trunk/Admin/AdminSessionModule.php,
+	  admin/trunk/Admin/components/AdminUsers/details.xml,
+	  admin/trunk/Admin/components/AdminUsers/loginhistory.xml:
+	  these didn't get underscorified
+	* [r5169] admin/trunk/sql/functions/getAdminMenu.sql,
+	  admin/trunk/sql/triggers/AdminUserHistoryInsertTrigger.sql:
+	  add underscorification, and fix some tables that didn't get
+	  renamed
+	* [r5168] admin/trunk/Admin/AdminSessionModule.php,
+	  admin/trunk/Admin/components/AdminComponents/Index.php:
+	  fix pair of typos
+
+2006-05-01  isaac
+
+	* [r5123] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminSessionModule.php,
+	  admin/trunk/Admin/components/AdminComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminComponents/Details.php,
+	  admin/trunk/Admin/components/AdminComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminComponents/Index.php,
+	  admin/trunk/Admin/components/AdminComponents/Order.php,
+	  admin/trunk/Admin/components/AdminComponents/details.xml,
+	  admin/trunk/Admin/components/AdminComponents/index.xml,
+	  admin/trunk/Admin/components/AdminGroups/Delete.php,
+	  admin/trunk/Admin/components/AdminGroups/Edit.php,
+	  admin/trunk/Admin/components/AdminGroups/Index.php,
+	  admin/trunk/Admin/components/AdminGroups/index.xml,
+	  admin/trunk/Admin/components/AdminSections/Delete.php,
+	  admin/trunk/Admin/components/AdminSections/Edit.php,
+	  admin/trunk/Admin/components/AdminSections/Index.php,
+	  admin/trunk/Admin/components/AdminSections/Order.php,
+	  admin/trunk/Admin/components/AdminSections/edit.xml,
+	  admin/trunk/Admin/components/AdminSections/index.xml,
+	  admin/trunk/Admin/components/AdminSite/Login.php,
+	  admin/trunk/Admin/components/AdminSite/Profile.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Order.php,
+	  admin/trunk/Admin/components/AdminUsers/Delete.php,
+	  admin/trunk/Admin/components/AdminUsers/Details.php,
+	  admin/trunk/Admin/components/AdminUsers/Edit.php,
+	  admin/trunk/Admin/components/AdminUsers/Index.php,
+	  admin/trunk/Admin/components/AdminUsers/LoginHistory.php,
+	  admin/trunk/Admin/components/AdminUsers/details.xml,
+	  admin/trunk/Admin/components/AdminUsers/index.xml,
+	  admin/trunk/Admin/components/AdminUsers/loginhistory.xml:
+	  update the whole admin package to reflect new db naming scheme -
+	  don't update your own packages for the time being unless you
+	  want your trees broken
+	* [r5122] admin/trunk/sql/tables/AdminUserHistory.sql,
+	  admin/trunk/sql/views/AdminUserLastLoginView.sql:
+	  underscorify a couple of fields
+
+2006-04-28  dave
+
+	* [r5092] admin/trunk/sql/create_db.sh:
+	  new naming scheme
+	* [r5091] admin/trunk/sql/views/AdminUserLastLoginView.sql:
+	  only fixed the file, not the code
+	* [r5087] admin/trunk/sql/functions/getAdminMenu.sql,
+	  admin/trunk/sql/functions/getArticleTree.sql,
+	  admin/trunk/sql/functions/sp_admin_menu.sql,
+	  admin/trunk/sql/functions/sp_article_tree.sql:
+	  new naming scheme
+	* [r5085] admin/trunk/sql/functions,
+	  admin/trunk/sql/stored_procedures:
+	  new naming scheme
+	* [r5084] admin/trunk/sql/tables/AdminComponent.sql,
+	  admin/trunk/sql/tables/AdminComponentAdminGroupBinding.sql,
+	  admin/trunk/sql/tables/AdminGroup.sql,
+	  admin/trunk/sql/tables/AdminSection.sql,
+	  admin/trunk/sql/tables/AdminSubComponent.sql,
+	  admin/trunk/sql/tables/AdminUser.sql,
+	  admin/trunk/sql/tables/AdminUserAdminGroupBinding.sql,
+	  admin/trunk/sql/tables/AdminUserHistory.sql,
+	  admin/trunk/sql/tables/admincomponent_admingroup.sql,
+	  admin/trunk/sql/tables/admincomponents.sql,
+	  admin/trunk/sql/tables/admingroups.sql,
+	  admin/trunk/sql/tables/adminsections.sql,
+	  admin/trunk/sql/tables/adminsubcomponents.sql,
+	  admin/trunk/sql/tables/adminuser_admingroup.sql,
+	  admin/trunk/sql/tables/adminuserhistory.sql,
+	  admin/trunk/sql/tables/adminusers.sql:
+	  new naming scheme
+	* [r5082]
+	  admin/trunk/sql/triggers/AdminComponentDeleteTrigger.sql,
+	  admin/trunk/sql/triggers/AdminGroupDeleteTrigger.sql,
+	  admin/trunk/sql/triggers/AdminSectionDeleteTrigger.sql,
+	  admin/trunk/sql/triggers/AdminUserDeleteTrigger.sql,
+	  admin/trunk/sql/triggers/AdminUserHistoryInsertTrigger.sql,
+	  admin/trunk/sql/triggers/tr_admincomponents_delete.sql,
+	  admin/trunk/sql/triggers/tr_admingroups_delete.sql,
+	  admin/trunk/sql/triggers/tr_adminsections_delete.sql,
+	  admin/trunk/sql/triggers/tr_adminuserhistory_insert.sql,
+	  admin/trunk/sql/triggers/tr_adminusers_delete.sql:
+	  new naming scheme
+	* [r5081] admin/trunk/sql/views/AdminUserLastLoginView.sql,
+	  admin/trunk/sql/views/ViewAdminUserLastLogin.sql:
+	  new naming scheme
+	* [r5062] admin/trunk/sql/views/ViewAdminUserLastLogin.sql,
+	  admin/trunk/sql/views/view_adminuser_lastlogin.sql:
+	  new name
+	* [r5058] admin/trunk/sql/reset.sh:
+	  make this a bit more user friendly, don't hard code db
+
+2006-04-26  nrf
+
+	* [r5025]
+	  admin/trunk/Admin/components/AdminComponents/Details.php,
+	  admin/trunk/Admin/components/AdminComponents/Order.php,
+	  admin/trunk/Admin/components/AdminSections/Order.php,
+	  admin/trunk/Admin/components/AdminSite/Profile.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Order.php,
+	  admin/trunk/Admin/pages/AdminDBConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBDelete.php,
+	  admin/trunk/Admin/pages/AdminEdit.php:
+	  s/SwatApplication/SiteApplication
+	* [r5024] admin/trunk/Admin/components/Webalizer:
+	  Remove empty dir
+	* [r5023] admin/trunk/Admin/pages/WebalizerIndex.php:
+	  use new Site package
+	* [r5022] admin/trunk/Admin/AdminMessagesModule.php,
+	  admin/trunk/Admin/AdminPageRequest.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php,
+	  admin/trunk/Admin/pages/AdminPage.php:
+	  use new Site package
+	* [r5015] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminDatabaseModule.php,
+	  admin/trunk/Admin/AdminPageRequest.php,
+	  admin/trunk/Admin/AdminSessionModule.php,
+	  admin/trunk/Admin/AdminXMLRPCServer.php:
+	  Update Admin packge to use new Site package.
+
+2006-04-26  gauthierm
+
+	* [r4979]
+	  admin/trunk/Admin/components/AdminSite/MenuViewServer.php:
+	  Fix package name.
+
+2006-04-22  gauthierm
+
+	* [r4860] admin/trunk/Admin/AdminMenuView.php:
+	  Protected before private.
+	* [r4859] admin/trunk/Admin/AdminMenuView.php:
+	  Respect Swat API changes.
+	* [r4854] admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/pages/AdminPage.php:
+	  Updated admin page and admin menu view to handle html head
+	  entries better.
+	  This should prevent duplicate javascript includes and duplicate
+	  stylesheet
+	  includes at the page level.
+	* [r4852] admin/trunk/Admin/AdminApplication.php:
+	  Small docblock fixes.
+
+2006-04-13  nick
+
+	* [r4699] admin/trunk/Admin/AdminPagination.php:
+	  Add back the line to remove 'source' from the URL
+	* [r4696] admin/trunk/Admin/AdminPagination.php:
+	  Update structure
+
+2006-04-10  gauthierm
+
+	* [r4658] admin/trunk/Admin/AdminDependencyEntryWrapper.php,
+	  admin/trunk/Admin/AdminDependencySummaryWrapper.php:
+	  respect swat api changes.
+	* [r4656] admin/trunk/Admin/AdminDependencyEntry.php:
+	  Put method after properties.
+
+2006-04-10  isaac
+
+	* [r4646] admin/trunk/Admin/pages/AdminOrder.php:
+	  move the navbar entry into the function buildNavBar() to match
+	  the behaviour of AdminEdit.php
+
+2006-04-07  gauthierm
+
+	* [r4602] admin/trunk/Admin/AdminApplication.php:
+	  Formatting cleanup.
+
+2006-04-07  isaac
+
+	* [r4589] admin/trunk/Admin/AdminSearchClause.php:
+	  trim all values for search, and if the trimed value is zero
+	  length, then don't return a clause
+
+2006-04-03  steven
+
+	* [r4487] admin/trunk/Admin/pages/AdminPage.php,
+	  admin/trunk/www/styles/admin.css:
+	  Validation fix for Logout button (needs to live in a block level
+	  element)
+
+2006-03-31  gauthierm
+
+	* [r4453] admin/trunk/Admin/pages/AdminPage.php:
+	  Doc fix.
+	* [r4452] admin/trunk/Admin/AdminSearchOperatorFlydown.php:
+	  Bring coding standards to 2006.
+	* [r4451] admin/trunk/Admin/AdminPagination.php:
+	  Bring coding standards to 2006.
+	* [r4425] admin/trunk/Admin/pages/WebalizerIndex.php:
+	  - use preg_replace('/regexp/ui', string, replace) instead of
+	  eregi_replace('regexp', string, replace)
+
+2006-03-29  gauthierm
+
+	* [r4414] admin/trunk/Admin/components/AdminSite/Logout.php,
+	  admin/trunk/Admin/pages/AdminPage.php,
+	  admin/trunk/www/styles/admin.css:
+	  Use HTTP POST for logging out of the admin. This is the correct
+	  way to do
+	  things.
+	* [r4403] admin/trunk/Admin/pages/AdminEdit.php,
+	  admin/trunk/Admin/pages/AdminSearch.php:
+	  Turn on autofocusing of forms for edit and search pages.
+
+2006-03-27  gauthierm
+
+	* [r4393] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/components/AdminSite/MenuViewServer.php,
+	  admin/trunk/www/javascript/admin-menu.js:
+	  Added nifty webtwenny ajax calls for a persistant menu state
+	  throughout user
+	  sessions.
+	* [r4381] admin/trunk/Admin/AdminXMLRPCServer.php:
+	  Make this actually work.
+	* [r4378] admin/trunk/Admin/AdminXMLRPCServer.php:
+	  AdminXMLRPCServer that throws an exception if no post data is
+	  provided in the
+	  http request.
+	* [r4372] admin/trunk/www/styles/admin-menu.css,
+	  admin/trunk/www/styles/admin.css:
+	  Move menu styles into their own file.
+	* [r4371] admin/trunk/Admin/AdminMenuStore.php,
+	  admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/AdminMenuViewStateStore.php,
+	  admin/trunk/Admin/layouts/default.php,
+	  admin/trunk/Admin/pages/AdminPage.php:
+	  - made it possible to save and load the state of a menu-view
+	  - moved all the menu display code into the menu-view class
+	  - general cleanups and documentation
+
+2006-03-27  steven
+
+	* [r4365] admin/trunk/www/styles/admin.css:
+	  Add background color behind the image for this style (looks
+	  better as the images load in)
+
+2006-03-27  gauthierm
+
+	* [r4358] admin/trunk/Admin/AdminNullTextCellRenderer.php:
+	  Use correct case.
+
+2006-03-27  steven
+
+	* [r4352] admin/trunk/www/styles/admin.css:
+	  Default styles for the <address> tag
+
+2006-03-27  isaac
+
+	* [r4349] admin/trunk/sql/tables/adminusers.sql:
+	  fix my password once and for all
+
+2006-03-27  gauthierm
+
+	* [r4347] admin/trunk/Admin/AdminMenuView.php:
+	  Fix header docblock and inline JavaScript.
+
+2006-03-26  steven
+
+	* [r4346] admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/layouts/default.php,
+	  admin/trunk/www/images/admin-menu-section-toggle.png,
+	  admin/trunk/www/javascript/admin-menu.js,
+	  admin/trunk/www/styles/admin.css:
+	  New Javascript/CSS functionality to hide/show the entire left
+	  menu, and to open/close individual left menu sections. Status is
+	  NOT persistent, this will require some sort of cookie/session
+	  solution.
+
+2006-03-22  nrf
+
+	* [r4318] admin/trunk/Admin/AdminApplication.php:
+	  Add a mechanism to set a default locale to AdminApplication
+
+2006-03-20  gauthierm
+
+	* [r4300] admin/trunk/Admin/pages/AdminSearch.php:
+	  Catch possible exception and add comments.
+
+2006-03-20  nrf
+
+	* [r4299] admin/trunk/Admin/pages/AdminSearch.php:
+	  change logic for loading initial results
+
+2006-03-20  gauthierm
+
+	* [r4298] admin/trunk/Admin/pages/AdminSearch.php:
+	  Catch exceptions where exceptions may be thrown.
+
+2006-03-20  nrf
+
+	* [r4297] admin/trunk/Admin/pages/AdminIndex.php:
+	  only setup views that do not already have a data model
+
+2006-03-20  gauthierm
+
+	* [r4280] admin/trunk/Admin/pages/AdminSearch.php:
+	  foo test
+	* [r4279] admin/trunk/Admin/pages/AdminSearch.php:
+	  test
+	* [r4278] admin/trunk/Admin/pages/AdminSearch.php:
+	  test commit
+	* [r4277] admin/trunk/Admin/pages/AdminSearch.php:
+	  test commit.
+	* [r4276] admin/trunk/Admin/pages/AdminSearch.php:
+	  Fix docblock tags.
+
+2006-03-16  gauthierm
+
+	* [r4252] admin/trunk/Admin/AdminDependency.php,
+	  admin/trunk/Admin/AdminDependencyEntry.php,
+	  admin/trunk/Admin/AdminListDependency.php:
+	  Allow setting the content type on an admin dependency entry.
+	* [r4248] admin/trunk/Admin/AdminListDependency.php,
+	  admin/trunk/Admin/AdminSummaryDependency.php:
+	  Specify data type in queries for constant values.
+
+2006-03-15  gauthierm
+
+	* [r4231] admin/trunk/Admin/components/AdminComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminGroups/Delete.php,
+	  admin/trunk/Admin/components/AdminSections/Delete.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminUsers/Delete.php:
+	  Use new dependency API.
+	* [r4225] admin/trunk/Admin/AdminListDependency.php:
+	  Rename this method to better describe what it does.
+
+2006-03-13  gauthierm
+
+	* [r4166] admin/trunk/Admin/AdminDependency.php,
+	  admin/trunk/Admin/AdminDependencyEntry.php,
+	  admin/trunk/Admin/AdminDependencyEntryWrapper.php,
+	  admin/trunk/Admin/AdminDependencyItem.php,
+	  admin/trunk/Admin/AdminDependencySummary.php,
+	  admin/trunk/Admin/AdminDependencySummaryWrapper.php,
+	  admin/trunk/Admin/AdminListDependency.php,
+	  admin/trunk/Admin/AdminSummaryDependency.php:
+	  Refactoring of admin dependencies to do two things:
+	  - Make it so you don't query rows unnecessarily for summary
+	  dependencies.
+	  (saves space and time).
+	  - Make convenience methods automatically wrap results as objects
+	  rather than
+	  doing this in a processing method.
+	  (saves more space and time).
+
+2006-03-13  nrf
+
+	* [r4164] admin/trunk/Admin/layouts/msword.php:
+	  New layout for XHTML MS-Word documents.
+	* [r4155] admin/trunk/Admin/layouts/custom.php:
+	  Smallest layout ever... for exporting
+
+2006-03-11  gauthierm
+
+	* [r4105] admin/trunk/Admin/AdminMenuView.php:
+	  Added some documentation.
+
+2006-03-10  steven
+
+	* [r4096] admin/trunk/www/images/admin-menu-hide.png,
+	  admin/trunk/www/images/admin-menu-show.png,
+	  admin/trunk/www/javascript/admin-menu.js,
+	  admin/trunk/www/styles/admin.css:
+	  Fancy show/hide funtionality for the left menu:
+	  TODO: make this persistent, either by setting a cookie (yum!) or
+	  using a web-twenny call to set it in your session
+	  Maybe the links should get a hover too?
+
+2006-03-10  gauthierm
+
+	* [r4080] admin/trunk/Admin/AdminSummaryDependency.php:
+	  Number format summaries.
+
+2006-03-09  steven
+
+	* [r4077] admin/trunk/www/styles/admin.css:
+	  Position the left menu relative to the bottom of the header
+	  again (rather than the top of the page). This is much more
+	  flexible and possible thanks to an IE hack added to swat
+	  (position: relative; on swat-frames)
+	* [r4074] admin/trunk/Admin/AdminNullTextCellRenderer.php,
+	  admin/trunk/www/styles/admin-null-text-cell-renderer.css,
+	  admin/trunk/www/styles/admin.css:
+	  Move AdminNullTextCellRenderer styles out into their own CSS file
+	* [r4073] admin/trunk/Admin/AdminTitleLinkCellRenderer.php:
+	  Whitespace
+	* [r4072] admin/trunk/Admin/AdminGroupLinkCellRenderer.php,
+	  admin/trunk/www/styles/admin-group-link-cell-renderer.css,
+	  admin/trunk/www/styles/admin.css:
+	  Move AdminGroupLinkCellRenderer styles out into their own CSS
+	  file
+	* [r4071] admin/trunk/Admin/AdminTitleLinkCellRenderer.php,
+	  admin/trunk/www/styles/admin-title-link-cell-renderer.css,
+	  admin/trunk/www/styles/admin.css:
+	  Move AdminTitleLinkCellRenderer styles out into their own CSS
+	  file
+	* [r4070] admin/trunk/www/images/admin-header-back.png,
+	  admin/trunk/www/images/admin-page-back.png,
+	  admin/trunk/www/images/admin-title-link-cell-renderer-back.png:
+	  Forgot to remove these images
+	* [r4068] admin/trunk/Admin/layouts/login.php,
+	  admin/trunk/www/styles/admin.css,
+	  admin/trunk/www/styles/login.css:
+	  Move login styles to their own CSS file
+	* [r4067] admin/trunk/Admin/layouts/default.php:
+	  Add some HTML comments to closing divs for easier-to-read output
+
+2006-03-08  steven
+
+	* [r4057] admin/trunk/www/styles/admin.css:
+	  Add a question graphic to the admin confirmation dialogs, also
+	  add some CSS for hiding/showing the left menu - the controls for
+	  this are still to come.
+
+2006-03-08  dave
+
+	* [r4052] admin/trunk/sql/reset.sh:
+	  put the db name in a var for easy switching
+
+2006-03-08  steven
+
+	* [r4047] admin/trunk/Admin/pages/AdminEdit.php:
+	  Better wording (I hope?) for common error message
+
+2006-03-06  steven
+
+	* [r4015] admin/trunk/Admin/AdminControlCellRenderer.php,
+	  admin/trunk/Admin/AdminDetailsControlCellRenderer.php,
+	  admin/trunk/Admin/AdminEditControlCellRenderer.php:
+	  Replace both AdminEditControlCellRenderer and
+	  AdminDetailsControlCellRenderer with AdminControlCellRenderer
+	  and handle the details/edit cases with stock types (details is
+	  the default stock type)
+
+2006-03-06  dave
+
+	* [r3995] admin/trunk/sql/tables/admincomponents.sql:
+	  not part of the admin package anymore
+
+2006-03-06  nrf
+
+	* [r3991] admin/trunk/Admin/pages/WebalizerIndex.php,
+	  admin/trunk/Admin/pages/webalizer.xml:
+	  Minor cleanup of Steve's cloning.
+
+2006-03-06  steven
+
+	* [r3990] admin/trunk/www/styles/webalizer.css:
+	  Minor CSS tweak to make the big "www.sitename.com" header a bit
+	  smaller
+	* [r3989] admin/trunk/Admin/pages/WebalizerIndex.php,
+	  admin/trunk/Admin/pages/webalizer.xml,
+	  admin/trunk/www/styles/webalizer.css:
+	  Use a SwatToolbar for the year links in the web stats. Nathan, I
+	  used widget cloning here - can you make sure it's sane?
+	* [r3980] admin/trunk/Admin/AdminTitleLinkCellRenderer.php,
+	  admin/trunk/www/styles/admin.css:
+	  Make AdminTitleLinkCellRenderer only style the specific anchor
+	  tag - so we can have other links in there if we need 'em (we do
+	  for the input row stuff)
+
+2006-03-06  nrf
+
+	* [r3964] admin/trunk/Admin/pages/WebalizerIndex.php:
+	  Make webstats index work the way steve wants
+
+2006-03-03  steven
+
+	* [r3920] admin/trunk/www/images/admin-header-background.png,
+	  admin/trunk/www/images/admin-page-background.png,
+	  admin/trunk/www/images/admin-title-link-cell-renderer-background.png,
+	  admin/trunk/www/styles/admin.css,
+	  admin/trunk/www/styles/webalizer.css:
+	  Minor image file naming conventionization (use
+	  "*-background.png" for background images, not just "back")
+
+2006-03-02  nrf
+
+	* [r3902] admin/trunk/Admin/AdminMenuStore.php:
+	  Add method to lookup a component by short name in a menu store.
+
+2006-03-02  gauthierm
+
+	* [r3898] admin/trunk/Admin/AdminMenuStore.php,
+	  admin/trunk/Admin/AdminMenuView.php:
+	  - made store protected in view.
+	  - wrap store lines at 80 chars
+	  - store objects in the store indexed by section_id, component
+	  shortname and
+	  sub-component shortname.
+
+2006-03-01  nrf
+
+	* [r3895] admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/pages/AdminPage.php:
+	  Add AdminMenuView::getHtmlHeadEntries()
+
+2006-03-01  gauthierm
+
+	* [r3889] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminMenu.php,
+	  admin/trunk/Admin/AdminMenuStore.php,
+	  admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/pages/AdminPage.php:
+	  Refactoring the admin menu to make it easier for applications to
+	  have a custom
+	  menu. Nathan did most of this.
+
+2006-03-01  steven
+
+	* [r3887] admin/trunk/www/styles/admin.css:
+	  Tighten up the menu spacing by a few pixels
+
+2006-03-01  nrf
+
+	* [r3883] admin/trunk/Admin/pages/WebalizerIndex.php:
+	  change image mangling
+	* [r3882] admin/trunk/Admin/pages/WebalizerIndex.php:
+	  Mangle anchor links.
+	* [r3880] admin/trunk/Admin/pages/WebalizerIndex.php:
+	  Refactor class vars and set them in the site code subclass.
+	* [r3879] admin/trunk/Admin/components/Webalizer/Index.php,
+	  admin/trunk/Admin/components/Webalizer/index.xml,
+	  admin/trunk/Admin/pages/WebalizerIndex.php,
+	  admin/trunk/Admin/pages/webalizer.xml:
+	  Move webalizer from a component to a base class page
+	* [r3877] admin/trunk/Admin/components/Webalizer/Index.php:
+	  cleanup, refactor, add navbar
+
+2006-03-01  steven
+
+	* [r3860] admin/trunk/Admin/components/Webalizer/Index.php,
+	  admin/trunk/www/styles/webalizer.css:
+	  Some prettyfication of the Webalizer components
+	* [r3858] admin/trunk/Admin/components/Webalizer/Index.php:
+	  Rename that stats ID to something webalizer-specific
+	* [r3857] admin/trunk/Admin/components/Webalizer/Index.php:
+	  Give the DIV wrapping the web stats content a more unique ID for
+	  CSS hookin'
+
+2006-03-01  dave
+
+	* [r3856] admin/trunk/Admin/components/Webalizer,
+	  admin/trunk/Admin/components/Webalizer/Index.php,
+	  admin/trunk/Admin/components/Webalizer/index.xml:
+	  first crack at Webalizer component for web stats
+
+2006-03-01  gauthierm
+
+	* [r3853]
+	  admin/trunk/Admin/components/AdminComponents/Details.php:
+	  Link to edit page rather than non-existant details page.
+
+2006-02-28  nrf
+
+	* [r3850] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/exceptions/AdminException.php,
+	  admin/trunk/Admin/exceptions/AdminNoAccessException.php,
+	  admin/trunk/Admin/exceptions/AdminNotFoundException.php,
+	  admin/trunk/Admin/exceptions/AdminUserException.php:
+	  Add intermediate exception class, AdminUserException
+
+2006-02-28  gauthierm
+
+	* [r3849] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/pages/AdminPage.php:
+	  Fox docblocks.
+
+2006-02-28  nrf
+
+	* [r3846] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/pages/AdminPage.php:
+	  Allow site code to use a custom AdminMenu subclass.
+	* [r3845] admin/trunk/Admin/pages/AdminOrder.php:
+	  I think i meant to commit this weeks ago
+
+2006-02-28  gauthierm
+
+	* [r3844] admin/trunk/Admin/AdminSearchClause.php:
+	  Throw AdminException instead of Exception.
+
+2006-02-27  nrf
+
+	* [r3827] admin/trunk/Admin/AdminApplication.php:
+	  make public
+
+2006-02-27  steven
+
+	* [r3819] admin/trunk/Admin/layouts/login.php,
+	  admin/trunk/www/styles/admin.css:
+	  Login page clean-up:
+	  - Remove unnecessary div on login page
+	  - update the CSS accordingly
+	  - make the login frame a bit more narrow (just looks better)
+	* [r3786] admin/trunk/www/styles/admin.css:
+	  CSS fixes for stylicity and IE compatability
+	  - Make the left menu positioned relative to the whole page,
+	  rather than a relatively positioned parent. This was originally
+	  done so the left menu would flow nicely as the header chaged in
+	  size (height), but it caused a bunch of flaky IE CSS bugs to
+	  surface, so I've killed it for now.
+	  - Also tweak some font sizes in the header for prettiness
+
+2006-02-24  gauthierm
+
+	* [r3761] admin/trunk/Admin/components/AdminSite/Profile.php,
+	  admin/trunk/Admin/components/AdminSite/profile.xml:
+	  Make consistent with r3746.
+
+2006-02-24  steven
+
+	* [r3755] admin/trunk/www/styles/admin.css:
+	  Fixes to AdminTitleLinkCellRenderer styles for IE
+	* [r3749] admin/trunk/www/styles/admin-note.css:
+	  Update to the better CSS hack for 1-bit transparent PNG
+	  backgrounds for IE that we use in Swat
+	* [r3747] admin/trunk/Admin/AdminTreeControlCellRenderer.php:
+	  A few Tango-style fixes for the AdminTreeControlCellRenderer.
+	  I'm not sure we even need this thing anymore, but I had this fix
+	  in my tree already.
+	* [r3746] admin/trunk/Admin/pages/AdminPage.php:
+	  Admin header text cleanup.
+	  - Changed "Customize" link to "Login Settings" - let me know if
+	  you hate that
+	  - minor spacing changes
+
+2006-02-22  steven
+
+	* [r3727] admin/trunk/Admin/AdminDetailsControlCellRenderer.php:
+	  Use new Tango-style icons in the ControlCellRenderers - we don't
+	  use these much anymore, but we still do in a few spots
+
+2006-02-22  dave
+
+	* [r3686] admin/trunk/sql/tables/admincomponents.sql:
+	  add web stat module, shorten lines
+
+2006-02-20  gauthierm
+
+	* [r3658] admin/trunk/Admin/pages/AdminConfirmation.php:
+	  Whitespace.
+
+2006-02-20  steven
+
+	* [r3657] admin/trunk/www/styles/admin.css:
+	  IE CSS fixes for hover/cursor on AdminTitleLinkCellRenderer
+
+2006-02-20  nrf
+
+	* [r3642] admin/trunk/Admin/AdminTreeTitleLinkCellRenderer.php:
+	  Underscorify
+
+2006-02-20  steven
+
+	* [r3636] admin/trunk/www/styles/admin.css:
+	  Fix a TODO: make the AdminTitleLinkCellRenderer link borders
+	  work properly in Internet Explorer.
+	  Did this with the "star hack" where "* html .classname" is used
+	  to show some CSS only to IE. Works around IE's inability to
+	  understand "transparent" as a border color
+	* [r3626] admin/trunk/www/images/b_details.png,
+	  admin/trunk/www/images/b_details_folder.png,
+	  admin/trunk/www/images/b_edit.png:
+	  Remove obsolete PSeries-style images
+	* [r3625] admin/trunk/www/images/admin-edit.png:
+	  Fix background color in PNG (shows up in IE)
+
+2006-02-17  gauthierm
+
+	* [r3584] admin/trunk/Admin/components/AdminComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminComponents/details.xml,
+	  admin/trunk/Admin/components/AdminGroups/Edit.php,
+	  admin/trunk/Admin/components/AdminSections/Edit.php,
+	  admin/trunk/Admin/components/AdminSite/Profile.php,
+	  admin/trunk/Admin/components/AdminSite/profile.xml,
+	  admin/trunk/Admin/components/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminUsers/Edit.php:
+	  - Updated Admin edit pages to match new AdminEdit API.
+	  - Removed control column from sub-component details page.
+	  - Updated profile editor to math regular edit pages better
+	  (codewise).
+
+2006-02-15  dave
+
+	* [r3556] admin/trunk/sql/reset.sh:
+	  use UTF8 encoding to create the DB
+
+2006-02-15  nrf
+
+	* [r3551] admin/trunk/Admin/pages/AdminDBEdit.php,
+	  admin/trunk/Admin/pages/AdminEdit.php:
+	  Refactor AdminEdit.
+	  Make $id a class var and stop passing it as a param. This makes
+	  it easier to subclass and add new methods. Also we were already
+	  declaring as a class var in complex edit pages.
+	  
+	  Add method buildNavBar() as a standard place to setup the navbar.
+
+2006-02-15  dave
+
+	* [r3542] admin/trunk/sql/tables/adminusers.sql:
+	  remove email column, unsure about force_password
+
+2006-02-14  nrf
+
+	* [r3521] admin/trunk/Admin/pages/AdminPage.php:
+	  Change the way the page title is built.
+
+2006-02-13  nrf
+
+	* [r3499] admin/trunk/Admin/pages/AdminIndex.php:
+	  robustify
+	* [r3495] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminApplicationDatabaseModule.php,
+	  admin/trunk/Admin/AdminApplicationMessagesModule.php,
+	  admin/trunk/Admin/AdminApplicationSessionModule.php,
+	  admin/trunk/Admin/AdminDatabaseModule.php,
+	  admin/trunk/Admin/AdminMessagesModule.php,
+	  admin/trunk/Admin/AdminSessionModule.php,
+	  admin/trunk/Admin/pages/AdminPage.php:
+	  Rename AdminApplicationModules
+
+2006-02-13  dave
+
+	* [r3486] admin/trunk/sql/reset.sh:
+	  use a better db
+
+2006-02-13  nrf
+
+	* [r3478] admin/trunk/Admin/exceptions/AdminException.php:
+	  PEAR_Error objects can now be turned into AdminExceptions
+
+2006-02-13  dave
+
+	* [r3477] admin/trunk/Admin/AdminApplicationSessionModule.php:
+	  new functions to return username and user name - mirrors
+	  getUserID
+
+2006-02-13  steven
+
+	* [r3464] admin/trunk/Admin/AdminEditControlCellRenderer.php:
+	  Make AdminEditControlCellRenderer use new style icon
+	* [r3460] admin/trunk/Admin/AdminTitleLinkCellRenderer.php,
+	  admin/trunk/www/images/admin-product.png,
+	  admin/trunk/www/styles/admin.css:
+	  Add "product" stock type to AdminTitleLinkCellRenderer - a bit
+	  weird since it's a "store" type item, but we can always move it
+	  out of Admin later
+	* [r3456] admin/trunk/Admin/components/AdminComponents/index.xml,
+	  admin/trunk/Admin/components/AdminGroups/index.xml,
+	  admin/trunk/Admin/components/AdminSections/index.xml,
+	  admin/trunk/Admin/components/AdminUsers/index.xml:
+	  Use new AdminTitleLinkCellRenderer with stock types in place of
+	  stand-alone Details control column
+	* [r3455] admin/trunk/Admin/AdminTitleLinkCellRenderer.php,
+	  admin/trunk/Admin/AdminTreeTitleLinkCellRenderer.php,
+	  admin/trunk/www/images/admin-document-with-contents.png,
+	  admin/trunk/www/images/admin-edit.png,
+	  admin/trunk/www/images/admin-folder-with-contents.png,
+	  admin/trunk/www/images/admin-folder.png,
+	  admin/trunk/www/images/admin-generic-document.png,
+	  admin/trunk/www/images/admin-menu-item-back.png,
+	  admin/trunk/www/images/admin-page-back.png,
+	  admin/trunk/www/images/admin-person.png,
+	  admin/trunk/www/styles/admin.css:
+	  Updates to AdminTitleLinkCellRenderer and
+	  AdminTreeTitleLinkCellRenderer that uses the new stock types and
+	  has smart icons for containers/documents with/without children
+	  and title="" tooltips with child counts
+
+2006-02-13  nrf
+
+	* [r3454] admin/trunk/Admin/AdminTreeTitleLinkCellRenderer.php:
+	  even better... sorry for all the commits, this why I work in
+	  steve's tree directly
+	* [r3453] admin/trunk/Admin/AdminTreeTitleLinkCellRenderer.php:
+	  this is better
+	* [r3452] admin/trunk/Admin/AdminTreeTitleLinkCellRenderer.php:
+	  change stock type
+	* [r3451] admin/trunk/Admin/AdminTreeTitleLinkCellRenderer.php:
+	  typo
+	* [r3450] admin/trunk/Admin/AdminTreeTitleLinkCellRenderer.php:
+	  Subclass of title link cell renderer for trees.
+	* [r3448] admin/trunk/Admin/AdminTitleLinkCellRenderer.php:
+	  Add stock types to AdminTitleCellRenderer. Steven did most of
+	  this. I cleaned up the render() method and minimized
+	  duplication with parent::render().
+
+2006-02-13  isaac
+
+	* [r3442] admin/trunk/Admin/AdminNullTextCellRenderer.php:
+	  fix the copyright message
+
+2006-02-13  nrf
+
+	* [r3437] admin/trunk/Admin/AdminDependency.php,
+	  admin/trunk/Admin/AdminListDependency.php,
+	  admin/trunk/Admin/AdminNavBar.php,
+	  admin/trunk/Admin/AdminNullTextCellRenderer.php,
+	  admin/trunk/Admin/AdminSummaryDependency.php,
+	  admin/trunk/Admin/AdminUniqueEntry.php,
+	  admin/trunk/Admin/components/AdminComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminGroups/Delete.php,
+	  admin/trunk/Admin/components/AdminSections/Delete.php,
+	  admin/trunk/Admin/components/AdminUsers/Delete.php:
+	  Update copyright years to reflect SVN commit logs.
+	* [r3436] admin/trunk/Admin/pages/AdminPage.php:
+	  Fix scope bug.
+
+2006-02-13  isaac
+
+	* [r3431]
+	  admin/trunk/Admin/components/AdminSubComponents/Delete.php:
+	  forgot this in my sweep of Admin for the use of exec vs. query
+	* [r3429] admin/trunk/Admin/components/AdminComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminGroups/Delete.php,
+	  admin/trunk/Admin/components/AdminSections/Delete.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminUsers/Delete.php:
+	  fix the copyright dates on the files i just touched
+	* [r3428] admin/trunk/Admin/components/AdminComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminGroups/Delete.php,
+	  admin/trunk/Admin/components/AdminSections/Delete.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminUsers/Delete.php:
+	  use the actual number of rows effected for the delete counts,
+	  instead of just the number of items passed in
+	* [r3427] admin/trunk/Admin/components/AdminComponents/Index.php:
+	  make case same level as switch statement
+
+2006-02-12  nrf
+
+	* [r3404] admin/trunk/sql/tables/admincomponent_admingroup.sql,
+	  admin/trunk/sql/tables/adminuser_admingroup.sql:
+	  Insert all combinations in one line
+
+2006-02-12  dave
+
+	* [r3402] admin/trunk/sql/tables/admincomponent_admingroup.sql,
+	  admin/trunk/sql/tables/admincomponents.sql,
+	  admin/trunk/sql/tables/admingroups.sql,
+	  admin/trunk/sql/tables/adminhelp.sql,
+	  admin/trunk/sql/tables/adminsections.sql,
+	  admin/trunk/sql/tables/adminsubcomponents.sql,
+	  admin/trunk/sql/tables/adminuser_admingroup.sql,
+	  admin/trunk/sql/tables/adminuserhistory.sql,
+	  admin/trunk/sql/tables/adminusers.sql:
+	  more sql cleanup
+
+2006-02-11  dave
+
+	* [r3395] admin/trunk/sql/create_db.sh, admin/trunk/sql/reset.sh:
+	  handy reset script, add full paths to create script
+	* [r3394] admin/trunk/sql/tables/admincomponent_admingroup.sql,
+	  admin/trunk/sql/tables/admincomponents.sql,
+	  admin/trunk/sql/tables/adminsections.sql:
+	  clean up ordering
+
+2006-02-10  dave
+
+	* [r3390] admin/trunk/sql/create_db.sh:
+	  we don't use adminhelp
+	* [r3384] admin/trunk/sql/create_db.sh:
+	  make this one match veseys2
+	* [r3382] admin/trunk/sql/create-db.sql,
+	  admin/trunk/sql/create_db.sh:
+	  new shell script to populate database with admin tables and data
+	* [r3381] admin/trunk/sql/tables/admincomponent_admingroup.sql,
+	  admin/trunk/sql/tables/admincomponents.sql,
+	  admin/trunk/sql/tables/adminsections.sql,
+	  admin/trunk/sql/tables/adminsubcomponents.sql,
+	  admin/trunk/sql/tables/adminuser_admingroup.sql,
+	  admin/trunk/sql/tables/adminusers.sql:
+	  cleaning up generic admin tables
+	* [r3375] admin/trunk/sql/triggers/tr_admingroups_delete.php,
+	  admin/trunk/sql/triggers/tr_admingroups_delete.sql:
+	  fix up file extension
+	* [r3374] admin/trunk/sql/stored_procedures,
+	  admin/trunk/sql/storedprocedures:
+	  renamed directory to match veseys2
+
+2006-02-10  nrf
+
+	* [r3373] admin/trunk/Admin/pages/AdminDBConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBDelete.php:
+	  - wrap long line
+	  - keep $items persistent
+	  - whitespace
+	* [r3370] admin/trunk/Admin/AdminNullTextCellRenderer.php:
+	  Make $strict property false by default. Mike said it was OK...
+
+2006-02-09  dave
+
+	* [r3369] admin/trunk/sql/views/view_adminuser_lastlogin.sql,
+	  admin/trunk/sql/views/view_user_lastlogin.sql:
+	  file renamed to match view name
+	* [r3366] admin/trunk/sql/tables/admincomponent_admingroup.sql,
+	  admin/trunk/sql/triggers/tr_admincomponents_delete.sql:
+	  minor cleanups
+
+2006-02-09  gauthierm
+
+	* [r3364] admin/trunk/sql/tables/adminhelp.sql:
+	  Spaces to tabs.
+
+2006-02-09  dave
+
+	* [r3361] admin/trunk/sql/tables/adminhelp.sql:
+	  add adminhelp source file
+
+2006-02-08  nrf
+
+	* [r3343] admin/trunk/Admin/pages/AdminPage.php:
+	  fix 4126
+	  When you hit apply (for an action) on a category page without
+	  selecting any list items the page reloads but it seems to remove
+	  the last digit from the category id, taking you to a "page not
+	  found" or to another category page altogether.
+	  Actually it doesn't matter if you select a list item or not. Any
+	  action on a category page truncates the last digit.
+
+2006-02-08  steven
+
+	* [r3315] admin/trunk/Admin/components/AdminComponents/index.xml,
+	  admin/trunk/Admin/components/AdminGroups/index.xml,
+	  admin/trunk/Admin/components/AdminSections/index.xml,
+	  admin/trunk/Admin/components/AdminUsers/index.xml:
+	  Clean up "New/Add" language
+	* [r3311] admin/trunk/Admin/pages/AdminEdit.php:
+	  Simplification of standard "New/Add" language
+	* [r3309] admin/trunk/Admin/pages/AdminEdit.php:
+	  Standardize "Create New" language
+	* [r3308] admin/trunk/www/styles/admin.css:
+	  Turn off the block-level links in the left menu for now - we
+	  should do them better somehow later
+
+2006-02-08  nrf
+
+	* [r3307] admin/trunk/Admin/AdminNullTextCellRenderer.php:
+	  Add $strict property to AdminNullTextCellRenderer.
+
+2006-02-07  nrf
+
+	* [r3303] admin/trunk/Admin/pages/AdminConfirmation.php:
+	  Fix a copy/paste bug
+	* [r3298] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminApplicationHistoryModule.php,
+	  admin/trunk/Admin/components/AdminSite/Front.php,
+	  admin/trunk/Admin/components/AdminSite/Profile.php,
+	  admin/trunk/Admin/pages/AdminConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBDelete.php,
+	  admin/trunk/Admin/pages/AdminEdit.php,
+	  admin/trunk/Admin/pages/AdminIndex.php,
+	  admin/trunk/Admin/pages/AdminOrder.php,
+	  admin/trunk/Admin/pages/AdminPage.php:
+	  Rename old init*() methods that should be build*().
+	  Kill the AdminApplicationHistoryModule.
+	  Refactor relocating in AdminPages.
+	  Split buildInternal() in sub-methods in various AdminPages.
+
+2006-02-06  steven
+
+	* [r3272] admin/trunk/www/styles/admin.css:
+	  Make this style more generic so it applies to all Confirmations,
+	  not just dependencies
+
+2006-02-06  nrf
+
+	* [r3261] admin/trunk/Admin/pages/AdminDBConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBDelete.php:
+	  Add AdminDBConfirmation::getFirstItem()
+	  Make $single_delete protected in AdminDBDelete
+	* [r3256] admin/trunk/Admin/pages/AdminPage.php:
+	  s/Admin/AdminSite/
+
+2006-02-03  steven
+
+	* [r3222] admin/trunk/Admin/pages/confirmation.xml:
+	  Add an AdminNote to confirmation pages and cleanup some
+	  white-space (Nathan actually did this)
+	* [r3219] admin/trunk/Admin/AdminDependency.php,
+	  admin/trunk/Admin/pages/confirmation.xml:
+	  Put these confirmation messages into question form?
+	* [r3217] admin/trunk/www/styles/admin.css:
+	  Minor style tweaks to AdminDependency pages
+	* [r3216] admin/trunk/Admin/AdminSummaryDependency.php,
+	  admin/trunk/www/styles/admin.css:
+	  Add a missing space to the output and get rid of a TODO (turned
+	  some inline styles into a CSS class)
+
+2006-02-03  gauthierm
+
+	* [r3214] admin/trunk/Admin/AdminDependency.php,
+	  admin/trunk/Admin/AdminListDependency.php,
+	  admin/trunk/Admin/AdminSummaryDependency.php:
+	  Make displayDependencies() public. This makes it possible to
+	  display sub
+	  dependencies of different classes from within a single
+	  dependency.
+
+2006-02-01  nrf
+
+	* [r3194] admin/trunk/Admin/AdminTitleLinkCellRenderer.php:
+	  override TH attributes too
+
+2006-02-01  steven
+
+	* [r3192] admin/trunk/Admin/pages/confirmation.xml:
+	  Reverse the Yes/No order on AdminDBDelete buttons so the
+	  positive is the Primary
+
+2006-01-31  nrf
+
+	* [r3177] admin/trunk/Admin/components/AdminComponents/edit.xml,
+	  admin/trunk/Admin/components/AdminUsers/edit.xml:
+	  Use new SwatGroupingFormField for checkbox lists.
+
+2006-01-30  nrf
+
+	* [r3175] admin/trunk/Admin/AdminApplication.php:
+	  Handle the front page case better.
+	* [r3158] admin/trunk/Admin/components/AdminComponents/edit.xml,
+	  admin/trunk/Admin/components/AdminGroups/edit.xml,
+	  admin/trunk/Admin/components/AdminSections/edit.xml,
+	  admin/trunk/Admin/components/AdminSite/login.xml,
+	  admin/trunk/Admin/components/AdminSite/profile.xml,
+	  admin/trunk/Admin/components/AdminSubComponents/edit.xml,
+	  admin/trunk/Admin/components/AdminUsers/edit.xml,
+	  admin/trunk/Admin/pages/confirmation.xml,
+	  admin/trunk/Admin/pages/order.xml:
+	  s/SwatFormFooterField/SwatFooterFormField/
+
+2006-01-30  isaac
+
+	* [r3152]
+	  admin/trunk/Admin/components/AdminComponents/details.xml,
+	  admin/trunk/Admin/components/AdminComponents/index.xml,
+	  admin/trunk/Admin/components/AdminSections/index.xml,
+	  admin/trunk/Admin/components/AdminUsers/index.xml:
+	  rename SwatCheckCellRenderer to the more logical
+	  SwatBooleanCellRenderer
+
+2006-01-30  steven
+
+	* [r3144] admin/trunk/Admin/components/AdminComponents/edit.xml:
+	  Use a fieldset for groups
+	* [r3143] admin/trunk/Admin/components/AdminUsers/edit.xml:
+	  Use a fieldset for groups list - it's semantastic!
+
+2006-01-30  nrf
+
+	* [r3136] admin/trunk/Admin/AdminApplication.php:
+	  Add property $front_source to AdminApplication to allow site
+	  code to define the front page.
+
+2006-01-29  gauthierm
+
+	* [r3126] admin/trunk/Admin/AdminDependency.php:
+	  Public before private.
+
+2006-01-27  gauthierm
+
+	* [r3120] admin/trunk/Admin/AdminSearchClause.php:
+	  Whitespace.
+
+2006-01-27  nrf
+
+	* [r3118] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/components/Admin,
+	  admin/trunk/Admin/components/AdminComponents/Details.php,
+	  admin/trunk/Admin/components/AdminComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminGroups/Edit.php,
+	  admin/trunk/Admin/components/AdminSections/Edit.php,
+	  admin/trunk/Admin/components/AdminSite,
+	  admin/trunk/Admin/components/AdminSite/Exception.php,
+	  admin/trunk/Admin/components/AdminSite/Front.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php,
+	  admin/trunk/Admin/components/AdminSite/Logout.php,
+	  admin/trunk/Admin/components/AdminSite/NoAccess.php,
+	  admin/trunk/Admin/components/AdminSite/NotFound.php,
+	  admin/trunk/Admin/components/AdminSite/Profile.php,
+	  admin/trunk/Admin/components/AdminSite/exception.xml,
+	  admin/trunk/Admin/components/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminUsers/Details.php,
+	  admin/trunk/Admin/components/AdminUsers/Edit.php,
+	  admin/trunk/Admin/exceptions,
+	  admin/trunk/Admin/exceptions/AdminException.php,
+	  admin/trunk/Admin/exceptions/AdminNoAccessException.php,
+	  admin/trunk/Admin/exceptions/AdminNotFoundException.php:
+	  Rename the ambiguous catchall "Admin" component to "AdminSite".
+	  Add AdminException and subclasses.
+	  Replace Admin/NoAccess and Admin/NotFound with
+	  AdminSite/Exception.
+	  Remove AdminApplication::replacePageNoAccess()
+
+2006-01-27  gauthierm
+
+	* [r3117] admin/trunk/Admin/AdminSearchClause.php:
+	  Rely on stack trace to get class name of exception.
+	* [r3116] admin/trunk/Admin/AdminSearchClause.php:
+	  Use new brace style.
+
+2006-01-26  nrf
+
+	* [r3107] admin/trunk/Admin/components/AdminComponents/Order.php,
+	  admin/trunk/Admin/components/AdminSections/Order.php:
+	  Reflect changes to SwatChangeOrder API.
+
+2006-01-24  steven
+
+	* [r3085] admin/trunk/Admin/components/AdminSections/index.xml:
+	  Use AdminTitleLinkCellRenderer
+
+2006-01-24  gauthierm
+
+	* [r3082] admin/trunk/Admin/AdminTitleLinkCellRenderer.php:
+	  Remove unnecessary requirement.
+
+2006-01-23  nrf
+
+	* [r3078]
+	  admin/trunk/Admin/components/AdminComponents/details.xml,
+	  admin/trunk/Admin/components/AdminComponents/index.xml,
+	  admin/trunk/Admin/components/AdminGroups/index.xml,
+	  admin/trunk/Admin/components/AdminSections/index.xml,
+	  admin/trunk/Admin/components/AdminUsers/index.xml:
+	  More reflecting of changes to link cell renderer.
+	* [r3074]
+	  admin/trunk/Admin/components/AdminComponents/details.xml,
+	  admin/trunk/Admin/components/AdminComponents/index.xml,
+	  admin/trunk/Admin/components/AdminGroups/index.xml,
+	  admin/trunk/Admin/components/AdminSections/index.xml,
+	  admin/trunk/Admin/components/AdminUsers/index.xml,
+	  admin/trunk/Admin/components/AdminUsers/loginhistory.xml:
+	  Reflect changes to cell renderers.
+
+2006-01-23  steven
+
+	* [r3062]
+	  admin/trunk/Admin/components/AdminComponents/details.xml,
+	  admin/trunk/Admin/components/AdminComponents/index.xml,
+	  admin/trunk/Admin/components/AdminGroups/index.xml,
+	  admin/trunk/Admin/components/AdminUsers/index.xml,
+	  admin/trunk/Admin/components/AdminUsers/loginhistory.xml:
+	  Use AdminTitleLinkCellRenderer
+	* [r3057] admin/trunk/Admin/AdminTitleLinkCellRenderer.php,
+	  admin/trunk/www/images/admin-title-link-cell-renderer-back.png,
+	  admin/trunk/www/styles/admin.css:
+	  New AdminTitleLinkCellRenderer for the primary title row in
+	  Admin index pages
+
+2006-01-22  gauthierm
+
+	* [r3041]
+	  admin/trunk/Admin/components/AdminComponents/details.xml:
+	  Use correct content type.
+
+2006-01-18  steven
+
+	* [r3010] admin/trunk/www/styles/admin-note.css:
+	  A bit more tweaking to the AdminNote styles
+	* [r3009] admin/trunk/www/styles/admin-note.css:
+	  Some minor style changes to AdminNote
+
+2006-01-18  nrf
+
+	* [r3007] admin/trunk/Admin/AdminNote.php,
+	  admin/trunk/www/styles/admin-note.css:
+	  New widget to display static informational notes on admin pages.
+	  Steve, please review/fix the CSS I copied from
+	  SwatMessageDisplay.
+	  Test page:
+	  http://localhost:8080/veseys2/work-nrf/www/admin/Promotions/Details?id=MANTIS
+
+2006-01-17  nrf
+
+	* [r2997] admin/trunk/Admin/components/AdminComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminGroups/Delete.php,
+	  admin/trunk/Admin/components/AdminSections/Delete.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminUsers/Delete.php:
+	  Set content type on confirmation messages.
+
+2006-01-17  steven
+
+	* [r2988] admin/trunk/www/styles/admin.css:
+	  Removed SwatFrame subtitle style - this lives in Swat now
+
+2006-01-17  nrf
+
+	* [r2987] admin/trunk/Admin/AdminApplicationDatabaseModule.php:
+	  Include SwatDBException
+	* [r2986] admin/trunk/Admin/AdminSearchClause.php:
+	  Add support for date fields in AdminSearchClause.
+	  I thought I committed this ages ago for the asterisk admin to
+	  use... I think it's good.
+	* [r2985] admin/trunk/Admin/AdminApplicationDatabaseModule.php:
+	  Convert MDB2 error into SwatDBException and throw it.
+	  This has been sitting in my tree for months.
+	* [r2984]
+	  admin/trunk/Admin/components/AdminComponents/Details.php,
+	  admin/trunk/Admin/components/AdminUsers/Details.php,
+	  admin/trunk/Admin/components/AdminUsers/details.xml:
+	  Now 10% More Semantic!
+	  SwatFrame now has a $subtitle property so we don't have to use
+	  span tags all over the place.
+	* [r2983] admin/trunk/Admin/pages/AdminEdit.php:
+	  Whitespace
+	* [r2979] admin/trunk/Admin/AdminDependency.php,
+	  admin/trunk/Admin/AdminGroupHeaderCellRenderer.php,
+	  admin/trunk/Admin/AdminListDependency.php,
+	  admin/trunk/Admin/AdminMenu.php,
+	  admin/trunk/Admin/AdminNavBar.php,
+	  admin/trunk/Admin/AdminSummaryDependency.php,
+	  admin/trunk/Admin/components/AdminComponents/Details.php,
+	  admin/trunk/Admin/components/AdminUsers/include/HistoryCellRenderer.php:
+	  
+	  Reflect changes to SwatHtmlTag API and use proper escaping on
+	  all echo'd content.
+
+2006-01-11  steven
+
+	* [r2903] admin/trunk/www/images/admin-header-back.png,
+	  admin/trunk/www/styles/admin.css:
+	  Set of visual tweaks to admin: new page header style, more
+	  compact left menu groups, block-style and better hover on left
+	  menu links
+
+2006-01-04  gauthierm
+
+	* [r2858] admin/trunk/Admin/components/Admin/NotFound.php:
+	  Add the message display object to the ui instead of using it
+	  standalone. This
+	  is easier than overriding a bungh of Adminpage methods to
+	  achieve the same
+	  thing.
+	  
+	  Also respect API changes in SwatMessageDisplay from a long time
+	  ago and
+	  properly translate default error string.
+	* [r2857] admin/trunk/Admin/AdminApplication.php:
+	  Remove todo that is done.
+
+2006-01-02  gauthierm
+
+	* [r2848] admin/trunk/Admin/AdminDependency.php:
+	  Fix fold marker.
+	* [r2841] admin/trunk/Admin/components/AdminComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminGroups/Delete.php,
+	  admin/trunk/Admin/components/AdminSections/Delete.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminUsers/Delete.php:
+	  Update deletes for dependency API changes.
+	* [r2840] admin/trunk/Admin/AdminDependency.php,
+	  admin/trunk/Admin/AdminListDependency.php,
+	  admin/trunk/Admin/AdminSummaryDependency.php:
+	  Updates to admin dependency.
+	  - Allows better translations and pluralizations through the use
+	  of string
+	  getting methods. Sub-classes can use whatever strings they
+	  want.
+	  - Updated and improved documentation.
+	  - Made base class abstract and made two sub-classes for lists
+	  and summary
+	  dependency display.
+
+2005-12-30  gauthierm
+
+	* [r2819] admin/trunk/Admin/components/AdminGroups/Edit.php:
+	  Respect Swat API changes.
+
+2005-12-29  gauthierm
+
+	* [r2814] admin/trunk/sql/tables/adminusers.sql:
+	  Spaces to tabs.
+	* [r2813] admin/trunk/sql/tables/adminusers.sql:
+	  Add the fields necessary to support password recovery.
+
+2005-12-27  gauthierm
+
+	* [r2808] admin/trunk/Admin/pages/AdminDBEdit.php:
+	  Wrap lines at 80 chars and remove trailing whitespace.
+	* [r2807] admin/trunk/Admin/pages/confirmation.xml:
+	  Remove the frame title from confirmation pages. I am basing this
+	  decision
+	  on the GNOME 2.0 HIG, specifically the part about alert
+	  dialogues:
+	  
+	  http://developer.gnome.org/projects/gup/hig/2.0/windows-alert.html
+	  
+	  Title Format:
+	  
+	  Alert windows have no titles, as the title would usually
+	  unnecessarily
+	  duplicate the alert's primary text. This way, users can read
+	  and respond to
+	  alerts more quickly as there is less visual noise and
+	  confounding text.
+
+2005-12-26  nick
+
+	* [r2805] admin/trunk/Admin/AdminUniqueEntry.php:
+	  Fixed parse error
+
+2005-12-25  gauthierm
+
+	* [r2804] admin/trunk/Admin/AdminUniqueEntry.php:
+	  Bring to coding standards and use preg_match instead of ereg.
+
+2005-12-23  gauthierm
+
+	* [r2800] admin/trunk/Admin/AdminDependency.php:
+	  Code cleanup.
+
+2005-12-22  gauthierm
+
+	* [r2797] admin/trunk/Admin/components/Admin/Login.php,
+	  admin/trunk/Admin/layouts/login.php,
+	  admin/trunk/www/javascript/admin-login.js:
+	  Override the display() method to display page level JavaScript
+	  rather than
+	  using the layout to do the same thing.
+	  
+	  This follows the same pattern as a the item edit page on veseys
+	  and the admin
+	  order page.
+	* [r2796] admin/trunk/Admin/components/Admin/Login.php:
+	  Correctly capitalize JavaScript.
+
+2005-12-20  gauthierm
+
+	* [r2785] admin/trunk/Admin/pages/AdminOrder.php,
+	  admin/trunk/www/javascript/admin-order.js:
+	  Make admin-order use event handlers to set custom/automatic
+	  ordering options
+	  when clicking items in hte change order list. This remvoes the
+	  need for the
+	  onclick attribute of SwatChangeOrder.
+
+2005-12-16  gauthierm
+
+	* [r2759] admin/trunk/Admin/pages/AdminSearch.php:
+	  Added clearState() method.
+
+2005-12-15  gauthierm
+
+	* [r2751] admin/trunk/Admin/pages/AdminDBDelete.php:
+	  Use new path to SwatDBException.
+	* [r2749] admin/trunk/Admin/AdminApplicationHistoryModule.php:
+	  Whitespace.
+
+2005-12-14  gauthierm
+
+	* [r2744] admin/trunk/Admin/components/Admin/Login.php,
+	  admin/trunk/Admin/layouts/login.php,
+	  admin/trunk/www/javascript/admin-login.js:
+	  Make it so that is firefox autofills your password then the
+	  login button is
+	  focused. This is somewhat experimental and maybe not permanent.
+
+2005-12-13  gauthierm
+
+	* [r2743] admin/trunk/Admin/components/Admin/Login.php,
+	  admin/trunk/Admin/layouts/login.php:
+	  Fix login JavaScript error.
+	* [r2740]
+	  admin/trunk/Admin/components/AdminComponents/Details.php,
+	  admin/trunk/Admin/components/AdminComponents/Index.php,
+	  admin/trunk/Admin/components/AdminGroups/Index.php,
+	  admin/trunk/Admin/components/AdminSections/Index.php,
+	  admin/trunk/Admin/components/AdminUsers/Index.php:
+	  Match processActions definition with the one in the base class
+	  AdminIndex.
+	* [r2739]
+	  admin/trunk/Admin/components/AdminComponents/details.xml:
+	  Use admin null text cell renderer.
+	* [r2738] admin/trunk/Admin/pages/AdminIndex.php:
+	  Fixed definition of processActions().
+
+2005-12-12  gauthierm
+
+	* [r2731] admin/trunk/Admin/AdminTableStore.php:
+	  Use proper brace style and remove call to constructor that does
+	  not exist.
+	* [r2728] admin/trunk/Admin/pages/AdminIndex.php,
+	  admin/trunk/Admin/pages/AdminSearch.php:
+	  - Separated AdminIndex form and view building into distinct
+	  methods.
+	  - Overrided view building in AdminSearch to not get table stores
+	  when no search
+	  state is saved.
+	  - Added hasState() method to AdminSearch to tell if the page has
+	  saved search
+	  state.
+	* [r2721] admin/trunk/Admin/pages/AdminPage.php:
+	  Use try/catch.
+
+2005-12-11  gauthierm
+
+	* [r2717] admin/trunk/Admin/AdminUI.php:
+	  Catch exception instead of using silent parameter.
+	* [r2716] admin/trunk/Admin/AdminUI.php:
+	  Use the brace style that is not new anymore.
+	* [r2713] admin/trunk/Admin/pages/AdminSearch.php:
+	  Use try/catch blocks instead of silent parameter. The silent
+	  paramenter was
+	  removed and a specific exception type can be checked now.
+
+2005-12-05  nick
+
+	* [r2687] admin/trunk/Admin/pages/AdminDBConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBDelete.php:
+	  Put single_delete back in the delete method
+
+2005-12-01  dave
+
+	* [r2628] admin/trunk/Admin/AdminDependency.php:
+	  lowercased d in dependent on a delete confirm
+
+2005-12-01  nrf
+
+	* [r2627] admin/trunk/Admin/pages/AdminDBConfirmation.php:
+	  I think this method was lost in nick's rearranging.
+
+2005-11-28  dave
+
+	* [r2590] admin/trunk/Admin/AdminDependency.php:
+	  changed some wording to help dumb people like me
+
+2005-11-28  nick
+
+	* [r2587] admin/trunk/Admin/pages/AdminDBConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBDelete.php:
+	  Moved most of the functions from AdminDBDelete back into
+	  AdminDBConfirmation.
+	  Nathan and I discussed this and decided not to move things back
+	  any further so
+	  as to leave Confirmations as flexible as possible and not
+	  require a list of
+	  items. But having the methods in AdminDBConfirmation allows for
+	  non-delete
+	  confirmations to be easy to construct.
+
+2005-11-23  dan
+
+	* [r2559] admin/trunk/Admin/components/AdminUsers/index.xml:
+	  I, Dan James of Sherwood PEI, made a change to the admin users
+	  page. Now you can click on a username and get to its edit page!
+	  Over and out.
+
+2005-11-21  nick
+
+	* [r2536] admin/trunk/Admin/components/AdminUsers/Details.php:
+	  Added better error checking. I'll also add this to other details
+	  pages.
+
+2005-11-16  nrf
+
+	* [r2512] admin/trunk/Admin/pages/AdminEdit.php:
+	  Add two methods for dealing with shortnames on edit pages.
+
+2005-11-15  dave
+
+	* [r2502] admin/trunk/Admin/components/AdminComponents/index.xml:
+	  changed AdminGroupLinkCellRenderer title to text
+
+2005-11-14  steven
+
+	* [r2499] admin/trunk/www/styles/admin.css:
+	  Make the navbar text a bit smaller for longer nav-bars
+
+2005-11-14  nick
+
+	* [r2494]
+	  admin/trunk/Admin/components/AdminComponents/details.xml,
+	  admin/trunk/Admin/components/AdminComponents/index.xml,
+	  admin/trunk/Admin/components/AdminGroups/index.xml,
+	  admin/trunk/Admin/components/AdminSections/index.xml,
+	  admin/trunk/Admin/components/AdminUsers/loginhistory.xml:
+	  Changed SwatLinkCellRenderer title to text
+	* [r2489] admin/trunk/Admin/AdminSearchOperatorFlydown.php:
+	  Changed title for "=" option and made a default
+
+2005-11-09  dave
+
+	* [r2486] admin/trunk/package.php:
+	  another case typo
+	* [r2484] admin/trunk/package.php:
+	  fixed case typo
+
+2005-11-08  dave
+
+	* [r2481] admin/trunk/package.php:
+	  php script to build our pear spec file
+
+2005-10-27  nrf
+
+	* [r2441] admin/trunk/Admin/components/AdminGroups/edit.xml:
+	  Have disclosures closed initially
+
+2005-10-22  steven
+
+	* [r2401] admin/trunk/www/styles/admin.css:
+	  Bring this inline with the same class in Swat
+
+2005-10-20  gauthierm
+
+	* [r2379]
+	  admin/trunk/Admin/components/AdminComponents/Details.php:
+	  Use admin null text cell renderer.
+	* [r2375] admin/trunk/Admin/AdminNullTextCellRenderer.php,
+	  admin/trunk/www/styles/admin.css:
+	  Added a cell renderer that will display a default message if it
+	  is asked to
+	  render a null string.
+	* [r2373]
+	  admin/trunk/Admin/components/AdminComponents/Details.php:
+	  Don't hide the link, make it insensitive.
+	* [r2371]
+	  admin/trunk/Admin/components/AdminComponents/Details.php,
+	  admin/trunk/Admin/components/AdminComponents/details.xml:
+	  - use new toolbars
+	  - remove unnecessary id cruft from xml
+	  - add a delete link
+	  - remove redundant title field from detailsview
+
+2005-10-20  steven
+
+	* [r2370] admin/trunk/Admin/AdminMenu.php:
+	  Fix missing </li> tag
+
+2005-10-19  nrf
+
+	* [r2367] admin/trunk/Admin/AdminTableViewOrderableColumn.php:
+	  I committed too soon...
+	* [r2366] admin/trunk/Admin/AdminTableViewOrderableColumn.php:
+	  I believe AdminTableViewOrderableColumn was long ago replaced by
+	  SwatTableViewOrderableColumn.
+	* [r2363] admin/trunk/Admin/pages/AdminPage.php:
+	  Remove page-level htmlhead entries for now. I want to do this a
+	  bit differently if we need it. Patch file is in admin/patches
+
+2005-10-19  steven
+
+	* [r2356] admin/trunk/Admin/layouts/default.php,
+	  admin/trunk/www/styles/admin.css:
+	  Use a div rather than a span here, since it wraps other
+	  block-level elements (and a small CSS simplification)
+
+2005-10-19  nrf
+
+	* [r2354] admin/trunk/Admin/pages/AdminPage.php:
+	  make AdminPage able to store and output headhtml enteries.
+	  AdminPage::addStyleSheet()
+	  AdminPage::addJavaScript()
+	* [r2350] admin/trunk/Admin/pages/AdminIndex.php:
+	  Preserve GET params in form actions.
+
+2005-10-19  desroches
+
+	* [r2347] admin/trunk/Admin/components/AdminComponents/index.xml,
+	  admin/trunk/Admin/components/AdminGroups/index.xml,
+	  admin/trunk/Admin/components/AdminSections/index.xml,
+	  admin/trunk/Admin/components/AdminUsers/index.xml:
+	  SwatToolbars for Packages/Admin/Components
+
+2005-10-18  gauthierm
+
+	* [r2318] admin/trunk/Admin/components/AdminComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminGroups/Edit.php,
+	  admin/trunk/Admin/components/AdminSections/Edit.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminUsers/Edit.php:
+	  And entities were banished, never to be seen again in the land
+	  of UTF-8.
+	  Yet two entites remained. These were &amp; and &lt;. These two
+	  entities had
+	  long ago proven their worth a thousand times over in the land of
+	  XML.
+
+2005-10-17  isaac
+
+	* [r2303] admin/trunk/Admin/pages/AdminEdit.php:
+	  more updates to id === null
+	* [r2302] admin/trunk/Admin/components/AdminComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminGroups/Edit.php,
+	  admin/trunk/Admin/components/AdminSections/Edit.php,
+	  admin/trunk/Admin/components/AdminUsers/Edit.php:
+	  switch rest of admincomponents to use id === null
+
+2005-10-17  gauthierm
+
+	* [r2288]
+	  admin/trunk/Admin/components/AdminComponents/Details.php,
+	  admin/trunk/Admin/components/AdminComponents/details.xml:
+	  Move the description into the details view.
+	* [r2287]
+	  admin/trunk/Admin/components/AdminComponents/details.xml:
+	  REspect API changes in SwatTextCellRenderer.
+
+2005-10-17  nrf
+
+	* [r2283]
+	  admin/trunk/Admin/components/AdminComponents/details.xml,
+	  admin/trunk/Admin/components/AdminComponents/index.xml,
+	  admin/trunk/Admin/components/AdminUsers/details.xml,
+	  admin/trunk/Admin/components/AdminUsers/index.xml,
+	  admin/trunk/Admin/components/AdminUsers/loginhistory.xml:
+	  Reflect changes in SwatTextCellRenderer
+
+2005-10-16  nrf
+
+	* [r2270] admin/trunk/Admin/AdminSearchClause.php:
+	  Allow optional table prefix.
+
+2005-10-16  isaac
+
+	* [r2269]
+	  admin/trunk/Admin/components/AdminSubComponents/Edit.php:
+	  changed id checks from id==0 to id===null
+	* [r2267]
+	  admin/trunk/Admin/components/AdminSubComponents/Edit.php:
+	  fix the custom navbar to cut out all the adminsubcomponents
+	  references properly
+
+2005-10-16  steven
+
+	* [r2266] admin/trunk/www/styles/admin.css:
+	  Fix that ghostly white 1px border that was haunting the admins
+
+2005-10-15  nrf
+
+	* [r2261] admin/trunk/Admin/pages/AdminConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBDelete.php:
+	  Make delete pages work from delete links as well as index posts.
+
+2005-10-15  gauthierm
+
+	* [r2258] admin/trunk/Admin/pages/confirmation.xml:
+	  Reverse button order as we are right aligning.
+
+2005-10-15  isaac
+
+	* [r2255] admin/trunk/Admin/pages/AdminOrder.php:
+	  update this to work with the new version of SwatRadioList
+
+2005-10-12  gauthierm
+
+	* [r2237] admin/trunk/Admin/components/AdminUsers/Details.php:
+	  Standardize the component part of the frame title across the
+	  rest of admin.
+
+2005-10-05  gauthierm
+
+	* [r2218] admin/trunk/Admin/components/AdminUsers/Details.php,
+	  admin/trunk/Admin/components/AdminUsers/Index.php,
+	  admin/trunk/Admin/components/AdminUsers/LoginHistory.php:
+	  Use new method in tableview to set default column ordering.
+	* [r2215] admin/trunk/Admin/pages/AdminIndex.php:
+	  Id is required in SwatTableViewOrderableColumn now so that part
+	  of the if
+	  statement may be removed.
+	* [r2213] admin/trunk/Admin/components/AdminUsers/Details.php,
+	  admin/trunk/Admin/components/AdminUsers/Index.php,
+	  admin/trunk/Admin/components/AdminUsers/LoginHistory.php:
+	  Use default column ordering where applicable. There is no
+	  displayorder field
+	  for any of these table views. As such, there is no implicit data
+	  ordering and
+	  all ordering can be explicit with a sensible default.
+
+2005-10-04  gauthierm
+
+	* [r2212] admin/trunk/Admin/AdminGroupHeaderCellRenderer.php:
+	  Update fo new coding standards and add small amount of
+	  documentation.
+	* [r2211] admin/trunk/Admin/components/AdminComponents/index.xml:
+	  Use new group header link cell renderer for change order links.
+
+2005-10-02  gauthierm
+
+	* [r2200]
+	  admin/trunk/www/images/admin-group-link-cell-renderer.png,
+	  admin/trunk/www/styles/admin.css:
+	  Add a background image.
+	* [r2199] admin/trunk/www/styles/admin.css:
+	  Fix class name.
+	* [r2198] admin/trunk/Admin/AdminGroupLinkCellRenderer.php,
+	  admin/trunk/www/styles/admin.css:
+	  Add a cell renderer for displaying links in groupby headers.
+
+2005-09-30  dave
+
+	* [r2171] admin/trunk/sql/storedprocedures/sp_article_tree.sql,
+	  admin/trunk/sql/tables/admincomponents.sql,
+	  admin/trunk/sql/tables/adminsubcomponents.sql,
+	  admin/trunk/sql/triggers/tr_admincomponents_delete.sql,
+	  admin/trunk/sql/triggers/tr_admingroups_delete.php,
+	  admin/trunk/sql/triggers/tr_adminuserhistory_insert.sql,
+	  admin/trunk/sql/triggers/tr_adminusers_delete.sql:
+	  Fixed up some id fields
+
+2005-09-29  gauthierm
+
+	* [r2162] admin/trunk/Admin/components/Admin/Login.php,
+	  admin/trunk/Admin/components/Admin/login.xml:
+	  Make error messages on loggin in work.
+
+2005-09-26  steven
+
+	* [r2128] admin/trunk/www/styles/admin.css:
+	  Change menu styles to match new SwatFrame styles and some
+	  general beautifications
+
+2005-09-26  gauthierm
+
+	* [r2125] admin/trunk/Admin/pages/AdminPage.php:
+	  Added documentation.
+
+2005-09-26  nrf
+
+	* [r2122] admin/trunk/Admin/components/Admin/Front.php,
+	  admin/trunk/Admin/components/Admin/Profile.php,
+	  admin/trunk/Admin/components/AdminComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminComponents/Details.php,
+	  admin/trunk/Admin/components/AdminComponents/Order.php,
+	  admin/trunk/Admin/components/AdminGroups/Delete.php,
+	  admin/trunk/Admin/components/AdminSections/Delete.php,
+	  admin/trunk/Admin/components/AdminSections/Order.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Order.php,
+	  admin/trunk/Admin/components/AdminUsers/Delete.php,
+	  admin/trunk/Admin/components/AdminUsers/Details.php,
+	  admin/trunk/Admin/pages/AdminConfirmation.php,
+	  admin/trunk/Admin/pages/AdminEdit.php,
+	  admin/trunk/Admin/pages/AdminIndex.php,
+	  admin/trunk/Admin/pages/AdminOrder.php,
+	  admin/trunk/Admin/pages/AdminPage.php,
+	  admin/trunk/Admin/pages/AdminSearch.php:
+	  Rename AdminPage::displayInit() to AdminPage::buildInternal()
+
+2005-09-26  gauthierm
+
+	* [r2121]
+	  admin/trunk/Admin/components/AdminComponents/Details.php:
+	  Better error message and handling for no-access pages.
+	* [r2119] admin/trunk/Admin/components/Admin/NoAccess.php:
+	  Respect changes in SwatNavBar.
+
+2005-09-26  nrf
+
+	* [r2117]
+	  admin/trunk/Admin/components/AdminComponents/Details.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Delete.php:
+	  Make AdminSubComponentsDelete::$parent private and add a set
+	  method.
+
+2005-09-26  nick
+
+	* [r2114] admin/trunk/Admin/pages/AdminSearch.php:
+	  Fixed handling of states
+
+2005-09-26  gauthierm
+
+	* [r2111] admin/trunk/Admin/components/AdminComponents/Edit.php:
+	  Fox typo.
+
+2005-09-26  nrf
+
+	* [r2110] admin/trunk/Admin/pages/AdminDBConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBDelete.php:
+	  Rename AdminDBConfirmation::processGenerateMessage() to
+	  generateMessage()
+	* [r2105] admin/trunk/Admin/components/AdminComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/pages/AdminConfirmation.php:
+	  Rename AdminConfirmation::displayCancelButton() to
+	  switchToCancelButton()
+
+2005-09-26  steven
+
+	* [r2101] admin/trunk/www/styles/admin.css:
+	  Add some simple style for swat-frame title span, as per Mike's
+	  request
+
+2005-09-26  gauthierm
+
+	* [r2100]
+	  admin/trunk/Admin/components/AdminComponents/Details.php:
+	  Added span for steven to style-up.
+
+2005-09-25  nrf
+
+	* [r2088] admin/trunk/Admin/components/Admin/Front.php,
+	  admin/trunk/Admin/components/Admin/Login.php,
+	  admin/trunk/Admin/components/Admin/Logout.php,
+	  admin/trunk/Admin/components/Admin/NoAccess.php,
+	  admin/trunk/Admin/components/Admin/NotFound.php,
+	  admin/trunk/Admin/components/Admin/Profile.php,
+	  admin/trunk/Admin/components/AdminComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminComponents/Details.php,
+	  admin/trunk/Admin/components/AdminComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminComponents/Index.php,
+	  admin/trunk/Admin/components/AdminComponents/Order.php,
+	  admin/trunk/Admin/components/AdminGroups/Delete.php,
+	  admin/trunk/Admin/components/AdminGroups/Edit.php,
+	  admin/trunk/Admin/components/AdminGroups/Index.php,
+	  admin/trunk/Admin/components/AdminGroups/Order.php,
+	  admin/trunk/Admin/components/AdminSections/Delete.php,
+	  admin/trunk/Admin/components/AdminSections/Edit.php,
+	  admin/trunk/Admin/components/AdminSections/Index.php,
+	  admin/trunk/Admin/components/AdminSections/Order.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Order.php,
+	  admin/trunk/Admin/components/AdminUsers/Delete.php,
+	  admin/trunk/Admin/components/AdminUsers/Details.php,
+	  admin/trunk/Admin/components/AdminUsers/Edit.php,
+	  admin/trunk/Admin/components/AdminUsers/Index.php,
+	  admin/trunk/Admin/components/AdminUsers/LoginHistory.php,
+	  admin/trunk/Admin/pages/AdminConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBDelete.php,
+	  admin/trunk/Admin/pages/AdminDBEdit.php,
+	  admin/trunk/Admin/pages/AdminDBOrder.php,
+	  admin/trunk/Admin/pages/AdminEdit.php,
+	  admin/trunk/Admin/pages/AdminIndex.php,
+	  admin/trunk/Admin/pages/AdminOrder.php,
+	  admin/trunk/Admin/pages/AdminPage.php,
+	  admin/trunk/Admin/pages/AdminSearch.php,
+	  admin/trunk/sql/triggers/tr_adminsections_delete.sql:
+	  Biggest.commit.ever
+	  Major cleanup and resturcturing of Admin components and base
+	  pages.
+	* [r2085] admin/trunk/Admin/AdminApplication.php:
+	  Missed in my file moving last night.
+	* [r2084] admin/trunk/Admin/components/Admin/Login.php,
+	  admin/trunk/Admin/components/Admin/NoAccess.php,
+	  admin/trunk/Admin/components/Admin/Profile.php,
+	  admin/trunk/Admin/pages/AdminConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBDelete.php,
+	  admin/trunk/Admin/pages/AdminDBOrder.php,
+	  admin/trunk/Admin/pages/AdminEdit.php,
+	  admin/trunk/Admin/pages/AdminIndex.php,
+	  admin/trunk/Admin/pages/AdminOrder.php,
+	  admin/trunk/Admin/pages/AdminSearch.php:
+	  Restructuring the admin control flow. UML is cool.
+
+2005-09-25  nick
+
+	* [r2083] admin/trunk/Admin/pages/AdminPage.php:
+	  Reintroduced initInternal, added processInternal, reworked
+	  documentation
+
+2005-09-25  steven
+
+	* [r2082] admin/trunk/Admin/components/AdminGroups/edit.xml:
+	  Change some SwatFrames to SwatDisclosures and remove some old
+	  commented-out stuff (that's ok to kill, right?)
+
+2005-09-25  nick
+
+	* [r2081] admin/trunk/Admin/pages/AdminPage.php:
+	  Made display methods protected and made process call ui->process
+	* [r2080] admin/trunk/Admin/pages/AdminPage.php:
+	  Removed initInternal()
+	* [r2079] admin/trunk/Admin/pages/AdminPage.php:
+	  Cleaned up syntax and rearranged method order
+
+2005-09-24  nrf
+
+	* [r2075] admin/trunk/Admin/Admin,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminComponents,
+	  admin/trunk/Admin/AdminGroups, admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminPageRequest.php,
+	  admin/trunk/Admin/AdminSections,
+	  admin/trunk/Admin/AdminSubComponents,
+	  admin/trunk/Admin/AdminUsers, admin/trunk/Admin/components,
+	  admin/trunk/Admin/components/Admin,
+	  admin/trunk/Admin/components/Admin/Front.php,
+	  admin/trunk/Admin/components/Admin/Login.php,
+	  admin/trunk/Admin/components/Admin/Logout.php,
+	  admin/trunk/Admin/components/Admin/NoAccess.php,
+	  admin/trunk/Admin/components/Admin/NotFound.php,
+	  admin/trunk/Admin/components/Admin/Profile.php,
+	  admin/trunk/Admin/components/Admin/front.xml,
+	  admin/trunk/Admin/components/Admin/login.xml,
+	  admin/trunk/Admin/components/Admin/profile.xml,
+	  admin/trunk/Admin/components/AdminComponents,
+	  admin/trunk/Admin/components/AdminComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminComponents/Details.php,
+	  admin/trunk/Admin/components/AdminComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminComponents/Index.php,
+	  admin/trunk/Admin/components/AdminComponents/Order.php,
+	  admin/trunk/Admin/components/AdminGroups,
+	  admin/trunk/Admin/components/AdminGroups/Delete.php,
+	  admin/trunk/Admin/components/AdminGroups/Edit.php,
+	  admin/trunk/Admin/components/AdminGroups/Index.php,
+	  admin/trunk/Admin/components/AdminGroups/Order.php,
+	  admin/trunk/Admin/components/AdminSections,
+	  admin/trunk/Admin/components/AdminSections/Delete.php,
+	  admin/trunk/Admin/components/AdminSections/Edit.php,
+	  admin/trunk/Admin/components/AdminSections/Index.php,
+	  admin/trunk/Admin/components/AdminSections/Order.php,
+	  admin/trunk/Admin/components/AdminSubComponents,
+	  admin/trunk/Admin/components/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/components/AdminSubComponents/Order.php,
+	  admin/trunk/Admin/components/AdminUsers,
+	  admin/trunk/Admin/components/AdminUsers/Delete.php,
+	  admin/trunk/Admin/components/AdminUsers/Details.php,
+	  admin/trunk/Admin/components/AdminUsers/Edit.php,
+	  admin/trunk/Admin/components/AdminUsers/Index.php,
+	  admin/trunk/Admin/components/AdminUsers/LoginHistory.php,
+	  admin/trunk/Admin/pages,
+	  admin/trunk/Admin/pages/AdminConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBConfirmation.php,
+	  admin/trunk/Admin/pages/AdminDBDelete.php,
+	  admin/trunk/Admin/pages/AdminDBEdit.php,
+	  admin/trunk/Admin/pages/AdminDBOrder.php,
+	  admin/trunk/Admin/pages/AdminEdit.php,
+	  admin/trunk/Admin/pages/AdminIndex.php,
+	  admin/trunk/Admin/pages/AdminOrder.php,
+	  admin/trunk/Admin/pages/AdminPage.php,
+	  admin/trunk/Admin/pages/AdminSearch.php,
+	  admin/trunk/Admin/pages/confirmation.xml,
+	  admin/trunk/Admin/pages/order.xml:
+	  Major rearranging of Admin files to better match sites and to
+	  separate components from base page classes.
+
+2005-09-23  nrf
+
+	* [r2070] admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminGroups/Index.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminUsers/Details.php,
+	  admin/trunk/Admin/AdminUsers/Index.php,
+	  admin/trunk/Admin/AdminUsers/LoginHistory.php:
+	  Reflect changes in AdminIndex
+	* [r2069] admin/trunk/Admin/Admin/Index.php:
+	  Restructure the AdminIndex base class so it can be used as a
+	  base for index pages with multiple table views. As a
+	  side-effect, AdminIndex no longer relies upon certain ids
+	  appearing in the XML (index_form, index_view, index_actions).
+	* [r2061] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/Admin/Profile.php:
+	  Use SwatForm::isProcessed() since SwatForm::process() no longer
+	  returns a value.
+	* [r2058] admin/trunk/Admin/Admin/Index.php:
+	  Process the entire UI, not just the form.
+
+2005-09-23  steven
+
+	* [r2057] admin/trunk/www/styles/admin.css:
+	  Tighten up vertical margins between admin sections in left menu
+
+2005-09-22  steven
+
+	* [r2054] admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminGroups/index.xml,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminUsers/index.xml:
+	  Set stock SwatToolLink types
+
+2005-09-21  gauthierm
+
+	* [r2031] admin/trunk/Admin/AdminTreeControlCellRenderer.php:
+	  :%s/Control/ImageLink
+
+2005-09-20  gauthierm
+
+	* [r2028] admin/trunk/Admin/Admin/Profile.php:
+	  Respect new database id names. Change session variable userID to
+	  user_id.
+	* [r2013] admin/trunk/Admin/AdminPage.php:
+	  Fix typo.
+	* [r2012] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPage.php:
+	  Use new navbar.
+	* [r2011] admin/trunk/Admin/AdminImportantNavBarEntry.php,
+	  admin/trunk/Admin/AdminNavBar.php:
+	  Added a special navbar that can display some special entries as
+	  <h1> elements.
+
+2005-09-19  gauthierm
+
+	* [r2006] admin/trunk/Admin/AdminEditControlCellRenderer.php:
+	  Fix typo.
+	* [r2005] admin/trunk/Admin/AdminDetailsControlCellRenderer.php,
+	  admin/trunk/Admin/AdminEditControlCellRenderer.php:
+	  Respect changes in swat and update the brace style.
+
+2005-09-19  nrf
+
+	* [r1997] admin/trunk/Admin/Admin/confirmation.xml,
+	  admin/trunk/Admin/Admin/front.xml,
+	  admin/trunk/Admin/Admin/login.xml,
+	  admin/trunk/Admin/Admin/order.xml,
+	  admin/trunk/Admin/Admin/profile.xml,
+	  admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminGroups/edit.xml,
+	  admin/trunk/Admin/AdminGroups/index.xml,
+	  admin/trunk/Admin/AdminSections/edit.xml,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminSubComponents/edit.xml,
+	  admin/trunk/Admin/AdminUsers/details.xml,
+	  admin/trunk/Admin/AdminUsers/edit.xml,
+	  admin/trunk/Admin/AdminUsers/index.xml,
+	  admin/trunk/Admin/AdminUsers/loginhistory.xml:
+	  Reflect changes to SwatML
+
+2005-09-15  gauthierm
+
+	* [r1954] admin/trunk/Admin/Admin.php:
+	  Declare methods as public static.
+	* [r1952] admin/trunk/Admin/AdminUI.php:
+	  Do this correctly.
+
+2005-09-14  gauthierm
+
+	* [r1946] admin/trunk/Admin/AdminUI.php:
+	  Add Admin to the class_map.
+
+2005-09-13  gauthierm
+
+	* [r1928] admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminGroups/Edit.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php:
+	  Use curly quotes for edit "saved" messages.
+	* [r1927] admin/trunk/Admin/AdminApplication.php:
+	  Replace spaces with tabs.
+	* [r1924] admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Front.php,
+	  admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/NoAccess.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/Admin/Profile.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminGroups/Index.php,
+	  admin/trunk/Admin/AdminGroups/Order.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/Order.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php,
+	  admin/trunk/Admin/AdminUsers/Details.php,
+	  admin/trunk/Admin/AdminUsers/Index.php,
+	  admin/trunk/Admin/AdminUsers/LoginHistory.php:
+	  Put protected methods after public methods.
+	* [r1923] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Front.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/NoAccess.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/Admin/Profile.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminGroups/Edit.php,
+	  admin/trunk/Admin/AdminGroups/Index.php,
+	  admin/trunk/Admin/AdminGroups/Order.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/Order.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php,
+	  admin/trunk/Admin/AdminUsers/Details.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php,
+	  admin/trunk/Admin/AdminUsers/Index.php,
+	  admin/trunk/Admin/AdminUsers/LoginHistory.php:
+	  Extend the new initInternal() method instead of init().
+	* [r1922] admin/trunk/Admin/AdminPage.php:
+	  Some changes to init(). The initInternal() method will probably
+	  have to be
+	  renamed.
+	* [r1921] admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/javascript, admin/trunk/www/javascript:
+	  Move javascript to the www directory and update AdminLogin to
+	  look for it
+	  there.
+	* [r1920] admin/trunk/Admin/AdminApplication.php:
+	  Put private methods after protected and public methods.
+
+2005-09-12  nick
+
+	* [r1910] admin/trunk/Admin/AdminApplication.php:
+	  Fixed tabbing
+
+2005-09-12  nrf
+
+	* [r1900] admin/trunk/Admin/Admin/confirmation.xml,
+	  admin/trunk/Admin/Admin/login.xml,
+	  admin/trunk/Admin/Admin/order.xml,
+	  admin/trunk/Admin/Admin/profile.xml,
+	  admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminGroups/edit.xml,
+	  admin/trunk/Admin/AdminGroups/index.xml,
+	  admin/trunk/Admin/AdminSections/edit.xml,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminSubComponents/edit.xml,
+	  admin/trunk/Admin/AdminUsers/details.xml,
+	  admin/trunk/Admin/AdminUsers/edit.xml,
+	  admin/trunk/Admin/AdminUsers/index.xml,
+	  admin/trunk/Admin/AdminUsers/loginhistory.xml:
+	  Reflect changes in SwatUI
+
+2005-09-09  gauthierm
+
+	* [r1894] admin/trunk/sql/tables/admincomponent_admingroup.sql,
+	  admin/trunk/sql/tables/admingroups.sql,
+	  admin/trunk/sql/tables/adminsections.sql,
+	  admin/trunk/sql/tables/adminsubcomponents.sql,
+	  admin/trunk/sql/tables/adminuser_admingroup.sql,
+	  admin/trunk/sql/tables/adminuserhistory.sql,
+	  admin/trunk/sql/tables/adminusers.sql:
+	  Tidy these up a bit.
+	* [r1882]
+	  admin/trunk/Admin/AdminUsers/include/HistoryCellRenderer.php:
+	  Use new brace style.
+	* [r1881] admin/trunk/Admin/AdminUsers/Index.php:
+	  This file requires the HistoryCellRenderere as well.
+	* [r1880] admin/trunk/Admin/AdminUsers/HistoryCellRenderer.php,
+	  admin/trunk/Admin/AdminUsers/LoginHistory.php,
+	  admin/trunk/Admin/AdminUsers/include,
+	  admin/trunk/Admin/AdminUsers/include/HistoryCellRenderer.php:
+	  Move the helper class HistoryCellRenderer into a include
+	  directory.
+	  This mean HistoryCellRenderer is no longer accidentally a
+	  sub-component.
+
+2005-09-08  gauthierm
+
+	* [r1868] admin/trunk/Admin/AdminUsers/Edit.php:
+	  - Use getCount() instead of numRows()
+	  - s/shortname/username
+	* [r1867] admin/trunk/Admin/AdminSections/edit.xml:
+	  Comment out the color tool. I think this was just for testing
+	  and it could
+	  probably be removed altogether.
+	* [r1866] admin/trunk/Admin/AdminGroups/Edit.php:
+	  Use id instead of componentid.
+	* [r1865] admin/trunk/Admin/AdminComponents/Edit.php:
+	  - Use getCount() instead of numRows()
+	  - Use id instead of groupid
+	* [r1863] admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php:
+	  Make this component work with the new database naming schema.
+	* [r1862] admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml:
+	  Update this component to work with the new database id naming
+	  schema.
+	* [r1860] admin/trunk/Admin/AdminGroups/Order.php:
+	  Groups are not actually orderable but as long as this file is
+	  here it might
+	  as well be maintained.
+	  
+	  - Made the order sub-component work with groups.
+	  - Brought up to so coding conventions.
+	* [r1859] admin/trunk/Admin/AdminGroups/Delete.php,
+	  admin/trunk/Admin/AdminGroups/Edit.php,
+	  admin/trunk/Admin/AdminGroups/Index.php,
+	  admin/trunk/Admin/AdminGroups/index.xml:
+	  Make this component work with the new database id naming scheme.
+	* [r1858] admin/trunk/Admin/AdminUsers/Delete.php,
+	  admin/trunk/Admin/AdminUsers/Details.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php,
+	  admin/trunk/Admin/AdminUsers/Index.php,
+	  admin/trunk/Admin/AdminUsers/index.xml:
+	  Make work with new database is naming scheme.
+	* [r1857] admin/trunk/Admin/AdminUsers/LoginHistory.php:
+	  Bring up to spec with so conventions.
+	* [r1856] admin/trunk/Admin/AdminUsers/LoginHistory.php:
+	  Make work with new database ids.
+
+2005-09-08  nick
+
+	* [r1855] admin/trunk/Admin/AdminPage.php:
+	  Fixed user id reference (though shouldn't this use a method
+	  instead?)
+
+2005-09-08  gauthierm
+
+	* [r1854] admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/Order.php,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Make this component work with new database id names.
+	* [r1853] admin/trunk/Admin/AdminMenu.php:
+	  Make this work with the changes to the stored procedure.
+	* [r1852] admin/trunk/Admin/AdminMenu.php:
+	  Bring this up to spec in terms of standards.
+	* [r1851] admin/trunk/sql/storedprocedures/sp_admin_menu.sql,
+	  admin/trunk/sql/storedprocedures/sp_adminmenu.sql:
+	  Rename this file to match its contents.
+	* [r1849] admin/trunk/sql/storedprocedures/sp_adminmenu.sql:
+	  Make the menu sp work with new database ids.
+	* [r1848] admin/trunk/Admin/AdminApplication.php:
+	  Missing s's.
+	* [r1847] admin/trunk/Admin/AdminApplicationSessionModule.php:
+	  Renamve the userID key as user_id to match other so conventions.
+	* [r1846] admin/trunk/Admin/AdminApplication.php:
+	  Update page query to use new database id field names and use
+	  sprintf.
+	* [r1845] admin/trunk/Admin/AdminApplicationSessionModule.php:
+	  Make login work with new database ids.
+
+2005-09-07  nrf
+
+	* [r1837] admin/trunk/Admin/AdminApplication.php:
+	  Handle bad sources a little differently but the same result.
+
+2005-09-07  gauthierm
+
+	* [r1836] admin/trunk/Admin/Admin/NotFound.php:
+	  Include swat.css on this page.
+	* [r1835] admin/trunk/Admin/AdminApplication.php:
+	  Get the component and subcomponent differently to make crazy
+	  source fields
+	  go to AdminPageNotFound.
+	* [r1834] admin/trunk/Admin/AdminApplication.php:
+	  The navbar is created in the page constructor.
+	* [r1833] admin/trunk/Admin/AdminApplication.php:
+	  - If there are braces on part of the it statement then put
+	  braces on the rest
+	  of the if statement even if it is only one statement.
+	  - Line up the special admin page titles.
+	* [r1832] admin/trunk/Admin/Admin/NotFound.php:
+	  Override the build method to not use the ui object.
+	* [r1831] admin/trunk/Admin/AdminPageRequest.php:
+	  Use new brace style.
+
+2005-09-07  nrf
+
+	* [r1829] admin/trunk/Admin/AdminComponents/Details.php:
+	  Fancypants curly quotes
+	* [r1828] admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/details.xml:
+	  Use new features of SwatDB and other restructuring.
+	* [r1827] admin/trunk/Admin/AdminApplication.php:
+	  Simplify
+	* [r1824] admin/trunk/Admin/AdminApplicationSessionModule.php:
+	  Simplify
+
+2005-09-07  gauthierm
+
+	* [r1823] admin/trunk/Admin/AdminComponents/Details.php:
+	  Removed unnecessary second check to make sure row is set. I
+	  accidentally
+	  copied this statement when adding the groups query.
+	* [r1821] admin/trunk/Admin/AdminSections/index.xml:
+	  Removed details cell renderer as there is no details page.
+	* [r1820] admin/trunk/Admin/AdminComponents/index.xml:
+	  Swapped the edit control cell renderer with a details control
+	  cell renderer.
+	* [r1819] admin/trunk/Admin/AdminComponents/Details.php:
+	  Only show the order tool-link if there are 2 or more
+	  sub-components.
+	* [r1818] admin/trunk/Admin/AdminComponents/edit.xml:
+	  Fixed capitalization.
+	* [r1817] admin/trunk/Admin/AdminSubComponents/Delete.php:
+	  Fix the delete navbar.
+	* [r1816] admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php:
+	  Fix navbar for edit page.
+	* [r1815] admin/trunk/Admin/AdminSubComponents/Order.php:
+	  Fixed sum(displayorder) query type and fixed navbar.
+	* [r1814] admin/trunk/Admin/AdminComponents/Details.php:
+	  Get all tool-links on the page, not just the ones directly
+	  descended from the
+	  top frame, when setting the value.
+	* [r1813] admin/trunk/Admin/AdminComponents/details.xml:
+	  Use correct stock_id.
+	* [r1812] admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/details.xml:
+	  Made the tool-links stock tool-links.
+	* [r1810] admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/details.xml:
+	  Only show the description field if there is text in the database
+	  for the
+	  description.
+	* [r1809] admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/details.xml:
+	  Added details to the details page. The layout of this needs work
+	  (steve or nick) but the foundation is there.
+
+2005-09-07  nrf
+
+	* [r1804] admin/trunk/Admin/Admin/Profile.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminGroups/Edit.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminUsers/Details.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php:
+	  Reflect changes in SwatDB.
+	* [r1802] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminApplicationSessionModule.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminGroups/Index.php,
+	  admin/trunk/Admin/AdminGroups/Order.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/Order.php,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php,
+	  admin/trunk/Admin/AdminUsers/Details.php,
+	  admin/trunk/Admin/AdminUsers/Index.php,
+	  admin/trunk/Admin/AdminUsers/LoginHistory.php:
+	  Use SwatDB::query* instead of MDB2 directly so it can do the
+	  error-handling.
+
+2005-09-06  steven
+
+	* [r1786] admin/trunk/www/styles/admin.css:
+	  make more stuff beige...
+	* [r1779] admin/trunk/www/styles,
+	  admin/trunk/www/styles/admin.css:
+	  These files got messed up somehow - nate fixed 'em
+	* [r1776] admin/trunk/www/style:
+	  Remove mis-named dir
+
+2005-09-05  gauthierm
+
+	* [r1767] admin/trunk/Admin/Admin/DBDelete.php:
+	  Set buttons from stock instead of manually setting title.
+
+2005-09-05  steven
+
+	* [r1756] admin/trunk/Admin/layouts/default.php,
+	  admin/trunk/Admin/layouts/login.php, admin/trunk/www/admin.css,
+	  admin/trunk/www/style, admin/trunk/www/style/admin.css:
+	  Move CSS from www/ to www/styles/ and update references
+	  accordingly
+	* [r1747] admin/trunk/Admin/layouts/default.php,
+	  admin/trunk/www/admin.css, admin/trunk/www/images/header.png,
+	  admin/trunk/www/images/menu.png:
+	  General rework of the CSS layout/style for the admin - a work in
+	  progress, but good enough to keep in the trunk
+
+2005-09-05  gauthierm
+
+	* [r1733] admin/trunk/Admin/layouts/default.php,
+	  admin/trunk/Admin/layouts/login.php:
+	  Remove swat.css here because it's part of SwatWidget now.
+
+2005-09-03  gauthierm
+
+	* [r1705] admin/trunk/Admin/Admin/Login.php:
+	  Forgot to specify the property name in assignment.
+	* [r1704] admin/trunk/Admin/Admin/Login.php:
+	  Add html head entries to login page.
+	* [r1703] admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/layouts/default.php,
+	  admin/trunk/Admin/layouts/login.php:
+	  Display html head entries in the layouts.
+
+2005-09-02  nrf
+
+	* [r1690] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/DBDelete.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Front.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/Admin/Profile.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php,
+	  admin/trunk/Admin/AdminUsers/Details.php,
+	  admin/trunk/Admin/AdminUsers/LoginHistory.php:
+	  Reflect changes to SwatNavBar
+
+2005-09-01  steven
+
+	* [r1675] admin/trunk/Admin/AdminApplication.php:
+	  Add a TODO
+
+2005-09-01  nrf
+
+	* [r1671] admin/trunk/Admin/Admin/login.xml,
+	  admin/trunk/Admin/Admin/order.xml,
+	  admin/trunk/Admin/Admin/profile.xml,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminGroups/edit.xml,
+	  admin/trunk/Admin/AdminSections/edit.xml,
+	  admin/trunk/Admin/AdminSubComponents/edit.xml,
+	  admin/trunk/Admin/AdminUsers/edit.xml:
+	  Only use SwatFormFooterField in some places.
+	* [r1668] admin/trunk/Admin/Admin/Edit.php:
+	  Reflect changes to SwatButton
+	* [r1659] admin/trunk/Admin/Admin/confirmation.xml,
+	  admin/trunk/Admin/Admin/login.xml,
+	  admin/trunk/Admin/Admin/order.xml,
+	  admin/trunk/Admin/Admin/profile.xml,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminGroups/edit.xml,
+	  admin/trunk/Admin/AdminSections/edit.xml,
+	  admin/trunk/Admin/AdminSubComponents/edit.xml,
+	  admin/trunk/Admin/AdminUsers/edit.xml:
+	  Use new SwatFormFooterField
+	* [r1649] admin/trunk/Admin/AdminPage.php:
+	  Somehow this was missed in last week's search and replace
+
+2005-08-31  steven
+
+	* [r1631] admin/trunk/www/admin.css:
+	  Remove some un-used CSS for the login page
+	* [r1630] admin/trunk/Admin/AdminApplication.php:
+	  don't pass the <h1> into the navbar (we'll do it some other way)
+	* [r1625] admin/trunk/www/admin.css:
+	  float:right; the "Welcome..." admin header links rather than
+	  absolute positioning them for better scalability
+
+2005-08-30  nrf
+
+	* [r1615] admin/trunk/Admin/Admin/Edit.php:
+	  Guess whether IDs are integers and cast. Nothing goes wrong if
+	  this fails (numeric string that is supposed to be a string ID)
+	  but it makes the type right for the common case (integer IDs).
+
+2005-08-30  gauthierm
+
+	* [r1611] admin/trunk/Admin/Admin/Profile.php:
+	  Add entry to navbar for this page.
+	* [r1610] admin/trunk/Admin/Admin/Profile.php:
+	  Respect name change in displayInitMessage() method.
+	* [r1608] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/Admin/Login.php:
+	  Put protected methods after public methods.
+	* [r1607] admin/trunk/Admin/Admin/DBConfirmation.php,
+	  admin/trunk/Admin/Admin/Front.php,
+	  admin/trunk/Admin/Admin/NoAccess.php,
+	  admin/trunk/Admin/Admin/NotFound.php,
+	  admin/trunk/Admin/Admin/Search.php:
+	  Use new brace style.
+
+2005-08-30  nrf
+
+	* [r1605] admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php:
+	  Reflect changes in SwatDB
+
+2005-08-29  gauthierm
+
+	* [r1595] admin/trunk/Admin/Admin/DBDelete.php:
+	  Pop the navbar element added by this class's parent::init()
+	  before adding
+	  this class's navbar element.
+	* [r1594] admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminGroups/Edit.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminUsers/Details.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php,
+	  admin/trunk/Admin/AdminUsers/LoginHistory.php:
+	  Add navbar elements to default admin components.
+	* [r1593] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/DBDelete.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPage.php:
+	  - Move the creation of the navbar to the page constructor.
+	  - In base pages add an element to the navbar.
+	* [r1589] admin/trunk/Admin/Admin/DBDelete.php:
+	  Rename buttons on delete confirmation page to something more
+	  human.
+
+2005-08-26  nrf
+
+	* [r1544] admin/trunk/Admin/AdminApplication.php:
+	  SYSTEM_ERROR!
+
+2005-08-26  steven
+
+	* [r1543] admin/trunk/www/admin.css:
+	  Some style fixes to go along with the title/navbar changes in my
+	  last commit
+	* [r1542] admin/trunk/Admin/Admin/Front.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/layouts/default.php:
+	  Make the admin title / home link be at one with the admin navbar
+
+2005-08-26  nrf
+
+	* [r1540] admin/trunk/Admin/AdminSections/edit.xml:
+	  typo
+
+2005-08-26  isaac
+
+	* [r1532] admin/trunk/Admin/Admin/NoAccess.php,
+	  admin/trunk/Admin/Admin/NotFound.php,
+	  admin/trunk/Admin/AdminPage.php:
+	  updated to reflect new add function of SwatMessageDisplay
+
+2005-08-26  nrf
+
+	* [r1524] admin/trunk/Admin/Admin/front.xml,
+	  admin/trunk/Admin/Admin/profile.xml,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminGroups/edit.xml,
+	  admin/trunk/Admin/AdminGroups/index.xml,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminUsers/edit.xml,
+	  admin/trunk/Admin/AdminUsers/index.xml:
+	  Rename instances of SwatMessageDisplay
+	* [r1515] admin/trunk/Admin/Admin/NoAccess.php,
+	  admin/trunk/Admin/Admin/NotFound.php,
+	  admin/trunk/Admin/Admin/front.xml,
+	  admin/trunk/Admin/Admin/profile.xml,
+	  admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminGroups/edit.xml,
+	  admin/trunk/Admin/AdminGroups/index.xml,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminUsers/edit.xml,
+	  admin/trunk/Admin/AdminUsers/index.xml:
+	  Reflect the rename of SwatMessageBox to SwatMessageDisplay
+	* [r1498] admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/AdminPage.php, admin/trunk/Admin/layouts,
+	  admin/trunk/Admin/layouts/default.php,
+	  admin/trunk/Admin/layouts/login.php:
+	  Move admin layouts to the Admin package.
+	* [r1490] admin/trunk/Admin/Admin/Edit.php:
+	  Add an error message at the top of an edit page if there is an
+	  error in the form.
+
+2005-08-25  nrf
+
+	* [r1482] admin/trunk/Admin/Admin/DBConfirmation.php,
+	  admin/trunk/Admin/Admin/DBDelete.php,
+	  admin/trunk/Admin/Admin/DBEdit.php,
+	  admin/trunk/Admin/Admin/DBOrder.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminGroups/Delete.php,
+	  admin/trunk/Admin/AdminGroups/Edit.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminUniqueEntry.php,
+	  admin/trunk/Admin/AdminUsers/Delete.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php:
+	  Reflect constant renaming in SwatMessage
+
+2005-08-25  nick
+
+	* [r1463] admin/trunk/Admin/Admin/NoAccess.php:
+	  Fixed navbar for No Access page
+
+2005-08-25  nrf
+
+	* [r1462] admin/trunk/Admin/AdminApplication.php:
+	  fix the NoAccess page
+
+2005-08-25  nick
+
+	* [r1460] admin/trunk/Admin/AdminComponents/Details.php:
+	  Added check to see if sub-item exists
+	* [r1459] admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminGroups/Edit.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php:
+	  Fixed not found references
+
+2005-08-25  nrf
+
+	* [r1454] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/DBConfirmation.php,
+	  admin/trunk/Admin/Admin/DBDelete.php,
+	  admin/trunk/Admin/Admin/DBEdit.php,
+	  admin/trunk/Admin/Admin/DBOrder.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/Logout.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/Admin/Profile.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminApplicationDatabaseModule.php,
+	  admin/trunk/Admin/AdminApplicationHistoryModule.php,
+	  admin/trunk/Admin/AdminApplicationMessagesModule.php,
+	  admin/trunk/Admin/AdminApplicationSessionModule.php,
+	  admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminGroups/Delete.php,
+	  admin/trunk/Admin/AdminGroups/Edit.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminUsers/Delete.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php,
+	  admin/trunk/Admin/AdminUsers/Index.php:
+	  Clean up AdminApplication by splitting parts of it into four new
+	  application modules.
+
+2005-08-25  nick
+
+	* [r1448] admin/trunk/Admin/AdminSubComponents/Edit.php:
+	  Fixed sql bug
+
+2005-08-18  nick
+
+	* [r1386] admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminGroups/Index.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminUsers/Index.php:
+	  Fixed references to app-page to app->getPage()
+	* [r1385] admin/trunk/Admin/Admin/DBDelete.php:
+	  Changed formatting
+
+2005-08-18  nrf
+
+	* [r1377] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Front.php,
+	  admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/Logout.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/Admin/Profile.php,
+	  admin/trunk/Admin/Admin/Search.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminGroups/Delete.php,
+	  admin/trunk/Admin/AdminGroups/Order.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Order.php,
+	  admin/trunk/Admin/AdminSections/edit.xml,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php,
+	  admin/trunk/Admin/AdminUsers/Delete.php,
+	  admin/trunk/Admin/AdminUsers/Details.php:
+	  Reflect changes to SwatPage and Swat Application. Rename
+	  AdminPage::displayInit() to AdminPage::initDisplay().
+
+2005-08-17  nick
+
+	* [r1359] admin/trunk/Admin/AdminSections/Delete.php:
+	  Added proper dependencies to AdminSections
+	* [r1358] admin/trunk/sql/triggers/adminsections_delete.sql,
+	  admin/trunk/sql/triggers/tr_adminsections_delete.sql:
+	  Finally name it right
+	* [r1357] admin/trunk/sql/triggers/adminsections_delete.sql,
+	  admin/trunk/sql/triggers/tr_admnsections_delete.sql:
+	  Renamed file
+	* [r1356] admin/trunk/sql/triggers/tr_admnsections_delete.sql:
+	  Added new trigger for admin sections
+
+2005-08-16  isaac
+
+	* [r1338] admin/trunk/Admin/AdminPageRequest.php:
+	  updated to look into the components dir
+
+2005-08-05  gauthierm
+
+	* [r1277] admin/trunk/Admin/AdminDependency.php,
+	  admin/trunk/Admin/AdminDependencyEntry.php:
+	  Split AdminDependencyEntry into its own file and clean
+	  documentation
+	  for both classes.
+	  
+	  Added @package tag to AdminDependencyEntry class.
+
+2005-08-01  nick
+
+	* [r1250] admin/trunk/Admin/AdminApplication.php:
+	  Fixed documentation
+	* [r1246] admin/trunk/Admin/Admin/NoAccess.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminGroups/Edit.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php:
+	  Updated how edit pages handle incorrect IDs or no access
+	* [r1226] admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Added better functionality for when indexes contain no records
+	* [r1220] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/DBDelete.php,
+	  admin/trunk/Admin/Admin/DBEdit.php,
+	  admin/trunk/Admin/Admin/DBOrder.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Front.php,
+	  admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/Logout.php,
+	  admin/trunk/Admin/Admin/NotFound.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/Admin/Profile.php,
+	  admin/trunk/Admin/Admin/Search.php:
+	  Updated coding conventions
+	* [r1211] admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminGroups/Delete.php,
+	  admin/trunk/Admin/AdminGroups/Edit.php,
+	  admin/trunk/Admin/AdminGroups/Index.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/Order.php,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php:
+	  Updated code to better coding conventions
+	* [r1209] admin/trunk/Admin/AdminUsers/Delete.php,
+	  admin/trunk/Admin/AdminUsers/Details.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php,
+	  admin/trunk/Admin/AdminUsers/Index.php:
+	  Updated to current coding conventions
+	* [r1208] admin/trunk/Admin/AdminUsers/index.xml:
+	  Updated to new conventions
+
+2005-07-26  nick
+
+	* [r1184] admin/trunk/Admin/AdminUsers/LoginHistory.php:
+	  Added link for the pagination
+
+2005-07-20  nrf
+
+	* [r1137] admin/trunk/Admin/AdminApplication.php:
+	  Don't assume that the $page object is a descendent of AdminPage
+
+2005-07-13  nick
+
+	* [r1114] admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php:
+	  Fixed the navbar to work as it should
+	* [r1113] admin/trunk/Admin/AdminSubComponents/Edit.php:
+	  Improved shortname check
+	* [r1112] admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml:
+	  Updated to newer conventions
+	* [r1111] admin/trunk/Admin/AdminUniqueEntry.php:
+	  Updated to allow for underscores
+
+2005-07-12  dave
+
+	* [r1098] admin/trunk/Admin/AdminGroups/Delete.php:
+	  Using new gettext function
+
+2005-07-12  nrf
+
+	* [r1097] admin/trunk/Admin/AdminApplication.php:
+	  Add AdminApplication::getUserID() method
+
+2005-07-07  steven
+
+	* [r1070] admin/trunk/www/admin.css:
+	  Minor prettyfications
+	* [r1069] admin/trunk/www/images/menu.png:
+	  Added a minor gradient to the left menu background. Let me know
+	  if you hate it.
+
+2005-07-07  nick
+
+	* [r1067] admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminSearchOperatorFlydown.php:
+	  Changed SwatFlydowns to use SwatFlydownOption's
+
+2005-07-07  steven
+
+	* [r1061] admin/trunk/www/admin.css:
+	  Move image border CSS from Swat to Admin CSS file
+
+2005-07-07  nick
+
+	* [r1058] admin/trunk/Admin/AdminDetailsControlCellRenderer.php,
+	  admin/trunk/Admin/AdminEditControlCellRenderer.php,
+	  admin/trunk/Admin/AdminGroupHeaderCellRenderer.php,
+	  admin/trunk/Admin/AdminTreeControlCellRenderer.php,
+	  admin/trunk/Admin/AdminUsers/HistoryCellRenderer.php:
+	  Removed 'prefix' from CellRenderers (see commit for Swat)
+
+2005-07-06  steven
+
+	* [r1042] admin/trunk/www/admin.css:
+	  Start some basic formatting for the navbar
+
+2005-07-05  nick
+
+	* [r1021] admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php:
+	  Fixed naming changes to navBar methods
+
+2005-07-04  steven
+
+	* [r1016] admin/trunk/Admin/Admin/login.xml:
+	  Make the size of the username/password inputs more sane
+	* [r1015] admin/trunk/www/admin.css:
+	  Pretty-up the login-page a bit
+
+2005-07-04  nick
+
+	* [r1004] admin/trunk/Admin/Admin/Index.php:
+	  Change of method name
+	* [r1003] admin/trunk/Admin/AdminTableViewOrderableColumn.php:
+	  href to link change
+
+2005-06-29  nick
+
+	* [r961] admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminUsers/Delete.php,
+	  admin/trunk/Admin/AdminUsers/Index.php:
+	  Fixed references to _nS
+
+2005-06-28  nrf
+
+	* [r956] admin/trunk/Admin/AdminSections/Delete.php:
+	  Change to new translation API
+
+2005-06-27  nick
+
+	* [r954] admin/trunk/sql, admin/trunk/sql/create-db.sql,
+	  admin/trunk/sql/storedprocedures,
+	  admin/trunk/sql/storedprocedures/sp_adminmenu.sql,
+	  admin/trunk/sql/storedprocedures/sp_article_tree.sql,
+	  admin/trunk/sql/tables,
+	  admin/trunk/sql/tables/admincomponent_admingroup.sql,
+	  admin/trunk/sql/tables/admincomponents.sql,
+	  admin/trunk/sql/tables/admingroups.sql,
+	  admin/trunk/sql/tables/adminsections.sql,
+	  admin/trunk/sql/tables/adminsubcomponents.sql,
+	  admin/trunk/sql/tables/adminuser_admingroup.sql,
+	  admin/trunk/sql/tables/adminuserhistory.sql,
+	  admin/trunk/sql/tables/adminusers.sql, admin/trunk/sql/triggers,
+	  admin/trunk/sql/triggers/tr_admincomponents_delete.sql,
+	  admin/trunk/sql/triggers/tr_admingroups_delete.php,
+	  admin/trunk/sql/triggers/tr_adminuserhistory_insert.sql,
+	  admin/trunk/sql/triggers/tr_adminusers_delete.sql,
+	  admin/trunk/sql/views,
+	  admin/trunk/sql/views/view_user_lastlogin.sql:
+	  Basic SQL for admins - this should probably be cleaned up and
+	  maybe split into
+	  a pgsql vs mssql/others dirs. We'll also want scripts for
+	  quickly creating a
+	  db.
+	* [r953] admin/trunk/Admin/AdminUsers/LoginHistory.php,
+	  admin/trunk/Admin/AdminUsers/loginhistory.xml:
+	  Cleanup and added links from username to details
+
+2005-06-22  nick
+
+	* [r922] admin/trunk/Admin/AdminUsers/HistoryCellRenderer.php:
+	  Fixed renderer method declaration
+	* [r921] admin/trunk/Admin/Admin/DBOrder.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminGroups/Order.php,
+	  admin/trunk/Admin/AdminSections/Order.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php:
+	  Update ordering classes
+	* [r920] admin/trunk/Admin/Admin/DBOrder.php:
+	  Added a DB Order page that adds error handling - this should be
+	  used for most
+	  of our ordering pages.
+	* [r918] admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/Admin/Profile.php:
+	  Small bug fixes
+	* [r910] admin/trunk/Admin/AdminApplication.php:
+	  Fixed error if url is only Admin and not a subcomponent - or an
+	  incorrect
+	  subcomponent
+	* [r907] admin/trunk/Admin/AdminDetailsControlCellRenderer.php,
+	  admin/trunk/Admin/AdminEditControlCellRenderer.php,
+	  admin/trunk/Admin/AdminGroupHeaderCellRenderer.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminTreeControlCellRenderer.php:
+	  Updated Renderers to have the render method declared correctly
+
+2005-06-20  nick
+
+	* [r897] admin/trunk/Admin/AdminUsers/Index.php:
+	  Removed extraneous variable
+	* [r895] admin/trunk/Admin/AdminTreeControlCellRenderer.php:
+	  Compatiblity changes
+	* [r894] admin/trunk/Admin/AdminSubComponents/Delete.php:
+	  Fixed reference to old gettext call
+	* [r893] admin/trunk/Admin/AdminGroupHeaderCellRenderer.php:
+	  Switch from href to link
+	* [r892] admin/trunk/Admin/AdminDetailsControlCellRenderer.php,
+	  admin/trunk/Admin/AdminEditControlCellRenderer.php,
+	  admin/trunk/Admin/AdminGroups/edit.xml,
+	  admin/trunk/Admin/AdminUsers/HistoryCellRenderer.php,
+	  admin/trunk/Admin/AdminUsers/index.xml:
+	  Small compatibility updates
+
+2005-06-19  gauthierm
+
+	* [r887] admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminGroups/index.xml,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminUsers/index.xml:
+	  Reflect href-to-link api changes in swat
+
+2005-06-17  nrf
+
+	* [r877] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/DBConfirmation.php,
+	  admin/trunk/Admin/Admin/DBDelete.php,
+	  admin/trunk/Admin/Admin/DBEdit.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/Admin/Profile.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminGroups/Edit.php,
+	  admin/trunk/Admin/AdminGroups/Order.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Order.php,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php:
+	  Changed remaining translation calls to new API
+	* [r876] admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php:
+	  Change translation calls to new API
+
+2005-06-16  nrf
+
+	* [r867] admin/trunk/Admin/AdminApplication.php:
+	  Changed navbar usage to reflect API changes
+
+2005-06-15  nrf
+
+	* [r862] admin/trunk/Admin/AdminApplication.php:
+	  Fixed parse error
+	* [r861] admin/trunk/Admin/Admin.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminDependency.php,
+	  admin/trunk/Admin/AdminDetailsControlCellRenderer.php,
+	  admin/trunk/Admin/AdminEditControlCellRenderer.php,
+	  admin/trunk/Admin/AdminGroupHeaderCellRenderer.php,
+	  admin/trunk/Admin/AdminSearchOperatorFlydown.php,
+	  admin/trunk/Admin/AdminTreeControlCellRenderer.php,
+	  admin/trunk/Admin/AdminUniqueEntry.php:
+	  Added Admin class to contain static translation methods.
+	  Changed translation calls to new style.
+
+2005-06-09  nrf
+
+	* [r837] admin/trunk/Admin/AdminUsers/Details.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php,
+	  admin/trunk/Admin/AdminUsers/HistoryCellRenderer.php,
+	  admin/trunk/Admin/AdminUsers/Index.php,
+	  admin/trunk/Admin/AdminUsers/LoginHistory.php:
+	  Clean up class comment blocks that were copied, pasted, and
+	  forgotten.
+	* [r836] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPageRequest.php:
+	  Move AdminPageRequest into its own file.
+	* [r828] admin/trunk/Admin/AdminUniqueEntry.php:
+	  Fix up doc block. The name of this class doen't make sense to me
+
+2005-06-09  nick
+
+	* [r825] admin/trunk/Admin/AdminUsers/Edit.php,
+	  admin/trunk/Admin/AdminUsers/edit.xml:
+	  Experimenting with the layout of this file a little
+	* [r822] admin/trunk/Admin/AdminGroups,
+	  admin/trunk/Admin/AdminGroups/Delete.php,
+	  admin/trunk/Admin/AdminGroups/Edit.php,
+	  admin/trunk/Admin/AdminGroups/Index.php,
+	  admin/trunk/Admin/AdminGroups/Order.php,
+	  admin/trunk/Admin/AdminGroups/edit.xml,
+	  admin/trunk/Admin/AdminGroups/index.xml,
+	  admin/trunk/Admin/AdminUsers/HistoryCellRenderer.php,
+	  admin/trunk/Admin/AdminUsers/Index.php,
+	  admin/trunk/Admin/AdminUsers/index.xml:
+	  Added the AdminGroups set of tools and cleanup up AdminUsers
+
+2005-06-08  nick
+
+	* [r807] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminDetailsControlCellRenderer.php,
+	  admin/trunk/Admin/AdminEditControlCellRenderer.php,
+	  admin/trunk/Admin/AdminGroupHeaderCellRenderer.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSearchClause.php,
+	  admin/trunk/Admin/AdminSearchOperatorFlydown.php,
+	  admin/trunk/Admin/AdminTableStore.php,
+	  admin/trunk/Admin/AdminTableViewOrderableColumn.php,
+	  admin/trunk/Admin/AdminTreeControlCellRenderer.php,
+	  admin/trunk/Admin/AdminUI.php,
+	  admin/trunk/Admin/AdminUniqueEntry.php:
+	  Updated require_once to be statements and fixed a little
+	  documentation
+	* [r806] admin/trunk/Admin/AdminUsers/edit.xml:
+	  Small cleanup of the xml
+	* [r799] admin/trunk/Admin/AdminApplication.php:
+	  Added check to exception if use doesn't have permission to
+	  access the page
+	* [r797] admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/Order.php,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php,
+	  admin/trunk/Admin/AdminUsers/Delete.php,
+	  admin/trunk/Admin/AdminUsers/Details.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php,
+	  admin/trunk/Admin/AdminUsers/Index.php:
+	  Changed require_once() to a statement and cleaned up unused
+	  requires
+	* [r796] admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminUsers/Index.php,
+	  admin/trunk/Admin/AdminUsers/edit.xml,
+	  admin/trunk/Admin/AdminUsers/index.xml:
+	  Cleaned up code to bring everything up-to-date. AdminUsers
+	  stills needs some
+	  work for the history column.
+	* [r794] admin/trunk/Admin/AdminUsers/Details.php:
+	  Fixed type-o
+	* [r793] admin/trunk/Admin/AdminUsers,
+	  admin/trunk/Admin/AdminUsers/Delete.php,
+	  admin/trunk/Admin/AdminUsers/Details.php,
+	  admin/trunk/Admin/AdminUsers/Edit.php,
+	  admin/trunk/Admin/AdminUsers/Index.php,
+	  admin/trunk/Admin/AdminUsers/LoginHistory.php,
+	  admin/trunk/Admin/AdminUsers/details.xml,
+	  admin/trunk/Admin/AdminUsers/edit.xml,
+	  admin/trunk/Admin/AdminUsers/index.xml,
+	  admin/trunk/Admin/AdminUsers/loginhistory.xml:
+	  Added an entire AdminUsers section with index, edit, history,
+	  and details
+	* [r792] admin/trunk/Admin/AdminApplication.php:
+	  Fixed thrown error when the classname isn't set properly
+
+2005-06-08  nrf
+
+	* [r791] admin/trunk/Admin/AdminApplication.php:
+	  Moved user history insert into its own method. This code is
+	  independent and the two methods are shorter and more obvious the
+	  single method.
+
+2005-06-07  gauthierm
+
+	* [r782] admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/Logout.php,
+	  admin/trunk/Admin/AdminApplication.php:
+	  Update to respect changes in SwatApplication.php
+
+2005-06-07  nick
+
+	* [r779] admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminShortnameEntry.php,
+	  admin/trunk/Admin/AdminSubComponents/edit.xml:
+	  Renamed AdminShortnameEntry widgets to AdminUniqueEntry
+	* [r777] admin/trunk/Admin/AdminUniqueEntry.php:
+	  Renamed AdminShortnameEntry to AdminUnique entry so we can use
+	  it for things
+	  like usernames too
+	* [r776] admin/trunk/Admin/AdminShortnameEntry.php:
+	  Temp change
+	* [r775] admin/trunk/Admin/AdminApplication.php:
+	  Added user-history tracking to Application. Keeping only the
+	  last 10 entries is
+	  handled using a trigger instead of manually.
+	* [r774] admin/trunk/Admin/Admin/Index.php:
+	  Added more intuitive error message for columns missing an id
+	* [r772] admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Removed demo testing code
+	* [r770] admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/edit.xml:
+	  Fixed and updated the AdminSubComponents section
+	* [r769] admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminShortnameEntry.php:
+	  Added AdminShortnameEntry and implemented it for AdminComponents
+	* [r768] admin/trunk/Admin/Admin/login.xml:
+	  Removed arrows from submit button on login form
+	* [r767] admin/trunk/Admin/Admin/Edit.php:
+	  Added processPage method to allow pages to do custom widget
+	  processing before
+	  error checking is complete
+
+2005-06-06  nrf
+
+	* [r761] admin/trunk/Admin/AdminPage.php:
+	  Our MDB2 can now discover types automatically. This can be done
+	  everywhere.
+	* [r760] admin/trunk/Admin/Admin/Edit.php:
+	  Add processPage() method to Admin/Edit. This can be overridden
+	  to do page level processing.
+
+2005-06-04  nick
+
+	* [r737] admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Updated xml to new SwatUI object/widget format
+
+2005-05-10  gauthierm
+
+	* [r605] admin/trunk/Admin/Admin/DBConfirmation.php,
+	  admin/trunk/Admin/Admin/DBDelete.php,
+	  admin/trunk/Admin/Admin/DBEdit.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/Admin/Profile.php,
+	  admin/trunk/Admin/Admin/Search.php,
+	  admin/trunk/Admin/Admin/confirmation.xml,
+	  admin/trunk/Admin/Admin/front.xml,
+	  admin/trunk/Admin/Admin/login.xml,
+	  admin/trunk/Admin/Admin/order.xml,
+	  admin/trunk/Admin/Admin/profile.xml,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminDependency.php,
+	  admin/trunk/Admin/AdminDetailsControlCellRenderer.php,
+	  admin/trunk/Admin/AdminEditControlCellRenderer.php,
+	  admin/trunk/Admin/AdminGroupHeaderCellRenderer.php,
+	  admin/trunk/Admin/AdminMenu.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminPagination.php,
+	  admin/trunk/Admin/AdminSearchClause.php,
+	  admin/trunk/Admin/AdminSearchOperatorFlydown.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/Order.php,
+	  admin/trunk/Admin/AdminSections/edit.xml,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php,
+	  admin/trunk/Admin/AdminSubComponents/edit.xml,
+	  admin/trunk/Admin/AdminTableStore.php,
+	  admin/trunk/Admin/AdminTableViewOrderableColumn.php,
+	  admin/trunk/Admin/AdminTreeControlCellRenderer.php,
+	  admin/trunk/Admin/AdminUI.php:
+	  name -> id
+
+2005-04-27  gauthierm
+
+	* [r583] admin/trunk/Admin/AdminSections/Edit.php:
+	  Use single quote instead of double quotes when double quotes
+	  are not necessary.
+
+2005-04-21  nick
+
+	* [r580] admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Slightly cleaned up AdminSections - but these files will have to
+	  be re-written
+	  anyway. See task on the Swat checklist
+	* [r579] admin/trunk/Admin/AdminSections/Order.php,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Fixed a few problems with the AdminSections index page
+
+2005-04-04  nrf
+
+	* [r551] admin/trunk/Admin/AdminApplication.php:
+	  reverting this
+	* [r547] admin/trunk/Admin/AdminApplication.php:
+	  set the include path here for now
+
+2005-04-03  nick
+
+	* [r541] admin/trunk/Admin/Admin/confirmation.xml,
+	  admin/trunk/Admin/Admin/front.xml,
+	  admin/trunk/Admin/Admin/login.xml,
+	  admin/trunk/Admin/Admin/order.xml,
+	  admin/trunk/Admin/Admin/profile.xml,
+	  admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminSections/edit.xml,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminSubComponents/edit.xml:
+	  Updated xml files to the new glade-style format
+	* [r540] admin/trunk/Admin/Admin/Profile.php:
+	  Friendlier SwatMessaage
+
+2005-03-24  nick
+
+	* [r535] admin/trunk/Admin/Admin/Front.php,
+	  admin/trunk/Admin/Admin/Profile.php,
+	  admin/trunk/Admin/Admin/front.xml:
+	  Finished the user profile and added a swat-message-box to the
+	  front page.
+	* [r534] admin/trunk/Admin/Admin/Edit.php:
+	  Moved relocate into a protected method to allow subclasses to
+	  have custom
+	  relocates without having subclass the entire process method.
+
+2005-03-23  nick
+
+	* [r530] admin/trunk/Admin/Admin/Profile.php,
+	  admin/trunk/Admin/Admin/profile.xml,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php:
+	  Added profile edit page. Also small bug fixes.
+
+2005-03-22  nick
+
+	* [r529] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Front.php,
+	  admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/NotFound.php,
+	  admin/trunk/Admin/Admin/Search.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php:
+	  Moved declaration of $ui class variable up to AdminPage, removed
+	  it from
+	  subclasses. Also tweaked some of the pages to have better
+	  navbars.
+	* [r526] admin/trunk/Admin/AdminApplication.php:
+	  Reworked the structure of getPage() to make it easier to work
+	  with.
+	* [r524] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/NotFound.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/Admin/Search.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php:
+	  Added displayInit which allows pages to init data before
+	  display, but only if
+	  the display will be used. Modified all files to use the new
+	  displayInit method.
+	* [r523] admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/edit.xml:
+	  General cleanup, re-ordering of things, bringing things up to
+	  the latest
+	  conventions. Probably some more left to do still.
+	* [r522] admin/trunk/Admin/AdminDependency.php:
+	  Added buildDependencyArray independent of the DependencyQuery
+	  for customized
+	  dependency pages that need to do their own query.
+
+2005-03-21  nick
+
+	* [r520] admin/trunk/Admin/Admin/NotFound.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPage.php:
+	  Added a navbar to the admin
+	* [r518] admin/trunk/Admin/AdminApplication.php:
+	  Changed how we dynmaically name create a new class from
+	  eval('return new
+	  '.$classname.'()') to: return new $classname();
+	* [r516] admin/trunk/Admin/Admin/NotFound.php,
+	  admin/trunk/Admin/AdminApplication.php:
+	  Added more helpful messages of if the page isn't found.
+
+2005-03-17  nick
+
+	* [r512] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/DBConfirmation.php,
+	  admin/trunk/Admin/Admin/DBDelete.php,
+	  admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Index.php:
+	  Changed the way DBDelete works added DBConfirmation layer
+
+2005-03-17  nrf
+
+	* [r510] admin/trunk/Admin/Admin/Edit.php:
+	  Reflect change in SwatForm.
+	* [r504] admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php:
+	  MDB2 quoting was missing here.
+	* [r503] admin/trunk/Admin/Admin/Edit.php:
+	  Make edit pages work with string ids.
+	* [r499] admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/AdminSections/Edit.php:
+	  Reflect changes in SwatWidget to use SwatMessage.
+
+2005-03-16  nrf
+
+	* [r497] admin/trunk/Admin/Admin/Edit.php:
+	  Reflect change to SwatForm.
+	* [r495] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/DBDelete.php,
+	  admin/trunk/Admin/Admin/DBEdit.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php:
+	  Reworking of admin messages and exception handling.
+	* [r480] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/Admin/Search.php,
+	  admin/trunk/Admin/Admin/confirmation.xml,
+	  admin/trunk/Admin/Admin/login.xml,
+	  admin/trunk/Admin/Admin/order.xml,
+	  admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminSearchClause.php,
+	  admin/trunk/Admin/AdminSearchOperatorFlydown.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/edit.xml,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Big renaming, mostly of widgets in XML.
+	* [r475] admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminSections/edit.xml,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminSubComponents/edit.xml:
+	  Reflect rename in SwatUI.
+	* [r472] admin/trunk/Admin/AdminCellRendererDetailsControl.php,
+	  admin/trunk/Admin/AdminCellRendererEditControl.php,
+	  admin/trunk/Admin/AdminCellRendererGroupHeader.php,
+	  admin/trunk/Admin/AdminCellRendererTreeControl.php,
+	  admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminDetailsControlCellRenderer.php,
+	  admin/trunk/Admin/AdminEditControlCellRenderer.php,
+	  admin/trunk/Admin/AdminGroupHeaderCellRenderer.php,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminTreeControlCellRenderer.php:
+	  Renaming of cell renderer classes and properties.
+
+2005-03-15  nrf
+
+	* [r470] admin/trunk/Admin/AdminComponents/Index.php:
+	  Stop echoing $sql for debugging.
+	* [r461] admin/trunk/Admin/AdminComponents/index.xml:
+	  Reflect changes to SwatFlydown
+
+2005-03-14  nrf
+
+	* [r457] admin/trunk/Admin/Admin/login.xml,
+	  admin/trunk/Admin/AdminSearchClause.php,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Reflect renaming in Swat
+	* [r447] admin/trunk/Admin/AdminPagination.php:
+	  Pagination class with defaults setup for admins.
+	* [r446] admin/trunk/Admin/AdminComponents/details.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Use new checkbox column.
+
+2005-03-12  nrf
+
+	* [r437] admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/Admin/Search.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminDependency.php,
+	  admin/trunk/Admin/AdminMenu.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminUI.php:
+	  Use type equality (===, !==) when dealing with nulls.
+	* [r436] admin/trunk/Admin/AdminTableViewOrderableColumn.php:
+	  Added AdminTableViewOrderableColumn, a swat orderable column
+	  with default values appropiate for an admin.
+	* [r432] admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminSections/Index.php:
+	  Add orderable columns to admin components.
+	* [r431] admin/trunk/Admin/Admin/Index.php:
+	  Add AdminIndex::getOrderByClause(), a method to help build order
+	  by clauses from orderable columns in a table view.
+	* [r430] admin/trunk/Admin/Admin/order.xml,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php:
+	  Set frame title correctly.
+	* [r429] admin/trunk/Admin/AdminApplication.php:
+	  Logout really well. Useful if session is corrupted.
+
+2005-03-11  nick
+
+	* [r423] admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php:
+	  Minor changes.
+	* [r422] admin/trunk/Admin/AdminSearchClause.php:
+	  Rework operator constants
+	* [r421] admin/trunk/Admin/Admin/Search.php:
+	  Add saving/loading states from session.
+	* [r420] admin/trunk/Admin/AdminSearchOperatorFlydown.php:
+	  New class for operator flydowns on searches,
+	  AdminSearchOperatorFlydown
+
+2005-03-11  nrf
+
+	* [r405] admin/trunk/Admin/AdminCellRendererGroupHeader.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminComponents/index.xml:
+	  New AdminCellRendererGroupHeader for group headers in indexes.
+
+2005-03-10  nrf
+
+	* [r402] admin/trunk/Admin/AdminSubComponents,
+	  admin/trunk/Admin/AdminSubComponents/Delete.php,
+	  admin/trunk/Admin/AdminSubComponents/Edit.php,
+	  admin/trunk/Admin/AdminSubComponents/Order.php,
+	  admin/trunk/Admin/AdminSubComponents/edit.xml:
+	  New AdminSubComponents component. This has no index since the
+	  AdminComponent/Details pages serve as the index.
+	* [r401] admin/trunk/Admin/Admin/Search.php,
+	  admin/trunk/Admin/AdminSearchClause.php:
+	  New AdminSearchClause class to build searches with.
+	  New Admin/Search base page class to use for search pages.
+	* [r400] admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/details.xml:
+	  Get the AdminComponents/Details page fully working.
+	* [r399] admin/trunk/Admin/AdminUI.php:
+	  AdminUI::setValues(): don't complain if the widget does not exist
+	* [r398] admin/trunk/Admin/Admin/Edit.php:
+	  Bugfix in Admin/Edit.php: don't load data from DB if we have
+	  processed to form
+	* [r397] admin/trunk/Admin/AdminMenu.php:
+	  Fix display of sub component links in AdminMenu
+	* [r396] admin/trunk/Admin/AdminApplication.php:
+	  Changes to session history:
+	  - store referers instead of the current page
+	  - always store URLs with querystrings
+	  
+	  this is starting to get messy...
+
+2005-03-09  nrf
+
+	* [r384] admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminDependency.php:
+	  New class AdminDependency for constructing hierarchal dependency
+	  messages.
+
+2005-03-08  nrf
+
+	* [r381] admin/trunk/Admin/AdminApplication.php:
+	  more better
+
+2005-03-07  nick
+
+	* [r380] admin/trunk/Admin/AdminCellRendererControlDetails.php,
+	  admin/trunk/Admin/AdminCellRendererControlEdit.php,
+	  admin/trunk/Admin/AdminCellRendererControlTreeDetails.php,
+	  admin/trunk/Admin/AdminCellRendererDetailsControl.php,
+	  admin/trunk/Admin/AdminCellRendererEditControl.php,
+	  admin/trunk/Admin/AdminCellRendererTreeControl.php,
+	  admin/trunk/Admin/AdminComponents/index.xml:
+	  Renamed the AdminCellRendererControls
+
+2005-03-07  nrf
+
+	* [r378] admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminSections/Index.php:
+	  reflect renaming changes in SwatDB
+	* [r377] admin/trunk/Admin/AdminCellRendererControlDetails.php,
+	  admin/trunk/Admin/AdminCellRendererControlEdit.php,
+	  admin/trunk/Admin/AdminCellRendererControlTreeDetails.php,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/www/images/b_details_folder.png:
+	  Added AdminCellRendererControls
+
+2005-03-07  nick
+
+	* [r376] admin/trunk/Admin/AdminApplication.php:
+	  Init session history as empty array
+
+2005-03-07  nrf
+
+	* [r375] admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/index.xml:
+	  tweaking admin messages
+
+2005-03-07  nick
+
+	* [r374] admin/trunk/Admin/AdminComponents/details.xml:
+	  New file
+
+2005-03-07  nrf
+
+	* [r371] admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php:
+	  change wording of admin messages
+	* [r370] admin/trunk/Admin/AdminComponents/Index.php:
+	  More admin messages, still rough.
+	* [r368] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/edit.xml:
+	  - Add tracking of page history to make relocating better.
+	  An edit page will return to whatever page it linked to it.
+	  
+	  - Add initial version of admin messages on index pages.
+	  
+	  - other stuff Nick and I did last week.
+
+2005-03-04  nick
+
+	* [r355] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/edit.xml,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Renamed 'hidden' to 'show' and added 'enabled' to
+	  AdminComponents.
+
+2005-03-04  nrf
+
+	* [r354] admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/Order.php:
+	  add AdminComponentsDetails
+
+2005-03-04  nick
+
+	* [r353] admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/javascript,
+	  admin/trunk/Admin/javascript/admin-login.js:
+	  Added javascript to default focus on login scren.
+	  This is smarter than our old javascript and won't ever cause you
+	  to accidently
+	  type your password into the username box.
+	* [r352] admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/AdminApplication.php:
+	  Added a cookie to remember username on login
+
+2005-03-04  nrf
+
+	* [r351] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/confirmation.xml,
+	  admin/trunk/Admin/confirmation.xml:
+	  move confirmation.xml
+
+2005-03-03  nick
+
+	* [r349] admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminUI.php:
+	  Updated all references to AdminDB with SwatDB
+
+2005-03-03  nrf
+
+	* [r345] admin/trunk/Admin/AdminDB.php,
+	  swat/trunk/SwatDB/SwatDB.php:
+	  moving
+	* [r344] admin/trunk/Admin/AdminDBField.php,
+	  swat/trunk/SwatDB/SwatDBField.php:
+	  moving
+
+2005-03-03  nick
+
+	* [r342] admin/trunk/Admin/Admin/Order.php,
+	  admin/trunk/Admin/Admin/order.xml,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Order.php,
+	  admin/trunk/Admin/AdminComponents/index.xml,
+	  admin/trunk/Admin/AdminDB.php:
+	  Added some new tools for ordering.
+	  
+	  - new order generic page
+	  - updates to AdminDB
+	  - updates to Componenets Edit
+
+2005-03-02  nrf
+
+	* [r339] admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminDB.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php:
+	  Renaming convenience methods.
+	* [r337] admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminDB.php:
+	  working binding table editor, somewhat
+	* [r336] admin/trunk/Admin/AdminComponents/index.xml:
+	  Add elipsis
+
+2005-03-02  nick
+
+	* [r335] admin/trunk/Admin/AdminComponents/Edit.php:
+	  Modified to use conveniece functions for select/insert/update.
+
+2005-03-02  nrf
+
+	* [r334] admin/trunk/Admin/AdminUI.php:
+	  Add convenience methods to get and set widget values.
+
+2005-03-02  nick
+
+	* [r333] admin/trunk/Admin/AdminDB.php:
+	  Added convenience method for returning a max field value.
+
+2005-03-01  nrf
+
+	* [r325] admin/trunk/Admin/AdminDB.php,
+	  admin/trunk/Admin/AdminDBField.php:
+	  Move AdminDBField into its own file
+	* [r324] admin/trunk/Admin/AdminComponents,
+	  admin/trunk/Admin/AdminComponents/Delete.php,
+	  admin/trunk/Admin/AdminComponents/Details.php,
+	  admin/trunk/Admin/AdminComponents/Edit.php,
+	  admin/trunk/Admin/AdminComponents/Index.php,
+	  admin/trunk/Admin/AdminComponents/edit.xml,
+	  admin/trunk/Admin/AdminComponents/index.xml:
+	  new admin components component
+	* [r321] admin/trunk/Admin/AdminApplication.php:
+	  small doc change
+
+2005-03-01  nick
+
+	* [r320] admin/trunk/Admin/AdminDB.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/edit.xml:
+	  Cleaning stuff up, adding a few new tools to AdminPage
+
+2005-03-01  nrf
+
+	* [r319] admin/trunk/Admin/AdminUI.php:
+	  better docs
+
+2005-02-28  nick
+
+	* [r318] admin/trunk/Admin/AdminPage.php:
+	  Moved the big menu query into a stored procedure.
+	* [r315] admin/trunk/Admin/AdminPage.php:
+	  Updated title bar to include user's name (I also imported all
+	  the user db
+	  information so people can login as themselves)
+	* [r314] admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/login.xml,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/edit.xml:
+	  Changes to the way login works plus an implementation for
+	  SwatChangeOrder
+
+2005-02-24  nrf
+
+	* [r307] admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/AdminApplication.php:
+	  Rework Adminstrator::login()
+
+2005-02-24  nick
+
+	* [r306] admin/trunk/Admin/AdminApplication.php:
+	  Added login functionality to query the database and verify
+	  username/password
+	  Use so/keen to test.
+
+2005-02-23  nick
+
+	* [r304] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/NotFound.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminMenu.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminTableStore.php:
+	  Updated documentation.
+	* [r303] admin/trunk/Admin/AdminDB.php,
+	  admin/trunk/Admin/AdminPage.php:
+	  Updated the documentation and added some new stuff.
+
+2005-02-06  nrf
+
+	* [r302] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/Logout.php,
+	  admin/trunk/Admin/Admin/NotFound.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminDB.php, admin/trunk/Admin/AdminMenu.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminTableStore.php,
+	  admin/trunk/Admin/AdminUI.php,
+	  admin/trunk/Admin/SectionPage.php:
+	  Documentation cleanup.
+
+2005-02-03  nrf
+
+	* [r301] admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Index.php:
+	  Change to work with refactored AdminDB
+
+2005-02-02  nrf
+
+	* [r300] admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/AdminApplication.php:
+	  Make AdminEdit smart about the frame name.
+	* [r299] admin/trunk/Admin/AdminDB.php:
+	  Refactor AdminDB and add super-docblocks.
+	  Stuff will break.
+	* [r298] admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/edit.xml:
+	  Set frame title.
+	* [r296] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/AdminApplication.php:
+	  Fix two small bugs.
+	* [r295] admin/trunk/Admin/Admin/Confirmation.php,
+	  admin/trunk/Admin/Admin/Edit.php,
+	  admin/trunk/Admin/Admin/Index.php,
+	  admin/trunk/Admin/AdminConfirmationPage.php,
+	  admin/trunk/Admin/AdminEditPage.php,
+	  admin/trunk/Admin/AdminIndexPage.php:
+	  Move the three admin page base classes.
+	* [r294] admin/trunk/Admin/AdminSections/Edit.php:
+	  fix typo
+	* [r293] admin/trunk/Admin/AdminEditPage.php,
+	  admin/trunk/Admin/AdminSections/Edit.php:
+	  Just some renaming.
+	* [r292] admin/trunk/Admin/AdminConfirmationPage.php,
+	  admin/trunk/Admin/AdminEditPage.php,
+	  admin/trunk/Admin/AdminIndexPage.php:
+	  A trio of base classes that simplify the three most common admin
+	  pages: index, edit, and confirmation.
+	* [r291] admin/trunk/Admin/AdminSections/edit.xml:
+	  I don't know why these are plural in our admins.
+
+2005-02-01  nrf
+
+	* [r290] admin/trunk/Admin/AdminSections/index.xml:
+	  Use SwatToolLink
+	* [r287] admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Index.php:
+	  Working delete with a confirmation. Still experimental.
+	* [r284] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminSections/Delete.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/confirmation.xml:
+	  Better way to do confirmations. Still experimental.
+
+2005-01-31  nick
+
+	* [r281] admin/trunk/Admin/AdminSections/Index.php:
+	  Use display() instead of displayTidy() so as not to mess up
+	  javascript.
+
+2005-01-30  nrf
+
+	* [r276] admin/trunk/Admin/AdminSections/index.xml:
+	  Change text case to reflect changes to SwatActions
+	* [r274] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminDB.php:
+	  fix some indenting
+	* [r273] admin/trunk/Admin/AdminSections/index.xml:
+	  nothing to see here
+	* [r272] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminDB.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Add AdminDB::getOptionArray(), a convenience method to populate
+	  a flydown from the database.
+	* [r268] admin/trunk/Admin/AdminSections/index.xml:
+	  This too. Sure are alot of error messages for a single 'i'.
+	* [r267] admin/trunk/Admin/AdminSections/index.xml:
+	  This was a mistake.
+	* [r265] admin/trunk/Admin/AdminDB.php,
+	  admin/trunk/Admin/AdminSections/Index.php:
+	  Straighten out mis-ordered arguements.
+	* [r261] admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminUI.php:
+	  reflect changes in Swat
+	* [r259] admin/trunk/Admin/AdminActionsUIHandler.php,
+	  swat/trunk/Swat/AdminActionsUIHandler.php:
+	  move to Swat
+	* [r258] admin/trunk/Admin/AdminActionItemUIHandler.php,
+	  swat/trunk/Swat/AdminActionItemUIHandler.php:
+	  move to Swat
+	* [r257] admin/trunk/Admin/AdminActions.php,
+	  swat/trunk/Swat/AdminActions.php:
+	  move to Swat
+	* [r256] admin/trunk/Admin/AdminActionItem.php,
+	  swat/trunk/Swat/AdminActionItem.php:
+	  move to Swat
+	* [r255] admin/trunk/Admin/AdminDB.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminTableView.php,
+	  admin/trunk/Admin/AdminTableViewRow.php,
+	  admin/trunk/Admin/AdminTableViewRowCheckAll.php:
+	  Move table view stuff.
+	* [r251] admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/Logout.php,
+	  admin/trunk/Admin/Admin/NotFound.php:
+	  Change SwatLayout to SwatUI.
+	* [r249] admin/trunk/Admin/AdminDB.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Start of confirmations for deletes and other actions.
+	* [r248] admin/trunk/Admin/AdminApplication.php:
+	  some cleanup
+	* [r246] admin/trunk/Admin/AdminDB.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminTableView.php:
+	  - Move the "check all" row inside of AdminTableView
+	  - Add AdminDB to contain static convenience methods for database
+	  operations.
+
+2005-01-29  nrf
+
+	* [r245] admin/trunk/Admin/AdminTableView.php,
+	  admin/trunk/Admin/AdminTableViewRow.php,
+	  admin/trunk/Admin/AdminTableViewRowCheckAll.php:
+	  Move SwatTableViewRow to AdminTableViewRow
+	* [r243] admin/trunk/Admin/AdminActionItem.php,
+	  admin/trunk/Admin/AdminActionItemUIHandler.php,
+	  admin/trunk/Admin/AdminActions.php,
+	  admin/trunk/Admin/AdminActionsUIHandler.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/edit.xml,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminTableView.php,
+	  admin/trunk/Admin/AdminUI.php:
+	  - Rename Layout to UI in AdminSections.
+	  - Add AdminActions and friends to display actions on index
+	  pages. AdminActionItems can contain any widget to be used as
+	  the secondary widget. Nick is going to add the javascript to
+	  dynamically show/hide the secondary widgets. Also actions can
+	  be defined in the XML UI file.
+
+2005-01-24  nrf
+
+	* [r235] admin/trunk/Admin/AdminTableViewRowCheckAll.php:
+	  Rename ::javascript() to ::displayJavascript() for consistency.
+	  We may also want to put this .js files like we did in the Swat
+	  package.
+
+2005-01-24  nick
+
+	* [r234] admin/trunk/Admin/AdminTableViewRowCheckAll.php:
+	  Added check-all functionality to the checkboxes.
+
+2005-01-24  nrf
+
+	* [r229] admin/trunk/Admin/AdminSections/index.xml:
+	  Change to match last change to cell renderer.
+
+2005-01-20  nrf
+
+	* [r226] admin/trunk/Admin/AdminTableViewRowCheckAll.php:
+	  Don't output extra td's.
+	* [r225] admin/trunk/Admin/AdminSections/index.xml:
+	  Changed to work with new CellRenderers.
+
+2005-01-19  steven
+
+	* [r218] admin/trunk/Admin/AdminSections/index.xml:
+	  Use real images for the SwatCellRendererControls and some of the
+	  new image attributes.
+	* [r216] admin/trunk/www/images/b_details.gif,
+	  admin/trunk/www/images/b_details.png,
+	  admin/trunk/www/images/b_edit.gif,
+	  admin/trunk/www/images/b_edit.png:
+	  Why GIF when you can PNG!
+	* [r215] admin/trunk/www/images/b_details.gif,
+	  admin/trunk/www/images/b_edit.gif:
+	  Add some images for the SwatTableView controls
+
+2005-01-19  nrf
+
+	* [r212] admin/trunk/Admin/Admin/login.xml:
+	  We do need a named frame here.
+
+2005-01-18  nrf
+
+	* [r211] admin/trunk/Admin/Admin/login.xml,
+	  admin/trunk/Admin/AdminSections/edit.xml,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  No need to name frames explicitly since we've got a
+	  SwatLayout::getRoot() method.
+	* [r209] admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/index.xml,
+	  admin/trunk/Admin/AdminTableViewRowCheckAll.php:
+	  Less hacky way of adding the "check all" row to a table view.
+	* [r206] admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminTableStore.php:
+	  Add AdminTableStore, a subclass of SwatTableStore that can be
+	  used as an MDB2 result wrapper. This is really cool and
+	  simplifies Index.php alot.
+	* [r205] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminMenu.php:
+	  Just some renaming and cleanup.
+	* [r204] admin/trunk/Admin/AdminSections/index.xml:
+	  Add a form and try out the "check all" option.
+	* [r201] admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Use the new cell renderers.
+	* [r196] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/Edit.php:
+	  That was surprisingly easy. Creating and editing now works.
+	* [r194] admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/Logout.php:
+	  Use the new SwatApplication::relocate() method.
+	* [r192] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/Edit.php:
+	  - move URI handling stuff to Swat
+	  - add $source to AdminPage
+
+2005-01-17  nrf
+
+	* [r190] admin/trunk/Admin/AdminSections/Edit.php:
+	  Use SwatForm::addHiddenField() to pass the $id.
+	* [r188] admin/trunk/Admin/AdminSections/Edit.php:
+	  Refactor the stock titles for buttons.
+	* [r186] admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/edit.xml:
+	  Refactoring of AdminSectionsEdit::display().
+	  I'm pretty happy with this now.
+
+2005-01-17  steven
+
+	* [r183] admin/trunk/www/admin.css:
+	  Minor tweaks to subcompondent menu style.
+	* [r182] admin/trunk/www/admin.css:
+	  Fixed bungled last commit - got the subcomponent menu link style
+	  in this time (I hope).
+	* [r181] admin/trunk/www/admin.css:
+	  Added styles for subcomponents in the left menu
+
+2005-01-17  nrf
+
+	* [r179] admin/trunk/Admin/AdminMenu.php,
+	  admin/trunk/Admin/AdminPage.php:
+	  Make subcomponents display properly in the menu.
+	* [r178] admin/trunk/Admin/AdminPage.php:
+	  getLayout() is now in SwatPage
+
+2005-01-16  nrf
+
+	* [r175] admin/trunk/Admin/AdminApplication.php:
+	  Include pages from site code if they exist.
+	* [r173] admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/Logout.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php,
+	  admin/trunk/Admin/AdminSections/edit.xml:
+	  Closer to working.
+	* [r170] admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/NotFound.php,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/Index.php:
+	  Drop the $app arguement in AdminPage::init/process/display
+	  Instead set AdminPage::$app as a reference to the
+	  AdminApplication when the page is created.
+	* [r168] admin/trunk/Admin/Admin/Login.php,
+	  admin/trunk/Admin/Admin/login.xml,
+	  admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Add a login page.
+	* [r166] admin/trunk/Admin/AdminMenu.php,
+	  admin/trunk/Admin/AdminPage.php:
+	  Remove the /a/ tag from links. I think I may have this working
+	  right with the apache rewrite rules.
+	* [r165] admin/trunk/Admin/Admin,
+	  admin/trunk/Admin/Admin/NotFound.php,
+	  admin/trunk/Admin/AdminApplication.php:
+	  Detect missing page classes and load AdminNotFound page instead.
+	* [r164] admin/trunk/Admin/AdminMenu.php,
+	  admin/trunk/Admin/AdminPage.php:
+	  Refactoring of the admin menu into it's own class. Not totally
+	  happy yet, but a step in the right direction. First time using
+	  an MDB2 custom wrapper class too.
+
+2005-01-15  nrf
+
+	* [r163] admin/trunk/Admin/AdminApplication.php:
+	  Use HTTP_HOST so it works through localhost (ssh tunnels).
+	  HTTP_HOST == what's in the browser URL bar, but can be unreliable
+	  SERVER_NAME == the ServerName directive in the apache config
+
+2005-01-12  nick
+
+	* [r162] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPage.php:
+	  Added subcomponents to the menu.
+	* [r161] admin/trunk/Admin/AdminApplication.php:
+	  Cleaned up the SQL and have it working basically.
+	* [r159] admin/trunk/Admin/AdminApplication.php:
+	  Adding to trunk so I can work on this in the nick work dir.
+
+2005-01-11  nick
+
+	* [r157] admin/trunk/Admin/AdminApplication.php:
+	  Getting things working.
+	* [r156] admin/trunk/Admin/AdminApplication.php:
+	  Fixed BaseHref
+
+2005-01-11  nrf
+
+	* [r153] admin/trunk/Admin/AdminApplication.php:
+	  Changes from the retreat.
+
+2005-01-08  nrf
+
+	* [r150] admin/trunk/Admin/www, admin/trunk/www,
+	  admin/trunk/www/images:
+	  moving
+	* [r147] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/index.xml:
+	  Changes from last night...
+
+2005-01-08  steven
+
+	* [r146] admin/trunk/Admin/www/images,
+	  admin/trunk/Admin/www/images/header.png,
+	  admin/trunk/Admin/www/images/menu.png:
+	  Adding admin background images
+
+2005-01-08  nick
+
+	* [r144] admin/trunk/Admin/AdminPage.php:
+	  Fixed session error.
+
+2005-01-08  isaac
+
+	* [r143] admin/trunk/Admin/AdminApplication.php:
+	  added the function init() and the var dbname so that we can set
+	  which db to connect to and its not hardcoded
+
+2005-01-08  nick
+
+	* [r140] admin/trunk/Admin/AdminPage.php:
+	  Turned the menu into an unordered list.
+
+2005-01-07  nick
+
+	* [r138] admin/trunk/Admin/AdminPage.php:
+	  Fixed Section title not displaying.
+
+2005-01-07  nrf
+
+	* [r137] admin/trunk/Admin/AdminSections/Edit.php,
+	  admin/trunk/Admin/AdminSections/edit.xml:
+	  Test edit page from Nick.
+
+2005-01-07  steven
+
+	* [r135] admin/trunk/Admin/www, admin/trunk/Admin/www/admin.css:
+	  www dir and CSS file
+
+2005-01-07  nrf
+
+	* [r133] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPage.php,
+	  admin/trunk/Admin/AdminSections/Index.php:
+	  New experimental stuff.
+
+2004-12-20  nrf
+
+	* [r121] admin/Admin, admin/trunk/Admin:
+	  Restructuring (I'm done, hopefully)
+	* [r120] admin/trunk:
+	  Resturcturing
+
