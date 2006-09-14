@@ -1,3 +1,8 @@
+2006-09-12  nrf
+
+	* [r10857] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release
+
 2006-09-10  gauthierm
 
 	* [r10753] admin/trunk/Admin/pages/AdminDBOrder.php:
