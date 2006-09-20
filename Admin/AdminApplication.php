@@ -103,15 +103,23 @@ class AdminApplication extends SiteApplication
 	}
 
 	// }}}
+	// {{{ protected function normalizeSource()
+
+	protected function normalizeSource($source)
+	{
+		$source = parent::normalizeSource($source);
+
+		if ($source === 'index.html')
+			$source = $this->front_source;
+
+		return $source;
+	}
+
+	// }}}
 	// {{{ protected function resolvePage()
 
 	protected function resolvePage($source)
 	{
-		if ($source === 'index.html')
-			$source = $this->front_source;
-
-		$this->checkSecure($source);
-
 		$request = $this->getRequest($source);
 		
 		if ($request === null)
@@ -208,7 +216,7 @@ class AdminApplication extends SiteApplication
 	{
 		$request = null;
 
-		if ($source === null)
+		if (strlen($source) === 0)
 			$source = $this->front_source;
 
 		if ($this->session->isLoggedIn()) {
