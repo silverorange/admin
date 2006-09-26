@@ -50,7 +50,7 @@ abstract class AdminSearch extends AdminIndex
 	protected function clearState()
 	{
 		if ($this->hasState())
-			unset($_SESSION[$this->source.'_search_state']);
+			unset($this->app->session->{$this->getKey()});
 	}
 
 	// }}}
@@ -67,7 +67,7 @@ abstract class AdminSearch extends AdminIndex
 
 		if ($form_found) {
 			$search_state = $search_form->getDescendantStates();
-			$_SESSION[$this->source.'_search_state'] = $search_state;
+			$this->app->session->{$this->getKey()} = $search_state;
 		}
 	}
 
@@ -94,10 +94,10 @@ abstract class AdminSearch extends AdminIndex
 		}
 
 		if ($form_found) {
-			$key = $this->source.'_search_state';
-
 			if ($this->hasState()) {
-				$search_form->setDescendantStates($_SESSION[$key]);
+				$search_form->setDescendantStates(
+					$this->app->session->{$this->getKey()});
+
 				$return = true;
 			}
 		}
@@ -116,8 +116,15 @@ abstract class AdminSearch extends AdminIndex
 	 */
 	protected function hasState()
 	{
-		$key = $this->source.'_search_state';
-		return isset($_SESSION[$key]);
+		return isset($this->app->session->{$this->getKey()});
+	}
+
+	// }}}
+	// {{{ protected function getKey()
+
+	protected function getKey()
+	{
+		return $this->source.'_search_state';
 	}
 
 	// }}}
