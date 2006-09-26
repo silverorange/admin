@@ -6,8 +6,8 @@ require_once 'Admin/AdminUI.php';
 /**
  * Administrator Not Found page
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004 silverorange
  */
 class AdminAdminSiteFront extends AdminPage
 {
