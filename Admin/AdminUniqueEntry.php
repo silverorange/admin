@@ -14,7 +14,7 @@ class AdminUniqueEntry extends SwatEntry
 	// {{{ public properties
 
 	/**
-	 * Whether of not this entry is alphanumeric
+	 * Whether or not this entry is alphanumeric
 	 *
 	 * This property affects the processing of this control.
 	 *
