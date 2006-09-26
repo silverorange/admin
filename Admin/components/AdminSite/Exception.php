@@ -5,10 +5,10 @@ require_once 'Swat/SwatMessage.php';
 require_once 'Swat/SwatMessageDisplay.php';
 
 /**
- * Administrator Exception page
+ * Exception page in an admin application
  *
- * @package Admin
- * @copyright silverorange 2006
+ * @package   Admin
+ * @copyright 2006 silverorange
  */
 class AdminAdminSiteException extends SiteExceptionPage
 {
