@@ -169,9 +169,9 @@ class AdminLayout extends SiteLayout
 	 */
 	protected function displayHeader()
 	{
-		echo '<div id="admin-syslinks">';
-		echo 'Welcome '.$_SESSION['name'].' &nbsp;|&nbsp; ';
-		echo '<a href="AdminSite/Profile">Login Settings</a> &nbsp;|&nbsp; ';
+		echo '<div id="admin-syslinks">',
+			'Welcome ', $this->app->session->name, ' &nbsp;|&nbsp; ',
+			'<a href="AdminSite/Profile">Login Settings</a> &nbsp;|&nbsp; ';
 
 		$this->logout_form->display();
 
