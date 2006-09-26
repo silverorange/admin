@@ -64,11 +64,13 @@ class AdminApplication extends SiteApplication
 	 * An array of paths to check for components when finding the filename of
 	 * a component
 	 *
+	 * The array is of the form: 'ClassPrefix' => 'path'.
+	 *
 	 * @var array
 	 *
 	 * @see AdminApplication::addComponentIncludePath()
 	 */
-	protected $component_include_paths = array('Admin/components');
+	protected $component_include_paths = array('Admin' => 'Admin/components');
 
 	/**
 	 * Source of the front page.
@@ -182,12 +184,14 @@ class AdminApplication extends SiteApplication
 	 * so if a file exists in two places, the first filename will be returned.
 	 *
 	 * @param string $path the include path to add.
+	 * @param string $prefix the prefix to prefix classes defined in the
+	 *                        include path with.
 	 *
 	 * @see AdminApplication::getComponentIncludePaths()
 	 */
-	public function addComponentIncludePath($path)
+	public function addComponentIncludePath($path, $prefix)
 	{
-		$this->component_include_paths[] = $path;
+		$this->component_include_paths[$prefix] = $path;
 	}
 
 	// }}}
@@ -196,6 +200,10 @@ class AdminApplication extends SiteApplication
 	/**
 	 * Gets the array of paths to check for components when finding the
 	 * filename of a component
+	 *
+	 * The array is indexed by a class prefix. This class prefix is prepended
+	 * to the names of classes defined in files found in the component include
+	 * path.
 	 *
 	 * @return array an array containing the paths to check for components when
 	 *                finding the filename of a component.
@@ -232,7 +240,7 @@ class AdminApplication extends SiteApplication
 
 		require_once $file;
 
-		$classname = $request->getClassname();
+		$classname = $request->getClassName();
 		if (!class_exists($classname))
 			throw new AdminNotFoundException(
 				sprintf(Admin::_(
