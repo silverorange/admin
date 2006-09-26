@@ -1,12 +1,11 @@
 <?php
 
+require_once 'Site/layouts/SiteXMLRPCServerLayout.php';
+
 /**
  * @package   Admin
  * @copyright 2006 silverorange
  */
-
-require_once 'Site/layouts/SiteXMLRPCServerLayout.php';
-
 class AdminMenuXMLRPCServerLayout extends SiteXMLRPCServerLayout
 {
 	// {{{ public properties
@@ -50,6 +49,6 @@ class AdminMenuXMLRPCServerLayout extends SiteXMLRPCServerLayout
 	}
 
 	// }}}
-
 }
+
 ?>
