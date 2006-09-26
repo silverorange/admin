@@ -9,7 +9,7 @@ require_once 'Admin/AdminListDependency.php';
  * @package Admin
  * @copyright 2005-2006 silverorange
  */
-class AdminSubComponentDelete extends AdminDBDelete
+class AdminAdminSubComponentDelete extends AdminDBDelete
 {
 	// {{{ private properties
 

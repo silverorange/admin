@@ -9,7 +9,7 @@ require_once 'Admin/exceptions/AdminNotFoundException.php';
  * @package   Admin
  * @copyright 2005-2006 silverorange
  */
-class AdminSiteLogout extends AdminPage
+class AdminAdminSiteLogout extends AdminPage
 {
 	// process phase
 	// {{{ protected function processInternal()
