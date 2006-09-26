@@ -12,7 +12,6 @@ require_once 'Swat/SwatMessageDisplay.php';
  */
 class AdminAdminSiteException extends SiteExceptionPage
 {
-	// init phase
 	// {{{ protected function createLayout()
 
 	protected function createLayout()
