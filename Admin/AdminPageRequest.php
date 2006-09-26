@@ -5,8 +5,8 @@ require_once 'Site/SiteObject.php';
 /**
  * Page request
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004 silverorange
  */
 class AdminPageRequest extends SiteObject
 {
