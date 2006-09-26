@@ -58,17 +58,17 @@ class AdminApplication extends SiteApplication
 	public $menu_class = 'AdminMenuView';
 
 	// }}}
-    // {{{ public function __construct()
-
-    public function __construct($id)
-	{
-		parent::__construct($id);
-
-		$this->exception_page_source = 'AdminSite/Exception';
-	}
-
-	// }}}
 	// {{{ protected properties
+
+	/**
+	 * An array of paths to check for components when finding the filename of
+	 * a component
+	 *
+	 * @var array
+	 *
+	 * @see AdminApplication::addComponentIncludePath()
+	 */
+	protected $component_include_paths = array('Admin/components');
 
 	/**
 	 * Source of the front page.
@@ -78,7 +78,16 @@ class AdminApplication extends SiteApplication
 	protected $front_source = 'AdminSite/Front';
 
 	// }}}
+	// {{{ public function __construct()
 
+	public function __construct($id)
+	{
+		parent::__construct($id);
+
+		$this->exception_page_source = 'AdminSite/Exception';
+	}
+
+	// }}}
 	// {{{ public function run()
 
 	public function run()
@@ -112,9 +121,9 @@ class AdminApplication extends SiteApplication
 	public function queryForPage($component)
 	{
 		$sql = sprintf('select * from getAdminPage(%s, %s, %s)',
-            $this->db->quote(true, 'boolean'),
-            $this->db->quote($component, 'text'),
-            $this->db->quote($this->session->user_id, 'integer'));
+			$this->db->quote(true, 'boolean'),
+			$this->db->quote($component, 'text'),
+			$this->db->quote($this->session->user_id, 'integer'));
 
 		$row = SwatDB::queryRow($this->db, $sql);
 		return $row;
@@ -160,6 +169,40 @@ class AdminApplication extends SiteApplication
 	public function setFrontSource($source)
 	{
 		$this->front_source = $source;
+	}
+
+	// }}}
+	// {{{ public function addComponentIncludePath()
+
+	/**
+	 * Adds a path to the list of component include paths
+	 *
+	 * Paths do not contain leading or trailing slashes and are relative to
+	 * the PHP include path. The component include paths are searched in order
+	 * so if a file exists in two places, the first filename will be returned.
+	 *
+	 * @param string $path the include path to add.
+	 *
+	 * @see AdminApplication::getComponentIncludePaths()
+	 */
+	public function addComponentIncludePath($path)
+	{
+		$this->component_include_paths[] = $path;
+	}
+
+	// }}}
+	// {{{ public function getComponentIncludePaths()
+
+	/**
+	 * Gets the array of paths to check for components when finding the
+	 * filename of a component
+	 *
+	 * @return array an array containing the paths to check for components when
+	 *                finding the filename of a component.
+	 */
+	public function &getComponentIncludePaths()
+	{
+		return $this->component_include_paths;
 	}
 
 	// }}}
