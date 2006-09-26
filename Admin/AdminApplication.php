@@ -8,6 +8,7 @@ require_once 'MDB2.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/Admin.php';
 require_once 'Admin/AdminSessionModule.php';
+require_once 'Admin/AdminMenuView.php';
 require_once 'Admin/AdminPageRequest.php';
 require_once 'Admin/pages/AdminPage.php';
 require_once 'Admin/layouts/AdminLayout.php';
@@ -50,13 +51,6 @@ class AdminApplication extends SiteApplication
 	 */
 	public $default_locale = null;
 
-	/**
-	 * Class to use for the menu.
-	 *
-	 * @var string the menu class name.
-	 */
-	public $menu_class = 'AdminMenuView';
-
 	// }}}
 	// {{{ protected properties
 
@@ -78,6 +72,13 @@ class AdminApplication extends SiteApplication
 	 * @var string the page to load as the front page of the admin.
 	 */
 	protected $front_source = 'AdminSite/Front';
+
+	/**
+	 * Class to use for the menu-view
+	 *
+	 * @var string the menu-view class name.
+	 */
+	protected $menu_view_class = 'AdminMenuView';
 
 	// }}}
 	// {{{ public function __construct()
@@ -165,12 +166,54 @@ class AdminApplication extends SiteApplication
 	/**
 	 * Sets the source of the front page
 	 *
-	 * @paramt string $source the subcomponent page to load as the front page
-	 *                         of this admin application.
+	 * @param string $source the subcomponent page to load as the front page
+	 *                        of this admin application.
 	 */
 	public function setFrontSource($source)
 	{
 		$this->front_source = $source;
+	}
+
+	// }}}
+	// {{{ public function setMenuViewClass()
+
+	/**
+	 * Sets the class to use for this admin application's menu-view
+	 *
+	 * @param string $class_name the class to use for this admin application's
+	 *                            menu-view.
+	 *
+	 * @throws AdminException if the menu-view class is not defined or if the
+	 *                         menu-view class is not an AdminMenuView.
+	 */
+	public function setMenuViewClass($class_name)
+	{
+		if (!class_exists($class_name))
+			throw new AdminException(sprintf(
+				"AdminMenuView class '%s' is undefined.", $class_name));
+
+		if ($class_name !== 'AdminMenuView' &&
+			!is_subclass_of($class_name, 'AdminMenuView'))
+			throw new AdminException(sprintf(
+				"Class '%s' is not an AdminMenuView.", $class_name));
+
+		$this->menu_view_class = $class_name;
+	}
+
+	// }}}
+	// {{{ public function getMenuView()
+
+	/**
+	 * Gets the class used for this admin application's menu-view
+	 *
+	 * @return string the class to use for this admin application's menu-view.
+	 *                 By default, this is 'AdminMenuView'.
+	 *
+	 * @see AdminApplication::setMenuViewClass()
+	 */
+	public function getMenuViewClass()
+	{
+		return $this->menu_view_class;
 	}
 
 	// }}}
