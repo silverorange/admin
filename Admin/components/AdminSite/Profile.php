@@ -30,8 +30,7 @@ class AdminAdminSiteProfile extends AdminDBEdit
 		$confirm = $this->ui->getWidget('confirmpassword');
 		$confirm->password_widget = $this->ui->getWidget('password');
 
-		$this->id = SiteApplication::initVar('user_id', null, 
-			SiteApplication::VAR_SESSION);
+		$this->id = $this->app->session->user_id;
 	}
 
 	// }}}
@@ -52,7 +51,7 @@ class AdminAdminSiteProfile extends AdminDBEdit
 		SwatDB::updateRow($this->app->db, 'AdminUser', array_keys($values),
 			$values, 'integer:id', $this->id);
 
-		$_SESSION['name'] = $values['name'];
+		$this->app->session->name = $values['name'];
 
 		$msg = new SwatMessage(Admin::_('Your user profile has been updated.'));
 		$this->app->messages->add($msg);
