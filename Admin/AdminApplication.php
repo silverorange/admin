@@ -39,13 +39,6 @@ class AdminApplication extends SiteApplication
 	public $db;
 
 	/**
-	 * Source of the front page.
-	 *
-	 * @var string the page to load as the front page of the admin.
-	 */
-	public $front_source = 'AdminSite/Front';
-
-	/**
 	 * Default locale
 	 *
 	 * This locale is used for translations, collation and locale-specific
@@ -75,6 +68,17 @@ class AdminApplication extends SiteApplication
 	}
 
 	// }}}
+	// {{{ protected properties
+
+	/**
+	 * Source of the front page.
+	 *
+	 * @var string the page to load as the front page of the admin.
+	 */
+	protected $front_source = 'AdminSite/Front';
+
+	// }}}
+
 	// {{{ public function run()
 
 	public function run()
@@ -103,6 +107,62 @@ class AdminApplication extends SiteApplication
 	}
 
 	// }}}
+	// {{{ public function queryForPage()
+
+	public function queryForPage($component)
+	{
+		$sql = sprintf('select * from getAdminPage(%s, %s, %s)',
+            $this->db->quote(true, 'boolean'),
+            $this->db->quote($component, 'text'),
+            $this->db->quote($this->session->user_id, 'integer'));
+
+		$row = SwatDB::queryRow($this->db, $sql);
+		return $row;
+	}
+
+	// }}}
+	// {{{ public function getDefaultSubComponent()
+
+	/**
+	 * Gets the name of the default sub-component of this application
+	 *
+	 * @return string the name of the default sub-component to use if no
+	 *                 sub-component is specified in the page request source.
+	 */
+	public function getDefaultSubComponent()
+	{
+		return 'Index';
+	}
+
+	// }}}
+	// {{{ public function getFrontSource()
+
+	/**
+	 * Gets the source of the front page
+	 *
+	 * @return string the subcomponent page to load as the front page of this
+	 *                 admin application.
+	 */
+	public function getFrontSource()
+	{
+		return $this->front_source;
+	}
+
+	// }}}
+	// {{{ public function setFrontSource()
+
+	/**
+	 * Sets the source of the front page
+	 *
+	 * @paramt string $source the subcomponent page to load as the front page
+	 *                         of this admin application.
+	 */
+	public function setFrontSource($source)
+	{
+		$this->front_source = $source;
+	}
+
+	// }}}
 	// {{{ protected function normalizeSource()
 
 	protected function normalizeSource($source)
@@ -120,45 +180,42 @@ class AdminApplication extends SiteApplication
 
 	protected function resolvePage($source)
 	{
-		$request = $this->getRequest($source);
-		
-		if ($request === null)
-			throw new AdminNotFoundException(
-				sprintf(Admin::_("Component not found for source '%s'."),
-				$source));
+		$request = new AdminPageRequest($this, $source);
 
 		$file = $request->getFilename();
-
 		if ($file === null)
 			throw new AdminNotFoundException(
 				sprintf(Admin::_("File not found for source '%s'."), $source));
 
 		require_once $file;
-		$classname = $request->getClassname();
 
-		if ($classname === null)
+		$classname = $request->getClassname();
+		if (!class_exists($classname))
 			throw new AdminNotFoundException(
 				sprintf(Admin::_(
 					"Class '%s' does not exist in the included file."),
-					$request->component.$request->subcomponent));
+					$classname));
 
 		$layout = $this->resolveLayout($source);
 		$page = new $classname($this, $layout);
-		$page->title = $request->title;
+		$page->title = $request->getTitle();
 
 		if ($page instanceof AdminPage) {
-			$page->source = $request->source;
-			$page->component = $request->component;
-			$page->subcomponent = $request->subcomponent;
+			$page->source = $request->getSource();
+			$page->component = $request->getComponent();
+			$page->subcomponent = $request->getSubComponent();
 		}
 
 		if ($page->layout instanceof AdminLayout) {
 			$entry = new AdminImportantNavBarEntry($this->title, '.');
 			$page->layout->navbar->addEntry($entry);
 
-			$entry = new SwatNavBarEntry($request->title, 
-				($request->subcomponent == 'Index') ?
-				null : $request->component);
+			// Don't link the default sub-component navbar entry
+			if ($request->getSubComponent() == $this->getDefaultSubComponent())
+				$entry = new SwatNavBarEntry($request->getTitle(), null);
+			else
+				$entry = new SwatNavBarEntry($request->getTitle(),
+					$request->getComponent());
 
 			$page->layout->navbar->addEntry($entry);
 		}
@@ -207,86 +264,6 @@ class AdminApplication extends SiteApplication
 		$list[] = '.*'; // all sources
 
 		return $list;
-	}
-
-	// }}}
-	// {{{ private function getRequest()
-
-	private function getRequest($source)
-	{
-		$request = null;
-
-		if (strlen($source) === 0)
-			$source = $this->front_source;
-
-		if ($this->session->isLoggedIn()) {
-			$source_exp = explode('/', $source);
-			
-			if (count($source_exp) == 1) {
-				$component = $source;
-				$subcomponent = 'Index';
-			} elseif (count($source_exp) == 2) {
-				list($component, $subcomponent) = $source_exp;
-			} else {
-				return null;
-			}
-
-			if ($component == 'AdminSite') {
-				$admin_titles = array(
-					'Profile'        => Admin::_('Edit User Profile'),
-					'Logout'         => Admin::_('Logout'),
-					'Login'          => Admin::_('Login'),
-					'Exception'      => Admin::_('Exception'),
-					'Front'          => Admin::_('Index'),
-					'MenuViewServer' => Admin::_(''));
-
-				if (isset($admin_titles[$subcomponent])) {
-					$request = new AdminPageRequest();
-					$request->title = $admin_titles[$subcomponent];
-					$request->component = $component;
-					$request->subcomponent = $subcomponent;
-				} else {
-					return null;
-				}
-				
-			} else {
-			
-				$row = $this->queryForPage($component);
-
-				if ($row !== null) {
-					$request = new AdminPageRequest();
-					$request->title = $row->component_title;
-					$request->component = $component;
-					$request->subcomponent = $subcomponent;
-				} else {
-					return null;
-				}
-			}
-
-		} else {
-			$request = new AdminPageRequest();
-			$request->component = 'AdminSite';
-			$request->subcomponent = 'Login';
-			$request->title = Admin::_('Login');
-		}
-
-		$request->source = $source;
-
-		return $request;
-	}
-
-	// }}}
-	// {{{ private function queryForPage()
-
-	private function queryForPage($component)
-	{
-		$sql = sprintf('select * from getAdminPage(%s, %s, %s)',
-            $this->db->quote(true, 'boolean'),
-            $this->db->quote($component, 'text'),
-            $this->db->quote($_SESSION['user_id'], 'integer'));
-
-		$row = SwatDB::queryRow($this->db, $sql);
-		return $row;
 	}
 
 	// }}}
