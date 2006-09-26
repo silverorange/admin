@@ -17,14 +17,6 @@ class AdminAdminSiteProfile extends AdminDBEdit
 	private $fields;
 
 	// }}}
-	// {{{ protected function relocate()
-
-	protected function relocate()
-	{
-		$this->app->relocate('');
-	}
-
-	// }}}
 
 	// init phase
 	// {{{ protected function initInternal()
@@ -64,6 +56,14 @@ class AdminAdminSiteProfile extends AdminDBEdit
 
 		$msg = new SwatMessage(Admin::_('Your user profile has been updated.'));
 		$this->app->messages->add($msg);
+	}
+
+	// }}}
+	// {{{ protected function relocate()
+
+	protected function relocate()
+	{
+		$this->app->relocate('');
 	}
 
 	// }}}
