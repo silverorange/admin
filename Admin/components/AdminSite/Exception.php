@@ -22,7 +22,6 @@ class AdminAdminSiteException extends SiteExceptionPage
 	// }}}
 
 	// build phase
-
 	// {{{ protected function display()
 
 	protected function display($status)
