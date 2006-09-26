@@ -92,7 +92,7 @@ class AdminLayout extends SiteLayout
 				'getAdminMenu', $this->app->db->quote($_SESSION['user_id'],
 				'integer'), 'AdminMenuStore');
 
-			$class = $this->app->menu_class;
+			$class = $this->app->getMenuViewClass();
 			$this->menu = new $class($menu_store);
 		}
 
