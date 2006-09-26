@@ -19,6 +19,7 @@ class AdminPageRequest extends SiteObject
 	protected $subcomponent;
 	protected $title;
 	protected $app;
+	protected $class_prefix;
 
 	// }}}
 	// {{{ public function __construct()
@@ -103,12 +104,14 @@ class AdminPageRequest extends SiteObject
 		if (file_exists('../../include/admin/components/'.$classfile)) {
 			$file = '../../include/admin/components/'.$classfile;
 		} else {
-			$paths = explode(':', ini_get('include_path'));
+			$include_paths = explode(':', ini_get('include_path'));
+			$component_include_paths = $this->app->getComponentIncludePaths();
 
-			foreach ($paths as $include_path) {
-				foreach ($this->app->getComponentIncludePaths() as $path) {
+			foreach ($include_paths as $include_path) {
+				foreach ($component_include_paths as $prefix => $path) {
 					if (file_exists($include_path.'/'.$path.'/'.$classfile)) {
 						$file = $path.'/'.$classfile;
+						$this->class_prefix = $prefix;
 						break 2;
 					}
 				}
@@ -119,11 +122,15 @@ class AdminPageRequest extends SiteObject
 	}
 
 	// }}}
-	// {{{ public function getClassname()
+	// {{{ public function getClassName()
 
-	public function getClassname()
+	public function getClassName()
 	{
-		return $this->component.$this->subcomponent;
+		$class_name = ($this->class_prefix === null) ?
+			$this->component.$this->subcomponent :
+			$this->class_prefix.$this->component.$this->subcomponent;
+
+		return $class_name;
 	}
 
 	// }}}
