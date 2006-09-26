@@ -9,7 +9,7 @@ require_once 'Admin/AdminUI.php';
  * @package Admin
  * @copyright silverorange 2004
  */
-class AdminSiteFront extends AdminPage
+class AdminAdminSiteFront extends AdminPage
 {
 	// init phase
 	// {{{ protected function initInternal()

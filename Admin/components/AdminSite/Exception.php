@@ -10,7 +10,7 @@ require_once 'Swat/SwatMessageDisplay.php';
  * @package Admin
  * @copyright silverorange 2006
  */
-class AdminSiteException extends SiteExceptionPage
+class AdminAdminSiteException extends SiteExceptionPage
 {
 	// {{{ protected function createLayout()
 

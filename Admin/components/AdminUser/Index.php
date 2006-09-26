@@ -12,7 +12,7 @@ require_once 'include/HistoryCellRenderer.php';
  * @package Admin
  * @copyright 2005-2006 silverorange
  */
-class AdminUserIndex extends AdminIndex
+class AdminAdminUserIndex extends AdminIndex
 {
 	// init phase
 	// {{{ protected function initInternal()

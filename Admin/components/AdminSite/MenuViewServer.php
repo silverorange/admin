@@ -10,7 +10,7 @@ require_once 'Admin/AdminMenuViewStateStore.php';
  * @package   Admin
  * @copyright 2006 silverorange
  */
-class AdminSiteMenuViewServer extends AdminXMLRPCServer
+class AdminAdminSiteMenuViewServer extends AdminXMLRPCServer
 {
 	// {{{ protected function createLayout()
 

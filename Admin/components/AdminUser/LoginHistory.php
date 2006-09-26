@@ -12,7 +12,7 @@ require_once 'Admin/components/AdminUser/include/HistoryCellRenderer.php';
  * @package Admin
  * @copyright 2005-2006 silverorange
  */
-class AdminUserLoginHistory extends AdminIndex
+class AdminAdminUserLoginHistory extends AdminIndex
 {
 	// init phase
 	// {{{ protected function initInternal()

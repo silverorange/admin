@@ -11,7 +11,7 @@ require_once 'Admin/AdminTableStore.php';
  * @package Admin
  * @copyright 2005-2006 silverorange
  */
-class AdminGroupIndex extends AdminIndex
+class AdminAdminGroupIndex extends AdminIndex
 {
 	// init phase
 	// {{{ protected function initInternal()

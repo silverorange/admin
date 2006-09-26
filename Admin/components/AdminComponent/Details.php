@@ -13,7 +13,7 @@ require_once 'Swat/SwatString.php';
  * @package Admin
  * @copyright 2005-2006 silverorange
  */
-class AdminComponentDetails extends AdminIndex
+class AdminAdminComponentDetails extends AdminIndex
 {
 	// {{{ private properties
 

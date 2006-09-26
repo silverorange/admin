@@ -11,7 +11,7 @@ require_once 'Swat/SwatMessage.php';
  * @package Admin
  * @copyright 2005-2006 silverorange
  */
-class AdminSiteLogin extends AdminPage
+class AdminAdminSiteLogin extends AdminPage
 {
 	// {{{ protected function createLayout()
 
