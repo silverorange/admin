@@ -22,6 +22,17 @@ class AdminAdminSiteException extends SiteExceptionPage
 	// }}}
 
 	// build phase
+	// {{{ public function build()
+
+	public function build()
+	{
+		parent::build();
+		$this->layout->navbar->popEntry();
+		$this->layout->navbar->popEntry();
+		$this->layout->navbar->addEntry(new SwatNavBarEntry('Error'));
+	}
+
+	// }}}
 	// {{{ protected function display()
 
 	protected function display($status)
