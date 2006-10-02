@@ -1,5 +1,6 @@
 <?php
 
+require_once 'Swat/SwatString.php';
 require_once 'Swat/SwatForm.php';
 require_once 'Swat/SwatFormField.php';
 require_once 'Swat/SwatButton.php';
@@ -155,7 +156,8 @@ class AdminLayout extends SiteLayout
 		$this->endCapture();
 
 		$page_title = $this->navbar->getLastEntry()->title;
-		$this->data->title = $page_title.' - '.$this->app->title;
+		$this->data->title = SwatString::minimizeEntities($page_title).
+			' - '.SwatString::minimizeEntities($this->app->title);
 	}
 
 	// }}}
@@ -170,7 +172,9 @@ class AdminLayout extends SiteLayout
 	protected function displayHeader()
 	{
 		echo '<div id="admin-syslinks">',
-			'Welcome ', $this->app->session->name, ' &nbsp;|&nbsp; ',
+			'Welcome ',
+			SwatString::minimizeEntities($this->app->session->name),
+			' &nbsp;|&nbsp; ',
 			'<a href="AdminSite/Profile">Login Settings</a> &nbsp;|&nbsp; ';
 
 		$this->logout_form->display();
