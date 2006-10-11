@@ -18,21 +18,26 @@
 
 .admin-menu ul a.menu-section-title {
 	display: block;
-	background: #f8f6f0 url(../../swat/images/swat-frame-header.png) bottom left repeat-x;
+	background: #f8f6f0 url(../images/admin-menu-section-background.png) bottom left repeat-x;
 	margin: 1px 1px 4px 1px;
 	font-weight: bold;
 	text-decoration: none;
 	color: #837352;
 }
 
+.admin-menu ul li.hide-menu-section a.menu-section-title {
+	background: #f8f6f0 url(../images/admin-menu-section-background-closed.png) bottom left repeat-x;
+	margin: 1px 1px 0 1px;
+}
+
 .admin-menu ul a.menu-section-title span {
 	display: block;
-	background: url(../images/admin-menu-section-toggle.png) 100% 0 no-repeat;
+	background: url(../images/admin-menu-section-open.png) center right no-repeat;
 	padding: 1px 4px 3px 4px;
 }
 
-.admin-menu ul a.menu-section-title:hover span {
-	background: url(../images/admin-menu-section-toggle.png) 100% -100px no-repeat;
+.admin-menu ul li.hide-menu-section a.menu-section-title span {
+	background: url(../images/admin-menu-section-closed.png) center right no-repeat;
 }
 
 .admin-menu ul li {
@@ -53,7 +58,7 @@
 	display: block;
 }
 
-.admin-menu ul ul.hide-menu-section {
+.admin-menu ul li.hide-menu-section ul {
 	display: none;
 }
 
@@ -72,10 +77,6 @@
 
 .admin-menu a:hover {
 	text-decoration: underline;
-}
-
-.admin-menu a.menu-section-toggle {
-	border: 1px dotted #F00;
 }
 
 
