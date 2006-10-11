@@ -90,11 +90,12 @@ class AdminLayout extends SiteLayout
 	{
 		if ($this->menu === null) {
 			$menu_store = SwatDB::executeStoredProc($this->app->db,
-				'getAdminMenu', $this->app->db->quote($_SESSION['user_id'],
-				'integer'), 'AdminMenuStore');
+				'getAdminMenu',
+				$this->app->db->quote($this->app->session->user_id, 'integer'),
+				'AdminMenuStore');
 
 			$class = $this->app->getMenuViewClass();
-			$this->menu = new $class($menu_store);
+			$this->menu = new $class($menu_store, $this->app);
 		}
 
 		$this->menu->init();

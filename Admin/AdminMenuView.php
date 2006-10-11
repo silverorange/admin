@@ -2,7 +2,8 @@
 
 require_once 'XML/RPCAjax.php';
 require_once 'Swat/SwatUIObject.php';
-require_once 'AdminMenuViewStateStore.php';
+require_once 'Admin/AdminMenuViewStateStore.php';
+require_once 'YUI/YUI.php';
 
 /**
  * Displays the primary navigation menu
@@ -34,6 +35,13 @@ class AdminMenuView extends SwatUIObject
 	 */
 	protected $store;
 
+	/**
+	 * The admin application that uses this menu
+	 *
+	 * @var AdminApplication
+	 */
+	protected $app;
+
 	// }}}
 	// {{{ private properties
 
@@ -55,16 +63,20 @@ class AdminMenuView extends SwatUIObject
 	 *                    identifier is specified, an id of 'admin_menu' is
 	 *                    used.
 	 */
-	public function __construct($store, $id = null)
+	public function __construct(AdminMenuStore $store,
+		AdminApplication $app, $id = null)
 	{
 		parent::__construct();
 
 		$this->store = $store;
+		$this->app = $app;
 		$this->show = true;
 		if ($id !== null)
 			$this->id = $id;
 
-		// add html head entries
+		$yui = new YUI(array('dom', 'animation'));
+		$this->html_head_entry_set->addEntrySet($yui->getHtmlHeadEntrySet());
+
 		$this->addJavaScript('packages/admin/javascript/admin-menu.js',
 			Admin::PACKAGE_ID);
 
@@ -129,7 +141,11 @@ class AdminMenuView extends SwatUIObject
 		$section_title_span_tag = new SwatHtmlTag('span');
 		$section_title_span_tag->setContent($section->title);
 
-		echo '<li>';
+		$section_li_tag = new SwatHtmlTag('li');
+		if (!$section->show)
+			$section_li_tag->class = 'hide-menu-section';
+
+		$section_li_tag->open();
 
 		$section_title_tag->open();
 		$section_title_span_tag->display();
@@ -139,8 +155,6 @@ class AdminMenuView extends SwatUIObject
 		$section_content->id = sprintf('%s_section_%s', $this->id,
 			$section->id);
 
-		if (!$section->show)
-			$section_content->class = 'hide-menu-section';
 
 		$section_content->open();
 
@@ -149,7 +163,7 @@ class AdminMenuView extends SwatUIObject
 
 		$section_content->close();
 
-		echo '</li>';
+		$section_li_tag->close();
 	}
 
 	// }}}
@@ -258,7 +272,8 @@ class AdminMenuView extends SwatUIObject
 	 */
 	public function saveState()
 	{
-		$this->getState()->saveToSession();
+		$this->getState()->saveToDatabase($this->app->db,
+			$this->app->session->user_id);
 	}
 
 	// }}}
@@ -338,8 +353,8 @@ class AdminMenuView extends SwatUIObject
 	protected function loadState()
 	{
 		try {
-			$menu_state =
-				AdminMenuViewStateStore::loadFromSession($this->id.'_state');
+			$menu_state = AdminMenuViewStateStore::loadFromDatabase(
+				$this->app->db, $this->app->session->user_id);
 		} catch (AdminException $e) {
 			$this->clearState();
 		}
@@ -356,7 +371,13 @@ class AdminMenuView extends SwatUIObject
 	 */
 	protected function clearState()
 	{
-		unset($_SESSION[$this->id.'_state']);
+		$state = new AdminMenuViewStateStore($this->id.'_state');
+		$state->show = true;
+		foreach ($this->store->sections as $section)
+			$state->sections_show[$section->id] = true;
+
+		$this->setState($state);
+		$this->saveState();
 	}
 
 	// }}}

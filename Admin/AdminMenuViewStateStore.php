@@ -69,6 +69,27 @@ class AdminMenuViewStateStore
 	}
 
 	// }}}
+	// {{{ public function saveToDatabase()
+
+	/**
+	 * Saves this state to a database
+	 *
+	 * @param MDB2_Driver_Common $db the database to which to save this menu
+	 *                                state.
+	 * @param integer $user_id the database identifier of the user for which
+	 *                          this menu state is to be saved.
+	 */
+	public function saveToDatabase(MDB2_Driver_Common $db, $user_id)
+	{
+		$serial_state = serialize($this);
+		$sql = sprintf('update AdminUser set menu_state = %s where id = %s',
+			$db->quote($serial_state, 'text'),
+			$db->quote($user_id, 'integer'));
+
+		SwatDB::exec($db, $sql);
+	}
+
+	// }}}
 	// {{{ public static function loadFromSession()
 
 	/**
@@ -78,11 +99,12 @@ class AdminMenuViewStateStore
 	 *                    user's session.
 	 *
 	 * @return AdminMenuViewStateStore the menu-view state store loaded from
-	 *                                  the user's session of null if the
+	 *                                  the user's session or null if the
 	 *                                  given state does not exist in the
 	 *                                  user's session.
 	 *
-	 * @throws AdminException
+	 * @throws AdminException if the loaded state is not an instance of the
+	 *                         AdminMenuViewStateStore class.
 	 */
 	public static function loadFromSession($id)
 	{
@@ -90,6 +112,43 @@ class AdminMenuViewStateStore
 
 		if (isset($_SESSION[$id]) && is_string($_SESSION[$id])) {
 			$state = unserialize($_SESSION[$id]);
+			if (!($state instanceof self))
+				throw new AdminException('Restored state is not a menu state '.
+					'store');
+		}
+
+		return $state;
+	}
+
+	// }}}
+	// {{{ public static function loadFromDatabase()
+
+	/**
+	 * Loads a menu-view state store from a database
+	 *
+	 * @param MDB2_Driver_Common $db the database from which to load the state.
+	 * @param integer $user_id the database identifier of the user for which
+	 *                          the menu state is to be loaded.
+	 *
+	 * @return AdminMenuViewStateStore the menu-view state store loaded from
+	 *                                  the database or null if the database
+	 *                                  does not contain a menu state for the
+	 *                                  current user.
+	 *
+	 * @throws AdminException if the loaded state is not an instance of the
+	 *                         AdminMenuViewStateStore class.
+	 */
+	public static function loadFromDatabase(MDB2_Driver_common $db, $user_id)
+	{
+		$state = null;
+
+		$sql = sprintf('select menu_state from AdminUser where id = %s',
+			$db->quote($user_id, 'integer'));
+
+		$serial_state = SwatDB::queryOne($db, $sql);
+
+		if ($serial_state !== null) {
+			$state = unserialize($serial_state);
 			if (!($state instanceof self))
 				throw new AdminException('Restored state is not a menu state '.
 					'store');
