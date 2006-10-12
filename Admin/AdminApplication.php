@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Site/SiteApplication.php';
+require_once 'Site/SiteWebApplication.php';
 require_once 'Site/SiteDatabaseModule.php';
 require_once 'Site/SiteConfigModule.php';
 require_once 'Site/SiteCookieModule.php';
@@ -22,7 +22,7 @@ require_once 'Admin/exceptions/AdminNotFoundException.php';
  * @package   Admin
  * @copyright 2004-2006 silverorange
  */
-class AdminApplication extends SiteApplication
+class AdminApplication extends SiteWebApplication
 {
 	// {{{ public properties
 	
