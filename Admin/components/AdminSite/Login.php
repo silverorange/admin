@@ -47,8 +47,12 @@ class AdminAdminSiteLogin extends AdminPage
 		$frame->title = $this->app->title;
 
 		$username = $this->ui->getWidget('username');
-		if (isset($this->app->cookie->username))
-			$username->value = $this->app->cookie->username;
+		try {
+			if (isset($this->app->cookie->username))
+				$username->value = $this->app->cookie->username;
+		} catch (SiteCookieException $e) {
+			$this->app->cookie->removeCookie('username', '/');
+		}
 
 		$form = $this->ui->getWidget('login_form');
 		$form->action = $this->app->getUri();
@@ -102,8 +106,13 @@ class AdminAdminSiteLogin extends AdminPage
 
 	private function displayJavaScript()
 	{
-		$username = (isset($this->app->cookie->username)) ?
-			$this->app->cookie->username : '';
+		try {
+			$username = (isset($this->app->cookie->username)) ?
+				$this->app->cookie->username : '';
+		} catch (SiteCookieException $e) {
+			$this->app->cookie->removeCookie('username', '/');
+			$username = '';
+		}
 
 		$username = str_replace("'", "\\'", $username);
 		$username = str_ireplace('</script>', "</script' + '>", $username);
