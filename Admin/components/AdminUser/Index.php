@@ -24,7 +24,7 @@ class AdminAdminUserIndex extends AdminIndex
 		// set a default order on the table view
 		$index_view = $this->ui->getWidget('index_view');
 		$index_view->setDefaultOrderbyColumn(
-			$index_view->getColumn('username'),
+			$index_view->getColumn('email'),
 			SwatTableViewOrderableColumn::ORDER_BY_DIR_ASCENDING);
 	}
 
@@ -93,14 +93,14 @@ class AdminAdminUserIndex extends AdminIndex
 
 	protected function getTableStore($view)
 	{
-		$sql = 'select AdminUser.id, AdminUser.username, AdminUser.name,
+		$sql = 'select AdminUser.id, AdminUser.email, AdminUser.name,
 					AdminUser.enabled, AdminUserLastLoginView.last_login
-				from AdminUser 
+				from AdminUser
 				left outer join AdminUserLastLoginView on
 					AdminUserLastLoginView.usernum = AdminUser.id
 				order by %s';
 
-		$sql = sprintf($sql, $this->getOrderByClause($view, 'AdminUser.username'));
+		$sql = sprintf($sql, $this->getOrderByClause($view, 'AdminUser.email'));
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 

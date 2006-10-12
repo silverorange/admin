@@ -46,12 +46,12 @@ class AdminAdminSiteLogin extends AdminPage
 		$frame = $this->ui->getWidget('login_frame');
 		$frame->title = $this->app->title;
 
-		$username = $this->ui->getWidget('username');
+		$email = $this->ui->getWidget('email');
 		try {
-			if (isset($this->app->cookie->username))
-				$username->value = $this->app->cookie->username;
+			if (isset($this->app->cookie->email))
+				$email->value = $this->app->cookie->email;
 		} catch (SiteCookieException $e) {
-			$this->app->cookie->removeCookie('username', '/');
+			$this->app->cookie->removeCookie('email', '/');
 		}
 
 		$form = $this->ui->getWidget('login_form');
@@ -70,9 +70,9 @@ class AdminAdminSiteLogin extends AdminPage
 		$form = $this->ui->getWidget('login_form');
 
 		if ($form->isProcessed() && !$form->hasMessage()) {
-			$username = $this->ui->getWidget('username')->value;
+			$email = $this->ui->getWidget('email')->value;
 			$password = $this->ui->getWidget('password')->value;
-			$logged_in = $this->app->session->login($username, $password);
+			$logged_in = $this->app->session->login($email, $password);
 
 			if ($logged_in) {
 				$this->app->relocate($this->app->getUri());
@@ -107,21 +107,21 @@ class AdminAdminSiteLogin extends AdminPage
 	private function displayJavaScript()
 	{
 		try {
-			$username = (isset($this->app->cookie->username)) ?
-				$this->app->cookie->username : '';
+			$email = (isset($this->app->cookie->email)) ?
+				$this->app->cookie->email : '';
 		} catch (SiteCookieException $e) {
-			$this->app->cookie->removeCookie('username', '/');
-			$username = '';
+			$this->app->cookie->removeCookie('email', '/');
+			$email = '';
 		}
 
-		$username = str_replace("'", "\\'", $username);
-		$username = str_ireplace('</script>', "</script' + '>", $username);
+		$email = str_replace("'", "\\'", $email);
+		$email = str_ireplace('</script>', "</script' + '>", $email);
 
 		$login_error = ($this->login_error) ? 'true' : 'false';
 
 		echo '<script type="text/javascript">';
-		echo "\nAdminLogin('username', 'password', 'login_button', ".
-			"'{$username}', {$login_error});";
+		echo "\nAdminLogin('email', 'password', 'login_button', ".
+			"'{$email}', {$login_error});";
 
 		echo '</script>';
 	}

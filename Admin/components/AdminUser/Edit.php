@@ -28,7 +28,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
 
-		$this->fields = array('username', 'name', 'boolean:enabled');
+		$this->fields = array('email', 'name', 'boolean:enabled');
 		
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->options = SwatDB::getOptionArray($this->app->db, 
@@ -55,20 +55,20 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 	protected function validate()
 	{
-		$username = $this->ui->getWidget('username');
+		$email = $this->ui->getWidget('email');
 
-		$query = SwatDB::query($this->app->db, sprintf('select username 
-			from AdminUser where username = %s and id %s %s',
-			$this->app->db->quote($username->value, 'text'),
+		$query = SwatDB::query($this->app->db, sprintf('select email 
+			from AdminUser where email = %s and id %s %s',
+			$this->app->db->quote($email->value, 'text'),
 			SwatDB::equalityOperator($this->id, true),
 			$this->app->db->quote($this->id, 'integer')));
 
 		if (count($query) > 0) {
 			$msg = new SwatMessage(
-				Admin::_('Username already exists and must be unique.'),
+				Admin::_('An account with this email address already exists.'),
 				SwatMessage::ERROR);
 
-			$username->addMessage($msg);
+			$email->addMessage($msg);
 		}
 
 		if ($this->ui->getWidget('confirm_password_field')->hasMessage() ||
@@ -81,7 +81,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 	protected function saveDBData()
 	{
-		$values = $this->ui->getValues(array('username', 'name', 'enabled'));
+		$values = $this->ui->getValues(array('email', 'name', 'enabled'));
 
 		$password = $this->ui->getWidget('password');
 		if ($password->value !== null) {
@@ -104,7 +104,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 		
 		$msg = new SwatMessage(
 			sprintf(Admin::_('User “%s” has been saved.'),
-			$values['username']), SwatMessage::NOTIFICATION);
+			$values['email']), SwatMessage::NOTIFICATION);
 
 		$this->app->messages->add($msg);	
 	}

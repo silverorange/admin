@@ -5,10 +5,10 @@
 		<property name="title" translatable="yes">Admin User Login History</property>
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
-				<object class="AdminTableViewOrderableColumn" id="username">
-					<property name="title" translatable="yes">Username</property>
+				<object class="AdminTableViewOrderableColumn" id="email">
+					<property name="title" translatable="yes">Email</property>
 					<object class="AdminTitleLinkCellRenderer">
-						<property name="text" type="data">username</property>
+						<property name="text" type="data">email</property>
 						<property name="link">AdminUser/Details?id=%s</property>
 						<property name="link_value" type="data">usernum</property>
 					</object>

@@ -50,12 +50,12 @@ class AdminSessionModule extends SiteSessionModule
 			$this->activate();
 
 		if (!isset($this->user_id)) {
-			$this->user_id =  0;
-			$this->name =     '';
-			$this->username = '';
+			$this->user_id = 0;
+			$this->name    = '';
+			$this->email   = '';
 			$this->history = array();
 		} elseif ($this->user_id !== 0) {	
-			$this->app->cookie->setCookie('username', $this->username,
+			$this->app->cookie->setCookie('email', $this->email,
 				strtotime('+1 day'), '/');
 		}
 	}
@@ -66,13 +66,13 @@ class AdminSessionModule extends SiteSessionModule
 	/**
 	 * Logs an admin user into an admin
 	 *
-	 * @param string $username
+	 * @param string $email
 	 * @param string $password
 	 *
 	 * @return boolean true if the admin user was logged in is successfully and
 	 *                  false if the admin user could not log in.
 	 */
-	public function login($username, $password)
+	public function login($email, $password)
 	{
 		$logged_in = false;
 
@@ -80,20 +80,20 @@ class AdminSessionModule extends SiteSessionModule
 	
 		$md5_password = md5($password);
 		
-		$sql = 'select id, name, username from AdminUser
-			where username = %s and password = %s and enabled = %s';
+		$sql = 'select id, name, email from AdminUser
+			where email = %s and password = %s and enabled = %s';
 
 		$sql = sprintf($sql, 
-			$this->app->db->quote($username, 'text'),
+			$this->app->db->quote($email, 'text'),
 			$this->app->db->quote($md5_password, 'text'),
 			$this->app->db->quote(true, 'boolean'));
 
 		$row = SwatDB::queryRow($this->app->db, $sql);
 		
 		if ($row !== null) {
-			$this->user_id  = $row->id;
-			$this->name     = $row->name;
-			$this->username = $row->username;
+			$this->user_id = $row->id;
+			$this->name    = $row->name;
+			$this->email   = $row->email;
 
 			$this->insertUserHistory($row->id);
 
@@ -147,20 +147,20 @@ class AdminSessionModule extends SiteSessionModule
 	}
 
     // }}}
-    // {{{ public function getUsername()
+    // {{{ public function getEmailAddress()
 
 	/**
-	 * Gets the current admin user's username
+	 * Gets the current admin user's email address
 	 *
-	 * @return string the current admin user's username, or null if an admin
-	 *                 user is not logged in.
+	 * @return string the current admin user's email address, or null if an
+	 *                 admin user is not logged in.
 	 */
-	public function getUsername()
+	public function getEmailAddress()
 	{
 		if (!$this->isLoggedIn())
 			return null;
 
-		return $this->username;
+		return $this->email;
 	}
 
     // }}}
