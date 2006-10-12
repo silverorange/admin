@@ -5,25 +5,25 @@ SwatForm.prototype.setDefaultFocus = function()
 {
 }
 
-function AdminLogin(login_id, password_id, submit_name, username, login_error)
+function AdminLogin(email_id, password_id, submit_name, user_email, login_error)
 {
 	window.setTimeout(
-	"login = document.getElementById('" + login_id + "');"+
+	"email = document.getElementById('" + email_id + "');"+
 	"password = document.getElementById('" + password_id + "');"+
 	"submit = document.getElementById('" + submit_name + "');"+
 	"if (" + login_error + ") {" +
-	"	if (login.value.length && login.value == '" + username + "') {"+
+	"	if (email.value.length && email.value == '" + user_email + "') {"+
 	"		password.focus();"+
 	"	} else {"+
-	"		login.focus();"+
+	"		email.focus();"+
 	"	}"+
 	"} else {" +
-	"	if (login.value.length > 0 && password.value.length > 0) {" +
+	"	if (email.value.length > 0 && password.value.length > 0) {" +
 	"		submit.focus();" +
-	"	} else if (login.value.length > 0 && password.value.length == 0) {" +
+	"	} else if (email.value.length > 0 && password.value.length == 0) {" +
 	"		password.focus();" +
 	"	} else {" +
-	"		login.focus();" +
+	"		email.focus();" +
 	"	}" +
 	"}", 100);
 }
