@@ -41,7 +41,12 @@ class AdminAdminSiteProfile extends AdminDBEdit
 	protected function saveDBData()
 	{
 		$name = $this->ui->getWidget('name');
-		$values = array('name' => $name->value);
+		$email = $this->ui->getWidget('email');
+
+		$values = array(
+			'name'  => $name->value,
+			'email' => $email->value,
+		);
 
 		$password = $this->ui->getWidget('password');
 		if ($password->value !== null) {
@@ -52,6 +57,7 @@ class AdminAdminSiteProfile extends AdminDBEdit
 			$values, 'integer:id', $this->id);
 
 		$this->app->session->name = $values['name'];
+		$this->app->session->email = $values['email'];
 
 		$msg = new SwatMessage(Admin::_('Your user profile has been updated.'));
 		$this->app->messages->add($msg);
@@ -80,7 +86,7 @@ class AdminAdminSiteProfile extends AdminDBEdit
 	protected function loadDBData()
 	{
 		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminUser', 
-			array('name'), 'integer:id', $this->id);
+			array('name', 'email'), 'integer:id', $this->id);
 
 		$this->ui->setValues(get_object_vars($row));
 	}
