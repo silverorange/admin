@@ -13,6 +13,17 @@ require_once 'Swat/SwatMessage.php';
  */
 class AdminAdminSiteLogin extends AdminPage
 {
+	// {{{ protected properties
+
+	/**
+	 * Whether or not there was an error in the login information entered by
+	 * the user
+	 *
+	 * @var boolean
+	 */
+	protected $login_error = false;
+
+	// }}}
 	// {{{ protected function createLayout()
 
 	protected function createLayout()
@@ -36,9 +47,8 @@ class AdminAdminSiteLogin extends AdminPage
 		$frame->title = $this->app->title;
 
 		$username = $this->ui->getWidget('username');
-
-		if (isset($_COOKIE[$this->app->id.'_username']))
-			$username->value = $_COOKIE[$this->app->id.'_username'];
+		if (isset($this->app->cookie->username))
+			$username->value = $this->app->cookie->username;
 
 		$form = $this->ui->getWidget('login_form');
 		$form->action = $this->app->getUri();
@@ -71,6 +81,7 @@ class AdminAdminSiteLogin extends AdminPage
 					Admin::_('Check your password and try again.');
 
 				$message_display->add($msg);
+				$this->login_error = true;
 			}
 		}
 	}
@@ -91,13 +102,18 @@ class AdminAdminSiteLogin extends AdminPage
 
 	private function displayJavaScript()
 	{
-		if (isset($_COOKIE[$this->app->id.'_username']))
-			$username = $_COOKIE[$this->app->id.'_username'];
-		else
-			$username = '';
+		$username = (isset($this->app->cookie->username)) ?
+			$this->app->cookie->username : '';
+
+		$username = str_replace("'", "\\'", $username);
+		$username = str_ireplace('</script>', "</script' + '>", $username);
+
+		$login_error = ($this->login_error) ? 'true' : 'false';
 
 		echo '<script type="text/javascript">';
-		echo "\nAdminLogin('username', 'password', 'login_button', '{$username}');";
+		echo "\nAdminLogin('username', 'password', 'login_button', ".
+			"'{$username}', {$login_error});";
+
 		echo '</script>';
 	}
 

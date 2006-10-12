@@ -1,6 +1,8 @@
 <?php
 
+require_once 'Admin/exceptions/AdminException.php';
 require_once 'Site/SiteSessionModule.php';
+require_once 'Site/SiteCookieModule.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Swat/SwatDate.php';
 
@@ -12,6 +14,31 @@ require_once 'Swat/SwatDate.php';
  */
 class AdminSessionModule extends SiteSessionModule
 {
+	// {{{ public function __construct()
+
+	/**
+	 * Creates a admin session module
+	 *
+	 * @param SiteApplication $app the application this module belongs to.
+	 *
+	 * @throws AdminException if there is no cookie module loaded the session
+	 *                         module throws an exception.
+	 */
+	public function __construct(SiteApplication $app)
+	{
+		if (!(isset($app->cookie) &&
+			$app->cookie instanceof SiteCookieModule))
+			throw new AdminException('The AdminSessionModule requires a '.
+				'SiteCookieModule to be loaded. Please either explicitly '.
+				'add a cookie module to the application before instantiating '.
+				'the session module, or specify the cookie module before the '.
+				'session module in the application\'s getDefaultModuleList() '.
+				'method.');
+
+		parent::__construct($app);
+	}
+
+	// }}}
     // {{{ public function init()
 
 	public function init()
@@ -28,8 +55,8 @@ class AdminSessionModule extends SiteSessionModule
 			$this->username = '';
 			$this->history = array();
 		} elseif ($this->user_id !== 0) {	
-			setcookie($this->app->id.'_username', $this->username, 
-				time() + 86400, '/', '', 0);
+			$this->app->cookie->setCookie('username', $this->username,
+				strtotime('+1 day'), '/');
 		}
 	}
 
