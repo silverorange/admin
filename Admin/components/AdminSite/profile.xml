@@ -12,6 +12,13 @@
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
+				<property name="title" translatable="yes">Email</property>
+				<widget class="SwatEmailEntry" id="email">
+					<property name="maxlength" type="integer">50</property>
+					<property name="required" type="boolean">true</property>
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
 				<property name="title" translatable="yes">Password</property>
 				<widget class="SwatPasswordEntry" id="password">
 					<property name="minlength" type="integer">4</property>
