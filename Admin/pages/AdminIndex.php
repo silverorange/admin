@@ -106,7 +106,7 @@ abstract class AdminIndex extends AdminPage
 	}
 
 	// }}}
-	// {{{ protected function getTableStore()
+	// {{{ abstract protected function getTableStore()
 
 	/**
 	 * Retrieve data to display.
