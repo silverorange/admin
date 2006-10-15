@@ -3,12 +3,14 @@
 require_once 'Admin/AdminUI.php';
 require_once 'Admin/pages/AdminIndex.php';
 require_once 'Admin/AdminTableStore.php';
+require_once 'Swat/SwatDetailsStore.php';
+require_once 'Swat/SwatTableStore.php';
 require_once 'SwatDB/SwatDB.php';
 
 /**
  * Index page for AdminComponents
  *
- * @package Admin
+ * @package   Admin
  * @copyright 2005-2006 silverorange
  */
 class AdminAdminComponentIndex extends AdminIndex
@@ -108,13 +110,18 @@ class AdminAdminComponentIndex extends AdminIndex
 
 	protected function getTableStore($view)
 	{
+		/*
+		 * Build a custom table-view store here so we can set the sensitivity
+		 * on group header change-order links.
+		 */
+
+		// get component information
 		$sql = 'select AdminComponent.id,
 					AdminComponent.title, 
 					AdminComponent.shortname, 
 					AdminComponent.section, 
 					AdminComponent.show,
-					AdminComponent.enabled,
-					AdminSection.title as section_title
+					AdminComponent.enabled
 				from AdminComponent 
 				inner join AdminSection 
 					on AdminSection.id = AdminComponent.section
@@ -124,7 +131,51 @@ class AdminAdminComponentIndex extends AdminIndex
 			$this->getOrderByClause($view, 'AdminComponent.displayorder, 
 				AdminComponent.title', 'AdminComponent'));
 
-		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
+		$components = SwatDB::query($this->app->db, $sql);
+
+		// get component-count and title for each section
+		$sql = 'select section as id, AdminSection.title as title, 
+			count(AdminComponent.id) as num_components
+			from AdminComponent
+			inner join AdminSection 
+				on AdminSection.id = AdminComponent.section
+			group by section, AdminSection.id, AdminSection.title,
+				AdminSection.displayorder
+			order by AdminSection.displayorder, AdminSection.id';
+
+		$section_info = SwatDB::query($this->app->db, $sql);
+		$current_section = null;
+
+		$store = new SwatTableStore();
+
+		foreach ($components as $component) {
+			$ds = new SwatDetailsStore();
+
+			if ($current_section === null ||
+				$current_section->id !== $component->section) {
+				foreach ($section_info as $section) {
+					if ($section->id === $component->section) {
+						$current_section = $section;
+						break;
+					}
+				}
+			}
+
+			// set component-specific info
+			$ds->id = $component->id;
+			$ds->title = $component->title;
+			$ds->shortname = $component->shortname;
+			$ds->show = $component->show;
+			$ds->enabled = $component->enabled;
+
+			// set section-specific info
+			$ds->section = $current_section->id;
+			$ds->section_title = $current_section->title;
+			$ds->section_order_sensitive =
+				($current_section->num_components > 1);
+
+			$store->addRow($ds);
+		}
 
 		return $store;
 	}

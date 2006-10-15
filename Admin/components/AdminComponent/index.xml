@@ -14,6 +14,7 @@
 		<widget class="SwatForm" id="index_form">
 			<widget class="SwatTableView" id="index_view">
 				<object class="SwatTableViewGroup">
+					<property name="id">section</property>
 					<property name="group_by">section</property>
 					<object class="SwatTextCellRenderer">
 						<property name="text" type="data">section_title</property>
@@ -22,6 +23,7 @@
 						<property name="text" translatable="yes">Change Order</property>
 						<property name="link">AdminComponent/Order?parent=%s</property>
 						<property name="link_value" type="data">section</property>
+						<property name="sensitive" type="data">section_order_sensitive</property>
 					</object>
 				</object>
 				<object class="SwatTableViewCheckboxColumn" id="checkbox">
