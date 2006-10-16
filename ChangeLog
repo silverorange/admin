@@ -1,3 +1,183 @@
+2006-10-15  gauthierm
+
+	* [r11967] admin/trunk/Admin/pages/AdminIndex.php:
+	  fix folding
+	* [r11963] admin/trunk/Admin/AdminGroupHeaderCellRenderer.php:
+	  this cell renderer is obsoleted by AdminGroupLinkCellRenderer.php
+	* [r11962] admin/trunk/Admin/components/AdminComponent/Index.php,
+	  admin/trunk/Admin/components/AdminComponent/index.xml:
+	  For sections that only have one component, don't sensitize the
+	  change-order link. This fixes #113.
+
+2006-10-12  gauthierm
+
+	* [r11927] admin/trunk/Admin/components/AdminUser/edit.xml:
+	  don't autocomplete the password field
+	* [r11926] admin/trunk/Admin/components/AdminSite/profile.xml:
+	  don't autocomplete the password field
+	* [r11922] admin/trunk/Admin/components/AdminSite/Profile.php,
+	  admin/trunk/Admin/components/AdminSite/profile.xml:
+	  added ability to edit your own email address
+	* [r11919] admin/trunk/Admin/AdminSessionModule.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php,
+	  admin/trunk/Admin/components/AdminSite/login.xml,
+	  admin/trunk/Admin/components/AdminUser/Details.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php,
+	  admin/trunk/Admin/components/AdminUser/Index.php,
+	  admin/trunk/Admin/components/AdminUser/LoginHistory.php,
+	  admin/trunk/Admin/components/AdminUser/edit.xml,
+	  admin/trunk/Admin/components/AdminUser/index.xml,
+	  admin/trunk/Admin/components/AdminUser/loginhistory.xml,
+	  admin/trunk/www/javascript/admin-login.js:
+	  Make admin users login with email/password instead of
+	  username/password. This
+	  requires some changes to the database.
+	* [r11918] admin/trunk/sql/tables/AdminUser.sql:
+	  replace username with email and add password_tag field
+	* [r11910] admin/trunk/Admin/AdminApplication.php:
+	  extend SiteWebApplication
+	* [r11903] admin/trunk/Admin/components/AdminSite/Login.php:
+	  handle bad cookies in a non-fatal way
+	* [r11880] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminSessionModule.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php,
+	  admin/trunk/www/javascript/admin-login.js:
+	  Fix the autofocus code for admin login pages.
+	  
+	  resolves #32 as fixed.
+
+2006-10-11  gauthierm
+
+	* [r11865] admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/AdminMenuViewStateStore.php,
+	  admin/trunk/Admin/layouts/AdminLayout.php,
+	  admin/trunk/Admin/layouts/AdminMenuXMLRPCServerLayout.php,
+	  admin/trunk/sql/tables/AdminUser.sql,
+	  admin/trunk/www/images/admin-menu-section-background-closed.png,
+	  admin/trunk/www/images/admin-menu-section-background.png,
+	  admin/trunk/www/images/admin-menu-section-closed.png,
+	  admin/trunk/www/images/admin-menu-section-open.png,
+	  admin/trunk/www/images/admin-menu-section-toggle.png,
+	  admin/trunk/www/javascript/admin-menu.js,
+	  admin/trunk/www/styles/admin-menu.css:
+	  Updates to the admin menu:
+	  - store menu state in database so it is persistant across logins
+	  - animate opening/closing of menu sections
+	  - small style tweaks
+
+2006-10-02  gauthierm
+
+	* [r11690] admin/trunk/Admin/layouts/AdminLayout.php:
+	  prevent JavaScript injection in admin usernames and page titles
+
+2006-09-26  gauthierm
+
+	* [r11524] admin/trunk/Admin/layouts/AdminLayout.php:
+	  - use session module
+	  - combine multiple echo statements into one
+	  - use comma instead of concatenation for simple echo statements
+	* [r11523] admin/trunk/Admin/components/AdminSite/Profile.php:
+	  use session module
+	* [r11522] admin/trunk/Admin/components/AdminSite/Login.php:
+	  coding conventions
+	* [r11521] admin/trunk/Admin/pages/AdminSearch.php:
+	  - use application session module
+	  - move key name into its own method
+	* [r11520]
+	  admin/trunk/Admin/layouts/AdminMenuXMLRPCServerLayout.php:
+	  respect application api change
+	* [r11519]
+	  admin/trunk/Admin/layouts/AdminMenuXMLRPCServerLayout.php:
+	  coding conventions
+	* [r11518] admin/trunk/Admin/components/AdminSite/Front.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php:
+	  fix docblocks
+	* [r11517] admin/trunk/Admin/components/AdminSite/Exception.php:
+	  revert added section
+	* [r11516] admin/trunk/Admin/components/AdminSite/Profile.php:
+	  move relocate to process section
+	* [r11514] admin/trunk/Admin/components/AdminSite/Exception.php:
+	  added section comment
+	* [r11513] admin/trunk/Admin/components/AdminSite/Exception.php:
+	  - check for existence of navbar
+	  - use createEntry() instead of addEntry()
+	* [r11512] admin/trunk/Admin/components/AdminSite/Exception.php:
+	  better navbar for exceptions in admin applications that doesn't
+	  contain links that create other errors
+	* [r11511] admin/trunk/Admin/components/AdminSite/Exception.php:
+	  fix docblock
+	* [r11510] admin/trunk/Admin/components/AdminSite/Exception.php:
+	  Whitespace
+	* [r11508] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/layouts/AdminLayout.php:
+	  - Added getter/setter for setting the class to use for the admin
+	  menu-view. This allows us to check the class name before setting
+	  it.
+	  - Fixed a typo in a docblock
+
+2006-09-26  isaac
+
+	* [r11496] admin/trunk/Admin/components/AdminComponent/Delete.php,
+	  admin/trunk/Admin/components/AdminComponent/Details.php,
+	  admin/trunk/Admin/components/AdminComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminComponent/Index.php,
+	  admin/trunk/Admin/components/AdminComponent/Order.php,
+	  admin/trunk/Admin/components/AdminGroup/Delete.php,
+	  admin/trunk/Admin/components/AdminGroup/Edit.php,
+	  admin/trunk/Admin/components/AdminGroup/Index.php,
+	  admin/trunk/Admin/components/AdminSection/Delete.php,
+	  admin/trunk/Admin/components/AdminSection/Edit.php,
+	  admin/trunk/Admin/components/AdminSection/Index.php,
+	  admin/trunk/Admin/components/AdminSection/Order.php,
+	  admin/trunk/Admin/components/AdminSite/Exception.php,
+	  admin/trunk/Admin/components/AdminSite/Front.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php,
+	  admin/trunk/Admin/components/AdminSite/Logout.php,
+	  admin/trunk/Admin/components/AdminSite/MenuViewServer.php,
+	  admin/trunk/Admin/components/AdminSite/Profile.php,
+	  admin/trunk/Admin/components/AdminSubComponent/Delete.php,
+	  admin/trunk/Admin/components/AdminSubComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminSubComponent/Order.php,
+	  admin/trunk/Admin/components/AdminUser/Delete.php,
+	  admin/trunk/Admin/components/AdminUser/Details.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php,
+	  admin/trunk/Admin/components/AdminUser/Index.php,
+	  admin/trunk/Admin/components/AdminUser/LoginHistory.php:
+	  make all the admin components work with the new resolving of
+	  include
+	  components - this leads to somewhat funny class names such as
+	  AdminAdminGroupIndex - but it allows us to have local components
+	  for
+	  things like Group and User which we wouldn't be able to otherwise
+
+2006-09-26  gauthierm
+
+	* [r11491] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPageRequest.php:
+	  - added class prefix to the component include paths
+	  - Classname/ClassName
+	* [r11479] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPageRequest.php:
+	  added ability to add component include paths to an application
+	* [r11476] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPageRequest.php:
+	  Refactor of admin page lookup.Make AdminPageRequest responsible
+	  for more of the page resolution.
+	* [r11472] admin/trunk/Admin/AdminUniqueEntry.php:
+	  fix typo
+	* [r11459] admin/trunk/Admin/AdminPageRequest.php:
+	  fix docblock
+
+2006-09-21  nrf
+
+	* [r11224] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.0.1
+
+2006-09-20  nrf
+
+	* [r11169] admin/trunk/Admin/AdminApplication.php:
+	  Reflect changes to SiteApplication.
+
 2006-09-14  nrf
 
 	* [r10979] admin/trunk/ChangeLog, admin/trunk/package.php:
