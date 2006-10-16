@@ -1,0 +1,30 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
+<swatml>
+	<widget class="SwatMessageDisplay" id="message_display" />
+	<widget class="SwatFrame" id="edit_frame">
+		<property name="title" translatable="yes">Group</property>
+		<widget class="SwatForm" id="edit_form">
+			<widget class="SwatFormField">
+				<property name="title" translatable="yes">Title</property>
+				<widget class="SwatEntry" id="title">
+					<property name="required" type="boolean">true</property>
+					<property name="maxlength" type="integer">255</property>
+				</widget>
+			</widget>
+			<widget class="SwatDisclosure">
+		        <property name="title" translatable="yes">Component Access</property>
+				<property name="open" type="boolean">false</property>
+				<widget class="SwatCheckboxTree" id="components" />
+			</widget>
+			<widget class="SwatDisclosure">
+		        <property name="title" translatable="yes">Users in Group</property>
+				<property name="open" type="boolean">false</property>
+				<widget class="SwatCheckboxList" id="users" />
+			</widget>
+			<widget class="SwatFooterFormField">
+				<widget class="SwatButton" id="submit_button" />
+			</widget>
+		</widget>
+	</widget>
+</swatml>

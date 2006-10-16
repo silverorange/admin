@@ -1,0 +1,10 @@
+/* Login Page Styles */
+
+#login_frame {
+	width: 18em;
+	margin: 4em auto 1em auto;
+}
+
+#login_frame .swat-entry {
+	width: 98%;
+}

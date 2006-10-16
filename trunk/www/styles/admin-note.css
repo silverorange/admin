@@ -1,0 +1,33 @@
+.admin-note {
+	border: 1px solid;
+	margin: 1em 0;
+	min-height: 38px;
+	padding: 12px 6px 6px 42px;
+	background-position: 12px 12px;
+	background-repeat: no-repeat;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	border-color: #f0dca1;
+	background-color: #fffbc9;
+	color: #947140;
+	background-image: url(../../swat/images/tango/22/dialog-information.png);
+}
+
+* html .admin-note {
+	background-image: url(../../swat/images/tango/22/dialog-information-256.png);
+}
+
+
+/* Hack for min-height in IE  */
+* html .admin-note {
+	height: 38px;
+}
+
+.admin-note-title {
+	margin: 0;
+}
+
+.admin-note dd {
+	margin-bottom: 0.5em;
+	margin-left: 1em;
+}
