@@ -2,7 +2,7 @@
 
 require_once 'PEAR/PackageFileManager2.php';
 
-$version = '1.0.5';
+$version = '1.0.6';
 $notes = <<<EOT
 see ChangeLog
 EOT;
@@ -25,8 +25,8 @@ $result = $package->setOptions(
 		'packagedirectory'  => './',
 		'dir_roles'         => array(
 			'Admin' => 'php',
+			'locale' => 'data',
 			'www' => 'data',
-			'sql' => 'data'
 		),
 	)
 );
