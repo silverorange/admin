@@ -1,3 +1,23 @@
+2006-10-16  nrf
+
+	* [r11999] admin/trunk/Admin/Admin.php:
+	  Add translation to Admin package.
+	* [r11997] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.0.2
+	* [r11993] admin/trunk/locale, admin/trunk/locale/en_CA,
+	  admin/trunk/locale/en_CA/LC_MESSAGES,
+	  admin/trunk/locale/en_CA/LC_MESSAGES/admin.mo,
+	  admin/trunk/locale/en_GB, admin/trunk/locale/en_GB/LC_MESSAGES,
+	  admin/trunk/locale/en_GB/LC_MESSAGES/admin.mo,
+	  admin/trunk/locale/en_US, admin/trunk/locale/en_US/LC_MESSAGES,
+	  admin/trunk/locale/en_US/LC_MESSAGES/admin.mo, admin/trunk/po,
+	  admin/trunk/po/Makefile, admin/trunk/po/en_CA.po,
+	  admin/trunk/po/en_GB.po, admin/trunk/po/en_US.po,
+	  admin/trunk/po/potfiles.in:
+	  Add gettext translation to the Admin package.
+	* [r11990] admin/trunk/Admin/AdminPageRequest.php:
+	  Don't translate an empty string.
+
 2006-10-15  gauthierm
 
 	* [r11967] admin/trunk/Admin/pages/AdminIndex.php:
