@@ -1,0 +1,755 @@
+# English (United States) translation of the Admin package.
+# Copyright (C) 2006 silverorange
+# This file is distributed under the same license as the Admin package.
+# silverorange <slice@silverorange.com, 2006.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Admin 1.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-10-16 12:41-0300\n"
+"PO-Revision-Date: 2006-10-16 11:30-0300\n"
+"Last-Translator: Nathan Fredrickson <nathan@silverorange.com>\n"
+"Language-Team: silverorange\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../Admin/components/AdminGroup/Delete.php:28
+#, php-format
+msgid "%d admin group has been deleted."
+msgid_plural "%d admin groups have been deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminGroup/Edit.php:73
+#, php-format
+msgid "Group “%s” has been saved."
+msgstr ""
+
+#: ../Admin/components/AdminGroup/Edit.php:91
+#, php-format
+msgid "Group with id '%s' not found."
+msgstr ""
+
+#: ../Admin/components/AdminSubComponent/Order.php:51
+msgid "Order Sub-Components"
+msgstr ""
+
+#: ../Admin/components/AdminSubComponent/Delete.php:42
+#, php-format
+msgid "%d sub-component has been deleted."
+msgid_plural "%d sub-components have been deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminSubComponent/Delete.php:61
+#: ../Admin/components/AdminSubComponent/edit.xml:5
+msgid "Sub-Component"
+msgstr ""
+
+#: ../Admin/components/AdminSubComponent/Edit.php:62
+#: ../Admin/components/AdminComponent/Edit.php:60
+msgid "Shortname already exists and must be unique."
+msgstr ""
+
+#: ../Admin/components/AdminSubComponent/Edit.php:84
+#, php-format
+msgid "Sub-Component “%s” has been saved."
+msgstr ""
+
+#: ../Admin/components/AdminSubComponent/Edit.php:102
+#, php-format
+msgid "Sub-component with id '%s' not found."
+msgstr ""
+
+#: ../Admin/components/AdminUser/LoginHistory.php:29
+#: ../Admin/components/AdminUser/details.xml:5
+msgid "Login History"
+msgstr ""
+
+#: ../Admin/components/AdminUser/Delete.php:28
+#, php-format
+msgid "%d admin user has been deleted."
+msgid_plural "%d admin users have been deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminUser/Details.php:29
+#: ../Admin/components/AdminComponent/Details.php:92
+#: ../Admin/AdminTreeControlCellRenderer.php:40
+#: ../Admin/AdminTreeControlCellRenderer.php:48
+#: ../Admin/AdminControlCellRenderer.php:71
+msgid "Details"
+msgstr ""
+
+#: ../Admin/components/AdminUser/Details.php:48
+#, php-format
+msgid "User with id “%s” not found."
+msgstr ""
+
+#: ../Admin/components/AdminUser/Edit.php:47
+msgid "Set Password"
+msgstr ""
+
+#: ../Admin/components/AdminUser/Edit.php:68
+msgid "An account with this email address already exists."
+msgstr ""
+
+#: ../Admin/components/AdminUser/Edit.php:106
+#, php-format
+msgid "User “%s” has been saved."
+msgstr ""
+
+#: ../Admin/components/AdminUser/Edit.php:124
+#, php-format
+msgid "User with id '%s' not found."
+msgstr ""
+
+#: ../Admin/components/AdminUser/Index.php:53
+#, php-format
+msgid "%d user has been enabled."
+msgid_plural "%d users have been enabled."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminUser/Index.php:64
+#, php-format
+msgid "%d user has been disabled."
+msgid_plural "%d users have been disabled."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminComponent/Order.php:51
+msgid "Order Components"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/Delete.php:29
+#, php-format
+msgid "%d component has been deleted."
+msgid_plural "%d components have been deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminComponent/Details.php:56
+#, php-format
+msgid "%d sub-component has been shown."
+msgid_plural "%d sub-components have been shown."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminComponent/Details.php:66
+#, php-format
+msgid "%d sub-component has been hidden."
+msgid_plural "%d sub-components have been hidden."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminComponent/Details.php:109
+#: ../Admin/components/AdminComponent/Edit.php:107
+#, php-format
+msgid "Component with id '%s' not found."
+msgstr ""
+
+#: ../Admin/components/AdminComponent/Details.php:123
+#: ../Admin/components/AdminComponent/edit.xml:6
+msgid "Component"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/Edit.php:89
+#, php-format
+msgid "Component “%s” has been saved."
+msgstr ""
+
+#: ../Admin/components/AdminComponent/Index.php:50
+#, php-format
+msgid "%d component has been shown."
+msgid_plural "%d components have been shown."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminComponent/Index.php:60
+#, php-format
+msgid "%d component has been hidden."
+msgid_plural "%d components have been hidden."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminComponent/Index.php:70
+#, php-format
+msgid "%d component has been enabled."
+msgid_plural "%d components have been enabled."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminComponent/Index.php:80
+#, php-format
+msgid "%d component has been disabled."
+msgid_plural "%d components have been disabled."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminComponent/Index.php:95
+#, php-format
+msgid "%d component has been moved to section \"%s\"."
+msgid_plural "%d components have been moved to section \"%s\"."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminSection/Order.php:51
+msgid "Order Sections"
+msgstr ""
+
+#: ../Admin/components/AdminSection/Delete.php:29
+#, php-format
+msgid "%d admin section has been deleted."
+msgid_plural "%d admin sections have been deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminSection/Edit.php:45
+#, php-format
+msgid "Section “%s” has been saved."
+msgstr ""
+
+#: ../Admin/components/AdminSection/Edit.php:63
+#, php-format
+msgid "Section with id '%s' not found."
+msgstr ""
+
+#: ../Admin/components/AdminSection/Index.php:45
+#, php-format
+msgid "%d section has been shown."
+msgid_plural "%d sections have been shown."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminSection/Index.php:55
+#, php-format
+msgid "%d section has been hidden."
+msgid_plural "%d sections have been hidden."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminSite/Profile.php:62
+msgid "Your user profile has been updated."
+msgstr ""
+
+#: ../Admin/components/AdminSite/Profile.php:100
+#: ../Admin/components/AdminSite/profile.xml:6
+msgid "Login Settings"
+msgstr ""
+
+#: ../Admin/components/AdminSite/Login.php:81
+msgid "Login failed"
+msgstr ""
+
+#: ../Admin/components/AdminSite/Login.php:85
+msgid "Check your password and try again."
+msgstr ""
+
+#: ../Admin/pages/AdminDBOrder.php:30 ../Admin/pages/AdminDBEdit.php:32
+msgid "A database error has occured. The item was not saved."
+msgstr ""
+
+#: ../Admin/pages/AdminDBOrder.php:38 ../Admin/pages/AdminDBEdit.php:42
+msgid "An error has occured. The item was not saved."
+msgstr ""
+
+#: ../Admin/pages/AdminDBDelete.php:50
+msgid "Delete"
+msgstr ""
+
+#: ../Admin/pages/AdminDBDelete.php:61
+msgid ""
+"A database error has occured.\n"
+"\t\t\t\tThe item(s) were not deleted."
+msgstr ""
+
+#: ../Admin/pages/AdminDBDelete.php:65
+msgid ""
+"An error has occured.\n"
+"\t\t\t\tThe item(s) were not deleted."
+msgstr ""
+
+#: ../Admin/pages/AdminEdit.php:50
+msgid "There is a problem with the "
+msgstr ""
+
+#: ../Admin/pages/AdminEdit.php:51
+msgid "information submitted."
+msgstr ""
+
+#: ../Admin/pages/AdminEdit.php:52
+msgid "Please address the fields "
+msgstr ""
+
+#: ../Admin/pages/AdminEdit.php:53
+msgid "highlighted below and re-submit the form."
+msgstr ""
+
+#: ../Admin/pages/AdminEdit.php:227
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: ../Admin/pages/AdminEdit.php:229
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: ../Admin/pages/AdminEdit.php:238
+msgid "New"
+msgstr ""
+
+#: ../Admin/pages/AdminEdit.php:240 ../Admin/AdminControlCellRenderer.php:78
+#: ../Admin/AdminControlCellRenderer.php:79
+msgid "Edit"
+msgstr ""
+
+#: ../Admin/pages/AdminConfirmation.php:24
+msgid "Confirmation"
+msgstr ""
+
+#: ../Admin/pages/AdminConfirmation.php:107
+msgid "Cancel"
+msgstr ""
+
+#: ../Admin/pages/AdminOrder.php:129
+msgid "Automatically"
+msgstr ""
+
+#: ../Admin/pages/AdminOrder.php:130
+msgid "Custom"
+msgstr ""
+
+#: ../Admin/pages/AdminOrder.php:139
+msgid "Update Order"
+msgstr ""
+
+#: ../Admin/pages/AdminOrder.php:160
+#: ../Admin/components/AdminComponent/index.xml:23
+#: ../Admin/components/AdminSection/index.xml:14
+msgid "Change Order"
+msgstr ""
+
+#: ../Admin/pages/AdminXMLRPCServer.php:25
+msgid "Page not found."
+msgstr ""
+
+#: ../Admin/pages/AdminDBConfirmation.php:147
+msgid "A database error has occured."
+msgstr ""
+
+#: ../Admin/pages/AdminDBConfirmation.php:150
+msgid "An error has occured."
+msgstr ""
+
+#: ../Admin/layouts/AdminLayout.php:77 ../Admin/layouts/AdminLayout.php:131
+#: ../Admin/AdminPageRequest.php:59
+msgid "Logout"
+msgstr ""
+
+#: ../Admin/exceptions/AdminNotFoundException.php:25
+msgid "Not Found"
+msgstr ""
+
+#: ../Admin/exceptions/AdminNoAccessException.php:25
+msgid "No Access"
+msgstr ""
+
+#: ../Admin/AdminTreeControlCellRenderer.php:39
+#: ../Admin/AdminControlCellRenderer.php:70
+msgid "View Details"
+msgstr ""
+
+#: ../Admin/AdminTreeControlCellRenderer.php:44
+#, php-format
+msgid "View Details (%s sub-item)"
+msgid_plural "View Details (%s sub-items)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/AdminSummaryDependency.php:186
+#, php-format
+msgid "%s dependent item"
+msgid_plural "%s dependent items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/AdminSummaryDependency.php:191
+#, php-format
+msgid "%s dependent %s"
+msgid_plural "%s dependent %ss"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/AdminApplication.php:283
+#, php-format
+msgid "File not found for source '%s'."
+msgstr ""
+
+#: ../Admin/AdminApplication.php:291
+#, php-format
+msgid "Class '%s' does not exist in the included file."
+msgstr ""
+
+#: ../Admin/AdminTreeTitleLinkCellRenderer.php:47
+msgid "no sub-items"
+msgstr ""
+
+#: ../Admin/AdminTreeTitleLinkCellRenderer.php:49
+#, php-format
+msgid "%d sub-item"
+msgid_plural "%d sub-items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/AdminSearchOperatorFlydown.php:51
+msgid "is"
+msgstr ""
+
+#: ../Admin/AdminSearchOperatorFlydown.php:56
+msgid "contains"
+msgstr ""
+
+#: ../Admin/AdminSearchOperatorFlydown.php:57
+msgid "starts with"
+msgstr ""
+
+#: ../Admin/AdminSearchOperatorFlydown.php:58
+msgid "ends with"
+msgstr ""
+
+#: ../Admin/AdminPageRequest.php:52
+#, php-format
+msgid "Invalid source '%s'."
+msgstr ""
+
+#: ../Admin/AdminPageRequest.php:58
+msgid "Edit User Profile"
+msgstr ""
+
+#: ../Admin/AdminPageRequest.php:60 ../Admin/AdminPageRequest.php:88
+#: ../Admin/components/AdminSite/login.xml:5
+#: ../Admin/components/AdminSite/login.xml:25
+msgid "Login"
+msgstr ""
+
+#: ../Admin/AdminPageRequest.php:61
+msgid "Exception"
+msgstr ""
+
+#: ../Admin/AdminPageRequest.php:62
+msgid "Index"
+msgstr ""
+
+#: ../Admin/AdminPageRequest.php:70 ../Admin/AdminPageRequest.php:79
+#, php-format
+msgid "Component not found for source '%s'."
+msgstr ""
+
+#: ../Admin/AdminUniqueEntry.php:50
+#, php-format
+msgid "The %s field can only contain letters and "
+msgstr ""
+
+#: ../Admin/AdminUniqueEntry.php:51
+msgid "numbers. Spaces and other special characters are not "
+msgstr ""
+
+#: ../Admin/AdminUniqueEntry.php:52
+msgid "allowed."
+msgstr ""
+
+#: ../Admin/AdminMenuView.php:313
+msgid "Show Menu"
+msgstr ""
+
+#: ../Admin/AdminMenuView.php:339
+msgid "Hide Menu"
+msgstr ""
+
+#: ../Admin/AdminListDependency.php:312
+msgid "Dependent item:"
+msgid_plural "Dependent items:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/AdminListDependency.php:315
+#, php-format
+msgid "Dependent %s:"
+msgid_plural "Dependent %ss:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/AdminDependency.php:220
+msgid "Delete the following item?"
+msgid_plural "Delete the following items?:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/AdminDependency.php:223
+#, php-format
+msgid "Delete the following %s?"
+msgid_plural "Delete the following %ss?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/AdminDependency.php:233
+msgid "The following item can not be deleted:"
+msgid_plural "The following items can not be deleted:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/AdminDependency.php:237
+#, php-format
+msgid "The following %s can not be deleted:"
+msgid_plural "The following %ss can not be deleted:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../Admin/components/AdminGroup/index.xml:6
+#: ../Admin/components/AdminComponent/edit.xml:45
+msgid "Groups"
+msgstr ""
+
+#: ../Admin/components/AdminGroup/index.xml:9
+msgid "New Group"
+msgstr ""
+
+#: ../Admin/components/AdminGroup/index.xml:22
+#: ../Admin/components/AdminGroup/edit.xml:9
+#: ../Admin/components/AdminSubComponent/edit.xml:8
+#: ../Admin/components/AdminComponent/details.xml:83
+#: ../Admin/components/AdminComponent/edit.xml:9
+#: ../Admin/components/AdminComponent/index.xml:35
+#: ../Admin/components/AdminSection/edit.xml:8
+#: ../Admin/components/AdminSection/index.xml:27
+msgid "Title"
+msgstr ""
+
+#: ../Admin/components/AdminGroup/index.xml:24
+#: ../Admin/components/AdminComponent/details.xml:85
+#: ../Admin/components/AdminComponent/index.xml:37
+#: ../Admin/components/AdminSection/index.xml:29
+msgid "title"
+msgstr ""
+
+#: ../Admin/components/AdminGroup/index.xml:33
+#: ../Admin/components/AdminUser/index.xml:56
+#: ../Admin/components/AdminComponent/details.xml:106
+#: ../Admin/components/AdminComponent/index.xml:63
+#: ../Admin/components/AdminSection/index.xml:44
+msgid "delete…"
+msgstr ""
+
+#: ../Admin/components/AdminGroup/edit.xml:6
+msgid "Group"
+msgstr ""
+
+#: ../Admin/components/AdminGroup/edit.xml:16
+msgid "Component Access"
+msgstr ""
+
+#: ../Admin/components/AdminGroup/edit.xml:21
+msgid "Users in Group"
+msgstr ""
+
+#: ../Admin/components/AdminSubComponent/edit.xml:15
+#: ../Admin/components/AdminComponent/details.xml:92
+#: ../Admin/components/AdminComponent/edit.xml:16
+#: ../Admin/components/AdminComponent/index.xml:43
+msgid "Short Name"
+msgstr ""
+
+#: ../Admin/components/AdminSubComponent/edit.xml:22
+msgid "Show in menu?"
+msgstr ""
+
+#: ../Admin/components/AdminUser/details.xml:9
+#: ../Admin/components/AdminUser/loginhistory.xml:17
+msgid "Login Time"
+msgstr ""
+
+#: ../Admin/components/AdminUser/details.xml:15
+#: ../Admin/components/AdminUser/loginhistory.xml:23
+msgid "Agent"
+msgstr ""
+
+#: ../Admin/components/AdminUser/details.xml:21
+#: ../Admin/components/AdminUser/loginhistory.xml:29
+msgid "Remote IP"
+msgstr ""
+
+#: ../Admin/components/AdminUser/edit.xml:6
+msgid "User"
+msgstr ""
+
+#: ../Admin/components/AdminUser/edit.xml:9
+#: ../Admin/components/AdminUser/index.xml:31
+#: ../Admin/components/AdminSite/profile.xml:9
+msgid "Name"
+msgstr ""
+
+#: ../Admin/components/AdminUser/edit.xml:16
+#: ../Admin/components/AdminUser/index.xml:22
+#: ../Admin/components/AdminUser/loginhistory.xml:9
+#: ../Admin/components/AdminSite/profile.xml:15
+#: ../Admin/components/AdminSite/login.xml:8
+msgid "Email"
+msgstr ""
+
+#: ../Admin/components/AdminUser/edit.xml:23
+msgid "Change Password"
+msgstr ""
+
+#: ../Admin/components/AdminUser/edit.xml:26
+#: ../Admin/components/AdminSite/profile.xml:22
+#: ../Admin/components/AdminSite/login.xml:15
+msgid "Password"
+msgstr ""
+
+#: ../Admin/components/AdminUser/edit.xml:33
+#: ../Admin/components/AdminSite/profile.xml:29
+msgid "Confirm Password"
+msgstr ""
+
+#: ../Admin/components/AdminUser/edit.xml:39
+#: ../Admin/components/AdminUser/index.xml:37
+#: ../Admin/components/AdminComponent/index.xml:55
+msgid "Enabled"
+msgstr ""
+
+#: ../Admin/components/AdminUser/edit.xml:45
+msgid "Belongs to Groups"
+msgstr ""
+
+#: ../Admin/components/AdminUser/index.xml:6
+msgid "Admin Users"
+msgstr ""
+
+#: ../Admin/components/AdminUser/index.xml:9
+msgid "New User"
+msgstr ""
+
+#: ../Admin/components/AdminUser/index.xml:43
+msgid "Last Login"
+msgstr ""
+
+#: ../Admin/components/AdminUser/index.xml:48
+msgid "history"
+msgstr ""
+
+#: ../Admin/components/AdminUser/index.xml:59
+#: ../Admin/components/AdminComponent/index.xml:72
+msgid "enable"
+msgstr ""
+
+#: ../Admin/components/AdminUser/index.xml:62
+#: ../Admin/components/AdminComponent/index.xml:75
+msgid "disable"
+msgstr ""
+
+#: ../Admin/components/AdminUser/loginhistory.xml:5
+msgid "Admin User Login History"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/details.xml:9
+msgid "Edit Component"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/details.xml:14
+msgid "Delete Component"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/details.xml:62
+msgid "Sub-Components"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/details.xml:65
+msgid "Create a New Sub-Component"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/details.xml:70
+msgid "Change Sub-Component Order"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/details.xml:98
+#: ../Admin/components/AdminComponent/index.xml:49
+#: ../Admin/components/AdminSection/index.xml:36
+msgid "Show in Menu"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/details.xml:109
+#: ../Admin/components/AdminComponent/index.xml:66
+#: ../Admin/components/AdminSection/index.xml:47
+msgid "show"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/details.xml:112
+#: ../Admin/components/AdminComponent/index.xml:69
+#: ../Admin/components/AdminSection/index.xml:50
+msgid "hide"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/edit.xml:23
+#: ../Admin/components/AdminSection/edit.xml:5
+msgid "Section"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/edit.xml:29
+#: ../Admin/components/AdminSection/edit.xml:15
+msgid "Show in Menu?"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/edit.xml:35
+msgid "Enabled?"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/edit.xml:41
+#: ../Admin/components/AdminSection/edit.xml:21
+msgid "Description"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/index.xml:6
+msgid "Components"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/index.xml:9
+msgid "New Component"
+msgstr ""
+
+#: ../Admin/components/AdminComponent/index.xml:78
+msgid "change section…"
+msgstr ""
+
+#: ../Admin/components/AdminSection/index.xml:6
+msgid "Sections"
+msgstr ""
+
+#: ../Admin/components/AdminSection/index.xml:9
+msgid "New Section"
+msgstr ""
+
+#: ../Admin/components/AdminSite/profile.xml:30
+msgid "Leave Password fields blank for them to remain the same."
+msgstr ""
+
+#: ../Admin/components/AdminSite/profile.xml:35
+msgid "Update Profile"
+msgstr ""
+
+#: ../Admin/pages/webalizer.xml:6
+msgid "Web Statitics"
+msgstr ""
+
+#: ../Admin/pages/order.xml:7
+msgid "Order Options"
+msgstr ""
+
+#: ../Admin/pages/order.xml:11
+msgid "Custom Order"
+msgstr ""
