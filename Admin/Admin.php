@@ -47,6 +47,15 @@ class Admin
 	}
 
 	// }}}
+	// {{{ public static function setupGettext()
+
+	public static function setupGettext()
+	{
+		bindtextdomain(Store::GETTEXT_DOMAIN, '@DATA-DIR@/Store/locale');
+		bind_textdomain_codeset(Store::GETTEXT_DOMAIN, 'UTF-8');
+	}
+
+	// }}}
 	// {{{ public static function getDependencies()
 
 	/**
@@ -60,6 +69,9 @@ class Admin
 	}
 
 	// }}}
+
+Admin::setupGettext();
+
 }
 
 ?>
