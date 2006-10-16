@@ -51,8 +51,8 @@ class Admin
 
 	public static function setupGettext()
 	{
-		bindtextdomain(Store::GETTEXT_DOMAIN, '@DATA-DIR@/Store/locale');
-		bind_textdomain_codeset(Store::GETTEXT_DOMAIN, 'UTF-8');
+		bindtextdomain(Admin::GETTEXT_DOMAIN, '@DATA-DIR@/Admin/locale');
+		bind_textdomain_codeset(Admin::GETTEXT_DOMAIN, 'UTF-8');
 	}
 
 	// }}}
