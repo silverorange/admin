@@ -2,7 +2,7 @@
 
 require_once 'PEAR/PackageFileManager2.php';
 
-$version = '1.0.6';
+$version = '1.0.7';
 $notes = <<<EOT
 see ChangeLog
 EOT;
@@ -48,6 +48,8 @@ $package->addIgnore('package.php');
 
 $package->addMaintainer('lead', 'nrf', 'Nathan Fredrickson', 'nathan@silverorange.com');
 $package->addMaintainer('lead', 'gauthierm', 'Mike Gauthier', 'mike@silverorange.com');
+
+$package->addReplacement('Admin/Admin.php', 'pear-config', '@DATA-DIR@', 'data_dir');
 
 $package->setPhpDep('5.1.5');
 $package->setPearinstallerDep('1.4.0');
