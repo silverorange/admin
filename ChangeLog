@@ -1,5 +1,29 @@
+2006-10-16  steven
+
+	* [r12019] admin/trunk/www/images/admin-menu-section-closed.png,
+	  admin/trunk/www/images/admin-menu-section-open.png:
+	  Move from full alpha to 1-bit transparency for IE6 compatability
+
 2006-10-16  nrf
 
+	* [r12017] admin/trunk/package.php:
+	  prepare for release of 1.0.8
+	* [r12016] admin/trunk/Admin/Admin.php:
+	  Maybe this will work
+	* [r12014] admin/trunk/package.php:
+	  prepare for release of 1.0.7
+	* [r12012] admin/trunk/package.php:
+	  prepare for release of 1.0.6
+	* [r12008] admin/trunk/package.php:
+	  prepare for release of 1.0.5
+	* [r12007] admin/trunk/Admin/Admin.php:
+	  Misplaced code.
+	* [r12006] admin/trunk/package.php:
+	  prepare for release of 1.0.4
+	* [r12003] admin/trunk/package.php:
+	  prepare for release of 1.0.4
+	* [r12001] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.0.3
 	* [r11999] admin/trunk/Admin/Admin.php:
 	  Add translation to Admin package.
 	* [r11997] admin/trunk/ChangeLog, admin/trunk/package.php:
