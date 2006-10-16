@@ -60,7 +60,7 @@ class AdminPageRequest extends SiteObject
 					'Login'          => Admin::_('Login'),
 					'Exception'      => Admin::_('Exception'),
 					'Front'          => Admin::_('Index'),
-					'MenuViewServer' => Admin::_(''),
+					'MenuViewServer' => '',
 				);
 
 				if (isset($admin_titles[$this->subcomponent]))
