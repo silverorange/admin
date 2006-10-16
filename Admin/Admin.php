@@ -69,9 +69,8 @@ class Admin
 	}
 
 	// }}}
+}
 
 Admin::setupGettext();
-
-}
 
 ?>
