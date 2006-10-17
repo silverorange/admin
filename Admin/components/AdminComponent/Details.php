@@ -167,7 +167,7 @@ class AdminAdminComponentDetails extends AdminIndex
 		foreach ($rs as $row) {
 			echo '<li>';
 			$anchor_tag = new SwatHtmlTag('a');
-			$anchor_tag->href = 'AdminGroups/Edit?id='.$row->id;
+			$anchor_tag->href = 'AdminGroup/Edit?id='.$row->id;
 			$anchor_tag->setContent($row->title);
 			$anchor_tag->display();
 			echo '</li>';
