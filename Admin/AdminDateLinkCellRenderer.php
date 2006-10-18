@@ -6,7 +6,7 @@ require_once 'Swat/SwatDateCellRenderer.php';
 /**
  * Hybrid swat date/admin title link cell renderer for dates
  *
- * @package   veseys2
+ * @package   Admin
  * @copyright 2006 silverorange
  */
 class AdminDateLinkCellRenderer extends AdminTitleLinkCellRenderer 
