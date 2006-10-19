@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Admin 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-16 12:41-0300\n"
+"POT-Creation-Date: 2006-10-19 18:03-0300\n"
 "PO-Revision-Date: 2006-10-16 11:30-0300\n"
 "Last-Translator: Nathan Fredrickson <nathan@silverorange.com>\n"
 "Language-Team: silverorange\n"
@@ -17,494 +17,486 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../Admin/components/AdminGroup/Delete.php:28
+#: ../Admin/components/AdminGroup/Delete.php.gettext:27
 #, php-format
 msgid "%d admin group has been deleted."
 msgid_plural "%d admin groups have been deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminGroup/Edit.php:73
+#: ../Admin/components/AdminGroup/Edit.php.gettext:73
 #, php-format
 msgid "Group “%s” has been saved."
 msgstr ""
 
-#: ../Admin/components/AdminGroup/Edit.php:91
+#: ../Admin/components/AdminGroup/Edit.php.gettext:91
 #, php-format
 msgid "Group with id '%s' not found."
 msgstr ""
 
-#: ../Admin/components/AdminSubComponent/Order.php:51
+#: ../Admin/components/AdminSubComponent/Order.php.gettext:51
 msgid "Order Sub-Components"
 msgstr ""
 
-#: ../Admin/components/AdminSubComponent/Delete.php:42
+#: ../Admin/components/AdminSubComponent/Delete.php.gettext:41
 #, php-format
 msgid "%d sub-component has been deleted."
 msgid_plural "%d sub-components have been deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminSubComponent/Delete.php:61
+#: ../Admin/components/AdminSubComponent/Delete.php.gettext:61
 #: ../Admin/components/AdminSubComponent/edit.xml:5
 msgid "Sub-Component"
 msgstr ""
 
-#: ../Admin/components/AdminSubComponent/Edit.php:62
-#: ../Admin/components/AdminComponent/Edit.php:60
+#: ../Admin/components/AdminSubComponent/Edit.php.gettext:62
+#: ../Admin/components/AdminComponent/Edit.php.gettext:60
 msgid "Shortname already exists and must be unique."
 msgstr ""
 
-#: ../Admin/components/AdminSubComponent/Edit.php:84
+#: ../Admin/components/AdminSubComponent/Edit.php.gettext:84
 #, php-format
 msgid "Sub-Component “%s” has been saved."
 msgstr ""
 
-#: ../Admin/components/AdminSubComponent/Edit.php:102
+#: ../Admin/components/AdminSubComponent/Edit.php.gettext:102
 #, php-format
 msgid "Sub-component with id '%s' not found."
 msgstr ""
 
-#: ../Admin/components/AdminUser/LoginHistory.php:29
+#: ../Admin/components/AdminUser/LoginHistory.php.gettext:29
 #: ../Admin/components/AdminUser/details.xml:5
 msgid "Login History"
 msgstr ""
 
-#: ../Admin/components/AdminUser/Delete.php:28
+#: ../Admin/components/AdminUser/Delete.php.gettext:27
 #, php-format
 msgid "%d admin user has been deleted."
 msgid_plural "%d admin users have been deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminUser/Details.php:29
-#: ../Admin/components/AdminComponent/Details.php:92
-#: ../Admin/AdminTreeControlCellRenderer.php:40
-#: ../Admin/AdminTreeControlCellRenderer.php:48
-#: ../Admin/AdminControlCellRenderer.php:71
+#: ../Admin/components/AdminUser/Details.php.gettext:29
+#: ../Admin/components/AdminComponent/Details.php.gettext:92
+#: ../Admin/AdminTreeControlCellRenderer.php.gettext:40
+#: ../Admin/AdminTreeControlCellRenderer.php.gettext:48
+#: ../Admin/AdminControlCellRenderer.php.gettext:71
 msgid "Details"
 msgstr ""
 
-#: ../Admin/components/AdminUser/Details.php:48
+#: ../Admin/components/AdminUser/Details.php.gettext:48
 #, php-format
 msgid "User with id “%s” not found."
 msgstr ""
 
-#: ../Admin/components/AdminUser/Edit.php:47
+#: ../Admin/components/AdminUser/Edit.php.gettext:47
 msgid "Set Password"
 msgstr ""
 
-#: ../Admin/components/AdminUser/Edit.php:68
+#: ../Admin/components/AdminUser/Edit.php.gettext:68
 msgid "An account with this email address already exists."
 msgstr ""
 
-#: ../Admin/components/AdminUser/Edit.php:106
+#: ../Admin/components/AdminUser/Edit.php.gettext:106
 #, php-format
 msgid "User “%s” has been saved."
 msgstr ""
 
-#: ../Admin/components/AdminUser/Edit.php:124
+#: ../Admin/components/AdminUser/Edit.php.gettext:124
 #, php-format
 msgid "User with id '%s' not found."
 msgstr ""
 
-#: ../Admin/components/AdminUser/Index.php:53
+#: ../Admin/components/AdminUser/Index.php.gettext:52
 #, php-format
 msgid "%d user has been enabled."
 msgid_plural "%d users have been enabled."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminUser/Index.php:64
+#: ../Admin/components/AdminUser/Index.php.gettext:63
 #, php-format
 msgid "%d user has been disabled."
 msgid_plural "%d users have been disabled."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminComponent/Order.php:51
+#: ../Admin/components/AdminComponent/Order.php.gettext:51
 msgid "Order Components"
 msgstr ""
 
-#: ../Admin/components/AdminComponent/Delete.php:29
+#: ../Admin/components/AdminComponent/Delete.php.gettext:28
 #, php-format
 msgid "%d component has been deleted."
 msgid_plural "%d components have been deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminComponent/Details.php:56
+#: ../Admin/components/AdminComponent/Details.php.gettext:55
 #, php-format
 msgid "%d sub-component has been shown."
 msgid_plural "%d sub-components have been shown."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminComponent/Details.php:66
+#: ../Admin/components/AdminComponent/Details.php.gettext:65
 #, php-format
 msgid "%d sub-component has been hidden."
 msgid_plural "%d sub-components have been hidden."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminComponent/Details.php:109
-#: ../Admin/components/AdminComponent/Edit.php:107
+#: ../Admin/components/AdminComponent/Details.php.gettext:109
+#: ../Admin/components/AdminComponent/Edit.php.gettext:107
 #, php-format
 msgid "Component with id '%s' not found."
 msgstr ""
 
-#: ../Admin/components/AdminComponent/Details.php:123
+#: ../Admin/components/AdminComponent/Details.php.gettext:123
 #: ../Admin/components/AdminComponent/edit.xml:6
 msgid "Component"
 msgstr ""
 
-#: ../Admin/components/AdminComponent/Edit.php:89
+#: ../Admin/components/AdminComponent/Edit.php.gettext:89
 #, php-format
 msgid "Component “%s” has been saved."
 msgstr ""
 
-#: ../Admin/components/AdminComponent/Index.php:50
+#: ../Admin/components/AdminComponent/Index.php.gettext:49
 #, php-format
 msgid "%d component has been shown."
 msgid_plural "%d components have been shown."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminComponent/Index.php:60
+#: ../Admin/components/AdminComponent/Index.php.gettext:59
 #, php-format
 msgid "%d component has been hidden."
 msgid_plural "%d components have been hidden."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminComponent/Index.php:70
+#: ../Admin/components/AdminComponent/Index.php.gettext:69
 #, php-format
 msgid "%d component has been enabled."
 msgid_plural "%d components have been enabled."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminComponent/Index.php:80
+#: ../Admin/components/AdminComponent/Index.php.gettext:79
 #, php-format
 msgid "%d component has been disabled."
 msgid_plural "%d components have been disabled."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminComponent/Index.php:95
+#: ../Admin/components/AdminComponent/Index.php.gettext:94
 #, php-format
 msgid "%d component has been moved to section \"%s\"."
 msgid_plural "%d components have been moved to section \"%s\"."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminSection/Order.php:51
+#: ../Admin/components/AdminSection/Order.php.gettext:51
 msgid "Order Sections"
 msgstr ""
 
-#: ../Admin/components/AdminSection/Delete.php:29
+#: ../Admin/components/AdminSection/Delete.php.gettext:28
 #, php-format
 msgid "%d admin section has been deleted."
 msgid_plural "%d admin sections have been deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminSection/Edit.php:45
+#: ../Admin/components/AdminSection/Edit.php.gettext:45
 #, php-format
 msgid "Section “%s” has been saved."
 msgstr ""
 
-#: ../Admin/components/AdminSection/Edit.php:63
+#: ../Admin/components/AdminSection/Edit.php.gettext:63
 #, php-format
 msgid "Section with id '%s' not found."
 msgstr ""
 
-#: ../Admin/components/AdminSection/Index.php:45
+#: ../Admin/components/AdminSection/Index.php.gettext:44
 #, php-format
 msgid "%d section has been shown."
 msgid_plural "%d sections have been shown."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminSection/Index.php:55
+#: ../Admin/components/AdminSection/Index.php.gettext:54
 #, php-format
 msgid "%d section has been hidden."
 msgid_plural "%d sections have been hidden."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/components/AdminSite/Profile.php:62
+#: ../Admin/components/AdminSite/Profile.php.gettext:62
 msgid "Your user profile has been updated."
 msgstr ""
 
-#: ../Admin/components/AdminSite/Profile.php:100
+#: ../Admin/components/AdminSite/Profile.php.gettext:100
 #: ../Admin/components/AdminSite/profile.xml:6
 msgid "Login Settings"
 msgstr ""
 
-#: ../Admin/components/AdminSite/Login.php:81
+#: ../Admin/components/AdminSite/Login.php.gettext:81
 msgid "Login failed"
 msgstr ""
 
-#: ../Admin/components/AdminSite/Login.php:85
+#: ../Admin/components/AdminSite/Login.php.gettext:85
 msgid "Check your password and try again."
 msgstr ""
 
-#: ../Admin/pages/AdminDBOrder.php:30 ../Admin/pages/AdminDBEdit.php:32
+#: ../Admin/pages/AdminDBOrder.php.gettext:30
+#: ../Admin/pages/AdminDBEdit.php.gettext:31
 msgid "A database error has occured. The item was not saved."
 msgstr ""
 
-#: ../Admin/pages/AdminDBOrder.php:38 ../Admin/pages/AdminDBEdit.php:42
+#: ../Admin/pages/AdminDBOrder.php.gettext:38
+#: ../Admin/pages/AdminDBEdit.php.gettext:41
 msgid "An error has occured. The item was not saved."
 msgstr ""
 
-#: ../Admin/pages/AdminDBDelete.php:50
+#: ../Admin/pages/AdminDBDelete.php.gettext:50
 msgid "Delete"
 msgstr ""
 
-#: ../Admin/pages/AdminDBDelete.php:61
+#: ../Admin/pages/AdminDBDelete.php.gettext:61
 msgid ""
 "A database error has occured.\n"
 "\t\t\t\tThe item(s) were not deleted."
 msgstr ""
 
-#: ../Admin/pages/AdminDBDelete.php:65
+#: ../Admin/pages/AdminDBDelete.php.gettext:65
 msgid ""
 "An error has occured.\n"
 "\t\t\t\tThe item(s) were not deleted."
 msgstr ""
 
-#: ../Admin/pages/AdminEdit.php:50
-msgid "There is a problem with the "
+#: ../Admin/pages/AdminEdit.php.gettext:50
+msgid "There is a problem with the information submitted."
 msgstr ""
 
-#: ../Admin/pages/AdminEdit.php:51
-msgid "information submitted."
+#: ../Admin/pages/AdminEdit.php.gettext:52
+msgid "Please address the fields highlighted below and re-submit the form."
 msgstr ""
 
-#: ../Admin/pages/AdminEdit.php:52
-msgid "Please address the fields "
-msgstr ""
-
-#: ../Admin/pages/AdminEdit.php:53
-msgid "highlighted below and re-submit the form."
-msgstr ""
-
-#: ../Admin/pages/AdminEdit.php:227
+#: ../Admin/pages/AdminEdit.php.gettext:227
 #, php-format
 msgid "New %s"
 msgstr ""
 
-#: ../Admin/pages/AdminEdit.php:229
+#: ../Admin/pages/AdminEdit.php.gettext:229
 #, php-format
 msgid "Edit %s"
 msgstr ""
 
-#: ../Admin/pages/AdminEdit.php:238
+#: ../Admin/pages/AdminEdit.php.gettext:238
 msgid "New"
 msgstr ""
 
-#: ../Admin/pages/AdminEdit.php:240 ../Admin/AdminControlCellRenderer.php:78
-#: ../Admin/AdminControlCellRenderer.php:79
+#: ../Admin/pages/AdminEdit.php.gettext:240
+#: ../Admin/AdminControlCellRenderer.php.gettext:78
+#: ../Admin/AdminControlCellRenderer.php.gettext:79
 msgid "Edit"
 msgstr ""
 
-#: ../Admin/pages/AdminConfirmation.php:24
+#: ../Admin/pages/AdminConfirmation.php.gettext:24
 msgid "Confirmation"
 msgstr ""
 
-#: ../Admin/pages/AdminConfirmation.php:107
+#: ../Admin/pages/AdminConfirmation.php.gettext:107
 msgid "Cancel"
 msgstr ""
 
-#: ../Admin/pages/AdminOrder.php:129
+#: ../Admin/pages/AdminOrder.php.gettext:129
 msgid "Automatically"
 msgstr ""
 
-#: ../Admin/pages/AdminOrder.php:130
+#: ../Admin/pages/AdminOrder.php.gettext:130
 msgid "Custom"
 msgstr ""
 
-#: ../Admin/pages/AdminOrder.php:139
+#: ../Admin/pages/AdminOrder.php.gettext:139
 msgid "Update Order"
 msgstr ""
 
-#: ../Admin/pages/AdminOrder.php:160
+#: ../Admin/pages/AdminOrder.php.gettext:160
 #: ../Admin/components/AdminComponent/index.xml:23
 #: ../Admin/components/AdminSection/index.xml:14
 msgid "Change Order"
 msgstr ""
 
-#: ../Admin/pages/AdminXMLRPCServer.php:25
+#: ../Admin/pages/AdminXMLRPCServer.php.gettext:25
 msgid "Page not found."
 msgstr ""
 
-#: ../Admin/pages/AdminDBConfirmation.php:147
+#: ../Admin/pages/AdminDBConfirmation.php.gettext:147
 msgid "A database error has occured."
 msgstr ""
 
-#: ../Admin/pages/AdminDBConfirmation.php:150
+#: ../Admin/pages/AdminDBConfirmation.php.gettext:150
 msgid "An error has occured."
 msgstr ""
 
-#: ../Admin/layouts/AdminLayout.php:77 ../Admin/layouts/AdminLayout.php:131
-#: ../Admin/AdminPageRequest.php:59
+#: ../Admin/layouts/AdminLayout.php.gettext:77
+#: ../Admin/layouts/AdminLayout.php.gettext:131
+#: ../Admin/AdminPageRequest.php.gettext:59
 msgid "Logout"
 msgstr ""
 
-#: ../Admin/exceptions/AdminNotFoundException.php:25
+#: ../Admin/exceptions/AdminNotFoundException.php.gettext:25
 msgid "Not Found"
 msgstr ""
 
-#: ../Admin/exceptions/AdminNoAccessException.php:25
+#: ../Admin/exceptions/AdminNoAccessException.php.gettext:25
 msgid "No Access"
 msgstr ""
 
-#: ../Admin/AdminTreeControlCellRenderer.php:39
-#: ../Admin/AdminControlCellRenderer.php:70
+#: ../Admin/AdminTreeControlCellRenderer.php.gettext:39
+#: ../Admin/AdminControlCellRenderer.php.gettext:70
 msgid "View Details"
 msgstr ""
 
-#: ../Admin/AdminTreeControlCellRenderer.php:44
+#: ../Admin/AdminTreeControlCellRenderer.php.gettext:43
 #, php-format
 msgid "View Details (%s sub-item)"
 msgid_plural "View Details (%s sub-items)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/AdminSummaryDependency.php:186
+#: ../Admin/AdminSummaryDependency.php.gettext:186
 #, php-format
 msgid "%s dependent item"
 msgid_plural "%s dependent items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/AdminSummaryDependency.php:191
+#: ../Admin/AdminSummaryDependency.php.gettext:191
 #, php-format
 msgid "%s dependent %s"
 msgid_plural "%s dependent %ss"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/AdminApplication.php:283
+#: ../Admin/AdminApplication.php.gettext:283
 #, php-format
 msgid "File not found for source '%s'."
 msgstr ""
 
-#: ../Admin/AdminApplication.php:291
+#: ../Admin/AdminApplication.php.gettext:290
 #, php-format
 msgid "Class '%s' does not exist in the included file."
 msgstr ""
 
-#: ../Admin/AdminTreeTitleLinkCellRenderer.php:47
+#: ../Admin/AdminTreeTitleLinkCellRenderer.php.gettext:47
 msgid "no sub-items"
 msgstr ""
 
-#: ../Admin/AdminTreeTitleLinkCellRenderer.php:49
+#: ../Admin/AdminTreeTitleLinkCellRenderer.php.gettext:49
 #, php-format
 msgid "%d sub-item"
 msgid_plural "%d sub-items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/AdminSearchOperatorFlydown.php:51
+#: ../Admin/AdminSearchOperatorFlydown.php.gettext:51
 msgid "is"
 msgstr ""
 
-#: ../Admin/AdminSearchOperatorFlydown.php:56
+#: ../Admin/AdminSearchOperatorFlydown.php.gettext:56
 msgid "contains"
 msgstr ""
 
-#: ../Admin/AdminSearchOperatorFlydown.php:57
+#: ../Admin/AdminSearchOperatorFlydown.php.gettext:57
 msgid "starts with"
 msgstr ""
 
-#: ../Admin/AdminSearchOperatorFlydown.php:58
+#: ../Admin/AdminSearchOperatorFlydown.php.gettext:58
 msgid "ends with"
 msgstr ""
 
-#: ../Admin/AdminPageRequest.php:52
+#: ../Admin/AdminPageRequest.php.gettext:51
 #, php-format
 msgid "Invalid source '%s'."
 msgstr ""
 
-#: ../Admin/AdminPageRequest.php:58
+#: ../Admin/AdminPageRequest.php.gettext:58
 msgid "Edit User Profile"
 msgstr ""
 
-#: ../Admin/AdminPageRequest.php:60 ../Admin/AdminPageRequest.php:88
+#: ../Admin/AdminPageRequest.php.gettext:60
+#: ../Admin/AdminPageRequest.php.gettext:88
 #: ../Admin/components/AdminSite/login.xml:5
 #: ../Admin/components/AdminSite/login.xml:25
 msgid "Login"
 msgstr ""
 
-#: ../Admin/AdminPageRequest.php:61
+#: ../Admin/AdminPageRequest.php.gettext:61
 msgid "Exception"
 msgstr ""
 
-#: ../Admin/AdminPageRequest.php:62
+#: ../Admin/AdminPageRequest.php.gettext:62
 msgid "Index"
 msgstr ""
 
-#: ../Admin/AdminPageRequest.php:70 ../Admin/AdminPageRequest.php:79
+#: ../Admin/AdminPageRequest.php.gettext:69
+#: ../Admin/AdminPageRequest.php.gettext:78
 #, php-format
 msgid "Component not found for source '%s'."
 msgstr ""
 
-#: ../Admin/AdminUniqueEntry.php:50
+#: ../Admin/AdminUniqueEntry.php.gettext:50
 #, php-format
-msgid "The %s field can only contain letters and "
+msgid ""
+"The %s field can only contain letters and numbers. Spaces and other special "
+"characters are not allowed."
 msgstr ""
 
-#: ../Admin/AdminUniqueEntry.php:51
-msgid "numbers. Spaces and other special characters are not "
-msgstr ""
-
-#: ../Admin/AdminUniqueEntry.php:52
-msgid "allowed."
-msgstr ""
-
-#: ../Admin/AdminMenuView.php:313
+#: ../Admin/AdminMenuView.php.gettext:313
 msgid "Show Menu"
 msgstr ""
 
-#: ../Admin/AdminMenuView.php:339
+#: ../Admin/AdminMenuView.php.gettext:339
 msgid "Hide Menu"
 msgstr ""
 
-#: ../Admin/AdminListDependency.php:312
+#: ../Admin/AdminListDependency.php.gettext:312
 msgid "Dependent item:"
 msgid_plural "Dependent items:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/AdminListDependency.php:315
+#: ../Admin/AdminListDependency.php.gettext:315
 #, php-format
 msgid "Dependent %s:"
 msgid_plural "Dependent %ss:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/AdminDependency.php:220
+#: ../Admin/AdminDependency.php.gettext:220
 msgid "Delete the following item?"
 msgid_plural "Delete the following items?:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/AdminDependency.php:223
+#: ../Admin/AdminDependency.php.gettext:223
 #, php-format
 msgid "Delete the following %s?"
 msgid_plural "Delete the following %ss?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/AdminDependency.php:233
+#: ../Admin/AdminDependency.php.gettext:233
 msgid "The following item can not be deleted:"
 msgid_plural "The following items can not be deleted:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/AdminDependency.php:237
+#: ../Admin/AdminDependency.php.gettext:237
 #, php-format
 msgid "The following %s can not be deleted:"
 msgid_plural "The following %ss can not be deleted:"
