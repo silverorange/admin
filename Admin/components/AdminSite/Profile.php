@@ -27,7 +27,7 @@ class AdminAdminSiteProfile extends AdminDBEdit
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/profile.xml');
 
-		$confirm = $this->ui->getWidget('confirmpassword');
+		$confirm = $this->ui->getWidget('confirm_password');
 		$confirm->password_widget = $this->ui->getWidget('password');
 
 		$this->id = $this->app->session->user_id;
