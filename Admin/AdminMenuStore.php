@@ -82,6 +82,9 @@ class AdminMenuStore
  * Admin menu section
  *
  * Internal data class used internally within {@link AdminMenuStore}.
+ *
+ * @package   Admin
+ * @copyright 2005-2006 silverorange
  */
 class AdminMenuSection
 {
@@ -110,6 +113,9 @@ class AdminMenuSection
  * Admin menu component
  *
  * Internal data class used internally within {@link AdminMenuStore}.
+ *
+ * @package   Admin
+ * @copyright 2005-2006 silverorange
  */
 class AdminMenuComponent
 {
@@ -138,6 +144,9 @@ class AdminMenuComponent
  * Admin menu sub component
  *
  * Internal data class used internally within {@link AdminMenuStore}.
+ *
+ * @package   Admin
+ * @copyright 2005-2006 silverorange
  */
 class AdminMenuSubcomponent
 {
