@@ -16,26 +16,20 @@ class AdminTreeTitleLinkCellRenderer extends AdminTitleLinkCellRenderer
 	public $base_stock_id = 'document';
 
 	// }}}
-	// {{{ public function render()
-
-	public function render()
-	{
-		if (!$this->visible)
-			return;
-
-		$this->setStockType();
-		parent::render();
-	}
-
-	// }}}
 	// {{{ protected function setStockType()
 
+	/**
+	 * Applies the stock type specificed by the user
+	 */
 	protected function setStockType()
 	{
 		if (intval($this->child_count) > 0)
 			$this->setFromStock($this->base_stock_id.'-with-contents');
 		else
 			$this->setFromStock($this->base_stock_id);
+
+		// setting stock_id overrides base_stock_id
+		parent::setStockType();
 	}
 
 	// }}}
