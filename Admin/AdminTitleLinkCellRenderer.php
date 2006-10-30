@@ -154,10 +154,21 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		if (!$this->visible)
 			return;
 
-		if ($this->stock_id !== null)
-			$this->setFromStock($this->stock_id, false);
+		$this->setStockType();
 
 		parent::render();
+	}
+
+	// }}}
+	// {{{ protected function setStockType()
+
+	/**
+	 * Applies the stock type specificed by the user
+	 */
+	protected function setStockType()
+	{
+		if ($this->stock_id !== null)
+			$this->setFromStock($this->stock_id, false);
 	}
 
 	// }}}
