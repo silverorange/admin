@@ -8,7 +8,3 @@ create table AdminUserAdminGroupBinding (
 	primary key(usernum, groupnum)
 );
 
--- default AdminUserAdminGroupBinding bindings
-insert into AdminUserAdminGroupBinding (usernum, groupnum)
-	select AdminUser.id, AdminGroup.id from AdminUser, AdminGroup;
-
