@@ -126,24 +126,6 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	}
 
 	// }}}
-	// {{{ public function getThAttributes()
-
-	/**
-	 * Gets TH-tag attributes
-	 *
-	 * Sub-classes can redefine this to set attributes on the TH tag.
-	 *
-	 * The returned array is of the form 'attribute' => value.
-	 *
-	 * @return array an array of attributes to apply to the TH tag of the
-	 *                column that contains this cell renderer.
-	 */
-	public function getThAttributes()
-	{
-		return array('class' => 'admin-title-link-cell-renderer');
-	}
-
-	// }}}
 	// {{{ public function init()
 
 	/**
@@ -175,51 +157,108 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		if ($this->stock_id !== null)
 			$this->setFromStock($this->stock_id, false);
 
+		parent::render();
+	}
+
+	// }}}
+	// {{{ protected function renderSensitive()
+
+	/**
+	 * Renders this link as sensitive
+	 */
+	protected function renderSensitive()
+	{
 		$contents_span = new SwatHtmlTag('span');
 		$contents_span->class = 'admin-title-link-cell-renderer-contents';
 		$contents_span->setContent($this->getText(), $this->content_type);
 
-		if ($this->sensitive && ($this->link !== null)) {
-			$anchor = new SwatHtmlTag('a');
-			$anchor->href = $this->getLink();
-			if ($this->stock_class !== null)
-				$anchor->class = $this->stock_class.' ';
+		$anchor = new SwatHtmlTag('a');
+		$anchor->href = $this->getLink();
+		$anchor->class = $this->getCSSClassString();
+		$anchor->title = $this->getTitle();
 
-			$anchor->class.= 'admin-title-link-cell-renderer';
-			$anchor->title = $this->getTitle();
+		$anchor->open();
+		$contents_span->display();
+		$anchor->close();
+	}
 
-			$anchor->open();
-			$contents_span->display();
-			$anchor->close();
-		} else {
-			$span_tag = new SwatHtmlTag('span');
-			$span_tag->class = 'swat-link-cell-renderer-insensitive';
-			$span_tag->title = $this->getTitle();
-			if ($this->stock_class !== null)
-				$span_tag->class.= ' '.$this->stock_class;
+	// }}}
+	// {{{ protected function renderInsensitive()
 
-			$span_tag->open();
-			$contents_span->display();
-			$span_tag->close();
-		}
+	/**
+	 * Renders this link as not sensitive
+	 */
+	protected function renderInsensitive()
+	{
+		$contents_span = new SwatHtmlTag('span');
+		$contents_span->class = 'admin-title-link-cell-renderer-contents';
+		$contents_span->setContent($this->getText(), $this->content_type);
+
+		$span_tag = new SwatHtmlTag('span');
+		$span_tag->class = $this->getCSSClassString();
+		$span_tag->title = $this->getTitle();
+		$span_tag->open();
+		$contents_span->display();
+		$span_tag->close();
+	}
+
+	// }}}
+	// {{{ protected function getCSSClassNames()
+
+	/**
+	 * Gets the array of CSS classes that are applied to this user-interface
+	 * object
+	 *
+	 * For AdminTitleLinkCellRenderer objects these classes are applied to the
+	 * anchor tag.
+	 *
+	 * @return array the array of CSS classes that are applied to this
+	 *                user-interface object
+	 */
+	protected function getCSSClassNames()
+	{
+		$classes = parent::getCSSClassNames();
+
+		$classes[] = 'admin-title-link-cell-renderer';
+		if ($this->stock_class !== null)
+			$classes[] = $this->stock_class;
+
+		return $classes;
+	}
+
+	// }}}
+	// {{{ public function getDataSpecificCSSClassNames()
+
+	/**
+	 * Gets the data specific CSS class names for this cell renderer
+	 *
+	 * @return array the array of base CSS class names for this cell renderer.
+	 */
+	public function getDataSpecificCSSClassNames()
+	{
+		$classes = array();
+
+		if ($this->stock_class !== null)
+			$classes[] = $this->stock_class;
+
+		$classes = array_merge($classes,
+			parent::getDataSpecificCSSClassNames());
+
+		return $classes;
 	}
 
 	// }}}
 	// {{{ public function getBaseCSSClassNames()
 
 	/**
-	 * Gets additional CSS classes for this cell renderer's TD tag
+	 * Gets the base CSS class names for this cell renderer
 	 *
-	 * @return array an array of CSS class names to apply to the TD tag of the
-	 *                column that contains this cell renderer.
+	 * @return array the array of base CSS class names for this cell renderer.
 	 */
 	public function getBaseCSSClassNames()
 	{
-		$classes = array('admin-title-link-cell-renderer');
-
-		if ($this->stock_class !== null)
-			$classes[] = $this->stock_class;
-
+		$classes = parent::getBaseCSSClassNames();
+		$classes[] = 'admin-title-link-cell-renderer';
 		return $classes;
 	}
 
