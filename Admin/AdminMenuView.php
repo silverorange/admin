@@ -117,7 +117,7 @@ class AdminMenuView extends SwatUIObject
 
 		$this->displayHideLink();
 		$this->displayMenuContent();
-		$this->displayJavaScript();
+		$this->displayInlineJavaScript($this->getInlineJavaScript());
 
 		$menu_div->close();
 	}
@@ -381,16 +381,18 @@ class AdminMenuView extends SwatUIObject
 	}
 
 	// }}}
-	// {{{ protected function displayJavaScript()
+	// {{{ protected function getInlineJavaScript()
 
 	/**
-	 * Displays the JavaScript required for this menu-view to function
+	 * Gets the inline JavaScript required for this menu-view to function
+	 *
+	 * @return string the inline JavaScript required for this menu-view to
+	 *                 function.
 	 */
-	protected function displayJavaScript()
+	protected function getInlineJavaScript()
 	{
-		echo '<script type="text/javascript">'."\n";
-		printf("var %s_obj = new AdminMenu('%s');\n", $this->id, $this->id);
-		echo '</script>';
+		return sprintf("var %s_obj = new AdminMenu('%s');",
+			$this->id, $this->id);
 	}
 
 	// }}}
