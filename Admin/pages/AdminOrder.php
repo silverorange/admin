@@ -38,10 +38,7 @@ abstract class AdminOrder extends AdminPage
 
 		if ($form->isProcessed()) {
 			$this->saveData();
-
-			$this->app->messages->add(
-				new SwatMessage(Admin::_('Order updated.')));
-
+			$this->app->messages->add($this->getUpdatedMessage());
 			$this->relocate();
 		}
 	}
@@ -106,6 +103,21 @@ abstract class AdminOrder extends AdminPage
 		$form = $this->ui->getWidget('order_form');
 		$url = $form->getHiddenField(self::RELOCATE_URL_FIELD);
 		$this->app->relocate($url);
+	}
+
+	// }}}
+	// {{{ protected function getUpdatedMessage()
+
+	/**
+	 * Gets the message to show the user when the order is successfully updated
+	 *
+	 * @return SwatMessage a SwatMessage object containing the message to
+	 *                      show the user when the order is successfully
+	 *                      updated.
+	 */
+	protected function getUpdatedMessage()
+	{
+		return new SwatMessage(Admin::_('Order updated.')));
 	}
 
 	// }}}
