@@ -38,6 +38,10 @@ abstract class AdminOrder extends AdminPage
 
 		if ($form->isProcessed()) {
 			$this->saveData();
+
+			$this->app->messages->add(
+				new SwatMessage(Admin::_('Order updated.')));
+
 			$this->relocate();
 		}
 	}
