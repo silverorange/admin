@@ -117,7 +117,7 @@ abstract class AdminOrder extends AdminPage
 	 */
 	protected function getUpdatedMessage()
 	{
-		return new SwatMessage(Admin::_('Order updated.')));
+		return new SwatMessage(Admin::_('Order updated.'));
 	}
 
 	// }}}
