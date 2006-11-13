@@ -127,14 +127,8 @@ abstract class AdminDependency
 	 */
 	public function display()
 	{
-		$dependency_div = new SwatHtmlTag('div');
-		$dependency_div->class = 'admin-dependency';
-		$dependency_div->open();
-
 		foreach ($this->status_levels as $status_level)
 			$this->displayStatusLevel($status_level);
-
-		$dependency_div->close();
 	}
 
 	// }}}
