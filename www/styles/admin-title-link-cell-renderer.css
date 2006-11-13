@@ -72,3 +72,7 @@ a.admin-title-link-cell-renderer-person span.admin-title-link-cell-renderer-cont
 a.admin-title-link-cell-renderer-product span.admin-title-link-cell-renderer-contents {
 	background-image: url(../images/admin-product.png);
 }
+
+a.admin-title-link-cell-renderer-file-save-as span.admin-title-link-cell-renderer-contents {
+	background-image: url(../images/admin-file-save-as.png);
+}
