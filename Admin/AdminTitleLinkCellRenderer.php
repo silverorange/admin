@@ -68,6 +68,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 * - document (default)
 	 * - document-with-contents
 	 * - edit
+	 * - file-save-as
 	 * - folder
 	 * - folder-with-contents
 	 * - person
@@ -97,6 +98,10 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 
 		case 'edit':
 			$class = 'admin-title-link-cell-renderer-edit';
+			break;
+
+		case 'file-save-as':
+			$class = 'admin-title-link-cell-renderer-file-save-as';
 			break;
 
 		case 'folder-with-contents':
