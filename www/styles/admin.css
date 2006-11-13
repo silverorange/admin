@@ -69,10 +69,16 @@ img { border: 0; }
 
 /* Confirmation dialogs */
 
+#confirmation_container,
 #confirmation_frame div.admin-dependency {
 	background: url(../../swat/images/tango/48/dialog-question.png) top left no-repeat;
 	padding: 0 0 0 64px;
+	min-height: 48px;
+}
 
+* html #confirmation_container,
+* html #confirmation_frame div.admin-dependency {
+	height: 48px; /* IE hack */
 }
 
 #confirmation_frame h3 {
