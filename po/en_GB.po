@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Admin 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-19 18:03-0300\n"
+"POT-Creation-Date: 2006-11-14 16:53-0400\n"
 "PO-Revision-Date: 2006-10-16 11:30-0300\n"
 "Last-Translator: Nathan Fredrickson <nathan@silverorange.com>\n"
 "Language-Team: silverorange\n"
@@ -312,19 +312,23 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ../Admin/pages/AdminOrder.php.gettext:129
+#: ../Admin/pages/AdminOrder.php.gettext:120
+msgid "Order updated."
+msgstr ""
+
+#: ../Admin/pages/AdminOrder.php.gettext:145
 msgid "Automatically"
 msgstr ""
 
-#: ../Admin/pages/AdminOrder.php.gettext:130
+#: ../Admin/pages/AdminOrder.php.gettext:146
 msgid "Custom"
 msgstr ""
 
-#: ../Admin/pages/AdminOrder.php.gettext:139
+#: ../Admin/pages/AdminOrder.php.gettext:155
 msgid "Update Order"
 msgstr ""
 
-#: ../Admin/pages/AdminOrder.php.gettext:160
+#: ../Admin/pages/AdminOrder.php.gettext:176
 #: ../Admin/components/AdminComponent/index.xml:23
 #: ../Admin/components/AdminSection/index.xml:14
 msgid "Change Order"
@@ -392,11 +396,11 @@ msgstr ""
 msgid "Class '%s' does not exist in the included file."
 msgstr ""
 
-#: ../Admin/AdminTreeTitleLinkCellRenderer.php.gettext:47
+#: ../Admin/AdminTreeTitleLinkCellRenderer.php.gettext:41
 msgid "no sub-items"
 msgstr ""
 
-#: ../Admin/AdminTreeTitleLinkCellRenderer.php.gettext:49
+#: ../Admin/AdminTreeTitleLinkCellRenderer.php.gettext:43
 #, php-format
 msgid "%d sub-item"
 msgid_plural "%d sub-items"
@@ -477,26 +481,26 @@ msgid_plural "Dependent %ss:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/AdminDependency.php.gettext:220
+#: ../Admin/AdminDependency.php.gettext:214
 msgid "Delete the following item?"
 msgid_plural "Delete the following items?:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/AdminDependency.php.gettext:223
+#: ../Admin/AdminDependency.php.gettext:217
 #, php-format
 msgid "Delete the following %s?"
 msgid_plural "Delete the following %ss?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/AdminDependency.php.gettext:233
+#: ../Admin/AdminDependency.php.gettext:227
 msgid "The following item can not be deleted:"
 msgid_plural "The following items can not be deleted:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../Admin/AdminDependency.php.gettext:237
+#: ../Admin/AdminDependency.php.gettext:231
 #, php-format
 msgid "The following %s can not be deleted:"
 msgid_plural "The following %ss can not be deleted:"
