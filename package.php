@@ -2,7 +2,7 @@
 
 require_once 'PEAR/PackageFileManager2.php';
 
-$version = '1.0.9';
+$version = '1.0.10';
 $notes = <<<EOT
 see ChangeLog
 EOT;
@@ -53,11 +53,11 @@ $package->addReplacement('Admin/Admin.php', 'pear-config', '@DATA-DIR@', 'data_d
 
 $package->setPhpDep('5.1.5');
 $package->setPearinstallerDep('1.4.0');
-$package->addPackageDepWithChannel('required', 'Swat', 'pear.silverorange.com', '1.0.6');
-$package->addPackageDepWithChannel('required', 'Site', 'pear.silverorange.com', '1.0.9');
-$package->addPackageDepWithChannel('required', 'Store', 'pear.silverorange.com', '1.1.4');
+$package->addPackageDepWithChannel('required', 'Swat', 'pear.silverorange.com', '1.0.13');
+$package->addPackageDepWithChannel('required', 'Site', 'pear.silverorange.com', '1.0.12');
+$package->addPackageDepWithChannel('required', 'Store', 'pear.silverorange.com', '1.2.0');
 $package->addPackageDepWithChannel('required', 'MDB2', 'pear.php.net', '2.2.2');
-$package->addPackageDepWithChannel('required', 'XML_RPCAjax', 'pear.silverorange.com', '0.9.1');
+$package->addPackageDepWithChannel('required', 'XML_RPCAjax', 'pear.silverorange.com', '1.0.1');
 $package->generateContents();
 
 if (isset($_GET['make']) || (isset($_SERVER['argv']) && @$_SERVER['argv'][1] == 'make')) {
