@@ -1,3 +1,108 @@
+2006-11-13  nick
+
+	* [r12986] admin/trunk/Admin/AdminTitleLinkCellRenderer.php,
+	  admin/trunk/www/images/admin-file-save-as.png,
+	  admin/trunk/www/styles/admin-title-link-cell-renderer.css:
+	  Added a new stock id for "file save as". Steve, can you review
+	  this? See:
+	  https://stage2.silverorange.com/uppermost/work-nick/www/admin/WorkshopOrder
+
+2006-11-13  steven
+
+	* [r12974] admin/trunk/Admin/AdminDependency.php,
+	  admin/trunk/www/styles/admin.css:
+	  AdminDependecy doesn't need these styles anymore - they are
+	  handled by the AdminConfirmation page
+	* [r12972] admin/trunk/Admin/pages/confirmation.xml,
+	  admin/trunk/www/styles/admin.css:
+	  Give AdminConfirmation pages a SwatDisplayableContainer that is
+	  styled with a question-mark icon
+
+2006-11-09  gauthierm
+
+	* [r12852] admin/trunk/Admin/pages/AdminOrder.php:
+	  fix syntax error in AdminOrder
+
+2006-11-03  gauthierm
+
+	* [r12660] admin/trunk/Admin/pages/AdminOrder.php:
+	  Make subclassing easier
+	* [r12659] admin/trunk/Admin/pages/AdminOrder.php:
+	  Show a message when order is updated using AdminOrder. Fixes #115
+
+2006-11-03  nrf
+
+	* [r12653] admin/trunk/sql/tables/AdminUser.sql:
+	  Re-adding
+
+2006-11-02  gauthierm
+
+	* [r12597] admin/trunk/Admin/AdminMenuView.php:
+	  use new getInlineJavascript() and displayInlineJavaScript()
+	  methods
+
+2006-10-30  nick
+
+	* [r12432] admin/trunk/sql/tables/AdminUserAdminGroupBinding.sql:
+	  Moving this out of the admin package and into out own local code
+
+2006-10-30  gauthierm
+
+	* [r12409] admin/trunk/Admin/AdminTreeTitleLinkCellRenderer.php:
+	  - take advantage of new
+	  AdminTitleLinkCellRenderer::setStockType() method
+	  - remove duplicated render() method
+	* [r12408] admin/trunk/Admin/AdminTitleLinkCellRenderer.php:
+	  ease subclassing by putting application of stock types into a
+	  separate method
+	* [r12407] admin/trunk/Admin/AdminTitleLinkCellRenderer.php:
+	  - respect API changes in SwatLinkCellRenderer
+	  - remove unused getThAttributes() method
+
+2006-10-29  gauthierm
+
+	* [r12395] admin/trunk/Admin/AdminMenuStore.php:
+	  fix package and copyright docblocks
+
+2006-10-24  nick
+
+	* [r12278] admin/trunk/Admin/components/AdminSite/Profile.php,
+	  admin/trunk/Admin/components/AdminSite/profile.xml:
+	  Add underscore to confirmpassword and add id hooks for modifying
+	  field titles
+	  (will be used in a sub class)
+
+2006-10-19  nrf
+
+	* [r12173] admin/trunk/po/en_CA.po, admin/trunk/po/en_GB.po,
+	  admin/trunk/po/en_US.po:
+	  Update translation files.
+	* [r12172] admin/trunk/po/Makefile, admin/trunk/po/preprocess.php:
+	  Add Mike's preprocessing script and Makefile magic to run it.
+	  
+	  This makes PHP code such as
+	  _('string 1'.' & '.'string 2')
+	  extract as a single translatable string
+	  "string 1 & string 2"
+	  analogous to adjacent strings in C which xgettext handles
+	  natively.
+
+2006-10-18  gauthierm
+
+	* [r12099] admin/trunk/Admin/AdminDateLinkCellRenderer.php:
+	  Fix package name
+
+2006-10-17  isaac
+
+	* [r12078]
+	  admin/trunk/Admin/components/AdminComponent/Details.php:
+	  long dead link still existed in here
+
+2006-10-16  nrf
+
+	* [r12031] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.0.9
+
 2006-10-16  steven
 
 	* [r12019] admin/trunk/www/images/admin-menu-section-closed.png,
@@ -76,8 +181,6 @@
 	  Make admin users login with email/password instead of
 	  username/password. This
 	  requires some changes to the database.
-	* [r11918] admin/trunk/sql/tables/AdminUser.sql:
-	  replace username with email and add password_tag field
 	* [r11910] admin/trunk/Admin/AdminApplication.php:
 	  extend SiteWebApplication
 	* [r11903] admin/trunk/Admin/components/AdminSite/Login.php:
@@ -96,7 +199,6 @@
 	  admin/trunk/Admin/AdminMenuViewStateStore.php,
 	  admin/trunk/Admin/layouts/AdminLayout.php,
 	  admin/trunk/Admin/layouts/AdminMenuXMLRPCServerLayout.php,
-	  admin/trunk/sql/tables/AdminUser.sql,
 	  admin/trunk/www/images/admin-menu-section-background-closed.png,
 	  admin/trunk/www/images/admin-menu-section-background.png,
 	  admin/trunk/www/images/admin-menu-section-closed.png,
@@ -728,8 +830,6 @@
 	  should be deleted or made to work?
 	* [r7055] admin/trunk/Admin/AdminMenuStore.php:
 	  add folding
-	* [r7054] admin/trunk/sql/tables/AdminUser.sql:
-	  give dan a password that he knows
 
 2006-05-31  dave
 
@@ -879,11 +979,6 @@
 	* [r5550] admin/trunk/Admin/AdminListDependency.php:
 	  debug code in trunk... for shame
 
-2006-05-05  dave
-
-	* [r5375] admin/trunk/sql/tables/AdminUser.sql:
-	  set default password for Dennis correctly
-
 2006-05-03  dave
 
 	* [r5284] admin/trunk/Admin/components/AdminUser/Index.php,
@@ -1018,7 +1113,6 @@
 	  admin/trunk/sql/tables/AdminGroup.sql,
 	  admin/trunk/sql/tables/AdminSection.sql,
 	  admin/trunk/sql/tables/AdminSubComponent.sql,
-	  admin/trunk/sql/tables/AdminUser.sql,
 	  admin/trunk/sql/tables/AdminUserAdminGroupBinding.sql,
 	  admin/trunk/sql/tables/AdminUserHistory.sql,
 	  admin/trunk/sql/tables/admincomponent_admingroup.sql,
