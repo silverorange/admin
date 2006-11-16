@@ -28,7 +28,8 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
 
-		$this->fields = array('email', 'name', 'boolean:enabled');
+		$this->fields = array('email', 'name', 'boolean:enabled',
+			'boolean:force_change_password');
 		
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->options = SwatDB::getOptionArray($this->app->db, 
@@ -81,7 +82,8 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 	protected function saveDBData()
 	{
-		$values = $this->ui->getValues(array('email', 'name', 'enabled'));
+		$values = $this->ui->getValues(array('email', 'name',
+			'enabled', 'force_change_password'));
 
 		$password = $this->ui->getWidget('password');
 		if ($password->value !== null) {

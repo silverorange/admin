@@ -74,9 +74,7 @@ class AdminAdminSiteLogin extends AdminPage
 			$password = $this->ui->getWidget('password')->value;
 			$logged_in = $this->app->session->login($email, $password);
 
-			if ($logged_in) {
-				$this->app->relocate($this->app->getUri());
-			} else {
+			if (!$logged_in) {
 				$message_display = $this->ui->getWidget('message_display');
 				$msg = new SwatMessage(Admin::_('Login failed'), 
 					SwatMessage::ERROR);
@@ -86,6 +84,11 @@ class AdminAdminSiteLogin extends AdminPage
 
 				$message_display->add($msg);
 				$this->login_error = true;
+			} elseif ($this->app->session->isLoggedIn()) {
+				$this->app->relocate($this->app->getUri());
+			} else {
+				$this->app->replacePage('AdminSite/ChangePassword');
+				$this->app->getPage()->setEmail($email);
 			}
 		}
 	}

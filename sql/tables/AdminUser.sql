@@ -4,7 +4,7 @@ create table AdminUser (
 	name varchar(100) not null,
 	password varchar(50) not null,
 	password_tag varchar(50),
-	-- force_password boolean not null default true,
+	force_change_password boolean not null default true,
 	enabled boolean not null default true,
 	menu_state varchar(255),
 	primary key(id)
