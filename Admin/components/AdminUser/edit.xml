@@ -41,6 +41,12 @@
 					<property name="value" type="boolean">true</property>
 				</widget>
 			</widget>
+			<widget class="SwatFormField">
+				<property name="title" translatable="yes">Force User to Change Password on Login</property>
+				<widget class="SwatCheckbox" id="force_change_password">
+					<property name="value" type="boolean">true</property>
+				</widget>
+			</widget>
 			<widget class="SwatGroupingFormField">
 				<property name="title" translatable="yes">Belongs to Groups</property>
 				<widget class="SwatCheckboxList" id="groups" />

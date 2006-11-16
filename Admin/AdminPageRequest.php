@@ -67,8 +67,7 @@ class AdminPageRequest extends SiteObject
 					$this->title = $admin_titles[$this->subcomponent];
 				else
 					throw new AdminNotFoundException(sprintf(Admin::_(
-						"Component not found for source '%s'."),
-						$this->source));
+						"Component not found for source '%s'.")));
 
 			} else {
 
@@ -82,6 +81,10 @@ class AdminPageRequest extends SiteObject
 					$this->title = $row->component_title;
 			}
 
+		} elseif ($this->source == 'AdminSite/ChangePassword') {
+			$this->component = 'AdminSite';
+			$this->subcomponent = 'ChangePassword';
+			$this->title = Admin::_('Change Password');
 		} else {
 			$this->component = 'AdminSite';
 			$this->subcomponent = 'Login';

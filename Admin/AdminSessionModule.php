@@ -80,7 +80,8 @@ class AdminSessionModule extends SiteSessionModule
 	
 		$md5_password = md5($password);
 		
-		$sql = 'select id, name, email from AdminUser
+		$sql = 'select id, name, email, force_change_password
+			from AdminUser
 			where email = %s and password = %s and enabled = %s';
 
 		$sql = sprintf($sql, 
@@ -90,11 +91,12 @@ class AdminSessionModule extends SiteSessionModule
 
 		$row = SwatDB::queryRow($this->app->db, $sql);
 		
-		if ($row !== null) {
-			$this->user_id = $row->id;
+		if ($row !== null && $row->force_change_password) {
+			$logged_in = true;
+		} elseif ($row !== null) {
 			$this->name    = $row->name;
 			$this->email   = $row->email;
-
+			$this->user_id = $row->id;
 			$this->insertUserHistory($row->id);
 
 			$logged_in = true;
@@ -127,6 +129,21 @@ class AdminSessionModule extends SiteSessionModule
 	public function isLoggedIn()
 	{
 		return (isset($this->user_id) && $this->user_id !== 0);
+	}
+
+    // }}}
+    // {{{ public function forceChangePassword()
+
+	/**
+	 * Whether or not an admin user must change their password
+	 *
+	 * @return boolean true if an admin user must change their password
+	 *                 and false if admin user does not.
+	 */
+	public function forceChangePassword()
+	{
+		return (isset($this->force_change_password)
+			&& $this->force_change_password);
 	}
 
     // }}}
