@@ -71,7 +71,7 @@ abstract class AdminEdit extends AdminPage
 	}
 
 	// }}}
-	// {{{ protected function saveData()
+	// {{{ abstract protected function saveData()
 
 	/**
 	 * Save the data
@@ -189,7 +189,7 @@ abstract class AdminEdit extends AdminPage
 		}
 	}
 	// }}}
-	// {{{ protected function loadData()
+	// {{{ abstract protected function loadData()
 
 	/**
 	 * Load the data
