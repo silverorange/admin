@@ -67,7 +67,8 @@ class AdminPageRequest extends SiteObject
 					$this->title = $admin_titles[$this->subcomponent];
 				else
 					throw new AdminNotFoundException(sprintf(Admin::_(
-						"Component not found for source '%s'.")));
+						"Component not found for source '%s'."),
+						$this->source));
 
 			} else {
 
