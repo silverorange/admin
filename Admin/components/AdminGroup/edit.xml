@@ -13,12 +13,12 @@
 				</widget>
 			</widget>
 			<widget class="SwatDisclosure">
-		        <property name="title" translatable="yes">Component Access</property>
+			        <property name="title" translatable="yes">Component Access</property>
 				<property name="open" type="boolean">false</property>
 				<widget class="SwatCheckboxTree" id="components" />
 			</widget>
 			<widget class="SwatDisclosure">
-		        <property name="title" translatable="yes">Users in Group</property>
+			        <property name="title" translatable="yes">Users in Group</property>
 				<property name="open" type="boolean">false</property>
 				<widget class="SwatCheckboxList" id="users" />
 			</widget>
