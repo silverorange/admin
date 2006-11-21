@@ -53,6 +53,7 @@ class AdminSessionModule extends SiteSessionModule
 			$this->user_id = 0;
 			$this->name    = '';
 			$this->email   = '';
+			$this->force_change_password = false;
 			$this->history = array();
 		} elseif ($this->user_id !== 0) {	
 			$this->app->cookie->setCookie('email', $this->email,
@@ -74,8 +75,6 @@ class AdminSessionModule extends SiteSessionModule
 	 */
 	public function login($email, $password)
 	{
-		$logged_in = false;
-
 		$this->logout(); //make sure user is logged out before logging in
 	
 		$md5_password = md5($password);
@@ -91,18 +90,18 @@ class AdminSessionModule extends SiteSessionModule
 
 		$row = SwatDB::queryRow($this->app->db, $sql);
 		
-		if ($row !== null && $row->force_change_password) {
-			$logged_in = true;
-		} elseif ($row !== null) {
-			$this->name    = $row->name;
-			$this->email   = $row->email;
-			$this->user_id = $row->id;
-			$this->insertUserHistory($row->id);
-
-			$logged_in = true;
+		if ($row !== null) {
+			if ($row->force_change_password) {
+				$this->force_change_password = true;
+			} else {
+				$this->name    = $row->name;
+				$this->email   = $row->email;
+				$this->user_id = $row->id;
+				$this->insertUserHistory($row->id);
+			}
 		}
 
-		return $logged_in;
+		return $this->isLoggedIn();
 	}
 
     // }}}
@@ -115,6 +114,7 @@ class AdminSessionModule extends SiteSessionModule
 	{
 		$this->clear();
 		$this->user_id = 0;
+		$this->force_change_password = false;
 	}
 
     // }}}
@@ -129,21 +129,6 @@ class AdminSessionModule extends SiteSessionModule
 	public function isLoggedIn()
 	{
 		return (isset($this->user_id) && $this->user_id !== 0);
-	}
-
-    // }}}
-    // {{{ public function forceChangePassword()
-
-	/**
-	 * Whether or not an admin user must change their password
-	 *
-	 * @return boolean true if an admin user must change their password
-	 *                 and false if admin user does not.
-	 */
-	public function forceChangePassword()
-	{
-		return (isset($this->force_change_password)
-			&& $this->force_change_password);
 	}
 
     // }}}
