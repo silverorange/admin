@@ -48,7 +48,7 @@ abstract class AdminDBOrder extends AdminOrder
 
 	protected function saveDBData()
 	{
-		parent::saveIndexes();
+		$this->saveIndexes();
 	}
 
 	// }}}
