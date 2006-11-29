@@ -182,18 +182,12 @@ class AdminSummaryDependency extends AdminDependency
 	 */
 	protected function getDependencyText($count)
 	{
-		if ($this->title === null) {
-			$message = Admin::ngettext('%s dependent item',
-				'%s dependent items', $count);
+		$title = $this->getTitle($count);
+		$message = Admin::ngettext(
+			'%s dependent %s',
+			'%s dependent %s', $count);
 
-			$message = sprintf($message, SwatString::numberFormat($count));
-		} else {
-			$message = Admin::ngettext('%s dependent %s',
-				'%s dependent %ss', $count);
-
-			$message = sprintf($message, SwatString::numberFormat($count),
-				$this->title);
-		}
+		$message = sprintf($message, SwatString::numberFormat($count), $title);
 		return $message;
 	}
 
