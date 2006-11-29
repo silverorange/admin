@@ -8,8 +8,8 @@ require_once 'SwatDB/SwatDBTransaction.php';
  *
  * An ordering page with DB error checking.
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2006 silverorange
  */
 abstract class AdminDBOrder extends AdminOrder
 {
@@ -30,7 +30,7 @@ abstract class AdminDBOrder extends AdminOrder
 				Admin::_('A database error has occured. The item was not saved.'),
 				 SwatMessage::SYSTEM_ERROR);
 
-			$this->app->messages->add($msg);	
+			$this->app->messages->add($msg);
 			$e->process();
 
 		} catch (SwatException $e) {
@@ -38,7 +38,7 @@ abstract class AdminDBOrder extends AdminOrder
 				Admin::_('An error has occured. The item was not saved.'),
 				SwatMessage::SYSTEM_ERROR);
 
-			$this->app->messages->add($msg);	
+			$this->app->messages->add($msg);
 			$e->process();
 		}
 	}

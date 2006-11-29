@@ -7,11 +7,11 @@ require_once 'Admin/pages/AdminPage.php';
 /**
  * Generic admin ordering page
  *
- * This class is intended to be a convenience base class. For a fully custom 
+ * This class is intended to be a convenience base class. For a fully custom
  * ordering page, inherit directly from AdminPage instead.
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2006 silverorange
  */
 abstract class AdminOrder extends AdminPage
 {
@@ -21,8 +21,9 @@ abstract class AdminOrder extends AdminPage
 	protected function initInternal()
 	{
 		parent::initInternal();
-		$this->ui->getRoot()->addJavaScript('packages/admin/javascript/admin-order.js',
-			Admin::PACKAGE_ID);
+		$this->ui->getRoot()->addJavaScript(
+			'packages/admin/javascript/admin-order.js', Admin::PACKAGE_ID);
+
 		$this->ui->loadFromXML(dirname(__FILE__).'/order.xml');
 	}
 
@@ -77,22 +78,6 @@ abstract class AdminOrder extends AdminPage
 	}
 
 	// }}}
-	// {{{ protected function saveIndex()
-
-	/**
-	 * Save index
-	 *
-	 * This method is called by {@link AdminOrder::saveIndexes()} to save a
-	 * single ordering index. Sub-classes should implement this method and
-	 * perform whatever actions are necessary to store the ordering index.
-	 *
-	 * @param mixed $id an integer identifier of the option to which
-	 *                   ordering information is saved.
-	 * @param integer $index the ordering index to store.
-	 */
-	abstract protected function saveIndex($id, $index);
-
-	// }}}
 	// {{{ protected function relocate()
 
 	/**
@@ -121,6 +106,22 @@ abstract class AdminOrder extends AdminPage
 	}
 
 	// }}}
+	// {{{ abstract protected function saveIndex()
+
+	/**
+	 * Save index
+	 *
+	 * This method is called by {@link AdminOrder::saveIndexes()} to save a
+	 * single ordering index. Sub-classes should implement this method and
+	 * perform whatever actions are necessary to store the ordering index.
+	 *
+	 * @param mixed $id an integer identifier of the option to which
+	 *                   ordering information is saved.
+	 * @param integer $index the ordering index to store.
+	 */
+	abstract protected function saveIndex($id, $index);
+
+	// }}}
 
 	// build phase
 	// {{{ protected function buildInternal()
@@ -134,7 +135,7 @@ abstract class AdminOrder extends AdminPage
 		$this->buildNavBar();
 		$this->loadData();
 	}
-	
+
 	// }}}
 	// {{{ protected function buildOptionList()
 
@@ -177,7 +178,16 @@ abstract class AdminOrder extends AdminPage
 	}
 
 	// }}}
-	// {{{ protected function loadData()
+	// {{{ protected function display()
+
+	protected function display()
+	{
+		parent::display();
+		$this->displayJavaScript();
+	}
+
+	// }}}
+	// {{{ abstract protected function loadData()
 
 	/**
 	 * Load the data
@@ -188,15 +198,6 @@ abstract class AdminOrder extends AdminPage
 	 * $ui class variable.
 	 */
 	abstract protected function loadData();
-
-	// }}}
-	// {{{ protected function display()
-
-	protected function display()
-	{
-		parent::display();
-		$this->displayJavaScript();
-	}
 
 	// }}}
 	// {{{ private function displayJavaScript()
