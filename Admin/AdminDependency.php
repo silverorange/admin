@@ -35,21 +35,6 @@ abstract class AdminDependency
 	// {{{ public properties
 
 	/**
-	 * A visible title for the type of items this dependency object deals with
-	 *
-	 * If you are not using a sub-class, attempt to use titles that can be
-	 * pluralized by adding a single 's'.
-	 *
-	 * This title is never required. If you use a sub-class that defines its
-	 * own text methods you can choose to ignore this property. If you do not
-	 * use this property and do not use a sub-class that defines its own text
-	 * methods, generic text is used instead.
-	 *
-	 * @var string
-	 */
-	public $title = null;
-
-	/**
 	 * An array of possible status levels. Status levels are the categories
 	 * that dependency items are sorted into when this dependency is displayed.
 	 * The two most common levels -- also the default levels -- are
@@ -70,6 +55,29 @@ abstract class AdminDependency
 	 * @var array
 	 */
 	public $status_levels = null;
+
+	// }}}
+	// {{{ protected properties
+
+	/**
+	 * A visible title for the type of items this dependency object deals with
+	 * (singular form)
+	 *
+	 * @var string
+	 *
+	 * @see AdminDependency::setTitle()
+	 */
+	public $singular_title = null;
+
+	/**
+	 * A visible title for the type of items this dependency object deals with
+	 * (plural form)
+	 *
+	 * @var string
+	 *
+	 * @see AdminDependency::setTitle()
+	 */
+	public $plural_title = null;
 
 	// }}}
 	// {{{ private properties
@@ -93,6 +101,27 @@ abstract class AdminDependency
 	public function __construct()
 	{
 		$this->status_levels = array(self::DELETE, self::NODELETE);
+	}
+
+	// }}}
+	// {{{ public function setTitle()
+
+	/**
+	 * Sets the user-visible title of the type of items this dependency object
+	 * deals with
+	 *
+	 * Both the singular and plural forms are required when setting the title.
+	 * Titles should be all lowercase, not title-case.
+	 *
+	 * @param string $singular a visible title for the type of items this
+	 *                          dependency object deals with (singular form).
+	 * @param string $plural a visible title for the type of items this
+	 *                          dependency object deals with (plural form).
+	 */
+	public function setTitle($singular, $plural)
+	{
+		$this->singular_title = $singular;
+		$this->plural_title = $plural;
 	}
 
 	// }}}
@@ -209,30 +238,21 @@ abstract class AdminDependency
 	{
 		switch ($status_level) {
 		case self::DELETE:
-			if ($this->title === null) {
-				$message =
-					Admin::ngettext('Delete the following item?',
-					'Delete the following items?:', $count);
-			} else {
-				$message = Admin::ngettext('Delete the following %s?',
-					'Delete the following %ss?', $count);
+			$title = $this->getTitle($count);
+			$message = Admin::ngettext(
+				'Delete the following %s?',
+				'Delete the following %s?', $count);
 
-				$message = sprintf($message, $this->title);
-			}
+			$message = sprintf($message, $title);
 			break;
 
 		case self::NODELETE:
-			if ($this->title === null) {
-				$message =
-					Admin::ngettext('The following item can not be deleted:',
-					'The following items can not be deleted:', $count);
-			} else {
-				$message =
-					Admin::ngettext('The following %s can not be deleted:',
-					'The following %ss can not be deleted:', $count);
+			$title = $this->getTitle($count);
+			$message = Admin::ngettext(
+				'The following %s can not be deleted:',
+				'The following %s can not be deleted:', $count);
 
-				$message = sprintf($message, $this->title);
-			}
+			$message = sprintf($message, $title);
 			break;
 
 		default:
@@ -240,6 +260,35 @@ abstract class AdminDependency
 				'AdminDependency.');
 		}
 		return $message;
+	}
+
+	// }}}
+	// {{{ protected function getTitle()
+
+	/**
+	 * Helper method to get an appropriate title for the type of item this
+	 * dependency object deal with
+	 *
+	 * This is set with {@link AdminDependency::setTitle()}. If the title is
+	 * not set on this object, a generic text of 'item' or 'items' is returned.
+	 *
+	 * @param integer $count the number of items to get the title for. This
+	 *                        determines whether the singular or plural form is
+	 *                        returned.
+	 *
+	 * @return string an appropriate title for the type of item this dependency
+	 *                 object deals with.
+	 */
+	protected function getTitle($count)
+	{
+		// Note: ngettext() is intentionally used here instead of
+		// Admin::ngettext(). Developers are responsible for translating the
+		// values passed to setTitle().
+		if ($this->singular_title === null || $this->plural_title === null) {
+			return ngettext('item', 'items', $count);
+		} else {
+			return ngettext($this->singular_title, $this->plural_title, $count);
+		}
 	}
 
 	// }}}
@@ -271,6 +320,7 @@ abstract class AdminDependency
 				}
 
 				echo '<li>';
+
 				if ($entry->content_type == 'text/xml')
 					echo $entry->title;
 				else

@@ -308,15 +308,12 @@ class AdminListDependency extends AdminDependency
 	 */
 	protected function getDependencyText($count)
 	{
-		if ($this->title === null) {
-			$message = Admin::ngettext('Dependent item:',
-				'Dependent items:', $count);
-		} else {
-			$message = Admin::ngettext('Dependent %s:',
-				'Dependent %ss:', $count);
+		$title = $this->getTitle($count);
+		$message = Admin::ngettext(
+			'Dependent %s:',
+			'Dependent %s:', $count);
 
-			$message = sprintf($message, $this->title);
-		}
+		$message = sprintf($message, $title);
 		return $message;
 	}
 
