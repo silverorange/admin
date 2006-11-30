@@ -23,6 +23,7 @@
 	font-weight: bold;
 	text-decoration: none;
 	color: #837352;
+	outline: none;
 }
 
 .admin-menu ul li.hide-menu-section a.menu-section-title {
