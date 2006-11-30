@@ -50,6 +50,7 @@ class AdminAdminSiteLogin extends AdminPage
 		try {
 			if (isset($this->app->cookie->email))
 				$email->value = $this->app->cookie->email;
+
 		} catch (SiteCookieException $e) {
 			$this->app->cookie->removeCookie('email', '/');
 		}
@@ -82,13 +83,13 @@ class AdminAdminSiteLogin extends AdminPage
 					$this->app->getPage()->setEmail($email);
 				} else {
 					$message_display = $this->ui->getWidget('message_display');
-					$msg = new SwatMessage(Admin::_('Login failed'), 
+					$message = new SwatMessage(Admin::_('Login failed'),
 						SwatMessage::ERROR);
 
-					$msg->secondary_content = 
+					$message->secondary_content =
 						Admin::_('Check your password and try again.');
 
-					$message_display->add($msg);
+					$message_display->add($message);
 					$this->login_error = true;
 				}
 			}

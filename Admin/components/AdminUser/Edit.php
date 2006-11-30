@@ -65,11 +65,11 @@ class AdminAdminUserEdit extends AdminDBEdit
 			$this->app->db->quote($this->id, 'integer')));
 
 		if (count($query) > 0) {
-			$msg = new SwatMessage(
+			$message = new SwatMessage(
 				Admin::_('An account with this email address already exists.'),
 				SwatMessage::ERROR);
 
-			$email->addMessage($msg);
+			$email->addMessage($message);
 		}
 
 		if ($this->ui->getWidget('confirm_password_field')->hasMessage() ||
@@ -104,11 +104,11 @@ class AdminAdminUserEdit extends AdminDBEdit
 			'usernum', $this->id, 'groupnum', $group_list->values,
 			'AdminGroup', 'id');
 		
-		$msg = new SwatMessage(
+		$message = new SwatMessage(
 			sprintf(Admin::_('User “%s” has been saved.'),
 			$values['email']), SwatMessage::NOTIFICATION);
 
-		$this->app->messages->add($msg);	
+		$this->app->messages->add($message);	
 	}
 
 	// }}}

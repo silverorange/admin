@@ -29,7 +29,7 @@ class AdminAdminSectionIndex extends AdminIndex
 	protected function processActions(SwatTableView $view, SwatActions $actions)
 	{
 		$num = count($view->checked_items);
-		$msg = null;
+		$message = null;
 		
 		switch ($actions->selected->id) {
 			case 'delete':
@@ -38,28 +38,30 @@ class AdminAdminSectionIndex extends AdminIndex
 				break;
 
 			case 'show':
-				SwatDB::updateColumn($this->app->db, 'AdminSection', 
+				SwatDB::updateColumn($this->app->db, 'AdminSection',
 					'boolean:show', true, 'id', $view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext(
-					"%d section has been shown.", 
-					"%d sections have been shown.", $num), $num));
+				$message = new SwatMessage(sprintf(Admin::ngettext(
+					'One section has been shown.',
+					'%d sections have been shown.', $num),
+					SwatString::numberFormat($num)));
 
 				break;
 
 			case 'hide':
-				SwatDB::updateColumn($this->app->db, 'AdminSection', 
+				SwatDB::updateColumn($this->app->db, 'AdminSection',
 					'boolean:show', false, 'id', $view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext(
-					"%d section has been hidden.", 
-					"%d sections have been hidden.", $num), $num));
+				$message = new SwatMessage(sprintf(Admin::ngettext(
+					"One section has been hidden.",
+					"%d sections have been hidden.", $num),
+					SwatString::numberFormat($num)));
 
 				break;
 		}
 
-		if ($msg !== null)
-			$this->app->messages->add($msg);
+		if ($message !== null)
+			$this->app->messages->add($message);
 	}
 
 	// }}}
@@ -71,8 +73,8 @@ class AdminAdminSectionIndex extends AdminIndex
 	{
 		$view = $this->ui->getWidget('index_view');
 
-		$sql = 'select id, title, show 
-				from AdminSection 
+		$sql = 'select id, title, show
+				from AdminSection
 				order by displayorder';
 
 		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');

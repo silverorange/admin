@@ -39,7 +39,7 @@ class AdminAdminComponentDetails extends AdminIndex
 	protected function processActions(SwatTableView $view, SwatActions $actions)
 	{
 		$num = count($view->checked_items);
-		$msg = null;
+		$message = null;
 
 		switch ($actions->selected->id) {
 			case 'delete':
@@ -49,28 +49,30 @@ class AdminAdminComponentDetails extends AdminIndex
 				break;
 
 			case 'show':
-				SwatDB::updateColumn($this->app->db, 'AdminSubComponent', 
+				SwatDB::updateColumn($this->app->db, 'AdminSubComponent',
 					'boolean:show', true, 'id', $view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext(
-					"%d sub-component has been shown.", 
-					"%d sub-components have been shown.", $num), $num));
+				$message = new SwatMessage(sprintf(Admin::ngettext(
+					'One sub-component has been shown.',
+					'%d sub-components have been shown.', $num),
+					SwatString::numberFormat($num)));
 
 				break;
 
 			case 'hide':
-				SwatDB::updateColumn($this->app->db, 'AdminSubComponent', 
+				SwatDB::updateColumn($this->app->db, 'AdminSubComponent',
 					'boolean:show', false, 'id', $view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext(
-					"%d sub-component has been hidden.", 
-					"%d sub-components have been hidden.", $num), $num));
+				$message = new SwatMessage(sprintf(Admin::ngettext(
+					'One sub-component has been hidden.', 
+					'%d sub-components have been hidden.', $num),
+					SwatString::numberFormat($num)));
 
 				break;
 		}
 
-		if ($msg !== null)
-			$this->app->messages->add($msg);
+		if ($message !== null)
+			$this->app->messages->add($message);
 	}
 
 	// }}}
@@ -105,9 +107,8 @@ class AdminAdminComponentDetails extends AdminIndex
 		$row = SwatDB::queryRow($this->app->db, $sql);
 
 		if ($row === null)
-			throw new AdminNotFoundException(
-				sprintf(Admin::_("Component with id '%s' not found."), 
-					$this->id));
+			throw new AdminNotFoundException(sprintf(
+				Admin::_('Component with id ‘%s’ not found.'), $this->id));
 
 		ob_start();
 		$this->displayGroups($this->id);
@@ -129,11 +130,11 @@ class AdminAdminComponentDetails extends AdminIndex
 
 	protected function getTableStore($view)
 	{
-		$sql = 'select AdminSubComponent.id, 
-					AdminSubComponent.title, 
-					AdminSubComponent.shortname, 
+		$sql = 'select AdminSubComponent.id,
+					AdminSubComponent.title,
+					AdminSubComponent.shortname,
 					AdminSubComponent.show
-				from AdminSubComponent 
+				from AdminSubComponent
 				where component = %s
 				order by AdminSubComponent.displayorder';
 
@@ -155,7 +156,7 @@ class AdminAdminComponentDetails extends AdminIndex
 		$sql = 'select id, title
 				from AdminGroup
 				where id in
-					(select groupnum from AdminComponentAdminGroupBinding 
+					(select groupnum from AdminComponentAdminGroupBinding
 					where component = %s)';
 
 		$sql = sprintf($sql, $this->app->db->quote($id, 'integer'));

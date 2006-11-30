@@ -36,7 +36,7 @@ class AdminAdminUserIndex extends AdminIndex
 	protected function processActions(SwatTableView $view, SwatActions $actions)
 	{
 		$num = count($view->checked_items);
-		$msg = null;
+		$message = null;
 		
 		switch ($actions->selected->id) {
 			case 'delete':
@@ -45,30 +45,31 @@ class AdminAdminUserIndex extends AdminIndex
 				break;
 
 			case 'enable':
-				SwatDB::updateColumn($this->app->db, 'AdminUser', 
-					'boolean:enabled', true, 'id', 
-					$view->checked_items);
+				SwatDB::updateColumn($this->app->db, 'AdminUser',
+					'boolean:enabled', true, 'id', $view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext(
+				$message = new SwatMessage(sprintf(Admin::ngettext(
 					"%d user has been enabled.", 
-					"%d users have been enabled.", $num), $num));
+					"%d users have been enabled.", $num),
+					SwatString::numberFormat($num)));
 
 				break;
 
 			case 'disable':
-				SwatDB::updateColumn($this->app->db, 'AdminUser', 
+				SwatDB::updateColumn($this->app->db, 'AdminUser',
 					'boolean:enabled', false, 'id', 
 					$view->checked_items);
 
-				$msg = new SwatMessage(sprintf(Admin::ngettext(
+				$message = new SwatMessage(sprintf(Admin::ngettext(
 					"%d user has been disabled.", 
-					"%d users have been disabled.", $num), $num));
+					"%d users have been disabled.", $num),
+					SwatString::numberFormat($num)));
 
 				break;
 		}
 		
-		if ($msg !== null)
-			$this->app->messages->add($msg);
+		if ($message !== null)
+			$this->app->messages->add($message);
 	}
 
 	// }}}

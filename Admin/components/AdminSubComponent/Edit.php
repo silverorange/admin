@@ -58,10 +58,10 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 		$query = SwatDB::queryRow($this->app->db, $sql);
 
 		if ($query !== null) {
-			$msg = new SwatMessage(
+			$message = new SwatMessage(
 				Admin::_('Shortname already exists and must be unique.'), 
 				SwatMessage::ERROR);
-			$shortname->addMessage($msg);
+			$shortname->addMessage($message);
 		}
 	}
 
@@ -80,11 +80,11 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 			SwatDB::updateRow($this->app->db, 'AdminSubComponent', 
 				$this->fields, $values, 'integer:id', $this->id);
 
-		$msg = new SwatMessage(
+		$message = new SwatMessage(
 			sprintf(Admin::_('Sub-Component “%s” has been saved.'),
 			$values['title']), SwatMessage::NOTIFICATION);
 
-		$this->app->messages->add($msg);
+		$this->app->messages->add($message);
 	}
 
 	// }}}

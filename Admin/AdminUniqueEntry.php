@@ -47,11 +47,11 @@ class AdminUniqueEntry extends SwatEntry
 		parent::process();
 
 		if ($this->alphanum && preg_match('/[^[:alnum:]_]/u', $this->value)) {
-			$msg = Admin::_('The %s field can only contain letters and '.
+			$message = Admin::_('The %s field can only contain letters and '.
 				'numbers. Spaces and other special characters are not '.
 				'allowed.');
 
-			$this->addMessage(new SwatMessage($msg, SwatMessage::ERROR));
+			$this->addMessage(new SwatMessage($message, SwatMessage::ERROR));
 		}
 	}
 
