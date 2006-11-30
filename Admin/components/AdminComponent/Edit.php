@@ -33,10 +33,10 @@ class AdminAdminComponentEdit extends AdminDBEdit
 			$this->app->db, 'AdminSection', 'title', 'id', 'displayorder'));
 
 		$group_list = $this->ui->getWidget('groups');
-		$group_list->options = SwatDB::getOptionArray($this->app->db, 
+		$group_list->options = SwatDB::getOptionArray($this->app->db,
 			'AdminGroup', 'title', 'id', 'title');
 
-		$this->fields = array('title', 'shortname', 'integer:section', 
+		$this->fields = array('title', 'shortname', 'integer:section',
 			'boolean:show', 'boolean:enabled', 'description');
 	}
 
@@ -56,11 +56,11 @@ class AdminAdminComponentEdit extends AdminDBEdit
 			$this->app->db->quote($this->id, 'integer')));
 
 		if (count($query) > 0) {
-			$msg = new SwatMessage(
+			$message = new SwatMessage(
 				Admin::_('Shortname already exists and must be unique.'),
 				SwatMessage::ERROR);
 
-			$shortname->addMessage($msg);
+			$shortname->addMessage($message);
 		}
 	}
 
@@ -69,7 +69,7 @@ class AdminAdminComponentEdit extends AdminDBEdit
 
 	protected function saveDBData()
 	{
-		$values = $this->ui->getValues(array('title', 'shortname', 'section', 
+		$values = $this->ui->getValues(array('title', 'shortname', 'section',
 			'show', 'enabled', 'description'));
 
 		if ($this->id === null)
@@ -81,15 +81,15 @@ class AdminAdminComponentEdit extends AdminDBEdit
 
 		$group_list = $this->ui->getWidget('groups');
 
-		SwatDB::updateBinding($this->app->db, 'AdminComponentAdminGroupBinding', 
+		SwatDB::updateBinding($this->app->db, 'AdminComponentAdminGroupBinding',
 			'component', $this->id, 'groupnum', $group_list->values,
 			'AdminGroup', 'id');
 
-		$msg = new SwatMessage(
-			sprintf(Admin::_('Component “%s” has been saved.'),
-			$values['title']), SwatMessage::NOTIFICATION);
+		$message = new SwatMessage(sprintf(
+			Admin::_('Component “%s” has been saved.'), $values['title']),
+			SwatMessage::NOTIFICATION);
 
-		$this->app->messages->add($msg);
+		$this->app->messages->add($message);
 	}
 
 	// }}}
@@ -99,19 +99,19 @@ class AdminAdminComponentEdit extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminComponent', 
+		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminComponent',
 			$this->fields, 'integer:id', $this->id);
 
 		if ($row === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("Component with id '%s' not found."),
+				sprintf(Admin::_('Component with id ‘%s’ not found.'),
 				$this->id));
 
 		$this->ui->setValues(get_object_vars($row));
 
 		$group_list = $this->ui->getWidget('groups');
-		$group_list->values = SwatDB::queryColumn($this->app->db, 
-			'AdminComponentAdminGroupBinding', 'groupnum', 'component', 
+		$group_list->values = SwatDB::queryColumn($this->app->db,
+			'AdminComponentAdminGroupBinding', 'groupnum', 'component',
 			$this->id);
 	}
 

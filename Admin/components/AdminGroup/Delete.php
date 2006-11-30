@@ -24,12 +24,13 @@ class AdminAdminGroupDelete extends AdminDBDelete
 		$sql = sprintf($sql, $item_list);
 		$num = SwatDB::exec($this->app->db, $sql);
 
-		$msg = new SwatMessage(sprintf(Admin::ngettext(
-			"%d admin group has been deleted.", 
-			"%d admin groups have been deleted.", $num), $num),
+		$message = new SwatMessage(sprintf(Admin::ngettext(
+			'One admin group has been deleted.', 
+			'%d admin groups have been deleted.', $num),
+			SwatString::numberFormat($num)),
 			SwatMessage::NOTIFICATION);
 
-		$this->app->messages->add($msg);
+		$this->app->messages->add($message);
 	}
 
 	// }}}
@@ -44,7 +45,7 @@ class AdminAdminGroupDelete extends AdminDBDelete
 		$item_list = $this->getItemList('integer');
 		
 		$dep = new AdminListDependency();
-		$dep->title = 'Admin Group';
+		$dep->title = Admin::_('Admin Group');
 		$dep->entries = AdminListDependency::queryEntries($this->app->db,
 			'AdminGroup', 'integer:id', null, 'text:title', 'title',
 			'id in ('.$item_list.')', AdminDependency::DELETE);

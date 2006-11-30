@@ -41,11 +41,11 @@ class AdminAdminSectionEdit extends AdminDBEdit
 			SwatDB::updateRow($this->app->db, 'AdminSection', $this->fields,
 				$values, 'integer:id', $this->id);
 
-		$msg = new SwatMessage(
+		$message = new SwatMessage(
 			sprintf(Admin::_('Section “%s” has been saved.'),
 			$values['title']), SwatMessage::NOTIFICATION);
 
-		$this->app->messages->add($msg);
+		$this->app->messages->add($message);
 	}
 
 	// }}}
@@ -55,12 +55,12 @@ class AdminAdminSectionEdit extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminSection', 
+		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminSection',
 			$this->fields, 'integer:id', $this->id);
 
 		if ($row === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("Section with id '%s' not found."),
+				sprintf(Admin::_('Section with id ‘%s’ not found.'),
 				$this->id));
 
 		$this->ui->setValues(get_object_vars($row));

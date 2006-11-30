@@ -38,12 +38,13 @@ class AdminAdminSubComponentDelete extends AdminDBDelete
 		$sql = sprintf($sql, $item_list);
 		$num = SwatDB::exec($this->app->db, $sql);
 
-		$msg = new SwatMessage(sprintf(Admin::ngettext(
-			"%d sub-component has been deleted.", 
-			"%d sub-components have been deleted.", $num), $num), 
+		$message = new SwatMessage(sprintf(Admin::ngettext(
+			'One sub-component has been deleted.',
+			'%d sub-components have been deleted.', $num),
+			SwatString::numberFormat($num)), 
 			SwatMessage::NOTIFICATION);
 
-		$this->app->messages->add($msg);
+		$this->app->messages->add($message);
 	}
 
 	// }}}
@@ -72,14 +73,15 @@ class AdminAdminSubComponentDelete extends AdminDBDelete
 			$this->switchToCancelButton();
 
 		// rebuild the navbar
-		$component_title = SwatDB::queryOneFromTable($this->app->db, 
+		$component_title = SwatDB::queryOneFromTable($this->app->db,
 			'AdminComponent', 'text:title', 'id', $this->parent);
 
 		// pop two entries because the AdminDBOrder base class adds an entry
 		$this->navbar->popEntries(2);
 		$this->navbar->createEntry('Admin Components', 'AdminComponent');
-		$this->navbar->createEntry($component_title, 
+		$this->navbar->createEntry($component_title,
 			'AdminComponent/Details?id='.$this->parent);
+
 		$this->navbar->createEntry('Delete Sub-Component(s)');
 	}
 }

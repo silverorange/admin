@@ -34,7 +34,7 @@ class AdminAdminComponentIndex extends AdminIndex
 	protected function processActions(SwatTableView $view, SwatActions $actions)
 	{
 		$num = count($view->checked_items);
-		$msg = null;
+		$message = null;
 
 		switch ($actions->selected->id) {
 		case 'delete':
@@ -43,64 +43,69 @@ class AdminAdminComponentIndex extends AdminIndex
 			break;
 
 		case 'show':
-			SwatDB::updateColumn($this->app->db, 'AdminComponent', 
+			SwatDB::updateColumn($this->app->db, 'AdminComponent',
 				'boolean:show', true, 'id', $view->checked_items);
 
-			$msg = new SwatMessage(sprintf(Admin::ngettext(
-				"%d component has been shown.", 
-				"%d components have been shown.", $num), $num));
+			$message = new SwatMessage(sprintf(Admin::ngettext(
+				'One component has been shown.',
+				'%d components have been shown.', $num),
+				SwatString::numberFormat($num)));
 
 			break;
 
 		case 'hide':
-			SwatDB::updateColumn($this->app->db, 'AdminComponent', 
+			SwatDB::updateColumn($this->app->db, 'AdminComponent',
 				'boolean:show', false, 'id', $view->checked_items);
 
-			$msg = new SwatMessage(sprintf(Admin::ngettext(
-				"%d component has been hidden.", 
-				"%d components have been hidden.", $num), $num));
+			$message = new SwatMessage(sprintf(Admin::ngettext(
+				'One component has been hidden.',
+				'%d components have been hidden.', $num),
+				SwatString::numberFormat($num)));
 
 			break;
 
 		case 'enable':
-			SwatDB::updateColumn($this->app->db, 'AdminComponent', 
+			SwatDB::updateColumn($this->app->db, 'AdminComponent',
 				'boolean:enabled', true, 'id', $view->checked_items);
 
-			$msg = new SwatMessage(sprintf(Admin::ngettext(
-				"%d component has been enabled.", 
-				"%d components have been enabled.", $num), $num));
+			$message = new SwatMessage(sprintf(Admin::ngettext(
+				'One component has been enabled.',
+				'%d components have been enabled.', $num),
+				SwatString::numberFormat($num)));
 
 			break;
 
 		case 'disable':
-			SwatDB::updateColumn($this->app->db, 'AdminComponent', 
+			SwatDB::updateColumn($this->app->db, 'AdminComponent',
 				'boolean:enabled', false, 'id', $view->checked_items);
 
-			$msg = new SwatMessage(sprintf(Admin::ngettext(
-				"%d component has been disabled.", 
-				"%d components have been disabled.", $num), $num));
+			$message = new SwatMessage(sprintf(Admin::ngettext(
+				'One component has been disabled.',
+				'%d components have been disabled.', $num),
+				SwatString::numberFormat($num)));
 
 			break;
 
 		case 'change_section':
 			$new_section = $actions->selected->widget->value;
 
-			SwatDB::updateColumn($this->app->db, 'AdminComponent', 
+			SwatDB::updateColumn($this->app->db, 'AdminComponent',
 				'integer:section', $new_section, 'id', $view->checked_items);
 
-			$title = SwatDB::queryOneFromTable($this->app->db, 'AdminSection', 
+			$title = SwatDB::queryOneFromTable($this->app->db, 'AdminSection',
 				'text:title', 'id', $new_section);
 
-			$msg = new SwatMessage(sprintf(Admin::ngettext(
-				"%d component has been moved to section \"%s\".", 
-				"%d components have been moved to section \"%s\".", $num), $num,
+			$message = new SwatMessage(sprintf(Admin::ngettext(
+				'One component has been moved to section “%s”.', 
+				'%d components have been moved to section “%s”.', $num),
+				SwatString::numberFormat($num),
 				$title));
 
 			break;
 		}
 
-		if ($msg !== null)
-			$this->app->messages->add($msg);
+		if ($message !== null)
+			$this->app->messages->add($message);
 	}
 
 	// }}}
@@ -117,24 +122,24 @@ class AdminAdminComponentIndex extends AdminIndex
 
 		// get component information
 		$sql = 'select AdminComponent.id,
-					AdminComponent.title, 
-					AdminComponent.shortname, 
-					AdminComponent.section, 
+					AdminComponent.title,
+					AdminComponent.shortname,
+					AdminComponent.section,
 					AdminComponent.show,
 					AdminComponent.enabled
-				from AdminComponent 
-				inner join AdminSection 
+				from AdminComponent
+				inner join AdminSection
 					on AdminSection.id = AdminComponent.section
 				order by AdminSection.displayorder, AdminSection.id, %s';
 
 		$sql = sprintf($sql,
-			$this->getOrderByClause($view, 'AdminComponent.displayorder, 
+			$this->getOrderByClause($view, 'AdminComponent.displayorder,
 				AdminComponent.title', 'AdminComponent'));
 
 		$components = SwatDB::query($this->app->db, $sql);
 
 		// get component-count and title for each section
-		$sql = 'select section as id, AdminSection.title as title, 
+		$sql = 'select section as id, AdminSection.title as title,
 			count(AdminComponent.id) as num_components
 			from AdminComponent
 			inner join AdminSection 

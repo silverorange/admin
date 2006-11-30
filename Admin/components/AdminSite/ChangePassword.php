@@ -25,7 +25,8 @@ class AdminAdminSiteChangePassword extends AdminPage
 
 	protected function createLayout()
 	{
-		return new SiteLayout($this->app, 'Admin/layouts/xhtml/change-password.php');
+		return new SiteLayout($this->app,
+			'Admin/layouts/xhtml/change-password.php');
 	}
 
 	// }}}
@@ -87,8 +88,10 @@ class AdminAdminSiteChangePassword extends AdminPage
 
 			$this->app->session->login($email, $password);
 
-			$msg = new SwatMessage(Admin::_('Your password has been updated.'));
-			$this->app->messages->add($msg);
+			$message = new SwatMessage(
+				Admin::_('Your password has been updated.'));
+
+			$this->app->messages->add($message);
 
 			$uri = $form->getHiddenField('relocate_uri');
 			$this->app->relocate($uri);
@@ -107,12 +110,10 @@ class AdminAdminSiteChangePassword extends AdminPage
 			return;
 
 		if ($old_password == $new_password) {
-			$msg = new SwatMessage(
-				Admin::_('Your new password can not
-					be the same as your old password'),
-				SwatMessage::ERROR);
+			$message = new SwatMessage(Admin::_('Your new password can not be '.
+				'the same as your old password'), SwatMessage::ERROR);
 
-			$this->ui->getWidget('password')->addMessage($msg);
+			$this->ui->getWidget('password')->addMessage($message);
 		}
 
 		$sql = sprintf('select id from AdminUser
@@ -123,11 +124,11 @@ class AdminAdminSiteChangePassword extends AdminPage
 		$id = SwatDB::queryOne($this->app->db, $sql);
 
 		if ($id === null) {
-			$msg = new SwatMessage(
+			$message = new SwatMessage(
 				Admin::_('Your old password is not correct'),
 				SwatMessage::ERROR);
 
-			$this->ui->getWidget('old_password')->addMessage($msg);
+			$this->ui->getWidget('old_password')->addMessage($message);
 		}
 	}
 

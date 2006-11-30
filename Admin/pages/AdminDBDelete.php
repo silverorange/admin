@@ -58,16 +58,16 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 	protected function generateMessage(Exception $e)
 	{
 		if ($e instanceof SwatDBException) {
-			$msg = new SwatMessage(Admin::_('A database error has occured.
+			$message = new SwatMessage(Admin::_('A database error has occured.
 				The item(s) were not deleted.'),
 				 SwatMessage::SYSTEM_ERROR);
 		} else {
-			$msg = new SwatMessage(Admin::_('An error has occured.
+			$message = new SwatMessage(Admin::_('An error has occured.
 				The item(s) were not deleted.'),
 				SwatMessage::SYSTEM_ERROR);
 		}
 
-		$this->app->messages->add($msg);	
+		$this->app->messages->add($message);
 	}
 
 	// }}}

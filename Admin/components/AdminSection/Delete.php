@@ -25,12 +25,13 @@ class AdminAdminSectionDelete extends AdminDBDelete
 		$sql = sprintf($sql, $item_list);
 		$num = SwatDB::exec($this->app->db, $sql);
 
-		$msg = new SwatMessage(sprintf(Admin::ngettext(
-			"%d admin section has been deleted.", 
-			"%d admin sections have been deleted.", $num), $num),
+		$message = new SwatMessage(sprintf(Admin::ngettext(
+			'One admin section has been deleted.',
+			'%d admin sections have been deleted.', $num),
+			SwatString::numberFormat($num)),
 			SwatMessage::NOTIFICATION);
 
-		$this->app->messages->add($msg);
+		$this->app->messages->add($message);
 	}
 
 	// }}}
@@ -45,13 +46,13 @@ class AdminAdminSectionDelete extends AdminDBDelete
 		$item_list = $this->getItemList('integer');
 
 		$dep = new AdminListDependency();
-		$dep->title = 'Admin Section';
+		$dep->title = Admin::_('Admin Section');
 		$dep->entries = AdminListDependency::queryEntries($this->app->db,
 			'AdminSection', 'integer:id', null, 'text:title', 'title',
 			'id in ('.$item_list.')', AdminDependency::DELETE);
 
 		$dep_components = new AdminListDependency();
-		$dep_components->title = 'component';
+		$dep_components->title = Admin::_('component');
 		$dep_components->entries = AdminListDependency::queryEntries(
 			$this->app->db, 'AdminComponent', 'integer:id', 'integer:section',
 			'text:title', 'title', 'section in ('.$item_list.')',
@@ -60,10 +61,10 @@ class AdminAdminSectionDelete extends AdminDBDelete
 		$dep->addDependency($dep_components);
 
 		$dep_subcomponents = new AdminSummaryDependency();
-		$dep_subcomponents->title = 'sub-component';
+		$dep_subcomponents->title = Admin::_('sub-component');
 		$dep_subcomponents->summaries = AdminSummaryDependency::querySummaries(
-			$this->app->db, 'AdminSubComponent', 'integer:id', 
-			'integer:component', 
+			$this->app->db, 'AdminSubComponent', 'integer:id',
+			'integer:component',
 			'component in (select id from AdminComponent where section in ('.
 			$item_list.'))', AdminDependency::DELETE);
 
