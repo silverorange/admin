@@ -1,9 +1,10 @@
 <?php
 
-require_once 'Admin/pages/AdminConfirmation.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'SwatDB/SwatDBTransaction.php';
+require_once 'Admin/pages/AdminConfirmation.php';
 require_once 'Admin/AdminDependency.php';
+require_once 'Admin/exceptions/AdminException.php';
 
 /**
  * Generic admin database confirmation page
@@ -59,6 +60,9 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 */
 	protected function getItemList($type)
 	{
+		if (!is_array($this->items))
+			throw new AdminException('There are no items set');
+
 		$items = $this->items;
 		
 		foreach ($items as &$id)
