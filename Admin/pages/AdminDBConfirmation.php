@@ -57,12 +57,11 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 *
 	 * @param string $type MDB2 datatype used to quote the items.
 	 * @return string Comma-seperated and MDB2 quoted list of items.
+	 * @throws AdminException
 	 */
 	protected function getItemList($type)
 	{
-		if (!is_array($this->items))
-			throw new AdminException('There are no items set');
-
+		$this->checkItems();
 		$items = $this->items;
 		
 		foreach ($items as &$id)
@@ -78,9 +77,11 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	* Get the number of items
 	*
 	* @return integer Number of items.
+	* @throws AdminException
 	*/
 	protected function getItemCount()
 	{
+		$this->checkItems();
 		return count($this->items);
 	}
 
@@ -91,11 +92,24 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 * Get first item in the item list
 	 *
 	 * @return mixed the first item.
+	 * @throws AdminException
 	 */
 	protected function getFirstItem()
 	{
+		$this->checkItems();
 		reset($this->items);
 		return current($this->items);
+	}
+
+	// }}}
+	// {{{ private function checkItems()
+
+	private function checkItems()
+	{
+		if (!is_array($this->items))
+			throw new AdminException('There are no items. '.
+				'AdminDBConfirmation::setItems() should be called to provide '.
+				'an array of items for this confirmation page.');
 	}
 
 	// }}}
