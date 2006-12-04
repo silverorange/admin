@@ -31,7 +31,7 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 
 		$this->parent = SiteApplication::initVar('parent');
 
-		$this->fields = array('title', 'shortname', 'boolean:show', 
+		$this->fields = array('title', 'shortname', 'boolean:show',
 			'integer:component');
 
 		$form = $this->ui->getWidget('edit_form');
@@ -59,8 +59,9 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 
 		if ($query !== null) {
 			$message = new SwatMessage(
-				Admin::_('Shortname already exists and must be unique.'), 
+				Admin::_('Shortname already exists and must be unique.'),
 				SwatMessage::ERROR);
+
 			$shortname->addMessage($message);
 		}
 	}
@@ -74,10 +75,11 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 		$values['component'] = $this->parent;
 
 		if ($this->id === null)
-			$this->id = SwatDB::insertRow($this->app->db, 'AdminSubComponent', 
+			$this->id = SwatDB::insertRow($this->app->db, 'AdminSubComponent',
 				$this->fields, $values, 'integer:id');
 		else
-			SwatDB::updateRow($this->app->db, 'AdminSubComponent', 
+
+			SwatDB::updateRow($this->app->db, 'AdminSubComponent',
 				$this->fields, $values, 'integer:id', $this->id);
 
 		$message = new SwatMessage(
@@ -94,12 +96,12 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminSubComponent', 
+		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminSubComponent',
 			$this->fields, 'integer:id', $this->id);
 
 		if ($row === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("Sub-component with id '%s' not found."),
+				sprintf(Admin::_('Sub-component with id ‘%s’ not found.'),
 				$this->id));
 
 		$this->ui->setValues(get_object_vars($row));
@@ -119,7 +121,7 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 
 		$this->navbar->popEntry();
 		$this->navbar->createEntry('Admin Components', 'AdminComponent');
-		$this->navbar->createEntry($parent_title, 
+		$this->navbar->createEntry($parent_title,
 			'AdminComponent/Details?id='.$this->parent);
 
 		if ($this->id === null)

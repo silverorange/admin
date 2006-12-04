@@ -53,6 +53,7 @@ class AdminAdminGroupEdit extends AdminDBEdit
 		if ($this->id === null)
 			$this->id = SwatDB::insertRow($this->app->db, 'AdminGroup',
 				$this->fields, $values, 'integer:id');
+
 		else
 			SwatDB::updateRow($this->app->db, 'AdminGroup', $this->fields,
 				$values, 'integer:id', $this->id);
@@ -88,7 +89,7 @@ class AdminAdminGroupEdit extends AdminDBEdit
 
 		if ($row === null)
 			throw new AdminNotFoundException(
-				sprintf(Admin::_("Group with id '%s' not found."), $this->id));
+				sprintf(Admin::_('Group with id ‘%s’ not found.'), $this->id));
 
 		$this->ui->setValues(get_object_vars($row));
 
