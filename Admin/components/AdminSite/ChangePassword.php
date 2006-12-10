@@ -133,18 +133,6 @@ class AdminAdminSiteChangePassword extends AdminPage
 	}
 
 	// }}}
-
-	// build phase
-	// {{{ protected function buildInternal()
-
-	protected function buildInternal()
-	{
-		parent::buildInternal();
-		$this->layout->data->title = Admin::_('Change Password').' - '.
-			SwatString::minimizeEntities($this->app->title);
-	}
-
-	// }}}
 }
 
 ?>
