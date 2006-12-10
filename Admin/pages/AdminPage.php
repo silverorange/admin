@@ -201,6 +201,10 @@ abstract class AdminPage extends SitePage
 		$this->layout->addHtmlHeadEntrySet(
 			$this->ui->getRoot()->getHtmlHeadEntrySet());
 
+		$this->layout->data->title =
+			SwatString::minimizeEntities($this->title).' - '.
+			SwatString::minimizeEntities($this->app->title);
+
 		$this->layout->startCapture('content');
 		$this->display();
 		$this->layout->endCapture();
