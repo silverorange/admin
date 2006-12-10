@@ -99,6 +99,16 @@ class AdminAdminSiteLogin extends AdminPage
 	// }}}
 
 	// build phase
+	// {{{ protected function buildInternal()
+
+	protected function buildInternal()
+	{
+		parent::buildInternal();
+		$this->layout->data->title = Admin::_('Login').' - '.
+			SwatString::minimizeEntities($this->app->title);
+	}
+
+	// }}}
 	// {{{ protected function display()
 
 	protected function display()
