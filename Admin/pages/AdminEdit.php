@@ -47,10 +47,12 @@ abstract class AdminEdit extends AdminPage
 			$this->validate();
 
 			if ($form->hasMessage()) {
-				$message = new SwatMessage(Admin::_('There is a problem with '
-					.'the information submitted.'), SwatMessage::ERROR);
-				$message->secondary_content = Admin::_('Please address the '
-					.'fields highlighted below and re-submit the form.');
+				$message = new SwatMessage(Admin::_('There is a problem with '.
+					'the information submitted.'), SwatMessage::ERROR);
+
+				$message->secondary_content = Admin::_('Please address the '.
+					'fields highlighted below and re-submit the form.');
+
 				$this->app->messages->add($message);
 			} else {
 				if ($this->saveData()) {
