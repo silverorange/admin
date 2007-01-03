@@ -56,12 +56,14 @@ class AdminNote extends SwatContentBlock
 		$div->class = $this->getCSSClassString();
 		$div->open();
 
-		$header_tag = new SwatHtmlTag('h3');
-		$header_tag->class = 'admin-note-title';
-		$header_tag->setContent($this->title);
-		$header_tag->display();
+		if (strlen($this->title) > 0) {
+			$header_tag = new SwatHtmlTag('h3');
+			$header_tag->class = 'admin-note-title';
+			$header_tag->setContent($this->title);
+			$header_tag->display();
+		}
 
-		if ($this->content !== null) {
+		if (strlen($this->content) > 0) {
 			$content_div = new SwatHtmlTag('div');
 			$content_div->class = 'admin-note-content';
 			$content_div->setContent($this->content, $this->content_type);
