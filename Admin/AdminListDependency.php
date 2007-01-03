@@ -96,7 +96,7 @@ class AdminListDependency extends AdminDependency
 	{
 		$return = self::DELETE;
 
-		foreach ($this->entries as &$entry) {
+		foreach ($this->entries as $entry) {
 			if ($parent === null || $entry->parent === $parent) {
 				foreach ($this->dependencies as $dep) {
 					$entry->status_level = max($entry->status_level,
