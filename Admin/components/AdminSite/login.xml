@@ -15,7 +15,7 @@
 				<property name="title" translatable="yes">Password</property>
 				<widget class="SwatPasswordEntry" id="password">
 					<property name="required" type="boolean">true</property>
-					<property name="size" type="integer">25</property>
+					<property name="size" type="integer">18</property>
 				</widget>
 			</widget>
 			<widget class="SwatMessageDisplay" id="message_display">
