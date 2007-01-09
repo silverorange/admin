@@ -1,5 +1,10 @@
 2007-01-03  nrf
 
+	* [r14152] admin/branches/1.0.x/ChangeLog,
+	  admin/branches/1.0.x/package.php:
+	  prepare for release of 1.0.12
+	* [r14151] admin/branches/1.0.x/Admin/AdminListDependency.php:
+	  backport r14142
 	* [r14150] admin/branches/1.0.x:
 	  Make a branch
 
