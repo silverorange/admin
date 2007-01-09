@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<?=$this->html_head_entries?>
 </head>
-<body class="<?= implode(' ', $this->body_classes) ?>">
+<body class="<?= implode(' ', $this->body_classes->getArrayCopy()) ?>">
 
 <div id="admin-wrapper">
 
