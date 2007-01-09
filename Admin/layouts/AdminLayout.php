@@ -145,7 +145,7 @@ class AdminLayout extends SiteLayout
 		parent::finalize();
 
 		$this->startCapture('navbar');
-		$this->navbar->display();	
+		$this->navbar->display();
 		$this->endCapture();
 
 		$this->startCapture('header');
@@ -188,7 +188,7 @@ class AdminLayout extends SiteLayout
 
 	protected function displayNavBar()
 	{
-		$this->navbar->display();	
+		$this->navbar->display();
 	}
 
 	// }}}
@@ -201,7 +201,7 @@ class AdminLayout extends SiteLayout
 	 * from their implementation of {@link AdminPage::display()}.
 	 */
 	protected function displayMenu()
-	{		
+	{
 		if (!$this->menu->isShown())
 			$this->data->body_classes[] = 'hide-menu';
 
