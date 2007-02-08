@@ -2,8 +2,8 @@
 
 require_once 'XML/RPCAjax.php';
 require_once 'Swat/SwatUIObject.php';
+require_once 'Swat/SwatYUI.php';
 require_once 'Admin/AdminMenuViewStateStore.php';
-require_once 'YUI/YUI.php';
 
 /**
  * Displays the primary navigation menu
@@ -74,7 +74,7 @@ class AdminMenuView extends SwatUIObject
 		if ($id !== null)
 			$this->id = $id;
 
-		$yui = new YUI(array('dom', 'animation'));
+		$yui = new SwatYUI(array('dom', 'animation'));
 		$this->html_head_entry_set->addEntrySet($yui->getHtmlHeadEntrySet());
 
 		$this->addJavaScript('packages/admin/javascript/admin-menu.js',
