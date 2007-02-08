@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Admin 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-12 19:48-0400\n"
+"POT-Creation-Date: 2007-02-08 17:09-0400\n"
 "PO-Revision-Date: 2006-10-16 11:30-0300\n"
 "Last-Translator: Nathan Fredrickson <nathan@silverorange.com>\n"
 "Language-Team: silverorange\n"
@@ -753,19 +753,25 @@ msgstr ""
 msgid "Update Profile"
 msgstr ""
 
-#: ../Admin/components/AdminSite/change-password.xml:9
+#: ../Admin/components/AdminSite/change-password.xml:8
+msgid ""
+"The password provided to you was automatically generated. For your security, "
+"please choose a new password for your account."
+msgstr ""
+
+#: ../Admin/components/AdminSite/change-password.xml:12
 msgid "Old Password"
 msgstr ""
 
-#: ../Admin/components/AdminSite/change-password.xml:17
+#: ../Admin/components/AdminSite/change-password.xml:20
 msgid "New Password"
 msgstr ""
 
-#: ../Admin/components/AdminSite/change-password.xml:25
+#: ../Admin/components/AdminSite/change-password.xml:28
 msgid "Confirm New Password"
 msgstr ""
 
-#: ../Admin/components/AdminSite/change-password.xml:32
+#: ../Admin/components/AdminSite/change-password.xml:35
 msgid "Update Password"
 msgstr ""
 
