@@ -59,15 +59,10 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 * @return string Comma-seperated and MDB2 quoted list of items.
 	 * @throws AdminException
 	 */
-	protected function getItemList($type)
+	protected function getItemList($type = 'integer')
 	{
 		$this->checkItems();
-		$items = $this->items;
-		
-		foreach ($items as &$id)
-			$id = $this->app->db->quote($id, $type);
-
-		return implode(',',$items);
+		return $this->app->db->implodeArray($this->items, $type);
 	}
 
 	// }}}
