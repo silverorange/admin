@@ -9,8 +9,8 @@ require_once 'Admin/AdminUI.php';
  * This class is intended to be a convenience base class. For a fully custom 
  * confirmation page, inherit directly from AdminPage instead.
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2007 silverorange
  */
 abstract class AdminConfirmation extends AdminPage
 {
@@ -48,9 +48,8 @@ abstract class AdminConfirmation extends AdminPage
 	 * Process the response
 	 *
 	 * This method is called to perform whatever processing is required in 
-	 * response to the button clicked.
-	 * Called by {@link AdminConfirmation::process}.
-	 * Sub-classes should implement this method.
+	 * response to the button clicked. It is called by the
+	 * {@link AdminConfirmation::process} method.
 	 */
 	abstract protected function processResponse();
 
@@ -58,7 +57,7 @@ abstract class AdminConfirmation extends AdminPage
 	// {{{ protected function relocate()
 
 	/**
-	 * Relocate after process
+	 * Relocates to the previous page after processsing confirmation response
 	 */
 	protected function relocate()
 	{
@@ -96,10 +95,10 @@ abstract class AdminConfirmation extends AdminPage
 	// {{{ protected function switchToCancelButton()
 
 	/**
-	 * Switch to a cancel button.
-	 * 
-	 * Transforms the default Yes/No buttons in
-	 * confirmation.xml into a cancel button.
+	 * Switches the default yes/no buttons to a cancel button
+	 *
+	 * Call this method if a confirmation page is displayed and the desired
+	 * action of the user is impossible.
 	 */
 	protected function switchToCancelButton()
 	{
