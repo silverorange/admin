@@ -8,10 +8,10 @@ require_once 'SwatDB/exceptions/SwatDBException.php';
  *
  * This class is intended to be a convenience base class. For a fully custom 
  * delete page, inherit directly from {@link AdminConfirmation} or
- * {@link @AdminDBConfirmation} instead.
+ * {@link AdminDBConfirmation} instead.
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2007 silverorange
  */
 abstract class AdminDBDelete extends AdminDBConfirmation
 {
