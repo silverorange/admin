@@ -117,7 +117,7 @@ class AdminMenuView extends SwatUIObject
 
 		$this->displayHideLink();
 		$this->displayMenuContent();
-		$this->displayInlineJavaScript($this->getInlineJavaScript());
+		Swat::displayInlineJavaScript($this->getInlineJavaScript());
 
 		$menu_div->close();
 	}
