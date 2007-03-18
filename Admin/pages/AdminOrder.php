@@ -183,7 +183,7 @@ abstract class AdminOrder extends AdminPage
 	protected function display()
 	{
 		parent::display();
-		$this->displayJavaScript();
+		Swat::displayInlineJavaScript($this->getInlineJavaScript());
 	}
 
 	// }}}
@@ -200,15 +200,11 @@ abstract class AdminOrder extends AdminPage
 	abstract protected function loadData();
 
 	// }}}
-	// {{{ private function displayJavaScript()
+	// {{{ private function getInlineJavaScript()
 
-	private function displayJavaScript()
+	private function getInlineJavaScript()
 	{
-		echo '<script type="text/javascript">'."\n";
-
-		printf("AdminOrder('options_custom', order_obj);\n");
-
-		echo '</script>';
+		return "var admin_order = new AdminOrder('options_custom', order_obj);";
 	}
 
 	// }}}
