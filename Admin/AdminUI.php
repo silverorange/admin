@@ -10,8 +10,9 @@ require_once 'Swat/SwatUI.php';
  * {@link SwatUI::registerHandler() UI handlers} that are specific to the Admin 
  * package.
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2007 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminUI extends SwatUI
 {
@@ -39,10 +40,11 @@ class AdminUI extends SwatUI
 	 * field name are the same, if this is not the case you should manually get
 	 * the values.
 	 *
-	 * @return array Array of values with widget ids as the keys.
-	 * @param array $ids Array of widget ids to retrieve values from.
+	 * @param array $ids an array of widget ids to retrieve values from.
+	 *
+	 * @return array an array of widget values indexed by widget ids.
 	 */
-	public function getValues($ids)
+	public function getValues(array $ids)
 	{
 		$values = array();
 
@@ -63,9 +65,12 @@ class AdminUI extends SwatUI
 	 * but only works if the widget id and field name are the same, if this
 	 * is not the case you should manually set the values.
 	 *
-	 * @param array $values Array of values with widget ids as the keys.
+	 * If a widget id-value pair is passed for a widget that does not exist,
+	 * that value is ignored.
+	 *
+	 * @param array $values an array of widget values indexed by widget ids.
 	 */
-	public function setValues($values)
+	public function setValues(array $values)
 	{
 		foreach ($values as $id => $value) {
 			try {
