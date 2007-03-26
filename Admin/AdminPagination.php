@@ -3,20 +3,18 @@
 require_once 'Swat/SwatPagination.php';
 
 /**
- * A widget to allow navigation between paginated data.
- * Preserves GET var information
+ * A pagination widget that preserves HTTP GET variables
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2007 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminPagination extends SwatPagination
 {
 	// {{{ public properties
 
 	/**
-	 * HTTP GET vars to clobber
-	 *
-	 * An array of GET variable names to unset before rebuilding a new link.
+	 * HTTP GET varables that are not to be preserved
 	 *
 	 * @var array
 	 */
@@ -46,14 +44,14 @@ class AdminPagination extends SwatPagination
 	/**
 	 * Gets the base link for all page links
 	 *
-	 * This removes all unwanted elements from the get variables and adds
-	 * all the wanted ones back into an acceptable url string.
+	 * This removes all unwanted variables from the current HTTP GET variables
+	 * and adds all wanted variables ones back into the link string.
 	 *
-	 * @return string the base link for all pages with cleaned get variables.
+	 * @return string the base link for all pages with cleaned HTTP GET
+	 *                 variables.
 	 */
 	protected function getLink()
 	{
-		//$vars = array_diff_key($_GET, array_flip($this->unset_get_vars));
 		$vars = $_GET;
 
 		$this->unset_get_vars[] = $this->id;
