@@ -1,3 +1,32 @@
+2007-03-26  gauthierm
+
+	* [r16181] admin/trunk/Admin/AdminUI.php:
+	  Tidy docs
+	* [r16180] admin/trunk/Admin/AdminSearchClause.php:
+	  Fix docs and coding conventions.
+	* [r16179] admin/trunk/Admin/AdminPagination.php:
+	  tidy docs
+
+2007-03-18  gauthierm
+
+	* [r16010] admin/trunk/Admin/pages/AdminOrder.php:
+	  Use Swat::displayInlineJavaScript() to display inline JavaScript
+	  for admin order tool.
+	* [r16009] admin/trunk/www/javascript/admin-order.js:
+	  Greatly simplify and anhance the admin order JavaScript by
+	  subscribing to the custom order changed event on the change
+	  order.
+
+2007-03-17  gauthierm
+
+	* [r15985] admin/trunk/Admin/AdminMenuView.php:
+	  respect Swat API change from r15984.
+
+2007-03-13  nrf
+
+	* [r15837] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.2
+
 2007-03-08  gauthierm
 
 	* [r15696] admin/trunk/Admin/pages/AdminConfirmation.php:
