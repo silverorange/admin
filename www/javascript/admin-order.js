@@ -16,5 +16,6 @@ function AdminOrder(radio_button_id, change_order)
 
 AdminOrder.prototype.orderChangeHandler = function(type, args, order)
 {
-	order.radio_button.checked = true;
+	if (order.radio_button)
+		order.radio_button.checked = true;
 }
