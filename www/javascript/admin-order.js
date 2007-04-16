@@ -10,12 +10,12 @@ function AdminOrder(radio_button_id, change_order)
 {
 	this.radio_button = document.getElementById(radio_button_id);
 	if (change_order instanceof SwatChangeOrder)
-		change_order.order_change_event.subscribe(
-			this.orderChangeHandler, this);
+		change_order.orderChangeEvent.subscribe(
+			this.orderChangeHandler, this, true);
 }
 
-AdminOrder.prototype.orderChangeHandler = function(type, args, order)
+AdminOrder.prototype.orderChangeHandler = function()
 {
-	if (order.radio_button)
-		order.radio_button.checked = true;
+	if (this.radio_button)
+		this.radio_button.checked = true;
 }
