@@ -1,3 +1,20 @@
+2007-04-16  gauthierm
+
+	* [r16872] admin/trunk/www/javascript/admin-order.js:
+	  Respect Swat API change and use better event handling.
+
+2007-04-13  gauthierm
+
+	* [r16820] admin/trunk/www/javascript/admin-order.js:
+	  Make sure radio button exists before we try checking it.
+
+2007-03-26  nrf
+
+	* [r16194] admin/trunk/package.php:
+	  prepare for release of 1.1.4
+	* [r16192] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.3
+
 2007-03-26  gauthierm
 
 	* [r16181] admin/trunk/Admin/AdminUI.php:
