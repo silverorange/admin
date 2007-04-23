@@ -96,7 +96,18 @@ class AdminUser extends SwatDBDataObject
 	 */
 	public function hasAccess(AdminComponent $component)
 	{
-		// TODO: implement me
+		$this->checkDB();
+
+		$sql = sprintf('select %s in (
+			select component from AdminComponentAdminGroupBinding
+				inner join AdminUserAdminGroupBinding on
+					AdminComponentAdminGroupBinding.groupnum =
+						AdminUserAdminGroupBinding.groupnum and
+							AdminUserAdminGroupBinding.usernum = %s)',
+			$this->db->quote($component->id, 'integer'),
+			$this->db->quote($this->id, 'integer'));
+
+		return SwatDB::queryOne($this->db, $sql);
 	}
 
 	// }}}
