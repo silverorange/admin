@@ -9,7 +9,8 @@ require_once 'SwatDB/SwatDB.php';
  * Edit page for the current admin user profile
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
+ * @copyright 2005-2007 silverorange
  */
 class AdminAdminSiteProfile extends AdminDBEdit
 {
