@@ -273,7 +273,7 @@ class AdminMenuView extends SwatUIObject
 	public function saveState()
 	{
 		$this->getState()->saveToDatabase($this->app->db,
-			$this->app->session->user_id);
+			$this->app->session->getUserId());
 	}
 
 	// }}}
@@ -354,7 +354,7 @@ class AdminMenuView extends SwatUIObject
 	{
 		try {
 			$menu_state = AdminMenuViewStateStore::loadFromDatabase(
-				$this->app->db, $this->app->session->user_id);
+				$this->app->db, $this->app->session->getUserId());
 		} catch (AdminException $e) {
 			$this->clearState();
 		}
