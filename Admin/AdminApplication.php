@@ -202,7 +202,7 @@ class AdminApplication extends SiteWebApplication
 	}
 
 	// }}}
-	// {{{ public function getMenuView()
+	// {{{ public function getMenuViewClass()
 
 	/**
 	 * Gets the class used for this admin application's menu-view
