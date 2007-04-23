@@ -1,5 +1,6 @@
 <?php
 
+require_once 'Admin/dataobjects/AdminUser.php';
 require_once 'Admin/pages/AdminDBEdit.php';
 require_once 'Admin/AdminUI.php';
 require_once 'SwatDB/SwatDB.php';
@@ -12,12 +13,6 @@ require_once 'SwatDB/SwatDB.php';
  */
 class AdminAdminSiteProfile extends AdminDBEdit
 {
-	// {{{ private properties
-
-	private $fields;
-
-	// }}}
-
 	// init phase
 	// {{{ protected function initInternal()
 
@@ -30,7 +25,9 @@ class AdminAdminSiteProfile extends AdminDBEdit
 		$confirm = $this->ui->getWidget('confirm_password');
 		$confirm->password_widget = $this->ui->getWidget('password');
 
-		$this->id = $this->app->session->user_id;
+		// We only need to set the id so the edit page doesn't think this is
+		// an 'add' instead of an edit.
+		$this->id = $this->app->session->getUserId();
 	}
 
 	// }}}
@@ -40,24 +37,17 @@ class AdminAdminSiteProfile extends AdminDBEdit
 
 	protected function saveDBData()
 	{
-		$name = $this->ui->getWidget('name');
-		$email = $this->ui->getWidget('email');
+		$user = $this->app->session->user;
 
-		$values = array(
-			'name'  => $name->value,
-			'email' => $email->value,
-		);
+		$user->name = $this->ui->getWidget('name')->value;
+		$user->email = $this->ui->getWidget('email')->value;
 
 		$password = $this->ui->getWidget('password');
 		if ($password->value !== null) {
-			$values['password'] = md5($password->value);
+			$user->password = md5($password->value);
 		}
 
-		SwatDB::updateRow($this->app->db, 'AdminUser', array_keys($values),
-			$values, 'integer:id', $this->id);
-
-		$this->app->session->name = $values['name'];
-		$this->app->session->email = $values['email'];
+		$user->save();
 
 		$message = new SwatMessage(
 			Admin::_('Your user profile has been updated.'));
@@ -87,10 +77,10 @@ class AdminAdminSiteProfile extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminUser',
-			array('name', 'email'), 'integer:id', $this->id);
+		$this->ui->setValues(get_object_vars($this->app->session->user));
 
-		$this->ui->setValues(get_object_vars($row));
+		// don't set the password field to the hashed password
+		$this->ui->getWidget('password')->value = null;
 	}
 
 	// }}}
