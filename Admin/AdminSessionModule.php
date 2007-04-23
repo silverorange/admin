@@ -13,6 +13,7 @@ require_once 'Swat/SwatDate.php';
  *
  * @package   Admin
  * @copyright 2005-2007 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminSessionModule extends SiteSessionModule
 {
