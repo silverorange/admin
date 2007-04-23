@@ -41,7 +41,7 @@ class AdminSessionModule extends SiteSessionModule
 	}
 
 	// }}}
-    // {{{ public function init()
+	// {{{ public function init()
 
 	public function init()
 	{
@@ -61,8 +61,8 @@ class AdminSessionModule extends SiteSessionModule
 		}
 	}
 
-    // }}}
-    // {{{ public function login()
+	// }}}
+	// {{{ public function login()
 
 	/**
 	 * Logs an admin user into an admin
@@ -101,8 +101,8 @@ class AdminSessionModule extends SiteSessionModule
 		return $this->isLoggedIn();
 	}
 
-    // }}}
-    // {{{ public function logout()
+	// }}}
+	// {{{ public function logout()
 
 	/**
 	 * Logs the current admin user out of an admin
@@ -114,8 +114,8 @@ class AdminSessionModule extends SiteSessionModule
 		$this->force_change_password = false;
 	}
 
-    // }}}
-    // {{{ public function isLoggedIn()
+	// }}}
+	// {{{ public function isLoggedIn()
 
 	/**
 	 * Whether or not an admin user is logged in
@@ -128,8 +128,8 @@ class AdminSessionModule extends SiteSessionModule
 		return (isset($this->user) && $this->user !== null);
 	}
 
-    // }}}
-    // {{{ public function getUserID()
+	// }}}
+	// {{{ public function getUserID()
 
 	/**
 	 * Gets the current admin user's user identifier 
@@ -145,8 +145,8 @@ class AdminSessionModule extends SiteSessionModule
 		return $this->user->id;
 	}
 
-    // }}}
-    // {{{ public function getEmailAddress()
+	// }}}
+	// {{{ public function getEmailAddress()
 
 	/**
 	 * Gets the current admin user's email address
@@ -162,8 +162,8 @@ class AdminSessionModule extends SiteSessionModule
 		return $this->user->email;
 	}
 
-    // }}}
-    // {{{ public function getName()
+	// }}}
+	// {{{ public function getName()
 
 	/**
 	 * Gets the current admin user's name
@@ -179,7 +179,7 @@ class AdminSessionModule extends SiteSessionModule
 		return $this->user->name;
 	}
 
-    // }}}
+	// }}}
 	// {{{ protected function startSession()
 
 	protected function startSession()
@@ -190,7 +190,7 @@ class AdminSessionModule extends SiteSessionModule
 	}
 
 	// }}}
-    // {{{ protected function insertUserHistory()
+	// {{{ protected function insertUserHistory()
 
 	/**
 	 * Inserts login history for a user
@@ -222,7 +222,7 @@ class AdminSessionModule extends SiteSessionModule
 			$values);
 	}
 
-    // }}}
+	// }}}
 }
 
 ?>
