@@ -6,7 +6,6 @@ require_once 'Site/SiteConfigModule.php';
 require_once 'Site/SiteCookieModule.php';
 require_once 'Site/SiteMessagesModule.php';
 require_once 'MDB2.php';
-require_once 'Swat/exceptions/SwatInvalidClassException.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/Admin.php';
 require_once 'Admin/AdminSessionModule.php';
