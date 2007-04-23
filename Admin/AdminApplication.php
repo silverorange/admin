@@ -6,6 +6,7 @@ require_once 'Site/SiteConfigModule.php';
 require_once 'Site/SiteCookieModule.php';
 require_once 'Site/SiteMessagesModule.php';
 require_once 'MDB2.php';
+require_once 'Swat/exceptions/SwatInvalidClassException.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/Admin.php';
 require_once 'Admin/AdminSessionModule.php';
@@ -20,7 +21,7 @@ require_once 'Admin/exceptions/AdminNotFoundException.php';
  * Web application class for an administration application
  *
  * @package   Admin
- * @copyright 2004-2006 silverorange
+ * @copyright 2004-2007 silverorange
  */
 class AdminApplication extends SiteWebApplication
 {
@@ -117,20 +118,6 @@ class AdminApplication extends SiteWebApplication
 		$_GET = array();
 		$_POST = array();
 		parent::replacePage($source);
-	}
-
-	// }}}
-	// {{{ public function queryForPage()
-
-	public function queryForPage($component)
-	{
-		$sql = sprintf('select * from getAdminPage(%s, %s, %s)',
-			$this->db->quote(true, 'boolean'),
-			$this->db->quote($component, 'text'),
-			$this->db->quote($this->session->user_id, 'integer'));
-
-		$row = SwatDB::queryRow($this->db, $sql);
-		return $row;
 	}
 
 	// }}}
@@ -331,9 +318,9 @@ class AdminApplication extends SiteWebApplication
 	{
 		return array(
 			'cookie'   => 'SiteCookieModule',
+			'database' => 'SiteDatabaseModule',
 			'session'  => 'AdminSessionModule',
 			'messages' => 'SiteMessagesModule',
-			'database' => 'SiteDatabaseModule',
 			'config'   => 'SiteConfigModule',
 		);
 	}
