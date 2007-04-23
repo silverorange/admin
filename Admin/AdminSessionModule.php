@@ -55,8 +55,8 @@ class AdminSessionModule extends SiteSessionModule
 			$this->user = null;
 			$this->force_change_password = false;
 			$this->history = array();
-		} elseif ($this->user_id !== 0) {	
-			$this->app->cookie->setCookie('email', $this->email,
+		} elseif ($this->user !== null) {	
+			$this->app->cookie->setCookie('email', $this->getEmailAddress(),
 				strtotime('+1 day'), '/');
 		}
 	}
@@ -90,6 +90,7 @@ class AdminSessionModule extends SiteSessionModule
 			'AdminUserWrapper')->getFirst();
 		
 		if ($user !== null) {
+			$user->setDatabase($this->app->db);
 			if ($user->force_change_password) {
 				$this->force_change_password = true;
 			} else {
