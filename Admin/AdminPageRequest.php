@@ -1,14 +1,18 @@
 <?php
 
 require_once 'Admin/AdminApplication.php';
+require_once 'Admin/dataobjects/AdminComponent.php';
+require_once 'Admin/dataobjects/AdminComponentWrapper.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
+require_once 'Admin/exceptions/AdminNoAccessException.php';
 require_once 'Site/SiteObject.php';
 
 /**
  * Page request
  *
  * @package   Admin
- * @copyright 2004-2006 silverorange
+ * @copyright 2004-2007 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminPageRequest extends SiteObject
 {
@@ -71,15 +75,17 @@ class AdminPageRequest extends SiteObject
 						$this->source));
 
 			} else {
-
-				$row = $this->app->queryForPage($this->component);
-
-				if ($row === null)
+				$component = $this->getComponentByShortname($this->component);
+				if ($component === null)
 					throw new AdminNotFoundException(sprintf(Admin::_(
 						"Component not found for source '%s'."),
 						$this->source));
 				else
-					$this->title = $row->component_title;
+					$this->title = $component->title;
+
+				if (!$this->app->session->user->hasAccess($component))
+					throw new AdminNoAccessException(Store::_(
+						'Access to the requested component is forbidden.'));
 			}
 
 		} elseif ($this->source == 'AdminSite/ChangePassword') {
@@ -169,6 +175,25 @@ class AdminPageRequest extends SiteObject
 		return $this->source;
 	}
 	
+	// }}}
+	// {{{ protected function getComponentByShortname()
+
+	/**
+	 * @param string $shortname
+	 *
+	 * @return AdminComponent
+	 */
+	protected function getComponentByShortname($shortname)
+	{
+		$sql = sprintf('select *
+			from AdminComponent
+			where enabled = true and shortname = %s',
+			$this->app->db->quote($shortname, 'text'));
+
+		return SwatDB::query($this->app->db, $sql,
+			'AdminComponentWrapper')->getFirst();
+	}
+
 	// }}}
 }
 
