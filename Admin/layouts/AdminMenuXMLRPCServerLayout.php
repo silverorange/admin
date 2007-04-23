@@ -39,7 +39,8 @@ class AdminMenuXMLRPCServerLayout extends SiteXMLRPCServerLayout
 		if ($this->menu === null) {
 			$menu_store = SwatDB::executeStoredProc($this->app->db,
 				'getAdminMenu',
-				$this->app->db->quote($this->app->session->user_id, 'integer'),
+				$this->app->db->quote($this->app->session->getUserId(),
+					'integer'),
 				'AdminMenuStore');
 
 			$class = $this->app->getMenuViewClass();
