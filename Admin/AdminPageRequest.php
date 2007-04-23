@@ -75,13 +75,15 @@ class AdminPageRequest extends SiteObject
 						$this->source));
 
 			} else {
-				$component = $this->getComponentByShortname($this->component);
-				if ($component === null)
+				$component = new AdminComponent();
+				$component->setDatabase($this->app->db);
+				if (!$component->loadFromShortname($this->component)) {
 					throw new AdminNotFoundException(sprintf(Admin::_(
 						"Component not found for source '%s'."),
 						$this->source));
-				else
+				} else {
 					$this->title = $component->title;
+				}
 
 				if (!$this->app->session->user->hasAccess($component))
 					throw new AdminNoAccessException(Store::_(
@@ -175,25 +177,6 @@ class AdminPageRequest extends SiteObject
 		return $this->source;
 	}
 	
-	// }}}
-	// {{{ protected function getComponentByShortname()
-
-	/**
-	 * @param string $shortname
-	 *
-	 * @return AdminComponent
-	 */
-	protected function getComponentByShortname($shortname)
-	{
-		$sql = sprintf('select *
-			from AdminComponent
-			where enabled = true and shortname = %s',
-			$this->app->db->quote($shortname, 'text'));
-
-		return SwatDB::query($this->app->db, $sql,
-			'AdminComponentWrapper')->getFirst();
-	}
-
 	// }}}
 }
 
