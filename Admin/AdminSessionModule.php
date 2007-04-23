@@ -90,7 +90,6 @@ class AdminSessionModule extends SiteSessionModule
 			'AdminUserWrapper')->getFirst();
 		
 		if ($user !== null) {
-			$user->setDatabase($this->app->db);
 			if ($user->force_change_password) {
 				$this->force_change_password = true;
 			} else {
@@ -181,6 +180,16 @@ class AdminSessionModule extends SiteSessionModule
 	}
 
     // }}}
+	// {{{ protected function startSession()
+
+	protected function startSession()
+	{
+		parent::startSession();
+		if (isset($this->user) && $this->user instanceof AdminUser)
+			$this->user->setDatabase($this->app->database->getConnection());
+	}
+
+	// }}}
     // {{{ protected function insertUserHistory()
 
 	/**
