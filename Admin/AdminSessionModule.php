@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Admin/dataobjects/AdminUser.php';
+require_once 'Admin/dataobjects/AdminUserWrapper.php';
 require_once 'Admin/exceptions/AdminException.php';
 require_once 'Site/SiteSessionModule.php';
 require_once 'Site/SiteCookieModule.php';
@@ -10,7 +12,7 @@ require_once 'Swat/SwatDate.php';
  * Web application module for sessions
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2007 silverorange
  */
 class AdminSessionModule extends SiteSessionModule
 {
@@ -49,10 +51,8 @@ class AdminSessionModule extends SiteSessionModule
 		if (!$this->isActive())
 			$this->activate();
 
-		if (!isset($this->user_id)) {
-			$this->user_id = 0;
-			$this->name    = '';
-			$this->email   = '';
+		if (!isset($this->user)) {
+			$this->user = null;
 			$this->force_change_password = false;
 			$this->history = array();
 		} elseif ($this->user_id !== 0) {	
@@ -75,29 +75,26 @@ class AdminSessionModule extends SiteSessionModule
 	 */
 	public function login($email, $password)
 	{
-		$this->logout(); //make sure user is logged out before logging in
+		$this->logout(); // make sure user is logged out before logging in
 	
 		$md5_password = md5($password);
 		
-		$sql = 'select id, name, email, force_change_password
+		$sql = sprintf('select *
 			from AdminUser
-			where email = %s and password = %s and enabled = %s';
-
-		$sql = sprintf($sql, 
+			where email = %s and password = %s and enabled = %s',
 			$this->app->db->quote($email, 'text'),
 			$this->app->db->quote($md5_password, 'text'),
 			$this->app->db->quote(true, 'boolean'));
 
-		$row = SwatDB::queryRow($this->app->db, $sql);
+		$user = SwatDB::query($this->app->db, $sql,
+			'AdminUserWrapper')->getFirst();
 		
-		if ($row !== null) {
-			if ($row->force_change_password) {
+		if ($user !== null) {
+			if ($user->force_change_password) {
 				$this->force_change_password = true;
 			} else {
-				$this->name    = $row->name;
-				$this->email   = $row->email;
-				$this->user_id = $row->id;
-				$this->insertUserHistory($row->id);
+				$this->user = $user;
+				$this->insertUserHistory($user);
 			}
 		}
 
@@ -113,7 +110,7 @@ class AdminSessionModule extends SiteSessionModule
 	public function logout()
 	{
 		$this->clear();
-		$this->user_id = 0;
+		$this->user = null;
 		$this->force_change_password = false;
 	}
 
@@ -128,7 +125,7 @@ class AdminSessionModule extends SiteSessionModule
 	 */
 	public function isLoggedIn()
 	{
-		return (isset($this->user_id) && $this->user_id !== 0);
+		return (isset($this->user) && $this->user !== null);
 	}
 
     // }}}
@@ -145,7 +142,7 @@ class AdminSessionModule extends SiteSessionModule
 		if (!$this->isLoggedIn())
 			return null;
 
-		return $this->user_id;
+		return $this->user->id;
 	}
 
     // }}}
@@ -162,7 +159,7 @@ class AdminSessionModule extends SiteSessionModule
 		if (!$this->isLoggedIn())
 			return null;
 
-		return $this->email;
+		return $this->user->email;
 	}
 
     // }}}
@@ -179,19 +176,18 @@ class AdminSessionModule extends SiteSessionModule
 		if (!$this->isLoggedIn())
 			return null;
 
-		return $this->name;
+		return $this->user->name;
 	}
 
     // }}}
     // {{{ protected function insertUserHistory()
 
 	/**
-	 * Inserts login history for a user identifier
+	 * Inserts login history for a user
 	 *
-	 * @param integer $user_id the user identifier of the user to record
-	 *                          login history for.
+	 * @param AdminUser $user_id the user to record login history for.
 	 */
-	protected function insertUserHistory($user_id)
+	protected function insertUserHistory(AdminUser $user)
 	{
 		$login_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ? 
 			$_SERVER['HTTP_USER_AGENT'] : null;
@@ -206,7 +202,7 @@ class AdminSessionModule extends SiteSessionModule
 			'text:login_agent', 'text:remote_ip');
 
 		$values = array(
-			'usernum'     => $user_id, 
+			'usernum'     => $user->id, 
 			'login_date'  => $login_date->getDate(), 
 			'login_agent' => $login_agent, 
 			'remote_ip'   => $remote_ip,
