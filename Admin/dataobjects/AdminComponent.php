@@ -79,6 +79,41 @@ class AdminComponent extends SwatDBDataObject
 	public $show;
 
 	// }}}
+	// {{{ public function loadFromShortname()
+
+	/**
+	 * Loads an admin component by its shortname
+	 *
+	 * @param string $shortname the shortname of the admin component to load.
+	 *
+	 * @return boolean true if loading this component was successful and
+	 *                  false if a component with the given shortname does not
+	 *                  exist.
+	 */
+	public function loadFromShortname($shortname)
+	{
+		$this->checkDB();
+
+		$row = null;
+
+		if ($this->table !== null) {
+			$sql = sprintf('select * from %s where shortname = %s',
+			$this->table,
+			$this->db->quote($shortname, 'text'));
+
+			$rs = SwatDB::query($this->db, $sql, null);
+			$row = $rs->fetchRow(MDB2_FETCHMODE_ASSOC);
+		}
+
+		if ($row === null)
+			return false;
+
+		$this->initFromRow($row);
+		$this->generatePropertyHashes();
+		return true;
+	}
+
+	// }}}
 	// {{{ protected function init()
 
 	protected function init()
