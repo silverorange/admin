@@ -196,10 +196,8 @@ abstract class AdminPage extends SitePage
 	public function build()
 	{
 		parent::build();
-		$this->buildInternal();
 
-		$this->layout->addHtmlHeadEntrySet(
-			$this->ui->getRoot()->getHtmlHeadEntrySet());
+		$this->buildInternal();
 
 		$this->layout->data->title =
 			SwatString::minimizeEntities($this->title).' - '.
@@ -254,6 +252,18 @@ abstract class AdminPage extends SitePage
 		if ($this->ui !== null) {
 			$this->ui->display();
 		}
+	}
+
+	// }}}
+
+	// finalize phase
+	// {{{ public function finalize()
+
+	public function finalize()
+	{
+		parent::finalize();
+		$this->layout->addHtmlHeadEntrySet(
+			$this->ui->getRoot()->getHtmlHeadEntrySet());
 	}
 
 	// }}}
