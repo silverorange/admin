@@ -13,10 +13,10 @@ AdminMenu.preloadImages = function()
 		var image3 = new Image();
 		var image4 = new Image();
 
-		image1.src = '../images/admin-menu-section-background.png';
-		image2.src = '../images/admin-menu-section-background-closed.png';
-		image3.src = '../images/admin-menu-section-open.png';
-		image4.src = '../images/admin-menu-section-closed.png';
+		image1.src = 'packages/admin/images/admin-menu-section-background.png';
+		image2.src = 'packages/admin/images/admin-menu-section-background-closed.png';
+		image3.src = 'packages/admin/images/admin-menu-section-open.png';
+		image4.src = 'packages/admin/images/admin-menu-section-closed.png';
 
 		AdminMenu.imagesPreloaded = true;
 	}
