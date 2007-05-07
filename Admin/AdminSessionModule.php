@@ -7,6 +7,8 @@ require_once 'Site/SiteSessionModule.php';
 require_once 'Site/SiteCookieModule.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Swat/SwatDate.php';
+require_once 'Swat/SwatForm.php';
+require_once 'Swat/SwatString.php';
 
 /**
  * Web application module for sessions
@@ -17,6 +19,15 @@ require_once 'Swat/SwatDate.php';
  */
 class AdminSessionModule extends SiteSessionModule
 {
+	// {{{ protected properties
+
+	/**
+	 * @var array
+	 * @see AdminSessionModule::registerLoginCallback()
+	 */
+	protected $login_callbacks = array();
+
+	// }}}
 	// {{{ public function __construct()
 
 	/**
@@ -37,6 +48,12 @@ class AdminSessionModule extends SiteSessionModule
 				'the session module, or specify the cookie module before the '.
 				'session module in the application\'s getDefaultModuleList() '.
 				'method.');
+
+		$this->registerRegenerateIdCallback(
+			array($this, 'regenerateAuthenticationToken'));
+
+		$this->registerLoginCallback(
+			array($this, 'regenerateAuthenticationToken'));
 
 		parent::__construct($app);
 	}
@@ -96,6 +113,7 @@ class AdminSessionModule extends SiteSessionModule
 			} else {
 				$this->user = $user;
 				$this->insertUserHistory($user);
+				$this->runLoginCallbacks();
 			}
 		}
 
@@ -113,6 +131,7 @@ class AdminSessionModule extends SiteSessionModule
 		$this->clear();
 		$this->user = null;
 		$this->force_change_password = false;
+		unset($this->_authentication_token);
 	}
 
 	// }}}
@@ -181,6 +200,47 @@ class AdminSessionModule extends SiteSessionModule
 	}
 
 	// }}}
+	// {{{ public function registerLoginCallback()
+
+	/**
+	 * Registers a callback function that is executed when a successful session
+	 * login is performed
+	 *
+	 * @param callback $callback the callback to call when a successful login
+	 *                            is performed.
+	 * @param array $parameters optional. The paramaters to pass to the
+	 *                           callback.
+	 *
+	 * @throws AdminException when the <i>$callback</i> parameter is not
+	 *                        callable.
+	 * @throws AdminException when the <i>$parameters</i> parameter is not an
+	 *                        array.
+	 */
+	public function registerLoginCallback($callback, $parameters = array())
+	{
+		if (!is_callable($callback))
+			throw new AdminException('Cannot register invalid callback.');
+
+		if (!is_array($parameters))
+			throw new AdminException('Callback parameters must be specified '.
+				'in an array.');
+
+		$this->login_callbacks[] = array(
+			'callback' => $callback,
+			'parameters' => $parameters
+		);
+	}
+
+	// }}}
+	// {{{ protected function regerateAuthenticationToken()
+
+	protected function regenerateAuthenticationToken()
+	{
+		$this->_authentication_token = SwatString::hash(mt_rand());
+		SwatForm::$default_authentication_token = $this->_authentication_token;
+	}
+
+	// }}}
 	// {{{ protected function startSession()
 
 	protected function startSession()
@@ -188,6 +248,10 @@ class AdminSessionModule extends SiteSessionModule
 		parent::startSession();
 		if (isset($this->user) && $this->user instanceof AdminUser)
 			$this->user->setDatabase($this->app->database->getConnection());
+
+		if (isset($this->_authentication_token))
+			SwatForm::$default_authentication_token =
+				$this->_authentication_token;
 	}
 
 	// }}}
@@ -221,6 +285,18 @@ class AdminSessionModule extends SiteSessionModule
 
 		SwatDB::insertRow($this->app->db, 'AdminUserHistory', $fields,
 			$values);
+	}
+
+	// }}}
+	// {{{ protected function runLoginCallbacks()
+
+	protected function runLoginCallbacks()
+	{
+		foreach ($this->login_callbacks as $login_callback) {
+			$callback = $login_callback['callback'];
+			$parameters = $login_callback['parameters'];
+			call_user_func_array($callback, $parameters);
+		}
 	}
 
 	// }}}
