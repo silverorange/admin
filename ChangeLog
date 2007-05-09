@@ -1,3 +1,84 @@
+2007-05-07  gauthierm
+
+	* [r17390] admin/trunk/Admin/AdminSessionModule.php:
+	  Protect SwatForm objects in the Admin package from CSRF attacks.
+
+2007-05-04  steven
+
+	* [r17363] admin/trunk/www/javascript/admin-menu.js:
+	  Fix broken image references (wasn't looking in the package dir)
+
+2007-05-01  gauthierm
+
+	* [r17294] admin/trunk/Admin/pages/AdminPage.php:
+	  Use finalize method on AdminPage.
+
+2007-04-24  gauthierm
+
+	* [r17131] admin/trunk/sql/functions/getAdminPage.sql:
+	  Remove unneeded SQL function.
+
+2007-04-23  gauthierm
+
+	* [r17129] admin/trunk/Admin/AdminPageRequest.php:
+	  Use new AdminComponent::loadFromShortname() method in
+	  AdminPageRequest.
+	* [r17128] admin/trunk/Admin/dataobjects/AdminComponent.php:
+	  Add AdminComponent::loadFromShortname()
+	* [r17127] admin/trunk/Admin/components/AdminSite/Profile.php:
+	  Fix license and copyright'
+	* [r17126]
+	  admin/trunk/Admin/layouts/AdminMenuXMLRPCServerLayout.php:
+	  Use methods on AdminSession
+	  Module to get user id.
+	* [r17125] admin/trunk/Admin/AdminMenuView.php:
+	  Use methods on AdminSessionModule to get user id.
+	* [r17124] admin/trunk/Admin/layouts/AdminLayout.php:
+	  Use methods on AdminSessionModule to get user id and name.
+	* [r17123] admin/trunk/Admin/AdminApplication.php:
+	  Remove unrequired require.
+	* [r17122] admin/trunk/Admin/AdminApplication.php:
+	  remove unneeded method and load database module before session
+	  module (needed now that session login uses dataobjects).
+	* [r17121] admin/trunk/Admin/AdminPageRequest.php:
+	  Use dataobjects for checking access permissions in
+	  AdminPageRequest and throw AdminNoAccessException instead of
+	  AdminNotFound when there is no access.
+	* [r17120] admin/trunk/Admin/AdminSessionModule.php:
+	  Add license.
+	* [r17119] admin/trunk/Admin/AdminSessionModule.php:
+	  Spaces to tabs.
+	* [r17118] admin/trunk/Admin/AdminSessionModule.php:
+	  Properly set admin user database when logging in admin user.
+	* [r17117] admin/trunk/Admin/components/AdminSite/Profile.php:
+	  Use dataobjects on admin profile edit page.
+	* [r17116] admin/trunk/Admin/dataobjects/AdminUser.php:
+	  Implement the hasAccess() method.
+	* [r17115] admin/trunk/Admin/AdminSessionModule.php:
+	  Small fixes to dataobject-enabled admin session module.
+	* [r17113] admin/trunk/Admin/dataobjects/AdminUserWrapper.php:
+	  Wrapper object for admin users.
+	* [r17112] admin/trunk/Admin/AdminSessionModule.php:
+	  Make AdminSessionModule use new AdminUser dataobject.
+	* [r17111] admin/trunk/Admin/dataobjects,
+	  admin/trunk/Admin/dataobjects/AdminComponent.php,
+	  admin/trunk/Admin/dataobjects/AdminComponentWrapper.php,
+	  admin/trunk/Admin/dataobjects/AdminGroup.php,
+	  admin/trunk/Admin/dataobjects/AdminSection.php,
+	  admin/trunk/Admin/dataobjects/AdminUser.php,
+	  admin/trunk/Admin/dataobjects/AdminUserHistory.php,
+	  admin/trunk/Admin/dataobjects/AdminUserHistoryWrapper.php:
+	  Dataobjects for the Admin package!
+	* [r17107] admin/trunk/Admin/AdminApplication.php:
+	  fix folding
+
+2007-04-19  nrf
+
+	* [r17008] admin/trunk/package.php:
+	  prepare for release of 1.1.6
+	* [r17006] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.5
+
 2007-04-16  gauthierm
 
 	* [r16872] admin/trunk/www/javascript/admin-order.js:
