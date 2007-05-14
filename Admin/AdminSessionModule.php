@@ -37,6 +37,9 @@ class AdminSessionModule extends SiteSessionModule
 	 *
 	 * @throws AdminException if there is no cookie module loaded the session
 	 *                         module throws an exception.
+	 *
+	 * @throws AdminException if there is no database module loaded the session
+	 *                         module throws an exception.
 	 */
 	public function __construct(SiteApplication $app)
 	{
@@ -46,8 +49,17 @@ class AdminSessionModule extends SiteSessionModule
 				'SiteCookieModule to be loaded. Please either explicitly '.
 				'add a cookie module to the application before instantiating '.
 				'the session module, or specify the cookie module before the '.
-				'session module in the application\'s getDefaultModuleList() '.
+				'session module in the application’s getDefaultModuleList() '.
 				'method.');
+
+		if (!(isset($app->database) &&
+			$app->database instanceof SiteDatabaseModule))
+			throw new AdminException('The AdminSessionModule requires a '.
+				'SiteDatabaseModule to be loaded. Please either explicitly '.
+				'add a database module to the application before '.
+				'instantiating the session module, or specify the database '.
+				'module before the session module in the application’s '.
+				'getDefaultModuleList() method.');
 
 		$this->registerRegenerateIdCallback(
 			array($this, 'regenerateAuthenticationToken'));
@@ -237,7 +249,7 @@ class AdminSessionModule extends SiteSessionModule
 	protected function regenerateAuthenticationToken()
 	{
 		$this->_authentication_token = SwatString::hash(mt_rand());
-		SwatForm::$default_authentication_token = $this->_authentication_token;
+		SwatForm::setAuthenticationToken($this->_authentication_token);
 	}
 
 	// }}}
@@ -250,8 +262,7 @@ class AdminSessionModule extends SiteSessionModule
 			$this->user->setDatabase($this->app->database->getConnection());
 
 		if (isset($this->_authentication_token))
-			SwatForm::$default_authentication_token =
-				$this->_authentication_token;
+			SwatForm::setAuthenticationToken($this->_authentication_token);
 	}
 
 	// }}}
