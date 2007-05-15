@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Admin/pages/AdminPage.php';
-require_once 'Swat/SwatTableView.php';
+require_once 'Swat/SwatView.php';
 require_once 'Swat/SwatActions.php';
 
 /**
@@ -25,7 +25,7 @@ abstract class AdminIndex extends AdminPage
 		$forms = $root->getDescendants('SwatForm');
 
 		foreach ($forms as $form) {
-			$view = $form->getFirstDescendant('SwatTableView');
+			$view = $form->getFirstDescendant('SwatView');
 			$actions = $form->getFirstDescendant('SwatActions');
 
 			if ($form->isProcessed() &&
@@ -45,10 +45,10 @@ abstract class AdminIndex extends AdminPage
 	 * response to actions. Sub-classes should implement this method.
 	 * Widgets can be accessed through the $ui class variable.
 	 *
-	 * @param SwatTableView $view the table view to get selected items from.
+	 * @param SwatView $view the view to get selected items from.
 	 * @param SwatActions $actions the actions list widget.
 	 */
-	protected function processActions(SwatTableView $view, SwatActions $actions)
+	protected function processActions(SwatView $view, SwatActions $actions)
 	{
 	}
 
@@ -75,7 +75,7 @@ abstract class AdminIndex extends AdminPage
 	protected function buildViews()
 	{
 		$root = $this->ui->getRoot();
-		$views = $root->getDescendants('SwatTableView');
+		$views = $root->getDescendants('SwatView');
 		foreach ($views as $view)
 			if ($view->model === null)
 				$view->model = $this->getTableStore($view);
@@ -93,7 +93,7 @@ abstract class AdminIndex extends AdminPage
 		$forms = $root->getDescendants('SwatForm');
 		foreach ($forms as $form) {
 			$form->action = $this->getRelativeURL();
-			$view = $form->getFirstDescendant('SwatTableView');
+			$view = $form->getFirstDescendant('SwatView');
 
 			if ($view !== null && $view->model !== null &&
 				$view->model->getRowCount() == 0) {
@@ -127,7 +127,7 @@ abstract class AdminIndex extends AdminPage
 	{
 		$orderby = $default_orderby;
 
-		if ($view->orderby_column !== null) {
+		if ($view instanceof SwatTableView &&  $view->orderby_column !== null) {
 			if (isset($column_map[$view->orderby_column->id])) {
 				$orderby = $column_map[$view->orderby_column->id];
 			} elseif ($column_prefix !== null) {
