@@ -1,3 +1,18 @@
+2007-05-15  nick
+
+	* [r17528] admin/trunk/Admin/pages/AdminIndex.php:
+	  Allow for any type of view, not just a tableview
+
+2007-05-14  gauthierm
+
+	* [r17516] admin/trunk/Admin/AdminSessionModule.php:
+	  Respect Swat API change in r17515.
+
+2007-05-09  nrf
+
+	* [r17432] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.7
+
 2007-05-07  gauthierm
 
 	* [r17390] admin/trunk/Admin/AdminSessionModule.php:
