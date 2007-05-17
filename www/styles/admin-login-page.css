@@ -3,6 +3,7 @@
 #login_frame {
 	width: 25em;
 	margin: 4em auto 1em auto;
+	text-align: left;
 }
 
 .swat-required { display: none; }
