@@ -1,6 +1,11 @@
+@import url('http://yui.yahooapis.com/2.2.2/build/fonts/fonts-min.css');
+@import url('http://yui.yahooapis.com/2.2.2/build/grids/grids-min.css');
+
 body {
 	background: #f7f5f3;
 	color: #333;
+	margin: 0;
+	padding: 0;
 }
 
 #doc, #doc2, #doc3 { margin: 0; } /* turn of 10px left/right margins from default YUI grid  */
