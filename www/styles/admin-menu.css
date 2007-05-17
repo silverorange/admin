@@ -1,18 +1,25 @@
 /* Admin menu styles */
 
 .admin-menu {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 160px;
+	margin-top: 1em;
 	color: #666;
-	padding: 2em 16px;
+}
+
+/* layouts with menu on left */
+.yui-t1 .admin-menu,
+.yui-t2 .admin-menu,
+.yui-t3 .admin-menu {
+	margin-left: 1em;
+}
+
+/* layouts with menu on right */
+.yui-t4 .admin-menu,
+.yui-t5 .admin-menu,
+.yui-t6 .admin-menu {
+	margin-right: 1em;
 }
 
 .admin-menu ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
 	color: #837352;
 }
 
@@ -87,9 +94,20 @@ body.hide-menu .admin-menu {
 	display: none;
 } 
 
-body.hide-menu #admin-content {
-	padding-left: 36px;
+/* layouts with menu on left */
+body.hide-menu .yui-t1 #yui-main .yui-b,
+body.hide-menu .yui-t2 #yui-main .yui-b,
+body.hide-menu .yui-t3 #yui-main .yui-b {
+	margin-left: 3em;
 }
+
+/* layouts with menu on left */
+body.hide-menu .yui-t4 #yui-main .yui-b,
+body.hide-menu .yui-t5 #yui-main .yui-b,
+body.hide-menu .yui-t6 #yui-main .yui-b {
+	margin-right: 3em;
+}
+
 
 body .admin-menu-hide img {
 	display: block;
@@ -102,6 +120,19 @@ body .admin-menu-show {
 body.hide-menu .admin-menu-show {
 	display: block;
 	position: absolute;
-	top: 2em;
+	top: 1em;
 	left: 0;
-} 
+}
+
+body.hide-menu .yui-t1 .admin-menu-show,
+body.hide-menu .yui-t2 .admin-menu-show,
+body.hide-menu .yui-t3 .admin-menu-show {
+	left: 0;
+}
+
+body.hide-menu .yui-t4 .admin-menu-show,
+body.hide-menu .yui-t5 .admin-menu-show,
+body.hide-menu .yui-t6 .admin-menu-show {
+	left: auto;
+	right: 0;
+}
