@@ -4,30 +4,36 @@
 	<title><?=$this->title?></title>
 	<base href="<?=$this->basehref?>" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.2/build/reset-fonts-grids/reset-fonts-grids.css" />
 	<?=$this->html_head_entries?>
 </head>
 <body class="<?= implode(' ', $this->body_classes->getArrayCopy()) ?>">
 
-<div id="admin-wrapper">
+<div id="doc3" class="yui-t1">
 
-<div id="admin-header">
+<div id="hd">
+
 	<?=$this->header?>
 	<div id="admin-navbar">
 		<?=$this->navbar?>
 	</div><!-- end admin-navbar -->
-</div><!-- end admin-header -->
 
-<div id="admin-body">
+</div><!-- end #hd -->
 
-	<div id="admin-content">
-		<?=$this->content?>
-	</div><!-- end admin-content -->
+<div id="bd">
 
+	<div id="yui-main">
+		<div class="yui-b">
+			<?=$this->content?>
+		</div><!-- end admin-content -->
+	</div><!-- end #yui-main -->
+
+	<div class="yui-b">
 	<?=$this->menu?>
+	</div>
 
-</div><!-- end admin-body -->
+</div><!-- end #bd -->
 
-
-</div><!-- end admin-wrapper -->
+</div><!-- end #doc -->
 </body>
 </html>

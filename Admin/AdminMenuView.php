@@ -23,7 +23,7 @@ class AdminMenuView extends SwatUIObject
 	 *
 	 * @var string
 	 */
-	public $id = 'admin_menu';
+	public $id = '';
 
 	// }}}
 	// {{{ protected properties
@@ -59,9 +59,7 @@ class AdminMenuView extends SwatUIObject
 	 * Creates a new menu-view object with a given menu-store and id.
 	 *
 	 * @param AdminMenuStore $store the menu-store this view will view.
-	 * @param string $id optional identifier for this menu-view. If no
-	 *                    identifier is specified, an id of 'admin_menu' is
-	 *                    used.
+	 * @param string $id optional identifier for this menu-view.
 	 */
 	public function __construct(AdminMenuStore $store,
 		AdminApplication $app, $id = null)

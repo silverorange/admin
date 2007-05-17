@@ -1,11 +1,9 @@
 body {
-	font-family: sans-serif;
-	font-size: 13px;
 	background: #f7f5f3;
 	color: #333;
-	margin: 0;
-	padding: 0;
 }
+
+#doc, #doc2, #doc3 { margin: 0; } /* turn of 10px left/right margins from default YUI grid  */
 
 a:link { color: #3F5ACE; }
 a:visited { color: #3F5ACE; }
@@ -14,41 +12,45 @@ a:active { color: #000; }
 
 img { border: 0; }
 
+/* YUI Reset basics */
+strong { font-weight: bold; }
+em { font-style: italic; }
+p { margin: 0 0 1em 0; }
 
-/* Basic Layout */
 
-#admin-body {
-	position: relative;
-	width: 100%
+/* layouts with menu on left */
+.yui-t1 #yui-main .yui-b,
+.yui-t2 #yui-main .yui-b,
+.yui-t3 #yui-main .yui-b {
+	margin-right: 1em;
 }
 
-#admin-body {
+/* layouts with menu on right */
+.yui-t4 #yui-main .yui-b,
+.yui-t5 #yui-main .yui-b,
+.yui-t6 #yui-main .yui-b {
+	margin-left: 1em;
 }
-
-#admin-content {
-	padding: 1em 16px 1em 200px;
-}
-
 
 /* Header Styles */
 
-#admin-header {
+#hd {
 	background: #426c9e url(../images/admin-header-background.png) bottom repeat-x;
 	padding: 0.5em 1em;
 	color: #ddd;
 	border-bottom: 1px solid #81aed5;
 }
 
-#admin-header a { color: #fff; }
-#admin-header a:hover { color: #ddd; }
-#admin-header a:active { color: #ccc; }
+#hd a { color: #fff; }
+#hd a:hover { color: #ddd; }
+#hd a:active { color: #ccc; }
 
-#admin-header #admin-syslinks {
+#hd #admin-syslinks {
 	float: right;
 	margin: 0.1em 0 0 2em;
 }
 
-#admin-header h1 {
+#hd h1 {
 	margin: 0;
 	padding: 0;
 	font-size: 120%;
@@ -57,8 +59,17 @@ img { border: 0; }
 	font-weight: bold;
 }
 
-#admin-navbar {
-}
+
+/* Basic styles to build up from YUI reset */
+
+h1, h2, h3, h4, h5, h6{ font-weight: bold;  }
+
+h1 { font-size: 152%; }
+h2 { font-size: 136%; }
+h3 { font-size: 122%; }
+h4 { font-size: 107%; }
+h5 { font-size:  92%; }
+h6 { font-size:  85%; }
 
 
 /* Content Styles */
@@ -79,8 +90,13 @@ img { border: 0; }
 	height: 48px; /* IE hack */
 }
 
-#confirmation_frame h3 {
-	margin-top: 0;
+#confirmation_frame ul {
+	list-style-type: disc;
+}
+
+#confirmation_frame ul li {
+	margin-left: 1.5em;
+	margin-top: 0.1em;
 }
 
 address { font-style: normal; }
@@ -106,3 +122,6 @@ address { font-style: normal; }
 	top: -2px;
 }
 
+.swat-button {
+	padding: 0.1em;
+}
