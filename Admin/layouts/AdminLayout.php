@@ -112,7 +112,7 @@ class AdminLayout extends SiteLayout
 		parent::build();
 
 		$this->addHtmlHeadEntry(new SwatStyleSheetHtmlHeadEntry(
-			'packages/admin/styles/admin.css', Admin::PACKAGE_ID));
+			'packages/admin/styles/admin-layout.css', Admin::PACKAGE_ID));
 
 		$this->addHtmlHeadEntrySet($this->logout_form->getHtmlHeadEntrySet());
 		$this->addHtmlHeadEntrySet($this->menu->getHtmlHeadEntrySet());
