@@ -4,7 +4,6 @@
 	<title><?=$this->title?></title>
 	<base href="<?=$this->basehref?>" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.2/build/reset-fonts-grids/reset-fonts-grids.css" />
 	<?=$this->html_head_entries?>
 </head>
 <body class="<?= implode(' ', $this->body_classes->getArrayCopy()) ?>">
