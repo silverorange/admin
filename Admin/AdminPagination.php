@@ -33,9 +33,7 @@ class AdminPagination extends SwatPagination
 		parent::process();
 
 		if (array_key_exists($this->id, $_GET))
-			$this->current_page = $_GET[$this->id];
-
-		$this->current_record = $this->current_page * $this->page_size;
+			$this->setCurrentPage($_GET[$this->id]);
 	}
 
 	// }}}
