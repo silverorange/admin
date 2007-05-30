@@ -22,6 +22,9 @@ strong { font-weight: bold; }
 em { font-style: italic; }
 p { margin: 0 0 1em 0; }
 
+#yui-main .yui-b {
+	margin-top: 1em;
+}
 
 /* layouts with menu on left */
 .yui-t1 #yui-main .yui-b,
