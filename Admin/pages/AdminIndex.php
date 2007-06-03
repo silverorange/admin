@@ -25,15 +25,13 @@ abstract class AdminIndex extends AdminPage
 		$forms = $root->getDescendants('SwatForm');
 
 		foreach ($forms as $form) {
-			if ($form->id == 'index_form') {
-				$view = $form->getFirstDescendant('SwatView');
-				$actions = $form->getFirstDescendant('SwatActions');
+			$view = $form->getFirstDescendant('SwatView');
+			$actions = $form->getFirstDescendant('SwatActions');
 
-				if ($form->isProcessed() &&
-					($view !== null) && (count($view->getSelection()) != 0) &&
-					($actions !== null) && ($actions->selected !== null))
-						$this->processActions($view, $actions);
-			}
+			if ($form->isProcessed() &&
+				($view !== null) && (count($view->getSelection()) != 0) &&
+				($actions !== null) && ($actions->selected !== null))
+					$this->processActions($view, $actions);
 		}
 	}
 
