@@ -2,18 +2,18 @@
 
 require_once 'Site/pages/SitePage.php';
 require_once 'Swat/SwatForm.php';
+require_once 'Swat/exceptions/SwatCrossSiteRequestForgeryException.php';
+require_once 'Swat/exceptions/SwatWidgetNotFoundException.php';
 require_once 'Admin/AdminMenuStore.php';
 require_once 'Admin/AdminMenuView.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Admin/layouts/AdminLayout.php';
 
 /**
- * Page of an administrator
+ * Page of an administration application
  *
- * Abstract base class for administrator pages.
- *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2007 silverorange
  */
 abstract class AdminPage extends SitePage
 {
@@ -171,8 +171,28 @@ abstract class AdminPage extends SitePage
 	public function process()
 	{
 		parent::process();
-		$this->ui->process();
-		$this->processInternal();
+
+		try {
+			$this->ui->process();
+			$this->processInternal();
+		} catch (SwatCrossSiteRequestForgeryException $csrf_exception) {
+			try {
+				// try to handle csrf exception in a friendly way
+				$message_display = $this->ui->getWidget('message_display');
+				$message = new SwatMessage(Admin::_(
+					'There is a problem with the information submitted.'),
+					SwatMessage::WARNING);
+
+				$message->secondary_content =
+					Admin::_('In order to ensure your security, we were '.
+					'unable to process your request. Please try again.');
+
+				$message_display->add($message);
+			} catch (SwatWidgetNotFoundException $e) {
+				// no message display so we'll end up with an error page
+				throw $csrf_exception;
+			}
+		}
 	}
 
 	// }}}
