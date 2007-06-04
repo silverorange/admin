@@ -11,7 +11,7 @@ require_once 'Swat/SwatActions.php';
  * index page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2007 silverorange
  */
 abstract class AdminIndex extends AdminPage
 {
@@ -21,6 +21,7 @@ abstract class AdminIndex extends AdminPage
 	protected function processInternal()
 	{
 		parent::processInternal();
+
 		$root = $this->ui->getRoot();
 		$forms = $root->getDescendants('SwatForm');
 
@@ -29,7 +30,7 @@ abstract class AdminIndex extends AdminPage
 			$actions = $form->getFirstDescendant('SwatActions');
 
 			if ($form->isProcessed() &&
-				($view !== null) && (count($view->getSelection()) != 0) &&
+				($view !== null) && (count($view->getSelection()) > 0) &&
 				($actions !== null) && ($actions->selected !== null))
 					$this->processActions($view, $actions);
 		}
@@ -116,6 +117,8 @@ abstract class AdminIndex extends AdminPage
 	 * are necessary to obtain the data.
 	 *
 	 * @return SwatTableStore A new SwatTableStore containing the data.
+	 *
+	 * @todo add type-hinting
 	 */
 	abstract protected function getTableStore($view);
 
