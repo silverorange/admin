@@ -2,6 +2,7 @@
 
 require_once 'SwatDB/SwatDB.php';
 require_once 'SwatDB/SwatDBTransaction.php';
+require_once 'Swat/SwatViewSelection.php';
 require_once 'Admin/pages/AdminConfirmation.php';
 require_once 'Admin/AdminDependency.php';
 require_once 'Admin/exceptions/AdminException.php';
@@ -45,8 +46,16 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 */
 	public function setItems($items)
 	{
-		$this->items = $items;
-		$this->setHiddenField($items);
+		if ($items instanceof SwatViewSelection &&
+			count($items) > 0) {
+			$this->items = array();
+			foreach ($items as $item)
+				$this->items[] = $item;
+		} else {
+			$this->items = $items;
+		}
+
+		$this->setHiddenField($this->items);
 	}
 
 	// }}}
