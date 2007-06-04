@@ -20,42 +20,50 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 {
 	// {{{ protected properties
 
-	protected $items = null;
+	protected $selection = null;
 
 	// }}}
-	// {{{ public function setHiddenField()
+	// {{{ public function setSelection()
 
 	/**
-	 * Set Hidden Field of Items
+	 * Set selection
 	 *
-	 * @param array $items
+	 * @param SwatViewSelection $selection
 	 */
-	public function setHiddenField($items)
+	public function setSelection(SwatViewSelection $selection)
 	{
-		$form = $this->ui->getWidget('confirmation_form');
-		$form->addHiddenField('items', $items);
+		$this->selection = $selection;
+		$this->setHiddenField();
 	}
 
 	// }}}
 	// {{{ public function setItems()
 
 	/**
-	 * Set items 
+	 * Set items
 	 *
-	 * @param array $items Array of items
+	 * This allows the setting of the confirmation selection using an array
+	 * of values. The preferred method is to pass a {@link
+	 * SwatViewSelection} to {@link AdminDBConfirmation::setSelection()}.
+	 *
+	 * @param array $items an array of items
 	 */
 	public function setItems($items)
 	{
-		if ($items instanceof SwatViewSelection &&
-			count($items) > 0) {
-			$this->items = array();
-			foreach ($items as $item)
-				$this->items[] = $item;
-		} else {
-			$this->items = $items;
-		}
+		$selection = new SwatViewSelection($items);
+		$this->setSelection($selection);
+	}
 
-		$this->setHiddenField($this->items);
+	// }}}
+	// {{{ protected function setHiddenField()
+
+	/**
+	 * Set hidden field to store the selection
+	 */
+	protected function setHiddenField()
+	{
+		$form = $this->ui->getWidget('confirmation_form');
+		$form->addHiddenField('selection', $this->selection);
 	}
 
 	// }}}
@@ -66,12 +74,15 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 *
 	 * @param string $type MDB2 datatype used to quote the items.
 	 * @return string Comma-seperated and MDB2 quoted list of items.
-	 * @throws AdminException
 	 */
 	protected function getItemList($type = 'integer')
 	{
-		$this->checkItems();
-		return $this->app->db->implodeArray($this->items, $type);
+		$list = array();
+
+		foreach ($this->selection as $item)
+			$list[] = $this->app->db->quote($item, $type);
+
+		return implode(',', $list);
 	}
 
 	// }}}
@@ -85,8 +96,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	*/
 	protected function getItemCount()
 	{
-		$this->checkItems();
-		return count($this->items);
+		return count($this->selection);
 	}
 
 	// }}}
@@ -96,24 +106,11 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 * Get first item in the item list
 	 *
 	 * @return mixed the first item.
-	 * @throws AdminException
 	 */
 	protected function getFirstItem()
 	{
-		$this->checkItems();
-		reset($this->items);
-		return current($this->items);
-	}
-
-	// }}}
-	// {{{ private function checkItems()
-
-	private function checkItems()
-	{
-		if (!is_array($this->items))
-			throw new AdminException('There are no items. '.
-				'AdminDBConfirmation::setItems() should be called to provide '.
-				'an array of items for this confirmation page.');
+		reset($this->selection);
+		return current($this->selection);
 	}
 
 	// }}}
@@ -126,7 +123,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		parent::initInternal();
 
 		$form = $this->ui->getWidget('confirmation_form');
-		$this->items = $form->getHiddenField('items');
+		$this->selection = $form->getHiddenField('selection');
 
 		$id = SiteApplication::initVar('id', null, SiteApplication::VAR_GET);
 
@@ -189,7 +186,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	protected function processDBData()
 	{
 		$form = $this->ui->getWidget('confirmation_form');
-		$this->items = $form->getHiddenField('items');
+		$this->selection = $form->getHiddenField('selection');
 	}
 
 	// }}}
