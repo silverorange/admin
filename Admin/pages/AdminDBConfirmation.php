@@ -1,8 +1,8 @@
 <?php
 
+require_once 'Swat/SwatViewSelection.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'SwatDB/SwatDBTransaction.php';
-require_once 'Swat/SwatViewSelection.php';
 require_once 'Admin/pages/AdminConfirmation.php';
 require_once 'Admin/AdminDependency.php';
 require_once 'Admin/exceptions/AdminException.php';
@@ -13,73 +13,83 @@ require_once 'Admin/exceptions/AdminException.php';
  * This class is intended to be a convenience base class. For a fully custom 
  * DB confirmation page, inherit directly from AdminConfirmation instead.
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2007 silverorange
  */
 abstract class AdminDBConfirmation extends AdminConfirmation
 {
 	// {{{ protected properties
 
-	protected $selection = null;
+	/**
+	 * The current items of this confirmation page
+	 *
+	 * @var SwatViewSelection
+	 *
+	 * @see AdminDBConfirmation::setItems()
+	 */
+	protected $items;
 
 	// }}}
-	// {{{ public function setSelection()
+	// {{{ public function __construct()
 
 	/**
-	 * Set selection
+	 * Creates a new database-driven confirmation page
 	 *
-	 * @param SwatViewSelection $selection
+	 * @param SiteApplication $app
+	 * @param SiteLayout $layout optional.
 	 */
-	public function setSelection(SwatViewSelection $selection)
+	public function __construct(SiteApplication $app, SiteLayout $layout = null)
 	{
-		$this->selection = $selection;
-		$this->setHiddenField();
+		parent::__construct($app, $layout);
+		$this->items = new SwatViewSelection(array());
 	}
 
 	// }}}
 	// {{{ public function setItems()
 
 	/**
-	 * Set items
+	 * Sets the items of this confirmation page
 	 *
-	 * This allows the setting of the confirmation selection using an array
-	 * of values. The preferred method is to pass a {@link
-	 * SwatViewSelection} to {@link AdminDBConfirmation::setSelection()}.
-	 *
-	 * @param array $items an array of items
+	 * @param SwatViewSelection|array $items the items of this confirmation
+	 *                                        page. Developers are encouraged
+	 *                                        to use a SwatViewSelection; array
+	 *                                        is provided for backwards
+	 *                                        compatibility.
 	 */
 	public function setItems($items)
 	{
-		$selection = new SwatViewSelection($items);
-		$this->setSelection($selection);
-	}
+		if (is_array($items))
+			$items = new SwatViewSelection($items);
 
-	// }}}
-	// {{{ protected function setHiddenField()
+		if (!($items instanceof SwatViewSelection))
+			throw new SwatInvalidClassException(
+				'The $items parameter must be either a SwatViewSelection or '.
+				'an array.', 0, $items);
 
-	/**
-	 * Set hidden field to store the selection
-	 */
-	protected function setHiddenField()
-	{
+		$this->items = $items;
+
+	 	// Add a hidden field to this confirmation page's form to store the
+	 	// current items of this confirmation page across requests
 		$form = $this->ui->getWidget('confirmation_form');
-		$form->addHiddenField('selection', $this->selection);
+		$form->addHiddenField('items', $this->items);
 	}
 
 	// }}}
 	// {{{ protected function getItemList()
 
 	/**
-	 * Get quoted item list 
+	 * Get the items of this confirmation page as a database-quoted list 
 	 *
-	 * @param string $type MDB2 datatype used to quote the items.
-	 * @return string Comma-seperated and MDB2 quoted list of items.
+	 * @param string $type optional. The MDB2 datatype used to quote the items.
+	 *                      By default, 'integer' is used.
+	 *
+	 * @return string a comma-seperated, database-quoted list of items.
 	 */
 	protected function getItemList($type = 'integer')
 	{
 		$list = array();
 
-		foreach ($this->selection as $item)
+		foreach ($this->items as $item)
 			$list[] = $this->app->db->quote($item, $type);
 
 		return implode(',', $list);
@@ -89,28 +99,29 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	// {{{ protected function getItemCount()
 
 	/**
-	* Get the number of items
-	*
-	* @return integer Number of items.
-	* @throws AdminException
-	*/
+	 * Gets the number of items on this confirmation page
+	 *
+	 * @return integer the number of items on this confirmation page.
+	 */
 	protected function getItemCount()
 	{
-		return count($this->selection);
+		return count($this->items);
 	}
 
 	// }}}
 	// {{{ protected function getFirstItem()
 
 	/**
-	 * Get first item in the item list
+	 * Gets the first item on this confirmation page
 	 *
 	 * @return mixed the first item.
+	 *
+	 * @see AdminDBConfirmation::setItems()
 	 */
 	protected function getFirstItem()
 	{
-		reset($this->selection);
-		return current($this->selection);
+		$this->items->rewind()
+		return $this->items->current();
 	}
 
 	// }}}
@@ -123,12 +134,12 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		parent::initInternal();
 
 		$form = $this->ui->getWidget('confirmation_form');
-		$this->selection = $form->getHiddenField('selection');
+		$this->setItems($form->getHiddenField('items'));
 
 		$id = SiteApplication::initVar('id', null, SiteApplication::VAR_GET);
 
 		if ($id !== null)
-			$this->setItems(array($id));
+			$this->setItems(new SwatViewSelection(array($id)));
 	}
 
 	// }}}
@@ -186,7 +197,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	protected function processDBData()
 	{
 		$form = $this->ui->getWidget('confirmation_form');
-		$this->selection = $form->getHiddenField('selection');
+		$this->setItems($form->getHiddenField('items'));
 	}
 
 	// }}}
