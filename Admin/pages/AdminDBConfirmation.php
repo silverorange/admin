@@ -42,6 +42,9 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	public function __construct(SiteApplication $app, SiteLayout $layout = null)
 	{
 		parent::__construct($app, $layout);
+
+		// don't use setItems() here because the UI has not been constructed
+		// yet and the hidden value cannot be added to the form
 		$this->items = new SwatViewSelection(array());
 	}
 
@@ -147,6 +150,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 
 	// }}}
 
+	// process phase
 	// {{{ protected function processResponse()
 
 	protected function processResponse()
