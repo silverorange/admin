@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Swat/SwatViewSelection.php';
+require_once 'Swat/exceptions/SwatInvalidClassException.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'SwatDB/SwatDBTransaction.php';
 require_once 'Admin/pages/AdminConfirmation.php';
