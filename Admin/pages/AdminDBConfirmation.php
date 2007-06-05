@@ -135,7 +135,9 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		parent::initInternal();
 
 		$form = $this->ui->getWidget('confirmation_form');
-		$this->setItems($form->getHiddenField('items'));
+		$items = $form->getHiddenField('items');
+		if ($items !== null)
+			$this->setItems($items);
 
 		$id = SiteApplication::initVar('id', null, SiteApplication::VAR_GET);
 
