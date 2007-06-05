@@ -121,7 +121,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 */
 	protected function getFirstItem()
 	{
-		$this->items->rewind()
+		$this->items->rewind();
 		return $this->items->current();
 	}
 
