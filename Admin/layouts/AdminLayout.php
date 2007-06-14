@@ -111,6 +111,10 @@ class AdminLayout extends SiteLayout
 	{
 		parent::build();
 
+		$yui = new SwatYUI(array('fonts', 'grids'));
+		$set = $yui->getHtmlHeadEntrySet();
+		$this->addHtmlHeadEntrySet($set);
+
 		$this->addHtmlHeadEntry(new SwatStyleSheetHtmlHeadEntry(
 			'packages/admin/styles/admin-layout.css', Admin::PACKAGE_ID));
 
