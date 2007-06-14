@@ -1,3 +1,128 @@
+2007-06-05  gauthierm
+
+	* [r17892] admin/trunk/Admin/pages/AdminDBConfirmation.php:
+	  Add a comment
+
+2007-06-05  nick
+
+	* [r17890] admin/trunk/Admin/pages/AdminDBConfirmation.php:
+	  Don't set from hidden field if the hidden field doesn't exist
+	  (i.e. form hasn't
+	  been submitted)
+	* [r17889] admin/trunk/Admin/pages/AdminDBConfirmation.php:
+	  missing semi-colon
+
+2007-06-05  gauthierm
+
+	* [r17884] admin/trunk/Admin/pages/AdminDBConfirmation.php:
+	  Require exception class
+	* [r17881] admin/trunk/Admin/pages/AdminDBConfirmation.php:
+	  (11:15:25 PM) mike: nick: I think AdminDBConfirmation should
+	  still call the current selection 'items'. The selection
+	  referrers more to the view and the view does not exist on the
+	  confirmation page. I made a couple of other small cleanups to
+	  AdminDBConfirmation as well.
+	  (11:16:56 PM) nick: mike: that sounds ok. So we'll just add
+	  type-checking to addItems()?
+	  (11:17:12 PM) nick: want me to do that, or have you done the
+	  change already?
+	  (11:17:32 PM) mike: yep, I've got that ready to commit. I'm just
+	  testing to be sure reset() and current() work on classes that
+	  implement Iterator.
+	  (11:19:30 PM) mike: yeah, we have to use $object->rewind();
+	  $object->current(); instead of reset($object); current($object);
+
+2007-06-04  nick
+
+	* [r17876] admin/trunk/Admin/pages/AdminDBConfirmation.php:
+	  Make DBConfirmation use SwatViewSelection instead of an array of
+	  items. It's
+	  still backwards compatible, and other pages can still use the
+	  setItems() method
+	  which is useful for setting the items via an array (such as for
+	  single-delete
+	  pages)
+	* [r17866] admin/trunk/Admin/pages/AdminDBConfirmation.php:
+	  Use type hinting to handle new SwatViewSelection objects.
+
+2007-06-04  gauthierm
+
+	* [r17865] admin/trunk/Admin/pages/AdminIndex.php:
+	  Tiny cleanups.
+
+2007-06-03  nick
+
+	* [r17858] admin/trunk/Admin/pages/AdminIndex.php:
+	  Whoops - remove debug code.
+	* [r17854] admin/trunk/Admin/pages/AdminIndex.php:
+	  checked_items is deprecated and we should be using
+	  getSelection() here -
+	  SwatTileView index pages won't work at all with checked_items.
+	  Mike, I believe
+	  this is backwards compatible (other Index forms seem to work
+	  fine with these
+	  changes, as they should).
+
+2007-06-03  gauthierm
+
+	* [r17851] admin/trunk/Admin/pages/AdminPage.php:
+	  Add friendlier handling of CSRF exception to administration
+	  application pages. Part of ticket #1018 which is for making all
+	  applications handle these exceptions in a friendlier way.
+
+2007-05-30  nick
+
+	* [r17813] admin/trunk/Admin/AdminPagination.php:
+	  This should be using the built-in SwatPagination method to set
+	  the page
+
+2007-05-30  steven
+
+	* [r17797] admin/trunk/www/styles/admin-layout.css:
+	  Give the main body div in admins a top-margin
+
+2007-05-19  gauthierm
+
+	* [r17624] admin/trunk/www/javascript/admin-login.js:
+	  Remove useless window indirection from Admin JavaScript.
+
+2007-05-17  steven
+
+	* [r17595] admin/trunk/Admin/layouts/xhtml/change-password.php,
+	  admin/trunk/Admin/layouts/xhtml/default.php,
+	  admin/trunk/Admin/layouts/xhtml/login.php,
+	  admin/trunk/www/styles/admin-layout.css,
+	  admin/trunk/www/styles/admin-menu.css:
+	  Stop using YUI CSS Reset - but still use YUI CSS Fonts and Grids
+	  Also move YUI CSS includes into CSS files (@import)
+	* [r17590] admin/trunk/www/styles/admin-login-page.css,
+	  admin/trunk/www/styles/change-password.css:
+	  text align update to re-set default after adding YUI Reset
+	* [r17589] admin/trunk/Admin/layouts/xhtml/change-password.php,
+	  admin/trunk/Admin/layouts/xhtml/login.php:
+	  Add YUI CSS base (Grid, Fonts, Reset) to Login and Change
+	  Password pages manually (for now?)
+	* [r17588] admin/trunk/Admin/layouts/AdminLayout.php,
+	  admin/trunk/Admin/layouts/xhtml/change-password.php,
+	  admin/trunk/Admin/layouts/xhtml/login.php,
+	  admin/trunk/www/styles/admin-layout.css,
+	  admin/trunk/www/styles/admin.css:
+	  Rename admin.css to admin-layout.css to better match our naming
+	  schemes
+	  It's a bit weird that this is manually included in the login and
+	  change-password pages - maybe those should have an alternative
+	  layout?
+	* [r17587] admin/trunk/Admin/AdminMenuView.php,
+	  admin/trunk/Admin/layouts/xhtml/default.php,
+	  admin/trunk/www/styles/admin-menu.css,
+	  admin/trunk/www/styles/admin.css:
+	  First Step of Admin using the YUI Grids, Fonts, and CSS Reset
+
+2007-05-17  nrf
+
+	* [r17579] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.8
+
 2007-05-15  nick
 
 	* [r17528] admin/trunk/Admin/pages/AdminIndex.php:
