@@ -4,6 +4,7 @@ require_once 'Swat/SwatString.php';
 require_once 'Swat/SwatForm.php';
 require_once 'Swat/SwatFormField.php';
 require_once 'Swat/SwatButton.php';
+require_once 'Swat/SwatYUI.php';
 require_once 'Site/layouts/SiteLayout.php';
 require_once 'Admin/AdminNavBar.php';
 require_once 'Admin/AdminMenuStore.php';
@@ -112,8 +113,7 @@ class AdminLayout extends SiteLayout
 		parent::build();
 
 		$yui = new SwatYUI(array('fonts', 'grids'));
-		$set = $yui->getHtmlHeadEntrySet();
-		$this->addHtmlHeadEntrySet($set);
+		$this->addHtmlHeadEntrySet($yui->getHtmlHeadEntrySet());
 
 		$this->addHtmlHeadEntry(new SwatStyleSheetHtmlHeadEntry(
 			'packages/admin/styles/admin-layout.css', Admin::PACKAGE_ID));
