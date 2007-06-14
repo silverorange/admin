@@ -1,3 +1,17 @@
+2007-06-14  steven
+
+	* [r18014] admin/trunk/Admin/layouts/AdminLayout.php:
+	  minor syntax fix
+	* [r18013] admin/trunk/Admin/layouts/AdminLayout.php,
+	  admin/trunk/www/styles/admin-layout.css:
+	  Include YUI css in a better way (don't include remote hosted
+	  versions)
+
+2007-06-14  nrf
+
+	* [r18005] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.9
+
 2007-06-05  gauthierm
 
 	* [r17892] admin/trunk/Admin/pages/AdminDBConfirmation.php:
