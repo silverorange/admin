@@ -28,7 +28,7 @@ class AdminAdminSiteLogin extends AdminPage
 
 	protected function createLayout()
 	{
-		return new SiteLayout($this->app, 'Admin/layouts/xhtml/login.php');
+		return new AdminLayout($this->app, 'Admin/layouts/xhtml/login.php');
 	}
 
 	// }}}
