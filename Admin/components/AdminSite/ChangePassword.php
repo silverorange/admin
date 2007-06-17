@@ -1,10 +1,12 @@
 <?php
 
 require_once 'SwatDB/SwatDB.php';
+require_once 'Admin/dataobjects/AdminUser.php';
 require_once 'Admin/pages/AdminPage.php';
 require_once 'Admin/layouts/AdminLayout.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Swat/SwatMessage.php';
+require_once 'Swat/SwatString.php';
 
 /**
  * Force change password page after initial login
@@ -78,10 +80,19 @@ class AdminAdminSiteChangePassword extends AdminPage
 			$old_password = $this->ui->getWidget('old_password')->value;
 
 			$password = $this->ui->getWidget('password')->value;
+			$salt = SwatString::getSalt(AdminUser::PASSWORD_SALT_LENGTH);
 
-			$fields = array('text:password', 'boolean:force_change_password');
-			$values = array('password' => md5($password),
-				'force_change_password' => false);
+			$fields = array(
+				'text:password',
+				'text:password_salt',
+				'boolean:force_change_password',
+			);
+
+			$values = array(
+				'password'              => md5($password.$salt),
+				'password_salt'         => $salt,
+				'force_change_password' => false,
+			);
 
 			SwatDB::updateRow($this->app->db, 'AdminUser', $fields, $values,
 				'text:email', $email);

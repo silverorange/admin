@@ -2,7 +2,9 @@
 
 require_once 'Admin/pages/AdminDBEdit.php';
 require_once 'Admin/AdminUI.php';
+require_once 'Admin/dataobjects/AdminUser.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
+require_once 'Swat/SwatString.php';
 require_once 'SwatDB/SwatDB.php';
 
 /**
@@ -87,7 +89,10 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 		$password = $this->ui->getWidget('password');
 		if ($password->value !== null) {
-			$values['password'] = md5($password->value);
+			$salt = SwatString::getSalt(AdminUser::PASSWORD_SALT_LENGTH);
+			$values['password_salt'] = $salt;
+			$values['password'] = md5($password->value.$salt);
+			$this->fields[] = 'password_salt';
 			$this->fields[] = 'password';
 		}
 

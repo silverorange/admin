@@ -106,26 +106,35 @@ class AdminSessionModule extends SiteSessionModule
 	public function login($email, $password)
 	{
 		$this->logout(); // make sure user is logged out before logging in
-	
-		$md5_password = md5($password);
-		
-		$sql = sprintf('select *
-			from AdminUser
-			where email = %s and password = %s and enabled = %s',
+
+		$sql = sprintf('select password_salt from AdminUser where email = %s
+			and enabled = %s',
 			$this->app->db->quote($email, 'text'),
-			$this->app->db->quote($md5_password, 'text'),
 			$this->app->db->quote(true, 'boolean'));
 
-		$user = SwatDB::query($this->app->db, $sql,
-			'AdminUserWrapper')->getFirst();
-		
-		if ($user !== null) {
-			if ($user->force_change_password) {
-				$this->force_change_password = true;
-			} else {
-				$this->user = $user;
-				$this->insertUserHistory($user);
-				$this->runLoginCallbacks();
+		$salt = SwatDB::queryOne($this->app->db, $sql, 'text');
+
+		if ($salt !== null) {
+			$md5_password = md5($password.$salt);
+			
+			$sql = sprintf('select *
+				from AdminUser
+				where email = %s and password = %s and enabled = %s',
+				$this->app->db->quote($email, 'text'),
+				$this->app->db->quote($md5_password, 'text'),
+				$this->app->db->quote(true, 'boolean'));
+
+			$user = SwatDB::query($this->app->db, $sql,
+				'AdminUserWrapper')->getFirst();
+			
+			if ($user !== null) {
+				if ($user->force_change_password) {
+					$this->force_change_password = true;
+				} else {
+					$this->user = $user;
+					$this->insertUserHistory($user);
+					$this->runLoginCallbacks();
+				}
 			}
 		}
 
