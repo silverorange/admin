@@ -13,6 +13,15 @@ require_once 'Admin/dataobjects/AdminUserHistoryWrapper.php';
  */
 class AdminUser extends SwatDBDataObject
 {
+	// {{{ class constants
+
+	/**
+	 * Length of salt value used to protect user's passwords from dictionary
+	 * attacks
+	 */
+	const PASSWORD_SALT_LENGTH = 16;
+
+	// }}}
 	// {{{ public properties
 
 	/**
@@ -37,11 +46,18 @@ class AdminUser extends SwatDBDataObject
 	public $name;
 
 	/**
-	 * Hashed version of this user's password
+	 * Hashed version of this user's salted password
 	 *
 	 * @var string
 	 */
 	public $password;
+
+	/**
+	 * The salt value used to protect this user's password
+	 *
+	 * @var string
+	 */
+	public $password_salt;
 
 	/**
 	 * Token used for password regeneration for this user
