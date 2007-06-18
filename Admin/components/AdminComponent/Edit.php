@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Admin/AdminUI.php';
-require_once 'Admin/dataobjects/AdminCompontent.php';
+require_once 'Admin/dataobjects/AdminComponent.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
 require_once 'Admin/pages/AdminDBEdit.php';
 require_once 'SwatDB/SwatDB.php';
