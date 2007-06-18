@@ -88,15 +88,22 @@ class AdminAdminComponentEdit extends AdminDBEdit
 
 	protected function saveDBData()
 	{
-		$values = $this->ui->getValues(array('title', 'shortname', 'section',
-			'show', 'enabled', 'description'));
+		$values = $this->ui->getValues(array(
+			'title',
+			'shortname',
+			'section',
+			'show',
+			'enabled',
+			'description',
+		));
 
-		$this->edit_component->title = $values['title'];
-		$this->edit_component->shortname = $values['shortname'];
-		$this->edit_component->section = $values['section'];
-		$this->edit_component->show = $values['show'];
-		$this->edit_component->enabled = $values['enabled'];
+		$this->edit_component->title       = $values['title'];
+		$this->edit_component->shortname   = $values['shortname'];
+		$this->edit_component->section     = $values['section'];
+		$this->edit_component->show        = $values['show'];
+		$this->edit_component->enabled     = $values['enabled'];
 		$this->edit_component->description = $values['description'];
+
 		$this->edit_component->save();
 
 		$group_list = $this->ui->getWidget('groups');
