@@ -51,9 +51,7 @@ class AdminAdminGroupEdit extends AdminDBEdit
 		$this->group = new AdminGroup();
 		$this->group->setDatabase($this->app->db);
 
-		//Still not sure if this works in the way it was ment to
-		if ($this->id === null) {
-		} else {
+		if (!$this->id === null) {
 			if (!$this->group->load($this->id))
 				throw new AdminNotFoundException(
 					sprintf(Admin::_('Section with id "%s" notfound.'),
