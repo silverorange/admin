@@ -1,24 +1,24 @@
 <?php
 
 require_once 'SwatDB/SwatDBRecordsetWrapper.php';
-require_once 'Admin/dataobjects/AdminUser.php';
+require_once 'Admin/dataobjects/AdminGroup.php';
 
 /**
- * A recordset wrapper class for AdminUser objects
+ * A recordset wrapper class for AdminGroup objects
  *
  * @package   Admin
  * @copyright 2007 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
- * @see       AdminUser
+ * @see       AdminGroup
  */
-class AdminUserWrapper extends SwatDBRecordsetWrapper
+class AdminGroupWrapper extends SwatDBRecordsetWrapper
 {
 	// {{{ protected function init()
 
 	protected function init()
 	{
 		parent::init();
-		$this->row_wrapper_class = 'AdminUser';
+		$this->row_wrapper_class = 'AdminGroup';
 		$this->index_field = 'id';
 	}
 
