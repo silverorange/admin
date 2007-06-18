@@ -19,7 +19,7 @@ class AdminAdminComponentEdit extends AdminDBEdit
 	/**
 	 * @var AdminComponent
 	 */
-	private $component;
+	private $edit_component;
 
 	// }}}
 
@@ -48,10 +48,10 @@ class AdminAdminComponentEdit extends AdminDBEdit
 
 	private function initComponent()
 	{
-		$this->component = new AdminComponent();
-		$this->component->setDatabase($this->app->db);
+		$this->edit_component = new AdminComponent();
+		$this->edit_component->setDatabase($this->app->db);
 
-		if (!$this->component->load($this->id))
+		if (!$this->edit_component->load($this->id))
 			throw new AdminNotFoundException(
 				sprintf(Admin::_('Component with id "%s" not found.'),
 					$this->id));
@@ -89,13 +89,13 @@ class AdminAdminComponentEdit extends AdminDBEdit
 		$values = $this->ui->getValues(array('title', 'shortname', 'section',
 			'show', 'enabled', 'description'));
 
-		$this->component->title = $values['title'];
-		$this->component->shortname = $values['shortname'];
-		$this->component->section = $values['section'];
-		$this->component->show = $values['show'];
-		$this->component->enabled = $values['enabled'];
-		$this->component->description = $values['description'];
-		$this->component->save();
+		$this->edit_component->title = $values['title'];
+		$this->edit_component->shortname = $values['shortname'];
+		$this->edit_component->section = $values['section'];
+		$this->edit_component->show = $values['show'];
+		$this->edit_component->enabled = $values['enabled'];
+		$this->edit_component->description = $values['description'];
+		$this->edit_component->save();
 
 		$group_list = $this->ui->getWidget('groups');
 
@@ -117,7 +117,7 @@ class AdminAdminComponentEdit extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$this->ui->setValues(get_object_vars($this->component));
+		$this->ui->setValues(get_object_vars($this->edit_component));
 
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->values = SwatDB::queryColumn($this->app->db,
