@@ -61,10 +61,9 @@ class AdminAdminUserEdit extends AdminDBEdit
 		$this->user = new AdminUser();
 		$this->user->setDatabase($this->app->db);
 
-		if (!$this->id === null) {
-			if (!$this->user->load($this->id))
-				throw new AdminNotFoundException(
-					sprintf(Admin::_('User with id "%s" notfound.'),
+		if (!$this->user->load($this->id))
+			throw new AdminNotFoundException(
+				sprintf(Admin::_('User with id "%s" notfound.'),
 						$this->id));
 		}
 	}
