@@ -6,6 +6,7 @@ require_once 'Admin/dataobjects/AdminUser.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
 require_once 'Swat/SwatString.php';
 require_once 'SwatDB/SwatDB.php';
+require_once 'Admin/dataobjects/AdminUser.php';
 
 /**
  * Edit page for AdminUsers component
@@ -18,6 +19,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 	// {{{ private properties
 
 	private $fields;
+	private $user;
 
 	// }}}
 
@@ -27,6 +29,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 	protected function initInternal()
 	{
 		parent::initInternal();
+		$this->initUser();
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
 
@@ -48,6 +51,22 @@ class AdminAdminUserEdit extends AdminDBEdit
 			$this->ui->getWidget('password_disclosure')->open = true;
 			$this->ui->getWidget('password_disclosure')->title =
 				Admin::_('Set Password');
+		}
+	}
+
+	// }}}
+	// {{{ protected function initUser()
+	protected function initUser()
+	{
+		$this->user = new AdminUser();
+		$this->user->setDatabase($this->app->db);
+
+		if ($this->id === null) {
+		} else {
+			if (!$this->user->load($this->id))
+				throw new AdminNotFoundException(
+					sprintf(Admin::_('User with id "%s" notfound.'),
+						$this->id));
 		}
 	}
 
@@ -94,14 +113,15 @@ class AdminAdminUserEdit extends AdminDBEdit
 			$values['password'] = md5($password->value.$salt);
 			$this->fields[] = 'password_salt';
 			$this->fields[] = 'password';
+			$this->user->password = $values['password'];
+			$this->user->password_salt = $salt;
 		}
 
-		if ($this->id === null)
-			$this->id = SwatDB::insertRow($this->app->db, 'AdminUser',
-				$this->fields, $values, 'integer:id');
-		else
-			SwatDB::updateRow($this->app->db, 'AdminUser', $this->fields,
-				$values, 'integer:id', $this->id);
+		$this->user->email = $values['email'];
+		$this->user->name = $values['name'];
+		$this->user->enabled = $values['enabled'];
+		$this->user->force_change_password = $values['force_change_password'];
+		$this->user->save();
 
 		$group_list = $this->ui->getWidget('groups');
 
@@ -123,15 +143,11 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminUser',
-			$this->fields, 'integer:id', $this->id);
-
-		if ($row === null)
-			throw new AdminNotFoundException(
-				sprintf(Admin::_('User with id ‘%s’ not found.'), $this->id));
-
-		$this->ui->setValues(get_object_vars($row));
+		$this->ui->setValues(get_object_vars($this->user));
 		
+		// don't set the the password field to the hashed password
+		$this->ui->getWidget('password')->value = null;
+
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->values = SwatDB::queryColumn($this->app->db,
 			'AdminUserAdminGroupBinding', 'groupnum', 'usernum', $this->id);
