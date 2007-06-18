@@ -42,6 +42,13 @@ class AdminComponent extends SwatDBDataObject
 	public $title;
 
 	/**
+	 * Section that contains this component
+	 *
+	 * @var string
+	 */
+	public $section;
+
+	/**
 	 * Optional description of this component
 	 *
 	 * @var string
