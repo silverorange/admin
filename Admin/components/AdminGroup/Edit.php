@@ -4,6 +4,7 @@ require_once 'Admin/pages/AdminDBEdit.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
 require_once 'SwatDB/SwatDB.php';
+require_once 'Admin/dataobjects/AdminGroup.php';
 
 /**
  * Edit page for AdminGroups component
@@ -16,6 +17,7 @@ class AdminAdminGroupEdit extends AdminDBEdit
 	// {{{ private properties
 
 	private $fields;
+	private $group;
 
 	// }}}
 
@@ -25,6 +27,7 @@ class AdminAdminGroupEdit extends AdminDBEdit
 	protected function initInternal()
 	{
 		parent::initInternal();
+		$this->initGroup();
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
 
@@ -42,6 +45,23 @@ class AdminAdminGroupEdit extends AdminDBEdit
 	}
 
 	// }}}
+	// {{{ protected function initGroup()
+	protected function initGroup()
+	{
+		$this->group = new AdminGroup();
+		$this->group->setDatabase($this->app->db);
+
+		//Still not sure if this works in the way it was ment to
+		if ($this->id === null) {
+		} else {
+			if (!$this->group->load($this->id))
+				throw new AdminNotFoundException(
+					sprintf(Admin::_('Section with id "%s" notfound.'),
+						$this->id));
+		}
+	}
+
+	// }}}
 
 	// process phase
 	// {{{ protected function saveDBData()
@@ -49,14 +69,9 @@ class AdminAdminGroupEdit extends AdminDBEdit
 	protected function saveDBData()
 	{
 		$values = $this->ui->getValues(array('title'));
-
-		if ($this->id === null)
-			$this->id = SwatDB::insertRow($this->app->db, 'AdminGroup',
-				$this->fields, $values, 'integer:id');
-
-		else
-			SwatDB::updateRow($this->app->db, 'AdminGroup', $this->fields,
-				$values, 'integer:id', $this->id);
+		
+		$this->group->title = $values['title'];
+		$this->group->save();
 
 		$user_list = $this->ui->getWidget('users');
 
@@ -84,14 +99,7 @@ class AdminAdminGroupEdit extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminGroup',
-			$this->fields, 'integer:id', $this->id);
-
-		if ($row === null)
-			throw new AdminNotFoundException(
-				sprintf(Admin::_('Group with id ‘%s’ not found.'), $this->id));
-
-		$this->ui->setValues(get_object_vars($row));
+		$this->ui->setValues(get_object_vars($this->group));
 
 		$user_list = $this->ui->getWidget('users');
 		$user_list->values = SwatDB::queryColumn($this->app->db,

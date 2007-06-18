@@ -18,13 +18,18 @@ class AdminAdminComponentEdit extends AdminDBEdit
 	private $fields;
 
 	// }}}
+	// {{{ public properties
 
+	public $component
+
+	// }}}
 	// init phase
 	// {{{ protected function initInternal()
 
 	protected function initInternal()
 	{
 		parent::initInternal();
+		$this->initComponent();
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
 
@@ -38,6 +43,23 @@ class AdminAdminComponentEdit extends AdminDBEdit
 
 		$this->fields = array('title', 'shortname', 'integer:section',
 			'boolean:show', 'boolean:enabled', 'description');
+	}
+
+	// }}}
+	// {{{ protected function initComponent()
+	protected function initComponent()
+	{		
+		$this->component = new AdminComponent();
+		$this->component->setDatabase($this->app->db);
+
+		if ($this->id === null) {
+		} else { 
+			if (!$this->component->load($this->id))
+				throw new AdminNotFoundException(
+					sprintf(Admin::_('Component with id "%s" not found.'),
+						$this->id));
+		}
+
 	}
 
 	// }}}
@@ -72,12 +94,13 @@ class AdminAdminComponentEdit extends AdminDBEdit
 		$values = $this->ui->getValues(array('title', 'shortname', 'section',
 			'show', 'enabled', 'description'));
 
-		if ($this->id === null)
-			$this->id = SwatDB::insertRow($this->app->db, 'AdminComponent',
-				$this->fields, $values, 'integer:id');
-		else
-			SwatDB::updateRow($this->app->db, 'AdminComponent', $this->fields,
-				$values, 'integer:id', $this->id);
+		$this->component->title = $values['title'];
+		$this->component->shortname = $values['shortname'];
+		$this->component->section = $values['section'];
+		$this->component->show = $values['show'];
+		$this->component->enabled = $values['enabled'];
+		$this->component->description = $values['description'];
+		$this->component->save();
 
 		$group_list = $this->ui->getWidget('groups');
 
@@ -99,15 +122,7 @@ class AdminAdminComponentEdit extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminComponent',
-			$this->fields, 'integer:id', $this->id);
-
-		if ($row === null)
-			throw new AdminNotFoundException(
-				sprintf(Admin::_('Component with id ‘%s’ not found.'),
-				$this->id));
-
-		$this->ui->setValues(get_object_vars($row));
+		$this->ui->setValues(get_object_vars($this->component));
 
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->values = SwatDB::queryColumn($this->app->db,
