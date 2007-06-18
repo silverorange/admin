@@ -1,3 +1,25 @@
+2007-06-17  gauthierm
+
+	* [r18039] admin/trunk/Admin/AdminSessionModule.php,
+	  admin/trunk/Admin/components/AdminSite/ChangePassword.php,
+	  admin/trunk/Admin/components/AdminSite/Profile.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php,
+	  admin/trunk/Admin/dataobjects/AdminUser.php,
+	  admin/trunk/sql/tables/AdminUser.sql:
+	  Salt user passwords in the admin. Old passwords remain unsalted
+	  and are backwards compatible. Part of ticket #1059.
+
+2007-06-15  steven
+
+	* [r18023] admin/trunk/Admin/components/AdminSite/Login.php:
+	  Use AdminLayout rather than SiteLayout for login page (this
+	  ensures required YUI CSS headentries get included)
+
+2007-06-14  nrf
+
+	* [r18016] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.10
+
 2007-06-14  steven
 
 	* [r18014] admin/trunk/Admin/layouts/AdminLayout.php:
