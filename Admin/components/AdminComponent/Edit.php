@@ -66,13 +66,15 @@ class AdminAdminComponentEdit extends AdminDBEdit
 	{
 		$shortname = $this->ui->getWidget('shortname');
 
-		$query = SwatDB::query($this->app->db, sprintf('select shortname from
-			AdminComponent where shortname = %s and id %s %s',
+		$sql = sprintf('select count(shortname) from AdminComponent
+			where shortname = %s and id %s %s',
 			$this->app->db->quote($shortname->value, 'text'),
 			SwatDB::equalityOperator($this->id, true),
-			$this->app->db->quote($this->id, 'integer')));
+			$this->app->db->quote($this->id, 'integer'));
 
-		if (count($query) > 0) {
+		$count = SwatDB::queryOne($this->app->db, $sql);
+
+		if ($count > 0) {
 			$message = new SwatMessage(
 				Admin::_('Shortname already exists and must be unique.'),
 				SwatMessage::ERROR);
