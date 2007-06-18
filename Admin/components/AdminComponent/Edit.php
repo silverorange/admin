@@ -1,34 +1,35 @@
 <?php
 
-require_once 'Admin/pages/AdminDBEdit.php';
 require_once 'Admin/AdminUI.php';
+require_once 'Admin/dataobjects/AdminCompontent.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
+require_once 'Admin/pages/AdminDBEdit.php';
 require_once 'SwatDB/SwatDB.php';
 
 /**
  * Edit page for AdminComponents
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2007 silverorange
  */
 class AdminAdminComponentEdit extends AdminDBEdit
 {
 	// {{{ private properties
 
-	private $fields;
+	/**
+	 * @var AdminComponent
+	 */
+	private $component;
 
 	// }}}
-	// {{{ public properties
 
-	public $component
-
-	// }}}
 	// init phase
 	// {{{ protected function initInternal()
 
 	protected function initInternal()
 	{
 		parent::initInternal();
+
 		$this->initComponent();
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
@@ -40,26 +41,20 @@ class AdminAdminComponentEdit extends AdminDBEdit
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->options = SwatDB::getOptionArray($this->app->db,
 			'AdminGroup', 'title', 'id', 'title');
-
-		$this->fields = array('title', 'shortname', 'integer:section',
-			'boolean:show', 'boolean:enabled', 'description');
 	}
 
 	// }}}
-	// {{{ protected function initComponent()
-	protected function initComponent()
-	{		
+	// {{{ private function initComponent()
+
+	private function initComponent()
+	{
 		$this->component = new AdminComponent();
 		$this->component->setDatabase($this->app->db);
 
-		if ($this->id === null) {
-		} else { 
-			if (!$this->component->load($this->id))
-				throw new AdminNotFoundException(
-					sprintf(Admin::_('Component with id "%s" not found.'),
-						$this->id));
-		}
-
+		if (!$this->component->load($this->id))
+			throw new AdminNotFoundException(
+				sprintf(Admin::_('Component with id "%s" not found.'),
+					$this->id));
 	}
 
 	// }}}
