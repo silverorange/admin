@@ -3,7 +3,7 @@
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/dataobjects/AdminUser.php';
 require_once 'Admin/pages/AdminPage.php';
-require_once 'Admin/layouts/AdminLayout.php';
+require_once 'Admin/layouts/AdminLoginLayout.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Swat/SwatMessage.php';
 require_once 'Swat/SwatString.php';
@@ -27,7 +27,7 @@ class AdminAdminSiteChangePassword extends AdminPage
 
 	protected function createLayout()
 	{
-		return new SiteLayout($this->app,
+		return new AdminLoginLayout($this->app,
 			'Admin/layouts/xhtml/change-password.php');
 	}
 

@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Admin/pages/AdminPage.php';
-require_once 'Admin/layouts/AdminLayout.php';
+require_once 'Admin/layouts/AdminLoginLayout.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Swat/SwatMessage.php';
 
@@ -9,7 +9,7 @@ require_once 'Swat/SwatMessage.php';
  * Administrator login page
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2007 silverorange
  */
 class AdminAdminSiteLogin extends AdminPage
 {
@@ -28,7 +28,8 @@ class AdminAdminSiteLogin extends AdminPage
 
 	protected function createLayout()
 	{
-		return new AdminLayout($this->app, 'Admin/layouts/xhtml/login.php');
+		return new AdminLoginLayout($this->app,
+			'Admin/layouts/xhtml/login.php');
 	}
 
 	// }}}

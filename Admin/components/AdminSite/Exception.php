@@ -1,5 +1,6 @@
 <?php
 
+require_once 'Admin/layouts/AdminDefaultLayout.php';
 require_once 'Site/pages/SiteExceptionPage.php';
 require_once 'Swat/SwatMessage.php';
 require_once 'Swat/SwatMessageDisplay.php';
@@ -16,7 +17,8 @@ class AdminAdminSiteException extends SiteExceptionPage
 
 	protected function createLayout()
 	{
-		return new AdminLayout($this->app, 'Admin/layouts/xhtml/default.php');
+		return new AdminDefaultLayout($this->app,
+			'Admin/layouts/xhtml/default.php');
 	}
 
 	// }}}
