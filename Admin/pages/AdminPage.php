@@ -7,7 +7,7 @@ require_once 'Swat/exceptions/SwatWidgetNotFoundException.php';
 require_once 'Admin/AdminMenuStore.php';
 require_once 'Admin/AdminMenuView.php';
 require_once 'Admin/AdminUI.php';
-require_once 'Admin/layouts/AdminLayout.php';
+require_once 'Admin/layouts/AdminDefaultLayout.php';
 
 /**
  * Page of an administration application
@@ -17,8 +17,11 @@ require_once 'Admin/layouts/AdminLayout.php';
  */
 abstract class AdminPage extends SitePage
 {
+	// {{{ class constants
+
 	const RELOCATE_URL_FIELD = '_admin_relocate_url';
 
+	// }}}
 	// {{{ public properties
 
 	/**
@@ -118,7 +121,8 @@ abstract class AdminPage extends SitePage
 
 	protected function createLayout()
 	{
-		return new AdminLayout($this->app, 'Admin/layouts/xhtml/default.php');
+		return new AdminDefaultLayout($this->app,
+			'Admin/layouts/xhtml/default.php');
 	}
 
 	// }}}
