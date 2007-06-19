@@ -287,7 +287,7 @@ class AdminApplication extends SiteWebApplication
 			$page->subcomponent = $request->getSubComponent();
 		}
 
-		if ($page->layout instanceof AdminLayout) {
+		if ($page->layout instanceof AdminDefaultLayout) {
 			$entry = new AdminImportantNavBarEntry($this->title, '.');
 			$page->layout->navbar->addEntry($entry);
 
