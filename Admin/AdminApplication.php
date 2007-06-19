@@ -12,7 +12,7 @@ require_once 'Admin/AdminSessionModule.php';
 require_once 'Admin/AdminMenuView.php';
 require_once 'Admin/AdminPageRequest.php';
 require_once 'Admin/pages/AdminPage.php';
-require_once 'Admin/layouts/AdminLayout.php';
+require_once 'Admin/layouts/AdminDefaultLayout.php';
 require_once 'Admin/exceptions/AdminUserException.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
 
