@@ -14,11 +14,12 @@ require_once 'Admin/dataobjects/AdminSection.php';
  */
 class AdminAdminSectionEdit extends AdminDBEdit
 {
-	// private properties
+	// {{{ private properties
 
 	private $section;
 
 	// }}}
+
 	// init phase
 	// {{{ protected function initInternal()
 
