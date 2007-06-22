@@ -40,10 +40,12 @@ class AdminAdminSectionEdit extends AdminDBEdit
 		$this->section = new AdminSection();
 		$this->section->setDatabase($this->app->db);
 
-		if (!$this->section->load($this->id))
-			throw new AdminNotFoundException(
-				sprintf(Admin::_('Section with id "%s" notfound.'),
-						$this->id));
+		if ($this->id !== null) {
+			if (!$this->section->load($this->id))
+				throw new AdminNotFoundException(
+					sprintf(Admin::_('Section with id "%s" notfound.'),
+							$this->id));
+			}
 		}
 	}
 
