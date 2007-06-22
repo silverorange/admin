@@ -77,8 +77,6 @@ class AdminAdminSiteChangePassword extends AdminPage
 		$this->validate($email);
 
 		if ($form->isProcessed() && !$form->hasMessage()) {
-			$old_password = $this->ui->getWidget('old_password')->value;
-
 			$password = $this->ui->getWidget('password')->value;
 			$salt = SwatString::getSalt(AdminUser::PASSWORD_SALT_LENGTH);
 
@@ -127,10 +125,15 @@ class AdminAdminSiteChangePassword extends AdminPage
 			$this->ui->getWidget('password')->addMessage($message);
 		}
 
+		$sql = sprintf('select password_salt from AdminUser where email = %s',
+			$this->app->db->quote($email, 'text'));
+
+		$old_salt = SwatDB::queryOne($this->app->db, $sql); 
+
 		$sql = sprintf('select id from AdminUser
 			where email = %s and password = %s',
 			$this->app->db->quote($email, 'text'),
-			$this->app->db->quote(md5($old_password), 'text'));
+			$this->app->db->quote(md5($old_password.$old_salt), 'text'));
 
 		$id = SwatDB::queryOne($this->app->db, $sql);
 
