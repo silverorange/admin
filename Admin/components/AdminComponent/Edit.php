@@ -39,8 +39,9 @@ class AdminAdminComponentEdit extends AdminDBEdit
 			$this->app->db, 'AdminSection', 'title', 'id', 'displayorder'));
 
 		$group_list = $this->ui->getWidget('groups');
-		$group_list->options = SwatDB::getOptionArray($this->app->db,
+		$group_list_options = SwatDB::getOptionArray($this->app->db,
 			'AdminGroup', 'title', 'id', 'title');
+		$group_list->addOptionsByArray($group_list_options);
 	}
 
 	// }}}
@@ -51,10 +52,11 @@ class AdminAdminComponentEdit extends AdminDBEdit
 		$this->edit_component = new AdminComponent();
 		$this->edit_component->setDatabase($this->app->db);
 
-		if (!$this->edit_component->load($this->id))
+		if (!$this->edit_component->load($this->id)) {
 			throw new AdminNotFoundException(
 				sprintf(Admin::_('Component with id "%s" not found.'),
 					$this->id));
+		}
 	}
 
 	// }}}

@@ -37,9 +37,10 @@ class AdminAdminUserEdit extends AdminDBEdit
 			'boolean:force_change_password');
 		
 		$group_list = $this->ui->getWidget('groups');
-		$group_list->options = SwatDB::getOptionArray($this->app->db,
+		$group_list_options = SwatDB::getOptionArray($this->app->db,
 			'AdminGroup', 'title', 'id', 'title');
-		
+		$group_list->addOptionsByArray($group_list_options);		
+
 		$confirm = $this->ui->getWidget('confirm_password');
 		$confirm->password_widget = $this->ui->getWidget('password');;
 		
@@ -61,7 +62,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 		$this->user = new AdminUser();
 		$this->user->setDatabase($this->app->db);
 
-		if (!$this->user->load($this->id))
+		if (!$this->user->load($this->id)) {
 			throw new AdminNotFoundException(
 				sprintf(Admin::_('User with id "%s" notfound.'),
 						$this->id));

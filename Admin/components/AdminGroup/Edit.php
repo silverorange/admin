@@ -34,8 +34,9 @@ class AdminAdminGroupEdit extends AdminDBEdit
 		$this->fields = array('title');
 
 		$user_list = $this->ui->getWidget('users');
-		$user_list->options = SwatDB::getOptionArray($this->app->db,
+		$user_list_options = SwatDB::getOptionArray($this->app->db,
 			'AdminUser', 'name', 'id', 'name');
+		$user_list->addOptionsByArray($user_list_options);
 
 		$component_list = $this->ui->getWidget('components');
 		$component_list->setTree(SwatDB::getGroupedOptionArray($this->app->db,
@@ -51,7 +52,7 @@ class AdminAdminGroupEdit extends AdminDBEdit
 		$this->group = new AdminGroup();
 		$this->group->setDatabase($this->app->db);
 
-		if (!$this->group->load($this->id))
+		if (!$this->group->load($this->id)) {
 			throw new AdminNotFoundException(
 				sprintf(Admin::_('Section with id "%s" notfound.'),
 						$this->id));
