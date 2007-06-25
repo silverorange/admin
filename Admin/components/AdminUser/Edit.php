@@ -39,15 +39,15 @@ class AdminAdminUserEdit extends AdminDBEdit
 		$group_list = $this->ui->getWidget('groups');
 		$group_list_options = SwatDB::getOptionArray($this->app->db,
 			'AdminGroup', 'title', 'id', 'title');
+
 		$group_list->addOptionsByArray($group_list_options);		
 
 		$confirm = $this->ui->getWidget('confirm_password');
 		$confirm->password_widget = $this->ui->getWidget('password');;
 		
 		if ($this->id === null) {
-			$this->ui->getWidget('password')->required = true;
 			$confirm->required = true;
-			
+			$this->ui->getWidget('password')->required = true;
 			$this->ui->getWidget('confirm_password_field')->note = null;
 			$this->ui->getWidget('password_disclosure')->open = true;
 			$this->ui->getWidget('password_disclosure')->title =
