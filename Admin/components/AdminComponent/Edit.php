@@ -41,6 +41,7 @@ class AdminAdminComponentEdit extends AdminDBEdit
 		$group_list = $this->ui->getWidget('groups');
 		$group_list_options = SwatDB::getOptionArray($this->app->db,
 			'AdminGroup', 'title', 'id', 'title');
+
 		$group_list->addOptionsByArray($group_list_options);
 	}
 
