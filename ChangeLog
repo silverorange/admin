@@ -1,3 +1,123 @@
+2007-06-25  charles
+
+	* [r18151]
+	  admin/trunk/Admin/components/AdminSubComponent/Order.php:
+	  Page now uses addOptionsByArray so the list is formed correctly
+	  and not broken.
+
+2007-06-25  gauthierm
+
+	* [r18149] admin/trunk/Admin/components/AdminComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminGroup/Edit.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php:
+	  Coding conventions: add a blank line after a multiline statement.
+
+2007-06-22  gauthierm
+
+	* [r18129]
+	  admin/trunk/Admin/components/AdminSite/ChangePassword.php:
+	  Make change-password tool work with salted passwords. Really the
+	  admin user dataobject should be responsible for handleing
+	  logings and password changes.
+
+2007-06-22  charles
+
+	* [r18128] admin/trunk/Admin/components/AdminUser/Edit.php:
+	  Small fix so you can create users.
+	* [r18127] admin/trunk/Admin/components/AdminGroup/Edit.php,
+	  admin/trunk/Admin/components/AdminSection/Edit.php:
+	  Changed so that you can create new components
+	* [r18126] admin/trunk/Admin/components/AdminUser/Edit.php:
+	  Change so you can create a new user without error occuring.
+	* [r18121] admin/trunk/Admin/components/AdminComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminGroup/Edit.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php:
+	  Part of ticket #1044 again changed the was options are added so
+	  that the pages will work with the new SwatCheckboxEntryList
+
+2007-06-22  gauthierm
+
+	* [r18115] admin/trunk/Admin/components/AdminSection/Edit.php:
+	  Fix folding
+
+2007-06-19  charles
+
+	* [r18074] admin/trunk/Admin/AdminApplication.php:
+	  Changed the include to work with the new layout.
+	* [r18073] admin/trunk/Admin/AdminApplication.php:
+	  Fixes errors casued by the $navbar property being removed from
+	  AdminLayout.
+
+2007-06-19  gauthierm
+
+	* [r18072]
+	  admin/trunk/Admin/components/AdminSite/ChangePassword.php,
+	  admin/trunk/Admin/components/AdminSite/Exception.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php,
+	  admin/trunk/Admin/layouts/AdminDefaultLayout.php,
+	  admin/trunk/Admin/layouts/AdminLayout.php,
+	  admin/trunk/Admin/layouts/AdminLoginLayout.php,
+	  admin/trunk/Admin/pages/AdminPage.php:
+	  Ticket #1069: Make Admin New Password page use AdminLayout. This
+	  also splits the layout up into a default layout (includes menu
+	  and logout chrome) and a login layout (used for login and change
+	  password pages).
+
+2007-06-18  charles
+
+	* [r18069] admin/trunk/Admin/components/AdminGroup/Edit.php,
+	  admin/trunk/Admin/components/AdminSection/Edit.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php:
+	  Removed first part of the if statement that is no longer needed.
+
+2007-06-18  gauthierm
+
+	* [r18068] admin/trunk/Admin/components/AdminComponent/Edit.php:
+	  Notification is the default message type. No need to specify it
+	  here.
+	* [r18067] admin/trunk/Admin/components/AdminComponent/Edit.php:
+	  Clean up formatting
+
+2007-06-18  charles
+
+	* [r18066] admin/trunk/Admin/components/AdminGroup/Edit.php,
+	  admin/trunk/Admin/components/AdminSection/Edit.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php:
+	  Made the if statments easier to read and shorter.
+
+2007-06-18  gauthierm
+
+	* [r18065] admin/trunk/Admin/dataobjects/AdminComponent.php,
+	  admin/trunk/Admin/dataobjects/AdminGroupWrapper.php,
+	  admin/trunk/Admin/dataobjects/AdminUserWrapper.php:
+	  Add group loader method to admin component dataobject.
+	* [r18064] admin/trunk/Admin/components/AdminComponent/Edit.php:
+	  Rewrite shortname validation to be a little more straightforward.
+	* [r18063] admin/trunk/Admin/components/AdminComponent/Edit.php:
+	  Rename private variable that is defined in AdminPage for a
+	  different purpose.
+	* [r18062] admin/trunk/Admin/components/AdminComponent/Edit.php:
+	  Fix typo.
+	* [r18061] admin/trunk/Admin/components/AdminComponent/Edit.php:
+	  Cleanups to the admin component edit.
+
+2007-06-18  charles
+
+	* [r18059] admin/trunk/Admin/dataobjects/AdminComponent.php:
+	  Added a section property that was missing but needed for
+	  components.
+	* [r18057] admin/trunk/Admin/components/AdminComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminGroup/Edit.php,
+	  admin/trunk/Admin/components/AdminSection/Edit.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php:
+	  Part of ticket #974, dataobjects are now used in the Edit pages
+	  for Groups, Users, Components and Sections.
+
+2007-06-18  nrf
+
+	* [r18043] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.11
+
 2007-06-17  gauthierm
 
 	* [r18039] admin/trunk/Admin/AdminSessionModule.php,
