@@ -32,7 +32,7 @@
 			<object class="SwatDetailsViewField">
 				<property name="title">Section</property>
 				<object class="SwatNullTextCellRenderer">
-					<property name="text" type="data">section_title</property>
+					<property name="text" type="data">section.title</property>
 				</object>
 			</object>
 			<object class="SwatDetailsViewField">
@@ -50,7 +50,7 @@
 			<object class="SwatDetailsViewField">
 				<property name="title">Groups</property>
 				<object class="SwatNullTextCellRenderer">
-					<property name="text" type="data">groups</property>
+					<property name="text" type="data">groups_summary</property>
 					<property name="content_type">text/xml</property>
 				</object>
 			</object>

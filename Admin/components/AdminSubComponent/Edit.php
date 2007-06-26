@@ -4,6 +4,7 @@ require_once 'Admin/pages/AdminDBEdit.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
 require_once 'SwatDB/SwatDB.php';
+require_once 'Admin/dataobjects/AdminSubComponent.php';
 
 /**
  * Edit page for AdminSubComponents
@@ -26,6 +27,7 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 	protected function initInternal()
 	{
 		parent::initInternal();
+		$this->initSubComponent();
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
 
@@ -36,6 +38,21 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 
 		$form = $this->ui->getWidget('edit_form');
 		$form->addHiddenField('parent', $this->parent);
+	}
+
+	// }}}
+	// {{{ protected function initSubComponent()
+	protected function initSubComponent()
+	{
+		$this->subcomponent = new AdminSubComponent();
+		$this->subcomponent->setDatabase($this->app->db);
+
+		if ($this->id !== null) {
+			if (!$this->subcomponent->load($this->id))
+				throw new AdminNotFoundException(
+					sprintf(Admin::_('Sub-Component with id "%s" notfound.'),
+						$this->id));
+		}
 	}
 
 	// }}}
@@ -74,17 +91,15 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 		$values = $this->ui->getValues(array('title', 'shortname', 'show'));
 		$values['component'] = $this->parent;
 
-		if ($this->id === null)
-			$this->id = SwatDB::insertRow($this->app->db, 'AdminSubComponent',
-				$this->fields, $values, 'integer:id');
-		else
-
-			SwatDB::updateRow($this->app->db, 'AdminSubComponent',
-				$this->fields, $values, 'integer:id', $this->id);
+		$this->subcomponent->title = $values['title'];
+		$this->subcomponent->shortname = $values['shortname'];
+		$this->subcomponent->show = $values['show'];
+		$this->subcomponent->component = $values['component'];
+		$this->subcomponent->save();
 
 		$message = new SwatMessage(
 			sprintf(Admin::_('Sub-Component “%s” has been saved.'),
-			$values['title']), SwatMessage::NOTIFICATION);
+			$this->subcomponent->title));
 
 		$this->app->messages->add($message);
 	}
@@ -96,17 +111,9 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$row = SwatDB::queryRowFromTable($this->app->db, 'AdminSubComponent',
-			$this->fields, 'integer:id', $this->id);
+		$this->ui->setValues(get_object_vars($this->subcomponent));
 
-		if ($row === null)
-			throw new AdminNotFoundException(
-				sprintf(Admin::_('Sub-component with id ‘%s’ not found.'),
-				$this->id));
-
-		$this->ui->setValues(get_object_vars($row));
-
-		$this->parent = intval($row->component);
+		$this->parent = intval($this->subcomponent->component);
 		$form = $this->ui->getWidget('edit_form');
 		$form->addHiddenField('parent', $this->parent);
 	}

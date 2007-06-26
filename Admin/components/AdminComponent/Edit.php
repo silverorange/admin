@@ -53,10 +53,12 @@ class AdminAdminComponentEdit extends AdminDBEdit
 		$this->edit_component = new AdminComponent();
 		$this->edit_component->setDatabase($this->app->db);
 
-		if (!$this->edit_component->load($this->id)) {
-			throw new AdminNotFoundException(
-				sprintf(Admin::_('Component with id "%s" not found.'),
-					$this->id));
+		if ($this->id !== null){
+			if (!$this->edit_component->load($this->id)) {
+				throw new AdminNotFoundException(
+					sprintf(Admin::_('Component with id "%s" not found.'),
+						$this->id));
+			}
 		}
 	}
 
