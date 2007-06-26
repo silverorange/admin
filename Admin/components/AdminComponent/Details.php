@@ -6,6 +6,9 @@ require_once 'Admin/AdminTableStore.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Swat/SwatString.php';
+require_once 'Admin/dataobjects/AdminComponent.php';
+require_once 'Admin/dataobjects/AdminSubComponentWrapper.php';
+require_once 'Swat/SwatTableStore.php';
 
 /**
  * Details page for AdminComponents
@@ -29,10 +32,21 @@ class AdminAdminComponentDetails extends AdminIndex
 		$this->ui->loadFromXML(dirname(__FILE__).'/details.xml');
 
 		$this->id = intval(SiteApplication::initVar('id'));
+
+		$this->initComponent();
 	}
 
 	// }}}
+	// {{{ protected function initComponent()
 
+	protected function initComponent()
+	{
+		$this->component = new AdminComponent();
+		$this->component->setDatabase($this->app->db);
+		$this->component->load($this->id);
+	}
+
+	// }}}
 	// process phase
 	// {{{ protected function processActions()
 
@@ -93,36 +107,22 @@ class AdminAdminComponentDetails extends AdminIndex
 
 		$this->navbar->createEntry(Admin::_('Details'));
 
-		$component_details = $this->ui->getWidget('component_details');
-
-		$sql = 'select AdminComponent.*,
-					AdminSection.title as section_title
-				from AdminComponent
-					inner join AdminSection on
-						AdminSection.id = AdminComponent.section
-				where AdminComponent.id = %s';
-
-		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
-
-		$row = SwatDB::queryRow($this->app->db, $sql);
-
-		if ($row === null)
-			throw new AdminNotFoundException(sprintf(
-				Admin::_('Component with id ‘%s’ not found.'), $this->id));
+		$ds = new SwatDetailsStore($this->component);
 
 		ob_start();
-		$this->displayGroups($this->id);
-		$row->groups = ob_get_clean();
+		$this->displayGroups();
+		$ds->groups_summary = ob_get_clean();
 
-		if ($row->description !== null)
-			$row->description = SwatString::condense(SwatString::toXHTML(
-				$row->description));
+		if ($this->component->description !== null)
+			$ds->description = SwatString::condense(SwatString::toXHTML(
+				$this->component->description));
 
-		$component_details->data = $row;
+		$component_details = $this->ui->getWidget('component_details');
+		$component_details->data = $ds;
 
 		$frame = $this->ui->getWidget('details_frame');
 		$frame->title = Admin::_('Component');
-		$frame->subtitle = $row->title;
+		$frame->subtitle = $this->component->title;
 	}
 
 	// }}}
@@ -130,18 +130,13 @@ class AdminAdminComponentDetails extends AdminIndex
 
 	protected function getTableStore($view)
 	{
-		$sql = 'select AdminSubComponent.id,
-					AdminSubComponent.title,
-					AdminSubComponent.shortname,
-					AdminSubComponent.show
-				from AdminSubComponent
-				where component = %s
-				order by AdminSubComponent.displayorder';
+		$sub_components = $this->component->sub_components;
 
-		$sql = sprintf($sql, $this->app->db->quote($this->id, 'integer'));
+		$store = new SwatTableStore();
 
-		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
-
+		foreach ($sub_components as $sub_component)
+			$store->addRow($sub_component);
+	
 		if ($store->getRowCount() < 2)
 			$this->ui->getWidget('order_tool')->sensitive = false;
 
@@ -151,25 +146,15 @@ class AdminAdminComponentDetails extends AdminIndex
 	// }}}
 	// {{{ private function displayGroups()
 
-	private function displayGroups($id)
-	{
-		$sql = 'select id, title
-				from AdminGroup
-				where id in
-					(select groupnum from AdminComponentAdminGroupBinding
-					where component = %s)';
-
-		$sql = sprintf($sql, $this->app->db->quote($id, 'integer'));
-		
-		$rs = SwatDB::query($this->app->db, $sql);
-
+	private function displayGroups()
+	{	
 		echo '<ul>';
 
-		foreach ($rs as $row) {
+		foreach ($this->component->groups as $group) {
 			echo '<li>';
 			$anchor_tag = new SwatHtmlTag('a');
-			$anchor_tag->href = 'AdminGroup/Edit?id='.$row->id;
-			$anchor_tag->setContent($row->title);
+			$anchor_tag->href = 'AdminGroup/Edit?id='.$group->id;
+			$anchor_tag->setContent($group->title);
 			$anchor_tag->display();
 			echo '</li>';
 		}
