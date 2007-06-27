@@ -5,12 +5,11 @@ require_once 'Admin/AdminUI.php';
 require_once 'Admin/pages/AdminIndex.php';
 require_once 'Admin/AdminTableStore.php';
 require_once 'Swat/SwatTableStore.php';
-require_once 'Admin/dataobjects/AdminGroup.php';
 
 /**
  * Index page for AdminGroups component
  *
- * @package Admin
+ * @package   Admin
  * @copyright 2005-2006 silverorange
  */
 class AdminAdminGroupIndex extends AdminIndex
