@@ -3,13 +3,13 @@
 require_once 'Admin/AdminUI.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/pages/AdminIndex.php';
-require_once 'Admin/AdminTableStore.php';
+require_once 'Swat/SwatTableStore.php';
 
 /**
  * Index page for AdminSections
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2007 silverorange
  */
 class AdminAdminSectionIndex extends AdminIndex
 {
