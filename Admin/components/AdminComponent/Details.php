@@ -9,6 +9,7 @@ require_once 'Swat/SwatString.php';
 require_once 'Admin/dataobjects/AdminComponent.php';
 require_once 'Admin/dataobjects/AdminSubComponentWrapper.php';
 require_once 'Swat/SwatTableStore.php';
+require_once 'Swat/SwatDetailsStore.php';
 
 /**
  * Details page for AdminComponents
