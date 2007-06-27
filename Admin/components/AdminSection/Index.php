@@ -71,16 +71,19 @@ class AdminAdminSectionIndex extends AdminIndex
 
 	protected function getTableStore($view)
 	{
-		$view = $this->ui->getWidget('index_view');
-
 		$sql = 'select id, title, show
 				from AdminSection
 				order by displayorder';
 
-		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
+		$sections = SwatDB::query($this->app->db, $sql);
+		$store = new SwatTableStore();
+
+		foreach ($sections as $section)
+			$store->addRow($section);
 
 		if ($store->getRowCount() == 0)
 			$this->ui->getWidget('order_tool')->visible = false;
+
 
 		return $store;
 	}
