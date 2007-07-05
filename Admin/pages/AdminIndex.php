@@ -7,7 +7,7 @@ require_once 'Swat/SwatActions.php';
 /**
  * Generic admin index page
  *
- * This class is intended to be a convenience base class. For a fully custom 
+ * This class is intended to be a convenience base class. For a fully custom
  * index page, inherit directly from AdminPage instead.
  *
  * @package   Admin
@@ -22,17 +22,33 @@ abstract class AdminIndex extends AdminPage
 	{
 		parent::processInternal();
 
-		$root = $this->ui->getRoot();
-		$forms = $root->getDescendants('SwatForm');
+		$forms = $this->ui->getRoot()->getDescendants('SwatForm');
 
 		foreach ($forms as $form) {
-			$view = $form->getFirstDescendant('SwatView');
-			$actions = $form->getFirstDescendant('SwatActions');
+			if ($form->isProcessed()) {
+				if (!$form->isAuthenticated()) {
+					$message = new SwatMessage(Admin::_(
+						'There is a problem with the information submitted.'),
+						SwatMessage::WARNING);
 
-			if ($form->isProcessed() &&
-				($view !== null) && (count($view->getSelection()) > 0) &&
-				($actions !== null) && ($actions->selected !== null))
-					$this->processActions($view, $actions);
+					$message->secondary_content =
+						Admin::_('In order to ensure your security, we were '.
+						'unable to process your request. Please try again.');
+
+					$this->app->messages->add($message);
+				} else {
+					$view = $form->getFirstDescendant('SwatView');
+					$actions = $form->getFirstDescendant('SwatActions');
+
+					if (($view !== null) &&
+						(count($view->getSelection()) > 0) &&
+						($actions !== null) && ($actions->selected !== null))
+						$this->processActions($view, $actions);
+				}
+
+				// only one form can be processed in a single request
+				break;
+			}
 		}
 	}
 
@@ -42,7 +58,7 @@ abstract class AdminIndex extends AdminPage
 	/**
 	 * Processes index actions
 	 *
-	 * This method is called to perform whatever processing is required in 
+	 * This method is called to perform whatever processing is required in
 	 * response to actions. Sub-classes should implement this method.
 	 * Widgets can be accessed through the $ui class variable.
 	 *
