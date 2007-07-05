@@ -56,7 +56,7 @@ abstract class AdminPage extends SitePage
 	 * Reference to the navbar object
 	 *
 	 * Officially the navbar now lives in the layout object, but this
-	 * reference is very useful for backwards compatibility with 
+	 * reference is very useful for backwards compatibility with
 	 * exisitng code.
 	 *
 	 * @var AdminNavBar
@@ -136,7 +136,7 @@ abstract class AdminPage extends SitePage
 	 * Initializes {@link AdminPage::initInternal()} and {@link
 	 * AdminPage::$ui}. Sub-classes should implement
 	 * {@link SitePage::initInternal()} to perform their own
-	 * initialization. 
+	 * initialization.
 	 */
 	public function init()
 	{
@@ -175,28 +175,8 @@ abstract class AdminPage extends SitePage
 	public function process()
 	{
 		parent::process();
-
-		try {
-			$this->ui->process();
-			$this->processInternal();
-		} catch (SwatCrossSiteRequestForgeryException $csrf_exception) {
-			try {
-				// try to handle csrf exception in a friendly way
-				$message_display = $this->ui->getWidget('message_display');
-				$message = new SwatMessage(Admin::_(
-					'There is a problem with the information submitted.'),
-					SwatMessage::WARNING);
-
-				$message->secondary_content =
-					Admin::_('In order to ensure your security, we were '.
-					'unable to process your request. Please try again.');
-
-				$message_display->add($message);
-			} catch (SwatWidgetNotFoundException $e) {
-				// no message display so we'll end up with an error page
-				throw $csrf_exception;
-			}
-		}
+		$this->ui->process();
+		$this->processInternal();
 	}
 
 	// }}}
@@ -268,7 +248,7 @@ abstract class AdminPage extends SitePage
 	/**
 	 * Display the page
 	 *
-	 * Sub-classes should implement this method to display the contents of 
+	 * Sub-classes should implement this method to display the contents of
 	 * the page. Called after {@link AdminPage::init()}
 	 */
 	protected function display()
