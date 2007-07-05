@@ -45,7 +45,7 @@ abstract class AdminEdit extends AdminPage
 		$form = $this->ui->getWidget('edit_form');
 
 		if ($form->isProcessed()) {
-			$process = true;
+			$this->validate();
 
 			if (!$form->isAuthenticated()) {
 				$message = new SwatMessage(Admin::_('There is a problem with '.
@@ -56,10 +56,8 @@ abstract class AdminEdit extends AdminPage
 					'unable to process your request. Please try again.');
 
 				$this->app->messages->add($message);
-				$process = false;
 			}
 
-			$this->validate();
 			if ($form->hasMessage()) {
 				$message = new SwatMessage(Admin::_('There is a problem with '.
 					'the information submitted.'), SwatMessage::ERROR);
@@ -68,10 +66,9 @@ abstract class AdminEdit extends AdminPage
 					'fields highlighted below and re-submit the form.');
 
 				$this->app->messages->add($message);
-				$process = false;
 			}
 
-			if ($process) {
+			if ($form->isAuthenticated() && !$form->hasMessage()) {
 				if ($this->saveData()) {
 					$this->relocate();
 				}
