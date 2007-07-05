@@ -5,7 +5,7 @@ require_once 'Admin/pages/AdminIndex.php';
 /**
  * Generic admin search page
  *
- * This class is intended to be a convenience base class. For a fully custom 
+ * This class is intended to be a convenience base class. For a fully custom
  * search page, inherit directly from AdminPage instead.
  *
  * @package   Admin

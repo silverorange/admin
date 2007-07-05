@@ -35,12 +35,24 @@ abstract class AdminOrder extends AdminPage
 	protected function processInternal()
 	{
 		parent::processInternal();
+
 		$form = $this->ui->getWidget('order_form');
 
 		if ($form->isProcessed()) {
-			$this->saveData();
-			$this->app->messages->add($this->getUpdatedMessage());
-			$this->relocate();
+			if (!$form->isAuthenticated()) {
+				$message = new SwatMessage(Admin::_('There is a problem with '.
+					'the information submitted.'), SwatMessage::WARNING);
+
+				$message->secondary_content =
+					Admin::_('In order to ensure your security, we were '.
+					'unable to process your request. Please try again.');
+
+				$this->app->messages->add($message);
+			} else {
+				$this->saveData();
+				$this->app->messages->add($this->getUpdatedMessage());
+				$this->relocate();
+			}
 		}
 	}
 

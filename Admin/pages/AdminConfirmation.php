@@ -6,7 +6,7 @@ require_once 'Admin/AdminUI.php';
 /**
  * Generic admin confirmation page
  *
- * This class is intended to be a convenience base class. For a fully custom 
+ * This class is intended to be a convenience base class. For a fully custom
  * confirmation page, inherit directly from AdminPage instead.
  *
  * @package   Admin
@@ -32,13 +32,24 @@ abstract class AdminConfirmation extends AdminPage
 	protected function processInternal()
 	{
 		parent::processInternal();
+
 		$form = $this->ui->getWidget('confirmation_form');
 
-		if (!$form->isProcessed())
-			return;
+		if ($form->isProcessed()) {
+			if (!$form->isAuthenticated()) {
+				$message = new SwatMessage(Admin::_('There is a problem with '.
+					'the information submitted.'), SwatMessage::WARNING);
 
-		$this->processResponse();
-		$this->relocate();
+				$message->secondary_content =
+					Admin::_('In order to ensure your security, we were '.
+					'unable to process your request. Please try again.');
+
+				$this->app->messages->add($message);
+			} else {
+				$this->processResponse();
+				$this->relocate();
+			}
+		}
 	}
 
 	// }}}
@@ -47,7 +58,7 @@ abstract class AdminConfirmation extends AdminPage
 	/**
 	 * Process the response
 	 *
-	 * This method is called to perform whatever processing is required in 
+	 * This method is called to perform whatever processing is required in
 	 * response to the button clicked. It is called by the
 	 * {@link AdminConfirmation::process} method.
 	 */
