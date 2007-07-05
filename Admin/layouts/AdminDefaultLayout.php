@@ -122,24 +122,6 @@ class AdminDefaultLayout extends AdminLayout
 	}
 
 	// }}}
-	// {{{ protected function buildLogoutForm()
-
-	protected function buildLogoutForm()
-	{
-		$this->logout_form = new SwatForm('logout');
-		$this->logout_form->action = 'AdminSite/Logout';
-
-		$form_field = new SwatFormField('logout_button_container');
-
-		$button = new SwatButton('logout_button');
-		$button->title = Admin::_('Logout');
-
-		$form_field->add($button);
-
-		$this->logout_form->add($form_field);
-	}
-
-	// }}}
 
 	// finalize phase
 	// {{{ public function finalize()
