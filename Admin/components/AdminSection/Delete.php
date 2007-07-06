@@ -46,7 +46,7 @@ class AdminAdminSectionDelete extends AdminDBDelete
 		$item_list = $this->getItemList('integer');
 
 		$dep = new AdminListDependency();
-		$dep->title = Admin::_('Admin Section');
+		$dep->setTitle(Admin::_('section'), Admin::_('sections'));
 		$dep->entries = AdminListDependency::queryEntries($this->app->db,
 			'AdminSection', 'integer:id', null, 'text:title', 'title',
 			'id in ('.$item_list.')', AdminDependency::DELETE);
@@ -61,7 +61,9 @@ class AdminAdminSectionDelete extends AdminDBDelete
 		$dep->addDependency($dep_components);
 
 		$dep_subcomponents = new AdminSummaryDependency();
-		$dep_subcomponents->title = Admin::_('sub-component');
+		$dep_subcomponents->setTitle(
+			Admin::_('sub-component'), Admin::_('sub-components'));
+
 		$dep_subcomponents->summaries = AdminSummaryDependency::querySummaries(
 			$this->app->db, 'AdminSubComponent', 'integer:id',
 			'integer:component',

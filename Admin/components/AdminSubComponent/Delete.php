@@ -59,7 +59,7 @@ class AdminAdminSubComponentDelete extends AdminDBDelete
 		$item_list = $this->getItemList('integer');
 
 		$dep = new AdminListDependency();
-		$dep->title = Admin::_('Sub-Component');
+		$dep->setTitle(Admin::_('sub-component'), Admin::_('sub-components'));
 		$dep->entries = AdminListDependency::queryEntries($this->app->db,
 			'AdminSubComponent', 'integer:id', null, 'text:title',
 			'displayorder, title', 'id in ('.$item_list.')',

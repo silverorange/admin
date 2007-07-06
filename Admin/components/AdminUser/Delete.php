@@ -45,7 +45,7 @@ class AdminAdminUserDelete extends AdminDBDelete
 		$item_list = $this->getItemList('integer');
 
 		$dep = new AdminListDependency();
-		$dep->title = 'Admin User';
+		$dep->setTitle(Admin::_('admin user'), Admin::_('admin users'));
 		$dep->entries = AdminListDependency::queryEntries($this->app->db,
 			'AdminUser', 'integer:id', null, 'text:name', 'name',
 			'id in ('.$item_list.')', AdminDependency::DELETE);
