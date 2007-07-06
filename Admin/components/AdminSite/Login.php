@@ -79,9 +79,9 @@ class AdminAdminSiteLogin extends AdminPage
 			if ($logged_in) {
 				$this->app->relocate($this->app->getUri());
 			} else {
-				if ($this->app->session->force_change_password) {
+				if (isset($this->app->session->user) &&
+					$this->app->session->user->force_change_password) {
 					$this->app->replacePage('AdminSite/ChangePassword');
-					$this->app->getPage()->setEmail($email);
 				} else {
 					$message_display = $this->ui->getWidget('message_display');
 					$message = new SwatMessage(Admin::_('Login failed'),

@@ -1,27 +1,20 @@
 <?php
 
 require_once 'SwatDB/SwatDB.php';
+require_once 'Admin/exceptions/AdminNotFoundException.php';
 require_once 'Admin/dataobjects/AdminUser.php';
 require_once 'Admin/pages/AdminPage.php';
 require_once 'Admin/layouts/AdminLoginLayout.php';
-require_once 'Admin/AdminUI.php';
 require_once 'Swat/SwatMessage.php';
-require_once 'Swat/SwatString.php';
 
 /**
  * Force change password page after initial login
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2007 silverorange
  */
 class AdminAdminSiteChangePassword extends AdminPage
 {
-	// {{{ public properties
-
-	public $email;
-
-	// }}}
-
 	// init phase
 	// {{{ protected function createLayout()
 
@@ -45,20 +38,8 @@ class AdminAdminSiteChangePassword extends AdminPage
 
 		$form = $this->ui->getWidget('change_password_form');
 		$form->action = 'AdminSite/ChangePassword';
-	}
 
-	// }}}
-	// {{{ public function setEmail()
-
-	/**
-	 * Set items 
-	 *
-	 * @param string $email The email of the user logging in
-	 */
-	public function setEmail($email)
-	{
-		$form = $this->ui->getWidget('change_password_form');
-		$form->addHiddenField('email', $email);
+		// remember where we came from
 		$form->addHiddenField('relocate_uri', $this->app->getUri());
 	}
 
@@ -72,52 +53,44 @@ class AdminAdminSiteChangePassword extends AdminPage
 		parent::processInternal();
 
 		$form = $this->ui->getWidget('change_password_form');
-		$email = $form->getHiddenField('email');
+		if ($form->isProcessed()) {
+			$this->validatePasswords();
+			if (!$form->hasMessage()) {
+				$password = $this->ui->getWidget('password')->value;
 
-		$this->validate($email);
+				$user = $this->app->session->user;
+				$user->setPassword($password);
+				$user->force_change_password = false;
+				$user->save();
 
-		if ($form->isProcessed() && !$form->hasMessage()) {
-			$password = $this->ui->getWidget('password')->value;
-			$salt = SwatString::getSalt(AdminUser::PASSWORD_SALT_LENGTH);
+				$this->app->session->login($user->email, $password);
 
-			$fields = array(
-				'text:password',
-				'text:password_salt',
-				'boolean:force_change_password',
-			);
+				$message = new SwatMessage(
+					Admin::_('Your password has been updated.'));
 
-			$values = array(
-				'password'              => md5($password.$salt),
-				'password_salt'         => $salt,
-				'force_change_password' => false,
-			);
+				$this->app->messages->add($message);
 
-			SwatDB::updateRow($this->app->db, 'AdminUser', $fields, $values,
-				'text:email', $email);
-
-			$this->app->session->login($email, $password);
-
-			$message = new SwatMessage(
-				Admin::_('Your password has been updated.'));
-
-			$this->app->messages->add($message);
-
-			$uri = $form->getHiddenField('relocate_uri');
-			$this->app->relocate($uri);
+				// go back where we came from
+				$uri = $form->getHiddenField('relocate_uri');
+				$this->app->relocate($uri);
+			}
 		}
 	}
 
 	// }}}
-	// {{{ protected function validate()
+	// {{{ protected function validatePasswords()
 
-	protected function validate($email)
+	protected function validatePasswords()
 	{
+		$user = $this->app->session->user;
+
 		$old_password = $this->ui->getWidget('old_password')->value;
 		$new_password = $this->ui->getWidget('password')->value;
 
 		if ($old_password === null || $new_password === null)
 			return;
 
+		// make sure old password is not the same as new password
 		if ($old_password == $new_password) {
 			$message = new SwatMessage(Admin::_('Your new password can not be '.
 				'the same as your old password'), SwatMessage::ERROR);
@@ -125,19 +98,9 @@ class AdminAdminSiteChangePassword extends AdminPage
 			$this->ui->getWidget('password')->addMessage($message);
 		}
 
-		$sql = sprintf('select password_salt from AdminUser where email = %s',
-			$this->app->db->quote($email, 'text'));
-
-		$old_salt = SwatDB::queryOne($this->app->db, $sql); 
-
-		$sql = sprintf('select id from AdminUser
-			where email = %s and password = %s',
-			$this->app->db->quote($email, 'text'),
-			$this->app->db->quote(md5($old_password.$old_salt), 'text'));
-
-		$id = SwatDB::queryOne($this->app->db, $sql);
-
-		if ($id === null) {
+		// make sure old password is correct
+		$old_salt = $this->app->session->user->password_salt;
+		if (md5($old_password.$user->password_salt) != $user->password) {
 			$message = new SwatMessage(
 				Admin::_('Your old password is not correct'),
 				SwatMessage::ERROR);
