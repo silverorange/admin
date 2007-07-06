@@ -39,12 +39,12 @@ class AdminAdminComponentIndex extends AdminIndex
 		switch ($actions->selected->id) {
 		case 'delete':
 			$this->app->replacePage('AdminComponent/Delete');
-			$this->app->getPage()->setItems($view->checked_items);
+			$this->app->getPage()->setItems($view->getSelection());
 			break;
 
 		case 'show':
 			SwatDB::updateColumn($this->app->db, 'AdminComponent',
-				'boolean:show', true, 'id', $view->checked_items);
+				'boolean:show', true, 'id', $view->getSelection());
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
 				'One component has been shown.',
@@ -55,7 +55,7 @@ class AdminAdminComponentIndex extends AdminIndex
 
 		case 'hide':
 			SwatDB::updateColumn($this->app->db, 'AdminComponent',
-				'boolean:show', false, 'id', $view->checked_items);
+				'boolean:show', false, 'id', $view->getSelection());
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
 				'One component has been hidden.',
@@ -66,7 +66,7 @@ class AdminAdminComponentIndex extends AdminIndex
 
 		case 'enable':
 			SwatDB::updateColumn($this->app->db, 'AdminComponent',
-				'boolean:enabled', true, 'id', $view->checked_items);
+				'boolean:enabled', true, 'id', $view->getSelection());
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
 				'One component has been enabled.',
@@ -77,7 +77,7 @@ class AdminAdminComponentIndex extends AdminIndex
 
 		case 'disable':
 			SwatDB::updateColumn($this->app->db, 'AdminComponent',
-				'boolean:enabled', false, 'id', $view->checked_items);
+				'boolean:enabled', false, 'id', $view->getSelection());
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
 				'One component has been disabled.',
@@ -90,7 +90,7 @@ class AdminAdminComponentIndex extends AdminIndex
 			$new_section = $actions->selected->widget->value;
 
 			SwatDB::updateColumn($this->app->db, 'AdminComponent',
-				'integer:section', $new_section, 'id', $view->checked_items);
+				'integer:section', $new_section, 'id', $view->getSelection());
 
 			$title = SwatDB::queryOneFromTable($this->app->db, 'AdminSection',
 				'text:title', 'id', $new_section);
