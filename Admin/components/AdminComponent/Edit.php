@@ -114,7 +114,7 @@ class AdminAdminComponentEdit extends AdminDBEdit
 		$group_list = $this->ui->getWidget('groups');
 
 		SwatDB::updateBinding($this->app->db, 'AdminComponentAdminGroupBinding',
-			'component', $this->id, 'groupnum', $group_list->values,
+			'component', $this->edit_component->id, 'groupnum', $group_list->values,
 			'AdminGroup', 'id');
 
 		$message = new SwatMessage(sprintf(

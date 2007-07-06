@@ -41,12 +41,12 @@ class AdminAdminUserIndex extends AdminIndex
 		switch ($actions->selected->id) {
 			case 'delete':
 				$this->app->replacePage('AdminUser/Delete');
-				$this->app->getPage()->setItems($view->checked_items);
+				$this->app->getPage()->setItems($view->getSelection());
 				break;
 
 			case 'enable':
 				SwatDB::updateColumn($this->app->db, 'AdminUser',
-					'boolean:enabled', true, 'id', $view->checked_items);
+					'boolean:enabled', true, 'id', $view->getSelection());
 
 				$message = new SwatMessage(sprintf(Admin::ngettext(
 					"%d user has been enabled.", 
@@ -58,7 +58,7 @@ class AdminAdminUserIndex extends AdminIndex
 			case 'disable':
 				SwatDB::updateColumn($this->app->db, 'AdminUser',
 					'boolean:enabled', false, 'id', 
-					$view->checked_items);
+					$view->getSelection());
 
 				$message = new SwatMessage(sprintf(Admin::ngettext(
 					"%d user has been disabled.", 

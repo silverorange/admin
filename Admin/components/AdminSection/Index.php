@@ -34,12 +34,12 @@ class AdminAdminSectionIndex extends AdminIndex
 		switch ($actions->selected->id) {
 			case 'delete':
 				$this->app->replacePage('AdminSection/Delete');
-				$this->app->getPage()->setItems($view->checked_items);
+				$this->app->getPage()->setItems($view->getSelection());
 				break;
 
 			case 'show':
 				SwatDB::updateColumn($this->app->db, 'AdminSection',
-					'boolean:show', true, 'id', $view->checked_items);
+					'boolean:show', true, 'id', $view->getSelection());
 
 				$message = new SwatMessage(sprintf(Admin::ngettext(
 					'One section has been shown.',
@@ -50,7 +50,7 @@ class AdminAdminSectionIndex extends AdminIndex
 
 			case 'hide':
 				SwatDB::updateColumn($this->app->db, 'AdminSection',
-					'boolean:show', false, 'id', $view->checked_items);
+					'boolean:show', false, 'id', $view->getSelection());
 
 				$message = new SwatMessage(sprintf(Admin::ngettext(
 					"One section has been hidden.",
