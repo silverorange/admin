@@ -45,7 +45,7 @@ class AdminAdminGroupDelete extends AdminDBDelete
 		$item_list = $this->getItemList('integer');
 		
 		$dep = new AdminListDependency();
-		$dep->title = Admin::_('Admin Group');
+		$dep->setTitle(Admin::_('group'), Admin::_('groups');
 		$dep->entries = AdminListDependency::queryEntries($this->app->db,
 			'AdminGroup', 'integer:id', null, 'text:title', 'title',
 			'id in ('.$item_list.')', AdminDependency::DELETE);
