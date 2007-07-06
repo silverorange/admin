@@ -127,6 +127,23 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
+	// {{{ public function setPassword()
+
+	/**
+	 * Sets this user's password
+	 *
+	 * This method takes care of automatically salting and hashing the password.
+	 * The new password is not saved until this user is saved.
+	 *
+	 * @param string $password the user's new password.
+	 */
+	public function setPassword($password)
+	{
+		$this->password_salt = SwatString::getSalt(self::PASSWORD_SALT_LENGTH);
+		$this->password = md5($password.$this->password_salt);
+	}
+
+	// }}}
 	// {{{ protected function init()
 
 	protected function init()
@@ -138,7 +155,7 @@ class AdminUser extends SwatDBDataObject
 	// }}}
 	// {{{ protected function loadHistory()
 
-	/** 
+	/**
 	 * Gets user history for this user
 	 *
 	 * @return AdminUserHistoryWrapper a set of {@link AdminUserHistory}
@@ -151,7 +168,7 @@ class AdminUser extends SwatDBDataObject
 			$this->db->quote($this->id, 'integer'));
 
 		return SwatDB::query($this->db, $sql, 'AdminUserHistoryWrapper');
-	} 
+	}
 
 	// }}}
 }
