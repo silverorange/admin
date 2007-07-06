@@ -52,7 +52,9 @@ class AdminAdminSectionDelete extends AdminDBDelete
 			'id in ('.$item_list.')', AdminDependency::DELETE);
 
 		$dep_components = new AdminListDependency();
-		$dep_components->title = Admin::_('component');
+		$dep_components->setTitle(
+			Admin::_('component'), Admin::_('components'));
+
 		$dep_components->entries = AdminListDependency::queryEntries(
 			$this->app->db, 'AdminComponent', 'integer:id', 'integer:section',
 			'text:title', 'title', 'section in ('.$item_list.')',
