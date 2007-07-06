@@ -83,9 +83,8 @@ class AdminSessionModule extends SiteSessionModule
 
 		if (!isset($this->user)) {
 			$this->user = null;
-			$this->force_change_password = false;
 			$this->history = array();
-		} elseif ($this->user !== null) {	
+		} elseif ($this->user !== null) {
 			$this->app->cookie->setCookie('email', $this->getEmailAddress(),
 				strtotime('+1 day'), '/');
 		}
@@ -116,7 +115,7 @@ class AdminSessionModule extends SiteSessionModule
 
 		if ($salt !== null) {
 			$md5_password = md5($password.$salt);
-			
+
 			$sql = sprintf('select *
 				from AdminUser
 				where email = %s and password = %s and enabled = %s',
@@ -124,17 +123,12 @@ class AdminSessionModule extends SiteSessionModule
 				$this->app->db->quote($md5_password, 'text'),
 				$this->app->db->quote(true, 'boolean'));
 
-			$user = SwatDB::query($this->app->db, $sql,
+			$this->user = SwatDB::query($this->app->db, $sql,
 				'AdminUserWrapper')->getFirst();
-			
-			if ($user !== null) {
-				if ($user->force_change_password) {
-					$this->force_change_password = true;
-				} else {
-					$this->user = $user;
-					$this->insertUserHistory($user);
-					$this->runLoginCallbacks();
-				}
+
+			if ($this->user !== null && !$this->user->force_change_password) {
+				$this->insertUserHistory($this->user);
+				$this->runLoginCallbacks();
 			}
 		}
 
@@ -151,7 +145,6 @@ class AdminSessionModule extends SiteSessionModule
 	{
 		$this->clear();
 		$this->user = null;
-		$this->force_change_password = false;
 		unset($this->_authentication_token);
 	}
 
@@ -159,21 +152,22 @@ class AdminSessionModule extends SiteSessionModule
 	// {{{ public function isLoggedIn()
 
 	/**
-	 * Whether or not an admin user is logged in
+	 * Gets whether or not an admin user is logged in
 	 *
 	 * @return boolean true if an admin user is logged in and false if an
 	 *                  admin user is not logged in.
 	 */
 	public function isLoggedIn()
 	{
-		return (isset($this->user) && $this->user !== null);
+		return (isset($this->user) && $this->user !== null &&
+			$this->user->force_change_password === false);
 	}
 
 	// }}}
 	// {{{ public function getUserID()
 
 	/**
-	 * Gets the current admin user's user identifier 
+	 * Gets the current admin user's user identifier
 	 *
 	 * @return string the current admin user's user identifier, or null if an
 	 *                 admin user is not logged in.
@@ -284,10 +278,10 @@ class AdminSessionModule extends SiteSessionModule
 	 */
 	protected function insertUserHistory(AdminUser $user)
 	{
-		$login_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ? 
+		$login_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ?
 			$_SERVER['HTTP_USER_AGENT'] : null;
 
-		$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ? 
+		$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ?
 			$_SERVER['REMOTE_ADDR'] : null;
 
 		$login_date = new SwatDate();
@@ -297,9 +291,9 @@ class AdminSessionModule extends SiteSessionModule
 			'text:login_agent', 'text:remote_ip');
 
 		$values = array(
-			'usernum'     => $user->id, 
-			'login_date'  => $login_date->getDate(), 
-			'login_agent' => $login_agent, 
+			'usernum'     => $user->id,
+			'login_date'  => $login_date->getDate(),
+			'login_agent' => $login_agent,
 			'remote_ip'   => $remote_ip,
 		);
 
