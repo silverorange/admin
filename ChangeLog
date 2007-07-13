@@ -1,3 +1,112 @@
+2007-07-13  gauthierm
+
+	* [r18399] admin/trunk/Admin/components/AdminSection/Index.php:
+	  Cleanup.
+	* [r18398]
+	  admin/trunk/Admin/dataobjects/AdminComponentWrapper.php:
+	  doc fixes.
+	* [r18397] admin/trunk/Admin/dataobjects/AdminSectionWrapper.php:
+	  Recordset wrapper for admin sections.
+	* [r18389]
+	  admin/trunk/Admin/components/AdminUser/LoginHistory.php:
+	  Use admin table store again. There's not advantage to using swat
+	  table store here.
+
+2007-07-06  gauthierm
+
+	* [r18306] admin/trunk/Admin/components/AdminSection/Delete.php:
+	  Missed one delete title.
+	* [r18304] admin/trunk/Admin/components/AdminComponent/Delete.php,
+	  admin/trunk/Admin/components/AdminGroup/Delete.php,
+	  admin/trunk/Admin/components/AdminSection/Delete.php,
+	  admin/trunk/Admin/components/AdminSubComponent/Delete.php,
+	  admin/trunk/Admin/components/AdminUser/Delete.php:
+	  Fix admin delete dependency titles.
+	* [r18303] admin/trunk/Admin/AdminSessionModule.php,
+	  admin/trunk/Admin/components/AdminSite/ChangePassword.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php:
+	  Use admin user dataobject on Change password page.
+	* [r18281] admin/trunk/Admin/dataobjects/AdminUser.php:
+	  Require SwatString
+	* [r18280] admin/trunk/Admin/dataobjects/AdminUser.php:
+	  Add setPassword() method to AdminUser dataobject.
+
+2007-07-06  charles
+
+	* [r18279] admin/trunk/Admin/components/AdminComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminComponent/Index.php,
+	  admin/trunk/Admin/components/AdminGroup/Index.php,
+	  admin/trunk/Admin/components/AdminSection/Index.php,
+	  admin/trunk/Admin/components/AdminUser/Index.php:
+	  Ticket #1037, older admin components now use the new selection
+	  API. Also a small bug was fixed that caused an error when a user
+	  tries to make a new Component.
+
+2007-07-05  gauthierm
+
+	* [r18269] admin/trunk/Admin/components/AdminSite/Logout.php:
+	  Only logout admin users if the logout form is authenticated.
+	  Otherwise, stay on the same page and display an error message.
+	* [r18268] admin/trunk/Admin/layouts/AdminDefaultLayout.php:
+	  Remove unused method. See AdminDefaultLayout::initLogoutForm().
+	* [r18265] admin/trunk/Admin/pages/AdminEdit.php:
+	  Simplify.
+	* [r18264] admin/trunk/Admin/pages/AdminConfirmation.php,
+	  admin/trunk/Admin/pages/AdminEdit.php,
+	  admin/trunk/Admin/pages/AdminIndex.php,
+	  admin/trunk/Admin/pages/AdminOrder.php,
+	  admin/trunk/Admin/pages/AdminSearch.php:
+	  Authenticate forms on AdminPage base classes. This results in
+	  the equivalent of r17851 for the admin with the added bonus that
+	  form data is not lost when a form is not authenticated.
+	* [r18261] admin/trunk/Admin/pages/AdminPage.php:
+	  Revert r17851 since SwatForm no longer throws an exception when
+	  a cross-site request forgery is detected.
+
+2007-06-27  charles
+
+	* [r18195]
+	  admin/trunk/Admin/components/AdminUser/LoginHistory.php:
+	  Again removing AdminTableStore and adding more flexibility to
+	  the method.
+	* [r18194] admin/trunk/Admin/components/AdminGroup/Index.php,
+	  admin/trunk/Admin/components/AdminSection/Index.php,
+	  admin/trunk/Admin/components/AdminUser/Index.php:
+	  A few doc and require changes.
+	* [r18193] admin/trunk/Admin/components/AdminGroup/Index.php,
+	  admin/trunk/Admin/components/AdminSection/Index.php,
+	  admin/trunk/Admin/components/AdminUser/Index.php:
+	  Remove the dated AdminTableStore and adds a little more
+	  flexibility to these index pages.
+	* [r18192] admin/trunk/Admin/components/AdminUser/Details.php:
+	  Part of ticket #974, added a data object to the user history
+	  details page.
+	* [r18191]
+	  admin/trunk/Admin/components/AdminComponent/Details.php:
+	  SwatDetailStore required.
+
+2007-06-26  charles
+
+	* [r18184]
+	  admin/trunk/Admin/components/AdminComponent/Details.php,
+	  admin/trunk/Admin/components/AdminComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminComponent/details.xml,
+	  admin/trunk/Admin/components/AdminSection/Edit.php,
+	  admin/trunk/Admin/components/AdminSubComponent/Edit.php:
+	  Part of ticket #974, updated pages that are now filled with data
+	  objects.
+	* [r18183] admin/trunk/Admin/dataobjects/AdminComponent.php,
+	  admin/trunk/Admin/dataobjects/AdminSubComponent.php,
+	  admin/trunk/Admin/dataobjects/AdminSubComponentWrapper.php:
+	  Part of ticket #974, the new AdminSubComponent data objects and
+	  a slightly modified AdminComponent data object. These will work
+	  with the new admin pages.
+
+2007-06-26  nrf
+
+	* [r18177] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.12
+
 2007-06-25  charles
 
 	* [r18151]
