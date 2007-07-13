@@ -2,15 +2,15 @@
 
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/AdminUI.php';
-require_once 'Admin/pages/AdminIndex.php';
-require_once 'Swat/SwatTableStore.php';
+require_once 'Admin/AdminTableStore.php';
 require_once 'Admin/components/AdminUser/include/HistoryCellRenderer.php';
+require_once 'Admin/pages/AdminIndex.php';
 
 /**
  * Login history page for AdminUsers component
  *
- * @package Admin
- * @copyright 2005-2006 silverorange
+ * @package   Admin
+ * @copyright 2005-2007 silverorange
  */
 class AdminAdminUserLoginHistory extends AdminIndex
 {
@@ -79,11 +79,7 @@ class AdminAdminUserLoginHistory extends AdminIndex
 		$sql = sprintf($sql,
 			$this->getOrderByClause($view, 'login_date desc'));
 
-		$history = SwatDB::query($this->app->db, $sql);
-		$store = new SwatTableStore();
-
-		foreach ($history as $user_history)
-			$store->addRow($user_history);
+		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
 
 		return $store;
 	}
