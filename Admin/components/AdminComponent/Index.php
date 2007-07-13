@@ -110,9 +110,9 @@ class AdminAdminComponentIndex extends AdminIndex
 	// }}}
 
 	// build phase
-	// {{{ protected function getTableStore()
+	// {{{ protected function getTableModel()
 
-	protected function getTableStore($view)
+	protected function getTableModel(SwatTableView $view)
 	{
 		/*
 		 * Build a custom table-view store here so we can set the sensitivity
@@ -178,7 +178,7 @@ class AdminAdminComponentIndex extends AdminIndex
 			$ds->section_order_sensitive =
 				($current_section->num_components > 1);
 
-			$store->addRow($ds);
+			$store->add($ds);
 		}
 
 		return $store;

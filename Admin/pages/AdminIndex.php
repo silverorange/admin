@@ -95,7 +95,7 @@ abstract class AdminIndex extends AdminPage
 		$views = $root->getDescendants('SwatView');
 		foreach ($views as $view)
 			if ($view->model === null)
-				$view->model = $this->getTableStore($view);
+				$view->model = $this->getTableModel($view);
 	}
 
 	// }}}
@@ -123,7 +123,7 @@ abstract class AdminIndex extends AdminPage
 	}
 
 	// }}}
-	// {{{ abstract protected function getTableStore()
+	// {{{ abstract protected function getTableModel()
 
 	/**
 	 * Retrieve data to display.
@@ -132,11 +132,10 @@ abstract class AdminIndex extends AdminPage
 	 * Sub-classes should implement this method and perform whatever actions
 	 * are necessary to obtain the data.
 	 *
-	 * @return SwatTableStore A new SwatTableStore containing the data.
+	 * @return SwatTableModel A new SwatTableModel containing the data.
 	 *
-	 * @todo add type-hinting
 	 */
-	abstract protected function getTableStore($view);
+	abstract protected function getTableModel(SwatTableView $view);
 
 	// }}}
 	// {{{ protected function getOrderByClause()

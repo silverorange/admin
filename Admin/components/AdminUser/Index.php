@@ -90,9 +90,9 @@ class AdminAdminUserIndex extends AdminIndex
 	}
 
 	// }}}
-	// {{{ protected function getTableStore()
+	// {{{ protected function getTableModel()
 
-	protected function getTableStore($view)
+	protected function getTableModel(SwatTableView $view)
 	{
 		$sql = 'select AdminUser.id, AdminUser.email, AdminUser.name,
 					AdminUser.enabled, AdminUserLastLoginView.last_login
