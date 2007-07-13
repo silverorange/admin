@@ -126,9 +126,9 @@ class AdminAdminComponentDetails extends AdminIndex
 	}
 
 	// }}}
-	// {{{ protected function getTableStore()
+	// {{{ protected function getTableModel()
 
-	protected function getTableStore($view)
+	protected function getTableModel(SwatTableView $view)
 	{
 		$sub_components = $this->component->sub_components;
 	

@@ -62,9 +62,9 @@ class AdminAdminUserLoginHistory extends AdminIndex
 	}
 
 	// }}}
-	// {{{ protected function getTableStore()
+	// {{{ protected function getTableModel()
 
-	protected function getTableStore($view)
+	protected function getTableModel(SwatTableView $view)
 	{
 		$pager = $this->ui->getWidget('pager');
 		$this->app->db->setLimit($pager->page_size, $pager->current_record);
@@ -78,9 +78,9 @@ class AdminAdminUserLoginHistory extends AdminIndex
 		$sql = sprintf($sql,
 			$this->getOrderByClause($view, 'login_date desc'));
 
-		$store = SwatDB::query($this->app->db, $sql);
+		$rs = SwatDB::query($this->app->db, $sql);
 
-		return $store;
+		return $rs;
 	}
 
 	// }}}

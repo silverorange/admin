@@ -83,18 +83,11 @@ class AdminAdminUserDetails extends AdminIndex
 	}
 
 	// }}}
-	// {{{ protected function getTableStore()
+	// {{{ protected function getTableModel()
 
-	protected function getTableStore($view)
+	protected function getTableModel(SwatTableView $view)
 	{
-		$store = new SwatTableStore();
-
-		$user_history = $this->user->history;
-
-		foreach ($user_history as $history)
-			$store->addRow($history);
-
-		return $store;
+		return $this->user->history;
 	}
 
 	// }}}
