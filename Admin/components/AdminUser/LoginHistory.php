@@ -2,7 +2,6 @@
 
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/AdminUI.php';
-require_once 'Admin/AdminTableStore.php';
 require_once 'Admin/components/AdminUser/include/HistoryCellRenderer.php';
 require_once 'Admin/pages/AdminIndex.php';
 
@@ -79,7 +78,7 @@ class AdminAdminUserLoginHistory extends AdminIndex
 		$sql = sprintf($sql,
 			$this->getOrderByClause($view, 'login_date desc'));
 
-		$store = SwatDB::query($this->app->db, $sql, 'AdminTableStore');
+		$store = SwatDB::query($this->app->db, $sql);
 
 		return $store;
 	}

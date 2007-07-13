@@ -2,7 +2,6 @@
 
 require_once 'Admin/AdminUI.php';
 require_once 'Admin/pages/AdminIndex.php';
-require_once 'Admin/AdminTableStore.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Swat/SwatString.php';
@@ -132,16 +131,11 @@ class AdminAdminComponentDetails extends AdminIndex
 	protected function getTableStore($view)
 	{
 		$sub_components = $this->component->sub_components;
-
-		$store = new SwatTableStore();
-
-		foreach ($sub_components as $sub_component)
-			$store->addRow($sub_component);
 	
-		if ($store->getRowCount() < 2)
+		if (count($sub_components) < 2)
 			$this->ui->getWidget('order_tool')->sensitive = false;
 
-		return $store;
+		return $sub_components;
 	}
 
 	// }}}
