@@ -104,12 +104,8 @@ class AdminAdminUserIndex extends AdminIndex
 		$sql = sprintf($sql, $this->getOrderByClause($view, 'AdminUser.email'));
 
 		$users = SwatDB::query($this->app->db, $sql);
-		$store = new SwatTableStore();
 
-		foreach ($users as $user)
-			$store->addRow($user);
-
-		return $store;
+		return $users;
 	}
 
 	// }}}

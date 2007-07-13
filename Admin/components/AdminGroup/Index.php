@@ -3,7 +3,6 @@
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Admin/pages/AdminIndex.php';
-require_once 'Admin/AdminTableStore.php';
 require_once 'Swat/SwatTableStore.php';
 
 /**
@@ -46,12 +45,8 @@ class AdminAdminGroupIndex extends AdminIndex
 	{
 		$sql = 'select id, title from AdminGroup order by title';
 		$groups = SwatDB::query($this->app->db, $sql, 'AdminGroupWrapper');
-		$store = new SwatTableStore();
 
-		foreach ($groups as $group)
-			$store->addRow($group);
-
-		return $store;
+		return $groups;
 	}
 
 	// }}}
