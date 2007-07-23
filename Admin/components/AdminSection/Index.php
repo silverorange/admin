@@ -71,7 +71,7 @@ class AdminAdminSectionIndex extends AdminIndex
 	// build phase
 	// {{{ protected function getTableModel()
 
-	protected function getTableModel(SwatTableView $view)
+	protected function getTableModel(SwatView $view)
 	{
 		$sql = 'select id, title, show
 			from AdminSection
