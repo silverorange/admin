@@ -85,7 +85,7 @@ class AdminAdminUserDetails extends AdminIndex
 	// }}}
 	// {{{ protected function getTableModel()
 
-	protected function getTableModel(SwatTableView $view)
+	protected function getTableModel(SwatView $view)
 	{
 		return $this->user->history;
 	}

@@ -92,7 +92,7 @@ class AdminAdminUserIndex extends AdminIndex
 	// }}}
 	// {{{ protected function getTableModel()
 
-	protected function getTableModel(SwatTableView $view)
+	protected function getTableModel(SwatView $view)
 	{
 		$sql = 'select AdminUser.id, AdminUser.email, AdminUser.name,
 					AdminUser.enabled, AdminUserLastLoginView.last_login
