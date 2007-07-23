@@ -1,5 +1,7 @@
 2007-07-23  nrf
 
+	* [r18665] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.14
 	* [r18638]
 	  admin/trunk/Admin/components/AdminComponent/Details.php,
 	  admin/trunk/Admin/components/AdminComponent/Index.php,
