@@ -1,3 +1,42 @@
+2007-07-23  nrf
+
+	* [r18638]
+	  admin/trunk/Admin/components/AdminComponent/Details.php,
+	  admin/trunk/Admin/components/AdminComponent/Index.php,
+	  admin/trunk/Admin/components/AdminGroup/Index.php,
+	  admin/trunk/Admin/components/AdminSection/Index.php,
+	  admin/trunk/Admin/components/AdminUser/Details.php,
+	  admin/trunk/Admin/components/AdminUser/Index.php,
+	  admin/trunk/Admin/components/AdminUser/LoginHistory.php,
+	  admin/trunk/Admin/pages/AdminIndex.php:
+	  change type-hinting to SwatView
+
+2007-07-13  nrf
+
+	* [r18427]
+	  admin/trunk/Admin/components/AdminComponent/Details.php,
+	  admin/trunk/Admin/components/AdminComponent/Index.php,
+	  admin/trunk/Admin/components/AdminGroup/Index.php,
+	  admin/trunk/Admin/components/AdminSection/Index.php,
+	  admin/trunk/Admin/components/AdminUser/Details.php,
+	  admin/trunk/Admin/components/AdminUser/Index.php,
+	  admin/trunk/Admin/components/AdminUser/LoginHistory.php,
+	  admin/trunk/Admin/pages/AdminIndex.php:
+	  replace getTableStore() with getTableModel() and add type-hinting
+	* [r18417] admin/trunk/Admin/AdminTableStore.php,
+	  admin/trunk/Admin/components/AdminComponent/Details.php,
+	  admin/trunk/Admin/components/AdminComponent/Index.php,
+	  admin/trunk/Admin/components/AdminGroup/Index.php,
+	  admin/trunk/Admin/components/AdminSection/Index.php,
+	  admin/trunk/Admin/components/AdminUser/Index.php,
+	  admin/trunk/Admin/components/AdminUser/LoginHistory.php,
+	  admin/trunk/Admin/pages/AdminIndex.php:
+	  Remove AdminTableStore.
+	  Use recordsets directly as table models where possible to avoid
+	  double iteration.
+	* [r18400] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.13
+
 2007-07-13  gauthierm
 
 	* [r18399] admin/trunk/Admin/components/AdminSection/Index.php:
