@@ -2,7 +2,6 @@
 
 require_once 'Admin/AdminUI.php';
 require_once 'Admin/pages/AdminIndex.php';
-require_once 'Admin/AdminTableStore.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/dataobjects/AdminUser.php';
