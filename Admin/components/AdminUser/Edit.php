@@ -16,10 +16,10 @@ require_once 'Admin/dataobjects/AdminUser.php';
  */
 class AdminAdminUserEdit extends AdminDBEdit
 {
-	// {{{ private properties
+	// {{{ protected properties
 
-	private $fields;
-	private $user;
+	protected $fields;
+	protected $user;
 
 	// }}}
 
