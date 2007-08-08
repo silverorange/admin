@@ -112,9 +112,10 @@ class AdminPageRequest extends SiteObject
 	{
 		$classfile = $this->component.'/'.$this->subcomponent.'.php';
 		$file = null;
+		$path = $this->app->getDefaultComponentIncludePath();
 
-		if (file_exists('../../include/admin/components/'.$classfile)) {
-			$file = '../../include/admin/components/'.$classfile;
+		if (file_exists($path.'/'.$classfile)) {
+			$file = $path.'/'.$classfile;
 		} else {
 			$include_paths = explode(':', ini_get('include_path'));
 			$component_include_paths = $this->app->getComponentIncludePaths();

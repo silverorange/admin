@@ -56,6 +56,16 @@ class AdminApplication extends SiteWebApplication
 	// {{{ protected properties
 
 	/**
+	 * The default path to include components from
+	 *
+	 * @var string
+	 *
+	 * @see AdminApplication::setDefaultComponentIncludePath()
+	 */
+	protected $default_component_include_path =
+		'../../include/admin/components';
+
+	/**
 	 * An array of paths to check for components when finding the filename of
 	 * a component
 	 *
@@ -201,6 +211,34 @@ class AdminApplication extends SiteWebApplication
 	public function getMenuViewClass()
 	{
 		return $this->menu_view_class;
+	}
+
+	// }}}
+	// {{{ public function setDefaultComponentIncludePath()
+
+	/**
+	 * Sets the default a path to include components from
+	 *
+	 * Paths are relative to the www dir of the site.
+	 *
+	 * @param string $path the include path.
+	 */
+	public function setDefaultComponentIncludePath($path)
+	{
+		$this->default_component_include_path = $path;
+	}
+
+	// }}}
+	// {{{ public function getDeafultComponentIncludePath()
+
+	/**
+	 * Gets the default component include path
+	 *
+	 * @return string the component include path.
+	 */
+	public function getDefaultComponentIncludePath()
+	{
+		return $this->default_component_include_path;
 	}
 
 	// }}}
