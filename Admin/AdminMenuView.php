@@ -21,9 +21,12 @@ class AdminMenuView extends SwatUIObject
 	/**
 	 * The unique identifier of this menu-view
 	 *
+	 * If not set explicitly, an id will be auto-generated after this menu-view
+	 * is initialized.
+	 *
 	 * @var string
 	 */
-	public $id = '';
+	public $id;
 
 	// }}}
 	// {{{ protected properties
@@ -69,8 +72,7 @@ class AdminMenuView extends SwatUIObject
 		$this->store = $store;
 		$this->app = $app;
 		$this->show = true;
-		if ($id !== null)
-			$this->id = $id;
+		$this->id = $id;
 
 		$yui = new SwatYUI(array('dom', 'animation'));
 		$this->html_head_entry_set->addEntrySet($yui->getHtmlHeadEntrySet());
@@ -93,6 +95,9 @@ class AdminMenuView extends SwatUIObject
 	 */
 	public function init()
 	{
+		if ($this->id === null)
+			$this->id = $this->getUniqueId();
+
 		$this->loadState();
 	}
 
