@@ -126,7 +126,8 @@ class AdminSessionModule extends SiteSessionModule
 			$this->user = SwatDB::query($this->app->db, $sql,
 				'AdminUserWrapper')->getFirst();
 
-			if ($this->user !== null && !$this->user->force_change_password) {
+			if ($this->user !== null &&
+				$this->user->isAuthenticated($this->app)) {
 				$this->insertUserHistory($this->user);
 				$this->runLoginCallbacks();
 			}
@@ -160,7 +161,7 @@ class AdminSessionModule extends SiteSessionModule
 	public function isLoggedIn()
 	{
 		return (isset($this->user) && $this->user !== null &&
-			$this->user->force_change_password === false);
+			$this->user->isAuthenticated($this->app));
 	}
 
 	// }}}
