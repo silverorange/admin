@@ -100,6 +100,25 @@ class AdminUser extends SwatDBDataObject
 	public $menu_state;
 
 	// }}}
+	// {{{ public function isAuthenticated()
+
+	/**
+	 * Checks if a user is authenticated
+	 *
+	 * After a user's username and password have been verified, perform
+	 * additional checks on the user's authentification. This method is run
+	 * on every page load, not just at login, to ensure the user has
+	 * permission to access the admin.
+	 *
+	 * @return boolean True if the user has authenticated access to the
+	 *                 admin. 
+	 */
+	public function isAuthenticated()
+	{
+		return ($this->force_change_password === false);
+	}
+
+	// }}}
 	// {{{ public function hasAccess()
 
 	/**
