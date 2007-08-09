@@ -20,6 +20,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 	protected $fields;
 	protected $user;
+	protected $ui_xml = 'Admin/components/AdminUser/edit.xml';
 
 	// }}}
 
@@ -31,7 +32,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 		parent::initInternal();
 		$this->initUser();
 
-		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
+		$this->ui->loadFromXML($this->ui_xml);
 
 		$this->fields = array('email', 'name', 'boolean:enabled',
 			'boolean:force_change_password');
@@ -124,8 +125,9 @@ class AdminAdminUserEdit extends AdminDBEdit
 		$this->user->force_change_password = $values['force_change_password'];
 		$this->user->save();
 
-		$group_list = $this->ui->getWidget('groups');
+		$this->saveBindingTables();
 
+		$group_list = $this->ui->getWidget('groups');
 		SwatDB::updateBinding($this->app->db, 'AdminUserAdminGroupBinding',
 			'usernum', $this->user->id, 'groupnum', $group_list->values, 'AdminGroup',
 			'id');
@@ -135,6 +137,18 @@ class AdminAdminUserEdit extends AdminDBEdit
 			SwatMessage::NOTIFICATION);
 
 		$this->app->messages->add($message);
+	}
+
+	// }}}
+	// {{{ protected function saveBindingTables()
+
+	protected function saveBindingTables()
+	{
+		$group_list = $this->ui->getWidget('groups');
+
+		SwatDB::updateBinding($this->app->db, 'AdminUserAdminGroupBinding',
+			'usernum', $this->user->id, 'groupnum', $group_list->values, 'AdminGroup',
+			'id');
 	}
 
 	// }}}
