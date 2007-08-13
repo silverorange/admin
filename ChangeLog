@@ -1,3 +1,52 @@
+2007-08-09  gauthierm
+
+	* [r19290] admin/trunk/Admin/dataobjects/AdminUser.php:
+	  Documentation fixes and add required parameter.
+	* [r19287] admin/trunk/Admin/AdminMenuView.php:
+	  Auto-generate id of AdminMenuView if it is not explicitly set.
+	  Fixes ticket #1227 without having to make the view extend
+	  SwatWidget. I didn't realize the capability to generate ids was
+	  in SwatUIObject.
+
+2007-08-09  nick
+
+	* [r19281] admin/trunk/Admin/AdminSessionModule.php,
+	  admin/trunk/Admin/dataobjects/AdminUser.php,
+	  admin/trunk/Admin/dataobjects/AdminUserWrapper.php:
+	  Add a new isAuthenticated method to AdminUser to verify things
+	  like "force
+	  change password" and on the galleries to check if the user has
+	  access to the
+	  current instance.
+	* [r19279] admin/trunk/Admin/components/AdminUser/Edit.php:
+	  Make AdminUser/Edit easier to override
+
+2007-08-09  gauthierm
+
+	* [r19273] admin/trunk/Admin/AdminListDependency.php,
+	  admin/trunk/Admin/AdminSummaryDependency.php:
+	  Fix return reference syntax since
+	  SwatDBRecordsetWrapper::getArray() returns a copy of the
+	  internal array instead of a reference to the internal array.
+
+2007-08-08  nick
+
+	* [r19270] admin/trunk/Admin/components/AdminUser/Edit.php:
+	  Private to protected so that we can extend this class.
+
+2007-08-08  nrf
+
+	* [r19258] admin/trunk/Admin/AdminApplication.php,
+	  admin/trunk/Admin/AdminPageRequest.php:
+	  Allow configuration of default component include path.
+
+2007-07-31  nrf
+
+	* [r18901] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.16
+	* [r18900] admin/trunk/Admin/components/AdminUser/Details.php:
+	  Remove bad require
+
 2007-07-30  gauthierm
 
 	* [r18838] admin/trunk/Admin/components/AdminSite/front.xml:
