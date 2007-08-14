@@ -288,7 +288,7 @@ class AdminApplication extends SiteWebApplication
 	{
 		$source = parent::normalizeSource($source);
 
-		if ($source === 'index.html')
+		if ($source === 'index.html' || $source === '')
 			$source = $this->front_source;
 
 		return $source;
