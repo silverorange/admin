@@ -1,3 +1,29 @@
+2007-08-16  nrf
+
+	* [r19441] admin/trunk/Admin/components/AdminGroup/Edit.php:
+	  Wrap long line
+
+2007-08-16  charles
+
+	* [r19440] admin/trunk/Admin/components/AdminGroup/Edit.php:
+	  Fixes an exception on veseys.
+
+2007-08-16  nrf
+
+	* [r19439] admin/trunk/Admin/components/AdminGroup/Delete.php:
+	  Fix syntax error
+
+2007-08-14  nrf
+
+	* [r19395] admin/trunk/Admin/AdminApplication.php:
+	  with rewriting, the front source can be either empty or
+	  index.html
+
+2007-08-13  nrf
+
+	* [r19371] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.17
+
 2007-08-09  gauthierm
 
 	* [r19290] admin/trunk/Admin/dataobjects/AdminUser.php:
