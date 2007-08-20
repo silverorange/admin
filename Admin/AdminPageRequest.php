@@ -86,7 +86,7 @@ class AdminPageRequest extends SiteObject
 				}
 
 				if (!$this->app->session->user->hasAccess($component))
-					throw new AdminNoAccessException(Store::_(
+					throw new AdminNoAccessException(Admin::_(
 						'Access to the requested component is forbidden.'));
 			}
 
