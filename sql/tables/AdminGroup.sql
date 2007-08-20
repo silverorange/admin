@@ -5,7 +5,7 @@ create table AdminGroup (
 );
 
 -- default admin groups
-insert into AdminGroup (id, title) values (1, 'silverorange');
+insert into AdminGroup (id, title) values (1, 'Default Group');
 
 SELECT setval('admingroup_id_seq', max(id)) FROM AdminGroup;
 
