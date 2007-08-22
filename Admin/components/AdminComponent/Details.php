@@ -29,7 +29,7 @@ class AdminAdminComponentDetails extends AdminIndex
 
 	protected function initInternal()
 	{
-		$this->ui->loadFromXML(dirname(__FILE__).'/details.xml');
+		$this->ui->loadFromXML(dirname(__FILE__).'/admin-component-details.xml');
 
 		$this->id = intval(SiteApplication::initVar('id'));
 

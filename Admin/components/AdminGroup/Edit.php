@@ -29,7 +29,7 @@ class AdminAdminGroupEdit extends AdminDBEdit
 		parent::initInternal();
 		$this->initGroup();
 
-		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
+		$this->ui->loadFromXML(dirname(__FILE__).'/admin-group-edit.xml');
 
 		$this->fields = array('title');
 
