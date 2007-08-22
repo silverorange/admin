@@ -28,7 +28,7 @@ class AdminAdminSectionEdit extends AdminDBEdit
 		parent::initInternal();
 		$this->initSection();
 
-		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
+		$this->ui->loadFromXML(dirname(__FILE__).'/admin-section-edit.xml');
 
 		$this->fields = array('title', 'boolean:show', 'description');
 	}

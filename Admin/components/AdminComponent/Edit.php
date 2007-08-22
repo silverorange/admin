@@ -32,7 +32,7 @@ class AdminAdminComponentEdit extends AdminDBEdit
 
 		$this->initComponent();
 
-		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
+		$this->ui->loadFromXML(dirname(__FILE__).'/admin-component-edit.xml');
 
 		$section_flydown = $this->ui->getWidget('section');
 		$section_flydown->addOptionsByArray(SwatDB::getOptionArray(
