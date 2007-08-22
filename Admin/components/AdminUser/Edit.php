@@ -20,7 +20,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 	protected $fields;
 	protected $user;
-	protected $ui_xml = 'Admin/components/AdminUser/admin-user-edit.xml';
+	protected $ui_xml = 'Admin/components/AdminUser/edit.xml';
 
 	// }}}
 

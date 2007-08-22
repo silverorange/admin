@@ -19,7 +19,7 @@ class AdminAdminUserIndex extends AdminIndex
 
 	protected function initInternal()
 	{
-		$this->ui->loadFromXML(dirname(__FILE__).'/admin-user-index.xml');
+		$this->ui->loadFromXML(dirname(__FILE__).'/index.xml');
 
 		// set a default order on the table view
 		$index_view = $this->ui->getWidget('index_view');

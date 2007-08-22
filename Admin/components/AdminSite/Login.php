@@ -39,7 +39,7 @@ class AdminAdminSiteLogin extends AdminPage
 
 	protected function initInternal()
 	{
-		$this->ui->loadFromXML(dirname(__FILE__).'/admin-site-login.xml');
+		$this->ui->loadFromXML(dirname(__FILE__).'/login.xml');
 		$this->ui->getWidget('login_form')->addJavaScript(
 			'packages/admin/javascript/admin-login.js',
 			Admin::PACKAGE_ID);

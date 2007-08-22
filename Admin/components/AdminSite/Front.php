@@ -16,7 +16,7 @@ class AdminAdminSiteFront extends AdminPage
 
 	protected function initInternal()
 	{
-		$this->ui->loadFromXML(dirname(__FILE__).'/admin-site-front.xml');
+		$this->ui->loadFromXML(dirname(__FILE__).'/front.xml');
 		$this->navbar->popEntry();
 	}
 

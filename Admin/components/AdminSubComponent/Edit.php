@@ -29,8 +29,7 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 		parent::initInternal();
 		$this->initSubComponent();
 
-		$this->ui->loadFromXML(dirname(__FILE__).
-			'/admin-sub-component-edit.xml');
+		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
 
 		$this->parent = SiteApplication::initVar('parent');
 
