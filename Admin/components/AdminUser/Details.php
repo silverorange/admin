@@ -26,7 +26,7 @@ class AdminAdminUserDetails extends AdminIndex
 
 	protected function initInternal()
 	{
-		$this->ui->loadFromXML(dirname(__FILE__).'/admin-user-details.xml');
+		$this->ui->loadFromXML(dirname(__FILE__).'/details.xml');
 
 		$this->id = intval(SiteApplication::initVar('id'));
 
