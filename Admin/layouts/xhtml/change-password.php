@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<?=$this->html_head_entries?>
 	<style type="text/css" media="all">@import "packages/admin/styles/admin-layout.css";</style>
-	<style type="text/css" media="all">@import "packages/admin/styles/change-password.css";</style>
+	<style type="text/css" media="all">@import "packages/admin/styles/admin-change-password-page.css";</style>
 </head>
 <body id="admin-change-password-page">
 
