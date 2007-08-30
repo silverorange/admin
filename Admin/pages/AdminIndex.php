@@ -111,13 +111,15 @@ abstract class AdminIndex extends AdminPage
 		foreach ($forms as $form) {
 			$form->action = $this->getRelativeURL();
 			$view = $form->getFirstDescendant('SwatView');
+			$actions = $form->getFirstDescendant('SwatActions');
 
 			if ($view !== null && $view->model !== null &&
 				count($view->model) == 0) {
-
-				$actions = $form->getFirstDescendant('SwatActions');
 				if ($actions !== null)
 					$actions->visible = false;
+			} else {
+				if ($actions !== null)
+					$actions->setViewSelector($view);
 			}
 		}
 	}
