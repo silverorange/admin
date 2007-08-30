@@ -113,13 +113,15 @@ abstract class AdminIndex extends AdminPage
 			$view = $form->getFirstDescendant('SwatView');
 			$actions = $form->getFirstDescendant('SwatActions');
 
-			if ($view !== null && $view->model !== null &&
-				count($view->model) == 0) {
-				if ($actions !== null)
+			if ($view !== null && $view->model !== null && $actions !== null) {
+				$input_row =
+					$view->getFirstDescendant('SwatTableViewInputRow');
+
+				if (count($view->model) == 0) {
 					$actions->visible = false;
-			} else {
-				if ($actions !== null)
+				} elseif ($input_row === null) {
 					$actions->setViewSelector($view);
+				}
 			}
 		}
 	}
