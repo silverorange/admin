@@ -43,24 +43,6 @@ class AdminSessionModule extends SiteSessionModule
 	 */
 	public function __construct(SiteApplication $app)
 	{
-		if (!(isset($app->cookie) &&
-			$app->cookie instanceof SiteCookieModule))
-			throw new AdminException('The AdminSessionModule requires a '.
-				'SiteCookieModule to be loaded. Please either explicitly '.
-				'add a cookie module to the application before instantiating '.
-				'the session module, or specify the cookie module before the '.
-				'session module in the application’s getDefaultModuleList() '.
-				'method.');
-
-		if (!(isset($app->database) &&
-			$app->database instanceof SiteDatabaseModule))
-			throw new AdminException('The AdminSessionModule requires a '.
-				'SiteDatabaseModule to be loaded. Please either explicitly '.
-				'add a database module to the application before '.
-				'instantiating the session module, or specify the database '.
-				'module before the session module in the application’s '.
-				'getDefaultModuleList() method.');
-
 		$this->registerRegenerateIdCallback(
 			array($this, 'regenerateAuthenticationToken'));
 
@@ -88,6 +70,22 @@ class AdminSessionModule extends SiteSessionModule
 			$this->app->cookie->setCookie('email', $this->getEmailAddress(),
 				strtotime('+1 day'), '/');
 		}
+	}
+
+	// }}}
+	// {{{ public function depends()
+
+	/**
+	 * Gets the module features this module depends on
+	 *
+	 * The admin session module depends on the SiteCookieModule and
+	 * SiteDatabaseModule features.
+	 *
+	 * @return array an array of features this module depends on.
+	 */
+	public function depends()
+	{
+		return array('SiteCookieModule', 'SiteDatabaseModule');
 	}
 
 	// }}}
