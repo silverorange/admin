@@ -1,5 +1,145 @@
+2007-09-04  gauthierm
+
+	* [r19832] admin/trunk/Admin/AdminSessionModule.php:
+	  Add AdminSessionModule => SiteCookieModule, AdminSessionModule
+	  => SiteDatabaseModule dependencies to work with r19831.
+
+2007-08-30  gauthierm
+
+	* [r19790] admin/trunk/Admin/pages/AdminIndex.php:
+	  Don't show select items message on index views that have an
+	  input row.
+	* [r19788] admin/trunk/Admin/pages/AdminIndex.php:
+	  Hook up actions widgets to views in the Admin package. Ticket
+	  #1217.
+
+2007-08-26  gauthierm
+
+	* [r19705] admin/trunk/Admin/layouts/xhtml/change-password.php,
+	  admin/trunk/www/styles/admin-change-password-page.css,
+	  admin/trunk/www/styles/change-password.css:
+	  Rename css file to fit naming conventions for CSS files.
+
+2007-08-22  gauthierm
+
+	* [r19579]
+	  admin/trunk/Admin/components/AdminComponent/Details.php,
+	  admin/trunk/Admin/components/AdminComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminComponent/Index.php,
+	  admin/trunk/Admin/components/AdminComponent/admin-component-details.xml,
+	  
+	  admin/trunk/Admin/components/AdminComponent/admin-component-edit.xml,
+	  
+	  admin/trunk/Admin/components/AdminComponent/admin-component-index.xml,
+	  admin/trunk/Admin/components/AdminComponent/details.xml,
+	  admin/trunk/Admin/components/AdminComponent/edit.xml,
+	  admin/trunk/Admin/components/AdminComponent/index.xml,
+	  admin/trunk/Admin/components/AdminGroup/Edit.php,
+	  admin/trunk/Admin/components/AdminGroup/Index.php,
+	  admin/trunk/Admin/components/AdminGroup/admin-group-edit.xml,
+	  admin/trunk/Admin/components/AdminGroup/admin-group-index.xml,
+	  admin/trunk/Admin/components/AdminGroup/edit.xml,
+	  admin/trunk/Admin/components/AdminGroup/index.xml,
+	  admin/trunk/Admin/components/AdminSection/Edit.php,
+	  admin/trunk/Admin/components/AdminSection/Index.php,
+	  admin/trunk/Admin/components/AdminSection/admin-section-edit.xml,
+	  
+	  admin/trunk/Admin/components/AdminSection/admin-section-index.xml,
+	  admin/trunk/Admin/components/AdminSection/edit.xml,
+	  admin/trunk/Admin/components/AdminSection/index.xml,
+	  admin/trunk/Admin/components/AdminSite/ChangePassword.php,
+	  admin/trunk/Admin/components/AdminSite/Front.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php,
+	  admin/trunk/Admin/components/AdminSite/Profile.php,
+	  admin/trunk/Admin/components/AdminSite/admin-site-change-password.xml,
+	  admin/trunk/Admin/components/AdminSite/admin-site-front.xml,
+	  admin/trunk/Admin/components/AdminSite/admin-site-login.xml,
+	  admin/trunk/Admin/components/AdminSite/admin-site-profile.xml,
+	  admin/trunk/Admin/components/AdminSite/change-password.xml,
+	  admin/trunk/Admin/components/AdminSite/front.xml,
+	  admin/trunk/Admin/components/AdminSite/login.xml,
+	  admin/trunk/Admin/components/AdminSite/profile.xml,
+	  admin/trunk/Admin/components/AdminSubComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminSubComponent/admin-sub-compoenent-edit.xml,
+	  admin/trunk/Admin/components/AdminSubComponent/edit.xml,
+	  admin/trunk/Admin/components/AdminUser/Details.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php,
+	  admin/trunk/Admin/components/AdminUser/Index.php,
+	  admin/trunk/Admin/components/AdminUser/LoginHistory.php,
+	  admin/trunk/Admin/components/AdminUser/admin-user-details.xml,
+	  admin/trunk/Admin/components/AdminUser/admin-user-edit.xml,
+	  admin/trunk/Admin/components/AdminUser/admin-user-index.xml,
+	  admin/trunk/Admin/components/AdminUser/admin-user-loginhistory.xml,
+	  admin/trunk/Admin/components/AdminUser/details.xml,
+	  admin/trunk/Admin/components/AdminUser/edit.xml,
+	  admin/trunk/Admin/components/AdminUser/index.xml,
+	  admin/trunk/Admin/components/AdminUser/loginhistory.xml:
+	  Undo r19572.
+
+2007-08-22  charles
+
+	* [r19572]
+	  admin/trunk/Admin/components/AdminComponent/Details.php,
+	  admin/trunk/Admin/components/AdminComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminComponent/Index.php,
+	  admin/trunk/Admin/components/AdminComponent/admin-component-details.xml,
+	  
+	  admin/trunk/Admin/components/AdminComponent/admin-component-edit.xml,
+	  
+	  admin/trunk/Admin/components/AdminComponent/admin-component-index.xml,
+	  admin/trunk/Admin/components/AdminComponent/details.xml,
+	  admin/trunk/Admin/components/AdminComponent/edit.xml,
+	  admin/trunk/Admin/components/AdminComponent/index.xml,
+	  admin/trunk/Admin/components/AdminGroup/Edit.php,
+	  admin/trunk/Admin/components/AdminGroup/Index.php,
+	  admin/trunk/Admin/components/AdminGroup/admin-group-edit.xml,
+	  admin/trunk/Admin/components/AdminGroup/admin-group-index.xml,
+	  admin/trunk/Admin/components/AdminGroup/edit.xml,
+	  admin/trunk/Admin/components/AdminGroup/index.xml,
+	  admin/trunk/Admin/components/AdminSection/Edit.php,
+	  admin/trunk/Admin/components/AdminSection/Index.php,
+	  admin/trunk/Admin/components/AdminSection/admin-section-edit.xml,
+	  
+	  admin/trunk/Admin/components/AdminSection/admin-section-index.xml,
+	  admin/trunk/Admin/components/AdminSection/edit.xml,
+	  admin/trunk/Admin/components/AdminSection/index.xml,
+	  admin/trunk/Admin/components/AdminSite/ChangePassword.php,
+	  admin/trunk/Admin/components/AdminSite/Front.php,
+	  admin/trunk/Admin/components/AdminSite/Login.php,
+	  admin/trunk/Admin/components/AdminSite/Profile.php,
+	  admin/trunk/Admin/components/AdminSite/admin-site-change-password.xml,
+	  admin/trunk/Admin/components/AdminSite/admin-site-front.xml,
+	  admin/trunk/Admin/components/AdminSite/admin-site-login.xml,
+	  admin/trunk/Admin/components/AdminSite/admin-site-profile.xml,
+	  admin/trunk/Admin/components/AdminSite/change-password.xml,
+	  admin/trunk/Admin/components/AdminSite/front.xml,
+	  admin/trunk/Admin/components/AdminSite/login.xml,
+	  admin/trunk/Admin/components/AdminSite/profile.xml,
+	  admin/trunk/Admin/components/AdminSubComponent/Edit.php,
+	  admin/trunk/Admin/components/AdminSubComponent/admin-sub-compoenent-edit.xml,
+	  admin/trunk/Admin/components/AdminSubComponent/edit.xml,
+	  admin/trunk/Admin/components/AdminUser/Details.php,
+	  admin/trunk/Admin/components/AdminUser/Edit.php,
+	  admin/trunk/Admin/components/AdminUser/Index.php,
+	  admin/trunk/Admin/components/AdminUser/LoginHistory.php,
+	  admin/trunk/Admin/components/AdminUser/admin-user-details.xml,
+	  admin/trunk/Admin/components/AdminUser/admin-user-edit.xml,
+	  admin/trunk/Admin/components/AdminUser/admin-user-index.xml,
+	  admin/trunk/Admin/components/AdminUser/admin-user-loginhistory.xml,
+	  admin/trunk/Admin/components/AdminUser/details.xml,
+	  admin/trunk/Admin/components/AdminUser/edit.xml,
+	  admin/trunk/Admin/components/AdminUser/index.xml,
+	  admin/trunk/Admin/components/AdminUser/loginhistory.xml:
+	  Changed the naming scheme for the xml.
+
 2007-08-20  nrf
 
+	* [r19517] admin/trunk/package.php:
+	  prepare for release of 1.1.20
+	* [r19516] admin/trunk/sql/tables/AdminGroup.sql:
+	  Better default
+	* [r19514] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.19
 	* [r19513] admin/trunk/Admin/AdminPageRequest.php:
 	  This is the Admin package
 
