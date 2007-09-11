@@ -133,6 +133,9 @@ class AdminAdminComponentEdit extends AdminDBEdit
 	{
 		$this->ui->setValues(get_object_vars($this->edit_component));
 
+		$this->ui->getWidget('section')->value =
+			$this->edit_component->getInternalValue('section');
+
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->values = SwatDB::queryColumn($this->app->db,
 			'AdminComponentAdminGroupBinding', 'groupnum', 'component',
