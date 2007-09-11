@@ -72,5 +72,6 @@ class Admin
 }
 
 Admin::setupGettext();
+SwatUI::mapClassPrefixToPath('Admin', 'Admin');
 
 ?>
