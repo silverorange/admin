@@ -117,18 +117,9 @@ class AdminDefaultLayout extends AdminLayout
 	{
 		parent::build();
 
-		$this->addHtmlHeadEntrySet($this->logout_form->getHtmlHeadEntrySet());
-		$this->addHtmlHeadEntrySet($this->menu->getHtmlHeadEntrySet());
-	}
-
-	// }}}
-
-	// finalize phase
-	// {{{ public function finalize()
-
-	public function finalize()
-	{
-		parent::finalize();
+		$page_title = $this->navbar->getLastEntry()->title;
+		$this->data->title = SwatString::minimizeEntities($page_title).
+			' - '.SwatString::minimizeEntities($this->app->title);
 
 		$this->startCapture('navbar');
 		$this->navbar->display();
@@ -142,9 +133,9 @@ class AdminDefaultLayout extends AdminLayout
 		$this->displayMenu();
 		$this->endCapture();
 
-		$page_title = $this->navbar->getLastEntry()->title;
-		$this->data->title = SwatString::minimizeEntities($page_title).
-			' - '.SwatString::minimizeEntities($this->app->title);
+		$this->addHtmlHeadEntrySet($this->logout_form->getHtmlHeadEntrySet());
+		$this->addHtmlHeadEntrySet($this->menu->getHtmlHeadEntrySet());
+		$this->addHtmlHeadEntrySet($this->navbar->getHtmlHeadEntrySet());
 	}
 
 	// }}}
