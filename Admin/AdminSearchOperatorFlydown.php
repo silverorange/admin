@@ -32,6 +32,9 @@ class AdminSearchOperatorFlydown extends SwatFlydown
 	
 	public function display()
 	{
+		if (!$this->visible)
+			return;
+
 		$this->options = array();
 		$this->show_blank = false;
 
