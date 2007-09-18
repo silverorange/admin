@@ -246,7 +246,7 @@ class AdminSessionModule extends SiteSessionModule
 	}
 
 	// }}}
-	// {{{ protected function regerateAuthenticationToken()
+	// {{{ protected function regenerateAuthenticationToken()
 
 	protected function regenerateAuthenticationToken()
 	{
