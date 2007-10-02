@@ -23,24 +23,29 @@ class AdminNavBar extends SwatNavBar
 	 * @param SwatNavBarEntry $entry the entry to display.
 	 * @param boolean $link whether or not to hyperlink the given entry if the
 	 *                       entry has a link set.
+	 * @param boolean $first whether or not this entry should be displayed as
+	 *                        the first entry.
 	 *
 	 * @see SwatNavBar::displayEntry()
 	 */
-	protected function displayEntry(SwatNavBarEntry $entry, $link = true)
+	protected function displayEntry(SwatNavBarEntry $entry, $link = true,
+		$first = false)
 	{
-		if ($entry instanceof AdminImportantNavBarEntry) {
-			if ($entry->link !== null && $link) {
-				echo '<h1>';
-				$link_tag = new SwatHtmlTag('a');
-				$link_tag->href = $entry->link;
-				$link_tag->setContent($entry->title);
-				$link_tag->display();
-				echo '</h1>';
-			} else {
-				echo SwatString::minimizeEntities($entry->title);
-			}
+		if ($entry instanceof AdminImportantNavBarEntry &&
+			$entry->link !== null && $link) {
+
+			echo '<h1>';
+			$a_tag = new SwatHtmlTag('a');
+			if ($first)
+				$a_tag->class = 'swat-navbar-first';
+
+			$a_tag->href = $entry->link;
+			$a_tag->setContent($entry->title);
+			$a_tag->display();
+			echo '</h1>';
+
 		} else {
-			parent::displayEntry($entry, $link);
+			parent::displayEntry($entry, $link, $first);
 		}
 	}
 
