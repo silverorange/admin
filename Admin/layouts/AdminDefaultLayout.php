@@ -115,8 +115,10 @@ class AdminDefaultLayout extends AdminLayout
 
 	public function finalize()
 	{
+		parent::finalize();
+
 		$this->startCapture('navbar');
-		$this->navbar->display();
+		$this->displayNavBar();
 		$this->endCapture();
 
 		$this->startCapture('header');
@@ -131,10 +133,9 @@ class AdminDefaultLayout extends AdminLayout
 		$this->data->title = SwatString::minimizeEntities($page_title).
 			' - '.SwatString::minimizeEntities($this->app->title);
 
+		$this->addHtmlHeadEntrySet($this->navbar->getHtmlHeadEntrySet());
 		$this->addHtmlHeadEntrySet($this->logout_form->getHtmlHeadEntrySet());
 		$this->addHtmlHeadEntrySet($this->menu->getHtmlHeadEntrySet());
-
-		parent::finalize();
 	}
 
 	// }}}
@@ -173,7 +174,7 @@ class AdminDefaultLayout extends AdminLayout
 	/**
 	 * Display admin page menu
 	 *
-	 * Display the menu of an admin page. Sub-classes should call this 
+	 * Display the menu of an admin page. Sub-classes should call this
 	 * from their implementation of {@link AdminPage::display()}.
 	 */
 	protected function displayMenu()
