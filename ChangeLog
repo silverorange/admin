@@ -1,3 +1,39 @@
+2007-10-02  gauthierm
+
+	* [r20800] admin/trunk/Admin/AdminNavBar.php:
+	  Respect Swat API change from r20798.
+
+2007-09-18  nick
+
+	* [r20396] admin/trunk/Admin/AdminSessionModule.php:
+	  Typo
+
+2007-09-13  gauthierm
+
+	* [r20237] admin/trunk/Admin/layouts/AdminDefaultLayout.php:
+	  Do this better so the page build() method can modify the navbar
+	  before it is displayed.
+	* [r20235] admin/trunk/Admin/layouts/AdminDefaultLayout.php:
+	  Clean up build and finalize methods in AdminDefaultLayout.
+	* [r20231] admin/trunk/Admin/AdminNote.php,
+	  admin/trunk/Admin/AdminSearchOperatorFlydown.php:
+	  Respect API change in Swat.
+
+2007-09-11  gauthierm
+
+	* [r20122] admin/trunk/Admin/components/AdminComponent/Edit.php:
+	  Fix bug on admin component edit page.
+
+2007-09-11  nrf
+
+	* [r20085] admin/trunk/Admin/Admin.php:
+	  Add Admin to SwatUI class map
+
+2007-09-04  nrf
+
+	* [r19859] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.21
+
 2007-09-04  gauthierm
 
 	* [r19832] admin/trunk/Admin/AdminSessionModule.php:
