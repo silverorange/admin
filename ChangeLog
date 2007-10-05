@@ -1,3 +1,13 @@
+2007-10-05  gauthierm
+
+	* [r21147] admin/trunk/Admin/layouts/AdminDefaultLayout.php:
+	  Update Admin layouts for r21142.
+
+2007-10-05  nrf
+
+	* [r21021] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.22
+
 2007-10-02  gauthierm
 
 	* [r20800] admin/trunk/Admin/AdminNavBar.php:
