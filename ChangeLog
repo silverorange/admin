@@ -1,3 +1,8 @@
+2007-10-05  nrf
+
+	* [r21155] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.23
+
 2007-10-05  gauthierm
 
 	* [r21147] admin/trunk/Admin/layouts/AdminDefaultLayout.php:
