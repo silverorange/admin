@@ -16,19 +16,6 @@ require_once 'Swat/SwatUI.php';
  */
 class AdminUI extends SwatUI
 {
-	// {{{ public function __construct()
-
-	/**
-	 * Creates a new AdminUI object
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-
-		$this->class_map['Admin'] = 'Admin';
-	}
-
-	// }}}
 	// {{{ public function getValues()
 
 	/**
