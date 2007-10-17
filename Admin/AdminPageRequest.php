@@ -130,7 +130,7 @@ class AdminPageRequest extends SiteObject
 				}
 			}
 		}
-		
+
 		return $file;
 	}
 
