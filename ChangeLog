@@ -1,3 +1,24 @@
+2007-10-22  isaac
+
+	* [r21757] admin/trunk/Admin/components/AdminSite/Logout.php:
+	  fix the adminnotfound exception thats been firing on veseys
+	  fairly regularly. Was caused by calling the page directly,
+	  and so there was no post vars for form->isProcessed() - thanks
+	  to mike for figuring out what was going on
+
+2007-10-17  nrf
+
+	* [r21519] admin/trunk/Admin/AdminPageRequest.php:
+	  white space
+
+2007-10-12  nrf
+
+	* [r21337] admin/trunk/ChangeLog, admin/trunk/package.php:
+	  prepare for release of 1.1.24
+	* [r21336] admin/trunk/Admin/AdminUI.php:
+	  This commit was forgot during refactoring of SwatUI a few weeks
+	  ago.
+
 2007-10-05  nrf
 
 	* [r21155] admin/trunk/ChangeLog, admin/trunk/package.php:
