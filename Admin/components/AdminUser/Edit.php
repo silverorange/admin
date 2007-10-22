@@ -36,16 +36,16 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 		$this->fields = array('email', 'name', 'boolean:enabled',
 			'boolean:force_change_password');
-		
+
 		$group_list = $this->ui->getWidget('groups');
 		$group_list_options = SwatDB::getOptionArray($this->app->db,
 			'AdminGroup', 'title', 'id', 'title');
 
-		$group_list->addOptionsByArray($group_list_options);		
+		$group_list->addOptionsByArray($group_list_options);
 
 		$confirm = $this->ui->getWidget('confirm_password');
 		$confirm->password_widget = $this->ui->getWidget('password');;
-		
+
 		if ($this->id === null) {
 			$confirm->required = true;
 			$this->ui->getWidget('password')->required = true;
@@ -67,7 +67,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 			if (!$this->user->load($this->id)) {
 				throw new AdminNotFoundException(
 					sprintf(Admin::_('User with id "%s" notfound.'),
-							$this->id));
+						$this->id));
 			}
 		}
 	}
@@ -131,7 +131,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 		SwatDB::updateBinding($this->app->db, 'AdminUserAdminGroupBinding',
 			'usernum', $this->user->id, 'groupnum', $group_list->values, 'AdminGroup',
 			'id');
-		
+
 		$message = new SwatMessage(
 			sprintf(Admin::_('User “%s” has been saved.'), $values['email']),
 			SwatMessage::NOTIFICATION);
@@ -159,7 +159,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 	protected function loadDBData()
 	{
 		$this->ui->setValues(get_object_vars($this->user));
-		
+
 		// don't set the the password field to the hashed password
 		$this->ui->getWidget('password')->value = null;
 
