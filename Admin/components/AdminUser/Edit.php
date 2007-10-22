@@ -18,7 +18,6 @@ class AdminAdminUserEdit extends AdminDBEdit
 {
 	// {{{ protected properties
 
-	protected $fields;
 	protected $user;
 	protected $ui_xml = 'Admin/components/AdminUser/edit.xml';
 
@@ -33,9 +32,6 @@ class AdminAdminUserEdit extends AdminDBEdit
 		$this->initUser();
 
 		$this->ui->loadFromXML($this->ui_xml);
-
-		$this->fields = array('email', 'name', 'boolean:enabled',
-			'boolean:force_change_password');
 
 		$group_list = $this->ui->getWidget('groups');
 		$group_list_options = SwatDB::getOptionArray($this->app->db,
@@ -110,13 +106,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 		$password = $this->ui->getWidget('password');
 		if ($password->value !== null) {
-			$salt = SwatString::getSalt(AdminUser::PASSWORD_SALT_LENGTH);
-			$values['password_salt'] = $salt;
-			$values['password'] = md5($password->value.$salt);
-			$this->fields[] = 'password_salt';
-			$this->fields[] = 'password';
-			$this->user->password = $values['password'];
-			$this->user->password_salt = $salt;
+			$this->user->setPassword($password->value);
 		}
 
 		$this->user->email = $values['email'];
@@ -129,8 +119,8 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 		$group_list = $this->ui->getWidget('groups');
 		SwatDB::updateBinding($this->app->db, 'AdminUserAdminGroupBinding',
-			'usernum', $this->user->id, 'groupnum', $group_list->values, 'AdminGroup',
-			'id');
+			'usernum', $this->user->id, 'groupnum', $group_list->values,
+			'AdminGroup', 'id');
 
 		$message = new SwatMessage(
 			sprintf(Admin::_('User “%s” has been saved.'), $values['email']),
