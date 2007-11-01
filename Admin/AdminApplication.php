@@ -144,6 +144,26 @@ class AdminApplication extends SiteWebApplication
 	}
 
 	// }}}
+	// {{{ public function getFrontendBaseHref()
+
+	/**
+	 * Gets the base href of the frontend application administered by this
+	 * admin application
+	 *
+	 * @param boolean $secure whether or not the base href should be a secure
+	 *                         URI. The default value is false.
+	 *
+	 * @return string the base href of the frontend application administered
+	 *                 by this admin application.
+	 */
+	public function getFrontendBaseHref($secure = false)
+	{
+		$base_href = $this->getBaseHref($secure);
+		$base_href = dirname($base_href).'/'; // strip off admin sub-directory
+		return $base_href;
+	}
+
+	// }}}
 	// {{{ public function getFrontSource()
 
 	/**
