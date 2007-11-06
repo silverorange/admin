@@ -4,8 +4,3 @@ create table AdminGroup (
 	primary key(id)
 );
 
--- default admin groups
-insert into AdminGroup (id, title) values (1, 'Default Group');
-
-SELECT setval('admingroup_id_seq', max(id)) FROM AdminGroup;
-

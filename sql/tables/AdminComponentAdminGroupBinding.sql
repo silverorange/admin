@@ -8,7 +8,3 @@ create table AdminComponentAdminGroupBinding (
 	primary key(component, groupnum)
 );
 
--- default AdminComponentAdminGroupBinding bindings
-insert into AdminComponentAdminGroupBinding (component, groupnum)
-	select AdminComponent.id, AdminGroup.id from AdminComponent, AdminGroup;
-
