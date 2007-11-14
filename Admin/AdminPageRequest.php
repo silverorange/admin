@@ -120,8 +120,8 @@ class AdminPageRequest extends SiteObject
 			$include_paths = explode(':', ini_get('include_path'));
 			$component_include_paths = $this->app->getComponentIncludePaths();
 
-			foreach ($include_paths as $include_path) {
-				foreach ($component_include_paths as $prefix => $path) {
+			foreach ($component_include_paths as $prefix => $path) {
+				foreach ($include_paths as $include_path) {
 					if (file_exists($include_path.'/'.$path.'/'.$classfile)) {
 						$file = $path.'/'.$classfile;
 						$this->class_prefix = $prefix;
