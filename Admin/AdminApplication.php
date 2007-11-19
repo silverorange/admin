@@ -94,9 +94,9 @@ class AdminApplication extends SiteWebApplication
 	// }}}
 	// {{{ public function __construct()
 
-	public function __construct($id)
+	public function __construct($id, $filename)
 	{
-		parent::__construct($id);
+		parent::__construct($id, $filename);
 
 		$this->exception_page_source = 'AdminSite/Exception';
 	}
@@ -378,7 +378,6 @@ class AdminApplication extends SiteWebApplication
 			'database' => 'SiteDatabaseModule',
 			'session'  => 'AdminSessionModule',
 			'messages' => 'SiteMessagesModule',
-			'config'   => 'SiteConfigModule',
 		);
 	}
 
