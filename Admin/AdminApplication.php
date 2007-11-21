@@ -378,6 +378,7 @@ class AdminApplication extends SiteWebApplication
 			'database' => 'SiteDatabaseModule',
 			'session'  => 'AdminSessionModule',
 			'messages' => 'SiteMessagesModule',
+			'config'   => 'SiteConfigModule',
 		);
 	}
 
