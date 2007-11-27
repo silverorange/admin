@@ -85,9 +85,12 @@ class AdminPageRequest extends SiteObject
 					$this->title = $component->title;
 				}
 
-				if (!$this->app->session->user->hasAccess($component))
-					throw new AdminNoAccessException(Admin::_(
-						'Access to the requested component is forbidden.'));
+				if (!$this->app->session->user->hasAccess($component)) {
+					$user = $this->app->session->user;
+					throw new AdminNoAccessException(sprintf(Admin::_(
+						"Access to the requested component is forbidden for ".
+						"user '%s'."), $user->id), 0, $user);
+				}
 			}
 
 		} elseif ($this->source == 'AdminSite/ChangePassword') {
