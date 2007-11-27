@@ -6,11 +6,21 @@ require_once 'Admin/exceptions/AdminUserException.php';
  * Thrown when access to a page is not allowed
  *
  * @package   Admin
- * @copyright 2006 silverorange
+ * @copyright 2006-2007 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminNoAccessException extends AdminUserException
 {
+	// {{{ protected properties
+
+	/**
+	 * The user that was denied access
+	 *
+	 * @var AdminUser
+	 */
+	protected $user;
+
+	// }}}
 	// {{{ public function __construct()
 
 	/**
@@ -18,11 +28,27 @@ class AdminNoAccessException extends AdminUserException
 	 *
 	 * @param string $message the message of the exception.
 	 * @param integer $code the code of the exception.
+	 * @param AdminUser $user optional. The user that was denied access.
 	 */
-	public function __construct($message = null, $code = 0)
+	public function __construct($message = null, $code = 0,
+		AdminUser $user = null)
 	{
 		parent::__construct($message, $code);
+		$this->user = $user;
 		$this->title = Admin::_('No Access');
+	}
+
+	// }}}
+	// {{{ public function getUser()
+
+	/**
+	 * Gets the user that was denied access
+	 *
+	 * @return AdminUser the user that was denied access.
+	 */
+	public function getUser()
+	{
+		return $this->user;
 	}
 
 	// }}}
