@@ -85,7 +85,10 @@ class AdminSessionModule extends SiteSessionModule
 	 */
 	public function depends()
 	{
-		return array('SiteCookieModule', 'SiteDatabaseModule');
+		$depends = parent::depends();
+		$depends[] = new SiteApplicationModuleDependency('SiteCookieModule');
+		$depends[] = new SiteApplicationModuleDependency('SiteDatabaseModule');
+		return $depends;
 	}
 
 	// }}}
