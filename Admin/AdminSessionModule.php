@@ -81,7 +81,8 @@ class AdminSessionModule extends SiteSessionModule
 	 * The admin session module depends on the SiteCookieModule and
 	 * SiteDatabaseModule features.
 	 *
-	 * @return array an array of features this module depends on.
+	 * @return array an array of {@link SiteModuleDependency} objects defining
+	 *                        the features this module depends on.
 	 */
 	public function depends()
 	{
