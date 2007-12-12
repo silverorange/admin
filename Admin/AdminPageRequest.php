@@ -156,7 +156,7 @@ class AdminPageRequest extends SiteObject
 	{
 		return $this->title;
 	}
-	
+
 	// }}}
 	// {{{ public function getComponent()
 
@@ -164,7 +164,7 @@ class AdminPageRequest extends SiteObject
 	{
 		return $this->component;
 	}
-	
+
 	// }}}
 	// {{{ public function getSubComponent()
 
@@ -172,7 +172,7 @@ class AdminPageRequest extends SiteObject
 	{
 		return $this->subcomponent;
 	}
-	
+
 	// }}}
 	// {{{ public function getSource()
 
@@ -180,7 +180,7 @@ class AdminPageRequest extends SiteObject
 	{
 		return $this->source;
 	}
-	
+
 	// }}}
 }
 
