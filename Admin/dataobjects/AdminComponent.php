@@ -35,7 +35,7 @@ class AdminComponent extends SwatDBDataObject
 	 */
 	public $shortname;
 
-	/** 
+	/**
 	 * Title of this component
 	 *
 	 * @var string
@@ -49,7 +49,7 @@ class AdminComponent extends SwatDBDataObject
 	 */
 	public $description;
 
-	/** 
+	/**
 	 * Order of display of this component relative to other components in this
 	 * component's section
 	 *
@@ -122,9 +122,9 @@ class AdminComponent extends SwatDBDataObject
 	 */
 	protected function loadSubComponents()
 	{
-		$sql = sprintf('select * from AdminSubComponent 
+		$sql = sprintf('select * from AdminSubComponent
 			where component = %s', $this->db->quote($this->id, 'integer'));
-	
+
 		return SwatDB::query($this->db, $sql, 'AdminSubComponentWrapper');
 	}
 
@@ -147,7 +147,7 @@ class AdminComponent extends SwatDBDataObject
 	protected function loadGroups()
 	{
 		$sql = sprintf('select * from AdminGroup
-			inner join AdminComponentAdminGroupBinding as binding on 
+			inner join AdminComponentAdminGroupBinding as binding on
 				binding.groupnum = AdminGroup.id and binding.component = %s',
 			$this->db->quote($this->id, 'integer'));
 
