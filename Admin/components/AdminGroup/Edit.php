@@ -48,15 +48,16 @@ class AdminAdminGroupEdit extends AdminDBEdit
 
 	// }}}
 	// {{{ protected function initGroup()
+
 	protected function initGroup()
 	{
 		$this->group = new AdminGroup();
 		$this->group->setDatabase($this->app->db);
 
-		if ($this->id !== null){
+		if ($this->id !== null) {
 			if (!$this->group->load($this->id)) {
 				throw new AdminNotFoundException(
-					sprintf(Admin::_('Section with id "%s" notfound.'),
+					sprintf(Admin::_('Group with id "%s" not found.'),
 							$this->id));
 			}
 		}
@@ -70,7 +71,7 @@ class AdminAdminGroupEdit extends AdminDBEdit
 	protected function saveDBData()
 	{
 		$values = $this->ui->getValues(array('title'));
-		
+
 		$this->group->title = $values['title'];
 		$this->group->save();
 
