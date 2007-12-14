@@ -25,7 +25,7 @@ require_once 'Admin/exceptions/AdminNotFoundException.php';
 class AdminApplication extends SiteWebApplication
 {
 	// {{{ public properties
-	
+
 	/**
 	 * A visble title for this admin
 	 *
