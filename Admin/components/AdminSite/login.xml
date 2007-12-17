@@ -13,6 +13,10 @@
 			</widget>
 			<widget class="SwatFormField">
 				<property name="title" translatable="yes">Password</property>
+				<widget class="SwatToolLink" id="forgot">
+					<property name="title" type="string">Forgot your password?</property>
+					<property name="link" type="string">AdminSite/ForgotPassword</property>
+				</widget>
 				<widget class="SwatPasswordEntry" id="password">
 					<property name="required" type="boolean">true</property>
 					<property name="size" type="integer">18</property>
