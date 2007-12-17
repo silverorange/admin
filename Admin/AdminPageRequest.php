@@ -97,6 +97,14 @@ class AdminPageRequest extends SiteObject
 			$this->component = 'AdminSite';
 			$this->subcomponent = 'ChangePassword';
 			$this->title = Admin::_('Change Password');
+		} elseif ($this->source == 'AdminSite/ForgotPassword') {
+			$this->component = 'AdminSite';
+			$this->subcomponent = 'ForgotPassword';
+			$this->title = Admin::_('Forgot Password');
+		} elseif ($this->source == 'AdminSite/ResetPassword') {
+			$this->component = 'AdminSite';
+			$this->subcomponent = 'ResetPassword';
+			$this->title = Admin::_('Reset Password');
 		} else {
 			$this->component = 'AdminSite';
 			$this->subcomponent = 'Login';
