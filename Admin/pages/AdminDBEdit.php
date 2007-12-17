@@ -8,7 +8,7 @@ require_once 'SwatDB/exceptions/SwatDBException.php';
 /**
  * Generic admin database edit page
  *
- * This class is intended to be a convenience base class. For a fully custom 
+ * This class is intended to be a convenience base class. For a fully custom
  * edit page, inherit directly from AdminPage instead.
  *
  * @package Admin
