@@ -233,6 +233,43 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
+	// {{{ public function loadFromEmail()
+
+	/**
+	 * Loads a user from the database with just an email address
+	 *
+	 * This is useful for password recovery and email address verification.
+	 *
+	 * @param string $email the email address of the user.
+	 * @param SiteInstance $instance Optional site instance for this user.
+	 *                               Used when the site implements
+	 *                               {@link SiteMultipleInstanceModule}.
+	 *
+	 * @return boolean true if the loading was successful and false if it was
+	 *                  not.
+	 */
+	public function loadFromEmail($email, SiteInstance $instance = null)
+	{
+		$this->checkDB();
+
+		$sql = sprintf('select id from %s
+			where lower(email) = lower(%s)',
+			$this->table,
+			$this->db->quote($email, 'text'));
+
+//		if ($instance !== null)
+//			$sql.= sprintf(' and instance = %s',
+//				$this->db->quote($instance->id, 'integer'));
+
+		$id = SwatDB::queryOne($this->db, $sql);
+
+		if ($id === null)
+			return false;
+
+		return $this->load($id);
+	}
+
+	// }}}
 	// {{{ protected function init()
 
 	protected function init()
