@@ -3,6 +3,8 @@
 require_once 'Swat/SwatString.php';
 require_once 'SwatDB/SwatDBDataObject.php';
 require_once 'Admin/dataobjects/AdminUserHistoryWrapper.php';
+require_once 'Admin/AdminResetPasswordMailMessage.php';
+require_once 'Text/Password.php';
 
 /**
  * User account for an admin
@@ -164,6 +166,70 @@ class AdminUser extends SwatDBDataObject
 	{
 		$this->password_salt = SwatString::getSalt(self::PASSWORD_SALT_LENGTH);
 		$this->password = md5($password.$this->password_salt);
+	}
+
+	// }}}
+	// {{{ public function resetPassword()
+
+	/**
+	 * Resets this user's password
+	 *
+	 * Creates a unique tag and emails this user's holder a tagged URL to
+	 * update his or her password.
+	 *
+	 * @param AdminApplication $app the application resetting this account's
+	 *                              password.
+	 *
+	 * @return string $password_tag a hashed tag to verify the account
+	 */
+	public function resetPassword(AdminApplication $app)
+	{
+		$this->checkDB();
+
+		$password_tag = SwatString::hash(uniqid(rand(), true));
+
+		/*
+		 * Update the database with new password tag. Don't use the regular
+		 * dataobject saving here in case other fields have changed.
+		 */
+		$id_field = new SwatDBField($this->id_field, 'integer');
+		$sql = sprintf('update %s set password_tag = %s where %s = %s',
+			$this->table,
+			$this->db->quote($password_tag, 'text'),
+			$id_field->name,
+			$this->db->quote($this->{$id_field->name}, $id_field->type));
+
+		SwatDB::exec($this->db, $sql);
+
+		return $password_tag;
+	}
+
+	// }}}
+	// {{{ public function sendResetPasswordMailMessage()
+
+	/**
+	 * Emails this user's holder with instructions on how to finish
+	 * resetting his or her password
+	 *
+	 * @param AdminApplication $app the application sending mail.
+	 * @param string $password_link a URL indicating the page at which the
+	 *                               account holder may complete the reset-
+	 *                               password process.
+	 *
+	 * @see AdminUser::resetPassword()
+	 */
+	public function sendResetPasswordMailMessage(
+		AdminApplication $app, $password_link)
+	{
+		$reset_email = new AdminResetPasswordMailMessage($app, $this,
+			$password_link, $app->title);
+
+		$reset_email->smtp_server  = $app->config->email->smtp_server;
+		$reset_email->from_address = $app->config->email->service_address;
+		$reset_email->from_name    = $app->title;
+		$reset_email->subject      = 'Reset Your '.$app->title.' Password';
+
+		$reset_email->send();
 	}
 
 	// }}}
