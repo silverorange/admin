@@ -9,6 +9,7 @@
 				<widget class="SwatEntry" id="email">
 					<property name="required" type="boolean">true</property>
 					<property name="size" type="integer">25</property>
+					<property name="tab_index" type="integer">1</property>
 				</widget>
 			</widget>
 			<widget class="SwatFormField">
@@ -20,6 +21,7 @@
 				<widget class="SwatPasswordEntry" id="password">
 					<property name="required" type="boolean">true</property>
 					<property name="size" type="integer">18</property>
+					<property name="tab_index" type="integer">2</property>
 				</widget>
 			</widget>
 			<widget class="SwatMessageDisplay" id="message_display">
@@ -27,6 +29,7 @@
 			<widget class="SwatFooterFormField">
 				<widget class="SwatButton" id="login_button">
 					<property name="title" translatable="yes">Login</property>
+					<property name="tab_index" type="integer">3</property>
 				</widget>
 			</widget>
 		</widget>
