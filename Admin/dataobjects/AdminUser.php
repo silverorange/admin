@@ -164,8 +164,9 @@ class AdminUser extends SwatDBDataObject
 	 */
 	public function setPassword($password)
 	{
-		$this->password_salt = SwatString::getSalt(self::PASSWORD_SALT_LENGTH);
-		$this->password = md5($password.$this->password_salt);
+		$salt = SwatString::getSalt(self::PASSWORD_SALT_LENGTH);
+		$this->password_salt = base64_encode($salt);
+		$this->password = md5($password.$salt);
 	}
 
 	// }}}
