@@ -116,6 +116,11 @@ class AdminSessionModule extends SiteSessionModule
 		$salt = SwatDB::queryOne($this->app->db, $sql, 'text');
 
 		if ($salt !== null) {
+			$decoded_salt = base64_decode($salt, true);
+
+			if ($decoded_salt !== false)
+				$salt = $decoded_salt;
+
 			$md5_password = md5($password.$salt);
 
 			$sql = sprintf('select *
