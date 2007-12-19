@@ -46,9 +46,7 @@ class AdminAdminSiteProfile extends AdminDBEdit
 
 		$password = $this->ui->getWidget('password');
 		if ($password->value !== null) {
-			$salt = SwatString::getSalt(AdminUser::PASSWORD_SALT_LENGTH);
-			$user->password_salt = base64_encode($salt);
-			$user->password = md5($password->value.$salt);
+			$user->setPassword($password->value);
 		}
 
 		$user->save();
