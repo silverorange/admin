@@ -77,11 +77,6 @@ class AdminAdminSiteResetPassword extends AdminPage
 		$sql = sprintf('select id from AdminUser where password_tag = %s',
 			$this->app->db->quote($password_tag, 'text'));
 
-		// this causes problems with admin tables that don't have instance data
-//		if ($this->app->hasModule('SiteMultipleInstanceModule'))
-//			$sql.= sprintf(' and instance = %s', $this->app->db->quote(
-//				$this->app->instance->getInstance()->id), 'integer');
-
 		return SwatDB::queryOne($this->app->db, $sql);
 	}
 

@@ -113,10 +113,6 @@ class AdminAdminSiteForgotPassword extends AdminPage
 	 */
 	protected function getAccount($email)
 	{
-		// this currently causes problems with no instance data for admin users
-		$instance = ($this->app->hasModule('SiteMultipleInstanceModule')) ?
-			$this->app->instance->getInstance() : null;
-
 		$class_name = SwatDBClassMap::get('AdminUser');
 		$admin_user = new $class_name();
 		$admin_user->setDatabase($this->app->db);
