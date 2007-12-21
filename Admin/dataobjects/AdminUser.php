@@ -249,7 +249,7 @@ class AdminUser extends SwatDBDataObject
 	 * @return boolean true if the loading was successful and false if it was
 	 *                  not.
 	 */
-	public function loadFromEmail($email, SiteInstance $instance = null)
+	public function loadFromEmail($email)
 	{
 		$this->checkDB();
 
@@ -257,10 +257,6 @@ class AdminUser extends SwatDBDataObject
 			where lower(email) = lower(%s)',
 			$this->table,
 			$this->db->quote($email, 'text'));
-
-//		if ($instance !== null)
-//			$sql.= sprintf(' and instance = %s',
-//				$this->db->quote($instance->id, 'integer'));
 
 		$id = SwatDB::queryOne($this->db, $sql);
 
