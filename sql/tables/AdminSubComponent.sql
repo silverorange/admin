@@ -10,8 +10,3 @@ create table AdminSubComponent (
 	primary key(id)
 );
 
--- default sub-components
-insert into AdminSubComponent (id, component, title, shortname, show, displayorder) values (1, 1, 'Login History', 'LoginHistory', true, 0);
-
-SELECT setval('adminsubcomponent_id_seq', max(id)) FROM AdminSubComponent;
-

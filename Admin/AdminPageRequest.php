@@ -85,9 +85,12 @@ class AdminPageRequest extends SiteObject
 					$this->title = $component->title;
 				}
 
-				if (!$this->app->session->user->hasAccess($component))
-					throw new AdminNoAccessException(Admin::_(
-						'Access to the requested component is forbidden.'));
+				if (!$this->app->session->user->hasAccess($component)) {
+					$user = $this->app->session->user;
+					throw new AdminNoAccessException(sprintf(Admin::_(
+						"Access to the requested component is forbidden for ".
+						"user '%s'."), $user->id), 0, $user);
+				}
 			}
 
 		} elseif ($this->source == 'AdminSite/ChangePassword') {
@@ -120,8 +123,8 @@ class AdminPageRequest extends SiteObject
 			$include_paths = explode(':', ini_get('include_path'));
 			$component_include_paths = $this->app->getComponentIncludePaths();
 
-			foreach ($include_paths as $include_path) {
-				foreach ($component_include_paths as $prefix => $path) {
+			foreach ($component_include_paths as $prefix => $path) {
+				foreach ($include_paths as $include_path) {
 					if (file_exists($include_path.'/'.$path.'/'.$classfile)) {
 						$file = $path.'/'.$classfile;
 						$this->class_prefix = $prefix;
