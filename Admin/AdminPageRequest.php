@@ -104,7 +104,7 @@ class AdminPageRequest extends SiteObject
 		} elseif ($this->source == 'AdminSite/ResetPassword') {
 			$this->component = 'AdminSite';
 			$this->subcomponent = 'ResetPassword';
-			$this->title = Admin::_('Reset Password');
+			$this->title = Admin::_('Update Password');
 		} else {
 			$this->component = 'AdminSite';
 			$this->subcomponent = 'Login';
