@@ -32,9 +32,6 @@ class AdminAdminSiteForgotPassword extends AdminPage
 	{
 		$this->ui->loadFromXML(dirname(__FILE__).'/forgot-password.xml');
 
-		$frame = $this->ui->getWidget('forgot_password_frame');
-		$frame->title = $this->app->title;
-
 		$email = $this->ui->getWidget('email');
 		try {
 			if (isset($this->app->cookie->email))
@@ -75,23 +72,36 @@ class AdminAdminSiteForgotPassword extends AdminPage
 
 		if ($admin_user === null) {
 			$message = new SwatMessage(Admin::_(
-				'There is no account with this email address.'),
+				'There is no account with this email address'),
 				SwatMessage::ERROR);
 
 			$message->secondary_content = Admin::_(
-				'Make sure you entered the email correctly');
+				'Make sure you entered the email address correctly.');
 
 			$message->content_type = 'text/xml';
 			$this->ui->getWidget('email')->addMessage($message);
 		} else {
 			$this->generateResetPasswordEmail($admin_user);
-			$message = new SwatMessage(Admin::_(
-				'Reset Password Email Sent'),
+			$message = new SwatMessage(Admin::_('Email has been sent'),
 				SwatMessage::NOTIFICATION);
 
+			$message->content_type = 'text/xml';
+
+			$anchor_tag = new SwatHtmlTag('a');
+			$anchor_tag->href = 'mailto:'.$email;
+			$anchor_tag->setContent($email);
+
+			$strong_tag = new SwatHtmlTag('strong');
+			$strong_tag->setContent(sprintf(Admin::_('Reset Your %s Password'),
+				$this->app->title));
+
 			$message->secondary_content = sprintf(Admin::_(
-				'An email has been sent to "%s" with a link to create your '.
-				'new password'), $email);
+				'%sAn email has been sent to %s containing a link to create '.
+				'a new password for the %s.%s%sPlease check you mail '.
+				'for a new message with the subject %s.%s'),
+				'<p>', $anchor_tag->__toString(), $this->app->title,
+				'</p>', '<p>', $strong_tag->__toString(), '</p>');
+
 
 			$message_display = $this->ui->getWidget('message_display');
 			$message_display->add($message, SwatMessageDisplay::DISMISS_OFF);
@@ -116,7 +126,7 @@ class AdminAdminSiteForgotPassword extends AdminPage
 		$class_name = SwatDBClassMap::get('AdminUser');
 		$admin_user = new $class_name();
 		$admin_user->setDatabase($this->app->db);
-		$found = $admin_user->loadFromEmail($email, $instance);
+		$found = $admin_user->loadFromEmail($email);
 
 		if ($found === false)
 			$admin_user = null;
