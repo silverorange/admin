@@ -23,3 +23,22 @@
 #email.swat-entry {
 	width: 98%;
 }
+
+#password_container.swat-displayable-container {
+	float: left;
+	width: 56%;
+}
+
+#password.swat-entry {
+	width: 92%;
+}
+
+#forgot_container.swat-displayable-container {
+	padding-top: 2px;
+}
+
+#forgot.swat-tool-link {
+	border: none;
+	background: transparent;
+	text-decoration: underline;
+}
