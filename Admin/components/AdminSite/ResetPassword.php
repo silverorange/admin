@@ -19,8 +19,14 @@ class AdminAdminSiteResetPassword extends AdminPage
 {
 	// {{{ private properties
 
-	private $password_tag = null;
-	private $user_id;
+	/**
+	 * @var string
+	 */
+	private $password_tag;
+
+	/**
+	 * @var AdminUser
+	 */
 	private $user;
 
 	// }}}
@@ -43,19 +49,17 @@ class AdminAdminSiteResetPassword extends AdminPage
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/reset-password.xml');
 
-		$this->password_tag = AdminApplication::initVar('password_tag', null,
-			AdminApplication::VAR_GET);
+		$this->password_tag = AdminApplication::initVar('password_tag');
 
-		if ($this->password_tag === null)
-			$this->user_id = null;
-		else
-			$this->user_id = $this->getUserId($this->password_tag);
-
-		$frame = $this->ui->getWidget('reset_password_frame');
-		$frame->title = $this->app->title;
+		$this->initUser();
 
 		$form = $this->ui->getWidget('edit_form');
-		$form->action = $this->source.'?password_tag='.$this->password_tag;
+		$form->addHiddenField('password_tag', $this->password_tag);
+		$form->action = $this->source;
+
+		$frame = $this->ui->getWidget('reset_password_frame');
+		$frame->title = sprintf(Admin::_('Update Password for %s'),
+			$this->user->name);
 
 		$confirm = $this->ui->getWidget('confirm_password');
 		$confirm->password_widget = $this->ui->getWidget('password');;
@@ -65,19 +69,24 @@ class AdminAdminSiteResetPassword extends AdminPage
 	// {{{ protected function getUserId()
 
 	/**
-	 * Gets the account id of the account associated with the password tag
-	 *
-	 * @param string $password_tag the password tag.
-	 *
-	 * @return integer the account id of the account associated with the
-	 *                  password tag or null if no such account id exists.
+	 * Initializes the admin user object associated with the password tag
 	 */
-	protected function getUserId($password_tag)
+	protected function initUser()
 	{
-		$sql = sprintf('select id from AdminUser where password_tag = %s',
-			$this->app->db->quote($password_tag, 'text'));
+		if ($this->password_tag !== null) {
+			$sql = sprintf('select id from AdminUser where password_tag = %s',
+				$this->app->db->quote($this->password_tag, 'text'));
 
-		return SwatDB::queryOne($this->app->db, $sql);
+			$user_id = SwatDB::queryOne($this->app->db, $sql);
+			if ($user_id !== null) {
+				$class_name = SwatDBClassMap::get('AdminUser');
+				$user = new $class_name();
+				$user->setDatabase($this->app->db);
+				if ($user->load($user_id)) {
+					$this->user = $user;
+				}
+			}
+		}
 	}
 
 	// }}}
@@ -89,7 +98,7 @@ class AdminAdminSiteResetPassword extends AdminPage
 	{
 		parent::processInternal();
 
-		if ($this->user_id === null)
+		if ($this->user === null)
 			return;
 
 		$form = $this->ui->getWidget('edit_form');
@@ -98,15 +107,11 @@ class AdminAdminSiteResetPassword extends AdminPage
 			if (!$form->hasMessage()) {
 				$password = $this->ui->getWidget('password')->value;
 
-				$this->user = new AdminUser();
-				$this->user->setDatabase($this->app->db);
-				$this->user->load($this->user_id);
 				$this->user->setPassword($password);
 				$this->user->password_tag = null;
 				$this->user->save();
 
-				$logged_in = $this->app->session->login($this->user->email,
-					$password);
+				$this->app->session->login($this->user->email, $password);
 
 				$message = new SwatMessage(
 					Admin::_('Your password has been updated.'));
@@ -126,7 +131,7 @@ class AdminAdminSiteResetPassword extends AdminPage
 	{
 		parent::buildInternal();
 
-		if ($this->user_id === null) {
+		if ($this->user === null) {
 			$text = sprintf('<p>%s</p><ul><li>%s</li><li>%s</li></ul>',
 				Admin::_('Please verify that the link is exactly the same as '.
 					'the one emailed to you.'),
