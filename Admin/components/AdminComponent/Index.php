@@ -11,6 +11,7 @@ require_once 'SwatDB/SwatDB.php';
  *
  * @package   Admin
  * @copyright 2005-2006 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminComponentIndex extends AdminIndex
 {
@@ -95,7 +96,7 @@ class AdminAdminComponentIndex extends AdminIndex
 				'text:title', 'id', $new_section);
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
-				'One component has been moved to section “%s”.', 
+				'One component has been moved to section “%s”.',
 				'%d components have been moved to section “%s”.', $num),
 				SwatString::numberFormat($num),
 				$title));
@@ -141,7 +142,7 @@ class AdminAdminComponentIndex extends AdminIndex
 		$sql = 'select section as id, AdminSection.title as title,
 			count(AdminComponent.id) as num_components
 			from AdminComponent
-			inner join AdminSection 
+			inner join AdminSection
 				on AdminSection.id = AdminComponent.section
 			group by section, AdminSection.id, AdminSection.title,
 				AdminSection.displayorder

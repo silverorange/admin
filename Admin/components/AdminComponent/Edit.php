@@ -10,7 +10,8 @@ require_once 'SwatDB/SwatDB.php';
  * Edit page for AdminComponents
  *
  * @package   Admin
- * @copyright 2005-2007 silverorange
+ * @copyright 2005-2008 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminComponentEdit extends AdminDBEdit
 {
@@ -71,20 +72,16 @@ class AdminAdminComponentEdit extends AdminDBEdit
 	{
 		$shortname = $this->ui->getWidget('shortname');
 
-		$sql = sprintf('select count(shortname) from AdminComponent
-			where shortname = %s and id %s %s',
-			$this->app->db->quote($shortname->value, 'text'),
-			SwatDB::equalityOperator($this->id, true),
-			$this->app->db->quote($this->id, 'integer'));
+		$component = new AdminComponent();
+		$component->setDatabase($this->app->db);
 
-		$count = SwatDB::queryOne($this->app->db, $sql);
+		if ($component->loadFromShortname($shortname->value)) {
+			if ($component->id !== $this->edit_component->id) {
+				$message = new SwatMessage(
+					Admin::_('Shortname already exists and must be unique.'));
 
-		if ($count > 0) {
-			$message = new SwatMessage(
-				Admin::_('Shortname already exists and must be unique.'),
-				SwatMessage::ERROR);
-
-			$shortname->addMessage($message);
+				$shortname->addMessage($message);
+			}
 		}
 	}
 
