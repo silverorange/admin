@@ -18,7 +18,7 @@ class AdminAdminUserLoginHistory extends AdminIndex
 
 	protected function initInternal()
 	{
-		$this->ui->loadFromXML(dirname(__FILE__).'/loginhistory.xml');
+		$this->ui->loadFromXML(dirname(__FILE__).'/login-history.xml');
 
 		// set a default order on the table view
 		$index_view = $this->ui->getWidget('index_view');
