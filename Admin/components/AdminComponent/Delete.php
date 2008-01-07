@@ -44,7 +44,7 @@ class AdminAdminComponentDelete extends AdminDBDelete
 		parent::buildInternal();
 
 		$item_list = $this->getItemList('integer');
-		
+
 		$dep = new AdminListDependency();
 		$dep->setTitle(Admin::_('component'), Admin::_('components'));
 		$dep->entries = AdminListDependency::queryEntries($this->app->db,
