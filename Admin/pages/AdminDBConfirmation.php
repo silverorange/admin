@@ -11,7 +11,7 @@ require_once 'Admin/exceptions/AdminException.php';
 /**
  * Generic admin database confirmation page
  *
- * This class is intended to be a convenience base class. For a fully custom 
+ * This class is intended to be a convenience base class. For a fully custom
  * DB confirmation page, inherit directly from AdminConfirmation instead.
  *
  * @package   Admin
@@ -82,7 +82,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	// {{{ protected function getItemList()
 
 	/**
-	 * Get the items of this confirmation page as a database-quoted list 
+	 * Get the items of this confirmation page as a database-quoted list
 	 *
 	 * @param string $type optional. The MDB2 datatype used to quote the items.
 	 *                      By default, 'integer' is used.
@@ -188,7 +188,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 			$message = new SwatMessage(Admin::_('An error has occured.'),
 				SwatMessage::SYSTEM_ERROR);
 
-		$this->app->messages->add($message);	
+		$this->app->messages->add($message);
 	}
 
 	// }}}
