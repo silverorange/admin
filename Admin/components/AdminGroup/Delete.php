@@ -7,8 +7,9 @@ require_once 'Admin/AdminListDependency.php';
 /**
  * Delete confirmation page for AdminGroups component
  *
- * @package Admin
- * @copyright 2005-2006 silverorange
+ * @package   Admin
+ * @copyright 2005-2008 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminGroupDelete extends AdminDBDelete
 {
@@ -25,7 +26,7 @@ class AdminAdminGroupDelete extends AdminDBDelete
 		$num = SwatDB::exec($this->app->db, $sql);
 
 		$message = new SwatMessage(sprintf(Admin::ngettext(
-			'One admin group has been deleted.', 
+			'One admin group has been deleted.',
 			'%d admin groups have been deleted.', $num),
 			SwatString::numberFormat($num)),
 			SwatMessage::NOTIFICATION);
@@ -43,7 +44,7 @@ class AdminAdminGroupDelete extends AdminDBDelete
 		parent::buildInternal();
 
 		$item_list = $this->getItemList('integer');
-		
+
 		$dep = new AdminListDependency();
 		$dep->setTitle(Admin::_('group'), Admin::_('groups'));
 		$dep->entries = AdminListDependency::queryEntries($this->app->db,

@@ -3,20 +3,25 @@
 require_once 'Admin/pages/AdminDBEdit.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
-require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/dataobjects/AdminGroup.php';
+require_once 'SwatDB/SwatDB.php';
 
 /**
  * Edit page for AdminGroups component
  *
  * @package   Admin
  * @copyright 2005-2006 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminGroupEdit extends AdminDBEdit
 {
 	// {{{ private properties
 
 	private $fields;
+
+	/*
+	 * @var AdminGroup
+	 */
 	private $group;
 
 	// }}}
