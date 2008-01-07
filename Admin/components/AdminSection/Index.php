@@ -32,7 +32,7 @@ class AdminAdminSectionIndex extends AdminIndex
 	{
 		$num = count($view->checked_items);
 		$message = null;
-		
+
 		switch ($actions->selected->id) {
 			case 'delete':
 				$this->app->replacePage('AdminSection/Delete');

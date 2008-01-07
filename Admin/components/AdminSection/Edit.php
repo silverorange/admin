@@ -3,14 +3,16 @@
 require_once 'Admin/pages/AdminDBEdit.php';
 require_once 'Admin/AdminUI.php';
 require_once 'Admin/exceptions/AdminNotFoundException.php';
-require_once 'MDB2.php';
 require_once 'Admin/dataobjects/AdminSection.php';
+require_once 'MDB2.php';
+
 
 /**
  * Edit page for AdminSections
  *
  * @package   Admin
  * @copyright 2005-2006 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminSectionEdit extends AdminDBEdit
 {
@@ -43,7 +45,7 @@ class AdminAdminSectionEdit extends AdminDBEdit
 		if ($this->id !== null) {
 			if (!$this->section->load($this->id)){
 				throw new AdminNotFoundException(
-					sprintf(Admin::_('Section with id "%s" notfound.'),
+					sprintf(Admin::_('Section with id "%s" not found.'),
 							$this->id));
 			}
 		}
@@ -57,12 +59,12 @@ class AdminAdminSectionEdit extends AdminDBEdit
 	protected function saveDBData()
 	{
 		$values = $this->ui->getValues(array(
-			'title', 
-			'show', 
+			'title',
+			'show',
 			'description'));
 
-		$this->section->title = $values['title'];
-		$this->section->show = $values['show'];
+		$this->section->title       = $values['title'];
+		$this->section->show        = $values['show'];
 		$this->section->description = $values['description'];
 		$this->section->save();
 
