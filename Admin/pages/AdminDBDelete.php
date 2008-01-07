@@ -6,7 +6,7 @@ require_once 'SwatDB/exceptions/SwatDBException.php';
 /**
  * Generic admin database delete page
  *
- * This class is intended to be a convenience base class. For a fully custom 
+ * This class is intended to be a convenience base class. For a fully custom
  * delete page, inherit directly from {@link AdminConfirmation} or
  * {@link AdminDBConfirmation} instead.
  *
@@ -42,7 +42,7 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 
 		$yes_button = $this->ui->getWidget('yes_button');
 		$yes_button->setFromStock('delete');
-		
+
 		$no_button = $this->ui->getWidget('no_button');
 		$no_button->setFromStock('cancel');
 
