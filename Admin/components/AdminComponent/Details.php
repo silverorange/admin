@@ -23,7 +23,7 @@ class AdminAdminComponentDetails extends AdminIndex
 
 	private $id;
 
-	/*
+	/**
 	 * @var AdminComponent
 	 */
 	private $details_component;
