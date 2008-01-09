@@ -12,6 +12,7 @@ require_once 'Swat/SwatTableStore.php';
  *
  * @package   Admin
  * @copyright 2005-2007 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminUserDetails extends AdminIndex
 {
@@ -46,10 +47,16 @@ class AdminAdminUserDetails extends AdminIndex
 	{
 		$this->user = new AdminUser();
 		$this->user->setDatabase($this->app->db);
-		$this->user->load($this->id);
+
+		if (!$this->user->load($this->id)) {
+			throw new AdminNotFoundException(
+				sprintf(Admin::_('User with id "%s" not found.'),
+					$this->id));
+		}
 	}
 
 	// }}}
+
 	// build phase
 	// {{{ protected function buildInternal()
 
@@ -57,21 +64,13 @@ class AdminAdminUserDetails extends AdminIndex
 	{
 		parent::buildInternal();
 
-		$name = SwatDB::queryOneFromTable($this->app->db, 'AdminUser',
-			'text:name', 'id', $this->id);
-
-		if ($name === null)
-			throw new AdminNotFoundException(
-				sprintf(Admin::_('User with id “%s” not found.'), 
-					$this->id));
-
 		$frame = $this->ui->getWidget('index_frame');
-		$frame->subtitle = sprintf($name);
+		$frame->subtitle = sprintf($this->user->name);
 
 		// rebuild the navbar
 		$this->navbar->popEntry();
 		$this->navbar->createEntry('Login History', 'AdminUser/LoginHistory');
-		$this->navbar->createEntry($name);
+		$this->navbar->createEntry($this->user->name);
 
 		// set default time zone
 		$date_column =
