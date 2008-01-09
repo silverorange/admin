@@ -33,7 +33,7 @@ class AdminSubComponent extends SwatDBDataObject
 	 */
 	public $shortname;
 
-	/** 
+	/**
 	 * Title of this sub-component
 	 *
 	 * @var string
@@ -47,8 +47,8 @@ class AdminSubComponent extends SwatDBDataObject
 	 */
 	public $description;
 
-	/** 
-	 * Order of display of this sub-component relative to other sub-components 
+	/**
+	 * Order of display of this sub-component relative to other sub-components
 	 * in this sub-component's section
 	 *
 	 * @var string
@@ -70,7 +70,7 @@ class AdminSubComponent extends SwatDBDataObject
 	 * Whether or not links to this sub-component should be shown in the admin
 	 *
 	 * This property does not affect the ability of users to load this
-	 * sub-component. It only affects whether or not links to this 
+	 * sub-component. It only affects whether or not links to this
 	 * sub-component are displayed.
 	 *
 	 * @var boolean
