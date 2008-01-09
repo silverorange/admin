@@ -16,6 +16,7 @@ require_once 'Swat/SwatString.php';
  *
  * @package   Admin
  * @copyright 2006-2007 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminDefaultLayout extends AdminLayout
 {
