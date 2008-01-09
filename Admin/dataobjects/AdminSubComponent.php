@@ -18,13 +18,6 @@ class AdminSubComponent extends SwatDBDataObject
 	// {{{ public properties
 
 	/**
-	 * The component that contains this sub-component 
-	 *
-	 * @var string
-	 */
-	public $component;
-
-	/**
 	 * Unique identifier
 	 *
 	 * @var integer
@@ -127,6 +120,7 @@ class AdminSubComponent extends SwatDBDataObject
 		$this->table = 'AdminSubComponent';
 		$this->id_field = 'integer:id';
 		$this->registerInternalProperty('section', 'AdminSection');
+		$this->registerInternalProperty('component', 'AdminComponent');
 	}
 
 	// }}}

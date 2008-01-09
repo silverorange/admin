@@ -110,7 +110,7 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 	{
 		$this->ui->setValues(get_object_vars($this->edit_subcomponent));
 
-		$this->parent = intval($this->edit_subcomponent->component);
+		$this->parent = $this->edit_subcomponent->getInternalValue('component');
 		$form = $this->ui->getWidget('edit_form');
 		$form->addHiddenField('parent', $this->parent);
 	}
