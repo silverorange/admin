@@ -13,6 +13,7 @@ require_once 'SwatDB/exceptions/SwatDBException.php';
  *
  * @package Admin
  * @copyright silverorange 2005
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminDBEdit extends AdminEdit
 {

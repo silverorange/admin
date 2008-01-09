@@ -11,6 +11,7 @@ require_once 'Swat/SwatString.php';
  *
  * @package Admin
  * @copyright silverorange 2004
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminEdit extends AdminPage
 {

@@ -10,6 +10,7 @@ require_once 'SwatDB/SwatDBTransaction.php';
  *
  * @package   Admin
  * @copyright 2004-2006 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminDBOrder extends AdminOrder
 {
