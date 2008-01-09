@@ -3,6 +3,7 @@
 require_once 'SwatDB/SwatDBDataObject.php';
 require_once 'Admin/dataobjects/AdminSection.php';
 require_once 'Admin/dataobjects/AdminGroupWrapper.php';
+require_once 'Admin/dataobjects/AdminSubComponentWrapper.php';
 
 /**
  * Component to perform a particular administration task
@@ -115,6 +116,16 @@ class AdminComponent extends SwatDBDataObject
 	}
 
 	// }}}
+	// {{{ protected function init()
+
+	protected function init()
+	{
+		$this->table = 'AdminComponent';
+		$this->id_field = 'integer:id';
+		$this->registerInternalProperty('section', 'AdminSection');
+	}
+
+	// }}}
 	// {{{ protected function loadSubComponents()
 
 	/**
@@ -126,16 +137,6 @@ class AdminComponent extends SwatDBDataObject
 			where component = %s', $this->db->quote($this->id, 'integer'));
 
 		return SwatDB::query($this->db, $sql, 'AdminSubComponentWrapper');
-	}
-
-	// }}}
-	// {{{ protected function init()
-
-	protected function init()
-	{
-		$this->table = 'AdminComponent';
-		$this->id_field = 'integer:id';
-		$this->registerInternalProperty('section', 'AdminSection');
 	}
 
 	// }}}
