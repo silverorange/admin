@@ -70,7 +70,7 @@ class AdminAdminUserLoginHistory extends AdminIndex
 		$pager = $this->ui->getWidget('pager');
 		$this->app->db->setLimit($pager->page_size, $pager->current_record);
 
-		$sql = 'select usernum, login_date, login_agent, remote_ip, email, 
+		$sql = 'select usernum, login_date, login_agent, remote_ip, email,
 					name
 				from AdminUserHistory
 				inner join AdminUser on AdminUser.id = AdminUserHistory.usernum
