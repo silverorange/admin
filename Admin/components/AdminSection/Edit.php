@@ -39,7 +39,8 @@ class AdminAdminSectionEdit extends AdminDBEdit
 	// {{{ protected function initSection()
 	protected function initSection()
 	{
-		$this->section = new AdminSection();
+		$class_name = SwatDBClassMap::get('AdminSection');
+		$this->section = new $class_name();
 		$this->section->setDatabase($this->app->db);
 
 		if ($this->id !== null) {
