@@ -56,7 +56,8 @@ class AdminAdminGroupEdit extends AdminDBEdit
 
 	protected function initGroup()
 	{
-		$this->group = new AdminGroup();
+		$class_name = SwatDBClassMap::get('AdminGroup');
+		$this->group = new $class_name();
 		$this->group->setDatabase($this->app->db);
 
 		if ($this->id !== null) {
