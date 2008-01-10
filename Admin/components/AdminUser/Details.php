@@ -45,7 +45,8 @@ class AdminAdminUserDetails extends AdminIndex
 	// {{{ protected function initUser()
 	protected function initUser()
 	{
-		$this->user = new AdminUser();
+		$class_name = SwatDBClassMap::get('AdminUser');
+		$this->user = new $class_name();
 		$this->user->setDatabase($this->app->db);
 
 		if (!$this->user->load($this->id)) {
