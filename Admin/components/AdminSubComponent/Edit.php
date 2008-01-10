@@ -47,7 +47,8 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 
 	protected function initSubComponent()
 	{
-		$this->edit_subcomponent = new AdminSubComponent();
+		$class_name = SwatDBClassMap::get('AdminSubComponent');
+		$this->edit_subcomponent = new $class_name();
 		$this->edit_subcomponent->setDatabase($this->app->db);
 
 		if ($this->id !== null) {
@@ -67,7 +68,8 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 	{
 		$shortname = $this->ui->getWidget('shortname');
 
-		$subcomponent = new AdminSubComponent();
+		$class_name = SwatDBClassMap::get('AdminSubComponent');
+		$subcomponent = new $class_name();
 		$subcomponent->setDatabase($this->app->db);
 
 		if ($subcomponent->loadFromShortname($shortname->value)) {
