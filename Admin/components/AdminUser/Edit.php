@@ -56,7 +56,8 @@ class AdminAdminUserEdit extends AdminDBEdit
 	// {{{ protected function initUser()
 	protected function initUser()
 	{
-		$this->user = new AdminUser();
+		$class_name = SwatDBClassMap::get('AdminUser');
+		$this->user = new $class_name();
 		$this->user->setDatabase($this->app->db);
 
 		if ($this->id !== null){
@@ -77,18 +78,18 @@ class AdminAdminUserEdit extends AdminDBEdit
 	{
 		$email = $this->ui->getWidget('email');
 
-		$query = SwatDB::query($this->app->db, sprintf('select email
-			from AdminUser where email = %s and id %s %s',
-			$this->app->db->quote($email->value, 'text'),
-			SwatDB::equalityOperator($this->id, true),
-			$this->app->db->quote($this->id, 'integer')));
+		$class_name = SwatDBClassMap::get('AdminUser');
+		$user = new $class_name();
+		$user->setDatabase($this->app->db);
 
-		if (count($query) > 0) {
-			$message = new SwatMessage(
-				Admin::_('An account with this email address already exists.'),
-				SwatMessage::ERROR);
+		if ($user->loadFromEmail($email->value)) {
+			if ($user->id !== $this->user->id) {
+				$message = new SwatMessage(
+					Admin::_('An account with this email address already'.
+					' exists.'));
 
-			$email->addMessage($message);
+				$email->addMessage($message);
+			}
 		}
 
 		if ($this->ui->getWidget('confirm_password_field')->hasMessage() ||
