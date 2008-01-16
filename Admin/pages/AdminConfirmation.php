@@ -88,7 +88,7 @@ abstract class AdminConfirmation extends AdminPage
 		parent::buildInternal();
 		$this->buildForm();
 	}
-	
+
 	// }}}
 	// {{{ protected function buildForm()
 
