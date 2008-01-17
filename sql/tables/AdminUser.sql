@@ -8,6 +8,6 @@ create table AdminUser (
 	force_change_password boolean not null default true,
 	enabled boolean not null default true,
 	menu_state varchar(255),
-	instance integer not null references Instance(id);
+	instance integer references Instance(id),
 	primary key(id)
 );
