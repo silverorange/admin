@@ -5,6 +5,7 @@ require_once 'SwatDB/SwatDBDataObject.php';
 require_once 'Admin/dataobjects/AdminUserHistoryWrapper.php';
 require_once 'Admin/AdminResetPasswordMailMessage.php';
 require_once 'Text/Password.php';
+require_once 'Site/dataobjects/SiteInstanceWrapper.php';
 
 /**
  * User account for an admin
@@ -110,7 +111,9 @@ class AdminUser extends SwatDBDataObject
 	 * After a user's username and password have been verified, perform
 	 * additional checks on the user's authentication. This method should be
 	 * checked on every page load -- not just at login -- to ensure the user
-	 * has permission to access the specified admin application.
+	 * has permission to access the specified admin application. It also checks
+	 * whether or not this user belongs to the current site instance as well as
+	 * well as performing all regular checks.
 	 *
 	 * @param AdminApplication $app the application to authenticate this user
 	 *                               against.
@@ -120,7 +123,13 @@ class AdminUser extends SwatDBDataObject
 	 */
 	public function isAuthenticated(AdminApplication $app)
 	{
-		return ($this->force_change_password === false);
+		$authenticated = ($this->force_change_password === false);
+
+		if ($authenticated &&
+			!isset($this->instances[$app->instance->getInstance()->id]))
+			$authenticated = false;
+
+		return $authenticated;
 	}
 
 	// }}}
@@ -294,6 +303,27 @@ class AdminUser extends SwatDBDataObject
 			$this->db->quote($this->id, 'integer'));
 
 		return SwatDB::query($this->db, $sql, 'AdminUserHistoryWrapper');
+	}
+
+	// }}}
+	// {{{ protected function loadInstances()
+
+	/**
+	 * Load the Instances that this user has access to
+	 *
+	 * @return SiteInstanceWrapper the site instances this user belongs to.
+	 */
+	protected function loadInstances()
+	{
+		$sql = sprintf('select Instance.*
+				from Instance
+				inner join AdminUserInstanceBinding on
+					AdminUserInstanceBinding.instance = Instance.id
+				where AdminUserInstanceBinding.usernum = %s',
+			$this->db->quote($this->id, 'integer'));
+
+		$wrapper_class = SwatDBClassMap::get('SiteInstanceWrapper');
+		return SwatDB::query($this->db, $sql, $wrapper_class);
 	}
 
 	// }}}
