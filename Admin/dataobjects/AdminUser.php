@@ -271,6 +271,9 @@ class AdminUser extends SwatDBDataObject
 
 	protected function init()
 	{
+		$this->registerInternalProperty('instance',
+			SwatDBClassMap::get('SiteInstance'));
+
 		$this->table = 'AdminUser';
 		$this->id_field = 'integer:id';
 	}
