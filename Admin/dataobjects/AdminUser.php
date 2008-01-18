@@ -125,9 +125,9 @@ class AdminUser extends SwatDBDataObject
 	{
 		$authenticated = ($this->force_change_password === false);
 
-		if ($authenticated &&
-			!isset($this->instances[$app->instance->getInstance()->id]))
-			$authenticated = false;
+		if ($app->hasModule('SiteMultipleInstanceModule'))
+			$authenticated = $authenticated &&
+				isset($this->instances[$app->instance->getInstance()->id]);
 
 		return $authenticated;
 	}
