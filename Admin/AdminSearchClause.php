@@ -35,7 +35,7 @@ class AdminSearchClause
 
 	// }}}
 	// {{{ public properties
-	
+
 	/**
 	 * Value of this search clause
 	 *
@@ -44,27 +44,27 @@ class AdminSearchClause
 	 * @var mixed
 	 */
 	public $value;
-	
+
 	/**
 	 * Table prefix for the field
 	 *
 	 * @var string
 	 */
 	public $table = null;
-	
+
 	/**
 	 * Whether or not the search match should be case-sensitive
 	 *
 	 * @var boolean
 	 */
 	public $case_sensitive = false;
-	
+
 	/**
 	 * Search operator
 	 *
 	 * This value should be one of the AdminSearchClause::OP_* constants.
 	 *
-	 * @var integer 
+	 * @var integer
 	 */
 	public $operator = self::OP_EQUALS;
 
@@ -101,7 +101,7 @@ class AdminSearchClause
 	 *                                search clause. If no logical operator is
 	 *                                needed, use a blank string. Defaults to
 	 *                                'and'.
-	 * 
+	 *
 	 * @return string this search clause as a string that can be included in a
 	 *                 SQL 'where' clause.
 	 */
@@ -109,11 +109,11 @@ class AdminSearchClause
 	{
 		if ($this->value === null || strlen(trim($this->value)) == 0)
 			return '';
-		
+
 		$field = ($this->table === null) ? '' : $this->table.'.';
-		$field .= $this->field->name;
+		$field.= $this->field->name;
 		$value = trim($this->value);
-	
+
 		if ($this->field->type == 'text') {
 			if (!$this->case_sensitive) {
 				$field = 'lower('.$field.')';
