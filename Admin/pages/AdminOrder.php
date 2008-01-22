@@ -16,16 +16,23 @@ require_once 'Admin/pages/AdminPage.php';
  */
 abstract class AdminOrder extends AdminPage
 {
+	// {{{ protected properties
+
+	protected $ui_xml = 'Admin/pages/order.xml';
+
+	// }}}
+
 	// init phase
 	// {{{ protected function initInternal()
 
 	protected function initInternal()
 	{
 		parent::initInternal();
+
 		$this->ui->getRoot()->addJavaScript(
 			'packages/admin/javascript/admin-order.js', Admin::PACKAGE_ID);
 
-		$this->ui->loadFromXML(dirname(__FILE__).'/order.xml');
+		$this->ui->loadFromXML($this->ui_xml);
 	}
 
 	// }}}
