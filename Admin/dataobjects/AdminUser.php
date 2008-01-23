@@ -179,6 +179,8 @@ class AdminUser extends SwatDBDataObject
 	{
 		$salt = SwatString::getSalt(self::PASSWORD_SALT_LENGTH);
 		$this->password_salt = base64_encode($salt);
+
+		// note: password is not salted with encoded salt
 		$this->password = md5($password.$salt);
 	}
 
@@ -216,6 +218,26 @@ class AdminUser extends SwatDBDataObject
 		SwatDB::exec($this->db, $sql);
 
 		return $password_tag;
+	}
+
+	// }}}
+	// {{{ public function validatePassword()
+
+	/**
+	 * Checks if a password matches this user's password
+	 *
+	 * The password is validateed against the salted hash of this user's stored
+	 * password.
+	 *
+	 * @return boolean true if the provided password matches this user's
+	 *                  password and false if not.
+	 */
+	public function validatePassword($password)
+	{
+		$decoded_salt = base64_decode($this->password_salt, true);
+		$salt = ($decoded_salt === false) ? $salt : $decoded_salt;
+
+		return (md5($password.$salt) == $this->password);
 	}
 
 	// }}}
