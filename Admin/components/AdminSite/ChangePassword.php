@@ -99,8 +99,7 @@ class AdminAdminSiteChangePassword extends AdminPage
 		}
 
 		// make sure old password is correct
-		$old_salt = $this->app->session->user->password_salt;
-		if (md5($old_password.$user->password_salt) != $user->password) {
+		if (!$user->validatePassword($old_password)) {
 			$message = new SwatMessage(
 				Admin::_('Your old password is not correct'),
 				SwatMessage::ERROR);
