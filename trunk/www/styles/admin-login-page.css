@@ -1,0 +1,44 @@
+/* Login Page Styles */
+
+#login_frame {
+	width: 27em;
+	margin: 4em auto 1em auto;
+	text-align: left;
+}
+
+#forgot_password_frame {
+	width: 27em;
+	margin: 4em auto 1em auto;
+	text-align: left;
+}
+
+#reset_password_frame {
+	width: 40em;
+	margin: 4em auto 1em auto;
+	text-align: left;
+}
+
+.swat-required { display: none; }
+
+#email.swat-entry {
+	width: 98%;
+}
+
+#password_container.swat-displayable-container {
+	float: left;
+	width: 56%;
+}
+
+#password.swat-entry {
+	width: 92%;
+}
+
+#forgot_container.swat-displayable-container {
+	padding-top: 2px;
+}
+
+#forgot.swat-tool-link {
+	border: none;
+	background: transparent;
+	text-decoration: underline;
+}

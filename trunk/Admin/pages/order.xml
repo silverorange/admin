@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
+<swatml>
+	<widget class="SwatFrame" id="order_frame">
+		<widget class="SwatForm" id="order_form">
+			<widget class="SwatFormField" id="options_field">
+				<property name="title" translatable="yes">Order Options</property>
+				<widget class="SwatRadioList" id="options" />
+			</widget>
+			<widget class="SwatFormField" id="order_field">
+				<property name="title" translatable="yes">Custom Order</property>
+				<widget class="SwatChangeOrder" id="order" />
+			</widget>
+			<widget class="SwatFooterFormField">
+				<widget class="SwatButton" id="submit_button" />
+			</widget>
+		</widget>
+	</widget>
+</swatml>

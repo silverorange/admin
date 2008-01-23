@@ -1,0 +1,132 @@
+body {
+	background: #f7f5f3;
+	color: #333;
+	margin: 0;
+	padding: 0;
+}
+
+#doc, #doc2, #doc3 { margin: 0; } /* turn of 10px left/right margins from default YUI grid  */
+
+a:link { color: #3F5ACE; }
+a:visited { color: #3F5ACE; }
+a:hover { color: #333; }
+a:active { color: #000; }
+
+img { border: 0; }
+
+/* YUI Reset basics */
+strong { font-weight: bold; }
+em { font-style: italic; }
+p { margin: 0 0 1em 0; }
+
+#yui-main .yui-b {
+	margin-top: 1em;
+}
+
+/* layouts with menu on left */
+.yui-t1 #yui-main .yui-b,
+.yui-t2 #yui-main .yui-b,
+.yui-t3 #yui-main .yui-b {
+	margin-right: 1em;
+}
+
+/* layouts with menu on right */
+.yui-t4 #yui-main .yui-b,
+.yui-t5 #yui-main .yui-b,
+.yui-t6 #yui-main .yui-b {
+	margin-left: 1em;
+}
+
+/* Header Styles */
+
+#hd {
+	background: #426c9e url(../images/admin-header-background.png) bottom repeat-x;
+	padding: 0.5em 1em;
+	color: #ddd;
+	border-bottom: 1px solid #81aed5;
+}
+
+#hd a { color: #fff; }
+#hd a:hover { color: #ddd; }
+#hd a:active { color: #ccc; }
+
+#hd #admin-syslinks {
+	float: right;
+	margin: 0.1em 0 0 2em;
+}
+
+#hd h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 120%;
+	color: #fff;
+	display: inline;
+	font-weight: bold;
+}
+
+
+/* Basic styles to build up from YUI reset */
+
+h1, h2, h3, h4, h5, h6{ font-weight: bold;  }
+
+h1 { font-size: 152%; }
+h2 { font-size: 136%; }
+h3 { font-size: 122%; }
+h4 { font-size: 107%; }
+h5 { font-size:  92%; }
+h6 { font-size:  85%; }
+
+
+/* Content Styles */
+
+.admin-light {
+	color: #666;
+}
+
+/* Confirmation dialogs */
+
+#confirmation_container {
+	background: url(../../swat/images/tango/48/dialog-question.png) top left no-repeat;
+	padding: 0 0 0 64px;
+	min-height: 48px;
+}
+
+* html #confirmation_container {
+	height: 48px; /* IE hack */
+}
+
+#confirmation_frame ul {
+	list-style-type: disc;
+}
+
+#confirmation_frame ul li {
+	margin-left: 1.5em;
+	margin-top: 0.1em;
+}
+
+address { font-style: normal; }
+
+#logout {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#logout div.swat-form-field,
+#logout div.swat-form-field-contents {
+	display: inline;
+	margin: 0;
+}
+
+#logout input {
+	margin: 0;
+	padding: 0 0.2em;
+	vertical-align: middle;
+	font-size: 85%;
+	position: relative;
+	top: -2px;
+}
+
+.swat-button {
+	padding: 0.1em;
+}

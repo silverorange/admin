@@ -1,0 +1,59 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
+<swatml>
+	<widget class="SwatMessageDisplay" id="message_display" />
+	<widget class="SwatFrame" id="edit_frame">
+		<property name="title" translatable="yes">User</property>
+		<widget class="SwatForm" id="edit_form">
+			<widget class="SwatFormField">
+				<property name="title" translatable="yes">Name</property>
+				<widget class="SwatEntry" id="name">
+					<property name="required" type="boolean">true</property>
+					<property name="maxlength" type="integer">100</property>
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" translatable="yes">Email</property>
+				<widget class="SwatEmailEntry" id="email">
+					<property name="required" type="boolean">true</property>
+					<property name="maxlength" type="integer">50</property>
+				</widget>
+			</widget>
+			<widget class="SwatDisclosure" id="password_disclosure">
+				<property name="title" translatable="yes">Change Password</property>
+				<property name="open" type="boolean">false</property>
+				<widget class="SwatFormField">
+					<property name="title" translatable="yes">Password</property>
+					<widget class="SwatPasswordEntry" id="password">
+						<property name="autocomplete" type="boolean">false</property>
+						<property name="minlength" type="integer">4</property>
+					</widget>
+				</widget>
+				<widget class="SwatFormField" id="confirm_password_field">
+					<property name="title" translatable="yes">Confirm Password</property>
+					<property name="note">Leave Password fields blank for them to remain the same.</property>
+					<widget class="SwatConfirmPasswordEntry" id="confirm_password" />
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" translatable="yes">Enabled</property>
+				<widget class="SwatCheckbox" id="enabled">
+					<property name="value" type="boolean">true</property>
+				</widget>
+			</widget>
+			<widget class="SwatFormField">
+				<property name="title" translatable="yes">Force User to Change Password on Login</property>
+				<widget class="SwatCheckbox" id="force_change_password">
+					<property name="value" type="boolean">true</property>
+				</widget>
+			</widget>
+			<widget class="SwatGroupingFormField">
+				<property name="title" translatable="yes">Belongs to Groups</property>
+				<widget class="SwatCheckboxList" id="groups" />
+			</widget>
+			<widget class="SwatFooterFormField">
+				<widget class="SwatButton" id="submit_button" />
+			</widget>
+		</widget>
+	</widget>
+</swatml>
