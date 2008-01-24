@@ -57,10 +57,13 @@ class AdminAdminUserDelete extends AdminDBDelete
 			'AdminUser', 'integer:id', null, 'text:name', 'name',
 			$where_clause, AdminDependency::DELETE);
 
-
 		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = $dep->getMessage();
 		$message->content_type = 'text/xml';
+
+		if ($dep->getItemCount() == 0) {
+			$this->switchToCancelButton();
+		}
 
 		// display can't delete self message if current account is in selection
 		if ($this->items->contains($this->app->session->getUserId())) {
