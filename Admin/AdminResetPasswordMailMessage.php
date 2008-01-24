@@ -5,12 +5,12 @@ require_once 'Site/dataobjects/SiteAccount.php';
 require_once 'Admin/exceptions/AdminException.php';
 
 /**
- * Email that is sent to user's holder when they request new passwords
+ * Email that is sent to an admin uuser when they request a new password
  *
  * To send a password reset message:
  * <code>
- * $password_link = '/account/resetpassword'
- * $email = new AdminResetPasswordMailMessage($app, $account, $password_link,
+ * $password_link = 'AdminSite/ResetPassword?password_tag=foo';
+ * $email = new AdminResetPasswordMailMessage($app, $user, $password_link,
  *     'My Application Title');
  *
  * $email->smtp_server = 'example.com';
@@ -22,9 +22,9 @@ require_once 'Admin/exceptions/AdminException.php';
  * </code>
  *
  * @package   Admin
- * @copyright 2007 silverorange
+ * @copyright 2007-2008 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
- * @see       AdminUser
+ * @see       AdminUser::sendResetPasswordMailMessage()
  */
 class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 {
@@ -45,33 +45,24 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 	 */
 	protected $password_link;
 
-	/**
-	 * The title of the application sending the reset password mail
-	 *
-	 * This title is visible inside the mail message bodytext.
-	 *
-	 * @var string
-	 */
-	protected $application_title;
-
 	// }}}
 	// {{{ public function __construct()
 
 	/**
 	 * Creates a new reset password email
 	 *
-	 * @param SiteAccount $account the account to create the email for.
+	 * @param AdminApplication $app the application sending the mail message.
+	 * @param AdminUser $user the user for which to create the email.
 	 * @param string $password_link the URL of the application page that
 	 *                               performs the password reset.
 	 */
 	public function __construct(AdminApplication $app, AdminUser $user,
-		$password_link, $application_title)
+		$password_link)
 	{
 		parent::__construct($app);
 
 		$this->password_link = $password_link;
 		$this->admin_user = $user;
-		$this->application_title = $application_title;
 	}
 
 	// }}}
@@ -139,7 +130,7 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 			'request for a new password for your %s account. Your password '.
 			'has not yet been changed. Please click on the following link '.
 			'and follow the steps to change your account password.'),
-				$this->application_title),
+				$this->app->config->site->title),
 
 			$formatted_link,
 
@@ -163,7 +154,7 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 			'requesting a new password. Have no fear! Your account '.
 			'information is safe. Simply ignore this email and continue '.
 			'using your existing password.'),
-				$this->application_title));
+				$this->app->config->site->title));
 	}
 
 	// }}}
