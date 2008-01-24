@@ -108,36 +108,14 @@ class AdminSessionModule extends SiteSessionModule
 	{
 		$this->logout(); // make sure user is logged out before logging in
 
-		$sql = sprintf('select password_salt from AdminUser where email = %s
-			and enabled = %s',
-			$this->app->db->quote($email, 'text'),
-			$this->app->db->quote(true, 'boolean'));
-
-		$salt = SwatDB::queryOne($this->app->db, $sql, 'text');
-
-		if ($salt !== null) {
-			$decoded_salt = base64_decode($salt, true);
-
-			if ($decoded_salt !== false)
-				$salt = $decoded_salt;
-
-			$md5_password = md5($password.$salt);
-
-			$sql = sprintf('select *
-				from AdminUser
-				where email = %s and password = %s and enabled = %s',
-				$this->app->db->quote($email, 'text'),
-				$this->app->db->quote($md5_password, 'text'),
-				$this->app->db->quote(true, 'boolean'));
-
-			$this->user = SwatDB::query($this->app->db, $sql,
-				'AdminUserWrapper')->getFirst();
-
-			if ($this->user !== null &&
-				$this->user->isAuthenticated($this->app)) {
-				$this->insertUserHistory($this->user);
-				$this->runLoginCallbacks();
-			}
+		$class_name = SwatDBClassMap::get('AdminUser');
+		$user = new $class_name();
+		$user->setDatabase($this->app->db);
+		if ($user->loadFromEmailAndPassword($email, $password) &&
+			$user->isAuthenticated($this->app)) {
+			$this->user = $user;
+			$this->insertUserHistory($this->user);
+			$this->runLoginCallbacks();
 		}
 
 		return $this->isLoggedIn();
