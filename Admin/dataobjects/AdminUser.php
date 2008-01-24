@@ -127,10 +127,19 @@ class AdminUser extends SwatDBDataObject
 
 		// If application uses instances, ensure the admin user has a binding
 		// to the current instance.
-		if ($app->hasModule('SiteMultipleInstanceModule')) {
-			$instance = $app->getModule('SiteMultipleInstanceModule');
-			if ($authenticated && !isset($this->instances[$instance->getId()]))
-				$authenticated = false;
+		if ($authenticated) {
+			if ($app->hasModule('SiteMultipleInstanceModule')) {
+				$instance = $app->getModule('SiteMultipleInstanceModule');
+				$instance_id = $instance->getId();
+
+				// Only validate agains instances if site is actually using the
+				// instance module. A null instance id means the user is
+				// authenticated.
+				if ($instance_id !== null &&
+					!isset($this->instances[$instance_id])) {
+					$authenticated = false;
+				}
+			}
 		}
 
 		return $authenticated;
