@@ -72,7 +72,7 @@ class AdminAdminSiteForgotPassword extends AdminPage
 
 		if ($admin_user === null) {
 			$message = new SwatMessage(Admin::_(
-				'There is no account with this email address'),
+				'There is no account with the specified email address'),
 				SwatMessage::ERROR);
 
 			$message->secondary_content = Admin::_(
@@ -81,7 +81,7 @@ class AdminAdminSiteForgotPassword extends AdminPage
 			$message->content_type = 'text/xml';
 			$this->ui->getWidget('email')->addMessage($message);
 		} else {
-			$this->generateResetPasswordEmail($admin_user);
+			$this->sendResetPasswordMailMessage($admin_user);
 			$message = new SwatMessage(Admin::_('Email has been sent'),
 				SwatMessage::NOTIFICATION);
 
@@ -91,16 +91,22 @@ class AdminAdminSiteForgotPassword extends AdminPage
 			$anchor_tag->href = 'mailto:'.$email;
 			$anchor_tag->setContent($email);
 
+			/*
+			 * Don't show other site instances here as it could violate the
+			 * user's privacy. Another user is resetting the password and may
+			 * have no knowledge of other instances the user belongs to.
+			 */
 			$strong_tag = new SwatHtmlTag('strong');
-			$strong_tag->setContent(sprintf(Admin::_('Reset Your %s Password'),
-				$this->app->title));
+			$strong_tag->setContent(sprintf(
+				Admin::_('Reset Your %s Admin Password'),
+				$this->app->config->site->title));
 
 			$message->secondary_content = sprintf(Admin::_(
 				'%sAn email has been sent to %s containing a link to create '.
-				'a new password for the %s.%s%sPlease check you mail '.
-				'for a new message with the subject %s.%s'),
-				'<p>', $anchor_tag->__toString(), $this->app->title,
-				'</p>', '<p>', $strong_tag->__toString(), '</p>');
+				'a new password for the %s admin.%s%sPlease check you mail '.
+				'for a new message with the subject: %s.%s'),
+				'<p>', $anchor_tag, $this->app->config->site->title,
+				'</p>', '<p>', $strong_tag, '</p>');
 
 
 			$message_display = $this->ui->getWidget('message_display');
@@ -135,15 +141,28 @@ class AdminAdminSiteForgotPassword extends AdminPage
 	}
 
 	// }}}
-	// {{{ protected function generateResetPasswordEmail()
+	// {{{ protected function sendResetPasswordMailMessage()
 
-	protected function generateResetPasswordEmail(AdminUser $admin_user)
+	protected function sendResetPasswordMailMessage(AdminUser $admin_user)
 	{
-		$password_tag = $admin_user->resetPassword($this->app);
+		$password_tag = $admin_user->resetPassword();
 		$password_link = $this->app->getBaseHref().
 			'AdminSite/ResetPassword?password_tag='.$password_tag;
 
-		$admin_user->sendResetPasswordMailMessage($this->app, $password_link);
+		$mail_message = new AdminResetPasswordMailMessage($this->app,
+			$admin_user, $password_link);
+
+		$mail_message->smtp_server = $this->app->config->email->smtp_server;
+		$mail_message->from_address =
+			$this->app->config->email->service_address;
+
+		$mail_message->from_name = $this->app->config->site->title;
+
+		$mail_message->subject = sprintf(
+			Admin::_('Reset Your %s Admin Password'),
+			$this->app->config->site->title);
+
+		$mail_message->send();
 	}
 
 	// }}}
