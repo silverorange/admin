@@ -127,9 +127,9 @@ class AdminUser extends SwatDBDataObject
 
 		// If application uses instances, ensure the admin user has a binding
 		// to the current instance.
-		if ($app->hasModule('SiteInstanceModule')) {
-			if ($authenticated &&
-				!isset($this->instances[$app->instance->getInstance()->id]))
+		if ($app->hasModule('SiteMultipleInstanceModule')) {
+			$instance = $app->getModule('SiteMultipleInstanceModule');
+			if ($authenticated && !isset($this->instances[$instance->getId()]))
 				$authenticated = false;
 		}
 
@@ -226,7 +226,7 @@ class AdminUser extends SwatDBDataObject
 	/**
 	 * Checks if a password matches this user's password
 	 *
-	 * The password is validateed against the salted hash of this user's stored
+	 * The password is validated against the salted hash of this user's stored
 	 * password.
 	 *
 	 * @return boolean true if the provided password matches this user's
@@ -234,6 +234,8 @@ class AdminUser extends SwatDBDataObject
 	 */
 	public function validatePassword($password)
 	{
+		// Support both the newer base64 encoded salts and older raw-ASCII
+		// strings.
 		$decoded_salt = base64_decode($this->password_salt, true);
 		$salt = ($decoded_salt === false) ? $salt : $decoded_salt;
 
@@ -277,9 +279,6 @@ class AdminUser extends SwatDBDataObject
 	 * This is useful for password recovery and email address verification.
 	 *
 	 * @param string $email the email address of the user.
-	 * @param SiteInstance $instance Optional site instance for this user.
-	 *                               Used when the site implements
-	 *                               {@link SiteMultipleInstanceModule}.
 	 *
 	 * @return boolean true if the loading was successful and false if it was
 	 *                  not.
@@ -299,6 +298,65 @@ class AdminUser extends SwatDBDataObject
 			return false;
 
 		return $this->load($id);
+	}
+
+	// }}}
+	// {{{ public function loadFromEmailAndPassword()
+
+	/**
+	 * Loads this user from the database using an email address and password
+	 *
+	 * This is useful for logging a user into an admin application.
+	 *
+	 * @param string $email the email address of the user.
+	 * @param string $password the password of the user.
+	 *
+	 * @return boolean true if the loading was successful and false if it was
+	 *                  not.
+	 */
+	public function loadFromEmailAndPassword($email, $password)
+	{
+		$this->checkDB();
+
+		$loaded = false;
+
+		$sql = sprintf('select password_salt from %s where email = %s
+			and enabled = %s',
+			$this->table,
+			$this->db->quote($email, 'text'),
+			$this->db->quote(true, 'boolean'));
+
+		$salt = SwatDB::queryOne($this->db, $sql, 'text');
+
+		if ($salt !== null) {
+			$row = null;
+
+			// Support both the newer base64 encoded salts and older raw-ASCII
+			// strings.
+			$decoded_salt = base64_decode($salt, true);
+			$salt = ($decoded_salt === false) ? $salt : $decoded_salt;
+
+			$md5_password = md5($password.$salt);
+
+			$sql = sprintf('select *
+				from %s
+				where email = %s and password = %s and enabled = %s',
+				$this->table,
+				$this->db->quote($email, 'text'),
+				$this->db->quote($md5_password, 'text'),
+				$this->db->quote(true, 'boolean'));
+
+			$rs = SwatDB::query($this->db, $sql, null);
+			$row = $rs->fetchRow(MDB2_FETCHMODE_ASSOC);
+
+			if ($row !== null) {
+				$this->initFromRow($row);
+				$this->generatePropertyHashes();
+				$loaded = true;
+			}
+		}
+
+		return $loaded;
 	}
 
 	// }}}
