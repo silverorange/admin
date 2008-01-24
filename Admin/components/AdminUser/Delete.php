@@ -20,9 +20,11 @@ class AdminAdminUserDelete extends AdminDBDelete
 	{
 		parent::processDBData();
 
-		$sql = 'delete from AdminUser where id in (%s)';
+		$sql = sprintf('delete from AdminUser where id in (%s) and id != %s',
+			$item_list,
+			$this->app->db->quote($this->app->session->getUserId(), 'integer'));
+
 		$item_list = $this->getItemList('integer');
-		$sql = sprintf($sql, $item_list);
 		$num = SwatDB::exec($this->app->db, $sql);
 
 		$message = new SwatMessage(sprintf(Admin::ngettext(
@@ -45,15 +47,29 @@ class AdminAdminUserDelete extends AdminDBDelete
 
 		$item_list = $this->getItemList('integer');
 
+		$where_clause = sprintf('id in (%s) and id != %s',
+			$item_list,
+			$this->app->db->quote($this->app->session->getUserId(), 'integer'));
+
 		$dep = new AdminListDependency();
 		$dep->setTitle(Admin::_('admin user'), Admin::_('admin users'));
 		$dep->entries = AdminListDependency::queryEntries($this->app->db,
 			'AdminUser', 'integer:id', null, 'text:name', 'name',
-			'id in ('.$item_list.')', AdminDependency::DELETE);
+			$where_clause, AdminDependency::DELETE);
+
 
 		$message = $this->ui->getWidget('confirmation_message');
 		$message->content = $dep->getMessage();
 		$message->content_type = 'text/xml';
+
+		// display can't delete self message if current account is in selection
+		if ($this->items->contains($this->app->session->getUserId())) {
+			$header = new SwatHtmlTag('h3');
+			$header->setContent(
+				Admin::_('You cannot delete your own account.'));
+
+			$message->content.= $header;
+		}
 	}
 
 	// }}}
