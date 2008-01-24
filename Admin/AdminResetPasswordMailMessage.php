@@ -100,9 +100,10 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 	 */
 	protected function getTextBody()
 	{
-		return $this->getFormattedBody(
-			"%s\n\n%s\n\n%s\n\n%s\n%s\n\n%s\n%s",
-			$this->password_link);
+		return sprintf($this->getFormattedBody(
+			"%s\n\n%s\n\n%%s%s\n\n%s\n%s\n\n%s\n%s",
+			$this->password_link),
+			$this->getTextInstanceNote());
 	}
 
 	// }}}
@@ -115,9 +116,82 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 	 */
 	protected function getHtmlBody()
 	{
-		return $this->getFormattedBody(
-			'<p>%s</p><p>%s</p><p>%s</p><p>%s<br />%s</p><p>%s<br />%s</p>',
-			sprintf('<a href="%1$s">%1$s</a>', $this->password_link));
+		return sprintf($this->getFormattedBody(
+			'<p>%s</p><p>%s</p>%%s<p>%s</p><p>%s<br />%s</p><p>%s<br />%s</p>',
+			sprintf('<a href="%1$s">%1$s</a>', $this->password_link)),
+			$this->getHtmlInstanceNote());
+	}
+
+	// }}}
+	// {{{ protected function getHtmlInstanceNote()
+
+	protected function getHtmlInstanceNote()
+	{
+		$instance_note = '';
+
+		if ($this->app->hasModule('SiteMultipleInstanceModule')) {
+			$site_instance =
+				$this->app->getModule('SiteMultipleInstanceModule');
+
+			if (count($this->admin_user->instances) > 1) {
+				$instance_note.= '<p>'.Admin::_(
+					'Notice: Your admin password will also be updated '.
+					'for the following sites on which your admin account is '.
+					'used:').
+					'</p><p><ul>';
+
+				foreach ($this->admin_user->instances as $instance) {
+					if ($instance->id !== $site_instance->getId()) {
+						$sql = sprintf('select value from InstanceConfigSetting
+							where instance = %s and name = \'site.title\'',
+							$this->app->db->quote($instance->id, 'integer'));
+
+						$title = SwatDB::queryOne($this->app->db, $sql, 'text');
+						$instance_note.=
+							'<li>'.SwatString::minimizeEntities($title).'</li>';
+					}
+				}
+
+				$instance_note.= '</ul></p>';
+			}
+		}
+
+		return $instance_note;
+	}
+
+	// }}}
+	// {{{ protected function getTextInstanceNote()
+
+	protected function getTextInstanceNote()
+	{
+		$instance_note = '';
+
+		if ($this->app->hasModule('SiteMultipleInstanceModule')) {
+			$site_instance =
+				$this->app->getModule('SiteMultipleInstanceModule');
+
+			if (count($this->admin_user->instances) > 1) {
+				$instance_note.= Admin::_(
+					'Notice: Your admin password will also be updated '.
+					'for the following sites on which your admin account is '.
+					'used:')."\n\n";
+
+				foreach ($this->admin_user->instances as $instance) {
+					if ($instance->id !== $site_instance->getId()) {
+						$sql = sprintf('select value from InstanceConfigSetting
+							where instance = %s and name = \'site.title\'',
+							$this->app->db->quote($instance->id, 'integer'));
+
+						$title = SwatDB::queryOne($this->app->db, $sql, 'text');
+						$instance_note.= " - ".$title."\n";
+					}
+				}
+
+				$instance_note.= "\n";
+			}
+		}
+
+		return $instance_note;
 	}
 
 	// }}}
@@ -125,16 +199,17 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 
 	protected function getFormattedBody($format_string, $formatted_link)
 	{
+
 		return sprintf($format_string,
 			sprintf(Admin::_('This email is in response to your recent '.
 			'request for a new password for your %s account. Your password '.
 			'has not yet been changed. Please click on the following link '.
-			'and follow the steps to change your account password.'),
+			'and follow the steps to change your account password:'),
 				$this->app->config->site->title),
 
 			$formatted_link,
 
-			Admin::_('Clicking on this link will take you to a page that '.
+			Admin::_('Clicking on the above link will take you to a page that '.
 			'requires you to enter in and confirm a new password. Once you '.
 			'have chosen and confirmed your new password you will be taken to '.
 			'your account page.'),
