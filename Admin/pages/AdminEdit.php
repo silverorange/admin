@@ -6,7 +6,7 @@ require_once 'Swat/SwatString.php';
 /**
  * Generic admin edit page
  *
- * This class is intended to be a convenience base class. For a fully custom 
+ * This class is intended to be a convenience base class. For a fully custom
  * edit page, inherit directly from AdminPage instead.
  *
  * @package Admin
@@ -108,8 +108,8 @@ abstract class AdminEdit extends AdminPage
 	/**
 	 * Generate a shortname
 	 *
-	 * This method allows edit pages to easily generate a unique shortname by 
-	 * calling this method during their processing phase. The shortname is 
+	 * This method allows edit pages to easily generate a unique shortname by
+	 * calling this method during their processing phase. The shortname is
 	 * generated from the text provided using SwatString::condenseToName() and
 	 * validated with AdminEdit::validateShortname().  If the initial shortname
 	 * is not valid an integer is appended and incremented until the shortname
