@@ -23,6 +23,7 @@ class AdminAdminSubComponentDelete extends AdminDBDelete
 	{
 		$this->parent = $parent;
 	}
+
 	// }}}
 
 	// process phase
@@ -85,6 +86,8 @@ class AdminAdminSubComponentDelete extends AdminDBDelete
 
 		$this->navbar->createEntry('Delete Sub-Component(s)');
 	}
+
+	// }}}
 }
 
 ?>
