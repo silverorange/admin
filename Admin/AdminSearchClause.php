@@ -107,7 +107,7 @@ class AdminSearchClause
 	 */
 	public function getClause(MDB2_Driver_Common $db, $logic_operator = 'and')
 	{
-		if ($this->value === null || strlen(trim($this->value)) == 0)
+		if ($this->value === null)
 			return '';
 
 		$field = ($this->table === null) ? '' : $this->table.'.';
@@ -115,6 +115,9 @@ class AdminSearchClause
 		$value = trim($this->value);
 
 		if ($this->field->type == 'text') {
+			if (strlen(trim($this->value)) == 0)
+				return null;
+
 			if (!$this->case_sensitive) {
 				$field = 'lower('.$field.')';
 				$value = strtolower($value);
