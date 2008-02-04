@@ -15,6 +15,7 @@ require_once 'Swat/SwatString.php';
  *
  * @package   Admin
  * @copyright 2005-2006 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  * @see       AdminDBDelete, AdminListDependency, AdminSummaryDependency
  */
 abstract class AdminDependency

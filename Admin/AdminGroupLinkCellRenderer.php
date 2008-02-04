@@ -7,6 +7,7 @@ require_once 'Swat/SwatLinkCellRenderer.php';
  *
  * @package Admin
  * @copyright silverorange 2004
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminGroupLinkCellRenderer extends SwatLinkCellRenderer
 {
