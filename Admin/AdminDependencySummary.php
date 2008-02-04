@@ -7,6 +7,7 @@ require_once 'Admin/AdminDependencyItem.php';
  *
  * @package   Admin
  * @copyright 2006 silverorange
+ * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminDependencySummary extends AdminDependencyItem
 {
