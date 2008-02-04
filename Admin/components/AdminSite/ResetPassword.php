@@ -58,15 +58,17 @@ class AdminAdminSiteResetPassword extends AdminPage
 		$form->action = $this->source;
 
 		$frame = $this->ui->getWidget('reset_password_frame');
+
+		// use Unknown if there if we can't find a user
 		$frame->title = sprintf(Admin::_('Update Password for %s'),
-			$this->user->name);
+			isset($this->user->name) ? $this->user->name : 'Unknown');
 
 		$confirm = $this->ui->getWidget('confirm_password');
 		$confirm->password_widget = $this->ui->getWidget('password');;
 	}
 
 	// }}}
-	// {{{ protected function getUserId()
+	// {{{ protected function initUser()
 
 	/**
 	 * Initializes the admin user object associated with the password tag
