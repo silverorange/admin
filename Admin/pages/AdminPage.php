@@ -118,6 +118,14 @@ abstract class AdminPage extends SitePage
 	}
 
 	// }}}
+	// {{{ public function getComponentName()
+
+	public function getComponentName()
+	{
+		return $this->component;
+	}
+
+	// }}}
 	// {{{ protected function createLayout()
 
 	protected function createLayout()
