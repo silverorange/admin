@@ -72,6 +72,21 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 	}
 
 	// }}}
+	// {{{ protected function relocate()
+
+	protected function relocate()
+	{
+		$form = $this->ui->getWidget('confirmation_form');
+
+		// prevent relocating to detail pages that no longer exist
+		if ($form->button->id == 'no_button') {
+			parent::relocate();
+		} else {
+			$this->app->relocate($this->getComponentName());
+		}
+	}
+
+	// }}}
 }
 
 ?>

@@ -36,15 +36,6 @@ class AdminAdminComponentDelete extends AdminDBDelete
 	}
 
 	// }}}
-	// {{{ protected function relocate()
-
-	protected function relocate()
-	{
-		// to prevent being relocated to a component page that no longer exists
-		$this->app->relocate('AdminComponent');
-	}
-
-	// }}}
 
 	// build phase
 	// {{{ protected function buildInternal()
