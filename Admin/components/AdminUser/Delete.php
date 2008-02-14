@@ -20,11 +20,11 @@ class AdminAdminUserDelete extends AdminDBDelete
 	{
 		parent::processDBData();
 
+		$item_list = $this->getItemList('integer');
 		$sql = sprintf('delete from AdminUser where id in (%s) and id != %s',
 			$item_list,
 			$this->app->db->quote($this->app->session->getUserId(), 'integer'));
 
-		$item_list = $this->getItemList('integer');
 		$num = SwatDB::exec($this->app->db, $sql);
 
 		$message = new SwatMessage(sprintf(Admin::ngettext(
