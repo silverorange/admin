@@ -29,7 +29,7 @@
 	width: 56%;
 }
 
-#password.swat-entry {
+#password.swat-entry, #confirm_password.swat-entry {
 	width: 92%;
 }
 
