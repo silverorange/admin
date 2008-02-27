@@ -29,6 +29,15 @@
 	width: 56%;
 }
 
+#password_container.no-reset-password {
+	float: none;
+	width: 100%;
+}
+
+#password_container.no-reset-password #password.swat-entry {
+	width: 98%;
+}
+
 #password.swat-entry, #confirm_password.swat-entry {
 	width: 92%;
 }

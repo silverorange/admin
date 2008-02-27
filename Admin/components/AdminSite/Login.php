@@ -100,6 +100,20 @@ class AdminAdminSiteLogin extends AdminPage
 	// }}}
 
 	// build phase
+	// {{{ protected function buildInternal()
+
+	protected function buildInternal()
+	{
+		parent::buildInternal();
+
+		if ($this->app->config->admin->allow_reset_password != 'yes') {
+			$this->ui->getWidget('forgot_container')->visible = false;
+			$this->ui->getWidget('password_container')->classes[] =
+				'no-reset-password';
+		}
+	}
+
+	// }}}
 	// {{{ protected function display()
 
 	protected function display()
