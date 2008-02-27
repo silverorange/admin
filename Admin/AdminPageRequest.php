@@ -43,7 +43,8 @@ class AdminPageRequest extends SiteObject
 		if (strlen($this->source) === 0)
 			$this->source = $this->app->getFrontSource();
 
-		$allow_reset = ($app->config->admin->allow_reset_password == 'yes');
+		$allow_reset_password =
+			($app->config->admin->allow_reset_password == 'yes');
 
 		if ($this->app->session->isLoggedIn()) {
 			$source_exp = explode('/', $this->source);
@@ -99,11 +100,21 @@ class AdminPageRequest extends SiteObject
 			$this->component = 'AdminSite';
 			$this->subcomponent = 'ChangePassword';
 			$this->title = Admin::_('Change Password');
-		} elseif ($this->source == 'AdminSite/ForgotPassword' && $allow_reset) {
+		} elseif ($this->source == 'AdminSite/ForgotPassword') {
+			if (!$allow_reset_password) {
+				throw new AdminNotFoundException(sprintf(Admin::_(
+					"Component not found for source '%s'."),
+					$this->source));
+			}
 			$this->component = 'AdminSite';
 			$this->subcomponent = 'ForgotPassword';
 			$this->title = Admin::_('Reset Forgotten Password');
-		} elseif ($this->source == 'AdminSite/ResetPassword' && $allow_reset) {
+		} elseif ($this->source == 'AdminSite/ResetPassword') {
+			if (!$allow_reset_password) {
+				throw new AdminNotFoundException(sprintf(Admin::_(
+					"Component not found for source '%s'."),
+					$this->source));
+			}
 			$this->component = 'AdminSite';
 			$this->subcomponent = 'ResetPassword';
 			$this->title = Admin::_('Update Password');
