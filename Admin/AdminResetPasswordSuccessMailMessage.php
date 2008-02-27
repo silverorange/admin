@@ -11,7 +11,6 @@ require_once 'Admin/exceptions/AdminException.php';
  * @package   Admin
  * @copyright 2008 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
- * @see       AdminUser::sendResetPasswordSuccessMailMessage()
  */
 class AdminResetPasswordSuccessMailMessage extends SiteMultipartMailMessage
 {
