@@ -408,6 +408,21 @@ class AdminApplication extends SiteWebApplication
 	}
 
 	// }}}
+	// {{{ protected function addConfigDefinitions()
+
+	/**
+	 * Adds configuration definitions to the config module of this application
+	 *
+	 * @param SiteConfigModule $config the config module of this application to
+	 *                                  witch to add the config definitions.
+	 */
+	protected function addConfigDefinitions(SiteConfigModule $config)
+	{
+		parent::addConfigDefinitions($config);
+		$config->addDefinitions(Admin::getConfigDefinitions());
+	}
+
+	// }}}
 }
 
 ?>
