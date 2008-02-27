@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Site/SiteMultipartMailMessage.php';
-require_once 'Site/dataobjects/SiteAccount.php';
+require_once 'Admin/dataobjects/AdminUser.php';
 require_once 'Admin/exceptions/AdminException.php';
 
 /**
