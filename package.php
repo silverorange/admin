@@ -2,7 +2,7 @@
 
 require_once 'PEAR/PackageFileManager2.php';
 
-$version = '1.3.5';
+$version = '1.3.6';
 $notes = <<<EOT
 see ChangeLog
 EOT;
@@ -54,7 +54,7 @@ $package->addReplacement('Admin/Admin.php', 'pear-config', '@DATA-DIR@', 'data_d
 $package->setPhpDep('5.1.5');
 $package->setPearinstallerDep('1.4.0');
 $package->addPackageDepWithChannel('required', 'Swat', 'pear.silverorange.com', '1.3.4');
-$package->addPackageDepWithChannel('required', 'Site', 'pear.silverorange.com', '1.2.19');
+$package->addPackageDepWithChannel('required', 'Site', 'pear.silverorange.com', '1.2.20');
 $package->addPackageDepWithChannel('required', 'XML_RPCAjax', 'pear.silverorange.com', '1.0.5');
 $package->generateContents();
 
