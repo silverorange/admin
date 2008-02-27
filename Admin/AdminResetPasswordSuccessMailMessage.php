@@ -183,14 +183,14 @@ class AdminResetPasswordSuccessMailMessage extends SiteMultipartMailMessage
 			Admin::_('Why did I get this email?'),
 
 			sprintf(Admin::_('This email confirms your password was '.
-			'successfully updated after requesting a new password from %s.'),
+			'successfully updated after requesting a new password.'),
 				$this->app->config->site->title),
 
 			Admin::_('I did not request a new password:'),
 
 			sprintf(Admin::_('If you did not request a new password from %s '.
-			'someone has gained access to your account. If this is the case '.
-			'please contact your system administrator immediately.'),
+			'someone else has gained access to your account. If this is the '.
+			'case, please contact your system administrator immediately.'),
 				$this->app->config->site->title));
 	}
 
