@@ -73,6 +73,15 @@ class AdminUser extends SwatDBDataObject
 	public $password_tag;
 
 	/**
+	 * Date when the reset password tag was created
+	 *
+	 * This is used to expire old reset password requests.
+	 *
+	 * @var Date
+	 */
+	public $password_tag_date;
+
+	/**
 	 * Whether or not this user will be forced to change his or her password
 	 * upon login
 	 *
@@ -212,15 +221,19 @@ class AdminUser extends SwatDBDataObject
 		$this->checkDB();
 
 		$password_tag = SwatString::hash(uniqid(rand(), true));
+		$now = new Date();
+		$now->toUTC();
 
 		/*
 		 * Update the database with new password tag. Don't use the regular
 		 * dataobject saving here in case other fields have changed.
 		 */
 		$id_field = new SwatDBField($this->id_field, 'integer');
-		$sql = sprintf('update %s set password_tag = %s where %s = %s',
+		$sql = sprintf('update %s set password_tag = %s, password_tag_date = %s
+			where %s = %s',
 			$this->table,
 			$this->db->quote($password_tag, 'text'),
+			$this->db->quote($now->getDate(), 'date'),
 			$id_field->name,
 			$this->db->quote($this->{$id_field->name}, $id_field->type));
 
@@ -347,6 +360,8 @@ class AdminUser extends SwatDBDataObject
 	{
 		$this->registerInternalProperty('instance',
 			SwatDBClassMap::get('SiteInstance'));
+
+		$this->registerDateProperty('password_tag_date');
 
 		$this->table = 'AdminUser';
 		$this->id_field = 'integer:id';
