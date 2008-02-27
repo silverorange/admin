@@ -4,6 +4,7 @@ require_once 'Swat/SwatUI.php';
 require_once 'Swat/SwatMessage.php';
 require_once 'Admin/pages/AdminPage.php';
 require_once 'Admin/layouts/AdminLoginLayout.php';
+require_once 'Admin/AdminResetPasswordSuccessMailMessage.php';
 
 /**
  * Page to reset the password for an admin user
@@ -59,9 +60,12 @@ class AdminAdminSiteResetPassword extends AdminPage
 
 		$frame = $this->ui->getWidget('reset_password_frame');
 
-		// use Unknown if there if we can't find a user
-		$frame->title = sprintf(Admin::_('Update Password for %s'),
-			isset($this->user->name) ? $this->user->name : 'Unknown');
+		if ($this->user === null) {
+			$frame->title = Admin::_('Update Password');
+		} else {
+			$frame->title = sprintf(Admin::_('Update Password for %s'),
+				$this->user->name);
+		}
 
 		$confirm = $this->ui->getWidget('confirm_password');
 		$confirm->password_widget = $this->ui->getWidget('password');;
@@ -76,7 +80,10 @@ class AdminAdminSiteResetPassword extends AdminPage
 	protected function initUser()
 	{
 		if ($this->password_tag !== null) {
-			$sql = sprintf('select id from AdminUser where password_tag = %s',
+
+			$sql = sprintf('select id from AdminUser
+				where password_tag = %s and
+					age(password_tag_date) < \'1 hour ago\'',
 				$this->app->db->quote($this->password_tag, 'text'));
 
 			$user_id = SwatDB::queryOne($this->app->db, $sql);
@@ -110,7 +117,8 @@ class AdminAdminSiteResetPassword extends AdminPage
 				$password = $this->ui->getWidget('password')->value;
 
 				$this->user->setPassword($password);
-				$this->user->password_tag = null;
+				$this->user->password_tag      = null;
+				$this->user->password_tag_date = null;
 				$this->user->save();
 
 				$this->app->session->login($this->user->email, $password);
@@ -119,9 +127,31 @@ class AdminAdminSiteResetPassword extends AdminPage
 					Admin::_('Your password has been updated.'));
 
 				$this->app->messages->add($message);
+				$this->sendResetPasswordSuccessMailMessage();
 				$this->app->relocate($this->app->getBaseHref());
 			}
 		}
+	}
+
+	// }}}
+	// {{{ protected function sendResetPasswordSuccessMailMessage()
+
+	protected function sendResetPasswordSuccessMailMessage()
+	{
+		$mail_message = new AdminResetPasswordSuccessMailMessage($this->app,
+			$this->user);
+
+		$mail_message->smtp_server = $this->app->config->email->smtp_server;
+		$mail_message->from_address =
+			$this->app->config->email->service_address;
+
+		$mail_message->from_name = $this->app->config->site->title;
+
+		$mail_message->subject = sprintf(
+			Admin::_('Your %s Admin Password was Successfully Updated'),
+			$this->app->config->site->title);
+
+		$mail_message->send();
 	}
 
 	// }}}
@@ -134,12 +164,16 @@ class AdminAdminSiteResetPassword extends AdminPage
 		parent::buildInternal();
 
 		if ($this->user === null) {
-			$text = sprintf('<p>%s</p><ul><li>%s</li><li>%s</li></ul>',
+			$text = sprintf(
+				'<p>%s</p><ul><li>%s</li><li>%s</li><li>%s</li></ul>',
 				Admin::_('Please verify that the link is exactly the same as '.
 					'the one emailed to you.'),
 				Admin::_('If you requested an email more than once, only the '.
 					'most recent link will work.'),
-				sprintf(Site::_('If you have lost the link sent in the '.
+				sprintf(Admin::_('The emailed link expires after one hour. '.
+					'If the link has expired, %shave the email sent again%s.'),
+					'<a href="AdminSite/ForgotPassword">', '</a>'),
+				sprintf(Admin::_('If you have lost the link sent in the '.
 					'email, you may %shave the email sent again%s.'),
 					'<a href="AdminSite/ForgotPassword">', '</a>'));
 

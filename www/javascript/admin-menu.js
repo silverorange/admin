@@ -35,8 +35,8 @@ AdminMenu.prototype.init = function()
 	var section_content;
 	for (var i = 0; i < closed_sections.length; i++) {
 		section_content = closed_sections[i].firstChild.nextSibling;
-		section_content.style.opacity = '0';
-		section_content.style.filter = 'alpha(opacity=0)';
+//		section_content.style.opacity = '0';
+//		section_content.style.filter = 'alpha(opacity=0)';
 	}
 }
 
@@ -63,19 +63,28 @@ AdminMenu.prototype.toggleSection = function(id)
 
 	if (YAHOO.util.Dom.hasClass(section_block, 'hide-menu-section')) {
 		YAHOO.util.Dom.removeClass(section_block, 'hide-menu-section');
-		var attributes = { opacity: { to: 1 } };
-		var fade_animation =
-			new YAHOO.util.Anim(section_content, attributes, 0.5);
 
-		fade_animation.animate();
+		section_content.style.visibility = 'hidden';
+		section_content.style.overflow = 'hidden';
+		section_content.style.height = '';
+		var height = section_content.offsetHeight;
+		section_content.style.height = 0;
+		section_content.style.visibility = 'visible';
+		
+		var attributes = { height: { from: 0, to: height } };
+		var animation = new YAHOO.util.Anim(section_content, attributes, 0.25,
+			YAHOO.util.Easing.easingOut);
+
+		animation.animate();
 		shown = true;
 	} else {
-		var attributes = { opacity: { to: 0 } };
-		var fade_animation =
-			new YAHOO.util.Anim(section_content, attributes, 0.25);
+		section_content.style.overflow = 'hidden';
+		var attributes = { height: { to: 0 } };
+		var nanimation = new YAHOO.util.Anim(section_content, attributes, 0.25,
+				YAHOO.util.Easing.easeIn);
 
-		fade_animation.animate();
-		fade_animation.onComplete.subscribe(AdminMenu.handleSectionClose,
+		nanimation.animate();
+		nanimation.onComplete.subscribe(AdminMenu.handleSectionClose,
 			section_block);
 	}
 
@@ -83,7 +92,7 @@ AdminMenu.prototype.toggleSection = function(id)
 		[id, shown], ['int', 'boolean']);
 }
 
-AdminMenu.handleSectionClose = function(type, args, section_content)
+AdminMenu.handleSectionClose = function(type, args, section_block)
 {
-	YAHOO.util.Dom.addClass(section_content, 'hide-menu-section');
+	YAHOO.util.Dom.addClass(section_block, 'hide-menu-section');
 }
