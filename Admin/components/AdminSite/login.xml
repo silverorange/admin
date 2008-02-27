@@ -23,7 +23,6 @@
 				</widget>
 				<widget class="SwatDisplayableContainer" id="forgot_container">
 					<widget class="SwatToolLink" id="forgot">
-						<property name="title" type="string">Forgot your password? fuck shit ire is a piece of crap crap</property>
 						<property name="title" type="string">Forgot your password?</property>
 						<property name="link" type="string">AdminSite/ForgotPassword</property>
 					</widget>
