@@ -70,6 +70,26 @@ class Admin
 	}
 
 	// }}}
+	// {{{ public static function getConfigDefinitions()
+
+	/**
+	 * Gets configuration definitions used by the Admin package
+	 *
+	 * Applications should add these definitions to their config module before
+	 * loading the application configuration.
+	 *
+	 * @return array the configuration definitions used by the Admin package.
+	 *
+	 * @see SiteConfigModule::addDefinitions()
+	 */
+	public static function getConfigDefinitions()
+	{
+		return array(
+			'admin.allow_reset_password' => 'yes',
+		);
+	}
+
+	// }}}
 }
 
 Admin::setupGettext();
