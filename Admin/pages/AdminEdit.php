@@ -46,7 +46,7 @@ abstract class AdminEdit extends AdminPage
 		$form = $this->ui->getWidget('edit_form');
 
 		if ($form->isProcessed()) {
-			$this->validate();
+			$validated = $this->validate();
 
 			if (!$form->isAuthenticated()) {
 				$message = new SwatMessage(Admin::_('There is a problem with '.
@@ -59,7 +59,7 @@ abstract class AdminEdit extends AdminPage
 				$this->app->messages->add($message);
 			}
 
-			if ($form->hasMessage()) {
+			if ($validated === false || $form->hasMessage()) {
 				$message = new SwatMessage(Admin::_('There is a problem with '.
 					'the information submitted.'), SwatMessage::ERROR);
 
@@ -69,7 +69,11 @@ abstract class AdminEdit extends AdminPage
 				$this->app->messages->add($message);
 			}
 
-			if ($form->isAuthenticated() && !$form->hasMessage()) {
+			// validate() doesn't necessarily return true/false, often it will
+			// return null, so explicitly check against false here
+			if ($form->isAuthenticated() && $validated !== false &&
+				!$form->hasMessage()) {
+
 				if ($this->saveData()) {
 					$this->relocate();
 				}
