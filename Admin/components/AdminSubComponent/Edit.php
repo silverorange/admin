@@ -17,7 +17,6 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 {
 	// {{{ private properties
 
-	private $fields;
 	private $parent;
 	private $edit_subcomponent;
 
@@ -35,8 +34,10 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 
 		$this->parent = SiteApplication::initVar('parent');
 
-		$this->fields = array('title', 'shortname', 'boolean:show',
-			'integer:component');
+		if ($this->parent === null && $this->edit_subcomponent->id === null)
+			throw new AdminNotFoundException(
+				Admin::_('Must supply a Component ID for newly created'.
+						 ' Sub-Compoenets.'));
 
 		$form = $this->ui->getWidget('edit_form');
 		$form->addHiddenField('parent', $this->parent);
@@ -54,7 +55,7 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 		if ($this->id !== null) {
 			if (!$this->edit_subcomponent->load($this->id))
 				throw new AdminNotFoundException(
-					sprintf(Admin::_('Sub-Component with id "%s" notfound.'),
+					sprintf(Admin::_('Sub-Component with id "%s" not found.'),
 						$this->id));
 		}
 	}
