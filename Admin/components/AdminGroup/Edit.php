@@ -17,8 +17,6 @@ class AdminAdminGroupEdit extends AdminDBEdit
 {
 	// {{{ private properties
 
-	private $fields;
-
 	/*
 	 * @var AdminGroup
 	 */
@@ -35,8 +33,6 @@ class AdminAdminGroupEdit extends AdminDBEdit
 		$this->initGroup();
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
-
-		$this->fields = array('title');
 
 		$user_list = $this->ui->getWidget('users');
 		$user_list_options = SwatDB::getOptionArray($this->app->db,
