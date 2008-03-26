@@ -31,8 +31,6 @@ class AdminAdminSectionEdit extends AdminDBEdit
 		$this->initSection();
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
-
-		$this->fields = array('title', 'boolean:show', 'description');
 	}
 
 	// }}}
