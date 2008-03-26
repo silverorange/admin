@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://inkscape.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.42"
+   sodipodi:docbase="/home/steven"
+   sodipodi:docname="swat.svg"
+   inkscape:export-filename="/home/steven/swat-mockups.png"
+   inkscape:export-xdpi="72.000000"
+   inkscape:export-ydpi="72.000000">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient2192">
+      <stop
+         id="stop2194"
+         offset="0.0000000"
+         style="stop-color:#fff1dc;stop-opacity:1.0000000;" />
+      <stop
+         id="stop2196"
+         offset="1.0000000"
+         style="stop-color:#fff1dc;stop-opacity:0.0000000;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2182">
+      <stop
+         id="stop2184"
+         offset="0.0000000"
+         style="stop-color:#426c9e;stop-opacity:1.0000000;" />
+      <stop
+         id="stop2186"
+         offset="1.0000000"
+         style="stop-color:#426c9e;stop-opacity:0.0000000;" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2166">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop2168" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop2170" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2050">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop2052" />
+      <stop
+         id="stop2058"
+         offset="0.50000000"
+         style="stop-color:#656565;stop-opacity:1.0000000;" />
+      <stop
+         style="stop-color:#000000;stop-opacity:1.0000000;"
+         offset="1.0000000"
+         id="stop2054" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2166"
+       id="linearGradient2172"
+       x1="-193.00000"
+       y1="-179.13782"
+       x2="-163.50000"
+       y2="-21.137817"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2182"
+       id="linearGradient2180"
+       gradientUnits="userSpaceOnUse"
+       x1="-302.24799"
+       y1="-337.52972"
+       x2="-295.02185"
+       y2="-229.38077" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2192"
+       id="linearGradient2190"
+       gradientUnits="userSpaceOnUse"
+       x1="-365.00000"
+       y1="-326.13782"
+       x2="-335.50000"
+       y2="-197.63782" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2166"
+       id="linearGradient2232"
+       gradientUnits="userSpaceOnUse"
+       x1="-193.00000"
+       y1="-179.13782"
+       x2="-163.50000"
+       y2="-21.137817"
+       gradientTransform="translate(30.00000,202.0000)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.0000000"
+     inkscape:cx="-234.00000"
+     inkscape:cy="1178.0000"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:grid-points="true"
+     inkscape:window-width="1174"
+     inkscape:window-height="886"
+     inkscape:window-x="517"
+     inkscape:window-y="134"
+     gridspacingx="10.000000px"
+     gridspacingy="10.000000px"
+     gridtolerance="10.000000px"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     gridcolor="#cecece"
+     gridopacity="0.14509804"
+     gridempcolor="#acacac"
+     gridempopacity="0.14117647" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:10.000000;stroke-linecap:round;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2919"
+       width="740.00000"
+       height="1048.0000"
+       x="0.0000000"
+       y="4.3621826"
+       inkscape:export-xdpi="72.000000"
+       inkscape:export-ydpi="72.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:10.000000;stroke-linecap:round;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect1366"
+       width="530.00000"
+       height="740.00000"
+       x="-490.00000"
+       y="-127.63782"
+       inkscape:export-xdpi="72.000000"
+       inkscape:export-ydpi="72.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:10.000000;stroke-linecap:round;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2895"
+       width="431.00000"
+       height="358.00000"
+       x="59.000000"
+       y="8.3622437"
+       rx="10.000000"
+       ry="10.000000"
+       inkscape:export-xdpi="72.000000"
+       inkscape:export-ydpi="72.000000" />
+    <rect
+       style="opacity:0.49999997;color:#000000;fill:#666666;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2067"
+       width="340.00000"
+       height="100.00000"
+       x="102.00000"
+       y="212.36224"
+       rx="10.000000"
+       ry="10.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2055"
+       width="100.00000"
+       height="100.00000"
+       x="332.00000"
+       y="212.36224"
+       rx="10.000000"
+       ry="10.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2057"
+       width="210.00000"
+       height="100.00000"
+       x="112.00000"
+       y="212.36224"
+       rx="10.000000"
+       ry="10.000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125.00000%;writing-mode:lr-tb;text-anchor:start;fill:#666666;fill-opacity:1.0000000;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000;font-family:MetaBookLF-Roman"
+       x="127.84488"
+       y="290.6171"
+       id="text2063"
+       sodipodi:linespacing="125.00000%"><tspan
+         sodipodi:role="line"
+         id="tspan2065"
+         x="127.84488"
+         y="290.61710">Swat</tspan></text>
+    <path
+       style="opacity:1.0000000;fill:none;fill-opacity:1.0000000;fill-rule:evenodd;stroke:#666666;stroke-width:9.9999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-opacity:1.0000000"
+       d="M 362.15364,247.36224 L 387.07683,280.59315 L 412.00000,247.36224"
+       id="path2825" />
+    <rect
+       style="opacity:0.49999997;color:#000000;fill:#666666;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2878"
+       width="230.00000"
+       height="100.00000"
+       x="102.00000"
+       y="52.362244"
+       rx="10.000000"
+       ry="10.000000" />
+    <rect
+       style="opacity:0.74418604;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2882"
+       width="210.00000"
+       height="100.00000"
+       x="112.00000"
+       y="52.362244"
+       rx="10.000000"
+       ry="10.000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125.00000%;writing-mode:lr-tb;text-anchor:start;fill:#666666;fill-opacity:1.0000000;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000;font-family:MetaBookLF-Roman"
+       x="127.84488"
+       y="130.6171"
+       id="text2884"
+       sodipodi:linespacing="125.00000%"><tspan
+         sodipodi:role="line"
+         id="tspan2886"
+         x="127.84488"
+         y="130.61710">Swat</tspan></text>
+    <rect
+       style="opacity:0.49999997;color:#000000;fill:#666666;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2921"
+       width="340.00000"
+       height="100.00000"
+       x="102.00000"
+       y="702.36218"
+       rx="10.000000"
+       ry="10.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2923"
+       width="100.00000"
+       height="100.00000"
+       x="332.00000"
+       y="702.36218"
+       rx="10.000000"
+       ry="10.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2925"
+       width="210.00000"
+       height="100.00000"
+       x="112.00000"
+       y="702.36218"
+       rx="10.000000"
+       ry="10.000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125.00000%;writing-mode:lr-tb;text-anchor:start;fill:#666666;fill-opacity:1.0000000;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000;font-family:MetaBookLF-Roman"
+       x="127.84488"
+       y="780.61707"
+       id="text2927"
+       sodipodi:linespacing="125.00000%"><tspan
+         sodipodi:role="line"
+         id="tspan2929"
+         x="127.84488"
+         y="780.61707">Swat</tspan></text>
+    <path
+       style="opacity:1.0000000;fill:none;fill-opacity:1.0000000;fill-rule:evenodd;stroke:#666666;stroke-width:9.9999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-opacity:1.0000000"
+       d="M 362.15364,737.36220 L 387.07683,770.59311 L 412.00000,737.36220"
+       id="path2931" />
+    <rect
+       style="opacity:0.49999997;color:#000000;fill:#d58935;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2933"
+       width="230.00000"
+       height="100.00000"
+       x="102.00000"
+       y="402.36224"
+       rx="10.000000"
+       ry="10.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#fff1dc;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2935"
+       width="210.00000"
+       height="100.00000"
+       x="112.00000"
+       y="402.36224"
+       rx="10.000000"
+       ry="10.000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125.00000%;writing-mode:lr-tb;text-anchor:start;fill:#426c9e;fill-opacity:1.0000000;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000;font-family:MetaBookLF-Roman"
+       x="127.84488"
+       y="480.6171"
+       id="text2937"
+       sodipodi:linespacing="125.00000%"><tspan
+         sodipodi:role="line"
+         id="tspan2939"
+         x="127.84488"
+         y="480.61710">Swat</tspan></text>
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#81aed5;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2941"
+       width="230.00000"
+       height="100.00000"
+       x="422.00000"
+       y="402.36224"
+       rx="10.000000"
+       ry="10.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#fff1dc;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2943"
+       width="210.00000"
+       height="100.00000"
+       x="432.00000"
+       y="402.36224"
+       rx="10.000000"
+       ry="10.000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125.00000%;writing-mode:lr-tb;text-anchor:start;fill:#426c9e;fill-opacity:1.0000000;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000;font-family:MetaBookLF-Roman"
+       x="447.84488"
+       y="480.6171"
+       id="text2945"
+       sodipodi:linespacing="125.00000%"><tspan
+         sodipodi:role="line"
+         id="tspan2947"
+         x="447.84488"
+         y="480.61710">Swat</tspan></text>
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#426c9e;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2949"
+       width="230.00000"
+       height="100.00000"
+       x="102.00000"
+       y="532.36218"
+       rx="10.000000"
+       ry="10.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#81aed5;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2951"
+       width="210.00000"
+       height="100.00000"
+       x="112.00000"
+       y="532.36218"
+       rx="10.000000"
+       ry="10.000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125.00000%;writing-mode:lr-tb;text-anchor:start;fill:#426c9e;fill-opacity:1.0000000;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000;font-family:MetaBookLF-Roman"
+       x="127.84488"
+       y="610.61707"
+       id="text2953"
+       sodipodi:linespacing="125.00000%"><tspan
+         sodipodi:role="line"
+         id="tspan2955"
+         x="127.84488"
+         y="610.61707">Swat</tspan></text>
+    <rect
+       style="opacity:0.49999997;color:#000000;fill:#d58935;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2957"
+       width="340.00000"
+       height="100.00000"
+       x="100.00000"
+       y="822.36212"
+       rx="10.000000"
+       ry="10.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#fff1dc;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2959"
+       width="100.00000"
+       height="100.00000"
+       x="330.00000"
+       y="822.36212"
+       rx="10.000000"
+       ry="10.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#fff1dc;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2961"
+       width="210.00000"
+       height="100.00000"
+       x="110.00000"
+       y="822.36212"
+       rx="10.000000"
+       ry="10.000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125.00000%;writing-mode:lr-tb;text-anchor:start;fill:#426c9e;fill-opacity:1.0000000;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000;font-family:MetaBookLF-Roman"
+       x="125.84488"
+       y="900.617"
+       id="text2963"
+       sodipodi:linespacing="125.00000%"><tspan
+         sodipodi:role="line"
+         id="tspan2965"
+         x="125.84488"
+         y="900.61700">Swat</tspan></text>
+    <path
+       style="opacity:1.0000000;fill:none;fill-opacity:1.0000000;fill-rule:evenodd;stroke:#81aed5;stroke-width:9.9999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-opacity:1.0000000"
+       d="M 360.15364,857.36216 L 385.07683,890.59307 L 410.00000,857.36216"
+       id="path2967" />
+    <rect
+       style="opacity:0.49999997;color:#000000;fill:#d58935;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2981"
+       width="340.00000"
+       height="100.00000"
+       x="100.00000"
+       y="942.36218"
+       rx="10.000000"
+       ry="10.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2983"
+       width="100.00000"
+       height="100.00000"
+       x="330.00000"
+       y="942.36218"
+       rx="10.000000"
+       ry="10.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2985"
+       width="210.00000"
+       height="100.00000"
+       x="110.00000"
+       y="942.36218"
+       rx="10.000000"
+       ry="10.000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125.00000%;writing-mode:lr-tb;text-anchor:start;fill:#426c9e;fill-opacity:1.0000000;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000;font-family:MetaBookLF-Roman"
+       x="125.84488"
+       y="1020.6171"
+       id="text2987"
+       sodipodi:linespacing="125.00000%"><tspan
+         sodipodi:role="line"
+         id="tspan2989"
+         x="125.84488"
+         y="1020.6171">Swat</tspan></text>
+    <path
+       style="opacity:1.0000000;fill:none;fill-opacity:1.0000000;fill-rule:evenodd;stroke:#d58935;stroke-width:9.9999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-opacity:1.0000000"
+       d="M 360.15364,977.36222 L 385.07683,1010.5931 L 410.00000,977.36222"
+       id="path2991" />
+    <rect
+       style="opacity:0.49999997;color:#000000;fill:#d58935;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect1349"
+       width="340.00000"
+       height="100.00000"
+       x="-400.00000"
+       y="202.36218"
+       rx="10.000001"
+       ry="10.000001" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#fff1dc;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect1351"
+       width="100.00000"
+       height="100.00000"
+       x="-390.00000"
+       y="202.36218"
+       rx="10.000001"
+       ry="10.000001" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#fff1dc;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect1353"
+       width="210.00000"
+       height="100.00000"
+       x="-280.00000"
+       y="202.36218"
+       rx="10.000001"
+       ry="10.000001" />
+    <text
+       xml:space="preserve"
+       style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125.00000%;writing-mode:lr-tb;text-anchor:start;fill:#426c9e;fill-opacity:1.0000000;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000;font-family:MetaBookLF-Roman"
+       x="-264.15512"
+       y="280.61703"
+       id="text1355"
+       sodipodi:linespacing="125.00000%"><tspan
+         sodipodi:role="line"
+         id="tspan1357"
+         x="-264.15512"
+         y="280.61703">Swat</tspan></text>
+    <rect
+       style="opacity:0.49999997;color:#000000;fill:#d58935;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect1361"
+       width="340.00000"
+       height="100.00000"
+       x="-400.00000"
+       y="412.36209"
+       rx="10.000001"
+       ry="10.000001" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect1363"
+       width="100.00000"
+       height="100.00000"
+       x="-170.00000"
+       y="412.36209"
+       rx="10.000001"
+       ry="10.000001" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect1365"
+       width="210.00000"
+       height="100.00000"
+       x="-390.00000"
+       y="412.36209"
+       rx="10.000001"
+       ry="10.000001" />
+    <text
+       xml:space="preserve"
+       style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125.00000%;writing-mode:lr-tb;text-anchor:start;fill:#426c9e;fill-opacity:1.0000000;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000;font-family:MetaBookLF-Roman"
+       x="-374.15512"
+       y="490.61703"
+       id="text1367"
+       sodipodi:linespacing="125.00000%"><tspan
+         sodipodi:role="line"
+         id="tspan1369"
+         x="-374.15512"
+         y="490.61703">Swat</tspan></text>
+    <rect
+       style="opacity:0.49999997;color:#000000;fill:#d58935;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect1373"
+       width="60.000000"
+       height="60.000000"
+       x="-150.29152"
+       y="431.18411"
+       rx="10.000001"
+       ry="10.000001" />
+    <path
+       sodipodi:type="arc"
+       style="opacity:0.58139533;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:#d58935;stroke-width:9.9660921;stroke-linecap:round;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="path2111"
+       sodipodi:cx="-345.00000"
+       sodipodi:cy="247.36218"
+       sodipodi:rx="25.000000"
+       sodipodi:ry="25.000000"
+       d="M -320.00000 247.36218 A 25.000000 25.000000 0 1 1  -370.00000,247.36218 A 25.000000 25.000000 0 1 1  -320.00000 247.36218 z"
+       transform="matrix(1.003403,0.000000,0.000000,1.003402,6.147307,4.131810)" />
+    <path
+       style="opacity:1.0000000;fill:none;fill-opacity:1.0000000;fill-rule:evenodd;stroke:#d58935;stroke-width:10.000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-opacity:1.0000000"
+       d="M -360.00000,252.36218 L -344.92315,270.59304 L -320.00000,237.36218"
+       id="path1371"
+       sodipodi:nodetypes="ccc" />
+    <g
+       id="g1379"
+       style="stroke:#d58935;stroke-width:13.079053;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-opacity:1.0000000"
+       transform="matrix(0.764582,0.000000,0.000000,0.764582,139.6662,268.6148)">
+      <path
+         id="path1375"
+         d="M -360.00000,231.86218 L -320.00000,271.86218"
+         style="fill:none;fill-opacity:0.75000000;fill-rule:evenodd;stroke:#d58935;stroke-width:13.079053;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-opacity:1.0000000" />
+      <path
+         id="path1377"
+         d="M -320.00000,231.86218 L -360.00000,271.86218"
+         style="fill:none;fill-opacity:0.75000000;fill-rule:evenodd;stroke:#d58935;stroke-width:13.079053;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-opacity:1.0000000" />
+    </g>
+    <rect
+       style="opacity:0.50000000;color:#000000;fill:#d58935;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect1367"
+       width="340.00000"
+       height="100.00000"
+       x="-400.00000"
+       y="2.3621826"
+       rx="10.000001"
+       ry="10.000001"
+       inkscape:export-filename="/home/steven/text2134.png"
+       inkscape:export-xdpi="72.000000"
+       inkscape:export-ydpi="72.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ececec;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect1369"
+       width="100.00000"
+       height="100.00000"
+       x="-390.00000"
+       y="2.3621826"
+       rx="10.000001"
+       ry="10.000001"
+       inkscape:export-filename="/home/steven/text2134.png"
+       inkscape:export-xdpi="72.000000"
+       inkscape:export-ydpi="72.000000" />
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ececec;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect1371"
+       width="210.00000"
+       height="100.00000"
+       x="-280.00000"
+       y="2.3621826"
+       rx="10.000001"
+       ry="10.000001"
+       inkscape:export-filename="/home/steven/text2134.png"
+       inkscape:export-xdpi="72.000000"
+       inkscape:export-ydpi="72.000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0.0000000;text-align:start;text-decoration:none;line-height:125.00000%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;opacity:1.0000000;color:#000000;fill:#426c9e;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible;font-family:MetaBookLF-Roman"
+       x="-264.15512"
+       y="80.728752"
+       id="text1373"
+       sodipodi:linespacing="125.00000%"
+       inkscape:export-filename="/home/steven/text2134.png"
+       inkscape:export-xdpi="72.000000"
+       inkscape:export-ydpi="72.000000"><tspan
+         sodipodi:role="line"
+         id="tspan1375"
+         x="-264.15512"
+         y="80.728752">Swat</tspan></text>
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:#ffffff;fill-opacity:1.0000000;fill-rule:nonzero;stroke:#de9b51;stroke-width:5.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect1382"
+       width="50.000000"
+       height="50.000000"
+       x="-370.00000"
+       y="32.362183"
+       rx="10.000001"
+       ry="10.000001"
+       inkscape:export-filename="/home/steven/text2134.png"
+       inkscape:export-xdpi="72.000000"
+       inkscape:export-ydpi="72.000000" />
+    <path
+       style="opacity:0.68441862;fill:none;fill-opacity:1.0000000;fill-rule:evenodd;stroke:#d58935;stroke-width:9.9999962;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-opacity:1.0000000"
+       d="M -903.50000,-157.63223 L -886.40728,-136.96379 L -858.15176,-174.63782"
+       id="path2132"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="opacity:1.0000000;color:#000000;fill:#d58935;fill-opacity:1.0000000;fill-rule:evenodd;stroke:#ffffff;stroke-width:2.0000000;stroke-linecap:round;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       d="M -316.12233,20.396856 C -317.83776,20.523693 -319.40929,21.402680 -320.41525,22.797979 L -341.87984,60.743003 L -353.59441,49.355858 C -354.87922,47.627490 -357.01327,46.749642 -359.14236,47.073686 C -361.27144,47.397729 -363.04769,48.870716 -363.76013,50.903063 C -364.47257,52.935411 -364.00481,55.195043 -362.54405,56.777512 L -346.13637,73.840040 C -344.99925,75.210059 -343.29769,75.984383 -341.51775,75.941835 C -339.73780,75.899286 -338.07520,75.044544 -337.00483,73.621756 L -311.10180,29.783065 C -309.68537,27.967340 -309.47240,25.487308 -310.55855,23.456685 C -311.64471,21.426063 -313.82578,20.226566 -316.12233,20.396856 z "
+       id="path1380"
+       sodipodi:nodetypes="ccccssccsccsc"
+       inkscape:export-filename="/home/steven/text2134.png"
+       inkscape:export-xdpi="72.000000"
+       inkscape:export-ydpi="72.000000" />
+    <text
+       xml:space="preserve"
+       style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125.00000%;writing-mode:lr-tb;text-anchor:start;fill:#426c9e;fill-opacity:1.0000000;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000;font-family:MetaBookLF-Roman;opacity:0.30813953"
+       x="-262.15512"
+       y="82.728752"
+       id="text2134"
+       sodipodi:linespacing="125.00000%"
+       inkscape:export-xdpi="72.000000"
+       inkscape:export-ydpi="72.000000"><tspan
+         sodipodi:role="line"
+         id="tspan2136"
+         x="-262.15512"
+         y="82.728752">Swat</tspan></text>
+    <g
+       id="g2198"
+       inkscape:export-xdpi="72.000000"
+       inkscape:export-ydpi="72.000000">
+      <rect
+         inkscape:export-ydpi="72.000000"
+         inkscape:export-xdpi="72.000000"
+         inkscape:export-filename="/home/steven/text2134.png"
+         ry="10.000001"
+         rx="10.000001"
+         y="-245.63782"
+         x="-428.00000"
+         height="100.00000"
+         width="320.00000"
+         id="rect2160"
+         style="opacity:0.45348838;color:#000000;fill:#c5bcaf;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible" />
+      <rect
+         inkscape:export-ydpi="72.000000"
+         inkscape:export-xdpi="72.000000"
+         inkscape:export-filename="/home/steven/text2134.png"
+         ry="10.000001"
+         rx="10.000001"
+         y="-247.63782"
+         x="-430.00000"
+         height="100.00000"
+         width="320.00000"
+         id="rect2164"
+         style="opacity:1.0000000;color:#000000;fill:#d58935;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:2.5000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible" />
+      <rect
+         inkscape:export-ydpi="72.000000"
+         inkscape:export-xdpi="72.000000"
+         inkscape:export-filename="/home/steven/text2134.png"
+         ry="10.000001"
+         rx="10.000001"
+         y="-247.63782"
+         x="-420.00000"
+         height="100.00000"
+         width="300.00000"
+         id="rect2146"
+         style="opacity:1.0000000;color:#000000;fill:url(#linearGradient2172);fill-opacity:1.0;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible" />
+      <text
+         inkscape:export-ydpi="72.000000"
+         inkscape:export-xdpi="72.000000"
+         inkscape:export-filename="/home/steven/text2134.png"
+         sodipodi:linespacing="125.00000%"
+         id="text2148"
+         y="-169.27126"
+         x="-314.15512"
+         style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0.0000000;text-align:start;text-decoration:none;line-height:125.00000%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;opacity:1.0000000;color:#000000;fill:#426c9e;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible;font-family:MetaBookLF-Roman"
+         xml:space="preserve"><tspan
+           y="-169.27126"
+           x="-314.15512"
+           id="tspan2150"
+           sodipodi:role="line">Swat</tspan></text>
+      <rect
+         inkscape:export-ydpi="72.000000"
+         inkscape:export-xdpi="72.000000"
+         inkscape:export-filename="/home/steven/text2134.png"
+         ry="10.000001"
+         rx="10.000001"
+         y="-217.63782"
+         x="-397.50000"
+         height="50.000000"
+         width="50.000000"
+         id="rect2152"
+         style="opacity:1.0000000;color:#000000;fill:#fff1dc;fill-opacity:1.0000000;fill-rule:nonzero;stroke:#de9b51;stroke-width:5.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible" />
+      <path
+         inkscape:export-ydpi="72.000000"
+         inkscape:export-xdpi="72.000000"
+         inkscape:export-filename="/home/steven/text2134.png"
+         sodipodi:nodetypes="ccccssccsccsc"
+         id="path2154"
+         d="M -343.62234,-229.60315 C -345.33777,-229.47631 -346.90930,-228.59732 -347.91526,-227.20202 L -369.37985,-189.25700 L -381.09442,-200.64415 C -382.37923,-202.37251 -384.51328,-203.25036 -386.64237,-202.92632 C -388.77145,-202.60227 -390.54770,-201.12929 -391.26014,-199.09694 C -391.97258,-197.06459 -391.50482,-194.80496 -390.04406,-193.22249 L -373.63638,-176.15996 C -372.49926,-174.78994 -370.79770,-174.01562 -369.01776,-174.05817 C -367.23781,-174.10072 -365.57521,-174.95546 -364.50484,-176.37825 L -338.60181,-220.21694 C -337.18538,-222.03266 -336.97241,-224.51270 -338.05856,-226.54332 C -339.14472,-228.57394 -341.32579,-229.77344 -343.62234,-229.60315 z "
+         style="opacity:1.0000000;color:#000000;fill:#d58935;fill-opacity:1.0000000;fill-rule:evenodd;stroke:#ffffff;stroke-width:2.0000000;stroke-linecap:round;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible" />
+      <text
+         inkscape:export-ydpi="72.000000"
+         inkscape:export-xdpi="72.000000"
+         sodipodi:linespacing="125.00000%"
+         id="text2156"
+         y="-167.27126"
+         x="-312.15512"
+         style="font-size:83.102493px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125.00000%;writing-mode:lr-tb;text-anchor:start;opacity:0.30813953;fill:#426c9e;fill-opacity:1.0000000;stroke:none;stroke-width:1.0000000px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000;font-family:MetaBookLF-Roman"
+         xml:space="preserve"><tspan
+           y="-167.27126"
+           x="-312.15512"
+           id="tspan2158"
+           sodipodi:role="line">Swat</tspan></text>
+      <rect
+         inkscape:export-ydpi="72.000000"
+         inkscape:export-xdpi="72.000000"
+         inkscape:export-filename="/home/steven/text2134.png"
+         ry="10.000001"
+         rx="10.000001"
+         y="-247.63782"
+         x="-430.00000"
+         height="100.00000"
+         width="320.00000"
+         id="rect2162"
+         style="opacity:1.0000000;color:#000000;fill:none;fill-opacity:1.0000000;fill-rule:nonzero;stroke:none;stroke-width:1.0000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible" />
+    </g>
+    <rect
+       style="opacity:1.0000000;color:#000000;fill:none;fill-opacity:1.0000000;fill-rule:nonzero;stroke:#426c9e;stroke-width:2.5000000;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4.0000000;stroke-dasharray:none;stroke-dashoffset:0.0000000;stroke-opacity:1.0000000;visibility:visible;display:inline;overflow:visible"
+       id="rect2142"
+       width="320.00000"
+       height="100.00000"
+       x="-478.00000"
+       y="-108.88782"
+       rx="10.000001"
+       ry="10.000001"
+       inkscape:export-filename="/home/steven/text2134.png"
+       inkscape:export-xdpi="72.000000"
+       inkscape:export-ydpi="72.000000" />
+  </g>
+</svg>
