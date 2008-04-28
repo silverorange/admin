@@ -43,9 +43,6 @@ class AdminSessionModule extends SiteSessionModule
 	 */
 	public function __construct(SiteApplication $app)
 	{
-		$this->registerRegenerateIdCallback(
-			array($this, 'regenerateAuthenticationToken'));
-
 		$this->registerLoginCallback(
 			array($this, 'regenerateAuthenticationToken'));
 
@@ -229,15 +226,6 @@ class AdminSessionModule extends SiteSessionModule
 			'callback' => $callback,
 			'parameters' => $parameters
 		);
-	}
-
-	// }}}
-	// {{{ protected function regenerateAuthenticationToken()
-
-	protected function regenerateAuthenticationToken()
-	{
-		$this->_authentication_token = SwatString::hash(mt_rand());
-		SwatForm::setAuthenticationToken($this->_authentication_token);
 	}
 
 	// }}}
