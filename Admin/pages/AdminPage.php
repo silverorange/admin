@@ -169,8 +169,8 @@ abstract class AdminPage extends SitePage
 	 * Initialize the page
 	 *
 	 * Sub-classes should implement this method to initialize the page. At
-	 * this point the {@link AdminPage::$ui} has been constructed but has not been
-	 * initialized.
+	 * this point the {@link AdminPage::$ui} has been constructed but has not
+	 * been initialized.
 	 */
 	protected function initInternal()
 	{
@@ -192,8 +192,39 @@ abstract class AdminPage extends SitePage
 	public function process()
 	{
 		parent::process();
-		$this->ui->process();
-		$this->processInternal();
+		if ($this->formsAreAuthenticated()) {
+			$this->ui->process();
+			$this->processInternal();
+		}
+	}
+
+	// }}}
+	// {{{ protected function formsAreAuthenticated()
+
+	/**
+	 * Authenticate any forms on the page
+	 *
+	 * This happens before {@link AdminPage::$ui} has been processed.
+	 */
+	protected function formsAreAuthenticated()
+	{
+		$forms = $this->ui->getRoot()->getDescendants('SwatForm');
+		foreach ($forms as $form) {
+			if (!$form->isAuthenticated()) {
+				$message = new SwatMessage(Admin::_('There is a problem with '.
+					'the information submitted.'), SwatMessage::WARNING);
+
+				$message->secondary_content =
+					Admin::_('In order to ensure your security, we were '.
+					'unable to process your request. Please try again.');
+
+				$this->app->messages->add($message);
+
+				// if one form is not authenticated, we don't need to check more
+				return false;
+			}
+		}
+		return true;
 	}
 
 	// }}}
