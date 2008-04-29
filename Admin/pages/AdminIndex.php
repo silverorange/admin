@@ -26,18 +26,8 @@ abstract class AdminIndex extends AdminPage
 		$forms = $this->ui->getRoot()->getDescendants('SwatForm');
 
 		foreach ($forms as $form) {
-			if ($form->isProcessed()) {
-				if (!$form->isAuthenticated()) {
-					$message = new SwatMessage(Admin::_(
-						'There is a problem with the information submitted.'),
-						SwatMessage::WARNING);
-
-					$message->secondary_content =
-						Admin::_('In order to ensure your security, we were '.
-						'unable to process your request. Please try again.');
-
-					$this->app->messages->add($message);
-				} else {
+			if ($form->isAuthenticated()) {
+				if ($form->isProcessed()) {
 					$view = $form->getFirstDescendant('SwatView');
 					$actions = $form->getFirstDescendant('SwatActions');
 
@@ -45,7 +35,20 @@ abstract class AdminIndex extends AdminPage
 						(count($view->getSelection()) > 0) &&
 						($actions !== null) && ($actions->selected !== null))
 						$this->processActions($view, $actions);
+	
+					// only one form can be processed in a single request
+					break;
 				}
+			} else {
+				$message = new SwatMessage(Admin::_(
+					'There is a problem with the information submitted.'),
+					SwatMessage::WARNING);
+
+				$message->secondary_content =
+					Admin::_('In order to ensure your security, we were '.
+					'unable to process your request. Please try again.');
+
+				$this->app->messages->add($message);
 
 				// only one form can be processed in a single request
 				break;

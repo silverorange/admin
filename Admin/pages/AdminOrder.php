@@ -46,21 +46,21 @@ abstract class AdminOrder extends AdminPage
 
 		$form = $this->ui->getWidget('order_form');
 
-		if ($form->isProcessed()) {
-			if (!$form->isAuthenticated()) {
-				$message = new SwatMessage(Admin::_('There is a problem with '.
-					'the information submitted.'), SwatMessage::WARNING);
-
-				$message->secondary_content =
-					Admin::_('In order to ensure your security, we were '.
-					'unable to process your request. Please try again.');
-
-				$this->app->messages->add($message);
-			} else {
+		if ($form->isAuthenticated()) {
+			if ($form->isProcessed()) {
 				$this->saveData();
 				$this->app->messages->add($this->getUpdatedMessage());
 				$this->relocate();
 			}
+		} else {
+			$message = new SwatMessage(Admin::_('There is a problem with the '.
+				'information submitted.'), SwatMessage::WARNING);
+
+			$message->secondary_content =
+				Admin::_('In order to ensure your security, we were unable to '.
+				'process your request. Please try again.');
+
+			$this->app->messages->add($message);
 		}
 	}
 
