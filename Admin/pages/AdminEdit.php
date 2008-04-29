@@ -45,39 +45,35 @@ abstract class AdminEdit extends AdminPage
 
 		$form = $this->ui->getWidget('edit_form');
 
-		if ($form->isProcessed()) {
-			$validated = $this->validate();
+		if ($form->isAuthenticated()) {
+			if ($form->isProcessed()) {
+				$validated = $this->validate();
 
-			if (!$form->isAuthenticated()) {
-				$message = new SwatMessage(Admin::_('There is a problem with '.
-					'the information submitted.'), SwatMessage::WARNING);
+				// validate() doesn't necessarily return true/false, often it
+				// will return null, so explicitly check false here
+				if ($validated === false || $form->hasMessage()) {
+					$message = new SwatMessage(Admin::_('There is a problem '.
+						'with the information submitted.'), SwatMessage::ERROR);
 
-				$message->secondary_content =
-					Admin::_('In order to ensure your security, we were '.
-					'unable to process your request. Please try again.');
+					$message->secondary_content = Admin::_('Please address '.
+						'the fields highlighted below and re-submit the form.');
 
-				$this->app->messages->add($message);
-			}
-
-			if ($validated === false || $form->hasMessage()) {
-				$message = new SwatMessage(Admin::_('There is a problem with '.
-					'the information submitted.'), SwatMessage::ERROR);
-
-				$message->secondary_content = Admin::_('Please address the '.
-					'fields highlighted below and re-submit the form.');
-
-				$this->app->messages->add($message);
-			}
-
-			// validate() doesn't necessarily return true/false, often it will
-			// return null, so explicitly check against false here
-			if ($form->isAuthenticated() && $validated !== false &&
-				!$form->hasMessage()) {
-
-				if ($this->saveData()) {
-					$this->relocate();
+					$this->app->messages->add($message);
+				} else {
+					if ($this->saveData()) {
+						$this->relocate();
+					}
 				}
 			}
+		} else {
+			$message = new SwatMessage(Admin::_('There is a problem with the '.
+				'information submitted.'), SwatMessage::WARNING);
+
+			$message->secondary_content =
+				Admin::_('In order to ensure your security, we were unable to '.
+				'process your request. Please try again.');
+
+			$this->app->messages->add($message);
 		}
 	}
 
