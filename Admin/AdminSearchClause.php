@@ -130,6 +130,10 @@ class AdminSearchClause
 			elseif ($this->operator == self::OP_ENDS_WITH)
 				$value = "%{$value}";
 
+		} elseif ($this->field->type == 'integer') {
+			if (strlen(trim((string)$this->value)) == 0)
+				return null;
+
 		} elseif ($this->field->type == 'date') {
 			if (is_object($value) && $value instanceof SwatDate)
 				$value = $value->getDate();
