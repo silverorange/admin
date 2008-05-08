@@ -85,7 +85,7 @@ class Admin
 	public static function getConfigDefinitions()
 	{
 		return array(
-			'admin.allow_reset_password' => 'yes',
+			'admin.allow_reset_password' => '0',
 		);
 	}
 
