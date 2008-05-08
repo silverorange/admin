@@ -44,7 +44,7 @@ class AdminPageRequest extends SiteObject
 			$this->source = $this->app->getFrontSource();
 
 		$allow_reset_password =
-			($app->config->admin->allow_reset_password == 'yes');
+			(boolean)$app->config->admin->allow_reset_password;
 
 		if ($this->app->session->isLoggedIn()) {
 			$source_exp = explode('/', $this->source);
