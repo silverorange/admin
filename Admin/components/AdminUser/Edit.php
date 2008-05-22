@@ -40,7 +40,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 		$group_list->addOptionsByArray($group_list_options);
 
 		$confirm = $this->ui->getWidget('confirm_password');
-		$confirm->password_widget = $this->ui->getWidget('password');;
+		$confirm->password_widget = $this->ui->getWidget('password');
 
 		if ($this->id === null) {
 			$confirm->required = true;
