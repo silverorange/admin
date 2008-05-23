@@ -5,7 +5,7 @@ require_once 'Swat/SwatLinkCellRenderer.php';
 /**
  * A title link cell renderer for Admin index pages
  *
- * Links in the cell renderer are styled as block-level elements, 
+ * Links in the cell renderer are styled as block-level elements,
  * so other cell renderers in the same table cell may cause layout issues.
  *
  * @package   Admin
