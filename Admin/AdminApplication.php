@@ -119,8 +119,8 @@ class AdminApplication extends SiteWebApplication
 	/**
 	 * Replace the page object
 	 *
-	 * This method can be used to load another page to replace the current 
-	 * page. For example, this is used to load a confirmation page when 
+	 * This method can be used to load another page to replace the current
+	 * page. For example, this is used to load a confirmation page when
 	 * processing an admin index page.
 	 */
 	public function replacePage($source)
