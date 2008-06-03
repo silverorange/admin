@@ -21,7 +21,7 @@ class AdminMenuStore
 	public $sections;
 
 	// }}}
-	// {{{ public function __constrcut()
+	// {{{ public function __construct()
 
 	/**
 	 * @param MDB2_Result $rs A recordset containing the menu.
@@ -31,7 +31,7 @@ class AdminMenuStore
 	 */
 	public function __construct($rs)
 	{
-		if (MDB2::isError($rs)) 
+		if (MDB2::isError($rs))
 			throw new Exception($rs->getMessage());
 
 		$this->sections = array();
