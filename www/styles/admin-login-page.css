@@ -46,7 +46,7 @@ span.swat-required { display: none; }
 	padding-top: 2px;
 }
 
-#forgot.swat-tool-link
+#forgot.swat-tool-link,
 #forgot.swat-tool-link:link,
 #forgot.swat-tool-link:visited,
 #forgot.swat-tool-link:active,
