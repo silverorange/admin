@@ -86,7 +86,15 @@ class AdminAdminUserDetails extends AdminIndex
 
 	protected function getTableModel(SwatView $view)
 	{
-		return $this->user->history;
+		$sql = 'select * from AdminUserHistory
+				where usernum = %s
+				order by %s';
+
+		$sql = sprintf($sql,
+			$this->app->db->quote($this->user->id, 'integer'),
+			$this->getOrderByClause($view, 'login_date desc'));
+
+		return SwatDB::query($this->app->db, $sql, 'AdminUserHistoryWrapper');
 	}
 
 	// }}}
