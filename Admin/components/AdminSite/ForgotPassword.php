@@ -81,33 +81,49 @@ class AdminAdminSiteForgotPassword extends AdminPage
 			$message->content_type = 'text/xml';
 			$this->ui->getWidget('email')->addMessage($message);
 		} else {
-			$this->sendResetPasswordMailMessage($admin_user);
-			$message = new SwatMessage(Admin::_('Email has been sent'),
-				SwatMessage::NOTIFICATION);
+			try {
+				$this->sendResetPasswordMailMessage($admin_user);
 
+				$primary_text = Admin::_('Email has been sent');
+				$anchor_tag = new SwatHtmlTag('a');
+				$anchor_tag->href = 'mailto:'.$email;
+				$anchor_tag->setContent($email);
+
+				/*
+				 * Don't show other site instances here as it could violate the
+				 * user's privacy. Another user is resetting the password and may
+				 * have no knowledge of other instances the user belongs to.
+				 */
+				$strong_tag = new SwatHtmlTag('strong');
+				$strong_tag->setContent(sprintf(
+					Admin::_('Reset Your %s Admin Password'),
+					$this->app->config->site->title));
+
+				$secondary_text = sprintf(Admin::_(
+					'%sAn email has been sent to %s containing a link to '.
+					'create a new password for the %s admin.%s%sPlease check  '.
+					'your mail for a new message with the subject: %s.%s'),
+					'<p>', $anchor_tag, $this->app->config->site->title,
+					'</p>', '<p>', $strong_tag, '</p>');
+
+				$message_type = SwatMessage::NOTIFICATION;
+			} catch (SiteException $exception) {
+				$exception->log();
+
+				$primary_text = Admin::_('Unable to send email');
+				$secondary_text = sprintf(Admin::_('%1$s
+					%3$sThis problem has been reported.%4$s
+					%3$sPlease contact the site administrator if this problem
+						continues.%4$s
+					%2$s'),
+					'<ul>', '</ul>', '<li>', '</li>');
+
+				$message_type = SwatMessage::ERROR;
+			}
+
+			$message = new SwatMessage($primary_text, $message_type);
 			$message->content_type = 'text/xml';
-
-			$anchor_tag = new SwatHtmlTag('a');
-			$anchor_tag->href = 'mailto:'.$email;
-			$anchor_tag->setContent($email);
-
-			/*
-			 * Don't show other site instances here as it could violate the
-			 * user's privacy. Another user is resetting the password and may
-			 * have no knowledge of other instances the user belongs to.
-			 */
-			$strong_tag = new SwatHtmlTag('strong');
-			$strong_tag->setContent(sprintf(
-				Admin::_('Reset Your %s Admin Password'),
-				$this->app->config->site->title));
-
-			$message->secondary_content = sprintf(Admin::_(
-				'%sAn email has been sent to %s containing a link to create '.
-				'a new password for the %s admin.%s%sPlease check you mail '.
-				'for a new message with the subject: %s.%s'),
-				'<p>', $anchor_tag, $this->app->config->site->title,
-				'</p>', '<p>', $strong_tag, '</p>');
-
+			$message->secondary_content = $secondary_text;
 
 			$message_display = $this->ui->getWidget('message_display');
 			$message_display->add($message, SwatMessageDisplay::DISMISS_OFF);
