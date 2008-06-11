@@ -40,7 +40,7 @@ class AdminPageRequest extends SiteObject
 		$this->source = $source;
 		$this->app = $app;
 
-		if (strlen($this->source) === 0)
+		if ($this->source == '')
 			$this->source = $this->app->getFrontSource();
 
 		$allow_reset_password =

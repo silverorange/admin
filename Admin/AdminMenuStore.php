@@ -55,7 +55,7 @@ class AdminMenuStore
 					$section->components[$row->shortname] = $component;
 				}
 
-				if (strlen($row->subcomponent_shortname) != 0) {
+				if ($row->subcomponent_shortname != '') {
 					$subcomponent = new AdminMenuSubcomponent(
 						$row->subcomponent_shortname, $row->subcomponent_title);
 
