@@ -115,7 +115,7 @@ class AdminSearchClause
 		$value = trim($this->value);
 
 		if ($this->field->type == 'text') {
-			if (strlen(trim($this->value)) == 0)
+			if (trim($this->value) == '')
 				return null;
 
 			if (!$this->case_sensitive) {
@@ -131,7 +131,7 @@ class AdminSearchClause
 				$value = "%{$value}";
 
 		} elseif ($this->field->type == 'integer') {
-			if (strlen(trim((string)$this->value)) == 0)
+			if (trim((string)$this->value) == '')
 				return null;
 
 		} elseif ($this->field->type == 'date') {
