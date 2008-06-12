@@ -79,7 +79,7 @@ class AdminAdminComponentDetails extends AdminIndex
 
 			case 'show':
 				SwatDB::updateColumn($this->app->db, 'AdminSubComponent',
-					'boolean:show', true, 'id', $view->checked_items);
+					'boolean:visible', true, 'id', $view->checked_items);
 
 				$message = new SwatMessage(sprintf(Admin::ngettext(
 					'One sub-component has been shown.',
@@ -90,7 +90,7 @@ class AdminAdminComponentDetails extends AdminIndex
 
 			case 'hide':
 				SwatDB::updateColumn($this->app->db, 'AdminSubComponent',
-					'boolean:show', false, 'id', $view->checked_items);
+					'boolean:visible', false, 'id', $view->checked_items);
 
 				$message = new SwatMessage(sprintf(Admin::ngettext(
 					'One sub-component has been hidden.',

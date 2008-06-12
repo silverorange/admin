@@ -18,7 +18,7 @@ class AdminSearchOperatorFlydown extends SwatFlydown
 	/**
 	 * Operators
 	 *
-	 * An array of operator constants to display as option. The constants are 
+	 * An array of operator constants to display as option. The constants are
 	 * defined in {@link AdminSearchClause}.
 	 *
 	 * @var array
@@ -30,7 +30,7 @@ class AdminSearchOperatorFlydown extends SwatFlydown
 
 	// }}}
 	// {{{ public function display()
-	
+
 	public function display()
 	{
 		if (!$this->visible)

@@ -44,7 +44,7 @@ class AdminAdminComponentIndex extends AdminIndex
 
 		case 'show':
 			SwatDB::updateColumn($this->app->db, 'AdminComponent',
-				'boolean:show', true, 'id', $view->getSelection());
+				'boolean:visible', true, 'id', $view->getSelection());
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
 				'One component has been shown.',
@@ -55,7 +55,7 @@ class AdminAdminComponentIndex extends AdminIndex
 
 		case 'hide':
 			SwatDB::updateColumn($this->app->db, 'AdminComponent',
-				'boolean:show', false, 'id', $view->getSelection());
+				'boolean:visible', false, 'id', $view->getSelection());
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
 				'One component has been hidden.',
@@ -125,7 +125,7 @@ class AdminAdminComponentIndex extends AdminIndex
 					AdminComponent.title,
 					AdminComponent.shortname,
 					AdminComponent.section,
-					AdminComponent.show,
+					AdminComponent.visible,
 					AdminComponent.enabled
 				from AdminComponent
 				inner join AdminSection
@@ -170,7 +170,7 @@ class AdminAdminComponentIndex extends AdminIndex
 			$ds->id = $component->id;
 			$ds->title = $component->title;
 			$ds->shortname = $component->shortname;
-			$ds->show = $component->show;
+			$ds->visible = $component->visible;
 			$ds->enabled = $component->enabled;
 
 			// set section-specific info

@@ -59,8 +59,8 @@ class AdminSubComponent extends SwatDBDataObject
 	 * Whether or not this sub-component is enabled
 	 *
 	 * If a sub-component is not enabled, it is inaccessible to all users. The
-	 * <i>$enabled</i> property overrides the {@link AdminSubComponent::$show}
-	 * property.
+	 * <i>$enabled</i> property overrides the
+	 * {@link AdminSubComponent::$visible} property.
 	 *
 	 * @var boolean
 	 */
@@ -75,7 +75,7 @@ class AdminSubComponent extends SwatDBDataObject
 	 *
 	 * @var boolean
 	 */
-	public $show;
+	public $visible;
 
 	// }}}
 	// {{{ public function loadFromShortname()

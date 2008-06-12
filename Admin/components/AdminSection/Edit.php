@@ -59,11 +59,11 @@ class AdminAdminSectionEdit extends AdminDBEdit
 	{
 		$values = $this->ui->getValues(array(
 			'title',
-			'show',
+			'visible',
 			'description'));
 
 		$this->section->title       = $values['title'];
-		$this->section->show        = $values['show'];
+		$this->section->visible     = $values['visible'];
 		$this->section->description = $values['description'];
 		$this->section->save();
 
