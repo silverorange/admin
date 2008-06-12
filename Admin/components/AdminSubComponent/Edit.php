@@ -88,12 +88,12 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 
 	protected function saveDBData()
 	{
-		$values = $this->ui->getValues(array('title', 'shortname', 'show'));
+		$values = $this->ui->getValues(array('title', 'shortname', 'visible'));
 		$values['component'] = $this->parent;
 
 		$this->edit_subcomponent->title     = $values['title'];
 		$this->edit_subcomponent->shortname = $values['shortname'];
-		$this->edit_subcomponent->show      = $values['show'];
+		$this->edit_subcomponent->visible   = $values['visible'];
 		$this->edit_subcomponent->component = $values['component'];
 		$this->edit_subcomponent->save();
 

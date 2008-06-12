@@ -41,7 +41,7 @@ class AdminAdminSectionIndex extends AdminIndex
 
 			case 'show':
 				SwatDB::updateColumn($this->app->db, 'AdminSection',
-					'boolean:show', true, 'id', $view->getSelection());
+					'boolean:visible', true, 'id', $view->getSelection());
 
 				$message = new SwatMessage(sprintf(Admin::ngettext(
 					'One section has been shown.',
@@ -52,7 +52,7 @@ class AdminAdminSectionIndex extends AdminIndex
 
 			case 'hide':
 				SwatDB::updateColumn($this->app->db, 'AdminSection',
-					'boolean:show', false, 'id', $view->getSelection());
+					'boolean:visible', false, 'id', $view->getSelection());
 
 				$message = new SwatMessage(sprintf(Admin::ngettext(
 					"One section has been hidden.",
@@ -73,7 +73,7 @@ class AdminAdminSectionIndex extends AdminIndex
 
 	protected function getTableModel(SwatView $view)
 	{
-		$sql = 'select id, title, show
+		$sql = 'select id, title, visible
 			from AdminSection
 			order by displayorder';
 

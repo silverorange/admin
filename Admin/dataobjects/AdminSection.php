@@ -25,7 +25,7 @@ class AdminSection extends SwatDBDataObject
 	public $id;
 
 	/**
-	 * Title of this section 
+	 * Title of this section
 	 *
 	 * @var string
 	 */
@@ -50,7 +50,7 @@ class AdminSection extends SwatDBDataObject
 	 *
 	 * @var boolean
 	 */
-	public $show;
+	public $visible;
 
 	// }}}
 	// {{{ protected function init()

@@ -35,7 +35,7 @@
 				<object class="SwatTableViewColumn">
 					<property name="title" translatable="yes">Show in Menu</property>
 					<object class="SwatBooleanCellRenderer">
-						<property name="value" type="data">show</property>
+						<property name="value" type="data">visible</property>
 					</object>
 				</object>
 			</widget>

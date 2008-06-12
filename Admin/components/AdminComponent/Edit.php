@@ -96,7 +96,7 @@ class AdminAdminComponentEdit extends AdminDBEdit
 			'title',
 			'shortname',
 			'section',
-			'show',
+			'visible',
 			'enabled',
 			'description',
 		));
@@ -104,7 +104,7 @@ class AdminAdminComponentEdit extends AdminDBEdit
 		$this->edit_component->title       = $values['title'];
 		$this->edit_component->shortname   = $values['shortname'];
 		$this->edit_component->section     = $values['section'];
-		$this->edit_component->show        = $values['show'];
+		$this->edit_component->visible     = $values['visible'];
 		$this->edit_component->enabled     = $values['enabled'];
 		$this->edit_component->description = $values['description'];
 
