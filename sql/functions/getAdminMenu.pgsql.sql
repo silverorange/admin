@@ -19,7 +19,7 @@ CREATE OR REPLACE FUNCTION getAdminMenu(integer) RETURNS SETOF type_admin_menu A
 			AdminComponent.id,
 			AdminSubComponent.title as subcomponent_title,
 			AdminSubComponent.shortname as subcomponent_shortname
-		FROM AdminComponent 
+		FROM AdminComponent
 
 		LEFT OUTER JOIN AdminSubComponent on
 			AdminSubComponent.component = AdminComponent.id
@@ -39,7 +39,7 @@ CREATE OR REPLACE FUNCTION getAdminMenu(integer) RETURNS SETOF type_admin_menu A
 					AdminComponentAdminGroupBinding.groupnum =
 						AdminUserAdminGroupBinding.groupnum
 			WHERE AdminUserAdminGroupBinding.usernum = param_userid)
-				
+
 		ORDER BY AdminSection.displayorder, AdminSection.title,
 			AdminComponent.section, AdminComponent.displayorder,
 			AdminComponent.title, AdminSubComponent.displayorder,
