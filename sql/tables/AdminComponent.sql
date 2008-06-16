@@ -8,7 +8,6 @@ CREATE TABLE AdminComponent (
 		constraint AdminComponent_section references AdminSection(id)
 		on delete cascade,
     enabled boolean DEFAULT true NOT NULL,
-	show boolean default true not null,
     visible boolean DEFAULT true NOT NULL,
 	primary key(id)
 );
