@@ -4,20 +4,19 @@ CREATE PROCEDURE getAdminMenu(param_userid integer)
 			AdminComponent.section, AdminSection.title AS sectiontitle,
 			AdminComponent.id,
 			AdminSubComponent.title as subcomponent_title,
-			AdminSubComponent.shortname as subcomponent_shortname
+			AdminSubCOmponent.shortname as subcomponent_shortname
 		FROM AdminComponent
 
-		LEFT OUTER JOIN AdminSubComponent on
-			AdminSubComponent.component = AdminComponent.id
+			LEFT OUTER JOIN AdminSubComponent on
+				AdminSubComponent.component = AdminComponent.id and
+				AdminSUbComponent.visible = true
 
-		INNER JOIN AdminSection ON
-			AdminComponent.section = AdminSection.id
+			INNER JOIN AdminSection ON
+				AdminComponent.section = AdminSection.id
 
 		WHERE AdminSection.visible = true AND
 			AdminComponent.enabled = true AND
 			AdminComponent.visible = true AND
-			(AdminSubComponent.visible = true OR
-			AdminSubComponent.visible is null) AND
 			AdminComponent.id IN (
 			SELECT component
 			FROM AdminComponentAdminGroupBinding
