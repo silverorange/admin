@@ -29,6 +29,11 @@
 				<property name="title" translatable="yes">Belongs to Groups</property>
 				<widget class="SwatCheckboxList" id="groups" />
 			</widget>
+			<widget class="SwatGroupingFormField">
+				<property name="title" translatable="yes">Belongs to Sites</property>
+				<property name="visible" type="boolean">false</property>
+				<widget class="SwatCheckboxList" id="instances" />
+			</widget>
 			<widget class="SwatDisclosure" id="password_disclosure">
 				<property name="title" translatable="yes">Change Password</property>
 				<property name="open" type="boolean">false</property>

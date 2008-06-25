@@ -50,6 +50,16 @@ class AdminAdminUserEdit extends AdminDBEdit
 			$this->ui->getWidget('password_disclosure')->title =
 				Admin::_('Set Password');
 		}
+
+		if ($this->app->getInstance() !== null) {
+			$this->ui->getWidget('instances')->parent->visible = true;
+
+			$instance_list = $this->ui->getWidget('instances');
+			$instance_list_options = SwatDB::getOptionArray($this->app->db,
+				'Instance', 'shortname', 'id', 'shortname');
+
+			$instance_list->addOptionsByArray($instance_list_options);
+		}
 	}
 
 	// }}}
@@ -118,11 +128,6 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 		$this->saveBindingTables();
 
-		$group_list = $this->ui->getWidget('groups');
-		SwatDB::updateBinding($this->app->db, 'AdminUserAdminGroupBinding',
-			'usernum', $this->user->id, 'groupnum', $group_list->values,
-			'AdminGroup', 'id');
-
 		$message = new SwatMessage(
 			sprintf(Admin::_('User “%s” has been saved.'), $values['email']),
 			SwatMessage::NOTIFICATION);
@@ -136,10 +141,16 @@ class AdminAdminUserEdit extends AdminDBEdit
 	protected function saveBindingTables()
 	{
 		$group_list = $this->ui->getWidget('groups');
-
 		SwatDB::updateBinding($this->app->db, 'AdminUserAdminGroupBinding',
 			'usernum', $this->user->id, 'groupnum', $group_list->values,
 			'AdminGroup', 'id');
+
+		if ($this->app->getInstance() !== null) {
+			$instance_list = $this->ui->getWidget('instances');
+			SwatDB::updateBinding($this->app->db, 'AdminUserInstanceBinding',
+				'usernum', $this->user->id, 'instance', $instance_list->values,
+				'Instance', 'id');
+		}
 	}
 
 	// }}}
@@ -157,6 +168,10 @@ class AdminAdminUserEdit extends AdminDBEdit
 		$group_list = $this->ui->getWidget('groups');
 		$group_list->values = SwatDB::queryColumn($this->app->db,
 			'AdminUserAdminGroupBinding', 'groupnum', 'usernum', $this->id);
+
+		$instance_list = $this->ui->getWidget('instances');
+		$instance_list->values = SwatDB::queryColumn($this->app->db,
+			'AdminUserInstanceBinding', 'instance', 'usernum', $this->id);
 	}
 
 	// }}}
