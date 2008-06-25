@@ -138,8 +138,8 @@ class AdminAdminUserEdit extends AdminDBEdit
 		$group_list = $this->ui->getWidget('groups');
 
 		SwatDB::updateBinding($this->app->db, 'AdminUserAdminGroupBinding',
-			'usernum', $this->user->id, 'groupnum', $group_list->values, 'AdminGroup',
-			'id');
+			'usernum', $this->user->id, 'groupnum', $group_list->values,
+			'AdminGroup', 'id');
 	}
 
 	// }}}
