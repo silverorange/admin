@@ -78,11 +78,16 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 	{
 		$form = $this->ui->getWidget('confirmation_form');
 		$url = $form->getHiddenField(self::RELOCATE_URL_FIELD);
+		// always search for only the component name with slashes. This helps
+		// for cases where the page name has a match to the component name we're
+		// checking against, and if the trailing slash is missing, we're
+		// redirecting to the index anyway.
+		$component = '/'.$this->getComponentName().'/';
 
 		// if the component name is in the relocate url, relocate to the
 		// the component index page to prevent relocating to a details page that
 		// will no longer exist.
-		if (strpos($url, $this->getComponentName()) === false ||
+		if (strpos($url, $component) === false ||
 			$form->button->id == 'no_button') {
 			parent::relocate();
 		} else {
