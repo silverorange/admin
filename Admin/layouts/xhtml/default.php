@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<title><?=$this->title?></title>
-	<base href="<?=$this->basehref?>" />
+	<base href="<?=$this->basehref?>"></base>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<?=$this->html_head_entries?>
 </head>
