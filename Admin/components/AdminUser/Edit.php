@@ -169,9 +169,11 @@ class AdminAdminUserEdit extends AdminDBEdit
 		$group_list->values = SwatDB::queryColumn($this->app->db,
 			'AdminUserAdminGroupBinding', 'groupnum', 'usernum', $this->id);
 
-		$instance_list = $this->ui->getWidget('instances');
-		$instance_list->values = SwatDB::queryColumn($this->app->db,
-			'AdminUserInstanceBinding', 'instance', 'usernum', $this->id);
+		if ($this->app->getInstance() !== null) {
+			$instance_list = $this->ui->getWidget('instances');
+			$instance_list->values = SwatDB::queryColumn($this->app->db,
+				'AdminUserInstanceBinding', 'instance', 'usernum', $this->id);
+		}
 	}
 
 	// }}}
