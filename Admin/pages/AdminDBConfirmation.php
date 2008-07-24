@@ -40,9 +40,10 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 * @param SiteApplication $app
 	 * @param SiteLayout $layout optional.
 	 */
-	public function __construct(SiteApplication $app, SiteLayout $layout = null)
+	public function __construct(SiteApplication $app, SiteLayout $layout = null,
+		array $arguments = array())
 	{
-		parent::__construct($app, $layout);
+		parent::__construct($app, $layout, $arguments);
 
 		// don't use setItems() here because the UI has not been constructed
 		// yet and the hidden value cannot be added to the form
