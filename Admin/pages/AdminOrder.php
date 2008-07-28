@@ -141,7 +141,6 @@ abstract class AdminOrder extends AdminPage
 		$this->buildOptionList();
 		$this->buildButton();
 		$this->buildForm();
-		$this->buildNavBar();
 		$this->loadData();
 	}
 
@@ -183,6 +182,8 @@ abstract class AdminOrder extends AdminPage
 
 	protected function buildNavBar()
 	{
+		parent::buildNavBar();
+
 		$this->navbar->createEntry(Admin::_('Change Order'));
 	}
 
