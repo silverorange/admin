@@ -31,6 +31,14 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 */
 	protected $items;
 
+	/**
+	 * Whether the extended "all items" checkbox was checked or not
+	 *
+	 * @var boolean
+	 * @see SwatCheckAll::isExtendedSelected()
+	 */
+	protected $extended_selected;
+
 	// }}}
 	// {{{ public function __construct()
 
@@ -61,9 +69,13 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 *                                        to use a SwatViewSelection; array
 	 *                                        is provided for backwards
 	 *                                        compatibility.
+	 * @param boolean $extended_selected  whether the extended "all items"
+	 *                                     checkbox was checked or not
 	 */
-	public function setItems($items)
+	public function setItems($items, $extended_selected = false)
 	{
+		$this->extended_selected = $extended_selected;
+
 		if (is_array($items))
 			$items = new SwatViewSelection($items);
 
@@ -78,6 +90,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 	// current items of this confirmation page across requests
 		$form = $this->ui->getWidget('confirmation_form');
 		$form->addHiddenField('items', $this->items);
+		$form->addHiddenField('extended_selected', $this->extended_selected);
 	}
 
 	// }}}
@@ -141,6 +154,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 
 		$form = $this->ui->getWidget('confirmation_form');
 		$items = $form->getHiddenField('items');
+
 		if ($items !== null)
 			$this->setItems($items);
 
@@ -206,7 +220,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	protected function processDBData()
 	{
 		$form = $this->ui->getWidget('confirmation_form');
-		$this->setItems($form->getHiddenField('items'));
+		$this->setItems($form->getHiddenField('items'),
+			$form->getHiddenField('extended_selected'));
 	}
 
 	// }}}
