@@ -164,7 +164,6 @@ abstract class AdminEdit extends AdminPage
 		$this->buildFrame();
 		$this->buildButton();
 		$this->buildMessages();
-		$this->buildNavBar();
 	}
 
 	// }}}
