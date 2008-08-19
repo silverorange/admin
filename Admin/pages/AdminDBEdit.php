@@ -31,7 +31,7 @@ abstract class AdminDBEdit extends AdminEdit
 			$transaction->rollback();
 
 			$message = new SwatMessage(Admin::_(
-				'A database error has occured. The item was not saved.'),
+				'A database error has occurred. The item was not saved.'),
 				SwatMessage::SYSTEM_ERROR);
 
 			$this->app->messages->add($message);
@@ -41,7 +41,7 @@ abstract class AdminDBEdit extends AdminEdit
 
 		} catch (SwatException $e) {
 			$message = new SwatMessage(Admin::_(
-				'An error has occured. The item was not saved.'),
+				'An error has occurred. The item was not saved.'),
 				SwatMessage::SYSTEM_ERROR);
 
 			$this->app->messages->add($message);
