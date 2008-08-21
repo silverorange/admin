@@ -181,9 +181,9 @@ class AdminListDependency extends AdminDependency
 	 *
 	 * @param string $table The database table to query.
 	 *
-	 * @param string $id_field The name of the database field to query for 
+	 * @param string $id_field The name of the database field to query for
 	 *        the id. Can be given in the form type:name where type is a
-	 *        standard MDB2 datatype. If type is ommitted, then integer is 
+	 *        standard MDB2 datatype. If type is ommitted, then integer is
 	 *        assummed for this field.
 	 *
 	 * @param string $parent_field The name of the database field to query to
@@ -193,19 +193,19 @@ class AdminListDependency extends AdminDependency
 	 *        type:name where type is a standard MDB2 datatype. If type is
 	 *        ommitted, then integer is assummed for this field.
 	 *
-	 * @param string $title_field The name of the database field to query for 
+	 * @param string $title_field The name of the database field to query for
 	 *        the title. Can be given in the form type:name where type is a
-	 *        standard MDB2 datatype. If type is ommitted, then text is 
+	 *        standard MDB2 datatype. If type is ommitted, then text is
 	 *        assummed for this field.
 	 *
-	 * @param string $order_by_clause Optional comma deliminated list of 
+	 * @param string $order_by_clause Optional comma deliminated list of
 	 *        database field names to use in the <i>order by</i> clause.
 	 *        Do not include "order by" in the string; only include the list
 	 *        of field names. Use the value <b>null</b> to ignore this
 	 *        paramater.
 	 *
-	 * @param string $where_clause Optional <i>where</i> clause to limit the 
-	 *        returned results. Do not include "where" in the string; only 
+	 * @param string $where_clause Optional <i>where</i> clause to limit the
+	 *        returned results. Do not include "where" in the string; only
 	 *        include the conditional statement.
 	 *
 	 * @param integer $status_level Optional status level to assign to the
