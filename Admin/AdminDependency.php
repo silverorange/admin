@@ -190,7 +190,7 @@ abstract class AdminDependency
 	/**
 	 * Displays the dependency items of this dependency for a given parent
 	 * at a given status level
-	 * 
+	 *
 	 * @param integer $parent the id of the parent to display the dependency
 	 *                         items for.
 	 * @param integer $status_level the status level to display the dependency
