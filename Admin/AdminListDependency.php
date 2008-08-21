@@ -235,9 +235,9 @@ class AdminListDependency extends AdminDependency
 		}
 
 		$sql = sprintf('select %s as id, %s as parent, %s as title,
-				%s::integer as status_level from %s',
-			$id_field->name, $parent_value, $title_field->name, $status_level,
-			$table);
+				%s as status_level from %s',
+			$id_field->name, $parent_value, $title_field->name,
+			$db->quote($status_level, 'integer'), $table);
 
 		if ($where_clause !== null)
 			$sql.= ' where '.$where_clause;
