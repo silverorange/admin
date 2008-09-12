@@ -154,14 +154,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 
 		$form = $this->ui->getWidget('confirmation_form');
 		$items = $form->getHiddenField('items');
-
 		if ($items !== null)
 			$this->setItems($items);
-
-		$id = SiteApplication::initVar('id', null, SiteApplication::VAR_GET);
-
-		if ($id !== null)
-			$this->setItems(new SwatViewSelection(array($id)));
 	}
 
 	// }}}
@@ -222,6 +216,20 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		$form = $this->ui->getWidget('confirmation_form');
 		$this->setItems($form->getHiddenField('items'),
 			$form->getHiddenField('extended_selected'));
+	}
+
+	// }}}
+
+	// build phase
+	// {{{ protected function buildInternal()
+
+	protected function buildInternal()
+	{
+		parent::buildInternal();
+
+		$id = SiteApplication::initVar('id', null, SiteApplication::VAR_GET);
+		if ($id !== null)
+			$this->setItems(new SwatViewSelection(array($id)));
 	}
 
 	// }}}
