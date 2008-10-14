@@ -270,13 +270,14 @@ class AdminListDependency extends AdminDependency
 	 *                      from the result of a database query.
 	 * @param array $parents Optional associative array containing tree
 	 *                        information for the items array in the form of
-	 *                        id = >parent. This array is usually constructed
-	 *                        from the result of a database query. If no parents
-	 *                        are specified, all entries created will have a
+	 *                        id => parent. This array is usually constructed
+	 *                        from the result of a database query. If not
+	 *                        specified, all created entries will have a
 	 *                        parent of null.
 	 * @param integer $status_level Optional status level to assign to the
-	 *        queried entries. If no status level is specified, the status
-	 *        level {@link AdminDependency::NODELETE} is used.
+	 *                               queried entries. If no status level is
+	 *                               specified, the status level
+	 *                               {@link AdminDependency::NODELETE} is used.
 	 *
 	 * @return array a flat array of {@link AdminDependencyEntry} objects that
 	 *                contains dependency tree information.
