@@ -136,7 +136,9 @@ class AdminListDependency extends AdminDependency
 
 				if ($first) {
 					echo '<br />';
-					echo SwatString::minimizeEntities($this->getDependencyText($count));
+					echo SwatString::minimizeEntities(
+						$this->getDependencyText($count));
+
 					echo '<ul>';
 					$first = false;
 				}
@@ -160,7 +162,7 @@ class AdminListDependency extends AdminDependency
 	}
 
 	// }}}
-	// {{{ public static function &queryEntries()
+	// {{{ public static function queryEntries()
 
 	/**
 	 * Queries for dependency entries
@@ -214,7 +216,7 @@ class AdminListDependency extends AdminDependency
 	 *
 	 * @return array An array of {@link AdminDependencyEntry} objects.
 	 */
-	public static function &queryEntries($db, $table, $id_field,
+	public static function queryEntries($db, $table, $id_field,
 		$parent_field, $title_field, $order_by_clause = null,
 		$where_clause = null, $status_level = AdminDependency::NODELETE)
 	{
@@ -253,7 +255,7 @@ class AdminListDependency extends AdminDependency
 	}
 
 	// }}}
-	// {{{ public function &buildEntriesArray()
+	// {{{ public function buildEntriesArray()
 
 	/**
 	 * Builds an array of dependency entries
@@ -266,15 +268,20 @@ class AdminListDependency extends AdminDependency
 	 * @param array $items an associative array of dependent items in the form
 	 *                      of id => title. This array is usually constructed
 	 *                      from the result of a database query.
-	 * @param array $parents an associative array containing tree information
-	 *                        for the items array in the form of id = >parent.
-	 *                        This array is usually constructed from the result
-	 *                        of a database query.
+	 * @param array $parents Optional associative array containing tree
+	 *                        information for the items array in the form of
+	 *                        id = >parent. This array is usually constructed
+	 *                        from the result of a database query. If no parents
+	 *                        are specified, all entries created will have a
+	 *                        parent of null.
+	 * @param integer $status_level Optional status level to assign to the
+	 *        queried entries. If no status level is specified, the status
+	 *        level {@link AdminDependency::NODELETE} is used.
 	 *
 	 * @return array a flat array of {@link AdminDependencyEntry} objects that
 	 *                contains dependency tree information.
 	 */
-	public function &buildEntriesArray(&$items, &$parents,
+	public function buildEntriesArray($items, $parents = null,
 		$status_level = AdminDependency::NODELETE)
 	{
 		$entries = array();
