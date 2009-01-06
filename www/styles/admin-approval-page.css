@@ -1,0 +1,12 @@
+.swat-toolbar input {
+	margin: 0 0.1em;
+}
+
+.swat-toolbar #approve_button {
+	font-weight: bold;
+}
+
+.swat-toolbar .pending {
+	font-size: 90%;
+	margin-left: 1em;
+}
