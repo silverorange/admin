@@ -1,0 +1,28 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
+<swatml>
+	<widget class="SwatFrame" id="frame">
+		<widget class="SwatForm" id="form">
+			<widget class="SwatToolbar">
+				<widget class="SwatButton" id="approve_button">
+					<property name="title" translatable="yes">Approve</property>
+				</widget>
+				<widget class="SwatConfirmationButton" id="delete_button">
+					<property name="title" translatable="yes">Delete</property>
+					<property name="confirmation_message" translatable="yes">Are you sure you want to delete?</property>
+				</widget>
+				<widget class="SwatButton" id="skip_button">
+					<property name="title" translatable="yes">Skip</property>
+				</widget>
+				<widget class="SwatContentBlock" id="status">
+					<property name="content_type">text/xml</property>
+				</widget>
+			</widget>
+			<widget class="SwatDisplayableContainer">
+				<widget class="SwatContentBlock" id="content">
+					<property name="content_type">text/xml</property>
+				</widget>
+			</widget>
+		</widget>
+	</widget>
+</swatml>
