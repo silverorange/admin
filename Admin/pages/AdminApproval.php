@@ -38,7 +38,7 @@ abstract class AdminApproval extends AdminPage
 		$this->pending_ids = $this->getPendingIds();
 
 		if (count($this->pending_ids) == 0)
-			$this->app->relocate('');
+			$this->relocate();
 
 		$this->id = $this->app->initVar('id');
 
