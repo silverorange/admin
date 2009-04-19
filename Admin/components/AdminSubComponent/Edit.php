@@ -10,7 +10,7 @@ require_once 'Admin/dataobjects/AdminSubComponent.php';
  * Edit page for AdminSubComponents
  *
  * @package   Admin
- * @copyright 2005-2008 silverorange
+ * @copyright 2005-2009 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminSubComponentEdit extends AdminDBEdit
@@ -28,11 +28,11 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 	protected function initInternal()
 	{
 		parent::initInternal();
+
+		$this->parent = SiteApplication::initVar('parent');
 		$this->initSubComponent();
 
 		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
-
-		$this->parent = SiteApplication::initVar('parent');
 
 		if ($this->parent === null && $this->edit_subcomponent->id === null)
 			throw new AdminNotFoundException(
@@ -57,6 +57,9 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 				throw new AdminNotFoundException(
 					sprintf(Admin::_('Sub-Component with id "%s" not found.'),
 						$this->id));
+
+			$this->parent =
+				$this->edit_subcomponent->getInternalValue('component');
 		}
 	}
 
@@ -112,10 +115,6 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 	protected function loadDBData()
 	{
 		$this->ui->setValues(get_object_vars($this->edit_subcomponent));
-
-		$this->parent = $this->edit_subcomponent->getInternalValue('component');
-		$form = $this->ui->getWidget('edit_form');
-		$form->addHiddenField('parent', $this->parent);
 	}
 
 	// }}}
