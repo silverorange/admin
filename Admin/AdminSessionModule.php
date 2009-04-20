@@ -261,13 +261,14 @@ class AdminSessionModule extends SiteSessionModule
 		$login_date->toUTC();
 
 		$fields = array('integer:usernum','date:login_date',
-			'text:login_agent', 'text:remote_ip');
+			'text:login_agent', 'text:remote_ip', 'integer:instance');
 
 		$values = array(
 			'usernum'     => $user->id,
 			'login_date'  => $login_date->getDate(),
 			'login_agent' => $login_agent,
 			'remote_ip'   => $remote_ip,
+			'instance'    => $this->app->getInstanceId(),
 		);
 
 		SwatDB::insertRow($this->app->db, 'AdminUserHistory', $fields,

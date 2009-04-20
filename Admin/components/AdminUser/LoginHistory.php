@@ -9,7 +9,7 @@ require_once 'Admin/pages/AdminIndex.php';
  * Login history page for AdminUsers component
  *
  * @package   Admin
- * @copyright 2005-2007 silverorange
+ * @copyright 2005-2009 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminUserLoginHistory extends AdminIndex
@@ -38,9 +38,14 @@ class AdminAdminUserLoginHistory extends AdminIndex
 	{
 		parent::processInternal();
 
+		$instance_id = $this->app->getInstanceId();
+
 		$pager = $this->ui->getWidget('pager');
-		$sql = 'select count(id) from AdminUserHistory';
-		$pager->total_records = SwatDB::queryOne($this->app->db, $sql);
+		$sql = 'select count(id) from AdminUserHistory where instance %s %s';
+		$pager->total_records = SwatDB::queryOne($this->app->db, sprintf($sql,
+			SwatDB::equalityOperator($instance_id),
+			$this->app->db->quote($instance_id, 'integer')));
+
 		$pager->link = 'AdminUser/LoginHistory';
 		$pager->process();
 	}
@@ -70,13 +75,18 @@ class AdminAdminUserLoginHistory extends AdminIndex
 		$pager = $this->ui->getWidget('pager');
 		$this->app->db->setLimit($pager->page_size, $pager->current_record);
 
+		$instance_id = $this->app->getInstanceId();
+
 		$sql = 'select usernum, login_date, login_agent, remote_ip, email,
-					name
+					AdminUser.name
 				from AdminUserHistory
 				inner join AdminUser on AdminUser.id = AdminUserHistory.usernum
+				where instance %s %s
 				order by %s';
 
 		$sql = sprintf($sql,
+			SwatDB::equalityOperator($instance_id),
+			$this->app->db->quote($instance_id, 'integer'),
 			$this->getOrderByClause($view, 'login_date desc'));
 
 		$rs = SwatDB::query($this->app->db, $sql);

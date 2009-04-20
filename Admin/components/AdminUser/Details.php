@@ -11,7 +11,7 @@ require_once 'Swat/SwatTableStore.php';
  * Details page for AdminUsers component
  *
  * @package   Admin
- * @copyright 2005-2007 silverorange
+ * @copyright 2005-2009 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminUserDetails extends AdminIndex
@@ -37,12 +37,11 @@ class AdminAdminUserDetails extends AdminIndex
 		$index_view = $this->ui->getWidget('index_view');
 		$index_view->setDefaultOrderbyColumn(
 			$index_view->getColumn('login_date'));
-
-		$this->navbar->createEntry(Admin::_('Details'));
 	}
 
 	// }}}
 	// {{{ protected function initUser()
+
 	protected function initUser()
 	{
 		$class_name = SwatDBClassMap::get('AdminUser');
@@ -69,7 +68,6 @@ class AdminAdminUserDetails extends AdminIndex
 		$frame->subtitle = sprintf($this->user->name);
 
 		// rebuild the navbar
-		$this->navbar->popEntry();
 		$this->navbar->createEntry('Login History', 'AdminUser/LoginHistory');
 		$this->navbar->createEntry($this->user->name);
 
@@ -86,12 +84,16 @@ class AdminAdminUserDetails extends AdminIndex
 
 	protected function getTableModel(SwatView $view)
 	{
+		$instance_id = $this->app->getInstanceId();
+
 		$sql = 'select * from AdminUserHistory
-				where usernum = %s
+				where usernum = %s and instance %s %s
 				order by %s';
 
 		$sql = sprintf($sql,
 			$this->app->db->quote($this->user->id, 'integer'),
+			SwatDB::equalityOperator($instance_id),
+			$this->app->db->quote($instance_id, 'integer'),
 			$this->getOrderByClause($view, 'login_date desc'));
 
 		return SwatDB::query($this->app->db, $sql, 'AdminUserHistoryWrapper');

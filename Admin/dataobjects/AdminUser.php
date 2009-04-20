@@ -10,7 +10,7 @@ require_once 'Site/dataobjects/SiteInstanceWrapper.php';
  * User account for an admin
  *
  * @package   Admin
- * @copyright 2007 silverorange
+ * @copyright 2007-2009 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  * @see       AdminGroup
  */
@@ -111,6 +111,15 @@ class AdminUser extends SwatDBDataObject
 	public $menu_state;
 
 	// }}}
+	// {{{ protected properties
+
+	/**
+	 * @var SiteInstance
+	 */
+	protected $instance;
+
+	// }}}
+
 	// {{{ public function isAuthenticated()
 
 	/**
@@ -354,17 +363,29 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
+	// {{{ public function setInstance()
+
+	/**
+	 * Sets the instance to use when loading instance-specific information for
+	 * this user.
+	 *
+	 * @param SiteInstance $instance the instance to use.
+	 */
+	public function setInstance(SiteInstance $instance)
+	{
+		$this->instance = $instance;
+	}
+
+	// }}}
+
 	// {{{ protected function init()
 
 	protected function init()
 	{
-		$this->registerInternalProperty('instance',
-			SwatDBClassMap::get('SiteInstance'));
-
-		$this->registerDateProperty('password_tag_date');
-
 		$this->table = 'AdminUser';
 		$this->id_field = 'integer:id';
+
+		$this->registerDateProperty('password_tag_date');
 	}
 
 	// }}}
@@ -373,14 +394,27 @@ class AdminUser extends SwatDBDataObject
 	/**
 	 * Gets user history for this user
 	 *
+	 * If instance is set with the {@link AdminUser::setInstance()} method,
+	 * history will be limited that that instance.
+	 *
 	 * @return AdminUserHistoryWrapper a set of {@link AdminUserHistory}
 	 *                                  objects containing this admin user's
 	 *                                  login history.
+	 *
+	 * @see AdminUser::setInstance()
 	 */
 	protected function loadHistory()
 	{
-		$sql = sprintf('select * from AdminUserHistory where usernum = %s',
-			$this->db->quote($this->id, 'integer'));
+		$instance_id = null;
+
+		if ($this->instance !== null)
+			$instance_id = $this->instance->getId();
+
+		$sql = sprintf('select * from AdminUserHistory
+			where usernum = %s and instance %s %s',
+			$this->db->quote($this->id, 'integer'),
+			SwatDB::equalityOperator($instance_id),
+			$this->db->quote($instance_id, 'integer'));
 
 		return SwatDB::query($this->db, $sql, 'AdminUserHistoryWrapper');
 	}
