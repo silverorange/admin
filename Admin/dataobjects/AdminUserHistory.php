@@ -6,7 +6,7 @@ require_once 'SwatDB/SwatDBDataObject.php';
  * History record for an admin user
  *
  * @package   Admin
- * @copyright 2007 silverorange
+ * @copyright 2007-2009 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminUserHistory extends SwatDBDataObject
@@ -14,14 +14,14 @@ class AdminUserHistory extends SwatDBDataObject
 	// {{{ public properties
 
 	/**
-	 * Unique identifier 
+	 * Unique identifier
 	 *
 	 * @var integer
 	 */
 	public $id;
 
 	/**
-	 * Date an admin user logged in to the admin 
+	 * Date an admin user logged in to the admin
 	 *
 	 * @var Date
 	 */
@@ -49,6 +49,7 @@ class AdminUserHistory extends SwatDBDataObject
 		$this->table = 'AdminUserHistory';
 		$this->id_field = 'integer:id';
 		$this->registerDateProperty('login_date');
+		$this->registerInternalProperty('instance', 'Instance');
 	}
 
 	// }}}
