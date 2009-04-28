@@ -43,7 +43,7 @@ abstract class AdminConfirmation extends AdminPage
 		$form = $this->ui->getWidget('confirmation_form');
 
 		if ($form->isAuthenticated()) {
-			if ($form->isProcessed()) {
+			if ($form->isProcessed() && !$form->hasMessage()) {
 				$this->processResponse();
 				$this->relocate();
 			}
