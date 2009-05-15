@@ -5,11 +5,11 @@ require_once 'Admin/dataobjects/AdminUser.php';
 require_once 'Admin/exceptions/AdminException.php';
 
 /**
- * Email that is sent to an admin uuser when their password has successfully
+ * Email that is sent to an admin user when their password has successfully
  * been reset
  *
  * @package   Admin
- * @copyright 2008 silverorange
+ * @copyright 2008-2009 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminResetPasswordSuccessMailMessage extends SiteMultipartMailMessage
@@ -34,8 +34,7 @@ class AdminResetPasswordSuccessMailMessage extends SiteMultipartMailMessage
 	 * @param string $password_link the URL of the application page that
 	 *                               performs the password reset.
 	 */
-	public function __construct(AdminApplication $app, AdminUser $user,
-		$password_link)
+	public function __construct(AdminApplication $app, AdminUser $user)
 	{
 		parent::__construct($app);
 		$this->admin_user = $user;
