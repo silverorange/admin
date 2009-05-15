@@ -80,11 +80,13 @@ class AdminAdminSubComponentDelete extends AdminDBDelete
 
 		// pop two entries because the AdminDBOrder base class adds an entry
 		$this->navbar->popEntries(2);
-		$this->navbar->createEntry('Admin Components', 'AdminComponent');
+		$this->navbar->createEntry(Admin::_('Admin Components'),
+			'AdminComponent');
+
 		$this->navbar->createEntry($component_title,
 			'AdminComponent/Details?id='.$this->parent);
 
-		$this->navbar->createEntry('Delete Sub-Component(s)');
+		$this->navbar->createEntry(Admin::_('Delete Sub-Component(s)'));
 	}
 
 	// }}}
