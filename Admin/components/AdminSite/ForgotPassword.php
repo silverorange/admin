@@ -108,7 +108,7 @@ class AdminAdminSiteForgotPassword extends AdminPage
 
 				$message_type = SwatMessage::NOTIFICATION;
 			} catch (SiteException $exception) {
-				$exception->log();
+				$exception->process(false);
 
 				$primary_text = Admin::_('Unable to send email');
 				$secondary_text = sprintf(Admin::_('%1$s
