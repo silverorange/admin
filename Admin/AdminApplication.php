@@ -76,7 +76,7 @@ class AdminApplication extends SiteWebApplication
 	 *
 	 * @see AdminApplication::addComponentIncludePath()
 	 */
-	protected $component_include_paths = array('Admin' => 'Admin/components');
+	protected $component_include_paths = array();
 
 	/**
 	 * Source of the front page.
@@ -408,6 +408,16 @@ class AdminApplication extends SiteWebApplication
 	}
 
 	// }}}
+	// {{{ protected function configure()
+
+	protected function configure(SiteConfigModule $config)
+	{
+		parent::configure($config);
+
+		$this->addComponentIncludePath('Admin/components', 'Admin');
+	}
+
+	// }}}
 	// {{{ protected function addConfigDefinitions()
 
 	/**
@@ -424,5 +434,6 @@ class AdminApplication extends SiteWebApplication
 
 	// }}}
 }
+
 
 ?>
