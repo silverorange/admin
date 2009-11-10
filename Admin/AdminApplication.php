@@ -435,5 +435,4 @@ class AdminApplication extends SiteWebApplication
 	// }}}
 }
 
-
 ?>
