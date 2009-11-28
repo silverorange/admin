@@ -1,6 +1,7 @@
 <?php
 
 require_once 'SwatDB/SwatDBDataObject.php';
+require_once 'Admin/dataobjects/AdminComponentWrapper.php';
 
 /**
  * Section to group multiple components together
@@ -59,6 +60,22 @@ class AdminSection extends SwatDBDataObject
 	{
 		$this->table = 'AdminSection';
 		$this->id_field = 'integer:id';
+	}
+
+	// }}}
+	// {{{ protected function loadComponents()
+
+	/**
+	 * @return AdminComponentWrapper
+	 */
+	protected function loadComponents()
+	{
+		$sql = sprintf('select * from AdminComponent
+			where section = %s
+			order by displayorder, title',
+			$this->db->quote($this->id, 'integer'));
+
+		return SwatDB::query($this->db, $sql, 'AdminComponentWrapper');
 	}
 
 	// }}}
