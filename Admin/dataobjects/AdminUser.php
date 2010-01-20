@@ -268,7 +268,8 @@ class AdminUser extends SwatDBDataObject
 		// Support both the newer base64 encoded salts and older raw-ASCII
 		// strings.
 		$decoded_salt = base64_decode($this->password_salt, true);
-		$salt = ($decoded_salt === false) ? $salt : $decoded_salt;
+		$salt = ($decoded_salt === false) ? $this->password_salt :
+			$decoded_salt;
 
 		return (md5($password.$salt) == $this->password);
 	}
