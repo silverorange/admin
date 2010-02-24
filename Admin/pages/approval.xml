@@ -3,7 +3,7 @@
 <swatml>
 	<widget class="SwatFrame" id="frame">
 		<widget class="SwatForm" id="form">
-			<widget class="SwatToolbar">
+			<widget class="SwatToolbar" id="approval_toolbar">
 				<widget class="SwatButton" id="approve_button">
 					<property name="title" translatable="yes">Approve</property>
 				</widget>
