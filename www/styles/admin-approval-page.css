@@ -1,12 +1,15 @@
-.swat-toolbar input {
+ul#approval_toolbar input {
 	margin: 0 0.1em;
 }
 
-.swat-toolbar #approve_button {
+ul#approval_toolbar {
+	padding: 5px;
+}
+
+ul#approval_toolbar #approve_button {
 	font-weight: bold;
 }
 
-.swat-toolbar .pending {
-	font-size: 90%;
-	margin-left: 1em;
+ul#approval_toolbar .pending {
+	margin-left: 0.5em;
 }
