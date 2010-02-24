@@ -24,10 +24,11 @@ $result = $package->setOptions(
 		'baseinstalldir'    => '/',
 		'packagedirectory'  => './',
 		'dir_roles'         => array(
-			'Admin' => 'php',
-			'locale' => 'data',
-			'www' => 'data',
-			'/' => 'data'
+			'Admin'        => 'php',
+			'locale'       => 'data',
+			'www'          => 'data',
+			'dependencies' => 'data',
+			'/'            => 'data'
 		),
 	)
 );
