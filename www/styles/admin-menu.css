@@ -95,7 +95,7 @@
 
 body.hide-menu .admin-menu {
 	display: none;
-} 
+}
 
 /* layouts with menu on left */
 body.hide-menu .yui-t1 #yui-main .yui-b,
@@ -114,11 +114,11 @@ body.hide-menu .yui-t6 #yui-main .yui-b {
 
 body .admin-menu-hide img {
 	display: block;
-} 
+}
 
 body .admin-menu-show {
 	display: none;
-} 
+}
 
 body.hide-menu .admin-menu-show {
 	display: block;
