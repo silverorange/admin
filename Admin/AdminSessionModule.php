@@ -257,6 +257,13 @@ class AdminSessionModule extends SiteSessionModule
 		$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ?
 			$_SERVER['REMOTE_ADDR'] : null;
 
+		if (strlen($login_agent) > 255) {
+			$login_agent = substr($login_agent, 0, 253).' …';
+		}
+		if (strlen($remote_ip) > 15) {
+			$remote_ip = substr($remote_ip, 0, 13).' …';
+		}
+
 		$login_date = new SwatDate();
 		$login_date->toUTC();
 
