@@ -116,7 +116,7 @@ abstract class AdminApproval extends AdminPage
 	}
 
 	// }}}
-	// {{{ protected function approve()
+	// {{{ abstract protected function approve()
 
 	abstract protected function approve();
 
