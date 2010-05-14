@@ -22,7 +22,6 @@ abstract class AdminApproval extends AdminPage
 	protected $id;
 	protected $data_object;
 	protected $pending_ids = array();
-	protected $ui_xml = 'Admin/pages/approval.xml';
 
 	// }}}
 
@@ -33,7 +32,7 @@ abstract class AdminApproval extends AdminPage
 	{
 		parent::initInternal();
 
-		$this->ui->loadFromXML($this->ui_xml);
+		$this->ui->loadFromXML($this->getUiXml());
 
 		$this->pending_ids = $this->getPendingIds();
 
@@ -92,6 +91,15 @@ abstract class AdminApproval extends AdminPage
 
 		return $count;
 	}
+
+	// }}}
+	// {{{ protected function getUiXml()
+
+	protected function getUiXml()
+	{
+		return 'Admin/pages/approval.xml';
+	}
+
 
 	// }}}
 
