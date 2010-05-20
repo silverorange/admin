@@ -191,6 +191,37 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
+	// {{{ public function hasAccessByShortname()
+
+	/**
+	 * Gets whether or not this user has access to the given component
+	 *
+	 * @param string $shortname the shortname of the component to check
+	 *
+	 * @return boolean true if this used has access to the given component and
+	 *                  false if this used does not have access to the given
+	 *                  component.
+	 */
+	public function hasAccessByShortname($shortname)
+	{
+		$this->checkDB();
+
+		$sql = sprintf('select id from AdminComponent
+				inner join AdminComponentAdminGroupBinding on
+					AdminComponent.id =
+						AdminComponentAdminGroupBinding.component
+				inner join AdminUserAdminGroupBinding on
+					AdminComponentAdminGroupBinding.groupnum =
+						AdminUserAdminGroupBinding.groupnum and
+							AdminUserAdminGroupBinding.usernum = %s
+			where shortname = %s',
+			$this->db->quote($this->id, 'integer'),
+			$this->db->quote($shortname, 'text'));
+
+		return SwatDB::queryOne($this->db, $sql);
+	}
+
+	// }}}
 	// {{{ public function setPassword()
 
 	/**
