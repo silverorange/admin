@@ -137,18 +137,38 @@ abstract class AdminIndex extends AdminPage
 		$column_prefix = null, $column_map = array())
 	{
 		$orderby = $default_orderby;
+		$add_direction = false;
 
 		if ($view instanceof SwatTableView &&  $view->orderby_column !== null) {
 			if (isset($column_map[$view->orderby_column->id])) {
-				$orderby = $column_map[$view->orderby_column->id];
+				if (is_array($column_map[$view->orderby_column->id])) {
+					$count = 0;
+					$total_count = $column_map[$view->orderby_column->id];
+					$orderby = '';
+					foreach ($column_map[$view->orderby_column->id] as $value) {
+						$count++;
+						$orderby.= sprintf('%s %s',
+							$value,
+							$view->orderby_column->getDirectionAsString());
+
+						if ($count != $total_count)
+							$orderby.= ',';
+					}
+				} else {
+					$add_direction = true;
+					$orderby = $column_map[$view->orderby_column->id];
+				}
 			} elseif ($column_prefix !== null) {
+				$add_direction = true;
 				$orderby = $column_prefix.'.'.
 					$this->app->db->escape($view->orderby_column->id);
 			} else {
+				$add_direction = true;
 				$orderby = $this->app->db->escape($view->orderby_column->id);
 			}
 
-			$orderby .= ' '.$view->orderby_column->getDirectionAsString();
+			if ($add_direction === true)
+				$orderby .= ' '.$view->orderby_column->getDirectionAsString();
 		}
 
 		return $orderby;
