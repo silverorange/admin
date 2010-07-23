@@ -142,17 +142,19 @@ abstract class AdminIndex extends AdminPage
 		if ($view instanceof SwatTableView &&  $view->orderby_column !== null) {
 			if (isset($column_map[$view->orderby_column->id])) {
 				if (is_array($column_map[$view->orderby_column->id])) {
-					$count = 0;
-					$total_count = $column_map[$view->orderby_column->id];
-					$orderby = '';
-					foreach ($column_map[$view->orderby_column->id] as $value) {
+					$orderby     = '';
+					$mapping     = $column_map[$view->orderby_column->id];
+					$count       = 0;
+					$total_count = count($mapping);
+					foreach ($mapping as $value) {
 						$count++;
 						$orderby.= sprintf('%s %s',
 							$value,
 							$view->orderby_column->getDirectionAsString());
 
-						if ($count != $total_count)
+						if ($count != $total_count) {
 							$orderby.= ',';
+						}
 					}
 				} else {
 					$add_direction = true;
