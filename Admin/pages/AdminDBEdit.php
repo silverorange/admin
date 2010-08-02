@@ -11,8 +11,8 @@ require_once 'SwatDB/exceptions/SwatDBException.php';
  * This class is intended to be a convenience base class. For a fully custom
  * edit page, inherit directly from AdminPage instead.
  *
- * @package Admin
- * @copyright silverorange 2005
+ * @package   Admin
+ * @copyright 2010 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminDBEdit extends AdminEdit
@@ -53,7 +53,7 @@ abstract class AdminDBEdit extends AdminEdit
 	}
 
 	// }}}
-	// {{{ protected function saveDBData()
+	// {{{ abstract protected function saveDBData()
 
 	/**
 	 * Save the data from the database
@@ -77,7 +77,7 @@ abstract class AdminDBEdit extends AdminEdit
 	}
 
 	// }}}
-	// {{{ protected function loadDBData()
+	// {{{ abstract protected function loadDBData()
 
 	/**
 	 * Load the data from the database
