@@ -139,7 +139,7 @@ abstract class AdminIndex extends AdminPage
 		$orderby = $default_orderby;
 		$add_direction = false;
 
-		if ($view instanceof SwatTableView &&  $view->orderby_column !== null) {
+		if ($view instanceof SwatTableView && $view->orderby_column !== null) {
 			if (isset($column_map[$view->orderby_column->id])) {
 				if (is_array($column_map[$view->orderby_column->id])) {
 					$orderby     = '';
