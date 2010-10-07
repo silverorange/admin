@@ -135,8 +135,9 @@ class AdminSearchClause
 				return null;
 
 		} elseif ($this->field->type == 'date') {
-			if (is_object($value) && $value instanceof SwatDate)
+			if (is_object($value) && $value instanceof SwatDate) {
 				$value = $value->getDate();
+			}
 		}
 
 		$value = $db->quote($value, $this->field->type);

@@ -10,17 +10,17 @@ require_once 'Swat/SwatDateCellRenderer.php';
  * @copyright 2006 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
-class AdminDateLinkCellRenderer extends AdminTitleLinkCellRenderer 
+class AdminDateLinkCellRenderer extends AdminTitleLinkCellRenderer
 {
 	// {{{ public properties
 
 	/**
 	 * Date to render
 	 *
-	 * This may either be a Date object, or may be an ISO-formatted date string
-	 * that can be passed into the SwatDate constructor.
+	 * This may either be a SwatDate object, or may be an ISO-formatted date
+	 * string that can be passed into the SwatDate constructor.
 	 *
-	 * @var string|SwatDate|Date
+	 * @var string|SwatDate
 	 */
 	public $date = null;
 
@@ -47,10 +47,10 @@ class AdminDateLinkCellRenderer extends AdminTitleLinkCellRenderer
 	 * The time zone to render the date in
 	 *
 	 * The time zone may be specified either as a time zone identifier valid
-	 * for PEAR::Date_TimeZone or as a Date_TimeZone object. If the render
+	 * for HotDateTimeZone or as a HotDateTimeZone object. If the render
 	 * time zone is null, no time zone conversion is performed.
 	 *
-	 * @var string|Date_TimeZone 
+	 * @var string|HotDateTimeZone
 	 */
 	public $display_time_zone = null;
 
