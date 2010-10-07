@@ -77,7 +77,7 @@ class AdminUser extends SwatDBDataObject
 	 *
 	 * This is used to expire old reset password requests.
 	 *
-	 * @var Date
+	 * @var SwatDate
 	 */
 	public $password_tag_date;
 
@@ -261,7 +261,7 @@ class AdminUser extends SwatDBDataObject
 		$this->checkDB();
 
 		$password_tag = SwatString::hash(uniqid(rand(), true));
-		$now = new Date();
+		$now = new SwatDate();
 		$now->toUTC();
 
 		/*
