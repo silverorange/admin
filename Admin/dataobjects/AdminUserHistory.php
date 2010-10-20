@@ -23,7 +23,7 @@ class AdminUserHistory extends SwatDBDataObject
 	/**
 	 * Date an admin user logged in to the admin
 	 *
-	 * @var Date
+	 * @var SwatDate
 	 */
 	public $login_date;
 
