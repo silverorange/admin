@@ -36,7 +36,7 @@ abstract class AdminDBEdit extends AdminEdit
 
 			$this->app->messages->add($message);
 
-			$e->process();
+			$e->process(false);
 			return false;
 
 		} catch (SwatException $e) {
@@ -46,7 +46,7 @@ abstract class AdminDBEdit extends AdminEdit
 
 			$this->app->messages->add($message);
 
-			$e->process();
+			$e->process(false);
 			return false;
 		}
 		return true;
