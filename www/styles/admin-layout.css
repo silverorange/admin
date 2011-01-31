@@ -128,7 +128,7 @@ address { font-style: normal; }
 }
 
 .swat-button {
-	padding: 0.1em;
+	padding: auto;
 }
 
 /* {{{ Clearfix */
