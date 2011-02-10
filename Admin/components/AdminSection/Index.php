@@ -45,7 +45,7 @@ class AdminAdminSectionIndex extends AdminIndex
 
 				$message = new SwatMessage(sprintf(Admin::ngettext(
 					'One section has been shown.',
-					'%d sections have been shown.', $num),
+					'%s sections have been shown.', $num),
 					SwatString::numberFormat($num)));
 
 				break;
@@ -55,8 +55,8 @@ class AdminAdminSectionIndex extends AdminIndex
 					'boolean:visible', false, 'id', $view->getSelection());
 
 				$message = new SwatMessage(sprintf(Admin::ngettext(
-					"One section has been hidden.",
-					"%d sections have been hidden.", $num),
+					'One section has been hidden.',
+					'%s sections have been hidden.', $num),
 					SwatString::numberFormat($num)));
 
 				break;

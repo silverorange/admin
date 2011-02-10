@@ -28,9 +28,8 @@ class AdminAdminSectionDelete extends AdminDBDelete
 
 		$message = new SwatMessage(sprintf(Admin::ngettext(
 			'One admin section has been deleted.',
-			'%d admin sections have been deleted.', $num),
-			SwatString::numberFormat($num)),
-			SwatMessage::NOTIFICATION);
+			'%s admin sections have been deleted.', $num),
+			SwatString::numberFormat($num)));
 
 		$this->app->messages->add($message);
 	}

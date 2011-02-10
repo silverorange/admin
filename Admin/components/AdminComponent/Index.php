@@ -48,7 +48,7 @@ class AdminAdminComponentIndex extends AdminIndex
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
 				'One component has been shown.',
-				'%d components have been shown.', $num),
+				'%s components have been shown.', $num),
 				SwatString::numberFormat($num)));
 
 			break;
@@ -59,7 +59,7 @@ class AdminAdminComponentIndex extends AdminIndex
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
 				'One component has been hidden.',
-				'%d components have been hidden.', $num),
+				'%s components have been hidden.', $num),
 				SwatString::numberFormat($num)));
 
 			break;
@@ -70,7 +70,7 @@ class AdminAdminComponentIndex extends AdminIndex
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
 				'One component has been enabled.',
-				'%d components have been enabled.', $num),
+				'%s components have been enabled.', $num),
 				SwatString::numberFormat($num)));
 
 			break;
@@ -81,7 +81,7 @@ class AdminAdminComponentIndex extends AdminIndex
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
 				'One component has been disabled.',
-				'%d components have been disabled.', $num),
+				'%s components have been disabled.', $num),
 				SwatString::numberFormat($num)));
 
 			break;
@@ -97,7 +97,7 @@ class AdminAdminComponentIndex extends AdminIndex
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
 				'One component has been moved to section “%s”.',
-				'%d components have been moved to section “%s”.', $num),
+				'%s components have been moved to section “%s”.', $num),
 				SwatString::numberFormat($num),
 				$title));
 

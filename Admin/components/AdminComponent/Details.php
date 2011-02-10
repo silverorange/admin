@@ -83,7 +83,7 @@ class AdminAdminComponentDetails extends AdminIndex
 
 				$message = new SwatMessage(sprintf(Admin::ngettext(
 					'One sub-component has been shown.',
-					'%d sub-components have been shown.', $num),
+					'%s sub-components have been shown.', $num),
 					SwatString::numberFormat($num)));
 
 				break;
@@ -94,7 +94,7 @@ class AdminAdminComponentDetails extends AdminIndex
 
 				$message = new SwatMessage(sprintf(Admin::ngettext(
 					'One sub-component has been hidden.',
-					'%d sub-components have been hidden.', $num),
+					'%s sub-components have been hidden.', $num),
 					SwatString::numberFormat($num)));
 
 				break;
