@@ -40,33 +40,33 @@ class AdminAdminUserIndex extends AdminIndex
 		$message = null;
 
 		switch ($actions->selected->id) {
-			case 'delete':
-				$this->app->replacePage('AdminUser/Delete');
-				$this->app->getPage()->setItems($view->getSelection());
-				break;
+		case 'delete':
+			$this->app->replacePage('AdminUser/Delete');
+			$this->app->getPage()->setItems($view->getSelection());
+			break;
 
-			case 'enable':
-				SwatDB::updateColumn($this->app->db, 'AdminUser',
-					'boolean:enabled', true, 'id', $view->getSelection());
+		case 'enable':
+			SwatDB::updateColumn($this->app->db, 'AdminUser',
+				'boolean:enabled', true, 'id', $view->getSelection());
 
-				$message = new SwatMessage(sprintf(Admin::ngettext(
-					"%d user has been enabled.",
-					"%d users have been enabled.", $num),
-					SwatString::numberFormat($num)));
+			$message = new SwatMessage(sprintf(Admin::ngettext(
+				'%s user has been enabled.',
+				'%s users have been enabled.', $num),
+				SwatString::numberFormat($num)));
 
-				break;
+			break;
 
-			case 'disable':
-				SwatDB::updateColumn($this->app->db, 'AdminUser',
-					'boolean:enabled', false, 'id',
-					$view->getSelection());
+		case 'disable':
+			SwatDB::updateColumn($this->app->db, 'AdminUser',
+				'boolean:enabled', false, 'id',
+				$view->getSelection());
 
-				$message = new SwatMessage(sprintf(Admin::ngettext(
-					"%d user has been disabled.",
-					"%d users have been disabled.", $num),
-					SwatString::numberFormat($num)));
+			$message = new SwatMessage(sprintf(Admin::ngettext(
+				'%s user has been disabled.',
+				'%s users have been disabled.', $num),
+				SwatString::numberFormat($num)));
 
-				break;
+			break;
 		}
 
 		if ($message !== null)
