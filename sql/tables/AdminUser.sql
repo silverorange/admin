@@ -9,5 +9,6 @@ create table AdminUser (
 	force_change_password boolean not null default true,
 	enabled boolean not null default true,
 	menu_state varchar(255),
+	all_instances boolean not null default false,
 	primary key(id)
 );
