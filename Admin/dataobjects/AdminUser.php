@@ -110,6 +110,17 @@ class AdminUser extends SwatDBDataObject
 	 */
 	public $menu_state;
 
+	/**
+	 * Whether or not this user has access to all instances
+	 *
+	 * Only relevent on a multiple instance site. This allows the user to login
+	 * to all instance admins reguradless of AdminUserInstanceBindings. Also
+	 * this user can login into a master admin loading with a null instance.
+	 *
+	 * @var boolean
+	 */
+	public $all_instances;
+
 	// }}}
 	// {{{ protected properties
 
@@ -140,24 +151,29 @@ class AdminUser extends SwatDBDataObject
 	 */
 	public function isAuthenticated(AdminApplication $app)
 	{
-		$authenticated = ($this->force_change_password === false);
+		$authenticated = false;
 
-		// If application uses instances, ensure the admin user has a binding
-		// to the current instance.
-		if ($authenticated) {
-			if ($app->hasModule('SiteMultipleInstanceModule')) {
+		// Only validate agains instances if site is actually using the
+		// instance module.
+		if ($app->hasModule('SiteMultipleInstanceModule')) {
+			if ($this->all_instances) {
+				// This user has acess to all instances
+				$authenticated = true;
+			} else {
+				// Ensure the admin user has a binding to the current instance.
 				$instance = $app->getModule('SiteMultipleInstanceModule');
 				$instance_id = $instance->getId();
 
-				// Only validate agains instances if site is actually using the
-				// instance module. A null instance id means the user is
-				// authenticated.
 				if ($instance_id !== null &&
-					!isset($this->instances[$instance_id])) {
-					$authenticated = false;
+					isset($this->instances[$instance_id])) {
+
+					$authenticated = true;
 				}
 			}
 		}
+
+		if ($this->force_change_password)
+			$authenticated = false;
 
 		return $authenticated;
 	}
