@@ -106,11 +106,13 @@ class AdminSessionModule extends SiteSessionModule
 		$this->logout(); // make sure user is logged out before logging in
 
 		$class_name = SwatDBClassMap::get('AdminUser');
-		$this->user = new $class_name();
-		$this->user->setDatabase($this->app->db);
-		if ($this->user->loadFromEmailAndPassword($email, $password) &&
-			$this->user->isAuthenticated($this->app)) {
-			$this->insertUserHistory($this->user);
+		$user = new $class_name();
+		$user->setDatabase($this->app->db);
+		if ($user->loadFromEmailAndPassword($email, $password) &&
+			$user->isAuthenticated($this->app)) {
+
+			$this->user = $user;
+			$this->insertUserHistory($user);
 			$this->runLoginCallbacks();
 		}
 
