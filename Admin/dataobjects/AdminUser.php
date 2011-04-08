@@ -170,6 +170,8 @@ class AdminUser extends SwatDBDataObject
 					$authenticated = true;
 				}
 			}
+		} else {
+			$authenticated = true;
 		}
 
 		if ($this->force_change_password)
