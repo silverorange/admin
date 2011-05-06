@@ -176,11 +176,11 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 			} catch (SwatDBException $e) {
 				$transaction->rollback();
 				$this->generateMessage($e);
-				$e->process();
+				$e->processAndContinue();
 
 			} catch (SwatException $e) {
 				$this->generateMessage($e);
-				$e->process();
+				$e->processAndContinue();
 			}
 		}
 	}
