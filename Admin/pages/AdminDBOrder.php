@@ -29,7 +29,7 @@ abstract class AdminDBOrder extends AdminOrder
 
 			$message = new SwatMessage(
 				Admin::_('A database error has occured. The item was not saved.'),
-				 SwatMessage::SYSTEM_ERROR);
+				'system-error');
 
 			$this->app->messages->add($message);
 			$e->process();
@@ -37,7 +37,7 @@ abstract class AdminDBOrder extends AdminOrder
 		} catch (SwatException $e) {
 			$message = new SwatMessage(
 				Admin::_('An error has occured. The item was not saved.'),
-				SwatMessage::SYSTEM_ERROR);
+				'system-error');
 
 			$this->app->messages->add($message);
 			$e->process();

@@ -91,7 +91,7 @@ class AdminAdminSiteLogin extends AdminPage
 				} else {
 					$message_display = $this->ui->getWidget('message_display');
 					$message = new SwatMessage(Admin::_('Login failed'),
-						SwatMessage::ERROR);
+						'error');
 
 					$message->secondary_content =
 						Admin::_('Check your password and try again.');

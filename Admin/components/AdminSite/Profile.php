@@ -78,7 +78,7 @@ class AdminAdminSiteProfile extends AdminDBEdit
 			$message = new SwatMessage(
 				Admin::_('%1$s is incorrrect. Please check your %1$s and try '.
 					'again. Passwords are case sensitive.'),
-				SwatMessage::ERROR);
+				'error');
 
 			$this->ui->getWidget('old_password')->addMessage($message);
 		}

@@ -73,7 +73,7 @@ class AdminAdminSiteForgotPassword extends AdminPage
 		if ($admin_user === null) {
 			$message = new SwatMessage(Admin::_(
 				'There is no account with the specified email address'),
-				SwatMessage::ERROR);
+				'error');
 
 			$message->secondary_content = Admin::_(
 				'Make sure you entered the email address correctly.');
@@ -106,7 +106,7 @@ class AdminAdminSiteForgotPassword extends AdminPage
 					'<p>', $anchor_tag, $this->app->config->site->title,
 					'</p>', '<p>', $strong_tag, '</p>');
 
-				$message_type = SwatMessage::NOTIFICATION;
+				$message_type = 'notice';
 			} catch (SiteException $exception) {
 				$exception->process(false);
 
@@ -118,7 +118,7 @@ class AdminAdminSiteForgotPassword extends AdminPage
 					%2$s'),
 					'<ul>', '</ul>', '<li>', '</li>');
 
-				$message_type = SwatMessage::ERROR;
+				$message_type = 'error';
 			}
 
 			$message = new SwatMessage($primary_text, $message_type);

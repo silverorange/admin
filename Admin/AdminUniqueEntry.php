@@ -52,7 +52,7 @@ class AdminUniqueEntry extends SwatEntry
 				'numbers. Spaces and other special characters are not '.
 				'allowed.');
 
-			$this->addMessage(new SwatMessage($message, SwatMessage::ERROR));
+			$this->addMessage(new SwatMessage($message, 'error'));
 		}
 	}
 

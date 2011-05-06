@@ -26,7 +26,7 @@ class AdminAdminSiteLogout extends AdminPage
 		} else {
 			// add error message
 			$message = new SwatMessage(Admin::_('Unable to log out.'),
-				SwatMessage::WARNING);
+				'warning');
 
 			$message->secondary_content =
 				Admin::_('In order to ensure your security, we were '.

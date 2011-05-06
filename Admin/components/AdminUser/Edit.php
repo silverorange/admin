@@ -130,7 +130,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 		$message = new SwatMessage(
 			sprintf(Admin::_('User “%s” has been saved.'), $values['email']),
-			SwatMessage::NOTIFICATION);
+			'notice');
 
 		$this->app->messages->add($message);
 	}
