@@ -50,7 +50,7 @@ class AdminAdminUserIndex extends AdminIndex
 				'boolean:enabled', true, 'id', $view->getSelection());
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
-				'%s user has been enabled.',
+				'One user has been enabled.',
 				'%s users have been enabled.', $num),
 				SwatString::numberFormat($num)));
 
@@ -62,7 +62,7 @@ class AdminAdminUserIndex extends AdminIndex
 				$view->getSelection());
 
 			$message = new SwatMessage(sprintf(Admin::ngettext(
-				'%s user has been disabled.',
+				'One user has been disabled.',
 				'%s users have been disabled.', $num),
 				SwatString::numberFormat($num)));
 
