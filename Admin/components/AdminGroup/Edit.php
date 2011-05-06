@@ -91,7 +91,7 @@ class AdminAdminGroupEdit extends AdminDBEdit
 
 		$message = new SwatMessage(
 			sprintf(Admin::_('Group “%s” has been saved.'), $values['title']),
-			SwatMessage::NOTIFICATION);
+			'notice');
 
 		$this->app->messages->add($message);
 	}

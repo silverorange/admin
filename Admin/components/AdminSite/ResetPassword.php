@@ -177,9 +177,7 @@ class AdminAdminSiteResetPassword extends AdminPage
 					'email, you may %shave the email sent again%s.'),
 					'<a href="AdminSite/ForgotPassword">', '</a>'));
 
-			$message = new SwatMessage(Admin::_('Link Incorrect'),
-				SwatMessage::WARNING);
-
+			$message = new SwatMessage(Admin::_('Link Incorrect'), 'warning');
 			$message->secondary_content = $text;
 			$message->content_type = 'text/xml';
 			$this->ui->getWidget('message_display')->add($message);

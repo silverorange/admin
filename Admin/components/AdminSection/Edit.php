@@ -69,7 +69,7 @@ class AdminAdminSectionEdit extends AdminDBEdit
 
 		$message = new SwatMessage(
 			sprintf(Admin::_('Section “%s” has been saved.'),
-			$values['title']), SwatMessage::NOTIFICATION);
+			$values['title']), 'notice');
 
 		$this->app->messages->add($message);
 	}

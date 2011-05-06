@@ -49,7 +49,7 @@ abstract class AdminConfirmation extends AdminPage
 			}
 		} else {
 			$message = new SwatMessage(Admin::_('There is a problem with the '.
-				'information submitted.'), SwatMessage::WARNING);
+				'information submitted.'), 'warning');
 
 			$message->secondary_content =
 				Admin::_('In order to ensure your security, we were unable to '.

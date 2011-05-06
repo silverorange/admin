@@ -32,7 +32,7 @@ abstract class AdminDBEdit extends AdminEdit
 
 			$message = new SwatMessage(Admin::_(
 				'A database error has occurred. The item was not saved.'),
-				SwatMessage::SYSTEM_ERROR);
+				'system-error');
 
 			$this->app->messages->add($message);
 
@@ -42,7 +42,7 @@ abstract class AdminDBEdit extends AdminEdit
 		} catch (SwatException $e) {
 			$message = new SwatMessage(Admin::_(
 				'An error has occurred. The item was not saved.'),
-				SwatMessage::SYSTEM_ERROR);
+				'system-error');
 
 			$this->app->messages->add($message);
 

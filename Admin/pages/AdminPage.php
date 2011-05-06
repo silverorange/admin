@@ -213,7 +213,7 @@ abstract class AdminPage extends SitePage
 		foreach ($forms as $form) {
 			if (!$form->isAuthenticated()) {
 				$message = new SwatMessage(Admin::_('There is a problem with '.
-					'the information submitted.'), SwatMessage::WARNING);
+					'the information submitted.'), 'warning');
 
 				$message->secondary_content =
 					Admin::_('In order to ensure your security, we were '.

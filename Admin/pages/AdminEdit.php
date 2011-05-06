@@ -52,7 +52,7 @@ abstract class AdminEdit extends AdminPage
 			// will return null, so explicitly check false here
 			if ($validated === false || $form->hasMessage()) {
 				$message = new SwatMessage(Admin::_('There is a problem '.
-					'with the information submitted.'), SwatMessage::ERROR);
+					'with the information submitted.'), 'error');
 
 				$message->secondary_content = Admin::_('Please address '.
 					'the fields highlighted below and re-submit the form.');
