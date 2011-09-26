@@ -113,13 +113,20 @@ abstract class AdminApproval extends AdminPage
 		$form = $this->ui->getWidget('form');
 
 		if ($form->isProcessed()) {
-			if ($this->ui->getWidget('approve_button')->hasBeenClicked()) {
-				$this->approve();
-			} elseif ($this->ui->getWidget('delete_button')->hasBeenClicked()) {
-				$this->delete();
-			}
-
+			$this->save();
 			$this->relocate();
+		}
+	}
+
+	// }}}
+	// {{{ protected function save()
+
+	protected function save()
+	{
+		if ($this->ui->getWidget('approve_button')->hasBeenClicked()) {
+			$this->approve();
+		} elseif ($this->ui->getWidget('delete_button')->hasBeenClicked()) {
+			$this->delete();
 		}
 	}
 
