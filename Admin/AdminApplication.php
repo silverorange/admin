@@ -93,16 +93,6 @@ class AdminApplication extends SiteWebApplication
 	protected $menu_view_class = 'AdminMenuView';
 
 	// }}}
-	// {{{ public function __construct()
-
-	public function __construct($id, $filename)
-	{
-		parent::__construct($id, $filename);
-
-		$this->exception_page_source = 'AdminSite/Exception';
-	}
-
-	// }}}
 	// {{{ public function run()
 
 	public function run()
@@ -361,6 +351,24 @@ class AdminApplication extends SiteWebApplication
 		}
 
 		return $page;
+	}
+
+	// }}}
+	// {{{ protected function resolveExceptionPage()
+
+	/**
+	 * Resolves an exception page for a particular source
+	 *
+	 * Sub-classes are encouraged to override this method to create different
+	 * exception page instances for different sources.
+	 *
+	 * @param string $source the source to use to resolve the exception page.
+	 *
+	 * @return SitePage the exception page corresponding the given source.
+	 */
+	protected function resolveExceptionPage($source)
+	{
+		return $this->resolvePage('AdminSite/Exception');
 	}
 
 	// }}}

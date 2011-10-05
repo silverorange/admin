@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Admin/layouts/AdminDefaultLayout.php';
-require_once 'Site/pages/SiteExceptionPage.php';
+require_once 'Site/pages/SiteXhtmlExceptionPage.php';
 require_once 'Swat/SwatMessage.php';
 require_once 'Swat/SwatMessageDisplay.php';
 
@@ -11,7 +11,7 @@ require_once 'Swat/SwatMessageDisplay.php';
  * @package   Admin
  * @copyright 2006 silverorange
  */
-class AdminAdminSiteException extends SiteExceptionPage
+class AdminAdminSiteException extends SiteXhtmlExceptionPage
 {
 	// {{{ protected function createLayout()
 
@@ -39,9 +39,9 @@ class AdminAdminSiteException extends SiteExceptionPage
 	// }}}
 	// {{{ protected function display()
 
-	protected function display($status)
+	protected function display()
 	{
-		printf('<p>%s</p>', $this->getSummary($status));
+		printf('<p>%s</p>', $this->getSummary());
 
 		echo '<p>This error has been reported.</p>';
 
