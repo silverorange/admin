@@ -494,7 +494,7 @@ class AdminUser extends SwatDBDataObject
 	// {{{ protected function loadGroups()
 
 	/**
-	 * Load the Groups that this user has access to
+	 * Loads the Groups that this user has access to
 	 *
 	 * @return AdminGroupWrapper the Admin Groups this user belongs to.
 	 */
