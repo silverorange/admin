@@ -491,6 +491,27 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
+	// {{{ protected function loadGroups()
+
+	/**
+	 * Load the Groups that this user has access to
+	 *
+	 * @return AdminGroupWrapper the Admin Groups this user belongs to.
+	 */
+	protected function loadGroups()
+	{
+		$sql = sprintf('select AdminGroup.*
+				from AdminGroup
+				inner join AdminUserAdminGroupBinding on
+					AdminUserAdminGroupBinding.groupnum = AdminGroup.id
+				where usernum = %s',
+				$this->db->quote($this->id, 'integer'));
+
+		return SwatDB::query($this->db, $sql, 'AdminGroupWrapper');
+	}
+
+	// }}}
+
 }
 
 ?>
