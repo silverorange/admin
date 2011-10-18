@@ -149,6 +149,23 @@ class AdminSessionModule extends SiteSessionModule
 	}
 
 	// }}}
+	// {{{ public function getUser()
+
+	/**
+	 * Gets the current admin user
+	 *
+	 * @return AdminUser the current admin user object, or null if an
+	 *                   admin user is not logged in.
+	 */
+	public function getUser()
+	{
+		if (!$this->isLoggedIn())
+			return null;
+
+		return $this->user;
+	}
+
+	// }}}
 	// {{{ public function getUserID()
 
 	/**
