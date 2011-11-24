@@ -52,6 +52,7 @@ class AdminDefaultLayout extends AdminLayout
 	{
 		parent::__construct($app, $filename);
 		$this->navbar = new AdminNavBar();
+		$this->navbar->separator = ' › ';
 	}
 
 	// }}}
@@ -151,10 +152,10 @@ class AdminDefaultLayout extends AdminLayout
 	protected function displayHeader()
 	{
 		echo '<div id="admin-syslinks">',
-			'Welcome ',
+			'<span id="admin-identifier">Welcome ',
 			SwatString::minimizeEntities($this->app->session->getName()),
-			' &nbsp;|&nbsp; ',
-			'<a href="AdminSite/Profile">Login Settings</a> &nbsp;|&nbsp; ';
+			' &nbsp; ',
+			'<a href="AdminSite/Profile">Login Settings</a> &nbsp; </span>';
 
 		$this->logout_form->display();
 
