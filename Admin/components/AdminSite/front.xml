@@ -3,9 +3,8 @@
 <swatml>
 	<widget class="SwatMessageDisplay" id="message_display" />
 	<widget class="SwatFrame">
-		<widget class="AdminNote">
-			<property name="title" translatable="yes">Welcome to the Administration Tool!</property>
-			<property name="content" translatable="yes">To get started, choose a section on the menu to the left.</property>
+		<widget class="AdminNote" id="note">
+			<property name="content" translatable="yes">To get started, choose an item from the menu to the left.</property>
 		</widget>
 	</widget>
 </swatml>

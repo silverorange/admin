@@ -27,6 +27,11 @@ class AdminAdminSiteFront extends AdminPage
 
 	protected function buildInternal()
 	{
+		$note = $this->ui->getWidget('note');
+		$note->title = sprintf(
+			Admin::_('Welcome to the %s Admin!'),
+			$this->app->config->site->title
+		);
 		$this->buildMessages();
 	}
 
