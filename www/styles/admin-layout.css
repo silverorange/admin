@@ -5,7 +5,10 @@ body {
 	padding: 0;
 }
 
-#doc, #doc2, #doc3 { margin: 0; } /* turn of 10px left/right margins from default YUI grid  */
+/* turn off 10px left/right margins from default YUI grid  */
+#doc, #doc2, #doc3 {
+	margin: 0;
+}
 
 a:link { color: #3F5ACE; }
 a:visited { color: #3F5ACE; }
@@ -37,13 +40,13 @@ p { margin: 0 0 1em 0; }
 	margin-left: 1em;
 }
 
+
 /* Header Styles */
 
 #hd {
-	background: #426c9e url(../images/admin-header-background.png) bottom repeat-x;
-	padding: 0.5em 1em;
-	color: #ddd;
-	border-bottom: 1px solid #81aed5;
+	padding: 8px 1em;
+	background: #527cae url(../images/admin-header-background-2.png) repeat-x bottom left;
+	color: #fff;
 }
 
 #hd a { color: #fff; }
@@ -53,6 +56,8 @@ p { margin: 0 0 1em 0; }
 #hd #admin-syslinks {
 	float: right;
 	margin: 0.1em 0 0 2em;
+	position: relative;
+	z-index: 2;
 }
 
 #hd h1 {
@@ -91,8 +96,8 @@ h6 { font-size:  85%; }
 	min-height: 48px;
 }
 
-* html #confirmation_container {
-	height: 48px; /* IE hack */
+.ie6 #confirmation_container {
+	height: 48px;
 }
 
 #confirmation_frame ul {
@@ -120,15 +125,25 @@ address { font-style: normal; }
 
 #logout input {
 	margin: 0;
-	padding: 0 0.2em;
+	padding: 2px 4px;
 	vertical-align: middle;
 	font-size: 85%;
-	position: relative;
-	top: -2px;
 }
 
-.swat-button {
-	padding: auto;
+#logout input::-moz-focus-inner {
+	padding: 0;
+	border: none;
+}
+
+#admin-identifier {
+	vertical-align: middle;
+}
+
+#admin-navbar {
+	position: relative;
+	top: 2px;
+	z-index: 1;
+	vertical-align: middle;
 }
 
 /* {{{ Clearfix */

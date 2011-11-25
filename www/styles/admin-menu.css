@@ -2,6 +2,7 @@
 
 .admin-menu {
 	margin-top: 1em;
+	margin-bottom: 1em;
 	color: #666;
 }
 
@@ -26,58 +27,31 @@
 	color: #837352;
 }
 
-.admin-menu ul a.menu-section-title {
+.admin-menu ul .menu-section-title {
 	display: block;
-	background: #f8f6f0 url(../images/admin-menu-section-background.png) bottom left repeat-x;
-	margin: 1px 1px 4px 1px;
-	font-weight: bold;
-	text-decoration: none;
-	color: #837352;
-	outline: none;
+	margin: 0;
+	padding: 8px 8px 2px;
+	color: #888;
+	font-size: 85%;
 }
 
-.admin-menu ul li.hide-menu-section a.menu-section-title {
-	background: #f8f6f0 url(../images/admin-menu-section-background-closed.png) bottom left repeat-x;
-	margin: 1px 1px 0 1px;
-}
-
-.admin-menu ul a.menu-section-title span {
+.admin-menu ul .menu-section-title span {
 	display: block;
-	background: url(../images/admin-menu-section-open.png) center right no-repeat;
-	padding: 1px 4px 3px 4px;
 }
 
-.admin-menu ul li.hide-menu-section a.menu-section-title span {
-	background: url(../images/admin-menu-section-closed.png) center right no-repeat;
-}
-
-.admin-menu ul li {
-	border: 1px solid #e7ddc8;
-	margin-bottom: 6px;
-	background: #fff;
-}
-
-.admin-menu li li {
-	border: 0;
-	padding: 0;
-	margin: 0 4px 0 4px;
+.admin-menu li li a {
+	display: block;
+	padding: 3px 12px;
 }
 
 .admin-menu ul ul {
-	padding: 0 0 0.5em 1.3em;
-	list-style-type: circle;
 	display: block;
-}
-
-.admin-menu ul li.hide-menu-section ul {
-	display: none;
-}
-
-.admin-menu ul ul ul {
-	padding-bottom: 0;
+	list-style-type: none;
+	padding: 0;
 }
 
 .admin-menu ul ul ul li {
+	padding-left: 18px;
 	font-size: 85%;
 }
 
@@ -87,55 +61,16 @@
 }
 
 .admin-menu a:hover {
-	text-decoration: underline;
+	background: #e2e0df;
 }
 
 
 /* Menu-hiding styles */
 
-body.hide-menu .admin-menu {
-	display: none;
-}
-
-/* layouts with menu on left */
-body.hide-menu .yui-t1 #yui-main .yui-b,
-body.hide-menu .yui-t2 #yui-main .yui-b,
-body.hide-menu .yui-t3 #yui-main .yui-b {
-	margin-left: 3em;
-}
-
-/* layouts with menu on left */
-body.hide-menu .yui-t4 #yui-main .yui-b,
-body.hide-menu .yui-t5 #yui-main .yui-b,
-body.hide-menu .yui-t6 #yui-main .yui-b {
-	margin-right: 3em;
-}
-
-
 body .admin-menu-hide img {
-	display: block;
+	display: none;
 }
 
 body .admin-menu-show {
 	display: none;
-}
-
-body.hide-menu .admin-menu-show {
-	display: block;
-	position: absolute;
-	top: 1em;
-	left: 0;
-}
-
-body.hide-menu .yui-t1 .admin-menu-show,
-body.hide-menu .yui-t2 .admin-menu-show,
-body.hide-menu .yui-t3 .admin-menu-show {
-	left: 0;
-}
-
-body.hide-menu .yui-t4 .admin-menu-show,
-body.hide-menu .yui-t5 .admin-menu-show,
-body.hide-menu .yui-t6 .admin-menu-show {
-	left: auto;
-	right: 0;
 }
