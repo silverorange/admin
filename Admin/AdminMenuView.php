@@ -1,9 +1,8 @@
 <?php
 
-require_once 'XML/RPCAjax.php';
-require_once 'Swat/SwatUIObject.php';
-require_once 'Swat/SwatYUI.php';
-require_once 'Admin/AdminMenuViewStateStore.php';
+require_once 'Swat/SwatHtmlTag.php';
+require_once 'Swat/SwatControl.php';
+require_once 'Admin/AdminMenuStore.php';
 
 /**
  * Displays the primary navigation menu
@@ -12,10 +11,10 @@ require_once 'Admin/AdminMenuViewStateStore.php';
  * different menu styles.
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2011 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
-class AdminMenuView extends SwatUIObject
+class AdminMenuView extends SwatControl
 {
 	// {{{ public properties
 
@@ -39,67 +38,33 @@ class AdminMenuView extends SwatUIObject
 	 */
 	protected $store;
 
-	/**
-	 * The admin application that uses this menu
-	 *
-	 * @var AdminApplication
-	 */
-	protected $app;
-
-	// }}}
-	// {{{ private properties
-
-	/**
-	 * Whether of not this menu-view is shown (not collapsed) or not
-	 *
-	 * @var boolean
-	 */
-	private $show;
-
 	// }}}
 	// {{{ public function __construct()
 
 	/**
-	 * Creates a new menu-view object with a given menu-store and id.
+	 * Creates a new menu-view control
 	 *
-	 * @param AdminMenuStore $store the menu-store this view will view.
 	 * @param string $id optional identifier for this menu-view.
 	 */
-	public function __construct(AdminMenuStore $store,
-		AdminApplication $app, $id = null)
+	public function __construct($id = null)
 	{
-		parent::__construct();
+		parent::__construct($id);
 
-		$this->store = $store;
-		$this->app = $app;
-		$this->show = true;
-		$this->id = $id;
-
-		$yui = new SwatYUI(array('dom', 'animation'));
-		$this->html_head_entry_set->addEntrySet($yui->getHtmlHeadEntrySet());
-
-		$this->addJavaScript('packages/admin/javascript/admin-menu.js',
-			Admin::PACKAGE_ID);
+		$this->requires_id = true;
 
 		$this->addStyleSheet('packages/admin/styles/admin-menu.css',
 			Admin::PACKAGE_ID);
-
-		$this->html_head_entry_set->addEntrySet(
-			XML_RPCAjax::getHtmlHeadEntrySet());
 	}
 
 	// }}}
-	// {{{ public function init()
+	// {{{ public function setModel()
 
 	/**
-	 * Initializes this menu-view
+	 * @param AdminMenuStore $store the menu-store this view will view.
 	 */
-	public function init()
+	public function setModel(AdminMenuStore $store)
 	{
-		if ($this->id === null)
-			$this->id = $this->getUniqueId();
-
-		$this->loadState();
+		$this->store = $store;
 	}
 
 	// }}}
@@ -112,16 +77,18 @@ class AdminMenuView extends SwatUIObject
 	 */
 	public function display()
 	{
-		$this->displayShowLink();
+		if (!$this->visible) {
+			return;
+		}
+
+		parent::display();
 
 		$menu_div = new SwatHtmlTag('div');
 		$menu_div->id = $this->id;
 		$menu_div->class = 'admin-menu';
 		$menu_div->open();
 
-		$this->displayHideLink();
 		$this->displayMenuContent();
-		Swat::displayInlineJavaScript($this->getInlineJavaScript());
 
 		$menu_div->close();
 	}
@@ -136,11 +103,8 @@ class AdminMenuView extends SwatUIObject
 	 */
 	public function displaySection($section)
 	{
-		$section_title_tag = new SwatHtmlTag('a');
+		$section_title_tag = new SwatHtmlTag('span');
 		$section_title_tag->class = 'menu-section-title';
-		$section_title_tag->href = sprintf(
-			'javascript:%s_obj.toggleSection(\'%s\');',
-			$this->id, $section->id);
 
 		$section_title_span_tag = new SwatHtmlTag('span');
 		$section_title_span_tag->setContent($section->title);
@@ -190,8 +154,9 @@ class AdminMenuView extends SwatUIObject
 		if (count($component->subcomponents)) {
 			echo '<ul>';
 
-			foreach ($component->subcomponents as $subcomponent)
+			foreach ($component->subcomponents as $subcomponent) {
 				$this->displaySubcomponent($subcomponent, $component->shortname);
+			}
 
 			echo '</ul>';
 		}
@@ -221,66 +186,6 @@ class AdminMenuView extends SwatUIObject
 	}
 
 	// }}}
-	// {{{ public function getState()
-
-	/**
-	 * Gets the current state of this menu-view
-	 *
-	 * @return AdminMenuStateStore the current state of this menu-view.
-	 */
-	public function getState()
-	{
-		$state = new AdminMenuViewStateStore($this->id.'_state');
-		$state->show = $this->show;
-		foreach ($this->store->sections as $section)
-			$state->sections_show[$section->id] = $section->show;
-
-		return $state;
-	}
-
-	// }}}
-	// {{{ public function setState()
-
-	/**
-	 * Sets the state of this menu-view to a developer specified state
-	 *
-	 * @param AdminMenuViewStateStore $state the state to set this menu-view to.
-	 */
-	public function setState(AdminMenuViewStateStore $state)
-	{
-		$this->show = $state->show;
-		foreach ($this->store->sections as $section)
-			if (isset($state->sections_show[$section->id]))
-				$section->show = $state->sections_show[$section->id];
-	}
-
-	// }}}
-	// {{{ public function isShown()
-
-	/**
-	 * Whether or not this menu view is shown (not collapsed) or not
-	 *
-	 * @return boolean whether or not this menu view is shown (not collapsed)
-	 *                  or not.
-	 */
-	public function isShown()
-	{
-		return $this->show;
-	}
-
-	// }}}
-	// {{{ public function saveState()
-
-	/**
-	 * Save this menu-view's state to the user's session
-	 */
-	public function saveState()
-	{
-		$this->getState()->saveToDatabase($this->app->db,
-			$this->app->session->getUserId());
-	}
-
-	// }}}
 	// {{{ protected function displayMenuContent()
 
 	/**
@@ -290,113 +195,11 @@ class AdminMenuView extends SwatUIObject
 	{
 		echo '<ul>';
 
-		foreach ($this->store->sections as $section)
+		foreach ($this->store->sections as $section) {
 			$this->displaySection($section);
-
-		echo '</ul>';
-	}
-
-	// }}}
-	// {{{ protected function displayShowLink()
-
-	/**
-	 * Displays the 'show' link of this menu-view
-	 *
-	 * The show link shows (expands) a menu-view that has been collapsed.
-	 */
-	protected function displayShowLink()
-	{
-		$anchor_tag = new SwatHtmlTag('a');
-		$anchor_tag->href = sprintf('javascript:%s_obj.toggle();', $this->id);
-		$anchor_tag->id = $this->id.'_show';
-		$anchor_tag->class = 'admin-menu-show';
-		$anchor_tag->open();
-
-		$img_tag = new SwatHtmlTag('img');
-		$img_tag->src = 'packages/admin/images/admin-menu-show.png';
-		$img_tag->alt = Admin::_('Show Menu');
-		$img_tag->height = 86;
-		$img_tag->width = 19;
-		$img_tag->display();
-
-		$anchor_tag->close();
-	}
-
-	// }}}
-	// {{{ protected function displayHideLink()
-
-	/**
-	 * Displays the 'hide' link of this menu-view
-	 *
-	 * The hide link hides (collapses) a menu-view.
-	 */
-	protected function displayHideLink()
-	{
-		$anchor_tag = new SwatHtmlTag('a');
-		$anchor_tag->href = sprintf('javascript:%s_obj.toggle();', $this->id);
-		$anchor_tag->id = $this->id.'_hide';
-		$anchor_tag->class = 'admin-menu-hide';
-		$anchor_tag->open();
-
-		$img_tag = new SwatHtmlTag('img');
-		$img_tag->src = 'packages/admin/images/admin-menu-hide.png';
-		$img_tag->alt = Admin::_('Hide Menu');
-		$img_tag->height = 20;
-		$img_tag->width = 87;
-		$img_tag->display();
-
-		$anchor_tag->close();
-	}
-
-	// }}}
-	// {{{ protected function loadState()
-
-	/**
-	 * Loads this menu-view's state from the user's session
-	 */
-	protected function loadState()
-	{
-		try {
-			$menu_state = AdminMenuViewStateStore::loadFromDatabase(
-				$this->app->db, $this->app->session->getUserId());
-		} catch (AdminException $e) {
-			$this->clearState();
 		}
 
-		if ($menu_state !== null)
-			$this->setState($menu_state);
-	}
-
-	// }}}
-	// {{{ protected function clearState()
-
-	/**
-	 * Clears this menu-view's state from the user's session
-	 */
-	protected function clearState()
-	{
-		$state = new AdminMenuViewStateStore($this->id.'_state');
-		$state->show = true;
-		foreach ($this->store->sections as $section)
-			$state->sections_show[$section->id] = true;
-
-		$this->setState($state);
-		$this->saveState();
-	}
-
-	// }}}
-	// {{{ protected function getInlineJavaScript()
-
-	/**
-	 * Gets the inline JavaScript required for this menu-view to function
-	 *
-	 * @return string the inline JavaScript required for this menu-view to
-	 *                 function.
-	 */
-	protected function getInlineJavaScript()
-	{
-		return sprintf("var %s_obj = new AdminMenu('%s');",
-			$this->id, $this->id);
+		echo '</ul>';
 	}
 
 	// }}}

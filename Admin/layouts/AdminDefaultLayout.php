@@ -104,7 +104,8 @@ class AdminDefaultLayout extends AdminLayout
 				'AdminMenuStore');
 
 			$class = $this->app->getMenuViewClass();
-			$this->menu = new $class($menu_store, $this->app);
+			$this->menu = new $class();
+			$this->menu->setModel($menu_store);
 		}
 
 		$this->menu->init();
@@ -181,9 +182,6 @@ class AdminDefaultLayout extends AdminLayout
 	 */
 	protected function displayMenu()
 	{
-		if (!$this->menu->isShown())
-			$this->data->body_classes[] = 'hide-menu';
-
 		$this->menu->display();
 	}
 
