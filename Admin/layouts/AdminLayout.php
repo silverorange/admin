@@ -7,7 +7,7 @@ require_once 'Site/layouts/SiteLayout.php';
  * Base class for admin layouts
  *
  * @package   Admin
- * @copyright 2006-2007 silverorange
+ * @copyright 2006-2011 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminLayout extends SiteLayout
@@ -24,6 +24,24 @@ abstract class AdminLayout extends SiteLayout
 
 		$this->addHtmlHeadEntry(new SwatStyleSheetHtmlHeadEntry(
 			'packages/admin/styles/admin-layout.css', Admin::PACKAGE_ID));
+	}
+
+	// }}}
+	// {{{ protected function getTagByFlagFile()
+
+	protected function getTagByFlagFile()
+	{
+		$tag = null;
+
+		$www_root = dirname($_SERVER['SCRIPT_FILENAME']);
+		$filename = $www_root.DIRECTORY_SEPARATOR.
+			'..'.DIRECTORY_SEPARATOR.'.resource-tag';
+
+		if (file_exists($filename) && is_readable($filename)) {
+			$tag = trim(file_get_contents($filename));
+		}
+
+		return $tag;
 	}
 
 	// }}}
