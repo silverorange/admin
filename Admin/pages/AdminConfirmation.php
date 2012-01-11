@@ -10,7 +10,7 @@ require_once 'Admin/AdminUI.php';
  * confirmation page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2004-2007 silverorange
+ * @copyright 2004-2012 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminConfirmation extends AdminPage
@@ -41,10 +41,23 @@ abstract class AdminConfirmation extends AdminPage
 		parent::processInternal();
 
 		$form = $this->ui->getWidget('confirmation_form');
+		$relocate = false;
 
 		if ($form->isAuthenticated()) {
-			if ($form->isProcessed() && !$form->hasMessage()) {
-				$this->processResponse();
+			if ($form->isProcessed()) {
+				if ($form->button->id == 'no_button') {
+					// if the no (aka cancel) button has been hit, relocate even
+					// if the form doesn't validate or process.
+					$relocate = true;
+				} elseif (!$form->hasMessage()) {
+					// only process the response if the form validated and we're
+					// not already relocating.
+					$this->processResponse();
+					$relocate = true;
+				}
+			}
+
+			if ($relocate) {
 				$this->relocate();
 			}
 		} else {
