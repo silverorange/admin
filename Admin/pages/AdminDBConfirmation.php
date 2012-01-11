@@ -15,7 +15,7 @@ require_once 'Admin/exceptions/AdminException.php';
  * DB confirmation page, inherit directly from AdminConfirmation instead.
  *
  * @package   Admin
- * @copyright 2004-2007 silverorange
+ * @copyright 2004-2012 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminDBConfirmation extends AdminConfirmation
@@ -209,7 +209,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 *
 	 * This method is called to process data after an affirmative
 	 * confirmation response.  Sub-classes should implement this method and
-	 * perform whatever actions are necessary process the repsonse.
+	 * perform whatever actions are necessary process the response.
 	 */
 	protected function processDBData()
 	{
