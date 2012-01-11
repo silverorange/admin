@@ -167,7 +167,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	{
 		$form = $this->ui->getWidget('confirmation_form');
 
-		if ($form->button->id == 'yes_button') {
+		if ($this->ui->getWidget('yes_button')->hasBeenClicked()) {
 			try {
 				$transaction = new SwatDBTransaction($this->app->db);
 				$this->processDBData();

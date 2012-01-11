@@ -45,7 +45,7 @@ abstract class AdminConfirmation extends AdminPage
 
 		if ($form->isAuthenticated()) {
 			if ($form->isProcessed()) {
-				if ($form->button->id == 'no_button') {
+				if ($this->ui->getWidget('no_button')->hasBeenClicked()) {
 					// if the no (aka cancel) button has been hit, relocate even
 					// if the form doesn't validate or process.
 					$relocate = true;
