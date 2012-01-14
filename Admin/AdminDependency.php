@@ -293,7 +293,7 @@ abstract class AdminDependency
 	}
 
 	// }}}
-	// {{{ private function displayStatusLevel()
+	// {{{ protected function displayStatusLevel()
 
 	/**
 	 * Displays all the dependency entries at a single status level for this
@@ -302,9 +302,9 @@ abstract class AdminDependency
 	 * @param integer $status_level the status level to display dependency
 	 *                               entries for.
 	 *
-	 * TODO: this is in the wring place.
+	 * TODO: this is in the wrong place.
 	 */
-	private function displayStatusLevel($status_level)
+	protected function displayStatusLevel($status_level)
 	{
 		$count = $this->getStatusLevelCount($status_level);
 		$first = true;
