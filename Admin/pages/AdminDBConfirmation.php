@@ -205,11 +205,11 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	// {{{ protected function processDBData()
 
 	/**
-	 * Process data in the database
+	 * Processes data in the database
 	 *
 	 * This method is called to process data after an affirmative
-	 * confirmation response.  Sub-classes should implement this method and
-	 * perform whatever actions are necessary process the response.
+	 * confirmation response. Sub-classes should implement this method and
+	 * perform whatever actions are necessary to process the response.
 	 */
 	protected function processDBData()
 	{
