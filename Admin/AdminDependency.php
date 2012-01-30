@@ -131,7 +131,7 @@ abstract class AdminDependency
 	/**
 	 * Gets the dependency message
 	 *
-	 * Retrieves the dependency message ready for display. When using a tree of 
+	 * Retrieves the dependency message ready for display. When using a tree of
 	 * {@link AdminDependency} objects, this should be called on the
 	 * root object.
 	 *
