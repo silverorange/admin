@@ -9,8 +9,8 @@ require_once 'Swat/SwatString.php';
  * This class is intended to be a convenience base class. For a fully custom
  * edit page, inherit directly from AdminPage instead.
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2012 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminEdit extends AdminPage
@@ -59,7 +59,10 @@ abstract class AdminEdit extends AdminPage
 
 				$this->app->messages->add($message);
 			} else {
-				if ($this->saveData()) {
+				// saveData can return a non-boolean value, often null in older
+				// code. Only stop the relocate if the returned value is
+				// explicitly false.
+				if ($this->saveData() !== false) {
 					$this->relocate();
 				}
 			}
@@ -71,6 +74,8 @@ abstract class AdminEdit extends AdminPage
 
 	/**
 	 * Sub-classes should implement this method to perform validation.
+	 *
+	 * @return boolean True if validation was successful.
 	 */
 	protected function validate()
 	{
