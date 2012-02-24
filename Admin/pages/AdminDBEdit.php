@@ -12,7 +12,7 @@ require_once 'SwatDB/exceptions/SwatDBException.php';
  * edit page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2005-2010 silverorange
+ * @copyright 2005-2012 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminDBEdit extends AdminEdit
@@ -22,11 +22,19 @@ abstract class AdminDBEdit extends AdminEdit
 
 	protected function saveData()
 	{
+		$relocate = true;
+		$message = null;
+
 		try {
 			$transaction = new SwatDBTransaction($this->app->db);
-			$this->saveDBData();
+			$relocate = $this->saveDBData();
 			$transaction->commit();
 
+			// saveDBData() is not historically expected to return a value, so
+			// set relocate to true if it does not return a boolean.
+			if (!is_bool($relocate)) {
+				$relocate = true;
+			}
 		} catch (SwatDBException $e) {
 			$transaction->rollback();
 
@@ -34,22 +42,22 @@ abstract class AdminDBEdit extends AdminEdit
 				'A database error has occurred. The item was not saved.'),
 				'system-error');
 
-			$this->app->messages->add($message);
-
-			$e->process(false);
-			return false;
-
+			$e->processAndContinue();
+			$relocate = false;
 		} catch (SwatException $e) {
 			$message = new SwatMessage(Admin::_(
 				'An error has occurred. The item was not saved.'),
 				'system-error');
 
-			$this->app->messages->add($message);
-
-			$e->process(false);
-			return false;
+			$e->processAndContinue();
+			$relocate = false;
 		}
-		return true;
+
+		if ($message !== null) {
+			$this->app->messages->add($message);
+		}
+
+		return $relocate;
 	}
 
 	// }}}
@@ -62,6 +70,8 @@ abstract class AdminDBEdit extends AdminEdit
 	 * Sub-classes should implement this method and perform whatever actions
 	 * are necessary to store the data. Widgets can be accessed through the
 	 * $ui class variable.
+	 *
+	 * @return boolean True if saveDBData was successful.
 	 */
 	abstract protected function saveDBData();
 
