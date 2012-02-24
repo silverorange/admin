@@ -59,10 +59,7 @@ abstract class AdminEdit extends AdminPage
 
 				$this->app->messages->add($message);
 			} else {
-				// saveData can return a non-boolean value, often null in older
-				// code. Only stop the relocate if the returned value is
-				// explicitly false.
-				if ($this->saveData() !== false) {
+				if ($this->saveData()) {
 					$this->relocate();
 				}
 			}
