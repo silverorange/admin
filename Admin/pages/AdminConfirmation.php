@@ -52,8 +52,14 @@ abstract class AdminConfirmation extends AdminPage
 				} elseif (!$form->hasMessage()) {
 					// only process the response if the form validated and we're
 					// not already relocating.
-					$this->processResponse();
-					$relocate = true;
+					$relocate = $this->processResponse();
+
+					// processResponse() is not historically expected to return
+					// a value, so set relocate to true if it does not return a
+					// boolean.
+					if (!is_bool($relocate)) {
+						$relocate = true;
+					}
 				}
 			}
 

@@ -166,11 +166,12 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	protected function processResponse()
 	{
 		$form = $this->ui->getWidget('confirmation_form');
+		$relocate = true;
 
 		if ($this->ui->getWidget('yes_button')->hasBeenClicked()) {
 			try {
 				$transaction = new SwatDBTransaction($this->app->db);
-				$this->processDBData();
+				$relocate = $this->processDBData();
 				$transaction->commit();
 
 			} catch (SwatDBException $e) {
@@ -183,6 +184,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 				$e->processAndContinue();
 			}
 		}
+
+		return $relocate;
 	}
 
 	// }}}
@@ -210,6 +213,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 * This method is called to process data after an affirmative
 	 * confirmation response. Sub-classes should implement this method and
 	 * perform whatever actions are necessary to process the response.
+	 *
+	 * @return boolean True if processDBData was successful.
 	 */
 	protected function processDBData()
 	{
