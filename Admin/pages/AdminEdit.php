@@ -72,7 +72,7 @@ abstract class AdminEdit extends AdminPage
 	/**
 	 * Sub-classes should implement this method to perform validation.
 	 *
-	 * @return boolean True if validation was successful.
+	 * @return boolean true if validation was successful.
 	 */
 	protected function validate()
 	{
@@ -89,7 +89,7 @@ abstract class AdminEdit extends AdminPage
 	 * are necessary to store the data. Widgets can be accessed through the
 	 * $ui class variable.
 	 *
-	 * @return boolean True if save was successful.
+	 * @return boolean true if save was successful.
 	 */
 	abstract protected function saveData();
 
@@ -207,7 +207,7 @@ abstract class AdminEdit extends AdminPage
 	 * are necessary to obtain the data. Widgets can be accessed through the
 	 * $ui class variable.
 	 *
-	 * @return boolean True if load was successful.
+	 * @return boolean true if load was successful.
 	 */
 	abstract protected function loadData();
 

@@ -71,7 +71,7 @@ abstract class AdminDBEdit extends AdminEdit
 	 * are necessary to store the data. Widgets can be accessed through the
 	 * $ui class variable.
 	 *
-	 * @return boolean True if saveDBData was successful.
+	 * @return boolean true if saveDBData was successful.
 	 */
 	abstract protected function saveDBData();
 
