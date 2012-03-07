@@ -214,7 +214,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 * confirmation response. Sub-classes should implement this method and
 	 * perform whatever actions are necessary to process the response.
 	 *
-	 * @return boolean True if processDBData was successful.
+	 * @return boolean true if processDBData was successful.
 	 */
 	protected function processDBData()
 	{
