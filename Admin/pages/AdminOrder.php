@@ -11,7 +11,7 @@ require_once 'Admin/pages/AdminPage.php';
  * ordering page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2004-2006 silverorange
+ * @copyright 2004-2012 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminOrder extends AdminPage
@@ -151,8 +151,9 @@ abstract class AdminOrder extends AdminPage
 	{
 		$options_list = $this->ui->getWidget('options');
 		$options_list->addOptionsByArray(array(
-			'auto'=>Admin::_('Automatically'),
-			'custom'=>Admin::_('Custom')));
+			'auto'   => Admin::_('Alphabetically'),
+			'custom' => Admin::_('Custom'))
+		);
 	}
 
 	// }}}
