@@ -1,6 +1,7 @@
 CREATE TYPE type_admin_menu AS (
 	shortname varchar(255),
 	title varchar(255),
+	description text,
 	section integer,
 	section_title varchar(255),
 	component_id integer,
@@ -15,6 +16,7 @@ CREATE OR REPLACE FUNCTION getAdminMenu(integer) RETURNS SETOF type_admin_menu A
 	BEGIN
 		FOR returned_row IN
 		SELECT AdminComponent.shortname, AdminComponent.title,
+			AdminComponent.description,
 			AdminComponent.section, AdminSection.title AS section_title,
 			AdminComponent.id,
 			AdminSubComponent.title as subcomponent_title,

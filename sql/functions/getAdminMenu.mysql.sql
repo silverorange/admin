@@ -1,5 +1,6 @@
 CREATE PROCEDURE getAdminMenu(param_userid integer)
 	SELECT AdminComponent.shortname, AdminComponent.title,
+		AdminComponent.description,
 		AdminComponent.section, AdminSection.title AS section_title,
 		AdminComponent.id AS component_id,
 		AdminSubComponent.title AS subcomponent_title,

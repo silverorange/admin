@@ -50,7 +50,7 @@ class AdminMenuStore
 				if ($component === null ||
 					$row->component_id != $component->id) {
 					$component = new AdminMenuComponent($row->component_id,
-						$row->shortname, $row->title);
+						$row->shortname, $row->title, $row->description);
 
 					$section->components[$row->shortname] = $component;
 				}
@@ -129,17 +129,19 @@ class AdminMenuComponent
 
 	public $id;
 	public $shortname;
+	public $description;
 	public $title;
 	public $subcomponents;
 
 	// }}}
 	// {{{ public function __construct()
 
-	public function __construct($id, $shortname, $title)
+	public function __construct($id, $shortname, $title, $description = null)
 	{
 		$this->id = $id;
 		$this->shortname = $shortname;
 		$this->title = $title;
+		$this->description = $description;
 		$this->subcomponents = array();
 	}
 
