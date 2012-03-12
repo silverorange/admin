@@ -64,6 +64,47 @@
 	background: #e2e0df;
 }
 
+.admin-menu ul ul li {
+	position: relative;
+}
+
+.admin-menu ul .admin-menu-help {
+	position: absolute;
+	right: -186px;
+	width: 200px;
+	top: -14px;
+	display: none;
+}
+
+.admin-menu ul .admin-menu-help-arrow {
+	position: absolute;
+	left: 1px;
+	top: 16px;
+	background: url(../images/admin-menu-help-arrow.png) no-repeat 0 0;
+	width: 19px;
+	height: 19px;
+	display: block;
+}
+
+.admin-menu ul .admin-menu-help-content {
+	margin-left: 19px;
+	display: block;
+	background: #111;
+	background: rgba(0,0,0,0.9);
+	color: #eee;
+	padding: 12px 16px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 2px 2px -1px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 2px 2px -1px rgba(0,0,0,0.5);
+	box-shadow: 0 2px 2px -1px rgba(0,0,0,0.5);
+}
+
+.admin-menu ul .admin-menu-help-content p:last-child {
+	margin-bottom: 0;
+}
+
 
 /* Menu-hiding styles */
 

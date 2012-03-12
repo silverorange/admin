@@ -2,6 +2,8 @@
 
 require_once 'Swat/SwatHtmlTag.php';
 require_once 'Swat/SwatControl.php';
+require_once 'Swat/SwatYUI.php';
+require_once 'Site/SiteCommentFilter.php';
 require_once 'Admin/AdminMenuStore.php';
 
 /**
@@ -11,7 +13,7 @@ require_once 'Admin/AdminMenuStore.php';
  * different menu styles.
  *
  * @package   Admin
- * @copyright 2005-2011 silverorange
+ * @copyright 2005-2012 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminMenuView extends SwatControl
@@ -52,7 +54,13 @@ class AdminMenuView extends SwatControl
 
 		$this->requires_id = true;
 
+		$yui = new SwatYUI(array('dom', 'event', 'animation'));
+		$this->html_head_entry_set->addEntrySet($yui->getHtmlHeadEntrySet());
+
 		$this->addStyleSheet('packages/admin/styles/admin-menu.css',
+			Admin::PACKAGE_ID);
+
+		$this->addJavaScript('packages/admin/javascript/admin-menu.js',
 			Admin::PACKAGE_ID);
 	}
 
@@ -91,6 +99,8 @@ class AdminMenuView extends SwatControl
 		$this->displayMenuContent();
 
 		$menu_div->close();
+
+		Swat::displayInlineJavaScript($this->getInlineJavaScript());
 	}
 
 	// }}}
@@ -144,12 +154,30 @@ class AdminMenuView extends SwatControl
 	 */
 	public function displayComponent($component)
 	{
+		echo '<li class="admin-menu-component">';
+
 		$anchor_tag = new SwatHtmlTag('a');
 		$anchor_tag->href = $component->shortname;
 		$anchor_tag->setContent($component->title);
-
-		echo '<li>';
 		$anchor_tag->display();
+
+		if ($component->description != '') {
+			echo '<span class="admin-menu-help">';
+			echo '<span class="admin-menu-help-arrow"></span>';
+
+			$span_tag = new SwatHtmlTag('span');
+			$span_tag->class = 'admin-menu-help-content';
+			$span_tag->setContent(
+				SiteCommentFilter::toXhtml($component->description),
+				'text/xml'
+			);
+			$span_tag->display();
+
+			echo '</span>';
+		}
+
+		$span_tag = new SwatHtmlTag('span');
+		$span_tag->class = 'admin-menu-help';
 
 		if (count($component->subcomponents)) {
 			echo '<ul>';
@@ -200,6 +228,18 @@ class AdminMenuView extends SwatControl
 		}
 
 		echo '</ul>';
+	}
+
+	// }}}
+	// {{{ protected function getInlineJavaScript()
+
+	protected function getInlineJavaScript()
+	{
+		return sprintf(
+			"%s_obj = new AdminMenu(%s);\n",
+			$this->id,
+			SwatString::quoteJavaScriptString($this->id)
+		);
 	}
 
 	// }}}
