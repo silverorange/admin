@@ -197,7 +197,7 @@ AdminMenu.prototype.componentMouseOut = function(e, li)
 		}, AdminMenu.UNHOVER_PERIOD);
 	}
 
-	if (this.hover_active) {
+	if (out && this.hover_active) {
 		this.hideHelp(li);
 	}
 };
