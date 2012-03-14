@@ -75,6 +75,7 @@ AdminMenu.prototype.showHelp = function(li)
 		if (help._animation && help._animation.isAnimated()) {
 			help._animation.stop(false);
 		}
+		help.style.right = '-186px';
 		YAHOO.util.Dom.setStyle(help, 'opacity', 1);
 		help.style.display = 'block';
 	}
@@ -91,8 +92,9 @@ AdminMenu.prototype.hideHelp = function(li)
 
 		help._animation = new YAHOO.util.Anim(
 			help,
-			{ opacity: { to: 0 } },
-			AdminMenu.FADE_OUT_PERIOD / 1000
+			{ opacity: { to: 0 }, right: { to: -201 } },
+			AdminMenu.FADE_OUT_PERIOD / 1000,
+			YAHOO.util.Easing.easeOut
 		);
 
 		help._animation.onComplete.subscribe(function() {
