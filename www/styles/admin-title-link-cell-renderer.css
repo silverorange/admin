@@ -8,8 +8,10 @@
 	padding-left: 36px;
 }
 
+td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer,
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:link,
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:visited {
+	white-space: nowrap;
 	display: inline-block;
 	display: block;
 	padding: 3px 6px;
@@ -32,6 +34,11 @@ td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:active {
 span.admin-title-link-cell-renderer-contents {
 	vertical-align: middle;
 	padding-left: 8px;
+	display: block;
+	display: inline-block;
+	cursor: pointer;
+	text-decoration: underline;
+	white-space: normal;
 }
 
 span.admin-title-link-cell-renderer-icon {
@@ -42,6 +49,8 @@ span.admin-title-link-cell-renderer-icon {
 	background-repeat: no-repeat;
 	background-position: 0 0;
 	background-image: url(../images/admin-title-link-cell-renderer-icons.png);
+	cursor: pointer;
+	cursor: pointer;
 }
 
 a.admin-title-link-cell-renderer-document span.admin-title-link-cell-renderer-icon {
