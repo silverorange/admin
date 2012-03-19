@@ -8,6 +8,7 @@
 	padding-left: 36px;
 }
 
+td.admin-title-link-cell-renderer span.admin-title-link-cell-renderer,
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer,
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:link,
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:visited {
@@ -15,6 +16,7 @@ td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:visited {
 	display: inline-block;
 	display: block;
 	padding: 3px 6px;
+	text-decoration: none;
 }
 
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:hover {
@@ -36,9 +38,13 @@ span.admin-title-link-cell-renderer-contents {
 	padding-left: 8px;
 	display: block;
 	display: inline-block;
-	cursor: pointer;
-	text-decoration: underline;
 	white-space: normal;
+}
+
+a.admin-title-link-cell-renderer span.admin-title-link-cell-renderer-icon,
+a.admin-title-link-cell-renderer span.admin-title-link-cell-renderer-contents {
+	text-decoration: underline;
+	cursor: pointer; /* For IE6 */
 }
 
 span.admin-title-link-cell-renderer-icon {
