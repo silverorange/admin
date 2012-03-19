@@ -225,10 +225,10 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		$icon_span->setContent('');
 		$icon_span->display();
 
-		$content_span->display();
 		$content_span = new SwatHtmlTag('span');
 		$content_span->class = 'admin-title-link-cell-renderer-contents';
 		$content_span->setContent($this->getText(), $this->content_type);
+		$content_span->display();
 
 		$span_tag->close();
 	}
