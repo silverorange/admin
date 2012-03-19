@@ -173,8 +173,9 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 */
 	protected function setStockType()
 	{
-		if ($this->stock_id !== null)
+		if ($this->stock_id !== null) {
 			$this->setFromStock($this->stock_id, false);
+		}
 	}
 
 	// }}}
@@ -185,17 +186,23 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 */
 	protected function renderSensitive()
 	{
-		$contents_span = new SwatHtmlTag('span');
-		$contents_span->class = 'admin-title-link-cell-renderer-contents';
-		$contents_span->setContent($this->getText(), $this->content_type);
-
 		$anchor = new SwatHtmlTag('a');
 		$anchor->href = $this->getLink();
 		$anchor->class = $this->getCSSClassString();
 		$anchor->title = $this->getTitle();
 
 		$anchor->open();
-		$contents_span->display();
+
+		$icon_span = new SwatHtmlTag('span');
+		$icon_span->class = 'admin-title-link-cell-renderer-icon';
+		$icon_span->setContent('');
+		$icon_span->display();
+
+		$content_span = new SwatHtmlTag('span');
+		$content_span->class = 'admin-title-link-cell-renderer-contents';
+		$content_span->setContent($this->getText(), $this->content_type);
+		$content_span->display();
+
 		$anchor->close();
 	}
 
@@ -207,15 +214,22 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 */
 	protected function renderInsensitive()
 	{
-		$contents_span = new SwatHtmlTag('span');
-		$contents_span->class = 'admin-title-link-cell-renderer-contents';
-		$contents_span->setContent($this->getText(), $this->content_type);
-
 		$span_tag = new SwatHtmlTag('span');
 		$span_tag->class = $this->getCSSClassString();
 		$span_tag->title = $this->getTitle();
+
 		$span_tag->open();
-		$contents_span->display();
+
+		$icon_span = new SwatHtmlTag('span');
+		$icon_span->class = 'admin-title-link-cell-renderer-icon';
+		$icon_span->setContent('');
+		$icon_span->display();
+
+		$content_span->display();
+		$content_span = new SwatHtmlTag('span');
+		$content_span->class = 'admin-title-link-cell-renderer-contents';
+		$content_span->setContent($this->getText(), $this->content_type);
+
 		$span_tag->close();
 	}
 
