@@ -74,6 +74,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 * - folder-with-contents
 	 * - person
 	 * - product
+	 * - download
 	 *
 	 * @param string $stock_id the identifier of the stock type to use.
 	 * @param boolean $overwrite_properties whether to overwrite properties if
@@ -119,6 +120,10 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 
 		case 'product':
 			$class = 'admin-title-link-cell-renderer-product';
+			break;
+
+		case 'download':
+			$class = 'admin-title-link-cell-renderer-download';
 			break;
 
 		default:
