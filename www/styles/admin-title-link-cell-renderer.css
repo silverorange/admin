@@ -43,8 +43,11 @@ span.admin-title-link-cell-renderer-contents {
 
 a.admin-title-link-cell-renderer span.admin-title-link-cell-renderer-icon,
 a.admin-title-link-cell-renderer span.admin-title-link-cell-renderer-contents {
-	text-decoration: underline;
 	cursor: pointer; /* For IE6 */
+}
+
+a.admin-title-link-cell-renderer span.admin-title-link-cell-renderer-contents {
+	text-decoration: underline;
 }
 
 span.admin-title-link-cell-renderer-icon {
@@ -55,8 +58,6 @@ span.admin-title-link-cell-renderer-icon {
 	background-repeat: no-repeat;
 	background-position: 0 0;
 	background-image: url(../images/admin-title-link-cell-renderer-icons.png);
-	cursor: pointer;
-	cursor: pointer;
 }
 
 a.admin-title-link-cell-renderer-document span.admin-title-link-cell-renderer-icon {
@@ -89,4 +90,44 @@ a.admin-title-link-cell-renderer-product span.admin-title-link-cell-renderer-ico
 
 a.admin-title-link-cell-renderer-file-save-as span.admin-title-link-cell-renderer-icon {
 	background-position: 0 -154px;
+}
+
+a.admin-title-link-cell-renderer-download span.admin-title-link-cell-renderer-icon {
+	background-position: 0 -176px;
+}
+
+span.admin-title-link-cell-renderer-document span.admin-title-link-cell-renderer-icon {
+	background-position: -22px 0;
+}
+
+span.admin-title-link-cell-renderer-edit span.admin-title-link-cell-renderer-icon {
+	background-position: -22px -22px;
+}
+
+span.admin-title-link-cell-renderer-document-with-contents span.admin-title-link-cell-renderer-icon {
+	background-position: -22px -44px;
+}
+
+span.admin-title-link-cell-renderer-folder span.admin-title-link-cell-renderer-icon {
+	background-position: -22px -66px;
+}
+
+span.admin-title-link-cell-renderer-folder-with-contents span.admin-title-link-cell-renderer-icon {
+	background-position: -22px -88px;
+}
+
+span.admin-title-link-cell-renderer-person span.admin-title-link-cell-renderer-icon {
+	background-position: -22px -110px;
+}
+
+span.admin-title-link-cell-renderer-product span.admin-title-link-cell-renderer-icon {
+	background-position: -22px -132px;
+}
+
+span.admin-title-link-cell-renderer-file-save-as span.admin-title-link-cell-renderer-icon {
+	background-position: -22px -154px;
+}
+
+span.admin-title-link-cell-renderer-download span.admin-title-link-cell-renderer-icon {
+	background-position: -22px -176px;
 }
