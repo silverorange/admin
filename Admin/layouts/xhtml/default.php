@@ -9,7 +9,7 @@
 	<!--if IE]><base href="<?= $this->basehref ?>"></base><![endif]-->
 	<!--if !(IE)]><!--><base href="<?= $this->basehref ?>" /><!--<![endif]-->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="../favicon.ico" type="image/x-icon" />
 	<?=$this->html_head_entries?>
 </head>
 <body class="<?= implode(' ', $this->body_classes->getArrayCopy()) ?>">
