@@ -31,6 +31,7 @@ td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:visited {
 
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:active {
 	background: #f3efe5;
+	background: rgba(102,73,0,0.1);
 }
 
 span.admin-title-link-cell-renderer-contents {
