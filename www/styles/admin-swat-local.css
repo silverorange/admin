@@ -1,0 +1,608 @@
+.swat-frame,
+.swat-disclosure-control-opened .swat-disclosure-container,
+.swat-message-display .swat-message,
+.swat-tool-link,
+.swat-fieldset,
+.swat-grouping-form-field-fieldset {
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.swat-disclosure-control-opened .swat-disclosure-container,
+.swat-fieldset,
+.swat-grouping-form-field-fieldset {
+	margin-left: 0;
+	margin-right: 0;
+	border-color: #e0e0e0;
+}
+
+
+/* SwatFrame */
+
+.swat-frame {
+	background: #fff;
+}
+
+
+/* SwatFieldset */
+
+.swat-fieldset legend,
+.swat-grouping-form-field-fieldset legend {
+	margin: 0 16px;
+	padding: 0 8px;
+}
+
+.swat-fieldset,
+.swat-grouping-form-field-fieldset {
+	padding: 8px 16px 16px;
+	border-right: none;
+	border-bottom: none;
+	border-left: none;
+}
+
+
+/* SwatToolbar */
+
+ul.swat-toolbar {
+	margin: 0 -15px;
+	background: #f8f6f0;
+}
+
+
+/* SwatToolLink */
+
+.swat-toolbar .swat-tool-link {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+
+/* SwatMessage and SwatMessageDisplay */
+
+.swat-message-display .swat-message {
+	background-position: 12px 12px;
+}
+
+.swat-message-error {
+	background: #ffe3e0;
+	border-color: #f0b5b1;
+}
+
+.swat-message-display .swat-message .swat-message-container {
+	padding: 14px 12px 12px 42px;
+}
+
+.swat-message-display .swat-message-notice {
+	background-image: url(../../swat/images/tango/22/dialog-information.png);
+}
+
+.swat-message-display .swat-message-warning {
+	background-image: url(../../swat/images/tango/22/dialog-warning.png);
+}
+
+.swat-message-display .swat-message-error,
+.swat-message-display .swat-message-system-error {
+	background-image: url(../../swat/images/tango/22/dialog-error.png);
+}
+
+.swat-message-display .swat-message .swat-message-container {
+	min-height: 0;
+}
+
+
+/* SwatFormField */
+
+.swat-form-field-with-messages {
+	background: #ffe3e0;
+	padding: 8px;
+	border-color: #f0b5b1;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.swat-form-field-messages .swat-message {
+	color: #e31b0c;
+	background-image: none;
+	padding: 2px 4px;
+}
+
+
+/* SwatFooterFormField */
+
+.swat-frame .swat-footer-form-field {
+	background: #f8f6f0;
+	border-top: 1px solid #efe8da;
+	padding: 8px 15px;
+}
+
+/* SwatCalendar */
+
+.swat-calendar-div {
+	padding: 3px;
+	background: #f8f6f0;
+	border: 1px solid #dcceb2;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-box-shadow: 0 2px 2px -1px rgba(0,0,0,0.15);
+	-moz-box-shadow: 0 2px 2px -1px rgba(0,0,0,0.15);
+	box-shadow: 0 2px 2px -1px rgba(0,0,0,0.15);
+}
+
+.swat-calendar-div .swat-calendar-frame {
+	background: #fff;
+}
+
+.swat-calendar-current-cell {
+	background: #fffbc9;
+	color: #333;
+}
+
+
+/* SwatTableView */
+
+.swat-table-view tbody tr {
+	background: #fff;
+}
+
+.swat-table-view tbody tr.highlight,
+.swat-table-view tbody tr.highlight-odd {
+	background: #fffbc9;
+}
+
+.swat-table-view td,
+.swat-table-view th {
+	padding: 8px 4px;
+}
+
+.swat-table-view thead th {
+	text-transform: uppercase;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.swat-table-view thead th span img {
+	vertical-align: bottom;
+}
+
+.swat-table-view thead tr th,
+.swat-table-view .swat-table-view-group {
+	border-bottom: none;
+}
+
+.swat-table-view tbody tr td,
+.swat-table-view tbody tr th {
+	border-top: 1px solid #ebebeb;
+}
+
+.swat-table-view tbody tr.highlight + tr.highlight-odd td,
+.swat-table-view tbody tr.highlight-odd + tr.highlight td {
+	border-top: 1px solid #f0eade;
+}
+
+
+/* SwatCheckboxList, SwatCheckbox, SwatCheckAll and SwatCheckboxCellRenderer */
+
+span.swat-checkbox-wrapper {
+	position: relative;
+}
+
+span.swat-checkbox-shim {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	vertical-align: middle;
+	margin: 3px 3px 3px 4px;
+	text-indent: -25px;
+	border: none;
+	padding: 0;
+	background: url(../images/admin-checkbox-radio-buttons.png) no-repeat;
+	background-position: 0 0;
+}
+
+input:checked + span.swat-checkbox-shim {
+	background-position: -18px 0;
+}
+
+span.swat-checkbox-wrapper input {
+	opacity: 0;
+	position: absolute;
+	top: -1px;
+	left: 2px;
+}
+
+.ie6 span.swat-checkbox-shim,
+.ie7 span.swat-checkbox-shim,
+.ie8 span.swat-checkbox-shim {
+	display: none;
+}
+
+.ie6 span.swat-checkbox-wrapper input,
+.ie7 span.swat-checkbox-wrapper input,
+.ie8 span.swat-checkbox-wrapper input{
+	opacity: 1;
+	position: static;
+	top: 0;
+	left: 0;
+}
+
+.swat-checkbox-list ul label {
+	vertical-align: middle;
+	padding: 0 0 0 4px;
+}
+
+.swat-check-all label span.swat-check-all-title {
+	vertical-align: middle;
+	padding: 0 0 0 4px;
+	text-transform: uppercase;
+	color: #666;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.swat-table-view .swat-check-all label span.swat-check-all-title {
+	padding: 0 0 0 8px;
+}
+
+.swat-checkbox-cell-renderer input:checked + span.swat-checkbox-shim {
+	background-position: -18px -18px;
+}
+
+.swat-form-field-checkbox .swat-form-field-contents {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.swat-form-field-checkbox .swat-note {
+	padding: 0 0 0 29px;
+}
+
+.swat-form-field-checkbox label {
+	vertical-align: middle;
+}
+
+
+/* SwatRadioList */
+
+ul.swat-radio-list label {
+	vertical-align: middle;
+	padding: 0 0 0 4px;
+}
+
+span.swat-radio-wrapper {
+	position: relative;
+}
+
+span.swat-radio-shim {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	vertical-align: middle;
+	margin: 3px 3px 3px 4px;
+	text-indent: -25px;
+	border: none;
+	padding: 0;
+	background: url(../images/admin-checkbox-radio-buttons.png) no-repeat;
+	background-position: 0 -36px;
+}
+
+input:checked + span.swat-radio-shim {
+	background-position: -18px -36px;
+}
+
+span.swat-radio-wrapper input {
+	opacity: 0;
+	position: absolute;
+	top: -1px;
+	left: 2px;
+}
+
+.ie6 span.swat-radio-shim,
+.ie7 span.swat-radio-shim,
+.ie8 span.swat-radio-shim {
+	display: none;
+}
+
+.ie6 span.swat-radio-wrapper input,
+.ie7 span.swat-radio-wrapper input,
+.ie8 span.swat-radio-wrapper input {
+	opacity: 1.0;
+	position: static;
+	top: 0;
+	left: 0;
+}
+
+
+/* SwatActions */
+
+.swat-actions .swat-actions-flydown {
+	margin-right: 0;
+	padding: 3px;
+	border: 1px solid #aaa;
+	border-right: 1px solid #fff;
+	width: 150px;
+	background: #fff;
+	-webkit-border-top-left-radius: 2px;
+	-webkit-border-bottom-left-radius: 2px;
+	-moz-border-radius-topleft: 2px;
+	-moz-border-radius-topright: 2px;
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+
+.swat-actions input.swat-button-apply {
+	margin-left: 0;
+	-webkit-border-top-left-radius: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-moz-border-radius-topleft: 0;
+	-moz-border-radius-topright: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.swat-actions input.swat-button-apply:active {
+	top: 0;
+}
+
+.swat-frame .swat-actions {
+	background: inherit;
+	margin: 0;
+	padding: 0 0 0 30px;
+	position: relative;
+}
+
+.swat-frame .swat-actions:before {
+	/* TODO: make a graphic */
+	content: "↴";
+	color: #666;
+	position: absolute;
+	left: 14px;
+	top: 3px;
+	font-size: 13px;
+	transform: rotate(90deg);
+	-webkit-transform: rotate(180deg);
+}
+
+.swat-frame .swat-actions .swat-actions-note {
+	padding: 0 0 0 8px;
+	margin: 0;
+	display: none;
+}
+
+
+/* SwatChangeOrder */
+
+.swat-change-order-list {
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border-color: #ccc;
+}
+
+.swat-change-order-item {
+	text-align: left;
+	padding: 4px 8px;
+}
+
+.swat-change-order-item-active {
+	background-color: #fffbc9;
+	color: #333;
+}
+
+.swat-change-order-item .swat-change-order-item-grippy {
+	margin: -2px -8px -2px 0;
+}
+
+.swat-change-order-buttons input,
+.swat-change-order-buttons input.swat-change-order-top,
+.swat-change-order-buttons input.swat-change-order-bottom {
+	font-size: 11px;
+	width: 100px;
+	font-weight: bold;
+}
+
+.swat-change-order-buttons input.swat-change-order-top,
+.swat-change-order-buttons input.swat-change-order-bottom {
+	font-weight: normal;
+}
+
+
+/* SwatPagination */
+
+.swat-pagination-position {
+	display: none;
+}
+
+.swat-pagination a.swat-pagination-nextprev,
+.swat-pagination span.swat-pagination-nextprev {
+	font-weight: normal;
+}
+
+.swat-pagination a,
+.swat-pagination span {
+	padding: 2px 6px;
+	font-size: 15px;
+	margin: 0 1px;
+	border: none;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.swat-pagination span.swat-pagination-current {
+	background: #3465a4;
+	color: #fff;
+	padding: 3px 8px;
+	border: none;
+}
+
+
+/* SwatEntry and SwatTextarea */
+
+div.swat-textarea-container textarea,
+input.swat-entry {
+	padding: 4px 6px;
+	background-color: #fff;
+	border: 1px solid;
+	border-color: #aaa #c2c2c2 #c2c2c2 #aaa;
+	-webkit-box-shadow: 0 2px 2px 0px rgba(0,0,0,0.1) inset;
+	-moz-box-shadow: 0 2px 2px 0px rgba(0,0,0,0.1) inset;
+	box-shadow: 0 2px 2px 0px rgba(0,0,0,0.1) inset;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+}
+
+div.swat-textarea-container textarea:focus,
+input.swat-entry:focus {
+	outline: none;
+	border: 1px solid;
+	border-color: #729fcf #95b6db #95b6db #729fcf;
+	-webkit-box-shadow:
+		0 0 3px 0 rgba(140,196,255,1.0) inset,
+		0 2px 2px 0 rgba(0,0,0,0.1) inset;
+	-moz-box-shadow:
+		0 0 3px 0 rgba(140,196,255,1.0) inset,
+		0 2px 2px 0 rgba(0,0,0,0.1) inset;
+	box-shadow:
+		0 0 3px 0 rgba(140,196,255,1.0) inset,
+		0 2px 2px 0 rgba(0,0,0,0.1) inset;
+}
+
+input.swat-entry:-webkit-autofill {
+	background-color: #fffbc9;
+}
+
+
+/* SwatButton */
+
+input.swat-button {
+	color: #438d04;
+	background-color: #e8e8e8;
+
+	background-image: -webkit-linear-gradient(
+		bottom,
+		rgba(0,0,0,0.10) 0%,
+		rgba(0,0,0,0.05) 50%,
+		rgba(0,0,0,0.0) 50%
+	);
+
+	background-image: -moz-linear-gradient(
+		bottom,
+		rgba(0,0,0,0.10) 0%,
+		rgba(0,0,0,0.05) 50%,
+		rgba(0,0,0,0.0) 50%
+	);
+
+	color: #333;
+	border: 1px solid;
+	border-color: #c2c2c2 #aaa #aaa #c2c2c2;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	padding: 4px 8px;
+
+	-webkit-box-shadow:
+		1px 1px 0 rgba(255,255,255,0.6) inset,
+		-1px 0 0 rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.3);
+
+	-moz-box-shadow:
+		1px 1px 0 rgba(255,255,255,0.6) inset,
+		-1px 0 0 rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.3);
+
+	box-shadow:
+		1px 1px 0 rgba(255,255,255,0.6) inset,
+		-1px 0 0 rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.3);
+
+	text-shadow: 0 1px 0 #f2f2f2;
+}
+
+input.swat-button::-moz-focus-inner {
+	outline: none;
+	padding: 0;
+	border: none;
+}
+
+input.swat-button:hover {
+	background-color: #fff;
+	text-shadow: 0 1px 0 #fff;
+}
+
+input.swat-button:focus {
+	outline: none;
+	border-color: #95b6db #729fcf #729fcf #95b6db;
+
+	-webkit-box-shadow:
+		1px 1px 0 rgba(255,255,255,0.7) inset,
+		0 1px 3px -1px rgba(0,0,0,0.3),
+		0 0 1px 1px rgba(140,196,255,0.5);
+
+	-moz-box-shadow:
+		1px 1px 0 rgba(255,255,255,0.7) inset,
+		0 1px 3px -1px rgba(0,0,0,0.3),
+		0 0 1px 1px rgba(140,196,255,0.5);
+
+	box-shadow:
+		1px 1px 0 rgba(255,255,255,0.7) inset,
+		0 1px 3px -1px rgba(0,0,0,0.3),
+		0 0 1px 1px rgba(140,196,255,0.5);
+}
+
+input.swat-button:active {
+	position: relative;
+	top: 1px;
+	border-color: #aaa;
+	text-shadow: 0 1px 1px rgba(255,255,255,0.5);
+	background-color: #ccc;
+
+	background-image: -webkit-linear-gradient(
+		bottom,
+		rgba(0,0,0,0.10) 0%,
+		rgba(0,0,0,0.05) 47%,
+		rgba(0,0,0,0.0) 45%
+	);
+
+	background-image: -moz-linear-gradient(
+		bottom,
+		rgba(0,0,0,0.10) 0%,
+		rgba(0,0,0,0.05) 47%,
+		rgba(0,0,0,0.0) 45%
+	);
+
+	-webkit-box-shadow:
+		0 0 0 1px rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.5) inset;
+
+	-moz-box-shadow:
+		0 0 0 1px rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.5) inset;
+
+	box-shadow:
+		0 0 0 1px rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.5) inset;
+}
+
+#hd input.swat-button {
+	-webkit-box-shadow:
+		1px 1px 0 rgba(255,255,255,0.6) inset,
+		-1px 0 0 rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.7);
+
+	-moz-box-shadow:
+		1px 1px 0 rgba(255,255,255,0.6) inset,
+		-1px 0 0 rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.7);
+
+	box-shadow:
+		1px 1px 0 rgba(255,255,255,0.6) inset,
+		-1px 0 0 rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.7);
+}

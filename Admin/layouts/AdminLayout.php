@@ -24,6 +24,9 @@ abstract class AdminLayout extends SiteLayout
 
 		$this->addHtmlHeadEntry(new SwatStyleSheetHtmlHeadEntry(
 			'packages/admin/styles/admin-layout.css', Admin::PACKAGE_ID));
+
+		$this->addHtmlHeadEntry(new SwatStyleSheetHtmlHeadEntry(
+			'packages/admin/styles/admin-swat-local.css', Admin::PACKAGE_ID));
 	}
 
 	// }}}
