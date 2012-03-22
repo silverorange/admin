@@ -1,13 +1,8 @@
 /* Login Page Styles */
 
-#login_frame {
-	width: 27em;
-	margin: 4em auto 1em auto;
-	text-align: left;
-}
-
+#login_frame,
 #forgot_password_frame {
-	width: 27em;
+	width: 360px;
 	margin: 4em auto 1em auto;
 	text-align: left;
 }
@@ -18,26 +13,39 @@
 	text-align: left;
 }
 
-#email.swat-entry {
-	width: 98%;
-}
 
 #password_container.swat-displayable-container {
 	float: left;
-	width: 56%;
+	width: 164px;
+}
+
+.swat-form-field-with-messages #password_container.swat-displayable-container {
+	width: 155px;
 }
 
 #password_container.no-reset-password {
 	float: none;
-	width: 100%;
+	width: 314px;
 }
 
-#password_container.no-reset-password #password.swat-entry {
-	width: 98%;
+#password_container.no-reset-password #password.swat-entry,
+#email.swat-entry {
+	width: 314px;
 }
 
-#password.swat-entry, #confirm_password.swat-entry {
-	width: 92%;
+.swat-form-field-with-messages #password_container.no-reset-password #password.swat-entry,
+.swat-form-field-with-messages #email.swat-entry {
+	width: 296px;
+}
+
+#password.swat-entry,
+#confirm_password.swat-entry {
+	width: 150px;
+}
+
+.swat-form-field-with-messages #password.swat-entry,
+.swat-form-field-with-messages #confirm_password.swat-entry {
+	width: 141px;
 }
 
 #forgot_container.swat-displayable-container {
@@ -50,10 +58,13 @@
 #forgot.swat-tool-link:active,
 #forgot.swat-tool-link:hover {
 	color: #999;
-	font-size: 85%;
+	font-size: 11px;
 	border: none;
 	background: transparent;
 	text-decoration: underline;
+	padding: 4px 8px;
+	margin-top: 1px;
+	display: inline-block;
 }
 
 #forgot.swat-tool-link:active,

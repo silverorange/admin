@@ -10,17 +10,35 @@ body {
 	margin: 0;
 }
 
-a:link { color: #3F5ACE; }
-a:visited { color: #3F5ACE; }
-a:hover { color: #333; }
-a:active { color: #000; }
+a:link,
+a:visited {
+	color: #3465a4;
+}
 
-img { border: 0; }
+a:hover {
+	color: #333;
+}
+
+a:active {
+	color: #000;
+}
+
+img {
+	border: 0;
+}
 
 /* YUI Reset basics */
-strong { font-weight: bold; }
-em { font-style: italic; }
-p { margin: 0 0 1em 0; }
+strong {
+	font-weight: bold;
+}
+
+em {
+	font-style: italic;
+}
+
+p {
+	margin: 0 0 1em 0;
+}
 
 #yui-main .yui-b {
 	margin-top: 1em;
@@ -38,6 +56,10 @@ p { margin: 0 0 1em 0; }
 .yui-t5 #yui-main .yui-b,
 .yui-t6 #yui-main .yui-b {
 	margin-left: 1em;
+}
+
+#doc3 {
+	min-width: 74.923em;
 }
 
 
@@ -123,16 +145,59 @@ address { font-style: normal; }
 	margin: 0;
 }
 
-#logout input {
+#logout input.swat-button {
 	margin: 0;
-	padding: 2px 4px;
+	padding: 2px 8px;
 	vertical-align: middle;
-	font-size: 85%;
+	font-size: 11px;
+
+	-webkit-box-shadow:
+		1px 1px 0 rgba(255,255,255,0.6) inset,
+		-1px 0 0 rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.7);
+
+	-moz-box-shadow:
+		1px 1px 0 rgba(255,255,255,0.6) inset,
+		-1px 0 0 rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.7);
+
+	box-shadow:
+		1px 1px 0 rgba(255,255,255,0.6) inset,
+		-1px 0 0 rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.7);
 }
 
-#logout input::-moz-focus-inner {
-	padding: 0;
-	border: none;
+#logout input.swat-button:focus {
+	border-color: #c2c2c2 #aaa #aaa #c2c2c2;
+	-webkit-box-shadow:
+		1px 1px 0 rgba(255,255,255,0.7) inset,
+		0 1px 3px -1px rgba(0,0,0,0.3),
+		0 0 0px 2px rgba(255,255,255,0.25);
+
+	-moz-box-shadow:
+		1px 1px 0 rgba(255,255,255,0.7) inset,
+		0 1px 3px -1px rgba(0,0,0,0.3),
+		0 0 0px 2px rgba(255,255,255,0.25);
+
+	box-shadow:
+		1px 1px 0 rgba(255,255,255,0.7) inset,
+		0 1px 3px -1px rgba(0,0,0,0.3),
+		0 0 0px 2px rgba(255,255,255,0.25);
+}
+
+#logout input.swat-button:active {
+	border-color: #666;
+	-webkit-box-shadow:
+		0 0 0 1px rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.5) inset;
+
+	-moz-box-shadow:
+		0 0 0 1px rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.5) inset;
+
+	box-shadow:
+		0 0 0 1px rgba(255,255,255,0.3) inset,
+		0 1px 3px -1px rgba(0,0,0,0.5) inset;
 }
 
 #admin-identifier {
@@ -146,8 +211,6 @@ address { font-style: normal; }
 	vertical-align: middle;
 }
 
-/* {{{ Clearfix */
-
 .clearfix:after {
 	content:".";
 	display:block;
@@ -159,5 +222,3 @@ address { font-style: normal; }
 /* Hide from IE Mac \*/
 .clearfix {display:block;}
 /* End hide from IE Mac */
-
-/* }}} */

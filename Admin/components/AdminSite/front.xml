@@ -2,9 +2,7 @@
 <!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
 <swatml>
 	<widget class="SwatMessageDisplay" id="message_display" />
-	<widget class="SwatFrame">
-		<widget class="AdminNote" id="note">
-			<property name="content" translatable="yes">To get started, choose an item from the menu to the left.</property>
-		</widget>
+	<widget class="AdminNote" id="note">
+		<property name="content" translatable="yes">To get started, choose an item from the menu to the left.</property>
 	</widget>
 </swatml>
