@@ -14,7 +14,7 @@ require_once 'Swat/SwatString.php';
  * based upon the existence of dependencies.
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2012 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  * @see       AdminDBDelete, AdminListDependency, AdminSummaryDependency
  */
@@ -311,11 +311,7 @@ abstract class AdminDependency
 		foreach ($this->entries as $entry) {
 			if ($entry->status_level == $status_level) {
 				if ($first) {
-					$header_tag = new SwatHtmlTag('h3');
-					$header_tag->setContent(
-						$this->getStatusLevelText($status_level, $count));
-
-					$header_tag->display();
+					$this->displayStatusLevelHeader($status_level, $count);
 					echo '<ul>';
 					$first = false;
 				}
@@ -335,6 +331,18 @@ abstract class AdminDependency
 		}
 		if ($count > 0)
 			echo '</ul>';
+	}
+
+	// }}}
+	// {{{ protected function displayStatusLevelHeader()
+
+	protected function displayStatusLevelHeader($status_level, $count)
+	{
+		$header_tag = new SwatHtmlTag('h3');
+		$header_tag->setContent(
+			$this->getStatusLevelText($status_level, $count));
+
+		$header_tag->display();
 	}
 
 	// }}}
