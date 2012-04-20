@@ -20,7 +20,7 @@ require_once 'Admin/exceptions/AdminNotFoundException.php';
  * Web application class for an administration application
  *
  * @package   Admin
- * @copyright 2004-2007 silverorange
+ * @copyright 2004-2012 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminApplication extends SiteWebApplication
@@ -323,6 +323,14 @@ class AdminApplication extends SiteWebApplication
 			$this->db->quote($type, 'integer'));
 
 		SwatDB::exec($this->db, $sql);
+	}
+
+	// }}}
+	// {{{ protected function userHasAccess()
+
+	protected function userHasAccess($shortname)
+	{
+		return $this->session->user->hasAccessByShortname($shortname);
 	}
 
 	// }}}
