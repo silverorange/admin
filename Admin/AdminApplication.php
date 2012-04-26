@@ -92,6 +92,11 @@ class AdminApplication extends SiteWebApplication
 	 */
 	protected $menu_view_class = 'AdminMenuView';
 
+	/*
+	 * @var array
+	 */
+	protected $has_component_cache = array();
+
 	// }}}
 	// {{{ public function run()
 
@@ -323,6 +328,22 @@ class AdminApplication extends SiteWebApplication
 			$this->db->quote($type, 'integer'));
 
 		SwatDB::exec($this->db, $sql);
+	}
+
+	// }}}
+	// {{{ public function hasComponent()
+
+	public function hasComponent($shortname)
+	{
+		if (!isset($this->has_component_cache[$shortname])) {
+			$component = new AdminComponent();
+			$component->setDatabase($this->db);
+
+			$this->has_component_cache[$shortname] =
+				$component->loadFromShortname($shortname);
+		}
+
+		return $this->has_component_cache[$shortname];
 	}
 
 	// }}}
