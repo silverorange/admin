@@ -478,6 +478,13 @@ input.swat-entry:-webkit-autofill {
 	background-color: #fffbc9;
 }
 
+/* Note: this does not work in IE6 */
+input.swat-entry.swat-insensitive {
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter:alpha(opacity=50);
+	opacity: 0.5;
+	background-color: #eee;
+}
 
 /* SwatButton */
 
