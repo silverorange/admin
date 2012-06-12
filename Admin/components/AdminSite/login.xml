@@ -7,7 +7,7 @@
 			<widget class="SwatFormField">
 				<property name="title" translatable="yes">Email</property>
 				<property name="required_status_display" type="constant">DISPLAY_OPTIONAL</property>
-				<widget class="SwatEntry" id="email">
+				<widget class="SwatEmailEntry" id="email">
 					<property name="required" type="boolean">true</property>
 					<property name="size" type="integer">25</property>
 					<property name="tab_index" type="integer">1</property>
