@@ -107,8 +107,11 @@ AdminMenu.prototype.hideHelp = function(li)
 
 AdminMenu.prototype.getHelp = function(li)
 {
-	return YAHOO.util.Dom.getNextSibling(
-		YAHOO.util.Dom.getFirstChild(li)
+	return YAHOO.util.Dom.getNextSiblingBy(
+		YAHOO.util.Dom.getFirstChild(li),
+		function (n) {
+			return (YAHOO.util.Dom.hasClass(n, 'admin-menu-help'));
+		}
 	);
 };
 
