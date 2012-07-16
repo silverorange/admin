@@ -64,8 +64,6 @@ class AdminDefaultLayout extends AdminLayout
 	{
 		parent::init();
 
-		$this->data->body_classes = new ArrayObject();
-
 		$this->initLogoutForm();
 		$this->initMenu();
 	}
