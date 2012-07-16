@@ -11,7 +11,7 @@ require_once 'Swat/SwatMessage.php';
  * Force change password page after initial login
  *
  * @package   Admin
- * @copyright 2005-2007 silverorange
+ * @copyright 2005-2012 silverorange
  */
 class AdminAdminSiteChangePassword extends AdminPage
 {
@@ -21,7 +21,7 @@ class AdminAdminSiteChangePassword extends AdminPage
 	protected function createLayout()
 	{
 		return new AdminLoginLayout($this->app,
-			'Admin/layouts/xhtml/change-password.php');
+			'Admin/layouts/xhtml/login.php');
 	}
 
 	// }}}
@@ -106,6 +106,21 @@ class AdminAdminSiteChangePassword extends AdminPage
 
 			$this->ui->getWidget('old_password')->addMessage($message);
 		}
+	}
+
+	// }}}
+
+	// finalize phase
+	// {{{ public function finalize
+
+	public function finalize()
+	{
+		parent::finalize();
+
+		$this->layout->addHtmlHeadEntry(
+			'packages/admin/styles/admin-change-password-page.css',
+			Admin::PACKAGE_ID
+		);
 	}
 
 	// }}}

@@ -9,7 +9,7 @@ require_once 'Swat/SwatMessage.php';
  * Administrator login page
  *
  * @package   Admin
- * @copyright 2005-2007 silverorange
+ * @copyright 2005-2012 silverorange
  */
 class AdminAdminSiteLogin extends AdminPage
 {
@@ -137,6 +137,21 @@ class AdminAdminSiteLogin extends AdminPage
 			"'{$email}', {$login_error});";
 
 		echo '</script>';
+	}
+
+	// }}}
+
+	// finalize phase
+	// {{{ public function finalize
+
+	public function finalize()
+	{
+		parent::finalize();
+
+		$this->layout->addHtmlHeadEntry(
+			'packages/admin/styles/admin-login-page.css',
+			Admin::PACKAGE_ID
+		);
 	}
 
 	// }}}
