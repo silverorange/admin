@@ -12,7 +12,7 @@
 	<link rel="icon" href="../favicon.ico" type="image/x-icon" />
 	<?=$this->html_head_entries?>
 </head>
-<body class="<?= implode(' ', $this->body_classes->getArrayCopy()) ?>">
+<body <?=$this->body_classes?>>
 
 <div id="doc3" class="yui-t1">
 

@@ -9,11 +9,9 @@
 	<!--if IE]><base href="<?= $this->basehref ?>"></base><![endif]-->
 	<!--if !(IE)]><!--><base href="<?= $this->basehref ?>" /><!--<![endif]-->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" href="packages/admin/styles/admin-layout.css" />
-	<link rel="stylesheet" href="packages/admin/styles/admin-login-page.css" />
 	<?=$this->html_head_entries?>
 </head>
-<body id="admin-login-page">
+<body <?=$this->body_classes?>>
 
 <?=$this->content?>
 
