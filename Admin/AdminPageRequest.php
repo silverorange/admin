@@ -61,21 +61,18 @@ class AdminPageRequest extends SiteObject
 			}
 
 			if ($this->component == 'AdminSite') {
-				$admin_titles = array(
-					'Profile'        => Admin::_('Edit User Profile'),
-					'Logout'         => Admin::_('Logout'),
-					'Login'          => Admin::_('Login'),
-					'Exception'      => Admin::_('Exception'),
-					'Front'          => Admin::_('Index'),
-					'MenuViewServer' => '',
-				);
+				$admin_titles = $this->getAdminSiteTitles();
 
-				if (isset($admin_titles[$this->subcomponent]))
+				if (isset($admin_titles[$this->subcomponent])) {
 					$this->title = $admin_titles[$this->subcomponent];
-				else
-					throw new AdminNotFoundException(sprintf(Admin::_(
-						"Component not found for source '%s'."),
-						$this->source));
+				} else {
+					throw new AdminNotFoundException(
+						sprintf(
+							Admin::_("Component not found for source '%s'."),
+							$this->source
+						)
+					);
+				}
 
 			} else {
 				$component = new AdminComponent();
@@ -96,12 +93,9 @@ class AdminPageRequest extends SiteObject
 				}
 			}
 		} else {
-			$this->component = 'AdminSite';
-
 			switch ($this->source) {
 			case 'AdminSite/ChangePassword':
 				$this->subcomponent = 'ChangePassword';
-				$this->title = Admin::_('Change Password');
 				break;
 
 			case 'AdminSite/ForgotPassword':
@@ -112,7 +106,6 @@ class AdminPageRequest extends SiteObject
 				}
 
 				$this->subcomponent = 'ForgotPassword';
-				$this->title = Admin::_('Reset Forgotten Password');
 				break;
 
 			case 'AdminSite/ResetPassword':
@@ -123,14 +116,16 @@ class AdminPageRequest extends SiteObject
 				}
 
 				$this->subcomponent = 'ResetPassword';
-				$this->title = Admin::_('Update Password');
 				break;
 
 			default:
 				$this->subcomponent = 'Login';
-				$this->title = Admin::_('Login');
 				break;
 			}
+
+			$admin_titles = $this->getAdminSiteTitles();
+			$this->title = $admin_titles[$this->subcomponent];
+			$this->component = 'AdminSite';
 		}
 	}
 
@@ -212,6 +207,25 @@ class AdminPageRequest extends SiteObject
 	}
 
 	// }}}
+	// {{{ protected function getAdminSiteTitles()
+
+	public function getAdminSiteTitles()
+	{
+		return array(
+			'Profile'        => Admin::_('Edit User Profile'),
+			'Logout'         => Admin::_('Logout'),
+			'Login'          => Admin::_('Login'),
+			'Exception'      => Admin::_('Exception'),
+			'Front'          => Admin::_('Index'),
+			'ChangePassword' => Admin::_('Change Password'),
+			'ResetPassword'  => Admin::_('Update Password'),
+			'ForgotPassword' => Admin::_('Reset Forgotten Password'),
+			'MenuViewServer' => '',
+		);
+	}
+
+	// }}}
+
 }
 
 ?>
