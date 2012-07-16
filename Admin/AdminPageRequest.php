@@ -11,7 +11,7 @@ require_once 'Site/SiteObject.php';
  * Page request
  *
  * @package   Admin
- * @copyright 2004-2007 silverorange
+ * @copyright 2004-2012 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminPageRequest extends SiteObject
@@ -95,33 +95,42 @@ class AdminPageRequest extends SiteObject
 						"user '%s'."), $user->id), 0, $user);
 				}
 			}
-
-		} elseif ($this->source == 'AdminSite/ChangePassword') {
-			$this->component = 'AdminSite';
-			$this->subcomponent = 'ChangePassword';
-			$this->title = Admin::_('Change Password');
-		} elseif ($this->source == 'AdminSite/ForgotPassword') {
-			if (!$allow_reset_password) {
-				throw new AdminNotFoundException(sprintf(Admin::_(
-					"Component not found for source '%s'."),
-					$this->source));
-			}
-			$this->component = 'AdminSite';
-			$this->subcomponent = 'ForgotPassword';
-			$this->title = Admin::_('Reset Forgotten Password');
-		} elseif ($this->source == 'AdminSite/ResetPassword') {
-			if (!$allow_reset_password) {
-				throw new AdminNotFoundException(sprintf(Admin::_(
-					"Component not found for source '%s'."),
-					$this->source));
-			}
-			$this->component = 'AdminSite';
-			$this->subcomponent = 'ResetPassword';
-			$this->title = Admin::_('Update Password');
 		} else {
 			$this->component = 'AdminSite';
-			$this->subcomponent = 'Login';
-			$this->title = Admin::_('Login');
+
+			switch ($this->source) {
+			case 'AdminSite/ChangePassword':
+				$this->subcomponent = 'ChangePassword';
+				$this->title = Admin::_('Change Password');
+				break;
+
+			case 'AdminSite/ForgotPassword':
+				if (!$allow_reset_password) {
+					throw new AdminNotFoundException(sprintf(Admin::_(
+						"Component not found for source '%s'."),
+						$this->source));
+				}
+
+				$this->subcomponent = 'ForgotPassword';
+				$this->title = Admin::_('Reset Forgotten Password');
+				break;
+
+			case 'AdminSite/ResetPassword':
+				if (!$allow_reset_password) {
+					throw new AdminNotFoundException(sprintf(Admin::_(
+						"Component not found for source '%s'."),
+						$this->source));
+				}
+
+				$this->subcomponent = 'ResetPassword';
+				$this->title = Admin::_('Update Password');
+				break;
+
+			default:
+				$this->subcomponent = 'Login';
+				$this->title = Admin::_('Login');
+				break;
+			}
 		}
 	}
 
