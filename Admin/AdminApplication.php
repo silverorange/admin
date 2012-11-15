@@ -299,39 +299,6 @@ class AdminApplication extends SiteWebApplication
 	}
 
 	// }}}
-	// {{{ public function addToSearchQueue()
-
-	public function addToSearchQueue($document_type, $document_id)
-	{
-		$manager = $this->db->manager;
-		if (!in_array('nategosearchqueue', $manager->listTables())) {
-			return;
-		}
-
-		require_once 'NateGoSearch/NateGoSearch.php';
-		$type = NateGoSearch::getDocumentType($this->db,
-			$document_type);
-
-		if ($type === null) {
-			return;
-		}
-
-		$sql = sprintf('delete from NateGoSearchQueue
-			where document_id = %s and document_type = %s',
-			$this->db->quote($document_id, 'integer'),
-			$this->db->quote($type, 'integer'));
-
-		SwatDB::exec($this->db, $sql);
-
-		$sql = sprintf('insert into NateGoSearchQueue
-			(document_id, document_type) values (%s, %s)',
-			$this->db->quote($document_id, 'integer'),
-			$this->db->quote($type, 'integer'));
-
-		SwatDB::exec($this->db, $sql);
-	}
-
-	// }}}
 	// {{{ public function hasComponent()
 
 	public function hasComponent($shortname)
