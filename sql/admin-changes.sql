@@ -2,17 +2,76 @@ insert into AdminSection (id, title, description, displayorder, visible) values 
 SELECT setval('Adminsection_id_seq', max(id)) FROM AdminSection;
 
 INSERT INTO AdminComponent (id, shortname, title, description, displayorder, section, enabled, visible)
-	VALUES (1, 'AdminUser', 'Admin Users', NULL, 4, 1, true, true);
+VALUES (
+	1,
+	'AdminUser',
+	'Admin Users',
+	E'Manage who can log into the admin.\n\nAlso set group membership for admin users.',
+	4,
+	1,
+	true,
+	true
+);
+
 INSERT INTO AdminComponent (id, shortname, title, description, displayorder, section, enabled, visible)
-	VALUES (2, 'AdminGroup', 'Admin Groups', NULL, 5, 1, true, true);
+VALUES (
+	2,
+	'AdminGroup',
+	'Admin Groups',
+	E'Manage admin group membership, and admin group component access.',
+	5,
+	1,
+	true,
+	true
+);
+
 INSERT INTO AdminComponent (id, shortname, title, description, displayorder, section, enabled, visible)
-	VALUES (3, 'AdminSection', 'Admin Sections', NULL, 3, 1, true, true);
+VALUES (
+	3,
+	'AdminSection',
+	'Admin Sections',
+	E'Manage the sections in the admin menu.',
+	3,
+	1,
+	true,
+	true
+);
+
 INSERT INTO AdminComponent (id, shortname, title, description, displayorder, section, enabled, visible)
-	VALUES (4, 'AdminComponent', 'Admin Components', NULL, 1, 1, true, true);
+VALUES (
+	4,
+	'AdminComponent',
+	'Admin Components',
+	E'Manage the available tools in the admin.\n\nOrganize tools in sections, and set admin group access for specific tools.',
+	1,
+	1,
+	true,
+	true
+);
+
 INSERT INTO AdminComponent (id, shortname, title, description, displayorder, section, enabled, visible)
-	VALUES (5, 'AdminSubComponent', 'Admin Sub-Components', NULL, 2, 1, true, false);
+VALUES (
+	5,
+	'AdminSubComponent',
+	'Admin Sub-Components',
+	NULL,
+	2,
+	1,
+	true,
+	false
+);
+
 INSERT INTO AdminComponent (id, shortname, title, description, displayorder, section, enabled, visible)
-	VALUES (6, 'Front', 'Front Page', NULL, 0, 1, true, false);
+VALUES (
+	5,
+	'Front',
+	'Front Page',
+	NULL,
+	0,
+	1,
+	true,
+	false
+);
 
 SELECT setval('admincomponent_id_seq', max(id)) FROM AdminComponent;
 
