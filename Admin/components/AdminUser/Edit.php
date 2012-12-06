@@ -12,7 +12,7 @@ require_once 'Admin/dataobjects/AdminUser.php';
  * Edit page for AdminUsers component
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2012 silverorange
  */
 class AdminAdminUserEdit extends AdminDBEdit
 {
@@ -64,6 +64,7 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 	// }}}
 	// {{{ protected function initUser()
+
 	protected function initUser()
 	{
 		$class_name = SwatDBClassMap::get('AdminUser');
@@ -112,8 +113,31 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 	protected function saveDBData()
 	{
-		$values = $this->ui->getValues(array('email', 'name', 'enabled',
-			'force_change_password'));
+		$this->updateUser();
+		$this->user->save();
+
+		$this->saveBindingTables();
+
+		$message = new SwatMessage(
+			sprintf(Admin::_('User “%s” has been saved.'), $values['email']),
+			'notice');
+
+		$this->app->messages->add($message);
+	}
+
+	// }}}
+	// {{{ protected function updateUser()
+
+	protected function updateUser()
+	{
+		$values = $this->ui->getValues(
+			array(
+				'email',
+				'name',
+				'enabled',
+				'force_change_password'
+			)
+		);
 
 		$password = $this->ui->getWidget('password');
 		if ($password->value !== null) {
@@ -124,15 +148,8 @@ class AdminAdminUserEdit extends AdminDBEdit
 		$this->user->name = $values['name'];
 		$this->user->enabled = $values['enabled'];
 		$this->user->force_change_password = $values['force_change_password'];
-		$this->user->save();
 
-		$this->saveBindingTables();
-
-		$message = new SwatMessage(
-			sprintf(Admin::_('User “%s” has been saved.'), $values['email']),
-			'notice');
-
-		$this->app->messages->add($message);
+		return $this->user;
 	}
 
 	// }}}
