@@ -119,8 +119,12 @@ class AdminAdminUserEdit extends AdminDBEdit
 		$this->saveBindingTables();
 
 		$message = new SwatMessage(
-			sprintf(Admin::_('User “%s” has been saved.'), $values['email']),
-			'notice');
+			sprintf(
+				Admin::_('User “%s” has been saved.'),
+				$this->user->email
+			),
+			'notice'
+		);
 
 		$this->app->messages->add($message);
 	}
