@@ -315,6 +315,22 @@ class AdminApplication extends SiteWebApplication
 	}
 
 	// }}}
+	// {{{ public function isMultipleInstanceAdmin()
+
+	/**
+	 * Helper method to check to see if this is the admin for all instances of a
+	 * multi-instance site.
+	 *
+	 * @returns boolean true if it is the admin for multiple instances, false if
+	 *                   it is not.
+	 */
+	public function isMultipleInstanceAdmin()
+	{
+		return ($this->hasModule('SiteMultipleInstanceModule') &&
+			$this->getInstanceId() === null);
+	}
+
+	// }}}
 	// {{{ protected function userHasAccess()
 
 	protected function userHasAccess($shortname)
