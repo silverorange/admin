@@ -21,7 +21,7 @@ require_once 'Admin/exceptions/AdminNotFoundException.php';
  * Web application class for an administration application
  *
  * @package   Admin
- * @copyright 2004-2012 silverorange
+ * @copyright 2004-2013 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminApplication extends SiteWebApplication
