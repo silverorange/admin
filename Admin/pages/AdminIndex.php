@@ -11,7 +11,7 @@ require_once 'Swat/SwatActions.php';
  * index page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2005-2007 silverorange
+ * @copyright 2005-2013 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminIndex extends AdminPage
@@ -82,9 +82,19 @@ abstract class AdminIndex extends AdminPage
 	{
 		$root = $this->ui->getRoot();
 		$views = $root->getDescendants('SwatView');
-		foreach ($views as $view)
-			if ($view->model === null)
-				$view->model = $this->getTableModel($view);
+		foreach ($views as $view) {
+			$this->buildView($view);
+		}
+	}
+
+	// }}}
+	// {{{ protected function buildView()
+
+	protected function buildView($view)
+	{
+		if ($view->model === null) {
+			$view->model = $this->getTableModel($view);
+		}
 	}
 
 	// }}}
