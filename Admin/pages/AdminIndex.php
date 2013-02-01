@@ -90,7 +90,7 @@ abstract class AdminIndex extends AdminPage
 	// }}}
 	// {{{ protected function buildView()
 
-	protected function buildView($view)
+	protected function buildView(SwatView $view)
 	{
 		if ($view->model === null) {
 			$view->model = $this->getTableModel($view);
