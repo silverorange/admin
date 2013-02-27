@@ -14,7 +14,7 @@ require_once 'Swat/SwatString.php';
  * Web application module for sessions
  *
  * @package   Admin
- * @copyright 2005-2007 silverorange
+ * @copyright 2005-2013 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminSessionModule extends SiteSessionModule
@@ -274,8 +274,7 @@ class AdminSessionModule extends SiteSessionModule
 		$login_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ?
 			$_SERVER['HTTP_USER_AGENT'] : null;
 
-		$remote_ip = (isset($_SERVER['REMOTE_ADDR'])) ?
-			$_SERVER['REMOTE_ADDR'] : null;
+		$remote_ip = $this->app->getRemoteIP();
 
 		if (strlen($login_agent) > 255) {
 			$login_agent = substr($login_agent, 0, 253).' …';
