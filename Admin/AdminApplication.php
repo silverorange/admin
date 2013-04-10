@@ -331,9 +331,9 @@ class AdminApplication extends SiteWebApplication
 	}
 
 	// }}}
-	// {{{ protected function userHasAccess()
+	// {{{ public function userHasAccess()
 
-	protected function userHasAccess($shortname)
+	public function userHasAccess($shortname)
 	{
 		return $this->session->user->hasAccessByShortname($shortname);
 	}
