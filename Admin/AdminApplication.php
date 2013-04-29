@@ -356,6 +356,25 @@ class AdminApplication extends SiteWebApplication
 
 	protected function resolvePage($source)
 	{
+		$path = explode('/', $source);
+		switch ($path[0]) {
+		case 'smil':
+			array_shift($path);
+			require_once 'Site/pages/SiteAmazonCdnMediaManifestPage.php';
+			$layout = new SiteLayout($this, 'Site/layouts/xhtml/smil.php');
+			$page = new SiteAmazonCdnMediaManifestPage($this, $layout);
+			$page->setMediaKey(substr(array_shift($path), 0, -5));
+			return $page;
+		default :
+			return $this->resolveAdminPage($source);
+		}
+	}
+
+	// }}}
+	// {{{ protected function resolveAdminPage()
+
+	protected function resolveAdminPage($source)
+	{
 		$request = new AdminPageRequest($this, $source);
 
 		$file = $request->getFilename();
