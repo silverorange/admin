@@ -365,7 +365,8 @@ class AdminApplication extends SiteWebApplication
 			$page = new SiteAmazonCdnMediaManifestPage($this, $layout);
 			$page->setMediaKey(substr(array_shift($path), 0, -5));
 			return $page;
-		default :
+
+		default:
 			return $this->resolveAdminPage($source);
 		}
 	}
