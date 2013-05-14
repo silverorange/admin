@@ -109,12 +109,6 @@ class AdminPageRequest extends SiteObject
 				break;
 
 			case 'AdminSite/ResetPassword':
-				if (!$allow_reset_password) {
-					throw new AdminNotFoundException(sprintf(Admin::_(
-						"Component not found for source '%s'."),
-						$this->source));
-				}
-
 				$this->subcomponent = 'ResetPassword';
 				break;
 
@@ -225,7 +219,6 @@ class AdminPageRequest extends SiteObject
 	}
 
 	// }}}
-
 }
 
 ?>
