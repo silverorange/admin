@@ -10,7 +10,7 @@ require_once 'SwatDB/SwatDBDataObject.php';
  * users receive access to only certain components.
  *
  * @package   Admin
- * @copyright 2007 silverorange
+ * @copyright 2007-2013 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminGroup extends SwatDBDataObject
@@ -38,6 +38,29 @@ class AdminGroup extends SwatDBDataObject
 	{
 		$this->table = 'AdminGroup';
 		$this->id_field = 'integer:id';
+	}
+
+	// }}}
+	// {{{ protected function loadComponents()
+
+	/**
+	 * Loads the components that this group has access to
+	 *
+	 * @return AdminComponentWrapper the components this group has access to.
+	 */
+	protected function loadComponents()
+	{
+		$sql = sprintf(
+			'select AdminComponent.*
+			from AdminComponent
+				inner join AdminComponentAdmingroupBinding on
+					AdminComponentAdminGroupBinding.component =
+						AdminComponent.id
+			where groupnum = %s',
+			$this->db->quote($this->id, 'integer')
+		);
+
+		return SwatDB::query($this->db, $sql, 'AdminComponentWrapper');
 	}
 
 	// }}}

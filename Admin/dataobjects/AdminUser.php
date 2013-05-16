@@ -10,7 +10,7 @@ require_once 'Site/dataobjects/SiteInstanceWrapper.php';
  * User account for an admin
  *
  * @package   Admin
- * @copyright 2007-2009 silverorange
+ * @copyright 2007-2013 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  * @see       AdminGroup
  */
@@ -130,7 +130,6 @@ class AdminUser extends SwatDBDataObject
 	protected $instance;
 
 	// }}}
-
 	// {{{ public function isAuthenticated()
 
 	/**
@@ -427,7 +426,6 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
-
 	// {{{ protected function init()
 
 	protected function init()
