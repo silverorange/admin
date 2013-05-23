@@ -365,8 +365,14 @@ class AdminApplication extends SiteWebApplication
 			$page = new SiteAmazonCdnMediaManifestPage($this, $layout);
 			$page->setMediaKey(substr(array_shift($path), 0, -5));
 			return $page;
-
-		default:
+		case 'vtt':
+			array_shift($path);
+			require_once 'Site/pages/SiteVideoTextTracksPage.php';
+			$layout = new SiteLayout($this, 'Site/layouts/xhtml/vtt.php');
+			$page = new SiteVideoTextTracksPage($this, $layout);
+			$page->setMediaKey(substr(array_shift($path), 0, -4));
+			return $page;
+		default :
 			return $this->resolveAdminPage($source);
 		}
 	}
