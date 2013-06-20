@@ -53,7 +53,7 @@ $package->addMaintainer('lead', 'gauthierm', 'Mike Gauthier', 'mike@silverorange
 
 $package->addReplacement('Admin/Admin.php', 'pear-config', '@DATA-DIR@', 'data_dir');
 
-$package->setPhpDep('5.1.5');
+$package->setPhpDep('5.3.0');
 $package->setPearinstallerDep('1.4.0');
 $package->addPackageDepWithChannel('required', 'Swat', 'pear.silverorange.com', '1.4.57');
 $package->addPackageDepWithChannel('required', 'Site', 'pear.silverorange.com', '1.6.8');

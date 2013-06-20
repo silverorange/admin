@@ -7,7 +7,7 @@ require_once 'Swat/SwatDateCellRenderer.php';
  * Hybrid swat date/admin title link cell renderer for dates
  *
  * @package   Admin
- * @copyright 2006 silverorange
+ * @copyright 2006-2013 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminDateLinkCellRenderer extends AdminTitleLinkCellRenderer
@@ -47,10 +47,10 @@ class AdminDateLinkCellRenderer extends AdminTitleLinkCellRenderer
 	 * The time zone to render the date in
 	 *
 	 * The time zone may be specified either as a time zone identifier valid
-	 * for HotDateTimeZone or as a HotDateTimeZone object. If the render
+	 * for DateTimeZone or as a DateTimeZone object. If the render
 	 * time zone is null, no time zone conversion is performed.
 	 *
-	 * @var string|HotDateTimeZone
+	 * @var string|DateTimeZone
 	 */
 	public $display_time_zone = null;
 
