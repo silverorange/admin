@@ -37,7 +37,7 @@ class AdminAdminComponentDetails extends AdminIndex
 	{
 		parent::initInternal();
 
-		$this->ui->loadFromXML(dirname(__FILE__).'/details.xml');
+		$this->ui->loadFromXML(__DIR__.'/details.xml');
 
 		$this->id = intval(SiteApplication::initVar('id'));
 

@@ -48,7 +48,7 @@ class AdminAdminSiteResetPassword extends AdminPage
 	{
 		parent::initInternal();
 
-		$this->ui->loadFromXML(dirname(__FILE__).'/reset-password.xml');
+		$this->ui->loadFromXML(__DIR__.'/reset-password.xml');
 
 		$this->password_tag = AdminApplication::initVar('password_tag');
 

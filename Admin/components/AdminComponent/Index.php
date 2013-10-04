@@ -19,7 +19,7 @@ class AdminAdminComponentIndex extends AdminIndex
 	// {{{ protected function initInternal()
 	protected function initInternal()
 	{
-		$this->ui->loadFromXML(dirname(__FILE__).'/index.xml');
+		$this->ui->loadFromXML(__DIR__.'/index.xml');
 
 		$section_flydown = $this->ui->getWidget('section');
 		$section_flydown->addOptionsByArray(SwatDB::getOptionArray(

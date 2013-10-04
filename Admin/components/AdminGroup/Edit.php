@@ -32,7 +32,7 @@ class AdminAdminGroupEdit extends AdminDBEdit
 		parent::initInternal();
 		$this->initGroup();
 
-		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
+		$this->ui->loadFromXML(__DIR__.'/edit.xml');
 
 		$user_list = $this->ui->getWidget('users');
 		$user_list_options = SwatDB::getOptionArray($this->app->db,
