@@ -32,7 +32,7 @@ class AdminAdminSubComponentEdit extends AdminDBEdit
 		$this->parent = SiteApplication::initVar('parent');
 		$this->initSubComponent();
 
-		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
+		$this->ui->loadFromXML(__DIR__.'/edit.xml');
 
 		if ($this->parent === null && $this->edit_subcomponent->id === null)
 			throw new AdminNotFoundException(
