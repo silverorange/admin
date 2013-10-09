@@ -30,7 +30,7 @@ class AdminAdminSectionEdit extends AdminDBEdit
 		parent::initInternal();
 		$this->initSection();
 
-		$this->ui->loadFromXML(dirname(__FILE__).'/edit.xml');
+		$this->ui->loadFromXML(__DIR__.'/edit.xml');
 	}
 
 	// }}}

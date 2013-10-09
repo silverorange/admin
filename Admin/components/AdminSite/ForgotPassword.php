@@ -30,7 +30,7 @@ class AdminAdminSiteForgotPassword extends AdminPage
 
 	protected function initInternal()
 	{
-		$this->ui->loadFromXML(dirname(__FILE__).'/forgot-password.xml');
+		$this->ui->loadFromXML(__DIR__.'/forgot-password.xml');
 
 		$email = $this->ui->getWidget('email');
 		try {

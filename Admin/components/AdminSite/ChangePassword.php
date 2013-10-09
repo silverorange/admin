@@ -31,7 +31,7 @@ class AdminAdminSiteChangePassword extends AdminPage
 	{
 		parent::initInternal();
 
-		$this->ui->loadFromXML(dirname(__FILE__).'/change-password.xml');
+		$this->ui->loadFromXML(__DIR__.'/change-password.xml');
 
 		$confirm = $this->ui->getWidget('confirm_password');
 		$confirm->password_widget = $this->ui->getWidget('password');
