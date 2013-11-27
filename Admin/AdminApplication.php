@@ -339,6 +339,40 @@ class AdminApplication extends SiteWebApplication
 	}
 
 	// }}}
+	// {{{ public function setMemcacheInstanceValues()
+
+	/**
+	 * Convience method to ensure the memcache module is configured correctly
+	 * for the given instance, which is necessary for caching calls in a
+	 * multiple instance admin.
+	 *
+	 * @param SiteInstance $instance
+	 */
+	public function setMemcacheInstanceValues(SiteInstance $instance = null)
+	{
+		if ($this->hasModule('SiteMemcacheModule')) {
+			$cache = $this->getModule('SiteMemcacheModule');
+
+			// server and app_ns can be instance specific by using the
+			// InstanceConfigSetting table, so reset them with the instance's
+			// config setting for those values.
+			$cache->server = $this->getConfigSetting(
+				'memcache.server',
+				$instance
+			);
+
+			$cache->app_ns = $this->getConfigSetting(
+				'memcache.app_ns',
+				$instance
+			);
+
+			if ($instance instanceof SiteInstance) {
+				$cache->setInstance($instance);
+			}
+		}
+	}
+
+	// }}}
 	// {{{ protected function normalizeSource()
 
 	protected function normalizeSource($source)
