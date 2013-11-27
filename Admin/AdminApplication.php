@@ -350,19 +350,21 @@ class AdminApplication extends SiteWebApplication
 	 */
 	public function setMemcacheInstanceValues(SiteInstance $instance = null)
 	{
-		if ($this->memcache instanceof SiteMemcacheModule) {
-			$this->memcache->server = $this->getConfigSetting(
+		if ($this->hasModule('SiteMemcacheModule')) {
+			$cache = $this->getModule('SiteMemcacheModule');
+
+			$cache->server = $this->getConfigSetting(
 				'memcache.server',
 				$instance
 			);
 
-			$this->memcache->app_ns = $this->getConfigSetting(
+			$cache->app_ns = $this->getConfigSetting(
 				'memcache.app_ns',
 				$instance
 			);
 
 			if ($instance instanceof SiteInstance) {
-				$this->memcache->setInstance($instance);
+				$cache->setInstance($instance);
 			}
 		}
 	}
