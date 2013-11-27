@@ -353,6 +353,9 @@ class AdminApplication extends SiteWebApplication
 		if ($this->hasModule('SiteMemcacheModule')) {
 			$cache = $this->getModule('SiteMemcacheModule');
 
+			// server and app_ns can be instance specific by using the
+			// InstanceConfigSetting table, so reset them with the instance's
+			// config setting for those values.
 			$cache->server = $this->getConfigSetting(
 				'memcache.server',
 				$instance
