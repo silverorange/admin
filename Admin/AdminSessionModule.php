@@ -108,12 +108,26 @@ class AdminSessionModule extends SiteSessionModule
 		$class_name = SwatDBClassMap::get('AdminUser');
 		$user = new $class_name();
 		$user->setDatabase($this->app->db);
-		if ($user->loadFromEmailAndPassword($email, $password)) {
-			$this->user = $user;
 
-			if ($user->isAuthenticated($this->app)) {
-				$this->insertUserHistory($user);
-				$this->runLoginCallbacks();
+		if ($user->loadFromEmail($email)) {
+			$password_hash = $user->password;
+			$password_salt = $user->password_salt;
+
+			$crypt = $this->app->getModule('SiteCryptModule');
+
+			if ($crypt->verifyHash($password, $password_hash, $password_salt)) {
+				// No Crypt?! Crypt!
+				if ($crypt->updateHash($password_hash)) {
+					$user->setPasswordHash($crypt->generateHash($password));
+					$user->save();
+				}
+
+				$this->user = $user;
+
+				if ($user->isAuthenticated($this->app)) {
+					$this->insertUserHistory($user);
+					$this->runLoginCallbacks();
+				}
 			}
 		}
 

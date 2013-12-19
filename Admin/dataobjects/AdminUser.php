@@ -16,15 +16,6 @@ require_once 'Site/dataobjects/SiteInstanceWrapper.php';
  */
 class AdminUser extends SwatDBDataObject
 {
-	// {{{ class constants
-
-	/**
-	 * Length of salt value used to protect user's passwords from dictionary
-	 * attacks
-	 */
-	const PASSWORD_SALT_LENGTH = 16;
-
-	// }}}
 	// {{{ public properties
 
 	/**
@@ -239,23 +230,20 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
-	// {{{ public function setPassword()
+	// {{{ public function setPasswordHash()
 
 	/**
-	 * Sets this user's password
+	 * Sets this account's password hash
 	 *
-	 * This method takes care of automatically salting and hashing the password.
-	 * The new password is not saved until this user is saved.
-	 *
-	 * @param string $password the user's new password.
+	 * @param string $password_hash the password hash for this account.
 	 */
-	public function setPassword($password)
+	public function setPasswordHash($password_hash)
 	{
-		$salt = SwatString::getSalt(self::PASSWORD_SALT_LENGTH);
-		$this->password_salt = base64_encode($salt);
+		$this->password = $password_hash;
 
-		// note: password is not salted with encoded salt
-		$this->password = md5($password.$salt);
+		// Note: SiteAccount now uses crypt() for password hashing. The salt
+		// is stored in the same field as the hashed password.
+		$this->password_salt = null;
 	}
 
 	// }}}
@@ -350,65 +338,6 @@ class AdminUser extends SwatDBDataObject
 			return false;
 
 		return $this->load($id);
-	}
-
-	// }}}
-	// {{{ public function loadFromEmailAndPassword()
-
-	/**
-	 * Loads this user from the database using an email address and password
-	 *
-	 * This is useful for logging a user into an admin application.
-	 *
-	 * @param string $email the email address of the user.
-	 * @param string $password the password of the user.
-	 *
-	 * @return boolean true if the loading was successful and false if it was
-	 *                  not.
-	 */
-	public function loadFromEmailAndPassword($email, $password)
-	{
-		$this->checkDB();
-
-		$loaded = false;
-
-		$sql = sprintf('select password_salt from %s where email = %s
-			and enabled = %s',
-			$this->table,
-			$this->db->quote($email, 'text'),
-			$this->db->quote(true, 'boolean'));
-
-		$salt = SwatDB::queryOne($this->db, $sql, 'text');
-
-		if ($salt !== null) {
-			$row = null;
-
-			// Support both the newer base64 encoded salts and older raw-ASCII
-			// strings.
-			$decoded_salt = base64_decode($salt, true);
-			$salt = ($decoded_salt === false) ? $salt : $decoded_salt;
-
-			$md5_password = md5($password.$salt);
-
-			$sql = sprintf('select *
-				from %s
-				where email = %s and password = %s and enabled = %s',
-				$this->table,
-				$this->db->quote($email, 'text'),
-				$this->db->quote($md5_password, 'text'),
-				$this->db->quote(true, 'boolean'));
-
-			$rs = SwatDB::query($this->db, $sql, null);
-			$row = $rs->fetchRow(MDB2_FETCHMODE_ASSOC);
-
-			if ($row !== null) {
-				$this->initFromRow($row);
-				$this->generatePropertyHashes();
-				$loaded = true;
-			}
-		}
-
-		return $loaded;
 	}
 
 	// }}}
@@ -509,7 +438,6 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
-
 }
 
 ?>

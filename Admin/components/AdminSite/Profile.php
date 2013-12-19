@@ -11,7 +11,7 @@ require_once 'SwatDB/SwatDB.php';
  *
  * @package   Admin
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
- * @copyright 2005-2007 silverorange
+ * @copyright 2005-2013 silverorange
  */
 class AdminAdminSiteProfile extends AdminDBEdit
 {
@@ -39,14 +39,16 @@ class AdminAdminSiteProfile extends AdminDBEdit
 
 	protected function saveDBData()
 	{
+		$crypt = $this->app->getModule('SiteCryptModule');
+
 		$user = $this->app->session->user;
 
 		$user->name = $this->ui->getWidget('name')->value;
 		$user->email = $this->ui->getWidget('email')->value;
 
-		$new_password = $this->ui->getWidget('new_password');
-		if ($new_password->value !== null) {
-			$user->setPassword($new_password->value);
+		$password = $this->ui->getWidget('new_password')->value;
+		if ($password != '') {
+			$user->setPasswordHash($crypt->generateHash($password));
 		}
 
 		$user->save();
@@ -71,16 +73,34 @@ class AdminAdminSiteProfile extends AdminDBEdit
 	protected function validate()
 	{
 		parent::validate();
+
 		$user = $this->app->session->user;
+
 		$new_password = $this->ui->getWidget('new_password')->value;
 		$old_password = $this->ui->getWidget('old_password')->value;
-		if ($new_password !== null && !$user->validatePassword($old_password)) {
-			$message = new SwatMessage(
-				Admin::_('%1$s is incorrrect. Please check your %1$s and try '.
-					'again. Passwords are case sensitive.'),
-				'error');
 
-			$this->ui->getWidget('old_password')->addMessage($message);
+		if ($new_password != '') {
+			$crypt = $this->app->getModule('SiteCryptModule');
+
+			$password_hash = $user->password;
+			$password_salt = $user->password_salt;
+
+			if (!$crypt->verifyHash(
+					$old_password,
+					$password_hash,
+					$password_salt
+				)) {
+
+				$message = new SwatMessage(
+					Admin::_(
+						'%1$s is incorrrect. Please check your %1$s and try '.
+						'again. Passwords are case sensitive.'
+					),
+					'error'
+				);
+
+				$this->ui->getWidget('old_password')->addMessage($message);
+			}
 		}
 	}
 
