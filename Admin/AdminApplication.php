@@ -532,11 +532,6 @@ class AdminApplication extends SiteWebApplication
 		parent::configure($config);
 
 		$this->addComponentIncludePath('Admin/components', 'Admin');
-
-		$this->crypt->setHashMethod(
-			$config->crypt->method,
-			$config->crypt->rounds
-		);
 	}
 
 	// }}}
