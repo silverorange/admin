@@ -12,7 +12,7 @@ require_once 'Admin/dataobjects/AdminUser.php';
  * Edit page for AdminUsers component
  *
  * @package   Admin
- * @copyright 2005-2012 silverorange
+ * @copyright 2005-2014 silverorange
  */
 class AdminAdminUserEdit extends AdminDBEdit
 {
@@ -134,6 +134,8 @@ class AdminAdminUserEdit extends AdminDBEdit
 
 	protected function updateUser()
 	{
+		$crypt = $this->app->getModule('SiteCryptModule');
+
 		$values = $this->ui->getValues(
 			array(
 				'email',
@@ -143,9 +145,9 @@ class AdminAdminUserEdit extends AdminDBEdit
 			)
 		);
 
-		$password = $this->ui->getWidget('password');
-		if ($password->value !== null) {
-			$this->user->setPassword($password->value);
+		$password = $this->ui->getWidget('password')->value;
+		if ($password != '') {
+			$this->user->setPasswordHash($crypt->generateHash($password));
 		}
 
 		$this->user->email = $values['email'];

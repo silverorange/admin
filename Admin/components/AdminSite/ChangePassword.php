@@ -11,7 +11,7 @@ require_once 'Swat/SwatMessage.php';
  * Force change password page after initial login
  *
  * @package   Admin
- * @copyright 2005-2012 silverorange
+ * @copyright 2005-2014 silverorange
  */
 class AdminAdminSiteChangePassword extends AdminPage
 {
@@ -52,6 +52,8 @@ class AdminAdminSiteChangePassword extends AdminPage
 	{
 		parent::processInternal();
 
+		$crypt = $this->app->getModule('SiteCryptModule');
+
 		$form = $this->ui->getWidget('change_password_form');
 		if ($form->isProcessed()) {
 			$this->validatePasswords();
@@ -59,7 +61,7 @@ class AdminAdminSiteChangePassword extends AdminPage
 				$password = $this->ui->getWidget('password')->value;
 
 				$user = $this->app->session->user;
-				$user->setPassword($password);
+				$user->setPasswordHash($crypt->generateHash($password));
 				$user->force_change_password = false;
 				$user->save();
 
@@ -98,13 +100,24 @@ class AdminAdminSiteChangePassword extends AdminPage
 			$this->ui->getWidget('password')->addMessage($message);
 		}
 
-		// make sure old password is correct
-		if (!$user->validatePassword($old_password)) {
-			$message = new SwatMessage(
-				Admin::_('Your old password is not correct'),
-				'error');
+		$crypt = $this->app->getModule('SiteCryptModule');
 
-			$this->ui->getWidget('old_password')->addMessage($message);
+		$password_hash = $user->password;
+		$password_salt = $user->password_salt;
+
+		// make sure old password is correct
+		if (!$crypt->verifyHash(
+				$old_password,
+				$password_hash,
+				$password_salt
+			)) {
+
+			$this->ui->getWidget('old_password')->addMessage(
+				new SwatMessage(
+					Admin::_('Your old password is not correct'),
+					'error'
+				)
+			);
 		}
 	}
 
