@@ -11,7 +11,7 @@ require_once 'SwatDB/SwatDB.php';
  *
  * @package   Admin
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
- * @copyright 2005-2013 silverorange
+ * @copyright 2005-2014 silverorange
  */
 class AdminAdminSiteProfile extends AdminDBEdit
 {
@@ -91,15 +91,15 @@ class AdminAdminSiteProfile extends AdminDBEdit
 					$password_salt
 				)) {
 
-				$message = new SwatMessage(
-					Admin::_(
-						'%1$s is incorrrect. Please check your %1$s and try '.
-						'again. Passwords are case sensitive.'
-					),
-					'error'
+				$this->ui->getWidget('old_password')->addMessage(
+					new SwatMessage(
+						Admin::_(
+							'%1$s is incorrrect. Please check your %1$s and '.
+							'try again. Passwords are case sensitive.'
+						),
+						'error'
+					)
 				);
-
-				$this->ui->getWidget('old_password')->addMessage($message);
 			}
 		}
 	}
