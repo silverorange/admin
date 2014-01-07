@@ -14,7 +14,7 @@ require_once 'Swat/SwatString.php';
  * Web application module for sessions
  *
  * @package   Admin
- * @copyright 2005-2013 silverorange
+ * @copyright 2005-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminSessionModule extends SiteSessionModule
@@ -85,6 +85,7 @@ class AdminSessionModule extends SiteSessionModule
 	{
 		$depends = parent::depends();
 		$depends[] = new SiteApplicationModuleDependency('SiteCookieModule');
+		$depends[] = new SiteApplicationModuleDependency('SiteCryptModule');
 		$depends[] = new SiteApplicationModuleDependency('SiteDatabaseModule');
 		return $depends;
 	}
