@@ -288,29 +288,6 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
-	// {{{ public function validatePassword()
-
-	/**
-	 * Checks if a password matches this user's password
-	 *
-	 * The password is validated against the salted hash of this user's stored
-	 * password.
-	 *
-	 * @return boolean true if the provided password matches this user's
-	 *                  password and false if not.
-	 */
-	public function validatePassword($password)
-	{
-		// Support both the newer base64 encoded salts and older raw-ASCII
-		// strings.
-		$decoded_salt = base64_decode($this->password_salt, true);
-		$salt = ($decoded_salt === false) ? $this->password_salt :
-			$decoded_salt;
-
-		return (md5($password.$salt) == $this->password);
-	}
-
-	// }}}
 	// {{{ public function loadFromEmail()
 
 	/**
