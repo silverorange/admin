@@ -241,7 +241,7 @@ class AdminUser extends SwatDBDataObject
 	{
 		$this->password = $password_hash;
 
-		// Note: SiteAccount now uses crypt() for password hashing. The salt
+		// Note: AdminUser now uses crypt() for password hashing. The salt
 		// is stored in the same field as the hashed password.
 		$this->password_salt = null;
 	}
