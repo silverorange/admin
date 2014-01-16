@@ -14,7 +14,7 @@ require_once 'Swat/SwatString.php';
  * Web application module for sessions
  *
  * @package   Admin
- * @copyright 2005-2013 silverorange
+ * @copyright 2005-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminSessionModule extends SiteSessionModule
@@ -85,6 +85,7 @@ class AdminSessionModule extends SiteSessionModule
 	{
 		$depends = parent::depends();
 		$depends[] = new SiteApplicationModuleDependency('SiteCookieModule');
+		$depends[] = new SiteApplicationModuleDependency('SiteCryptModule');
 		$depends[] = new SiteApplicationModuleDependency('SiteDatabaseModule');
 		return $depends;
 	}
@@ -108,12 +109,26 @@ class AdminSessionModule extends SiteSessionModule
 		$class_name = SwatDBClassMap::get('AdminUser');
 		$user = new $class_name();
 		$user->setDatabase($this->app->db);
-		if ($user->loadFromEmailAndPassword($email, $password)) {
-			$this->user = $user;
 
-			if ($user->isAuthenticated($this->app)) {
-				$this->insertUserHistory($user);
-				$this->runLoginCallbacks();
+		if ($user->loadFromEmail($email)) {
+			$password_hash = $user->password;
+			$password_salt = $user->password_salt;
+
+			$crypt = $this->app->getModule('SiteCryptModule');
+
+			if ($crypt->verifyHash($password, $password_hash, $password_salt)) {
+				// No Crypt?! Crypt!
+				if ($crypt->shouldUpdateHash($password_hash)) {
+					$user->setPasswordHash($crypt->generateHash($password));
+					$user->save();
+				}
+
+				$this->user = $user;
+
+				if ($user->isAuthenticated($this->app)) {
+					$this->insertUserHistory($user);
+					$this->runLoginCallbacks();
+				}
 			}
 		}
 

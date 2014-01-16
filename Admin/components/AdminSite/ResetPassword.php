@@ -12,7 +12,7 @@ require_once 'Admin/AdminResetPasswordSuccessMailMessage.php';
  * Users are required to enter a new password.
  *
  * @package   Admin
- * @copyright 2007 silverorange
+ * @copyright 2007-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  * @see       AdminUser
  */
@@ -110,13 +110,15 @@ class AdminAdminSiteResetPassword extends AdminPage
 		if ($this->user === null)
 			return;
 
+		$crypt = $this->app->getModule('SiteCryptModule');
+
 		$form = $this->ui->getWidget('edit_form');
 
 		if ($form->isProcessed()) {
 			if (!$form->hasMessage()) {
 				$password = $this->ui->getWidget('password')->value;
 
-				$this->user->setPassword($password);
+				$this->user->setPasswordHash($crypt->generateHash($password));
 				$this->user->password_tag      = null;
 				$this->user->password_tag_date = null;
 				$this->user->save();

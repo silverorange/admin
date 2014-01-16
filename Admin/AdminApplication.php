@@ -6,6 +6,7 @@ require_once 'Site/SiteConfigModule.php';
 require_once 'Site/SiteCookieModule.php';
 require_once 'Site/SiteMessagesModule.php';
 require_once 'Site/SiteNotifierModule.php';
+require_once 'Site/SiteCryptModule.php';
 require_once 'MDB2.php';
 require_once 'SwatDB/SwatDB.php';
 require_once 'Admin/Admin.php';
@@ -495,6 +496,7 @@ class AdminApplication extends SiteWebApplication
 			'messages' => 'SiteMessagesModule',
 			'config'   => 'SiteConfigModule',
 			'notifier' => 'SiteNotifierModule',
+			'crypt'    => 'SiteCryptModule',
 		);
 	}
 
