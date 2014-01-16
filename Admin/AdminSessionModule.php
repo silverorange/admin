@@ -118,7 +118,7 @@ class AdminSessionModule extends SiteSessionModule
 
 			if ($crypt->verifyHash($password, $password_hash, $password_salt)) {
 				// No Crypt?! Crypt!
-				if ($crypt->updateHash($password_hash)) {
+				if ($crypt->shouldUpdateHash($password_hash)) {
 					$user->setPasswordHash($crypt->generateHash($password));
 					$user->save();
 				}
