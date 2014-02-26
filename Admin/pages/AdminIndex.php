@@ -31,8 +31,8 @@ abstract class AdminIndex extends AdminPage
 				$actions = $form->getFirstDescendant('SwatActions');
 
 				if (($view !== null) &&
-					(count($view->getSelection()) > 0) &&
-					($actions !== null) && ($actions->selected !== null))
+					($actions !== null) && ($actions->selected !== null)
+					&& count($view->getSelection()) > 0)
 					$this->processActions($view, $actions);
 
 				// only one form can be processed in a single request
