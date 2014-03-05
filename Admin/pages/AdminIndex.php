@@ -2,6 +2,7 @@
 
 require_once 'Admin/pages/AdminPage.php';
 require_once 'Swat/SwatView.php';
+require_once 'Swat/SwatViewSelector.php';
 require_once 'Swat/SwatActions.php';
 
 /**
@@ -11,7 +12,7 @@ require_once 'Swat/SwatActions.php';
  * index page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2005-2013 silverorange
+ * @copyright 2005-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminIndex extends AdminPage
@@ -29,11 +30,16 @@ abstract class AdminIndex extends AdminPage
 			if ($form->isProcessed()) {
 				$view = $form->getFirstDescendant('SwatView');
 				$actions = $form->getFirstDescendant('SwatActions');
+				$selector = $form->getFirstDescendant('SwatViewSelector');
 
-				if (($view !== null) &&
-					(count($view->getSelection()) > 0) &&
-					($actions !== null) && ($actions->selected !== null))
+				if ($view instanceof SwatView &&
+					$selector instanceof SwatViewSelector &&
+					count($view->getSelection()) > 0 &&
+					$actions instanceof SwatActions &&
+					$actions->selected !== null) {
+
 					$this->processActions($view, $actions);
+				}
 
 				// only one form can be processed in a single request
 				break;
