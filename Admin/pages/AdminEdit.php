@@ -38,8 +38,9 @@ abstract class AdminEdit extends AdminPage
 
 		$this->id = SiteApplication::initVar('id');
 
-		if (is_numeric($this->id))
+		if (is_numeric($this->id)) {
 			$this->id = intval($this->id);
+		}
 	}
 
 	// }}}
@@ -59,11 +60,17 @@ abstract class AdminEdit extends AdminPage
 			// validate() doesn't necessarily return true/false, often it
 			// will return null, so explicitly check false here
 			if ($validated === false || $form->hasMessage()) {
-				$message = new SwatMessage(Admin::_('There is a problem '.
-					'with the information submitted.'), 'error');
+				$message = new SwatMessage(
+					Admin::_(
+						'There is a problem with the information submitted.'
+					),
+					'error'
+				);
 
-				$message->secondary_content = Admin::_('Please address '.
-					'the fields highlighted below and re-submit the form.');
+				$message->secondary_content = Admin::_(
+					'Please address the fields highlighted below and '.
+					're-submit the form.'
+				);
 
 				$this->app->messages->add($message);
 			} else {
@@ -124,8 +131,9 @@ abstract class AdminEdit extends AdminPage
 		$count = 1;
 		$shortname = $shortname_base;
 
-		while ($this->validateShortname($shortname) === false)
+		while ($this->validateShortname($shortname) === false) {
 			$shortname = $shortname_base.$count++;
+		}
 
 		return $shortname;
 	}
@@ -242,10 +250,17 @@ abstract class AdminEdit extends AdminPage
 	{
 		$frame = $this->ui->getWidget('edit_frame');
 
-		if ($this->isNew())
-			$frame->title = sprintf(Admin::_('New %s'), $frame->title);
-		else
-			$frame->title = sprintf(Admin::_('Edit %s'), $frame->title);
+		if ($this->isNew()) {
+			$frame->title = sprintf(
+				Admin::_('New %s'),
+				$frame->title
+			);
+		} else {
+			$frame->title = sprintf(
+				Admin::_('Edit %s'),
+				$frame->title
+			);
+		}
 	}
 
 	// }}}
@@ -253,10 +268,11 @@ abstract class AdminEdit extends AdminPage
 
 	protected function buildNavBar()
 	{
-		if ($this->isNew())
+		if ($this->isNew()) {
 			$title = Admin::_('New');
-		else
+		} else {
 			$title = Admin::_('Edit');
+		}
 
 		$this->navbar->createEntry($title);
 	}
