@@ -20,6 +20,14 @@ abstract class AdminEdit extends AdminPage
 	protected $id;
 
 	// }}}
+	// {{{ protected function isNew()
+
+	protected function isNew()
+	{
+		return ($this->id === null);
+	}
+
+	// }}}
 
 	// init phase
 	// {{{ protected function initInternal()
@@ -181,9 +189,9 @@ abstract class AdminEdit extends AdminPage
 		}
 
 		if ($form_found) {
-			if ($this->id !== null)
-				if (!$form->isProcessed())
-					$this->loadData();
+			if (!$this->isNew() && !$form->isProcessed()) {
+				$this->loadData();
+			}
 
 			$form->action = $this->source;
 			$form->autofocus = true;
@@ -219,7 +227,7 @@ abstract class AdminEdit extends AdminPage
 		$button = $this->ui->getWidget('submit_button');
 
 		if ($button->title == 'Submit') {
-			if ($this->id === null) {
+			if ($this->isNew()) {
 				$button->setFromStock('create');
 			} else {
 				$button->setFromStock('apply');
@@ -234,7 +242,7 @@ abstract class AdminEdit extends AdminPage
 	{
 		$frame = $this->ui->getWidget('edit_frame');
 
-		if ($this->id === null)
+		if ($this->isNew())
 			$frame->title = sprintf(Admin::_('New %s'), $frame->title);
 		else
 			$frame->title = sprintf(Admin::_('Edit %s'), $frame->title);
@@ -245,7 +253,7 @@ abstract class AdminEdit extends AdminPage
 
 	protected function buildNavBar()
 	{
-		if ($this->id === null)
+		if ($this->isNew())
 			$title = Admin::_('New');
 		else
 			$title = Admin::_('Edit');
