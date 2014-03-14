@@ -12,7 +12,7 @@ require_once 'SwatDB/exceptions/SwatDBException.php';
  * edit page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2005-2012 silverorange
+ * @copyright 2005-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminDBEdit extends AdminEdit
@@ -38,16 +38,22 @@ abstract class AdminDBEdit extends AdminEdit
 		} catch (SwatDBException $e) {
 			$transaction->rollback();
 
-			$message = new SwatMessage(Admin::_(
-				'A database error has occurred. The item was not saved.'),
-				'system-error');
+			$message = new SwatMessage(
+				Admin::_(
+					'A database error has occurred. The item was not saved.'
+				),
+				'system-error'
+			);
 
 			$e->processAndContinue();
 			$relocate = false;
 		} catch (SwatException $e) {
-			$message = new SwatMessage(Admin::_(
-				'An error has occurred. The item was not saved.'),
-				'system-error');
+			$message = new SwatMessage(
+				Admin::_(
+					'An error has occurred. The item was not saved.'
+				),
+				'system-error'
+			);
 
 			$e->processAndContinue();
 			$relocate = false;
