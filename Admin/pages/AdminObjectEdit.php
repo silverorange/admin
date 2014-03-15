@@ -137,6 +137,18 @@ abstract class AdminObjectEdit extends AdminDBEdit
 				$object->createdate = new SwatDate();
 				$object->createdate->toUTC();
 			}
+
+			if ($object->hasPublicProperty('shortname') &&
+				$this->ui->hasWidget('shortname') &&
+				$this->ui->hasWidget('title')) {
+				$shortname_widget = $this->ui->getWidget('shortname');
+
+				if ($shortname_widget->value == '') {
+					$shortname_widget->value = $this->generateShortname(
+						$this->ui->getWidget('title')->value
+					);
+				}
+			}
 		} else {
 			$old_object = clone $object;
 			$this->flushObjectOnSave($old_object);
