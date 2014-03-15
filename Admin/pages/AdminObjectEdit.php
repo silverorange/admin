@@ -142,6 +142,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 			$this->flushObjectOnSave($old_object);
 		}
 
+		return $object;
 		// Subclass handles the rest.
 	}
 
