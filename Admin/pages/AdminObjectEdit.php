@@ -88,7 +88,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function validateShortname($shortname)
 	{
-		$valid = true;
+		$valid = parent::validateShortname($shortname);
 
 		$class_name = SwatDBClassMap::get($this->getObjectClass());
 		$object = new $class_name();
