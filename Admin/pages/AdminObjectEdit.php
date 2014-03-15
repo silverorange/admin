@@ -84,6 +84,25 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	// }}}
 
 	// process phase
+	// {{{ protected function validateShortname()
+
+	protected function validateShortname($shortname)
+	{
+		$valid = true;
+
+		$class_name = SwatDBClassMap::get($this->getObjectClass());
+		$object = new $class_name();
+		$object->setDatabase($this->app->db);
+
+		if ($object->loadByShortname($shortname) &&
+			$object->id !== $this->getObject()->id) {
+			$valid = false;
+		}
+
+		return $valid;
+	}
+
+	// }}}
 	// {{{ protected function saveDBData()
 
 	protected function saveDBData()
