@@ -220,9 +220,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function assignUiValues(array $names)
 	{
-		foreach ($names as $name) {
-			$this->assignUiValueToObject($this->getObject(), $name);
-		}
+		$this->assignUiValuesToObject($this->getObject(), $names);
 	}
 
 	// }}}
@@ -245,7 +243,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		$widget = $this->ui->getWidget($name);
 
 		// only clone the value when its actually an object
-		if ($widget instanceof SwatDateEntry && $widget->value !== null) {
+		if ($widget instanceof SwatDateEntry &&
+			$widget->value instanceof SwatDate) {
 			$value = clone $widget->value;
 			$value->setTZ($this->app->default_time_zone);
 			$value->toUTC();
@@ -275,9 +274,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function assignValuesToUi(array $names)
 	{
-		foreach ($names as $name) {
-			$this->assignObjectValueToUi($this->getObject(), $name);
-		}
+		$this->assignObjectValuesToUi($this->getObject(), $names);
 	}
 
 	// }}}
@@ -312,7 +309,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 		$widget = $this->ui->getWidget($name);
 
-		if ($value !== null && $widget instanceof SwatDateEntry) {
+		if ($widget instanceof SwatDateEntry &&
+			$value instanceof SwatDate) {
 			$value = new SwatDate($value);
 			$value->convertTZ($this->app->default_time_zone);
 		}
