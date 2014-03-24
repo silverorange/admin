@@ -268,8 +268,10 @@ class AdminSessionModule extends SiteSessionModule
 	protected function startSession()
 	{
 		parent::startSession();
-		if (isset($this->user) && $this->user instanceof AdminUser)
+
+		if (isset($this->user) && $this->user instanceof AdminUser) {
 			$this->user->setDatabase($this->app->database->getConnection());
+		}
 	}
 
 	// }}}
