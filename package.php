@@ -56,7 +56,7 @@ $package->addReplacement('Admin/Admin.php', 'pear-config', '@DATA-DIR@', 'data_d
 $package->setPhpDep('5.3.0');
 $package->setPearinstallerDep('1.4.0');
 $package->addPackageDepWithChannel('required', 'Swat', 'pear.silverorange.com', '2.0.16');
-$package->addPackageDepWithChannel('required', 'Site', 'pear.silverorange.com', '2.1.2');
+$package->addPackageDepWithChannel('required', 'Site', 'pear.silverorange.com', '2.1.5');
 $package->addPackageDepWithChannel('required', 'XML_RPCAjax', 'pear.silverorange.com', '1.0.9');
 $package->addPackageDepWithChannel('required', 'Net_Notifier', 'pear.silverorange.com', '0.1.0');
 $package->generateContents();
