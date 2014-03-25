@@ -294,6 +294,21 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	// }}}
 
 	// build phase
+	// {{{ protected function loadDBData()
+
+	protected function loadDBData()
+	{
+		$this->loadObjectData();
+	}
+
+	// }}}
+	// {{{ protected function loadObjectData()
+
+	protected function loadObjectData()
+	{
+	}
+
+	// }}}
 	// {{{ protected function assignValuesToUi()
 
 	protected function assignValuesToUi(array $names)
