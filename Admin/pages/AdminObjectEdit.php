@@ -140,7 +140,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		$object = $this->getObject();
 
 		if ($this->isNew()) {
-			if ($object->hasPublicProperty('createdate')) {
+			if ($object->hasPublicProperty('createdate') &&
+				$object->hasDateProperty('createdate')) {
 				$object->createdate = new SwatDate();
 				$object->createdate->toUTC();
 			}
