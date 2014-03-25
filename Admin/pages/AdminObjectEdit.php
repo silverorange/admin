@@ -35,9 +35,9 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	abstract protected function getUiXml();
 
 	// }}}
-	// {{{ public function getObject()
+	// {{{ protected function getObject()
 
-	public function getObject()
+	protected function getObject()
 	{
 		return $this->data_object;
 	}
@@ -56,9 +56,9 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	}
 
 	// }}}
-	// {{{ public function initObject()
+	// {{{ protected function initObject()
 
-	public function initObject()
+	protected function initObject()
 	{
 		$class_name = SwatDBClassMap::get($this->getObjectClass());
 		$this->data_object = new $class_name();
