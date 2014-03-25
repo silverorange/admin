@@ -51,13 +51,29 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	// }}}
 
 	// init phase
+	// {{{ public function init()
+
+	public function init()
+	{
+		// Skip other admin page init methods so that we can load the UI from
+		// getUiXml() as part of init.
+		SitePage::init();
+
+		$this->ui = new AdminUI();
+		$this->ui->loadFromXML($this->getUiXml());
+
+		$this->initInternal();
+
+		$this->ui->init();
+	}
+
+	// }}}
 	// {{{ protected function initInternal()
 
 	protected function initInternal()
 	{
 		parent::initInternal();
 
-		$this->ui->loadFromXML($this->getUiXml());
 		$this->initObject();
 	}
 
