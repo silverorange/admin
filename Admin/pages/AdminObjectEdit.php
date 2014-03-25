@@ -12,15 +12,21 @@ require_once 'Admin/pages/AdminDBEdit.php';
  */
 abstract class AdminObjectEdit extends AdminDBEdit
 {
-	// {{{ protected variables
+	// {{{ protected properties
 
 	/**
+	 * The dataobject instance we are editing on this page.
+	 *
 	 * @var SwatDBDataObject
+	 *
+	 * @see AdminObjectEdit::getObject()
 	 */
 	protected $data_object;
 
 	/**
-	 * @var array of SwatDBDataObject
+	 * An array of SwatDBDataObject objects to flush
+	 *
+	 * @var array
 	 */
 	protected $data_objects_to_flush = array();
 
