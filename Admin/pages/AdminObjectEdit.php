@@ -158,7 +158,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 			}
 		} else {
 			$old_object = clone $object;
-			$this->flushObjectOnSave($old_object);
+			$this->addObjectToFlushOnSave($old_object);
 		}
 
 		return $object;
@@ -181,9 +181,9 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	}
 
 	// }}}
-	// {{{ protected function flushObjectOnSave()
+	// {{{ protected function addObjectToFlushOnSave()
 
-	protected function flushObjectOnSave(SwatDBDataObject $object)
+	protected function addObjectToFlushOnSave(SwatDBDataObject $object)
 	{
 		$this->data_objects_to_flush[] = $object;
 	}
