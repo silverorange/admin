@@ -94,7 +94,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		$object = new $class_name();
 		$object->setDatabase($this->app->db);
 
-		if ($object->loadByShortname($shortname) &&
+		if (method_exists($object, 'loadByShortname') &&
+			$object->loadByShortname($shortname) &&
 			$object->id !== $this->getObject()->id) {
 			$valid = false;
 		}
