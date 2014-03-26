@@ -306,13 +306,13 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function loadDBData()
 	{
-		$this->loadObjectData();
+		$this->loadObject();
 	}
 
 	// }}}
-	// {{{ protected function loadObjectData()
+	// {{{ protected function loadObject()
 
-	protected function loadObjectData()
+	protected function loadObject()
 	{
 	}
 
