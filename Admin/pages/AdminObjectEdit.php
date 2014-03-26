@@ -41,6 +41,14 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	abstract protected function getUiXml();
 
 	// }}}
+	// {{{ protected function getResolvedObjectClass()
+
+	protected function getResolvedObjectClass()
+	{
+		return SwatDBClassMap::get($this->getObjectClass());
+	}
+
+	// }}}
 	// {{{ protected function getObject()
 
 	protected function getObject()
@@ -82,7 +90,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function initObject()
 	{
-		$class_name = SwatDBClassMap::get($this->getObjectClass());
+		$class_name = $this->getResolvedObjectClass();
 		$this->data_object = new $class_name();
 		$this->data_object->setDatabase($this->app->db);
 
@@ -112,7 +120,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	{
 		$valid = parent::validateShortname($shortname);
 
-		$class_name = SwatDBClassMap::get($this->getObjectClass());
+		$class_name = $this->getResolvedObjectClass();
 		$object = new $class_name();
 		$object->setDatabase($this->app->db);
 
