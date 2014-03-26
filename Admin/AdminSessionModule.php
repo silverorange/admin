@@ -145,7 +145,6 @@ class AdminSessionModule extends SiteSessionModule
 	{
 		$this->clear();
 		$this->user = null;
-		unset($this->_authentication_token);
 	}
 
 	// }}}
@@ -269,11 +268,10 @@ class AdminSessionModule extends SiteSessionModule
 	protected function startSession()
 	{
 		parent::startSession();
-		if (isset($this->user) && $this->user instanceof AdminUser)
-			$this->user->setDatabase($this->app->database->getConnection());
 
-		if (isset($this->_authentication_token))
-			SwatForm::setAuthenticationToken($this->_authentication_token);
+		if (isset($this->user) && $this->user instanceof AdminUser) {
+			$this->user->setDatabase($this->app->database->getConnection());
+		}
 	}
 
 	// }}}
