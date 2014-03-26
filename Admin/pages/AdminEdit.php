@@ -10,7 +10,7 @@ require_once 'Swat/SwatString.php';
  * edit page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2004-2012 silverorange
+ * @copyright 2004-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminEdit extends AdminPage
@@ -18,6 +18,14 @@ abstract class AdminEdit extends AdminPage
 	// {{{ protected variables
 
 	protected $id;
+
+	// }}}
+	// {{{ protected function isNew()
+
+	protected function isNew()
+	{
+		return ($this->id === null);
+	}
 
 	// }}}
 
@@ -30,8 +38,9 @@ abstract class AdminEdit extends AdminPage
 
 		$this->id = SiteApplication::initVar('id');
 
-		if (is_numeric($this->id))
+		if (is_numeric($this->id)) {
 			$this->id = intval($this->id);
+		}
 	}
 
 	// }}}
@@ -51,11 +60,17 @@ abstract class AdminEdit extends AdminPage
 			// validate() doesn't necessarily return true/false, often it
 			// will return null, so explicitly check false here
 			if ($validated === false || $form->hasMessage()) {
-				$message = new SwatMessage(Admin::_('There is a problem '.
-					'with the information submitted.'), 'error');
+				$message = new SwatMessage(
+					Admin::_(
+						'There is a problem with the information submitted.'
+					),
+					'error'
+				);
 
-				$message->secondary_content = Admin::_('Please address '.
-					'the fields highlighted below and re-submit the form.');
+				$message->secondary_content = Admin::_(
+					'Please address the fields highlighted below and '.
+					're-submit the form.'
+				);
 
 				$this->app->messages->add($message);
 			} else {
@@ -116,8 +131,9 @@ abstract class AdminEdit extends AdminPage
 		$count = 1;
 		$shortname = $shortname_base;
 
-		while ($this->validateShortname($shortname) === false)
+		while ($this->validateShortname($shortname) === false) {
 			$shortname = $shortname_base.$count++;
+		}
 
 		return $shortname;
 	}
@@ -181,9 +197,9 @@ abstract class AdminEdit extends AdminPage
 		}
 
 		if ($form_found) {
-			if ($this->id !== null)
-				if (!$form->isProcessed())
-					$this->loadData();
+			if (!$this->isNew() && !$form->isProcessed()) {
+				$this->loadData();
+			}
 
 			$form->action = $this->source;
 			$form->autofocus = true;
@@ -219,7 +235,7 @@ abstract class AdminEdit extends AdminPage
 		$button = $this->ui->getWidget('submit_button');
 
 		if ($button->title == 'Submit') {
-			if ($this->id === null) {
+			if ($this->isNew()) {
 				$button->setFromStock('create');
 			} else {
 				$button->setFromStock('apply');
@@ -234,10 +250,17 @@ abstract class AdminEdit extends AdminPage
 	{
 		$frame = $this->ui->getWidget('edit_frame');
 
-		if ($this->id === null)
-			$frame->title = sprintf(Admin::_('New %s'), $frame->title);
-		else
-			$frame->title = sprintf(Admin::_('Edit %s'), $frame->title);
+		if ($this->isNew()) {
+			$frame->title = sprintf(
+				Admin::_('New %s'),
+				$frame->title
+			);
+		} else {
+			$frame->title = sprintf(
+				Admin::_('Edit %s'),
+				$frame->title
+			);
+		}
 	}
 
 	// }}}
@@ -245,10 +268,11 @@ abstract class AdminEdit extends AdminPage
 
 	protected function buildNavBar()
 	{
-		if ($this->id === null)
+		if ($this->isNew()) {
 			$title = Admin::_('New');
-		else
+		} else {
 			$title = Admin::_('Edit');
+		}
 
 		$this->navbar->createEntry($title);
 	}
