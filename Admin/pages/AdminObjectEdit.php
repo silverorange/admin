@@ -228,7 +228,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	{
 		foreach ($this->data_objects_to_flush as $object) {
 			if ($object instanceof SwatDBDataObject) {
-				$object->flushCache();
+				$object->flushCacheNamespaces();
 			}
 		}
 	}
