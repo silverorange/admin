@@ -11,7 +11,7 @@ require_once 'Admin/pages/AdminPage.php';
  * approval page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2008-2009 silverorange
+ * @copyright 2008-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminApproval extends AdminPage
@@ -196,9 +196,9 @@ abstract class AdminApproval extends AdminPage
 	{
 		parent::finalize();
 
-		$this->layout->addHtmlHeadEntry(new SwatStyleSheetHtmlHeadEntry(
-			'packages/admin/styles/admin-approval-page.css',
-			Admin::PACKAGE_ID));
+		$this->layout->addHtmlHeadEntry(
+			'packages/admin/styles/admin-approval-page.css'
+		);
 	}
 
 	// }}}

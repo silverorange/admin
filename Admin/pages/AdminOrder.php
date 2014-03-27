@@ -11,7 +11,7 @@ require_once 'Admin/pages/AdminPage.php';
  * ordering page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2004-2012 silverorange
+ * @copyright 2004-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminOrder extends AdminPage
@@ -30,7 +30,8 @@ abstract class AdminOrder extends AdminPage
 		parent::initInternal();
 
 		$this->ui->getRoot()->addJavaScript(
-			'packages/admin/javascript/admin-order.js', Admin::PACKAGE_ID);
+			'packages/admin/javascript/admin-order.js'
+		);
 
 		$this->ui->loadFromXML($this->ui_xml);
 	}
