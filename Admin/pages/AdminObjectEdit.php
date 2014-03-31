@@ -245,6 +245,36 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function addSavedMessage()
 	{
+		if ($this->app->hasModule('SiteMessagesModule')) {
+			$message = $this->getSavedMessage();
+			if ($message instanceof SwatMessage) {
+				$messages = $this->app->getModule('SiteMessagesModule');
+				$messages->add($message);
+			}
+		}
+	}
+
+	// }}}
+	// {{{ protected function getSavedMessage()
+
+	protected function getSavedMessage()
+	{
+		$message = null;
+		$message_text = $this->getSavedMessageText();
+
+		if ($message_text != '') {
+			$message = new SwatMessage($message_text);
+		}
+
+		return $message;
+	}
+
+	// }}}
+	// {{{ protected function getSavedMessageText()
+
+	protected function getSavedMessageText()
+	{
+		return null;
 	}
 
 	// }}}
