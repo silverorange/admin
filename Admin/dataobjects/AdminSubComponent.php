@@ -141,8 +141,16 @@ class AdminSubComponent extends SwatDBDataObject
 	{
 		$this->table = 'AdminSubComponent';
 		$this->id_field = 'integer:id';
-		$this->registerInternalProperty('section', 'AdminSection');
-		$this->registerInternalProperty('component', 'AdminComponent');
+
+		$this->registerInternalProperty(
+			'section',
+			SwatDBClassMap::get('AdminSection')
+		);
+
+		$this->registerInternalProperty(
+			'component',
+			SwatDBClassMap::get('AdminComponent')
+		);
 	}
 
 	// }}}

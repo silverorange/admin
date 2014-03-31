@@ -145,7 +145,11 @@ class AdminComponent extends SwatDBDataObject
 	{
 		$this->table = 'AdminComponent';
 		$this->id_field = 'integer:id';
-		$this->registerInternalProperty('section', 'AdminSection');
+
+		$this->registerInternalProperty(
+			'section',
+			SwatDBClassMap::get('AdminSection')
+		);
 	}
 
 	// }}}
@@ -156,10 +160,16 @@ class AdminComponent extends SwatDBDataObject
 	 */
 	protected function loadSubComponents()
 	{
-		$sql = sprintf('select * from AdminSubComponent
-			where component = %s', $this->db->quote($this->id, 'integer'));
+		$sql = sprintf(
+			'select * from AdminSubComponent where component = %s',
+			$this->db->quote($this->id, 'integer')
+		);
 
-		return SwatDB::query($this->db, $sql, 'AdminSubComponentWrapper');
+		return SwatDB::query(
+			$this->db,
+			$sql,
+			SwatDBClassMap::get('AdminSubComponentWrapper')
+		);
 	}
 
 	// }}}
@@ -170,12 +180,18 @@ class AdminComponent extends SwatDBDataObject
 	 */
 	protected function loadGroups()
 	{
-		$sql = sprintf('select * from AdminGroup
+		$sql = sprintf(
+			'select * from AdminGroup
 			inner join AdminComponentAdminGroupBinding as binding on
 				binding.groupnum = AdminGroup.id and binding.component = %s',
-			$this->db->quote($this->id, 'integer'));
+			$this->db->quote($this->id, 'integer')
+		);
 
-		return SwatDB::query($this->db, $sql, 'AdminGroupWrapper');
+		return SwatDB::query(
+			$this->db,
+			$sql,
+			SwatDBClassMap::get('AdminGroupWrapper')
+		);
 	}
 
 	// }}}
