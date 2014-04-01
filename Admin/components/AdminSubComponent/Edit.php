@@ -15,7 +15,7 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 {
 	// {{{ protected properties
 
-	protected $component;
+	protected $admin_component;
 
 	// }}}
 	// {{{ protected function getObjectClass()
@@ -42,13 +42,13 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 	{
 		parent::initInternal();
 
-		$this->initComponent();
+		$this->initAdminComponent();
 	}
 
 	// }}}
-	// {{{ protected function initComponent()
+	// {{{ protected function initAdminComponent()
 
-	protected function initComponent()
+	protected function initAdminComponent()
 	{
 		if ($this->isNew()) {
 			$parent_id = SiteApplication::initVar('parent');
@@ -63,10 +63,10 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 			}
 
 			$class_name = SwatDBClassMap::get('AdminComponent');
-			$this->component = new $class_name();
-			$this->component->setDatabase($this->app->db);
+			$this->admin_component = new $class_name();
+			$this->admin_component->setDatabase($this->app->db);
 
-			if (!$this->component->load($parent_id)) {
+			if (!$this->admin_component->load($parent_id)) {
 				throw new AdminNotFoundException(
 					sprintf(
 						Admin::_('Component with id "%s" not found.'),
@@ -75,7 +75,7 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 				);
 			}
 		} else {
-			$this->component = $this->getObject()->component;
+			$this->admin_component = $this->getObject()->component;
 		}
 	}
 
@@ -117,7 +117,7 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 
 
 		if ($this->isNew()) {
-			$this->getObject()->component = $this->component;
+			$this->getObject()->component = $this->admin_component;
 		}
 	}
 
@@ -142,7 +142,7 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 		parent::buildForm();
 
 		$form = $this->ui->getWidget('edit_form');
-		$form->addHiddenField('parent', $this->component->id);
+		$form->addHiddenField('parent', $this->admin_component->id);
 	}
 
 	// }}}
@@ -172,10 +172,10 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 		);
 
 		$this->navbar->createEntry(
-			$this->component->title,
+			$this->admin_component->title,
 			sprintf(
 				'AdminComponent/Details?id=%s',
-				$this->component->id
+				$this->admin_component->id
 			)
 		);
 
