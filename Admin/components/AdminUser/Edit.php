@@ -27,6 +27,19 @@ class AdminAdminUserEdit extends AdminObjectEdit
 	}
 
 	// }}}
+	// {{{ protected function getObjectPropertyWidgetMapping()
+
+	protected function getObjectPropertyWidgetMapping()
+	{
+		return array(
+			'email',
+			'name',
+			'enabled',
+			'force_change_password',
+		);
+	}
+
+	// }}}
 
 	// init phase
 	// {{{ protected function initInternal()
@@ -135,14 +148,6 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		parent::updateObject();
 
 		$this->updatePassword();
-		$this->assignUiValues(
-			array(
-				'email',
-				'name',
-				'enabled',
-				'force_change_password',
-			)
-		);
 	}
 
 	// }}}
@@ -226,14 +231,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 
 	protected function loadObject()
 	{
-		$this->assignValuesToUi(
-			array(
-				'email',
-				'name',
-				'enabled',
-				'force_change_password',
-			)
-		);
+		parent::loadObject();
 
 		if (!$this->isNew()) {
 			$this->loadGroupBindings();

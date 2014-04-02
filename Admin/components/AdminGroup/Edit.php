@@ -28,6 +28,16 @@ class AdminAdminGroupEdit extends AdminObjectEdit
 	}
 
 	// }}}
+	// {{{ protected function getObjectPropertyWidgetMapping()
+
+	protected function getObjectPropertyWidgetMapping()
+	{
+		return array(
+			'title',
+		);
+	}
+
+	// }}}
 
 	// init phase
 	// {{{ protected function initInternal()
@@ -82,20 +92,6 @@ class AdminAdminGroupEdit extends AdminObjectEdit
 	// }}}
 
 	// process phase
-	// {{{ protected function updateObject()
-
-	protected function updateObject()
-	{
-		parent::updateObject();
-
-		$this->assignUiValues(
-			array(
-				'title',
-			)
-		);
-	}
-
-	// }}}
 	// {{{ protected function postSaveObject()
 
 	protected function postSaveObject()
@@ -160,11 +156,7 @@ class AdminAdminGroupEdit extends AdminObjectEdit
 
 	protected function loadObject()
 	{
-		$this->assignValuesToUi(
-			array(
-				'title',
-			)
-		);
+		parent::loadObject();
 
 		if (!$this->isNew()) {
 			$this->loadUserBindings();

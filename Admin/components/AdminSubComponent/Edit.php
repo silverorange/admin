@@ -34,6 +34,18 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 	}
 
 	// }}}
+	// {{{ protected function getObjectPropertyWidgetMapping()
+
+	protected function getObjectPropertyWidgetMapping()
+	{
+		return array(
+			'title',
+			'shortname',
+			'visible',
+		);
+	}
+
+	// }}}
 
 	// init phase
 	// {{{ protected function initInternal()
@@ -107,15 +119,6 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 	{
 		parent::updateObject();
 
-		$this->assignUiValues(
-			array(
-				'title',
-				'shortname',
-				'visible',
-			)
-		);
-
-
 		if ($this->isNew()) {
 			$this->getObject()->component = $this->admin_component;
 		}
@@ -143,20 +146,6 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 
 		$form = $this->ui->getWidget('edit_form');
 		$form->addHiddenField('parent', $this->admin_component->id);
-	}
-
-	// }}}
-	// {{{ protected function loadObject()
-
-	protected function loadObject()
-	{
-		$this->assignValuesToUi(
-			array(
-				'title',
-				'shortname',
-				'visible',
-			)
-		);
 	}
 
 	// }}}

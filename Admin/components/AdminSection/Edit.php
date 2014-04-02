@@ -28,20 +28,14 @@ class AdminAdminSectionEdit extends AdminObjectEdit
 	}
 
 	// }}}
+	// {{{ protected function getObjectPropertyWidgetMapping()
 
-	// process phase
-	// {{{ protected function updateObject()
-
-	protected function updateObject()
+	protected function getObjectPropertyWidgetMapping()
 	{
-		parent::updateObject();
-
-		$this->assignUiValues(
-			array(
-				'title',
-				'visible',
-				'description',
-			)
+		return array(
+			'title',
+			'visible',
+			'description',
 		);
 	}
 
@@ -53,22 +47,6 @@ class AdminAdminSectionEdit extends AdminObjectEdit
 		return sprintf(
 			Admin::_('Section “%s” has been saved.'),
 			$this->getObject()->title
-		);
-	}
-
-	// }}}
-
-	// build phase
-	// {{{ protected function loadObject()
-
-	protected function loadObject()
-	{
-		$this->assignValuesToUi(
-			array(
-				'title',
-				'visible',
-				'description',
-			)
 		);
 	}
 

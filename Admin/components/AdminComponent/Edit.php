@@ -28,6 +28,21 @@ class AdminAdminComponentEdit extends AdminObjectEdit
 	}
 
 	// }}}
+	// {{{ protected function getObjectPropertyWidgetMapping()
+
+	protected function getObjectPropertyWidgetMapping()
+	{
+		return array(
+			'title',
+			'shortname',
+			'section',
+			'visible',
+			'enabled',
+			'description',
+		);
+	}
+
+	// }}}
 
 	// init phase
 	// {{{ protected function initInternal()
@@ -96,25 +111,6 @@ class AdminAdminComponentEdit extends AdminObjectEdit
 	}
 
 	// }}}
-	// {{{ protected function updateObject()
-
-	protected function updateObject()
-	{
-		parent::updateObject();
-
-		$this->assignUiValues(
-			array(
-				'title',
-				'shortname',
-				'section',
-				'visible',
-				'enabled',
-				'description',
-			)
-		);
-	}
-
-	// }}}
 	// {{{ protected function postSaveObject()
 
 	protected function postSaveObject()
@@ -159,16 +155,7 @@ class AdminAdminComponentEdit extends AdminObjectEdit
 
 	protected function loadObject()
 	{
-		$this->assignValuesToUi(
-			array(
-				'title',
-				'shortname',
-				'section',
-				'visible',
-				'enabled',
-				'description',
-			)
-		);
+		parent::loadObject();
 
 		if (!$this->isNew()) {
 			$this->loadGroupBindings();

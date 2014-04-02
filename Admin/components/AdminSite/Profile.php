@@ -28,6 +28,17 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 	}
 
 	// }}}
+	// {{{ protected function getObjectPropertyWidgetMapping()
+
+	protected function getObjectPropertyWidgetMapping()
+	{
+		return array(
+			'email',
+			'name',
+		);
+	}
+
+	// }}}
 
 	// init phase
 	// {{{ protected function initObject()
@@ -46,7 +57,6 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 
 	protected function initInternal()
 	{
-
 		parent::initInternal();
 
 		$this->initPasswordWidgets();
@@ -105,13 +115,6 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 	{
 		parent::updateObject();
 
-		$this->assignUiValues(
-			array(
-				'email',
-				'name',
-			)
-		);
-
 		$this->updatePassword();
 	}
 
@@ -149,21 +152,6 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 	// }}}
 
 	// build phase
-	// {{{ protected function loadObject()
-
-	protected function loadObject()
-	{
-		parent::loadObject();
-
-		$this->assignValuesToUi(
-			array(
-				'email',
-				'name',
-			)
-		);
-	}
-
-	// }}}
 	// {{{ protected function buildInternal()
 
 	protected function buildInternal()
