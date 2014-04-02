@@ -248,8 +248,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		if ($this->app->hasModule('SiteMessagesModule')) {
 			$message = $this->getSavedMessage();
 			if ($message instanceof SwatMessage) {
-				$messages = $this->app->getModule('SiteMessagesModule');
-				$messages->add($message);
+				$this->app->getModule('SiteMessagesModule')->add($message);
 			}
 		}
 	}
