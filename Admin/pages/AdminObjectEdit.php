@@ -254,6 +254,70 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function addSavedMessage()
 	{
+		if ($this->app->hasModule('SiteMessagesModule')) {
+			$message = $this->getSavedMessage();
+			if ($message instanceof SwatMessage) {
+				$this->app->getModule('SiteMessagesModule')->add($message);
+			}
+		}
+	}
+
+	// }}}
+	// {{{ protected function getSavedMessage()
+
+	protected function getSavedMessage()
+	{
+		$message = null;
+		$message_type      = $this->getSavedMessageType();
+		$primary_content   = $this->getSavedMessagePrimaryContent();
+		$secondary_content = $this->getSavedMessageSecondaryContent();
+		$content_type      = $this->getSavedMessageContentType();
+
+		if ($primary_content != '') {
+			$message = new SwatMessage($primary_content, $message_type);
+
+			if ($secondary_text != '') {
+				$message->secondary_content = $secondary_content;
+			}
+
+			if ($content_type != '') {
+				$message->content_type = $content_type;
+			}
+		}
+
+		return $message;
+	}
+
+	// }}}
+	// {{{ protected function getSavedMessagePrimaryContent()
+
+	protected function getSavedMessagePrimaryContent()
+	{
+		return null;
+	}
+
+	// }}}
+	// {{{ protected function getSavedMessageSecondaryContent()
+
+	protected function getSavedMessageSecondaryContent()
+	{
+		return null;
+	}
+
+	// }}}
+	// {{{ protected function getSavedMessageType()
+
+	protected function getSavedMessageType()
+	{
+		return null;
+	}
+
+	// }}}
+	// {{{ protected function getSavedMessageContentType()
+
+	protected function getSavedMessageContentType()
+	{
+		return null;
 	}
 
 	// }}}
