@@ -259,10 +259,21 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	protected function getSavedMessage()
 	{
 		$message = null;
-		$message_text = $this->getSavedMessageText();
+		$message_type      = $this->getSavedMessageType();
+		$message_text      = $this->getSavedMessageText();
+		$secondary_content = $this->getSavedMessageSecondaryContent();
+		$content_type      = $this->getSavedMessageContentType();
 
 		if ($message_text != '') {
-			$message = new SwatMessage($message_text);
+			$message = new SwatMessage($message_text, $message_type);
+
+			if ($secondary_text != '') {
+				$message->secondary_content = $secondary_content;
+			}
+
+			if ($content_type != '') {
+				$message->content_type = $content_type;
+			}
 		}
 
 		return $message;
@@ -272,6 +283,30 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	// {{{ protected function getSavedMessageText()
 
 	protected function getSavedMessageText()
+	{
+		return null;
+	}
+
+	// }}}
+	// {{{ protected function getSavedMessageSecondaryContent()
+
+	protected function getSavedMessageSecondaryContent()
+	{
+		return null;
+	}
+
+	// }}}
+	// {{{ protected function getSavedMessageType()
+
+	protected function getSavedMessageType()
+	{
+		return null;
+	}
+
+	// }}}
+	// {{{ protected function getSavedMessageContentType()
+
+	protected function getSavedMessageContentType()
 	{
 		return null;
 	}
