@@ -57,6 +57,14 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	}
 
 	// }}}
+	// {{{ protected function getObjectPropertyWidgetMapping()
+
+	protected function getObjectPropertyWidgetMapping()
+	{
+		return array();
+	}
+
+	// }}}
 
 	// init phase
 	// {{{ public function init()
@@ -162,6 +170,10 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	protected function updateObject()
 	{
 		$object = $this->getObject();
+
+		$this->assignUiValues(
+			$this->getObjectPropertyWidgetMapping()
+		);
 
 		if ($this->isNew()) {
 			if ($object->hasPublicProperty('createdate') &&
@@ -314,6 +326,9 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function loadObject()
 	{
+		$this->assignValuesToUi(
+			$this->getObjectPropertyWidgetMapping()
+		);
 	}
 
 	// }}}
