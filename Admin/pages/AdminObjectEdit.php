@@ -171,10 +171,9 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	{
 		$object = $this->getObject();
 
-		$properties = $this->getObjectPropertyWidgetMapping();
-		if (is_array($properties) && count($properties) > 0) {
-			$this->assignUiValues($properties);
-		}
+		$this->assignUiValues(
+			$this->getObjectPropertyWidgetMapping()
+		);
 
 		if ($this->isNew()) {
 			if ($object->hasPublicProperty('createdate') &&
@@ -327,10 +326,9 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function loadObject()
 	{
-		$properties = $this->getObjectPropertyWidgetMapping();
-		if (is_array($properties) && count($properties) > 0) {
-			$this->assignValuesToUi($properties);
-		}
+		$this->assignValuesToUi(
+			$this->getObjectPropertyWidgetMapping()
+		);
 	}
 
 	// }}}
