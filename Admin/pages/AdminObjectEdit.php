@@ -185,9 +185,6 @@ abstract class AdminObjectEdit extends AdminDBEdit
 			$old_object = clone $object;
 			$this->addObjectToFlushOnSave($old_object);
 		}
-
-		return $object;
-		// Subclass handles the rest.
 	}
 
 	// }}}
