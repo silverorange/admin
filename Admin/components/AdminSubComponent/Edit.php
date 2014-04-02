@@ -125,9 +125,9 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 	}
 
 	// }}}
-	// {{{ protected function getSavedMessageText()
+	// {{{ protected function getSavedMessagePrimaryContent()
 
-	protected function getSavedMessageText()
+	protected function getSavedMessagePrimaryContent()
 	{
 		return sprintf(
 			Admin::_('Sub-Component “%s” has been saved.'),

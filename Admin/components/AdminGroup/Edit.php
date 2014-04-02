@@ -139,9 +139,9 @@ class AdminAdminGroupEdit extends AdminObjectEdit
 	}
 
 	// }}}
-	// {{{ protected function getSavedMessageText()
+	// {{{ protected function getSavedMessagePrimaryContent()
 
-	protected function getSavedMessageText()
+	protected function getSavedMessagePrimaryContent()
 	{
 		return sprintf(
 			Admin::_('Group “%s” has been saved.'),

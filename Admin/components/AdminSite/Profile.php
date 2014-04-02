@@ -134,9 +134,9 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 	}
 
 	// }}}
-	// {{{ protected function getSavedMessageText()
+	// {{{ protected function getSavedMessagePrimaryContent()
 
-	protected function getSavedMessageText()
+	protected function getSavedMessagePrimaryContent()
 	{
 		return Admin::_('Your user profile has been updated.');
 	}

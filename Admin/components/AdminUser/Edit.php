@@ -214,9 +214,9 @@ class AdminAdminUserEdit extends AdminObjectEdit
 	}
 
 	// }}}
-	// {{{ protected function getSavedMessageText()
+	// {{{ protected function getSavedMessagePrimaryContent()
 
-	protected function getSavedMessageText()
+	protected function getSavedMessagePrimaryContent()
 	{
 		return sprintf(
 			Admin::_('User “%s” has been saved.'),

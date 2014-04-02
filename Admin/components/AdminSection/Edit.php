@@ -40,9 +40,11 @@ class AdminAdminSectionEdit extends AdminObjectEdit
 	}
 
 	// }}}
-	// {{{ protected function getSavedMessageText()
 
-	protected function getSavedMessageText()
+	// process phase
+	// {{{ protected function getSavedMessagePrimaryContent()
+
+	protected function getSavedMessagePrimaryContent()
 	{
 		return sprintf(
 			Admin::_('Section “%s” has been saved.'),
