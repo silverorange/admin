@@ -13,7 +13,7 @@ require_once 'Admin/AdminMenuStore.php';
  * different menu styles.
  *
  * @package   Admin
- * @copyright 2005-2012 silverorange
+ * @copyright 2005-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminMenuView extends SwatControl
@@ -57,11 +57,8 @@ class AdminMenuView extends SwatControl
 		$yui = new SwatYUI(array('dom', 'event', 'animation'));
 		$this->html_head_entry_set->addEntrySet($yui->getHtmlHeadEntrySet());
 
-		$this->addStyleSheet('packages/admin/styles/admin-menu.css',
-			Admin::PACKAGE_ID);
-
-		$this->addJavaScript('packages/admin/javascript/admin-menu.js',
-			Admin::PACKAGE_ID);
+		$this->addStyleSheet('packages/admin/styles/admin-menu.css');
+		$this->addJavaScript('packages/admin/javascript/admin-menu.js');
 	}
 
 	// }}}

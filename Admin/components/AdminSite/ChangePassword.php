@@ -131,8 +131,7 @@ class AdminAdminSiteChangePassword extends AdminPage
 		parent::finalize();
 
 		$this->layout->addHtmlHeadEntry(
-			'packages/admin/styles/admin-change-password-page.css',
-			Admin::PACKAGE_ID
+			'packages/admin/styles/admin-change-password-page.css'
 		);
 	}
 

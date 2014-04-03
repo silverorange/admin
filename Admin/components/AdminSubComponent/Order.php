@@ -7,7 +7,7 @@ require_once 'SwatDB/SwatDB.php';
  * Order page for AdminSubComponents
  *
  * @package   Admin
- * @copyright silverorange 2005-2008
+ * @copyright 2005-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminSubComponentOrder extends AdminDBOrder

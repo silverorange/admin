@@ -7,7 +7,7 @@ require_once 'Site/layouts/SiteLayout.php';
  * Base class for admin layouts
  *
  * @package   Admin
- * @copyright 2006-2011 silverorange
+ * @copyright 2006-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminLayout extends SiteLayout
@@ -22,11 +22,8 @@ abstract class AdminLayout extends SiteLayout
 		$yui = new SwatYUI(array('fonts', 'grids'));
 		$this->addHtmlHeadEntrySet($yui->getHtmlHeadEntrySet());
 
-		$this->addHtmlHeadEntry(new SwatStyleSheetHtmlHeadEntry(
-			'packages/admin/styles/admin-layout.css', Admin::PACKAGE_ID));
-
-		$this->addHtmlHeadEntry(new SwatStyleSheetHtmlHeadEntry(
-			'packages/admin/styles/admin-swat-local.css', Admin::PACKAGE_ID));
+		$this->addHtmlHeadEntry('packages/admin/styles/admin-layout.css');
+		$this->addHtmlHeadEntry('packages/admin/styles/admin-swat-local.css');
 	}
 
 	// }}}

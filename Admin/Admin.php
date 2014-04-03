@@ -14,11 +14,6 @@ class Admin
 {
 	// {{{ constants
 
-	/**
-	 * The package identifier
-	 */
-	const PACKAGE_ID = 'Admin';
-
 	const GETTEXT_DOMAIN = 'admin';
 
 	// }}}

@@ -9,7 +9,7 @@ require_once 'Swat/SwatMessage.php';
  * Administrator login page
  *
  * @package   Admin
- * @copyright 2005-2012 silverorange
+ * @copyright 2005-2014 silverorange
  */
 class AdminAdminSiteLogin extends AdminPage
 {
@@ -41,8 +41,8 @@ class AdminAdminSiteLogin extends AdminPage
 	{
 		$this->ui->loadFromXML(__DIR__.'/login.xml');
 		$this->ui->getWidget('login_form')->addJavaScript(
-			'packages/admin/javascript/admin-login.js',
-			Admin::PACKAGE_ID);
+			'packages/admin/javascript/admin-login.js'
+		);
 
 		$frame = $this->ui->getWidget('login_frame');
 		$frame->title = $this->app->title;
@@ -149,8 +149,7 @@ class AdminAdminSiteLogin extends AdminPage
 		parent::finalize();
 
 		$this->layout->addHtmlHeadEntry(
-			'packages/admin/styles/admin-login-page.css',
-			Admin::PACKAGE_ID
+			'packages/admin/styles/admin-login-page.css'
 		);
 	}
 

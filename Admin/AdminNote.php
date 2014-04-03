@@ -7,7 +7,7 @@ require_once 'Swat/SwatHtmlTag.php';
  * A widget to display a formatted note in the widget tree
  *
  * @package   Admin
- * @copyright 2006 silverorange
+ * @copyright 2006-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminNote extends SwatContentBlock
@@ -34,8 +34,7 @@ class AdminNote extends SwatContentBlock
 	public function __construct($id = null)
 	{
 		parent::__construct($id);
-		$this->addStyleSheet('packages/admin/styles/admin-note.css',
-			Admin::PACKAGE_ID);
+		$this->addStyleSheet('packages/admin/styles/admin-note.css');
 	}
 
 	// }}}

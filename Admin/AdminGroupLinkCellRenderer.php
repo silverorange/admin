@@ -5,8 +5,8 @@ require_once 'Swat/SwatLinkCellRenderer.php';
 /**
  * A link cell renderer to display in group headers
  *
- * @package Admin
- * @copyright silverorange 2004
+ * @package   Admin
+ * @copyright 2004-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminGroupLinkCellRenderer extends SwatLinkCellRenderer
@@ -18,8 +18,8 @@ class AdminGroupLinkCellRenderer extends SwatLinkCellRenderer
 		parent::__construct();
 
 		$this->addStyleSheet(
-			'packages/admin/styles/admin-group-link-cell-renderer.css',
-			Admin::PACKAGE_ID);
+			'packages/admin/styles/admin-group-link-cell-renderer.css'
+		);
 	}
 
 	// }}}
