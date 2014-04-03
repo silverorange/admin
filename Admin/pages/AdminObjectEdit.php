@@ -274,7 +274,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		if ($primary_content != '') {
 			$message = new SwatMessage($primary_content, $message_type);
 
-			if ($secondary_text != '') {
+			if ($secondary_content != '') {
 				$message->secondary_content = $secondary_content;
 			}
 
