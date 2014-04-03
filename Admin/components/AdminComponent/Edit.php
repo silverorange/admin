@@ -1,26 +1,46 @@
 <?php
 
-require_once 'Admin/AdminUI.php';
+require_once 'Admin/pages/AdminObjectEdit.php';
 require_once 'Admin/dataobjects/AdminComponent.php';
-require_once 'Admin/exceptions/AdminNotFoundException.php';
-require_once 'Admin/pages/AdminDBEdit.php';
-require_once 'SwatDB/SwatDB.php';
 
 /**
  * Edit page for AdminComponents
  *
  * @package   Admin
- * @copyright 2005-2008 silverorange
+ * @copyright 2005-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
-class AdminAdminComponentEdit extends AdminDBEdit
+class AdminAdminComponentEdit extends AdminObjectEdit
 {
-	// {{{ private properties
+	// {{{ protected function getObjectClass()
 
-	/**
-	 * @var AdminComponent
-	 */
-	private $edit_component;
+	protected function getObjectClass()
+	{
+		return 'AdminComponent';
+	}
+
+	// }}}
+	// {{{ protected function getUiXml()
+
+	protected function getUiXml()
+	{
+		return 'Admin/components/AdminComponent/edit.xml';
+	}
+
+	// }}}
+	// {{{ protected function getObjectUiValueNames()
+
+	protected function getObjectUiValueNames()
+	{
+		return array(
+			'title',
+			'shortname',
+			'section',
+			'visible',
+			'enabled',
+			'description',
+		);
+	}
 
 	// }}}
 
@@ -31,37 +51,42 @@ class AdminAdminComponentEdit extends AdminDBEdit
 	{
 		parent::initInternal();
 
-		$this->initComponent();
-
-		$this->ui->loadFromXML(__DIR__.'/edit.xml');
-
-		$section_flydown = $this->ui->getWidget('section');
-		$section_flydown->addOptionsByArray(SwatDB::getOptionArray(
-			$this->app->db, 'AdminSection', 'title', 'id', 'displayorder'));
-
-		$group_list = $this->ui->getWidget('groups');
-		$group_list_options = SwatDB::getOptionArray($this->app->db,
-			'AdminGroup', 'title', 'id', 'title');
-
-		$group_list->addOptionsByArray($group_list_options);
+		$this->initSections();
+		$this->initGroups();
 	}
 
 	// }}}
-	// {{{ private function initComponent()
+	// {{{ protected function initSections()
 
-	private function initComponent()
+	protected function initSections()
 	{
-		$class_name = SwatDBClassMap::get('AdminComponent');
-		$this->edit_component = new $class_name();
-		$this->edit_component->setDatabase($this->app->db);
+		$section_flydown = $this->ui->getWidget('section');
+		$section_flydown_options = SwatDB::getOptionArray(
+			$this->app->db,
+			'AdminSection',
+			'title',
+			'id',
+			'displayorder'
+		);
 
-		if ($this->id !== null){
-			if (!$this->edit_component->load($this->id)) {
-				throw new AdminNotFoundException(
-					sprintf(Admin::_('Component with id "%s" not found.'),
-						$this->id));
-			}
-		}
+		$section_flydown->addOptionsByArray($section_flydown_options);
+	}
+
+	// }}}
+	// {{{ protected function initGroups()
+
+	protected function initGroups()
+	{
+		$group_list = $this->ui->getWidget('groups');
+		$group_list_options = SwatDB::getOptionArray(
+			$this->app->db,
+			'AdminGroup',
+			'title',
+			'id',
+			'title'
+		);
+
+		$group_list->addOptionsByArray($group_list_options);
 	}
 
 	// }}}
@@ -71,74 +96,86 @@ class AdminAdminComponentEdit extends AdminDBEdit
 
 	protected function validate()
 	{
-		$shortname = $this->ui->getWidget('shortname');
+		$shortname_widget = $this->ui->getWidget('shortname');
+		$shortname = $shortname_widget->value;
 
-		$class_name = SwatDBClassMap::get('AdminComponent');
-		$component = new $class_name();
-		$component->setDatabase($this->app->db);
+		$should_validate_shortname = (!$this->isNew() || $shortname != '');
+		if ($should_validate_shortname &&
+			!$this->validateShortname($shortname)) {
+			$message = new SwatMessage(
+				Admin::_('Shortname already exists and must be unique.'),
+				'error'
+			);
 
-		if ($component->loadFromShortname($shortname->value)) {
-			if ($component->id !== $this->edit_component->id) {
-				$message = new SwatMessage(
-					Admin::_('Shortname already exists and must be unique.'));
-
-				$shortname->addMessage($message);
-			}
+			$shortname_widget->addMessage($message);
 		}
 	}
 
 	// }}}
-	// {{{ protected function saveDBData()
+	// {{{ protected function postSaveObject()
 
-	protected function saveDBData()
+	protected function postSaveObject()
 	{
-		$values = $this->ui->getValues(array(
-			'title',
-			'shortname',
-			'section',
-			'visible',
-			'enabled',
-			'description',
-		));
+		$this->updateGroupBindings();
+	}
 
-		$this->edit_component->title       = $values['title'];
-		$this->edit_component->shortname   = $values['shortname'];
-		$this->edit_component->section     = $values['section'];
-		$this->edit_component->visible     = $values['visible'];
-		$this->edit_component->enabled     = $values['enabled'];
-		$this->edit_component->description = $values['description'];
+	// }}}
+	// {{{ protected function updateGroupBindings()
 
-		$this->edit_component->save();
-
+	protected function updateGroupBindings()
+	{
 		$group_list = $this->ui->getWidget('groups');
 
-		SwatDB::updateBinding($this->app->db, 'AdminComponentAdminGroupBinding',
-			'component', $this->edit_component->id, 'groupnum',
-			$group_list->values, 'AdminGroup', 'id');
+		SwatDB::updateBinding(
+			$this->app->db,
+			'AdminComponentAdminGroupBinding',
+			'component',
+			$this->getObject()->id,
+			'groupnum',
+			$group_list->values,
+			'AdminGroup',
+			'id'
+		);
+	}
 
-		$message = new SwatMessage(sprintf(
+	// }}}
+	// {{{ protected function getSavedMessagePrimaryContent()
+
+	protected function getSavedMessagePrimaryContent()
+	{
+		return sprintf(
 			Admin::_('Component “%s” has been saved.'),
-			$this->edit_component->title));
-
-		$this->app->messages->add($message);
+			$this->getObject()->title
+		);
 	}
 
 	// }}}
 
 	// build phase
-	// {{{ protected function loadDBData()
+	// {{{ protected function loadObject()
 
-	protected function loadDBData()
+	protected function loadObject()
 	{
-		$this->ui->setValues(get_object_vars($this->edit_component));
+		parent::loadObject();
 
-		$this->ui->getWidget('section')->value =
-			$this->edit_component->getInternalValue('section');
+		if (!$this->isNew()) {
+			$this->loadGroupBindings();
+		}
+	}
 
+	// }}}
+	// {{{ protected function loadGroupBindings()
+
+	protected function loadGroupBindings()
+	{
 		$group_list = $this->ui->getWidget('groups');
-		$group_list->values = SwatDB::queryColumn($this->app->db,
-			'AdminComponentAdminGroupBinding', 'groupnum', 'component',
-			$this->id);
+		$group_list->values = SwatDB::queryColumn(
+			$this->app->db,
+			'AdminComponentAdminGroupBinding',
+			'groupnum',
+			'component',
+			$this->getObject()->id
+		);
 	}
 
 	// }}}

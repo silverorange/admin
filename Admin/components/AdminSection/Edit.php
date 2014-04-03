@@ -1,87 +1,55 @@
 <?php
 
-require_once 'Admin/pages/AdminDBEdit.php';
-require_once 'Admin/AdminUI.php';
-require_once 'Admin/exceptions/AdminNotFoundException.php';
+require_once 'Admin/pages/AdminObjectEdit.php';
 require_once 'Admin/dataobjects/AdminSection.php';
-require_once 'MDB2.php';
-
 
 /**
  * Edit page for AdminSections
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
-class AdminAdminSectionEdit extends AdminDBEdit
+class AdminAdminSectionEdit extends AdminObjectEdit
 {
-	// {{{ private properties
+	// {{{ protected function getObjectClass()
 
-	private $section;
-
-	// }}}
-
-	// init phase
-	// {{{ protected function initInternal()
-
-	protected function initInternal()
+	protected function getObjectClass()
 	{
-		parent::initInternal();
-		$this->initSection();
-
-		$this->ui->loadFromXML(__DIR__.'/edit.xml');
+		return 'AdminSection';
 	}
 
 	// }}}
-	// {{{ protected function initSection()
-	protected function initSection()
-	{
-		$class_name = SwatDBClassMap::get('AdminSection');
-		$this->section = new $class_name();
-		$this->section->setDatabase($this->app->db);
+	// {{{ protected function getUiXml()
 
-		if ($this->id !== null) {
-			if (!$this->section->load($this->id)){
-				throw new AdminNotFoundException(
-					sprintf(Admin::_('Section with id "%s" not found.'),
-							$this->id));
-			}
-		}
+	protected function getUiXml()
+	{
+		return 'Admin/components/AdminSection/edit.xml';
+	}
+
+	// }}}
+	// {{{ protected function getObjectUiValueNames()
+
+	protected function getObjectUiValueNames()
+	{
+		return array(
+			'title',
+			'visible',
+			'description',
+		);
 	}
 
 	// }}}
 
 	// process phase
-	// {{{ protected function saveDBData()
+	// {{{ protected function getSavedMessagePrimaryContent()
 
-	protected function saveDBData()
+	protected function getSavedMessagePrimaryContent()
 	{
-		$values = $this->ui->getValues(array(
-			'title',
-			'visible',
-			'description'));
-
-		$this->section->title       = $values['title'];
-		$this->section->visible     = $values['visible'];
-		$this->section->description = $values['description'];
-		$this->section->save();
-
-		$message = new SwatMessage(
-			sprintf(Admin::_('Section “%s” has been saved.'),
-			$values['title']), 'notice');
-
-		$this->app->messages->add($message);
-	}
-
-	// }}}
-
-	// build phase
-	// {{{ protected function loadDBData()
-
-	protected function loadDBData()
-	{
-		$this->ui->setValues(get_object_vars($this->section));
+		return sprintf(
+			Admin::_('Section “%s” has been saved.'),
+			$this->getObject()->title
+		);
 	}
 
 	// }}}

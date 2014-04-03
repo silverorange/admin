@@ -13,7 +13,7 @@ require_once 'Admin/dataobjects/AdminSubComponentWrapper.php';
  * administer an item.
  *
  * @package   Admin
- * @copyright 2007 silverorange
+ * @copyright 2007-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminComponent extends SwatDBDataObject
@@ -81,7 +81,7 @@ class AdminComponent extends SwatDBDataObject
 	public $visible;
 
 	// }}}
-	// {{{ public function loadFromShortname()
+	// {{{ public function loadByShortname()
 
 	/**
 	 * Loads an admin component by its shortname
@@ -92,28 +92,50 @@ class AdminComponent extends SwatDBDataObject
 	 *                  false if a component with the given shortname does not
 	 *                  exist.
 	 */
-	public function loadFromShortname($shortname)
+	public function loadByShortname($shortname)
 	{
 		$this->checkDB();
 
 		$row = null;
 
 		if ($this->table !== null) {
-			$sql = sprintf('select * from %s where shortname = %s',
+			$sql = sprintf(
+				'select * from %s where shortname = %s',
 				$this->table,
-				$this->db->quote($shortname, 'text'));
+				$this->db->quote($shortname, 'text')
+			);
 
 			$rs = SwatDB::query($this->db, $sql, null);
 			$row = $rs->fetchRow(MDB2_FETCHMODE_ASSOC);
 		}
 
-		if ($row === null)
+		if ($row === null) {
 			return false;
+		}
 
 		$this->initFromRow($row);
 		$this->generatePropertyHashes();
 
 		return true;
+	}
+
+	// }}}
+	// {{{ public function loadFromShortname()
+
+	/**
+	 * Loads an admin component by its shortname
+	 *
+	 * @param string $shortname the shortname of the admin component to load.
+	 *
+	 * @return boolean true if loading this component was successful and
+	 *                  false if a component with the given shortname does not
+	 *                  exist.
+	 *
+	 * @deprecated Use {@link AdminComponent::loadByShortname}
+	 */
+	public function loadFromShortname($shortname)
+	{
+		return $this->loadByShortname($shortname);
 	}
 
 	// }}}
@@ -123,7 +145,11 @@ class AdminComponent extends SwatDBDataObject
 	{
 		$this->table = 'AdminComponent';
 		$this->id_field = 'integer:id';
-		$this->registerInternalProperty('section', 'AdminSection');
+
+		$this->registerInternalProperty(
+			'section',
+			SwatDBClassMap::get('AdminSection')
+		);
 	}
 
 	// }}}
@@ -134,10 +160,16 @@ class AdminComponent extends SwatDBDataObject
 	 */
 	protected function loadSubComponents()
 	{
-		$sql = sprintf('select * from AdminSubComponent
-			where component = %s', $this->db->quote($this->id, 'integer'));
+		$sql = sprintf(
+			'select * from AdminSubComponent where component = %s',
+			$this->db->quote($this->id, 'integer')
+		);
 
-		return SwatDB::query($this->db, $sql, 'AdminSubComponentWrapper');
+		return SwatDB::query(
+			$this->db,
+			$sql,
+			SwatDBClassMap::get('AdminSubComponentWrapper')
+		);
 	}
 
 	// }}}
@@ -148,12 +180,18 @@ class AdminComponent extends SwatDBDataObject
 	 */
 	protected function loadGroups()
 	{
-		$sql = sprintf('select * from AdminGroup
+		$sql = sprintf(
+			'select * from AdminGroup
 			inner join AdminComponentAdminGroupBinding as binding on
 				binding.groupnum = AdminGroup.id and binding.component = %s',
-			$this->db->quote($this->id, 'integer'));
+			$this->db->quote($this->id, 'integer')
+		);
 
-		return SwatDB::query($this->db, $sql, 'AdminGroupWrapper');
+		return SwatDB::query(
+			$this->db,
+			$sql,
+			SwatDBClassMap::get('AdminGroupWrapper')
+		);
 	}
 
 	// }}}
