@@ -67,10 +67,8 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 
 			if ($parent_id === null) {
 				throw new AdminNotFoundException(
-					Admin::_(
-						'Must supply a Component ID for newly created '.
-						'Sub-Compoenets.'
-					)
+					'Must supply a Component ID for newly created '.
+					'Sub-Compoenets.'
 				);
 			}
 
@@ -81,7 +79,7 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 			if (!$this->admin_component->load($parent_id)) {
 				throw new AdminNotFoundException(
 					sprintf(
-						Admin::_('Component with id "%s" not found.'),
+						'Component with id "%s" not found.',
 						$parent_id
 					)
 				);
