@@ -186,7 +186,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 				$shortname_widget = $this->ui->getWidget('shortname');
 
 				if ($shortname_widget->value == '') {
-					$shortname_widget->value = $this->generateShortname(
+					$object->shortname = $this->generateShortname(
 						$this->ui->getWidget('title')->value
 					);
 				}
