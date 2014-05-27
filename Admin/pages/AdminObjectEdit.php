@@ -217,6 +217,13 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function addObjectToFlushOnSave(SwatDBDataObject $object)
 	{
+		// Make sure the flushable cache is set.
+		if ($this->app->hasModule('SiteMemcacheModule')) {
+			$object->setFlushableCache(
+				$this->app->getModule('SiteMemcacheModule')
+			);
+		}
+
 		$this->data_objects_to_flush[] = $object;
 	}
 
