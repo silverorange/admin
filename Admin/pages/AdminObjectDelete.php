@@ -109,12 +109,13 @@ abstract class AdminObjectDelete extends AdminDBDelete
 	{
 		parent::processDBData();
 
-		$objects = $this->getObjects();
-		$delete_count = count($objects);
+		// Build the message before actually deleting the objects, so that the
+		// message can have access to the objects for fancier messages.
+		$message = $this->getDeletedMessage();
 
+		$objects = $this->getObjects();
 		$this->deleteObjects($objects);
 
-		$message = $this->getDeletedMessage($delete_count);
 		if ($message instanceof SiteMessage) {
 			$this->app->messages->add($message);
 		}
@@ -168,7 +169,7 @@ abstract class AdminObjectDelete extends AdminDBDelete
 	// }}}
 	// {{{ protected function getSavedMessagePrimaryContent()
 
-	protected function getSavedMessagePrimaryContent($delete_count)
+	protected function getSavedMessagePrimaryContent()
 	{
 		return null;
 	}
