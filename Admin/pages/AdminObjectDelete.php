@@ -14,7 +14,7 @@ abstract class AdminObjectDelete extends AdminDBDelete
 	// {{{ protected properties
 
 	/**
-	 * The dataobject instance we are editing on this page.
+	 * The dataobjects instance we are deleting on the page.
 	 *
 	 * @var SwatDBRecordsetWrapper
 	 *
