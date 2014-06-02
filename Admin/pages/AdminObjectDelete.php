@@ -146,10 +146,10 @@ abstract class AdminObjectDelete extends AdminDBDelete
 	{
 		$message = null;
 
-		$message_type      = $this->getSavedMessageType();
-		$primary_content   = $this->getSavedMessagePrimaryContent();
-		$secondary_content = $this->getSavedMessageSecondaryContent();
-		$content_type      = $this->getSavedMessageContentType();
+		$message_type      = $this->getDeletedMessageType();
+		$primary_content   = $this->getDeletedMessagePrimaryContent();
+		$secondary_content = $this->getDeletedMessageSecondaryContent();
+		$content_type      = $this->getDeletedMessageContentType();
 
 		if ($primary_content != '') {
 			$message = new SwatMessage($primary_content, $message_type);
@@ -167,33 +167,33 @@ abstract class AdminObjectDelete extends AdminDBDelete
 	}
 
 	// }}}
-	// {{{ protected function getSavedMessagePrimaryContent()
+	// {{{ protected function getDeletedMessagePrimaryContent()
 
-	protected function getSavedMessagePrimaryContent()
+	protected function getDeletedMessagePrimaryContent()
 	{
 		return null;
 	}
 
 	// }}}
-	// {{{ protected function getSavedMessageSecondaryContent()
+	// {{{ protected function getDeletedMessageSecondaryContent()
 
-	protected function getSavedMessageSecondaryContent()
+	protected function getDeletedMessageSecondaryContent()
 	{
 		return null;
 	}
 
 	// }}}
-	// {{{ protected function getSavedMessageType()
+	// {{{ protected function getDeletedMessageType()
 
-	protected function getSavedMessageType()
+	protected function getDeletedMessageType()
 	{
 		return null;
 	}
 
 	// }}}
-	// {{{ protected function getSavedMessageContentType()
+	// {{{ protected function getDeletedMessageContentType()
 
-	protected function getSavedMessageContentType()
+	protected function getDeletedMessageContentType()
 	{
 		return null;
 	}
