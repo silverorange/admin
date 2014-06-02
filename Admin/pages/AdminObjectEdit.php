@@ -24,6 +24,16 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	protected $data_object;
 
 	/**
+	 * When edits should replace the existing object with a new object
+	 * this is the existing object being edited.
+	 *
+	 * @var SwatDBDataObject
+	 *
+	 * @see AdminObjectEdit::shouldReplaceObject()
+	 */
+	protected $old_object;
+
+	/**
 	 * An array of SwatDBDataObject objects to flush
 	 *
 	 * @var array
@@ -54,6 +64,39 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	protected function getObject()
 	{
 		return $this->data_object;
+	}
+
+	// }}}
+	// {{{ protected function setObject()
+
+	protected function setObject(SwatDBDataObject $object)
+	{
+		$this->data_object = $object;
+	}
+
+	// }}}
+	// {{{ protected function getOldObject()
+
+	protected function getOldObject()
+	{
+		return $this->old_object;
+	}
+
+	// }}}
+	// {{{ protected function shouldReplaceObject()
+
+	/**
+	 * Whether or not to replace the object being edited with a new object.
+	 *
+	 * This is useful for cases where generating a new object and corroponding
+	 * id is necessary, for example when dealing with objects such as images
+	 * that could be cached by a browser or CDN storage based on its id.
+	 *
+	 * @returns boolean
+	 */
+	protected function shouldReplaceObject()
+	{
+		return false;
 	}
 
 	// }}}
@@ -91,6 +134,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		parent::initInternal();
 
 		$this->initObject();
+		$this->initOldObject();
 	}
 
 	// }}}
@@ -98,25 +142,45 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function initObject()
 	{
+		$this->data_object = $this->getNewObjectInstance();
+
+		if (!$this->isNew()) {
+			if (!$this->data_object->load($this->id)) {
+				throw new AdminNotFoundException(
+					sprintf(
+						'A %s with the id of ‘%s’ does not exist',
+						$class_name,
+						$this->id
+					)
+				);
+			}
+		}
+	}
+
+	// }}}
+	// {{{ protected function initOldObject()
+
+	protected function initOldObject()
+	{
+		$this->old_object = clone $this->getObject();
+	}
+
+	// }}}
+	// {{{ protected function getNewObjectInstance()
+
+	protected function getNewObjectInstance()
+	{
 		$class_name = $this->getResolvedObjectClass();
-		$this->data_object = new $class_name();
-		$this->data_object->setDatabase($this->app->db);
+		$data_object = new $class_name();
+		$data_object->setDatabase($this->app->db);
 
 		if ($this->app->hasModule('SiteMemcacheModule')) {
-			$this->data_object->setFlushableCache(
+			$data_object->setFlushableCache(
 				$this->app->getModule('SiteMemcacheModule')
 			);
 		}
 
-		if (!$this->isNew() && !$this->data_object->load($this->id)) {
-			throw new AdminNotFoundException(
-				sprintf(
-					'A %s with the id of ‘%s’ does not exist',
-					$class_name,
-					$this->id
-				)
-			);
-		}
+		return $data_object;
 	}
 
 	// }}}
@@ -155,6 +219,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		}
 
 		$this->saveObject();
+		$this->deleteOldObject();
 		$this->postSaveObject();
 		$this->flushObjectsOnSave();
 		$this->addToSearchQueue();
@@ -192,8 +257,17 @@ abstract class AdminObjectEdit extends AdminDBEdit
 				}
 			}
 		} else {
-			$old_object = clone $object;
-			$this->addObjectToFlushOnSave($old_object);
+			$this->addObjectToFlushOnSave($this->getOldObject());
+		}
+
+		// SwatDBDataObject::duplicate makes a copy of the object with no id,
+		// so a fresh row is saved. This happens at the end of updateObject so
+		// that all the values set automagically by
+		// AdminObjectEdit::updateObject() get copied, but so that subclasses
+		// then modify the duplicated object.
+		if ($this->shouldReplaceObject()) {
+			$object = $object->duplicate();
+			$this->setObject($object);
 		}
 	}
 
@@ -203,6 +277,17 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	protected function saveObject()
 	{
 		$this->getObject()->save();
+	}
+
+	// }}}
+	// {{{ protected function deleteOldObject()
+
+	protected function deleteOldObject()
+	{
+		if ($this->shouldReplaceObject() &&
+			$this->getOldObject() instanceof SwatDBDataObject) {
+			$this->getOldObject()->delete();
+		}
 	}
 
 	// }}}
