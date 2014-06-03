@@ -173,6 +173,12 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 		$this->assignUiValues($this->getObjectUiValueNames());
 
+		if ($object->hasPublicProperty('modified_date') &&
+			$object->hasDateProperty('modified_date')) {
+			$object->modified_date = new SwatDate();
+			$object->modified_date->toUTC();
+		}
+
 		if ($this->isNew()) {
 			if ($object->hasPublicProperty('createdate') &&
 				$object->hasDateProperty('createdate')) {
