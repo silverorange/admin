@@ -199,6 +199,89 @@ abstract class AdminObjectDelete extends AdminDBDelete
 	}
 
 	// }}}
+
+	// build phase
+	// {{{ protected function buildInternal()
+
+	protected function buildInternal()
+	{
+		parent::buildInternal();
+
+		$this->buildConfirmationMessage();
+	}
+
+	// }}}
+	// {{{ protected function buildConfirmationMessage()
+
+	/**
+	 * Allows building a default confirmation message including a header and
+	 * further body.
+	 *
+	 * This is optional and by default does nothing, but does allow for
+	 * some standard admin markup for delete confirmation messages that are not
+	 * AdminDependencies by subclassing only some of it's parts.
+	 */
+	protected function buildConfirmationMessage()
+	{
+		$message_content = $this->getConfirmationMessageContent();
+		if ($message_content != '') {
+			$message = $this->ui->getWidget('confirmation_message');
+			$message->content =  $message_content;
+
+			$content_type = $this->getConfirmationMessageContentType();
+			if ($content_type != '') {
+				$message->content_type = $content_type;
+			}
+		}
+	}
+
+	// }}}
+	// {{{ protected function getConfirmationMessageContent()
+
+	protected function getConfirmationMessageContent()
+	{
+		$confirmation_message = '';
+
+		$header_message = $this->getConfirmationMessageHeader();
+		if ($header_message != '') {
+			$header = new SwatHtmlTag('h3');
+			$header->setContent($header_message);
+			$confirmation_message.= $header;
+		}
+
+		$body_message = $this->getConfirmationMessageBody();
+		if ($body_message != '') {
+			$confirmation_message.= $body_message;
+		}
+
+		return $confirmation_message;
+	}
+
+	// }}}
+	// {{{ protected function getConfirmationMessageContentType()
+
+	protected function getConfirmationMessageContentType()
+	{
+		return 'text/xml';
+	}
+
+	// }}}
+	// {{{ protected function getConfirmationMessageHeader()
+
+	protected function getConfirmationMessageHeader()
+	{
+		return '';
+	}
+
+	// }}}
+	// {{{ protected function getConfirmationMessageBody()
+
+	protected function getConfirmationMessageBody()
+	{
+		return '';
+	}
+
+	// }}}
 }
 
 ?>
