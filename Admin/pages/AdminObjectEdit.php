@@ -88,7 +88,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	/**
 	 * Whether or not to replace the object being edited with a new object.
 	 *
-	 * This is useful for cases where generating a new object and corroponding
+	 * This is useful for cases where generating a new object and corresponding
 	 * id is necessary, for example when dealing with objects such as images
 	 * that could be cached by a browser or CDN storage based on its id.
 	 *
