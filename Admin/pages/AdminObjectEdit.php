@@ -33,8 +33,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	/**
 	 * The current time as a SwatDate in UTC.
 	 *
-	 * Current time is definied on the first call of getCurrentTime() and used
-	 * to return a conistent date/time when setting date fields on an edit.
+	 * Current time is defined on the first call of getCurrentTime() and used
+	 * to return a consistent date/time when setting date fields on an edit.
 	 *
 	 * @var SwatDate
 	 *
