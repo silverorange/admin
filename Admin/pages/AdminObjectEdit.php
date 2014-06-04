@@ -77,6 +77,19 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	}
 
 	// }}}
+	// {{{ protected function getCurrentTime()
+
+	protected function getCurrentTime()
+	{
+		if (!$this->current_time instanceof SwatDate) {
+			$this->current_time = new SwatDate();
+			$this->current_time->toUTC();
+		}
+
+		return $this->current_time;
+	}
+
+	// }}}
 
 	// init phase
 	// {{{ public function init()
@@ -220,19 +233,6 @@ abstract class AdminObjectEdit extends AdminDBEdit
 			$object->hasDateProperty('modified_date')) {
 			$object->modified_date = $this->getCurrentTime();
 		}
-	}
-
-	// }}}
-	// {{{ protected function getCurrentTime()
-
-	protected function getCurrentTime()
-	{
-		if (!$this->current_time instanceof SwatDate) {
-			$this->current_time = new SwatDate();
-			$this->current_time->toUTC();
-		}
-
-		return $this->current_time;
 	}
 
 	// }}}
