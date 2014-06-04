@@ -30,6 +30,18 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	 */
 	protected $data_objects_to_flush = array();
 
+	/**
+	 * The current time as a SwatDate in UTC.
+	 *
+	 * Current time is definied on the first call of getCurrentTime() and used
+	 * to return a conistent date/time when setting date fields on an edit.
+	 *
+	 * @var SwatDate
+	 *
+	 * @see AdminObjectEdit::getCurrentTime()
+	 */
+	protected $current_time;
+
 	// }}}
 	// {{{ abstract protected function getObjectClass()
 
@@ -175,15 +187,13 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 		if ($object->hasPublicProperty('modified_date') &&
 			$object->hasDateProperty('modified_date')) {
-			$object->modified_date = new SwatDate();
-			$object->modified_date->toUTC();
+			$object->modified_date = $this->getCurrentTime();
 		}
 
 		if ($this->isNew()) {
 			if ($object->hasPublicProperty('createdate') &&
 				$object->hasDateProperty('createdate')) {
-				$object->createdate = new SwatDate();
-				$object->createdate->toUTC();
+				$object->createdate = $this->getCurrentTime();
 			}
 
 			if ($object->hasPublicProperty('shortname') &&
@@ -201,6 +211,19 @@ abstract class AdminObjectEdit extends AdminDBEdit
 			$old_object = clone $object;
 			$this->addObjectToFlushOnSave($old_object);
 		}
+	}
+
+	// }}}
+	// {{{ protected function getCurrentTime()
+
+	protected function getCurrentTime()
+	{
+		if (!$this->current_time instanceof SwatDate) {
+			$this->current_time = new SwatDate();
+			$this->current_time->toUTC();
+		}
+
+		return $this->current_time;
 	}
 
 	// }}}
