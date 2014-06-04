@@ -79,6 +79,10 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function getOldObject()
 	{
+		if (!$this->old_object instanceof SwatDBDataObject) {
+			$this->old_object = clone $this->getObject();
+		}
+
 		return $this->old_object;
 	}
 
@@ -134,7 +138,6 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		parent::initInternal();
 
 		$this->initObject();
-		$this->initOldObject();
 	}
 
 	// }}}
@@ -155,14 +158,6 @@ abstract class AdminObjectEdit extends AdminDBEdit
 				);
 			}
 		}
-	}
-
-	// }}}
-	// {{{ protected function initOldObject()
-
-	protected function initOldObject()
-	{
-		$this->old_object = clone $this->getObject();
 	}
 
 	// }}}
@@ -236,6 +231,12 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	{
 		$object = $this->getObject();
 
+		// Clone the old object for flushing before any changes are made to it.
+		if (!$this->isNew()) {
+			$old_object = $this->getOldObject();
+			$this->addObjectToFlushOnSave($old_object);
+		}
+
 		$this->assignUiValues($this->getObjectUiValueNames());
 
 		if ($this->isNew()) {
@@ -257,17 +258,16 @@ abstract class AdminObjectEdit extends AdminDBEdit
 				}
 			}
 		} else {
-			$this->addObjectToFlushOnSave($this->getOldObject());
-		}
-
-		// SwatDBDataObject::duplicate makes a copy of the object with no id,
-		// so a fresh row is saved. This happens at the end of updateObject so
-		// that all the values set automagically by
-		// AdminObjectEdit::updateObject() get copied, but so that subclasses
-		// then modify the duplicated object.
-		if ($this->shouldReplaceObject()) {
-			$object = $object->duplicate();
-			$this->setObject($object);
+			// SwatDBDataObject::duplicate makes a copy of the object with no
+			// id, so a fresh row is saved. This happens at the end of
+			// updateObject() so that all the values set automagically by
+			// AdminObjectEdit::updateObject() get copied, but so that
+			// subclasses then modify the duplicated object. It is not necessary
+			// if it is a new object.
+			if ($this->shouldReplaceObject()) {
+				$object = $object->duplicate();
+				$this->setObject($object);
+			}
 		}
 	}
 
@@ -284,7 +284,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function deleteOldObject()
 	{
-		if ($this->shouldReplaceObject() &&
+		if (!$this->isNew() &&
+			$this->shouldReplaceObject() &&
 			$this->getOldObject() instanceof SwatDBDataObject) {
 			$this->getOldObject()->delete();
 		}
