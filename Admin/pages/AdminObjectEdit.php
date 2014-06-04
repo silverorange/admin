@@ -159,6 +159,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	protected function saveDBData()
 	{
 		$this->updateObject();
+		$this->updateModifiedDate();
 
 		// If the main data object wasn't modified, don't flush any other
 		// data objects automagically.
@@ -185,11 +186,6 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 		$this->assignUiValues($this->getObjectUiValueNames());
 
-		if ($object->hasPublicProperty('modified_date') &&
-			$object->hasDateProperty('modified_date')) {
-			$object->modified_date = $this->getCurrentTime();
-		}
-
 		if ($this->isNew()) {
 			if ($object->hasPublicProperty('createdate') &&
 				$object->hasDateProperty('createdate')) {
@@ -210,6 +206,19 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		} else {
 			$old_object = clone $object;
 			$this->addObjectToFlushOnSave($old_object);
+		}
+	}
+
+	// }}}
+	// {{{ protected function updateModifiedDate()
+
+	protected function updateModifiedDate()
+	{
+		$object = $this->getObject();
+		if ($object->isModified() &&
+			$object->hasPublicProperty('modified_date') &&
+			$object->hasDateProperty('modified_date')) {
+			$object->modified_date = $this->getCurrentTime();
 		}
 	}
 
