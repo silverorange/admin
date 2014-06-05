@@ -40,6 +40,18 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	 */
 	protected $data_objects_to_flush = array();
 
+	/**
+	 * The current time as a SwatDate in UTC.
+	 *
+	 * Current time is defined on the first call of getCurrentTime() and used
+	 * to return a consistent date/time when setting date fields on an edit.
+	 *
+	 * @var SwatDate
+	 *
+	 * @see AdminObjectEdit::getCurrentTime()
+	 */
+	protected $current_time;
+
 	// }}}
 	// {{{ abstract protected function getObjectClass()
 
@@ -109,6 +121,19 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	protected function getObjectUiValueNames()
 	{
 		return array();
+	}
+
+	// }}}
+	// {{{ protected function getCurrentTime()
+
+	protected function getCurrentTime()
+	{
+		if (!$this->current_time instanceof SwatDate) {
+			$this->current_time = new SwatDate();
+			$this->current_time->toUTC();
+		}
+
+		return $this->current_time;
 	}
 
 	// }}}
@@ -206,6 +231,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	protected function saveDBData()
 	{
 		$this->updateObject();
+		$this->updateModifiedDate();
 
 		// If the main data object wasn't modified, don't flush any other
 		// data objects automagically.
@@ -242,8 +268,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		if ($this->isNew()) {
 			if ($object->hasPublicProperty('createdate') &&
 				$object->hasDateProperty('createdate')) {
-				$object->createdate = new SwatDate();
-				$object->createdate->toUTC();
+				$object->createdate = $this->getCurrentTime();
 			}
 
 			if ($object->hasPublicProperty('shortname') &&
@@ -268,6 +293,19 @@ abstract class AdminObjectEdit extends AdminDBEdit
 				$object = $object->duplicate();
 				$this->setObject($object);
 			}
+		}
+	}
+
+	// }}}
+	// {{{ protected function updateModifiedDate()
+
+	protected function updateModifiedDate()
+	{
+		$object = $this->getObject();
+		if ($object->isModified() &&
+			$object->hasPublicProperty('modified_date') &&
+			$object->hasDateProperty('modified_date')) {
+			$object->modified_date = $this->getCurrentTime();
 		}
 	}
 
