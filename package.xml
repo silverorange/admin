@@ -22,10 +22,10 @@
   <email>mike@silverorange.com</email>
   <active>yes</active>
  </lead>
- <date>2014-05-08</date>
- <time>11:04:22</time>
+ <date>2014-06-05</date>
+ <time>16:45:31</time>
  <version>
-  <release>2.0.11</release>
+  <release>2.0.12</release>
   <api>0.0.1</api>
  </version>
  <stability>
@@ -143,6 +143,7 @@ see ChangeLog
      <file name="AdminDBOrder.php" role="php" />
      <file name="AdminEdit.php" role="php" />
      <file name="AdminIndex.php" role="php" />
+     <file name="AdminObjectDelete.php" role="php" />
      <file name="AdminObjectEdit.php" role="php" />
      <file name="AdminOrder.php" role="php" />
      <file name="AdminPage.php" role="php" />
@@ -316,14 +317,14 @@ see ChangeLog
  <changelog>
   <release>
    <version>
-    <release>2.0.11</release>
+    <release>2.0.12</release>
     <api>0.0.1</api>
    </version>
    <stability>
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2014-05-08</date>
+   <date>2014-06-05</date>
    <license uri="http://www.gnu.org/copyleft/lesser.html">LGPL</license>
    <notes>
 see ChangeLog
