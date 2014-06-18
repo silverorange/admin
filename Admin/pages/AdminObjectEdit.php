@@ -240,8 +240,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		}
 
 		$this->saveObject();
-		$this->deleteOldObject();
 		$this->postSaveObject();
+		$this->deleteOldObject();
 		$this->flushObjectsOnSave();
 		$this->addToSearchQueue();
 		$this->addSavedMessage();
