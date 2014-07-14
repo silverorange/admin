@@ -302,10 +302,14 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	protected function updateModifiedDate()
 	{
 		$object = $this->getObject();
-		if ($object->isModified() &&
-			$object->hasPublicProperty('modified_date') &&
+		if ($object->hasPublicProperty('modified_date') &&
 			$object->hasDateProperty('modified_date')) {
-			$object->modified_date = $this->getCurrentTime();
+
+			if ($object->isModified() ||
+				$this->shouldReplaceObject() ||
+				!$object->modified_date instanceof SwatDate) {
+				$object->modified_date = $this->getCurrentTime();
+			}
 		}
 	}
 
