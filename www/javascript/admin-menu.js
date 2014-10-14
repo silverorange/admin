@@ -6,7 +6,7 @@ function AdminMenu(id)
 	this.hover_active = false;
 	this.preloadImages();
 	YAHOO.util.Event.onDOMReady(this.init, this, true);
-};
+}
 
 /**
  * Time period required to hover over a menu item for tooltips to initially
@@ -155,7 +155,7 @@ AdminMenu.prototype.componentMouseOver = function(e, li)
 		}
 
 	}
-}
+};
 
 AdminMenu.prototype.componentMouseOut = function(e, li)
 {

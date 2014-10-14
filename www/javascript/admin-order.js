@@ -18,4 +18,4 @@ AdminOrder.prototype.orderChangeHandler = function()
 {
 	if (this.radio_button)
 		this.radio_button.checked = true;
-}
+};
