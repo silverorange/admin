@@ -3,7 +3,7 @@
  */
 SwatForm.prototype.setDefaultFocus = function()
 {
-}
+};
 
 function AdminLogin(email_id, password_id, submit_name, user_email, login_error)
 {
