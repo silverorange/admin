@@ -9,7 +9,7 @@ require_once 'Swat/SwatLinkCellRenderer.php';
  * so other cell renderers in the same table cell may cause layout issues.
  *
  * @package   Admin
- * @copyright 2006 silverorange
+ * @copyright 2006-2014 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
@@ -199,15 +199,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 
 		$anchor->open();
 
-		$icon_span = new SwatHtmlTag('span');
-		$icon_span->class = 'admin-title-link-cell-renderer-icon';
-		$icon_span->setContent('');
-		$icon_span->display();
-
-		$content_span = new SwatHtmlTag('span');
-		$content_span->class = 'admin-title-link-cell-renderer-contents';
-		$content_span->setContent($this->getText(), $this->content_type);
-		$content_span->display();
+		$this->renderContent();
 
 		$anchor->close();
 	}
@@ -226,6 +218,19 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 
 		$span_tag->open();
 
+		$this->renderContent();
+
+		$span_tag->close();
+	}
+
+	// }}}
+	// {{{ protected function renderContent()
+
+	/**
+	 * Renders this link as not sensitive
+	 */
+	protected function renderContent()
+	{
 		$icon_span = new SwatHtmlTag('span');
 		$icon_span->class = 'admin-title-link-cell-renderer-icon';
 		$icon_span->setContent('');
@@ -235,8 +240,6 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		$content_span->class = 'admin-title-link-cell-renderer-contents';
 		$content_span->setContent($this->getText(), $this->content_type);
 		$content_span->display();
-
-		$span_tag->close();
 	}
 
 	// }}}
