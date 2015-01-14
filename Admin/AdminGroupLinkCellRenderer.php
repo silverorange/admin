@@ -6,7 +6,7 @@ require_once 'Swat/SwatLinkCellRenderer.php';
  * A link cell renderer to display in group headers
  *
  * @package   Admin
- * @copyright 2004-2014 silverorange
+ * @copyright 2004-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminGroupLinkCellRenderer extends SwatLinkCellRenderer

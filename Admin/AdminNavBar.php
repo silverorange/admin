@@ -8,7 +8,7 @@ require_once 'Admin/AdminImportantNavBarEntry.php';
  * A navagational bar for the admin
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  *
  * @see SwatNavBar

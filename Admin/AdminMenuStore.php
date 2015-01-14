@@ -6,7 +6,7 @@
  * Designed to be used as a MDB2 result wrapper class.
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminMenuStore
@@ -88,7 +88,7 @@ class AdminMenuStore
  * Internal data class used internally within {@link AdminMenuStore}.
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminMenuSection
@@ -120,7 +120,7 @@ class AdminMenuSection
  * Internal data class used internally within {@link AdminMenuStore}.
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminMenuComponent
@@ -154,7 +154,7 @@ class AdminMenuComponent
  * Internal data class used internally within {@link AdminMenuStore}.
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminMenuSubcomponent

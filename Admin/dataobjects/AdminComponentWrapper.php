@@ -7,7 +7,7 @@ require_once 'Admin/dataobjects/AdminComponent.php';
  * A recordset wrapper class for AdminComponent objects
  *
  * @package   Admin
- * @copyright 2007 silverorange
+ * @copyright 2007-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  * @see       AdminComponent
  */

@@ -9,7 +9,7 @@ require_once 'Swat/SwatMessageDisplay.php';
  * Exception page in an admin application
  *
  * @package   Admin
- * @copyright 2006 silverorange
+ * @copyright 2006-2015 silverorange
  */
 class AdminAdminSiteException extends SiteXhtmlExceptionPage
 {

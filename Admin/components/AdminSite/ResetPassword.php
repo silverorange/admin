@@ -12,7 +12,7 @@ require_once 'Admin/AdminResetPasswordSuccessMailMessage.php';
  * Users are required to enter a new password.
  *
  * @package   Admin
- * @copyright 2007-2014 silverorange
+ * @copyright 2007-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  * @see       AdminUser
  */

@@ -9,7 +9,7 @@ require_once 'Swat/SwatTableStore.php';
  * Index page for AdminGroups component
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminGroupIndex extends AdminIndex

@@ -7,7 +7,7 @@ require_once 'Admin/dataobjects/AdminSection.php';
  * Edit page for AdminSections
  *
  * @package   Admin
- * @copyright 2005-2014 silverorange
+ * @copyright 2005-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminSectionEdit extends AdminObjectEdit

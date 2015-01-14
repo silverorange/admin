@@ -11,7 +11,7 @@ require_once 'SwatDB/exceptions/SwatDBException.php';
  * {@link AdminDBConfirmation} instead.
  *
  * @package   Admin
- * @copyright 2004-2007 silverorange
+ * @copyright 2004-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminDBDelete extends AdminDBConfirmation

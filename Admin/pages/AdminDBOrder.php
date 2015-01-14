@@ -9,7 +9,7 @@ require_once 'SwatDB/SwatDBTransaction.php';
  * An ordering page with DB error checking.
  *
  * @package   Admin
- * @copyright 2004-2006 silverorange
+ * @copyright 2004-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminDBOrder extends AdminOrder

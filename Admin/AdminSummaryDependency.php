@@ -11,7 +11,7 @@ require_once 'Swat/SwatString.php';
  * A dependency that displays a one line summary of dependent items
  *
  * @package   Admin
- * @copyright 2006 silverorange
+ * @copyright 2006-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminSummaryDependency extends AdminDependency
