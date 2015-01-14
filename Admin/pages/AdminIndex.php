@@ -12,7 +12,7 @@ require_once 'Swat/SwatActions.php';
  * index page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2005-2014 silverorange
+ * @copyright 2005-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminIndex extends AdminPage

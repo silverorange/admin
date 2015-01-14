@@ -6,7 +6,7 @@ require_once 'Admin/AdminDependencyItem.php';
  * An entry in an admin dependency
  *
  * @package   Admin
- * @copyright 2005-2006 silverorange
+ * @copyright 2005-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminDependencyEntry extends AdminDependencyItem

@@ -10,7 +10,7 @@ require_once 'Admin/AdminUI.php';
  * confirmation page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2004-2012 silverorange
+ * @copyright 2004-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminConfirmation extends AdminPage

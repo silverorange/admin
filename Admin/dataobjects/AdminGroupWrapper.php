@@ -7,7 +7,7 @@ require_once 'Admin/dataobjects/AdminGroup.php';
  * A recordset wrapper class for AdminGroup objects
  *
  * @package   Admin
- * @copyright 2007 silverorange
+ * @copyright 2007-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  * @see       AdminGroup
  */

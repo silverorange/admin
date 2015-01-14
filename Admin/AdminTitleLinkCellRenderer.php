@@ -9,7 +9,7 @@ require_once 'Swat/SwatLinkCellRenderer.php';
  * so other cell renderers in the same table cell may cause layout issues.
  *
  * @package   Admin
- * @copyright 2006-2014 silverorange
+ * @copyright 2006-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer

@@ -6,7 +6,7 @@ require_once 'SwatDB/SwatDBDataObject.php';
  * History record for an admin user
  *
  * @package   Admin
- * @copyright 2007-2009 silverorange
+ * @copyright 2007-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminUserHistory extends SwatDBDataObject

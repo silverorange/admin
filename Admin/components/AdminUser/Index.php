@@ -10,7 +10,7 @@ require_once 'include/HistoryCellRenderer.php';
  * Index page for AdminUsers component
  *
  * @package   Admin
- * @copyright 2005-2009 silverorange
+ * @copyright 2005-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminUserIndex extends AdminIndex

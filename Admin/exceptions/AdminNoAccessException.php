@@ -6,7 +6,7 @@ require_once 'Admin/exceptions/AdminUserException.php';
  * Thrown when access to a page is not allowed
  *
  * @package   Admin
- * @copyright 2006-2007 silverorange
+ * @copyright 2006-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminNoAccessException extends AdminUserException

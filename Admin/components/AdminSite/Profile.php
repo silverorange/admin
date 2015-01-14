@@ -8,7 +8,7 @@ require_once 'Admin/dataobjects/AdminUser.php';
  *
  * @package   Admin
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
- * @copyright 2005-2014 silverorange
+ * @copyright 2005-2015 silverorange
  */
 class AdminAdminSiteProfile extends AdminObjectEdit
 {

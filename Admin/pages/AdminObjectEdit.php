@@ -7,7 +7,7 @@ require_once 'Admin/pages/AdminDBEdit.php';
  * Admin edit page for SwatDBDataObjects
  *
  * @package   Admin
- * @copyright 2014 silverorange
+ * @copyright 2014-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminObjectEdit extends AdminDBEdit

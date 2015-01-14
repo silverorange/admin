@@ -11,7 +11,7 @@ require_once 'Admin/pages/AdminIndex.php';
  * Index page for admin sections
  *
  * @package   Admin
- * @copyright 2004-2007 silverorange
+ * @copyright 2004-2015 silverorange
  */
 class AdminAdminSectionIndex extends AdminIndex
 {

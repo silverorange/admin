@@ -15,7 +15,7 @@ require_once 'Admin/exceptions/AdminException.php';
  * DB confirmation page, inherit directly from AdminConfirmation instead.
  *
  * @package   Admin
- * @copyright 2004-2012 silverorange
+ * @copyright 2004-2015 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminDBConfirmation extends AdminConfirmation
