@@ -66,14 +66,13 @@ p {
 /* Header Styles */
 
 #hd {
-	padding: 8px 1em;
-	background: #527cae url(../images/admin-header-background-2.png) repeat-x bottom left;
-	color: #fff;
+	padding: 2px 0 4px;
+	color: #888;
 }
 
-#hd a { color: #fff; }
-#hd a:hover { color: #ddd; }
-#hd a:active { color: #ccc; }
+#hd a { color: #555; }
+#hd a:hover { color: #777; }
+#hd a:active { color: #888; }
 
 #hd #admin-syslinks {
 	float: right;
@@ -85,10 +84,9 @@ p {
 #hd h1 {
 	margin: 0;
 	padding: 0;
-	font-size: 120%;
-	color: #fff;
+	font-size: 100%;
 	display: inline;
-	font-weight: bold;
+	font-weight: normal;
 }
 
 
