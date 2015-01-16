@@ -10,6 +10,7 @@
 	<!--if !(IE)]><!--><base href="<?= $this->basehref ?>" /><!--<![endif]-->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="icon" href="../favicon.ico" type="image/x-icon" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic" rel="stylesheet" type="text/css" />
 	<?=$this->html_head_entries?>
 </head>
 <body <?=$this->body_classes?>>
