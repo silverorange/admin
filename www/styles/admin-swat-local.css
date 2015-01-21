@@ -45,33 +45,75 @@
 /* SwatMessage and SwatMessageDisplay */
 
 .swat-message-display .swat-message {
-	background-position: 12px 12px;
+	border: 0;
+	box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.24);
+}
+
+.swat-message-notice {
+	background: #FFF9C4;
+}
+
+.swat-message-warning {
+	background: #FFE082;
 }
 
 .swat-message-error {
-	background: #ffe3e0;
-	border-color: #f0b5b1;
+	background: #F44336;
+}
+
+.swat-message-notice .swat-message-primary-content,
+.swat-message-warning .swat-message-primary-content,
+.swat-message-notice .swat-message-secondary-content,
+.swat-message-warning .swat-message-secondary-content {
+	color: #888;
+	color: rgba(0,0,0,0.54);
+}
+
+.swat-message-notice .swat-message-primary-content a,
+.swat-message-warning .swat-message-primary-content a,
+.swat-message-notice .swat-message-secondary-content a,
+.swat-message-warning .swat-message-secondary-content a {
+	color: rgba(25, 118, 210, 0.87);
+}
+
+.swat-message-error .swat-message-primary-content,
+.swat-message-error .swat-message-secondary-content {
+	color: #aaa;
+	color: rgba(255,255,255,0.87);
+}
+
+.swat-message-error .swat-message-primary-content a,
+.swat-message-error .swat-message-secondary-content a {
+	color: #aaa;
+	color: rgba(255,255,255,0.87);
 }
 
 .swat-message-display .swat-message .swat-message-container {
-	padding: 14px 12px 12px 42px;
+	padding: 12px;
 }
 
 .swat-message-display .swat-message-notice {
-	background-image: url(../../swat/images/tango/22/dialog-information.png);
+	background-image: none;
 }
 
 .swat-message-display .swat-message-warning {
-	background-image: url(../../swat/images/tango/22/dialog-warning.png);
+	background-image: none;
 }
 
 .swat-message-display .swat-message-error,
 .swat-message-display .swat-message-system-error {
-	background-image: url(../../swat/images/tango/22/dialog-error.png);
+	background-image: none;
 }
 
 .swat-message-display .swat-message .swat-message-container {
 	min-height: 0;
+}
+
+.swat-message-display-dismiss-link,
+.swat-message-display-dismiss-link:link,
+.swat-message-display-dismiss-link:visited {
+	right: 1px;
+	top: 1px;
 }
 
 
