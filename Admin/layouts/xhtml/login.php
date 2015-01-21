@@ -9,6 +9,7 @@
 	<!--if IE]><base href="<?= $this->basehref ?>"></base><![endif]-->
 	<!--if !(IE)]><!--><base href="<?= $this->basehref ?>" /><!--<![endif]-->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,800' rel='stylesheet' type='text/css' />
 	<?=$this->html_head_entries?>
 </head>
 <body <?=$this->body_classes?>>
