@@ -510,31 +510,24 @@ span.swat-radio-wrapper input {
 div.swat-textarea-container textarea,
 input.swat-entry {
 	padding: 4px 6px;
+	margin-top: 2px;
 	background-color: #fff;
-	border: 1px solid;
-	border-color: #aaa #c2c2c2 #c2c2c2 #aaa;
-	-webkit-box-shadow: 0 2px 2px 0px rgba(0,0,0,0.1) inset;
-	-moz-box-shadow: 0 2px 2px 0px rgba(0,0,0,0.1) inset;
-	box-shadow: 0 2px 2px 0px rgba(0,0,0,0.1) inset;
-	-webkit-border-radius: 1px;
-	-moz-border-radius: 1px;
-	border-radius: 1px;
+	border-radius: 0;
+	border: 0;
+	border-bottom: 1px solid #c2c2c2;
+	font-size: 120%;
+}
+div.swat-textarea-container textarea:hover,
+input.swat-entry:hover {
+	background: #f8f8f8;
 }
 
 div.swat-textarea-container textarea:focus,
 input.swat-entry:focus {
 	outline: none;
-	border: 1px solid;
-	border-color: #729fcf #95b6db #95b6db #729fcf;
-	-webkit-box-shadow:
-		0 0 3px 0 rgba(140,196,255,1.0) inset,
-		0 2px 2px 0 rgba(0,0,0,0.1) inset;
-	-moz-box-shadow:
-		0 0 3px 0 rgba(140,196,255,1.0) inset,
-		0 2px 2px 0 rgba(0,0,0,0.1) inset;
+	border-color: #1976D2;
 	box-shadow:
-		0 0 3px 0 rgba(140,196,255,1.0) inset,
-		0 2px 2px 0 rgba(0,0,0,0.1) inset;
+		0 1px 0px rgba(140,196,255,1.0);
 }
 
 input.swat-entry:-webkit-autofill {
