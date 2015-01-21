@@ -392,29 +392,24 @@ span.swat-radio-wrapper input {
 
 /* SwatActions */
 
-.swat-actions .swat-actions-flydown {
-	margin-right: 0;
-	padding: 3px;
+.swat-actions .swat-flydown {
+	margin: 0 8px;
+	padding: 5px 0;
 	border: 1px solid #aaa;
-	border-right: 1px solid #fff;
 	width: 150px;
 	background: #fff;
-	-webkit-border-top-left-radius: 2px;
-	-webkit-border-bottom-left-radius: 2px;
-	-moz-border-radius-topleft: 2px;
-	-moz-border-radius-topright: 2px;
-	border-top-left-radius: 2px;
-	border-bottom-left-radius: 2px;
+	border-radius: 2px;
+	position: relative;
+	top: -1px;
 }
 
 .swat-actions input.swat-button-apply {
 	margin-left: 0;
-	-webkit-border-top-left-radius: 0;
-	-webkit-border-bottom-left-radius: 0;
-	-moz-border-radius-topleft: 0;
-	-moz-border-radius-topright: 0;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
+	color: #fff;
+}
+
+.swat-actions-controls>label {
+	display: none;
 }
 
 .swat-actions input.swat-button-apply:active {
@@ -431,11 +426,13 @@ span.swat-radio-wrapper input {
 .swat-frame .swat-actions:before {
 	/* TODO: make a graphic */
 	content: "↴";
-	color: #666;
+	color: #888;
 	position: absolute;
 	left: 14px;
 	top: 3px;
 	font-size: 13px;
+	font-family: arial, sans-serif;
+	font-weight: bold;
 	transform: rotate(90deg);
 	-webkit-transform: rotate(180deg);
 }
