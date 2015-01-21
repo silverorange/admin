@@ -234,8 +234,8 @@ span.swat-checkbox-shim {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	display: inline-block;
-	width: 18px;
-	height: 18px;
+	width: 16px;
+	height: 16px;
 	vertical-align: middle;
 	margin: 3px 3px 3px 4px;
 	text-indent: -25px;
@@ -246,15 +246,25 @@ span.swat-checkbox-shim {
 }
 
 input:checked + span.swat-checkbox-shim {
-	background-position: -18px 0;
+	background-position: -16px 0;
 }
 
-input:focus + span.swat-checkbox-shim {
-	background-position: -36px 0;
+input:focus + span.swat-checkbox-shim::before {
+	display: block;
+	border-radius: 50%;
+	background: rgba(0,0,0,0.1);
+	content: ".";
+	text-indent: -100%;
+	overflow: hidden;
+	width: 28px;
+	height: 28px;
+	position: relative;
+	top: -6px;
+	left: -6px;
 }
 
-input:focus:checked  + span.swat-checkbox-shim {
-	background-position: -54px 0;
+input:focus:checked + span.swat-checkbox-shim::before {
+	background: rgba(33,150,243,0.24);
 }
 
 span.swat-checkbox-wrapper input {
@@ -297,14 +307,6 @@ span.swat-checkbox-wrapper input {
 	padding: 0 0 0 8px;
 }
 
-.swat-checkbox-cell-renderer input:checked + span.swat-checkbox-shim {
-	background-position: -18px -18px;
-}
-
-.swat-checkbox-cell-renderer input:focus:checked + span.swat-checkbox-shim {
-	background-position: -54px -18px;
-}
-
 .swat-form-field-checkbox .swat-form-field-contents {
 	display: inline-block;
 	vertical-align: middle;
@@ -332,19 +334,37 @@ span.swat-radio-wrapper {
 
 span.swat-radio-shim {
 	display: inline-block;
-	width: 18px;
-	height: 18px;
+	width: 16px;
+	height: 16px;
 	vertical-align: middle;
 	margin: 3px 3px 3px 4px;
 	text-indent: -25px;
 	border: none;
 	padding: 0;
 	background: url(../images/admin-checkbox-radio-buttons.png) no-repeat;
-	background-position: 0 -36px;
+	background-position: 0 -16px;
 }
 
 input:checked + span.swat-radio-shim {
-	background-position: -18px -36px;
+	background-position: -16px -16px;
+}
+
+input:focus + span.swat-radio-shim::before {
+	display: block;
+	border-radius: 50%;
+	background: rgba(0,0,0,0.1);
+	content: ".";
+	text-indent: -100%;
+	overflow: hidden;
+	width: 28px;
+	height: 28px;
+	position: relative;
+	top: -6px;
+	left: -6px;
+}
+
+input:focus:checked + span.swat-radio-shim::before {
+	background: rgba(33,150,243,0.24);
 }
 
 span.swat-radio-wrapper input {
