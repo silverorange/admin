@@ -101,6 +101,16 @@
 	padding: 8px 15px;
 }
 
+.swat-footer-form-field .swat-button {
+	margin-right: 12px;
+}
+
+.swat-header-form-field input.swat-primary,
+.swat-footer-form-field input.swat-primary {
+	font-weight: 700;
+}
+
+
 /* SwatCalendar */
 
 .swat-calendar-div {
@@ -393,19 +403,13 @@ span.swat-radio-wrapper input {
 	margin: -2px -8px -2px 0;
 }
 
-.swat-change-order-buttons input,
+.swat-change-order-buttons input[type=button],
 .swat-change-order-buttons input.swat-change-order-top,
 .swat-change-order-buttons input.swat-change-order-bottom {
-	font-size: 11px;
-	width: 100px;
-	font-weight: bold;
+	font-size: 13px;
+	width: 120px;
+	padding: 4px 8px;
 }
-
-.swat-change-order-buttons input.swat-change-order-top,
-.swat-change-order-buttons input.swat-change-order-bottom {
-	font-weight: normal;
-}
-
 
 /* SwatPagination */
 
@@ -481,63 +485,39 @@ input.swat-entry.swat-insensitive {
 	background-color: #eee;
 }
 
+
 /* SwatButton, SwatToolLink */
 
+input[type=button],
 a.swat-tool-link,
 input.swat-button {
-	color: #438d04;
-	background-color: #e8e8e8;
-
-	background-image: -webkit-linear-gradient(
-		bottom,
-		rgba(0,0,0,0.10) 0%,
-		rgba(0,0,0,0.05) 50%,
-		rgba(0,0,0,0.0) 100%
-	);
-
-	background-image: -moz-linear-gradient(
-		bottom,
-		rgba(0,0,0,0.10) 0%,
-		rgba(0,0,0,0.05) 50%,
-		rgba(0,0,0,0.0) 100%
-	);
-
-	color: #333;
-	border: 1px solid;
-	border-color: #c2c2c2 #aaa #aaa #c2c2c2;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
+	color: #fff;
+	background: #009688;
+	font-weight: 700;
+	font-family: "Open Sans", sans-serif;
+	font-size: 13px;
+	padding: 8px 16px;
+	text-transform: uppercase;
 	border-radius: 2px;
-	padding: 4px 8px;
-
-	-webkit-box-shadow:
-		1px 1px 0 rgba(255,255,255,0.4) inset,
-		-1px 0 0 rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.3);
-
-	-moz-box-shadow:
-		1px 1px 0 rgba(255,255,255,0.4) inset,
-		-1px 0 0 rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.3);
-
+	border: 0;
 	box-shadow:
-		1px 1px 0 rgba(255,255,255,0.4) inset,
-		-1px 0 0 rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.3);
+		0 0 2px rgba(0,0,0,0.12),
+		0 2px 2px rgba(0,0,0,0.24);
 
-	text-shadow: 0 1px 0 #f0f0f0;
+	transition: box-shadow 0.2s ease;
 }
 
+input[type=button]::-moz-focus-inner,
 input.swat-button::-moz-focus-inner {
 	outline: none;
 	padding: 0;
 	border: none;
 }
 
+input[type=button]:hover,
 a.swat-tool-link:hover,
 input.swat-button:hover {
-	background-color: #fff;
-	text-shadow: 0 1px 0 #fff;
+	background: #00897B;
 }
 
 a.swat-tool-link:hover {
@@ -548,77 +528,31 @@ a.swat-tool-link:hover .swat-tool-link-title {
 	text-decoration: none;
 }
 
+.swat-tool-link .swat-tool-link-icon {
+	display: none;
+}
+
+.swat-tool-link .swat-tool-link-title {
+	line-height: 100%;
+}
+
+input[type=button]:focus,
 a.swat-tool-link:focus,
 input.swat-button:focus {
 	outline: none;
-	border-color: #95b6db #729fcf #729fcf #95b6db;
-
-	-webkit-box-shadow:
-		1px 1px 0 rgba(255,255,255,0.4) inset,
-		0 1px 3px -1px rgba(0,0,0,0.3),
-		0 0 1px 1px rgba(140,196,255,0.5);
-
-	-moz-box-shadow:
-		1px 1px 0 rgba(255,255,255,0.4) inset,
-		0 1px 3px -1px rgba(0,0,0,0.3),
-		0 0 1px 1px rgba(140,196,255,0.5);
-
+	border: none;
 	box-shadow:
-		1px 1px 0 rgba(255,255,255,0.4) inset,
-		0 1px 3px -1px rgba(0,0,0,0.3),
-		0 0 1px 1px rgba(140,196,255,0.5);
+		0 0 4px rgba(0,0,0,0.12),
+		0 4px 4px rgba(0,0,0,0.24);
 }
 
+input[type=button]:active,
 a.swat-tool-link:active,
 input.swat-button:active {
-	position: relative;
-	top: 1px;
-	border-color: #aaa;
-	text-shadow: 0 1px 1px rgba(255,255,255,0.5);
-	background-color: #ccc;
-
-	background-image: -webkit-linear-gradient(
-		bottom,
-		rgba(0,0,0,0.10) 0%,
-		rgba(0,0,0,0.05) 47%,
-		rgba(0,0,0,0.0) 100%
-	);
-
-	background-image: -moz-linear-gradient(
-		bottom,
-		rgba(0,0,0,0.10) 0%,
-		rgba(0,0,0,0.05) 47%,
-		rgba(0,0,0,0.0) 100%
-	);
-
-	-webkit-box-shadow:
-		0 0 0 1px rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.5) inset;
-
-	-moz-box-shadow:
-		0 0 0 1px rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.5) inset;
-
+	background: #26A69A;
 	box-shadow:
-		0 0 0 1px rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.5) inset;
-}
-
-#hd input.swat-button {
-	-webkit-box-shadow:
-		1px 1px 0 rgba(255,255,255,0.4) inset,
-		-1px 0 0 rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.6);
-
-	-moz-box-shadow:
-		1px 1px 0 rgba(255,255,255,0.4) inset,
-		-1px 0 0 rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.6);
-
-	box-shadow:
-		1px 1px 0 rgba(255,255,255,0.4) inset,
-		-1px 0 0 rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.6);
+		0 0 8px rgba(0,0,0,0.12),
+		0 8px 8px rgba(0,0,0,0.24);
 }
 
 
@@ -633,21 +567,28 @@ ul.swat-toolbar {
 
 /* SwatToolLink */
 
+.swat-tool-link .swat-tool-link-title {
+	text-shadow: none;
+}
+
+.swat-toolbar .swat-tool-link-cancel .swat-tool-link-icon,
+.swat-toolbar .swat-tool-link-add .swat-tool-link-icon,
+.swat-toolbar .swat-tool-link-create .swat-tool-link-icon,
+.swat-toolbar .swat-tool-link-delete .swat-tool-link-icon,
+.swat-toolbar .swat-tool-link-download .swat-tool-link-icon,
+.swat-toolbar .swat-tool-link-edit .swat-tool-link-icon,
+.swat-toolbar .swat-tool-link-email .swat-tool-link-icon,
+.swat-toolbar .swat-tool-link-print .swat-tool-link-icon,
+.swat-toolbar .swat-tool-link-change-order .swat-tool-link-icon {
+	display: inline-block;
+	background-image: url(../images/swat-tool-link-icons.png);
+}
+
 .swat-toolbar .swat-tool-link {
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
 	border-radius: 0;
 	background: #fff;
 	margin: 3px;
-	border: none;
-	-webkit-box-shadow:
-		2px 0 0 #fff,
-		7px 0 0 -4px #f0eade;
-
-	-moz-box-shadow:
-		2px 0 0 #fff,
-		7px 0 0 -4px #f0eade;
-
+	border: 0;
 	box-shadow:
 		2px 0 0 #fff,
 		7px 0 0 -4px #f0eade;
@@ -665,8 +606,12 @@ ul.swat-toolbar {
 }
 
 .swat-toolbar .swat-tool-link .swat-tool-link-title {
-	color: #3465a4;
+	color: #1976D2;
 	text-shadow: none;
+	font-weight: normal;
+	font-size: 13px;
+	text-transform: none;
+	line-height: 16px
 }
 
 .swat-toolbar .swat-tool-link-insensitive .swat-tool-link-title {
