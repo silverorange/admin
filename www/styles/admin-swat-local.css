@@ -164,8 +164,6 @@ span.swat-required {
 	padding: 3px;
 	background: #f8f6f0;
 	border: 1px solid #dcceb2;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
 	border-radius: 2px;
 	-webkit-box-shadow: 0 2px 2px -1px rgba(0,0,0,0.15);
 	-moz-box-shadow: 0 2px 2px -1px rgba(0,0,0,0.15);
@@ -447,8 +445,6 @@ span.swat-radio-wrapper input {
 /* SwatChangeOrder */
 
 .swat-change-order-list {
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
 	border-radius: 2px;
 	border-color: #ccc;
 }
@@ -492,8 +488,6 @@ span.swat-radio-wrapper input {
 	font-size: 15px;
 	margin: 0 1px;
 	border: none;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
 	border-radius: 2px;
 }
 
