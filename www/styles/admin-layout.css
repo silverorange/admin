@@ -79,7 +79,7 @@ p {
 	float: right;
 	margin: 0.1em 0 0 2em;
 	position: relative;
-	z-index: 2;
+	z-index: 1;
 }
 
 #hd h1 {
@@ -158,7 +158,6 @@ address { font-style: normal; }
 #admin-navbar {
 	position: relative;
 	top: 2px;
-	z-index: 1;
 	vertical-align: middle;
 }
 
