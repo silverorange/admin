@@ -134,6 +134,10 @@
 	padding: 2px 4px;
 }
 
+span.swat-required {
+	color: #FFA000;
+}
+
 
 /* SwatFooterFormField */
 
