@@ -4,8 +4,6 @@
 .swat-tool-link,
 .swat-fieldset,
 .swat-grouping-form-field-fieldset {
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
 	border-radius: 2px;
 }
 
@@ -171,8 +169,6 @@
 	background: #ffe3e0;
 	padding: 8px;
 	border-color: #f0b5b1;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
 	border-radius: 2px;
 }
 
