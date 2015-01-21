@@ -165,6 +165,24 @@
 
 /* SwatFormField */
 
+.swat-form-field {
+	margin-bottom: 16px;
+}
+
+.swat-form-field > label {
+	color: rgba(0,0,0,0.54);
+	font-size: 11px;
+}
+
+.swat-form-field-checkbox {
+	display: block;
+}
+
+.swat-form-field-checkbox > label {
+	font-size: 100%;
+	color: rgba(0,0,0,0.87);
+}
+
 .swat-form-field-with-messages {
 	background: #ffe3e0;
 	padding: 8px;
