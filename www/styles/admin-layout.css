@@ -67,7 +67,7 @@ p {
 /* Header Styles */
 
 #hd {
-	padding: 2px 0 4px;
+	padding: 2px 0;
 	color: #888;
 }
 
@@ -77,8 +77,9 @@ p {
 
 #hd #admin-syslinks {
 	float: right;
-	margin: 0.1em 0 0 2em;
+	margin: 0 0 0 2em;
 	position: relative;
+	top: -2px;
 	z-index: 1;
 }
 
