@@ -184,16 +184,16 @@
 }
 
 .swat-form-field-with-messages {
-	background: #ffe3e0;
-	padding: 8px;
-	border-color: #f0b5b1;
-	border-radius: 2px;
+	padding: 0;
+	background: transparent;
+	border: 0;
 }
 
 .swat-form-field-messages .swat-message {
-	color: #e31b0c;
+	margin: 0 0 0.05em;
+	color: #F44336;
 	background-image: none;
-	padding: 2px 4px;
+	padding: 2px 0;
 }
 
 span.swat-required {
@@ -570,24 +570,40 @@ input.swat-entry {
 	background-color: #fff;
 	border-radius: 0;
 	border: 0;
+	background: #fafafa;
 	border-bottom: 1px solid #c2c2c2;
 	font-size: 120%;
 }
+
 div.swat-textarea-container textarea:hover,
 input.swat-entry:hover {
-	background: #f8f8f8;
-}
-
-div.swat-textarea-container textarea:focus,
-input.swat-entry:focus {
-	outline: none;
-	border-color: #1976D2;
-	box-shadow:
-		0 1px 0px rgba(140,196,255,1.0);
+	background: #f2f2f2;
 }
 
 input.swat-entry:-webkit-autofill {
 	background-color: #fffbc9;
+}
+
+.swat-form-field-with-messages div.swat-textarea-container textarea,
+.swat-form-field-with-messages input.swat-entry {
+	background: #FFEBEE;
+	border-color: #E57373;
+}
+
+.swat-form-field-with-messages div.swat-textarea-container textarea:hover,
+.swat-form-field-with-messages input.swat-entry:hover {
+	background: #FFE5E9;
+}
+
+div.swat-textarea-container textarea:focus,
+input.swat-entry:focus,
+.swat-form-field-with-messages div.swat-textarea-container textarea:focus,
+.swat-form-field-with-messages input.swat-entry:focus {
+	outline: none;
+	border-color: #1976D2;
+	background: #E1F5FE;
+	box-shadow:
+		0 1px 0px rgba(140,196,255,1.0);
 }
 
 /* Note: this does not work in IE6 */
