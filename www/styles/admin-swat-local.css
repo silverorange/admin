@@ -183,6 +183,10 @@
 	color: rgba(0,0,0,0.87);
 }
 
+.swat-form-field-with-messages input + span.swat-checkbox-shim {
+	background-position: -32px 0;
+}
+
 .swat-form-field-with-messages {
 	padding: 0;
 	background: transparent;
@@ -305,8 +309,13 @@ span.swat-checkbox-shim {
 	background-position: 0 0;
 }
 
-input:checked + span.swat-checkbox-shim {
+input:checked + span.swat-checkbox-shim,
+.swat-form-field-with-messages input:checked + span.swat-checkbox-shim {
 	background-position: -16px 0;
+}
+
+.swat-form-field-with-messages input + span.swat-checkbox-shim {
+	background-position: -32px 0;
 }
 
 input:focus + span.swat-checkbox-shim::before {
@@ -405,8 +414,13 @@ span.swat-radio-shim {
 	background-position: 0 -16px;
 }
 
-input:checked + span.swat-radio-shim {
+input:checked + span.swat-radio-shim,
+.swat-form-field-with-messages input:checked + span.swat-radio-shim {
 	background-position: -16px -16px;
+}
+
+.swat-form-field-with-messages input + span.swat-radio-shim {
+	background-position: -32px -16px;
 }
 
 input:focus + span.swat-radio-shim::before {
