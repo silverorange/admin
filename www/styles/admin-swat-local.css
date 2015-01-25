@@ -733,6 +733,14 @@ ul.swat-toolbar {
 	background: #fff;
 	margin: 3px;
 	border: 0;
+	transition: none;
+	box-shadow:
+		2px 0 0 #fff,
+		7px 0 0 -4px #f0eade;
+}
+
+.swat-toolbar a.swat-tool-link:focus {
+	background: #E3F2FD;
 	box-shadow:
 		2px 0 0 #fff,
 		7px 0 0 -4px #f0eade;
