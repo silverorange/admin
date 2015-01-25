@@ -283,6 +283,11 @@ span.swat-required {
 	border-top: 1px solid #ebebeb;
 }
 
+/* Remove top border from first row of tables without headers */
+.swat-table-view tbody:first-child tr:first-child td {
+	border: 0;
+}
+
 .swat-table-view tbody tr.highlight + tr.highlight-odd td,
 .swat-table-view tbody tr.highlight-odd + tr.highlight td {
 	border-top: 1px solid #f0eade;
@@ -799,4 +804,50 @@ ul.swat-toolbar {
 
 .swat-toolbar a.swat-tool-link:hover .swat-tool-link-title {
 	text-decoration: underline;
+}
+
+
+/* Progress Bar */
+
+div.swat-progress-bar-left-to-right,
+div.swat-progress-bar-left-to-right div,
+div.swat-progress-bar-right-to-left,
+div.swat-progress-bar-right-to-left div,
+div.swat-progress-bar-left-to-right div.swat-progress-bar-full,
+div.swat-progress-bar-right-to-left div.swat-progress-bar-empty {
+	height: 4px;
+}
+
+div.swat-progress-bar-bar {
+	border: 0;
+	padding: 0;
+	background: #BBDEFB;
+}
+
+div.swat-progress-bar-full {
+	background: #2196F3;
+	box-shadow: 2px 0 1px -1px #E3F2FD, 0 -1px 0 #1E88E5 inset;
+	transition: left 0.5s;
+}
+
+div.swat-progress-bar-empty {
+	box-shadow: 0 -1px 0 #A8D5FA inset;
+}
+
+.site-upload-progress-bar div.swat-progress-bar {
+	color: rgba(0,0,0,0.54);
+	font-weight: bold;
+}
+
+.site-upload-progress-bar div.swat-progress-bar-bar {
+	box-sizing: border-box;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: -2px;
+}
+
+.site-upload-progress-bar-container {
+	display: inline-block;
+	vertical-align: middle;
 }
