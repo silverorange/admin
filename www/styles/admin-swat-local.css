@@ -249,6 +249,10 @@ span.swat-required {
 
 /* SwatTableView */
 
+table.swat-table-view {
+	width: 100%;
+}
+
 .swat-table-view tbody tr {
 	background: #fff;
 }
