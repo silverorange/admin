@@ -307,6 +307,7 @@ span.swat-checkbox-wrapper {
 span.swat-checkbox-shim {
 	-webkit-appearance: none;
 	-moz-appearance: none;
+	z-index: 2;
 	display: inline-block;
 	width: 16px;
 	height: 16px;
@@ -340,6 +341,7 @@ input:focus + span.swat-checkbox-shim::before {
 	position: relative;
 	top: -6px;
 	left: -6px;
+	z-index: 1;
 }
 
 input:focus:checked + span.swat-checkbox-shim::before {
@@ -351,6 +353,7 @@ span.swat-checkbox-wrapper input {
 	position: absolute;
 	top: -1px;
 	left: 2px;
+	z-index: 3;
 }
 
 .ie6 span.swat-checkbox-shim,
@@ -422,6 +425,7 @@ span.swat-radio-shim {
 	padding: 0;
 	background: url(../images/admin-checkbox-radio-buttons.png) no-repeat;
 	background-position: 0 -16px;
+	z-index: 2;
 }
 
 input:checked + span.swat-radio-shim,
@@ -445,6 +449,7 @@ input:focus + span.swat-radio-shim::before {
 	position: relative;
 	top: -6px;
 	left: -6px;
+	z-index: 1;
 }
 
 input:focus:checked + span.swat-radio-shim::before {
@@ -456,6 +461,7 @@ span.swat-radio-wrapper input {
 	position: absolute;
 	top: -1px;
 	left: 2px;
+	z-index: 3;
 }
 
 .ie6 span.swat-radio-shim,
