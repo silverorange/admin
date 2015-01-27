@@ -514,17 +514,15 @@ span.swat-radio-wrapper input {
 }
 
 .swat-frame .swat-actions:before {
-	/* TODO: make a graphic */
-	content: "↴";
-	color: #888;
+	content: ".";
+	overflow: hidden;
+	text-indent: 100%;
+	width: 16px;
+	height: 16px;
 	position: absolute;
-	left: 14px;
-	top: 3px;
-	font-size: 13px;
-	font-family: arial, sans-serif;
-	font-weight: bold;
-	transform: rotate(90deg);
-	-webkit-transform: rotate(180deg);
+	left: 10px;
+	top: 4px;
+	background: url(../images/admin-swat-actions-arrow.png) 0 0 no-repeat;
 }
 
 .swat-frame .swat-actions .swat-actions-note {
