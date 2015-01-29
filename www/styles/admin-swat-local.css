@@ -496,6 +496,7 @@ span.swat-radio-wrapper input {
 .swat-actions input.swat-button-apply {
 	margin-left: 0;
 	color: #fff;
+	line-height: 1;
 }
 
 .swat-actions-controls>label {
@@ -647,6 +648,7 @@ input.swat-entry.swat-insensitive {
 
 input[type=button],
 a.swat-tool-link,
+span.swat-tool-link,
 input.swat-button {
 	color: #fff;
 	background: #009688;
@@ -690,7 +692,7 @@ a.swat-tool-link:hover .swat-tool-link-title {
 }
 
 .swat-tool-link .swat-tool-link-title {
-	line-height: 100%;
+	line-height: 1;
 }
 
 input[type=button]:focus,
@@ -710,6 +712,16 @@ input.swat-button:active {
 	box-shadow:
 		0 0 8px rgba(0,0,0,0.12),
 		0 8px 8px rgba(0,0,0,0.24);
+}
+
+input.swat-button.swat-insensitive,
+input.swat-button.swat-insensitive:hover,
+input.swat-button.swat-insensitive:focus,
+span.swat-tool-link {
+	cursor: default;
+	background-color: transparent;
+	color: #bdbdbd;
+	box-shadow: none;
 }
 
 
