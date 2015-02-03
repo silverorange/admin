@@ -59,7 +59,7 @@
 #forgot.swat-tool-link:hover {
 	color: #3465a4;
 	font-size: 11px;
-	border: none;
+	border: 0;
 	background: transparent;
 	text-decoration: underline;
 	padding: 4px 8px;
