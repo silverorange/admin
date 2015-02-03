@@ -32,7 +32,7 @@
 	box-shadow: 0 1px 2px rgba(0,0,0,0.24);
 	border: 0;
 	margin: 0;
-	padding: 8px 12px 6px 12px;
+	padding: 8px 12px 6px;
 }
 
 .swat-frame .swat-frame-contents {
@@ -314,7 +314,7 @@ span.swat-checkbox-shim {
 	vertical-align: middle;
 	margin: 3px 3px 3px 4px;
 	text-indent: -25px;
-	border: none;
+	border: 0;
 	padding: 0;
 	background: url(../images/admin-checkbox-radio-buttons.png) no-repeat;
 	background-position: 0 0;
@@ -421,7 +421,7 @@ span.swat-radio-shim {
 	vertical-align: middle;
 	margin: 3px 3px 3px 4px;
 	text-indent: -25px;
-	border: none;
+	border: 0;
 	padding: 0;
 	background: url(../images/admin-checkbox-radio-buttons.png) no-repeat;
 	background-position: 0 -16px;
@@ -499,7 +499,7 @@ span.swat-radio-wrapper input {
 	line-height: 1;
 }
 
-.swat-actions-controls>label {
+.swat-actions-controls > label {
 	display: none;
 }
 
@@ -578,7 +578,7 @@ span.swat-radio-wrapper input {
 	padding: 2px 6px;
 	font-size: 15px;
 	margin: 0 1px;
-	border: none;
+	border: 0;
 	border-radius: 2px;
 }
 
@@ -586,7 +586,7 @@ span.swat-radio-wrapper input {
 	background: #1976D2;
 	color: #fff;
 	padding: 3px 8px;
-	border: none;
+	border: 0;
 }
 
 
@@ -631,7 +631,7 @@ input.swat-entry:focus,
 	outline: none;
 	border-color: #1976D2;
 	background: #E1F5FE;
-	box-shadow: 0 1px 0px rgba(140,196,255,1.0);
+	box-shadow: 0 1px 0 rgba(140,196,255,1.0);
 }
 
 /* Note: this does not work in IE6 */
@@ -670,7 +670,7 @@ input[type=button]::-moz-focus-inner,
 input.swat-button::-moz-focus-inner {
 	outline: none;
 	padding: 0;
-	border: none;
+	border: 0;
 }
 
 input[type=button]:hover,
@@ -699,7 +699,7 @@ input[type=button]:focus,
 a.swat-tool-link:focus,
 input.swat-button:focus {
 	outline: none;
-	border: none;
+	border: 0;
 	box-shadow:
 		0 0 4px rgba(0,0,0,0.12),
 		0 4px 4px rgba(0,0,0,0.24);
@@ -804,7 +804,7 @@ ul.swat-toolbar {
 	position: static;
 	top: 0;
 	background: #e5e5e5;
-	border: none;
+	border: 0;
 	-webkit-box-shadow:
 		2px 0 0 #fff,
 		7px 0 0 -4px #f0eade;
