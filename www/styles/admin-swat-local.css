@@ -228,11 +228,10 @@ span.swat-required {
 /* SwatCalendar */
 
 .swat-calendar-div {
-	padding: 3px;
-	background: #f8f6f0;
-	border: 1px solid #dcceb2;
+	padding: 5px;
+	background: #fff;
 	border-radius: 2px;
-	box-shadow: 0 2px 2px -1px rgba(0,0,0,0.15);
+	box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.24);
 }
 
 .swat-calendar-div .swat-calendar-frame {
@@ -240,8 +239,8 @@ span.swat-required {
 }
 
 .swat-calendar-current-cell {
-	background: #fffbc9;
-	color: #333;
+	background: #2196F3;
+	color: rgba(255,255,255,0.87);
 }
 
 
