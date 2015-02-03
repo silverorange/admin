@@ -57,7 +57,7 @@
 #forgot.swat-tool-link:visited,
 #forgot.swat-tool-link:active,
 #forgot.swat-tool-link:hover {
-	color: #3465a4;
+	color: #1976D2;
 	font-size: 11px;
 	border: 0;
 	background: transparent;
@@ -67,11 +67,7 @@
 	display: inline-block;
 	cursor: pointer;
 	text-shadow: none;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
 	border-radius: 0;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
 	box-shadow: none;
 }
 

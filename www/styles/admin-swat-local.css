@@ -232,8 +232,6 @@ span.swat-required {
 	background: #f8f6f0;
 	border: 1px solid #dcceb2;
 	border-radius: 2px;
-	-webkit-box-shadow: 0 2px 2px -1px rgba(0,0,0,0.15);
-	-moz-box-shadow: 0 2px 2px -1px rgba(0,0,0,0.15);
 	box-shadow: 0 2px 2px -1px rgba(0,0,0,0.15);
 }
 
@@ -805,14 +803,6 @@ ul.swat-toolbar {
 	top: 0;
 	background: #e5e5e5;
 	border: 0;
-	-webkit-box-shadow:
-		2px 0 0 #fff,
-		7px 0 0 -4px #f0eade;
-
-	-moz-box-shadow:
-		2px 0 0 #fff,
-		7px 0 0 -4px #f0eade;
-
 	box-shadow:
 		2px 0 0 #fff,
 		7px 0 0 -4px #f0eade;
