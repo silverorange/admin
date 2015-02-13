@@ -110,6 +110,7 @@ h6 { font-size:  85%; }
 	color: #666;
 }
 
+
 /* Confirmation dialogs */
 
 #confirmation_container {
@@ -137,6 +138,25 @@ h6 { font-size:  85%; }
 	margin-left: 16px;
 	margin-top: 0.1em;
 }
+
+
+/* Errors */
+
+.swat-frame.admin-exception-container .swat-frame-contents {
+	background-image: url(../images/admin-dialog-exception.png);
+	background-position: 12px 20px;
+	background-repeat: no-repeat;
+	padding: 24px 16px 48px 68px;
+	min-height: 48px;
+}
+
+.admin-exception-container .swat-exception {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+
+/* Logout button */
 
 address { font-style: normal; }
 
@@ -188,6 +208,11 @@ address { font-style: normal; }
 
 	#confirmation_container {
 		background-image: url(../images/admin-dialog-question@2x.png);
+		background-size: 48px 48px
+	}
+
+	.swat-frame.admin-exception-container .swat-frame-contents {
+		background-image: url(../images/admin-dialog-exception@2x.png);
 		background-size: 48px 48px
 	}
 
