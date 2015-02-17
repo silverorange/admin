@@ -20,7 +20,7 @@
 }
 
 .admin-group-link-cell-renderer:hover {
-	background: #00897B;
+	background: #00897b;
 }
 
 .admin-group-link-cell-renderer:focus {
@@ -30,7 +30,7 @@
 }
 
 .admin-group-link-cell-renderer:active {
-	background: #26A69A;
+	background: #26a69a;
 	box-shadow: 0 0 8px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.24);
 }
 

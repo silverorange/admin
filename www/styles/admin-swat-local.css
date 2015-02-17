@@ -96,15 +96,15 @@
 }
 
 .swat-message-notice {
-	background: #FFF9C4;
+	background: #fff9c4;
 }
 
 .swat-message-warning {
-	background: #FFE082;
+	background: #ffe082;
 }
 
 .swat-message-error {
-	background: #F44336;
+	background: #f44336;
 }
 
 .swat-message-notice .swat-message-primary-content,
@@ -196,13 +196,13 @@
 
 .swat-form-field-messages .swat-message {
 	margin: 0 0 0.05em;
-	color: #F44336;
+	color: #f44336;
 	background-image: none;
 	padding: 2px 0;
 }
 
 span.swat-required {
-	color: #FFA000;
+	color: #ffa000;
 }
 
 
@@ -239,7 +239,7 @@ span.swat-required {
 }
 
 .swat-calendar-current-cell {
-	background: #2196F3;
+	background: #2196f3;
 	color: rgba(255,255,255,0.87);
 }
 
@@ -256,7 +256,7 @@ table.swat-table-view {
 
 .swat-table-view tbody tr.highlight,
 .swat-table-view tbody tr.highlight-odd {
-	background: #FFF9C4;
+	background: #fff9c4;
 }
 
 .swat-table-view td,
@@ -580,7 +580,7 @@ span.swat-radio-wrapper input {
 }
 
 .swat-pagination span.swat-pagination-current {
-	background: #1976D2;
+	background: #1976d2;
 	color: #fff;
 	padding: 3px 8px;
 	border: 0;
@@ -612,13 +612,13 @@ input.swat-entry:-webkit-autofill {
 
 .swat-form-field-with-messages div.swat-textarea-container textarea,
 .swat-form-field-with-messages input.swat-entry {
-	background: #FFEBEE;
-	border-color: #E57373;
+	background: #ffebee;
+	border-color: #e57373;
 }
 
 .swat-form-field-with-messages div.swat-textarea-container textarea:hover,
 .swat-form-field-with-messages input.swat-entry:hover {
-	background: #FFE5E9;
+	background: #ffe5e9;
 }
 
 div.swat-textarea-container textarea:focus,
@@ -626,9 +626,9 @@ input.swat-entry:focus,
 .swat-form-field-with-messages div.swat-textarea-container textarea:focus,
 .swat-form-field-with-messages input.swat-entry:focus {
 	outline: none;
-	border-color: #1976D2;
-	background: #E1F5FE;
-	box-shadow: 0 1px 0 #8CC4FF;
+	border-color: #1976d2;
+	background: #e1f5fe;
+	box-shadow: 0 1px 0 #8cc4ff;
 }
 
 /* Note: this does not work in IE6 */
@@ -670,7 +670,7 @@ input.swat-button::-moz-focus-inner {
 input[type=button]:hover,
 a.swat-tool-link:hover,
 input.swat-button:hover {
-	background: #00897B;
+	background: #00897b;
 }
 
 a.swat-tool-link:hover {
@@ -700,7 +700,7 @@ input.swat-button:focus {
 input[type=button]:active,
 a.swat-tool-link:active,
 input.swat-button:active {
-	background: #26A69A;
+	background: #26a69a;
 	box-shadow: 0 0 8px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.24);
 }
 
@@ -753,7 +753,7 @@ ul.swat-toolbar {
 }
 
 .swat-toolbar a.swat-tool-link:focus {
-	background: #E3F2FD;
+	background: #e3f2fd;
 	box-shadow: 2px 0 0 #fff, 7px 0 0 -4px #f0eade;
 }
 
@@ -769,7 +769,7 @@ ul.swat-toolbar {
 }
 
 .swat-toolbar .swat-tool-link .swat-tool-link-title {
-	color: #1976D2;
+	color: #1976d2;
 	text-shadow: none;
 	font-weight: normal;
 	font-size: 13px;
@@ -817,17 +817,17 @@ div.swat-progress-bar-right-to-left div.swat-progress-bar-empty {
 div.swat-progress-bar-bar {
 	border: 0;
 	padding: 0;
-	background: #BBDEFB;
+	background: #bbdefb;
 }
 
 div.swat-progress-bar-full {
-	background: #2196F3;
-	box-shadow: 2px 0 1px -1px #E3F2FD, 0 -1px 0 #1E88E5 inset;
+	background: #2196f3;
+	box-shadow: 2px 0 1px -1px #e3f2fd, 0 -1px 0 #1e88e5 inset;
 	transition: left 0.5s;
 }
 
 div.swat-progress-bar-empty {
-	box-shadow: 0 -1px 0 #A8D5FA inset;
+	box-shadow: 0 -1px 0 #a8d5fa inset;
 }
 
 .site-upload-progress-bar div.swat-progress-bar {
