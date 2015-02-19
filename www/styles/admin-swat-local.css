@@ -493,7 +493,6 @@ span.swat-radio-wrapper input {
 .swat-actions input.swat-button-apply {
 	margin-left: 0;
 	color: #fff;
-	line-height: 1;
 }
 
 .swat-actions-controls > label {
@@ -524,9 +523,32 @@ span.swat-radio-wrapper input {
 }
 
 .swat-frame .swat-actions .swat-actions-note {
-	padding: 0 0 0 8px;
-	margin: 0;
 	display: none;
+}
+
+.swat-actions span.swat-actions-message {
+	border: 0;
+	background: #fff9c4;
+	box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.24);
+	color: #888;
+	color: rgba(0,0,0,0.54);
+	padding: 8px 12px 7px;
+	line-height: 1;
+	display: inline-block;
+	margin-left: 11px;
+	border-radius: 2px;
+}
+
+.swat-actions span.swat-actions-message span {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.swat-actions span.swat-actions-message .swat-actions-message-dismiss-link {
+	position: static;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 8px;
 }
 
 
