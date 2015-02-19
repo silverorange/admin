@@ -730,6 +730,17 @@ ul.swat-toolbar {
 	text-shadow: none;
 }
 
+.swat-tool-link-delete,
+.swat-tool-link-delete:link,
+.swat-tool-link-delete:visited {
+	color: #e53935;
+}
+
+.swat-tool-link-delete:hover,
+.swat-tool-link-delete:active {
+	color: #b71c1c;
+}
+
 .swat-toolbar .swat-tool-link-cancel .swat-tool-link-icon,
 .swat-toolbar .swat-tool-link-add .swat-tool-link-icon,
 .swat-toolbar .swat-tool-link-create .swat-tool-link-icon,
