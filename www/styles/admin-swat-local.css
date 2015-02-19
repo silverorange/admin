@@ -208,11 +208,21 @@ span.swat-required {
 
 /* SwatFooterFormField */
 
+.swat-frame .swat-header-form-field,
 .swat-frame .swat-footer-form-field {
 	display: block;
-	background: #f8f6f0;
-	border-top: 1px solid #efe8da;
-	padding: 15px 15px;
+	background: #fafafa;
+	padding: 16px;
+	margin: 16px -16px -16px;
+	border-top: 1px solid #e0e0e0;
+	border-radius-bottom-left: 2px;
+	border-radius-bottom-right: 2px;
+}
+
+.swat-frame .swat-header-form-field {
+	margin: -16px -16px 16px;
+	border-bottom: 1px solid #e0e0e0;
+	border-radius: 0;
 }
 
 .swat-footer-form-field .swat-button {
