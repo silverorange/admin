@@ -3,6 +3,7 @@ body {
 	color: #333;
 	margin: 0;
 	padding: 0;
+	font-family: "Open Sans", sans-serif;
 }
 
 /* turn off 10px left/right margins from default YUI grid  */
@@ -12,7 +13,7 @@ body {
 
 a:link,
 a:visited {
-	color: #3465a4;
+	color: #1976d2;
 }
 
 a:hover {
@@ -66,29 +67,28 @@ p {
 /* Header Styles */
 
 #hd {
-	padding: 8px 1em;
-	background: #527cae url(../images/admin-header-background-2.png) repeat-x bottom left;
-	color: #fff;
+	padding: 2px 0;
+	color: #888;
 }
 
-#hd a { color: #fff; }
-#hd a:hover { color: #ddd; }
-#hd a:active { color: #ccc; }
+#hd a { color: #555; }
+#hd a:hover { color: #777; }
+#hd a:active { color: #888; }
 
 #hd #admin-syslinks {
 	float: right;
-	margin: 0.1em 0 0 2em;
+	margin: 0 0 0 2em;
 	position: relative;
-	z-index: 2;
+	top: -2px;
+	z-index: 1;
 }
 
 #hd h1 {
 	margin: 0;
 	padding: 0;
-	font-size: 120%;
-	color: #fff;
+	font-size: 100%;
 	display: inline;
-	font-weight: bold;
+	font-weight: normal;
 }
 
 
@@ -110,12 +110,19 @@ h6 { font-size:  85%; }
 	color: #666;
 }
 
+
 /* Confirmation dialogs */
 
 #confirmation_container {
-	background: url(../../swat/images/tango/48/dialog-question.png) top left no-repeat;
-	padding: 0 0 0 64px;
+	background: url(../images/admin-dialog-question.png) -4px -4px no-repeat;
+	padding: 0 0 0 52px;
 	min-height: 48px;
+	margin: 8px 0 32px;
+}
+
+#confirmation_container > h3 {
+	margin-top: 0;
+	padding-top: 9px;
 }
 
 .ie6 #confirmation_container {
@@ -124,12 +131,32 @@ h6 { font-size:  85%; }
 
 #confirmation_frame ul {
 	list-style-type: disc;
+	padding-left: 24px;
 }
 
 #confirmation_frame ul li {
-	margin-left: 1.5em;
+	margin-left: 16px;
 	margin-top: 0.1em;
 }
+
+
+/* Errors */
+
+.swat-frame.admin-exception-container .swat-frame-contents {
+	background-image: url(../images/admin-dialog-exception.png);
+	background-position: 12px 20px;
+	background-repeat: no-repeat;
+	padding: 24px 16px 48px 68px;
+	min-height: 48px;
+}
+
+.admin-exception-container .swat-exception {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+
+/* Logout button */
 
 address { font-style: normal; }
 
@@ -147,57 +174,9 @@ address { font-style: normal; }
 
 #logout input.swat-button {
 	margin: 0;
-	padding: 2px 8px;
+	padding: 4px 8px;
 	vertical-align: middle;
 	font-size: 11px;
-
-	-webkit-box-shadow:
-		1px 1px 0 rgba(255,255,255,0.6) inset,
-		-1px 0 0 rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.7);
-
-	-moz-box-shadow:
-		1px 1px 0 rgba(255,255,255,0.6) inset,
-		-1px 0 0 rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.7);
-
-	box-shadow:
-		1px 1px 0 rgba(255,255,255,0.6) inset,
-		-1px 0 0 rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.7);
-}
-
-#logout input.swat-button:focus {
-	border-color: #c2c2c2 #aaa #aaa #c2c2c2;
-	-webkit-box-shadow:
-		1px 1px 0 rgba(255,255,255,0.7) inset,
-		0 1px 3px -1px rgba(0,0,0,0.3),
-		0 0 0px 2px rgba(255,255,255,0.25);
-
-	-moz-box-shadow:
-		1px 1px 0 rgba(255,255,255,0.7) inset,
-		0 1px 3px -1px rgba(0,0,0,0.3),
-		0 0 0px 2px rgba(255,255,255,0.25);
-
-	box-shadow:
-		1px 1px 0 rgba(255,255,255,0.7) inset,
-		0 1px 3px -1px rgba(0,0,0,0.3),
-		0 0 0px 2px rgba(255,255,255,0.25);
-}
-
-#logout input.swat-button:active {
-	border-color: #666;
-	-webkit-box-shadow:
-		0 0 0 1px rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.5) inset;
-
-	-moz-box-shadow:
-		0 0 0 1px rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.5) inset;
-
-	box-shadow:
-		0 0 0 1px rgba(255,255,255,0.3) inset,
-		0 1px 3px -1px rgba(0,0,0,0.5) inset;
 }
 
 #admin-identifier {
@@ -207,18 +186,34 @@ address { font-style: normal; }
 #admin-navbar {
 	position: relative;
 	top: 2px;
-	z-index: 1;
 	vertical-align: middle;
 }
 
 .clearfix:after {
-	content:".";
-	display:block;
-	height:0;
-	clear:both;
-	visibility:hidden;
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
 }
-.clearfix {display:inline-block;}
-/* Hide from IE Mac \*/
-.clearfix {display:block;}
-/* End hide from IE Mac */
+
+.clearfix {
+	display: inline-block;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5),
+	(min--moz-device-pixel-ratio: 1.5),
+	(-o-min-device-pixel-ratio: 3/2),
+	(min-resolution: 1.5dppx) {
+
+	#confirmation_container {
+		background-image: url(../images/admin-dialog-question@2x.png);
+		background-size: 48px 48px
+	}
+
+	.swat-frame.admin-exception-container .swat-frame-contents {
+		background-image: url(../images/admin-dialog-exception@2x.png);
+		background-size: 48px 48px
+	}
+
+}

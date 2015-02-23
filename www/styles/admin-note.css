@@ -1,41 +1,21 @@
 .admin-note {
-	border: 1px solid;
 	margin: 16px 0;
-	min-height: 28px;
-	padding: 8px 6px 8px 42px;
-	background-position: 12px 12px;
-	background-repeat: no-repeat;
-	border-color: #f0dca1;
-	background-color: #fffbc9;
-	color: #947140;
-	background-image: url(../../swat/images/tango/22/dialog-information.png);
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
+	background: #fff9c4;
+	color: #888;
+	color: rgba(0,0,0,0.54);
+	padding: 12px;
 	border-radius: 2px;
-}
-
-.ie6 .admin-note {
-	background-image: url(../../swat/images/tango/22/dialog-information-256.png);
+	box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.24);
 }
 
 .swat-frame .admin-note {
-	border-style: none;
-	border-bottom-style: solid;
-	margin: -16px -16px 16px;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
-}
-
-
-/* Hack for min-height in IE  */
-.ie6 .admin-note {
-	height: 28px;
+	margin: 0 0 16px;
 }
 
 .admin-note-title {
 	margin: 0;
-	color: #7b4b09;
+	color: #888;
+	color: rgba(0,0,0,0.54);
 }
 
 .admin-note dd {

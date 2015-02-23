@@ -132,3 +132,15 @@ span.admin-title-link-cell-renderer-file-save-as span.admin-title-link-cell-rend
 span.admin-title-link-cell-renderer-download span.admin-title-link-cell-renderer-icon {
 	background-position: -22px -176px;
 }
+
+@media (-webkit-min-device-pixel-ratio: 1.5),
+	(min--moz-device-pixel-ratio: 1.5),
+	(-o-min-device-pixel-ratio: 3/2),
+	(min-resolution: 1.5dppx) {
+
+	span.admin-title-link-cell-renderer-icon {
+		background-image: url(../images/admin-title-link-cell-renderer-icons@2x.png);
+		background-size: 44px 198px
+	}
+
+}

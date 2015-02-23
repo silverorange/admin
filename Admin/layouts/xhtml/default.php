@@ -10,25 +10,24 @@
 	<!--if !(IE)]><!--><base href="<?= $this->basehref ?>" /><!--<![endif]-->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="icon" href="../favicon.ico" type="image/x-icon" />
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,800' rel='stylesheet' type='text/css' />
 	<?=$this->html_head_entries?>
 </head>
 <body <?=$this->body_classes?>>
 
 <div id="doc3" class="yui-t1">
 
-<div id="hd">
-
-	<?=$this->header?>
-	<div id="admin-navbar">
-		<?=$this->navbar?>
-	</div><!-- end admin-navbar -->
-
-</div><!-- end #hd -->
 
 <div id="bd">
 
 	<div id="yui-main">
 		<div class="yui-b">
+			<div id="hd">
+				<?=$this->header?>
+				<div id="admin-navbar">
+					<?=$this->navbar?>
+				</div><!-- end admin-navbar -->
+			</div><!-- end #hd -->
 			<?=$this->content?>
 		</div><!-- end admin-content -->
 	</div><!-- end #yui-main -->
