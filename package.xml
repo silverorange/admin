@@ -22,10 +22,10 @@
   <email>mike@silverorange.com</email>
   <active>yes</active>
  </lead>
- <date>2015-01-21</date>
- <time>14:59:12</time>
+ <date>2015-03-04</date>
+ <time>17:23:12</time>
  <version>
-  <release>2.0.17</release>
+  <release>2.0.18</release>
   <api>0.0.1</api>
  </version>
  <stability>
@@ -258,10 +258,18 @@ see ChangeLog
    <dir name="www">
     <dir name="images">
      <file name="admin-checkbox-radio-buttons.png" role="data" />
-     <file name="admin-header-background-2.png" role="data" />
+     <file name="admin-checkbox-radio-buttons@2x.png" role="data" />
+     <file name="admin-dialog-exception.png" role="data" />
+     <file name="admin-dialog-exception@2x.png" role="data" />
+     <file name="admin-dialog-question.png" role="data" />
+     <file name="admin-dialog-question@2x.png" role="data" />
      <file name="admin-menu-help-arrow.png" role="data" />
-     <file name="admin-page-background.png" role="data" />
+     <file name="admin-swat-actions-arrow.png" role="data" />
+     <file name="admin-swat-actions-arrow@2x.png" role="data" />
      <file name="admin-title-link-cell-renderer-icons.png" role="data" />
+     <file name="admin-title-link-cell-renderer-icons@2x.png" role="data" />
+     <file name="swat-tool-link-icons.png" role="data" />
+     <file name="swat-tool-link-icons@2x.png" role="data" />
     </dir> <!-- /www/images -->
     <dir name="javascript">
      <file name="admin-login.js" role="data" />
@@ -317,14 +325,14 @@ see ChangeLog
  <changelog>
   <release>
    <version>
-    <release>2.0.17</release>
+    <release>2.0.18</release>
     <api>0.0.1</api>
    </version>
    <stability>
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2015-01-21</date>
+   <date>2015-03-04</date>
    <license uri="http://www.gnu.org/copyleft/lesser.html">LGPL</license>
    <notes>
 see ChangeLog
