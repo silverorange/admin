@@ -681,6 +681,31 @@ input.swat-entry.swat-insensitive {
 }
 
 
+/* Textarea Editor */
+
+.swat-textarea-editor-dialog {
+	background: transparent !important;
+}
+
+.swat-textarea-editor-dialog .swat-frame {
+	padding: 16px !important;
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: 0 0 14px rgba(0,0,0,0.12), 0 14px 14px rgba(0,0,0,0.24) !important;
+}
+
+.swat-textarea-editor-dialog textarea,
+.swat-textarea-editor-dialog input.swat-entry {
+	width: 100% !important;
+	box-sizing: border-box;
+}
+
+.swat-textarea-editor-dialog .swat-footer-form-field {
+	border-bottom-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+
+
 /* SwatButton, SwatToolLink */
 
 input[type=button],
