@@ -891,6 +891,29 @@ div.swat-progress-bar-empty {
 	vertical-align: middle;
 }
 
+
+/* Table View Input Cell and Input Row */
+
+.swat-remove-input-cell-remove {
+	background-image: url(../images/admin-remove.png);
+}
+
+.swat-table-view-input-row-add-row a.swat-table-view-input-row-add {
+	display: inline;
+	background: transparent;
+	box-shadow: none;
+	padding: 0;
+	text-decoration: underline;
+	cursor: pointer;
+	color: #00897b;
+}
+.swat-table-view-input-row-add-row a.swat-table-view-input-row-add:hover {
+	color: #00695c;
+}
+
+
+/* Retina Images */
+
 @media (-webkit-min-device-pixel-ratio: 1.5),
 	(min--moz-device-pixel-ratio: 1.5),
 	(-o-min-device-pixel-ratio: 3/2),
@@ -918,6 +941,11 @@ div.swat-progress-bar-empty {
 	.swat-toolbar .swat-tool-link-change-order .swat-tool-link-icon {
 		background-image: url(../images/swat-tool-link-icons@2x.png);
 		background-size: 32px 128px;
+	}
+
+	.swat-remove-input-cell-remove {
+		background-image: url(../images/admin-remove@2x.png);
+		background-size: 22px 22px;
 	}
 
 }
