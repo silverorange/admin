@@ -22,10 +22,10 @@
   <email>mike@silverorange.com</email>
   <active>yes</active>
  </lead>
- <date>2015-03-04</date>
- <time>17:23:12</time>
+ <date>2015-03-20</date>
+ <time>09:50:54</time>
  <version>
-  <release>2.0.18</release>
+  <release>2.0.19</release>
   <api>0.0.1</api>
  </version>
  <stability>
@@ -264,6 +264,8 @@ see ChangeLog
      <file name="admin-dialog-question.png" role="data" />
      <file name="admin-dialog-question@2x.png" role="data" />
      <file name="admin-menu-help-arrow.png" role="data" />
+     <file name="admin-remove.png" role="data" />
+     <file name="admin-remove@2x.png" role="data" />
      <file name="admin-swat-actions-arrow.png" role="data" />
      <file name="admin-swat-actions-arrow@2x.png" role="data" />
      <file name="admin-title-link-cell-renderer-icons.png" role="data" />
@@ -325,14 +327,14 @@ see ChangeLog
  <changelog>
   <release>
    <version>
-    <release>2.0.18</release>
+    <release>2.0.19</release>
     <api>0.0.1</api>
    </version>
    <stability>
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2015-03-04</date>
+   <date>2015-03-20</date>
    <license uri="http://www.gnu.org/copyleft/lesser.html">LGPL</license>
    <notes>
 see ChangeLog
