@@ -177,7 +177,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 				throw new AdminNotFoundException(
 					sprintf(
 						'A %s with the id of ‘%s’ does not exist',
-						$class_name,
+						get_class($this->data_object),
 						$this->id
 					)
 				);
