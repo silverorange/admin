@@ -153,10 +153,16 @@ abstract class AdminApproval extends AdminPage
 	{
 		$next_id = $this->getNextId();
 
-		if ($next_id === null)
-			$this->app->relocate('');
-		else
-			$this->app->relocate(sprintf('%s/?id=%d', $this->source, $next_id));
+		$relocate_uri = ($next_id === null)
+			? ''
+			: sprintf(
+				'%s/%s?id=%d',
+				$this->component,
+				$this->subcomponent,
+				$next_id
+			);
+
+		$this->app->relocate($relocate_uri);
 	}
 
 	// }}}
