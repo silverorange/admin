@@ -35,13 +35,15 @@ abstract class AdminApproval extends AdminPage
 
 		$this->pending_ids = $this->getPendingIds();
 
-		if (count($this->pending_ids) == 0)
+		if (count($this->pending_ids) === 0) {
 			$this->relocate();
+		}
 
 		$this->id = $this->app->initVar('id');
 
-		if ($this->id === null)
+		if ($this->id === null) {
 			$this->id = $this->getNextId();
+		}
 
 		$this->initDataObject($this->id);
 	}
@@ -64,10 +66,11 @@ abstract class AdminApproval extends AdminPage
 		$found = ($this->data_object === null);
 
 		foreach ($this->pending_ids as $id) {
-			if ($found)
+			if ($found) {
 				return $id;
-			elseif ($id == $this->id)
+			} elseif ($id === $this->id) {
 				$found = true;
+			}
 		}
 
 		return null;
@@ -82,10 +85,11 @@ abstract class AdminApproval extends AdminPage
 		$found = false;
 
 		foreach ($this->pending_ids as $id) {
-			if ($found)
+			if ($found) {
 				$count++;
-			elseif ($id == $this->id)
+			} elseif ($id === $this->id) {
 				$found = true;
+			}
 		}
 
 		return $count;
@@ -149,10 +153,16 @@ abstract class AdminApproval extends AdminPage
 	{
 		$next_id = $this->getNextId();
 
-		if ($next_id === null)
-			$this->app->relocate('');
-		else
-			$this->app->relocate(sprintf('%s/?id=%d', $this->source, $next_id));
+		$relocate_uri = ($next_id === null)
+			? ''
+			: sprintf(
+				'%s/%s?id=%d',
+				$this->component,
+				$this->subcomponent,
+				$next_id
+			);
+
+		$this->app->relocate($relocate_uri);
 	}
 
 	// }}}
@@ -173,12 +183,13 @@ abstract class AdminApproval extends AdminPage
 
 		$remaining = $this->getRemainingCount();
 		if ($remaining > 0) {
+			$locale = SwatI18NLocale::get();
 			$this->ui->getWidget('status')->content = sprintf(
 				Admin::_('%s%s%s still pending'),
 				'<span class="pending">',
-				SwatString::minimizeEntities(
-					SwatString::numberFormat($remaining)),
-				'</span>');
+				SwatString::minimizeEntities($locale->formatNumber($remaining)),
+				'</span>'
+			);
 		}
 	}
 
