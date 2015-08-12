@@ -705,6 +705,54 @@ input.swat-entry.swat-insensitive {
 	border-bottom-left-radius: 2px;
 }
 
+.swatSkin .swat-textarea-editor-mode-switcher a,
+.swatSkin .swat-textarea-editor-mode-switcher a:hover,
+.swatSkin .swat-textarea-editor-mode-switcher a:link,
+.swatSkin .swat-textarea-editor-mode-switcher a:visited,
+.swatSkin .swat-textarea-editor-mode-switcher a:active,
+.swatSkin .swat-textarea-editor-mode-switcher a.selected {
+	background: transparent;
+	position: static;
+	border-right: 0;
+	border-bottom: 0;
+	border-left: 0;
+	text-transform: uppercase;
+	padding: 6px 12px;
+	cursor: pointer;
+	font-size: 11px;
+}
+
+.swatSkin .swat-textarea-editor-mode-switcher a {
+	border-top: 2px solid transparent;
+}
+
+.swatSkin .swat-textarea-editor-mode-switcher a:hover span {
+	color: #42a5f5;
+}
+
+.swatSkin .swat-textarea-editor-mode-switcher a.selected {
+	border-top: 2px solid #2196f3;
+}
+
+.swatSkin .swat-textarea-editor-mode-switcher a span {
+	color: #757575;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.swatSkin .swat-textarea-editor-mode-switcher a.selected span {
+	color: #2196f3;
+}
+
+.swat-textarea-editor-container .swatSkin table.mceLayout {
+	border-left: 0;
+	border-right: 0;
+}
+
+.swat-textarea-editor-container .swatSkin table.mceLayout tr.mceLast td {
+	border-bottom: 1px solid #e0e0e0;
+}
+
 
 /* SwatButton, SwatToolLink */
 
