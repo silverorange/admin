@@ -681,7 +681,7 @@ input.swat-entry.swat-insensitive {
 }
 
 
-/* Textarea Editor */
+/* SwatTextareaEditor */
 
 .swat-textarea-editor-dialog {
 	background: transparent !important;
@@ -753,6 +753,56 @@ input.swat-entry.swat-insensitive {
 	border-bottom: 1px solid #e0e0e0;
 }
 
+.swat-textarea-editor-container .swatSkin table.mceToolbar {
+	margin: 0;
+}
+
+.swat-textarea-editor-container .swatSkin table.mceToolbar td.mceToolbarStartButton {
+	display: none;
+}
+
+.swat-textarea-editor-container .swatSkin table.mceLayout tr.mceFirst td.mceToolbar {
+	background: #fff;
+	padding: 0;
+	border: 0;
+	border-bottom: 2px solid #00897b;
+}
+
+.swat-textarea-editor-container .swatSkin .mceButton {
+	border: 0;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	padding: 8px;
+}
+
+.swat-textarea-editor-container .swatSkin a.mceButtonEnabled:hover {
+	background: #b2dfdb;
+}
+
+.swat-textarea-editor-container .swatSkin a.mceButtonActive,
+.swat-textarea-editor-container .swatSkin a.mceButtonEnabled:active,
+.swat-textarea-editor-container .swatSkin a.mceButtonSelected {
+	background: #80cbc4;
+}
+
+.swat-textarea-editor-container .swatSkin a.mceButtonActive:hover,
+.swat-textarea-editor-container .swatSkin a.mceButtonSelected:hover {
+	background: #4db6ac;
+}
+
+.swat-textarea-editor-container div.swat-textarea-container {
+}
+
+.swat-textarea-editor-container div.swat-textarea-container textarea {
+	border: 0;
+	overflow: auto;
+	max-width: 100%;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 4px 6px;
+}
 
 /* SwatButton, SwatToolLink */
 
