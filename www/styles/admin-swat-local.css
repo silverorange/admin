@@ -765,7 +765,7 @@ input.swat-entry.swat-insensitive {
 	background: #fff;
 	padding: 0;
 	border: 0;
-	border-bottom: 2px solid #00897b;
+	border-bottom: 1px solid #e0e0e0;
 }
 
 .swat-textarea-editor-container .swatSkin .mceButton {
@@ -777,18 +777,21 @@ input.swat-entry.swat-insensitive {
 }
 
 .swat-textarea-editor-container .swatSkin a.mceButtonEnabled:hover {
-	background: #b2dfdb;
+	background: #fff;
 }
 
 .swat-textarea-editor-container .swatSkin a.mceButtonActive,
 .swat-textarea-editor-container .swatSkin a.mceButtonEnabled:active,
 .swat-textarea-editor-container .swatSkin a.mceButtonSelected {
-	background: #80cbc4;
+	background: #bbdefb;
+	border-bottom: 2px solid #2196f3;
+	padding-bottom: 6px;
 }
 
 .swat-textarea-editor-container .swatSkin a.mceButtonActive:hover,
 .swat-textarea-editor-container .swatSkin a.mceButtonSelected:hover {
-	background: #4db6ac;
+	background: #90caf9;
+	border-bottom: 2px solid #2196f3;
 }
 
 .swat-textarea-editor-container div.swat-textarea-container {
@@ -803,6 +806,22 @@ input.swat-entry.swat-insensitive {
 	margin: 0;
 	padding: 4px 6px;
 }
+
+.swat-textarea-editor-container .swatSkin .mceIframeContainer iframe {
+	background: #fafafa;
+}
+
+.swat-textarea-editor-container .swatSkin .mceIcon {
+	background-image: url(../images/admin-swat-textarea-editor-icons.png);
+}
+
+.swat-textarea-editor-container .swatSkin a.mceButtonEnabled:hover .mceIcon,
+.swat-textarea-editor-container .swatSkin a.mceButtonActive .mceIcon,
+.swat-textarea-editor-container .swatSkin a.mceButtonEnabled:active .mceIcon,
+.swat-textarea-editor-container .swatSkin a.mceButtonSelected .mceIcon {
+	background-image: url(../images/admin-swat-textarea-editor-icons-highlight.png);
+}
+
 
 /* SwatButton, SwatToolLink */
 
