@@ -797,7 +797,7 @@ input.swat-entry.swat-insensitive {
 .swat-textarea-editor-container div.swat-textarea-container {
 }
 
-.swat-textarea-editor-container div.swat-textarea-container textarea {
+.swat-textarea-editor-container .swat-textarea-container textarea.swat-textarea-editor-source-mode {
 	border: 0;
 	overflow: auto;
 	max-width: 100%;
