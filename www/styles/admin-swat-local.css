@@ -813,6 +813,10 @@ input.swat-entry.swat-insensitive {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 4px 6px;
+	background: #fafafa;
+	box-shadow: 0 1px 0 #e0e0e0;
+	font-family: monospace;
+	font-size: 100%;
 }
 
 .swat-textarea-editor-container .swat-textarea-container textarea.swat-textarea-editor-source-mode:focus,
