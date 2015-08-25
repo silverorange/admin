@@ -158,8 +158,16 @@
 .swat-message-display-dismiss-link,
 .swat-message-display-dismiss-link:link,
 .swat-message-display-dismiss-link:visited {
-	right: 1px;
-	top: 1px;
+	top: 0;
+	right: 0;
+	width: 18px;
+	height: 18px;
+	background: url(../images/admin-message-display-dismiss.png);
+}
+
+.swat-message-display-dismiss-link:hover,
+.swat-message-display-dismiss-link:active {
+	background-position: 0 -18px;
 }
 
 
