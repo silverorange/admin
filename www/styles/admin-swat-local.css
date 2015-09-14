@@ -1124,4 +1124,17 @@ div.swat-progress-bar-empty {
 		background-image: url(../images/admin-message-display-dismiss@2x.png);
 		background-size: 18px 36px;
 	}
+
+	.swat-textarea-editor-container .swatSkin .mceIcon {
+		background-image: url(../images/admin-swat-textarea-editor-icons@2x.png);
+		background-size: 1000px 60px;
+	}
+
+	.swat-textarea-editor-container .swatSkin a.mceButtonEnabled:hover .mceIcon,
+	.swat-textarea-editor-container .swatSkin a.mceButtonActive .mceIcon,
+	.swat-textarea-editor-container .swatSkin a.mceButtonEnabled:active .mceIcon,
+	.swat-textarea-editor-container .swatSkin a.mceButtonSelected .mceIcon {
+		background-image: url(../images/admin-swat-textarea-editor-icons-highlight@2x.png);
+		background-size: 1000px 60px;
+	}
 }
