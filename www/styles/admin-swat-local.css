@@ -956,4 +956,10 @@ div.swat-progress-bar-empty {
 		background-size: 22px 22px;
 	}
 
+	.swat-message-display-dismiss-link,
+	.swat-message-display-dismiss-link:link,
+	.swat-message-display-dismiss-link:visited {
+		background: url(../images/admin-message-display-dismiss@2x.png);
+		background-size: 18px 18px;
+	}
 }
