@@ -681,6 +681,168 @@ input.swat-entry.swat-insensitive {
 }
 
 
+/* SwatTextareaEditor */
+
+.swat-textarea-editor-dialog {
+	background: transparent !important;
+}
+
+.swat-textarea-editor-dialog .swat-frame {
+	padding: 16px !important;
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: 0 0 14px rgba(0,0,0,0.12), 0 14px 14px rgba(0,0,0,0.24) !important;
+}
+
+.swat-textarea-editor-dialog textarea,
+.swat-textarea-editor-dialog input.swat-entry {
+	width: 100% !important;
+	box-sizing: border-box;
+}
+
+.swat-textarea-editor-dialog .swat-footer-form-field {
+	border-bottom-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+
+.swatSkin .swat-textarea-editor-mode-switcher a,
+.swatSkin .swat-textarea-editor-mode-switcher a:hover,
+.swatSkin .swat-textarea-editor-mode-switcher a:link,
+.swatSkin .swat-textarea-editor-mode-switcher a:visited,
+.swatSkin .swat-textarea-editor-mode-switcher a:active,
+.swatSkin .swat-textarea-editor-mode-switcher a.selected {
+	background: transparent;
+	position: static;
+	border-right: 0;
+	border-bottom: 0;
+	border-left: 0;
+	text-transform: uppercase;
+	padding: 6px 12px;
+	cursor: pointer;
+	font-size: 11px;
+}
+
+.swatSkin .swat-textarea-editor-mode-switcher a {
+	border-top: 2px solid transparent;
+}
+
+.swatSkin .swat-textarea-editor-mode-switcher a:hover span {
+	color: #42a5f5;
+}
+
+.swatSkin .swat-textarea-editor-mode-switcher a.selected {
+	border-top: 2px solid #2196f3;
+}
+
+.swatSkin .swat-textarea-editor-mode-switcher a span {
+	color: #757575;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.swatSkin .swat-textarea-editor-mode-switcher a.selected span {
+	color: #2196f3;
+}
+
+.swat-textarea-editor-container .swatSkin table.mceLayout {
+	border-left: 0;
+	border-right: 0;
+}
+
+.swat-textarea-editor-container .swatSkin table.mceLayout tr.mceLast td {
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.swat-textarea-editor-container .swatSkin table.mceToolbar {
+	margin: 0;
+}
+
+.swat-textarea-editor-container .swatSkin table.mceToolbar td.mceToolbarStartButton {
+	display: none;
+}
+
+.swat-textarea-editor-container .swatSkin table.mceLayout tr.mceFirst td.mceToolbar {
+	background: #fff;
+	padding: 0;
+	border: 0;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.swat-textarea-editor-container .swatSkin .mceButton {
+	border: 0;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	padding: 8px;
+}
+
+.swat-textarea-editor-container .swatSkin a.mceButtonEnabled:hover {
+	background: #fff;
+}
+
+.swat-textarea-editor-container .swatSkin a.mceButtonActive,
+.swat-textarea-editor-container .swatSkin a.mceButtonEnabled:active,
+.swat-textarea-editor-container .swatSkin a.mceButtonSelected {
+	background: #bbdefb;
+	border-bottom: 2px solid #2196f3;
+	padding-bottom: 6px;
+}
+
+.swat-textarea-editor-container .swatSkin a.mceButtonActive:hover,
+.swat-textarea-editor-container .swatSkin a.mceButtonSelected:hover {
+	background: #90caf9;
+	border-bottom: 2px solid #2196f3;
+}
+
+.swat-textarea-editor-container .swatSkin a.mceButtonActive.mceButtonDisabled,
+.swat-textarea-editor-container .swatSkin a.mceButtonActiove.mceButtonDisabled:hover,
+.swat-textarea-editor-container .swatSkin a.mceButtonSelected.mceButtonDisabled,
+.swat-textarea-editor-container .swatSkin a.mceButtonSelected.mceButtonDisabled:hover {
+	background: #bbdefb;
+	border-bottom: 2px solid #90caf9;
+}
+
+.swat-textarea-editor-container div.swat-textarea-container {
+}
+
+.swat-textarea-editor-container .swat-textarea-container textarea.swat-textarea-editor-source-mode {
+	border: 0;
+	overflow: auto;
+	max-width: 100%;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 4px 6px;
+	background: #fafafa;
+	box-shadow: 0 1px 0 #e0e0e0;
+	font-family: monospace;
+	font-size: 100%;
+}
+
+.swat-textarea-editor-container .swat-textarea-container textarea.swat-textarea-editor-source-mode:focus,
+.swat-textarea-editor-container .swat-textarea-container textarea.swat-textarea-editor-source-mode:hover {
+	background: #fafafa;
+	box-shadow: 0 1px 0 #e0e0e0;
+	font-family: monospace;
+	font-size: 100%;
+}
+
+.swat-textarea-editor-container .swatSkin .mceIframeContainer iframe {
+	background: #fafafa;
+}
+
+.swat-textarea-editor-container .swatSkin .mceIcon {
+	background-image: url(../images/admin-swat-textarea-editor-icons.png);
+}
+
+.swat-textarea-editor-container .swatSkin a.mceButtonEnabled:hover .mceIcon,
+.swat-textarea-editor-container .swatSkin a.mceButtonActive .mceIcon,
+.swat-textarea-editor-container .swatSkin a.mceButtonEnabled:active .mceIcon,
+.swat-textarea-editor-container .swatSkin a.mceButtonSelected .mceIcon {
+	background-image: url(../images/admin-swat-textarea-editor-icons-highlight.png);
+}
+
+
 /* SwatButton, SwatToolLink */
 
 input[type=button],
@@ -961,5 +1123,18 @@ div.swat-progress-bar-empty {
 	.swat-message-display-dismiss-link:visited {
 		background-image: url(../images/admin-message-display-dismiss@2x.png);
 		background-size: 18px 36px;
+	}
+
+	.swat-textarea-editor-container .swatSkin .mceIcon {
+		background-image: url(../images/admin-swat-textarea-editor-icons@2x.png);
+		background-size: 1000px 60px;
+	}
+
+	.swat-textarea-editor-container .swatSkin a.mceButtonEnabled:hover .mceIcon,
+	.swat-textarea-editor-container .swatSkin a.mceButtonActive .mceIcon,
+	.swat-textarea-editor-container .swatSkin a.mceButtonEnabled:active .mceIcon,
+	.swat-textarea-editor-container .swatSkin a.mceButtonSelected .mceIcon {
+		background-image: url(../images/admin-swat-textarea-editor-icons-highlight@2x.png);
+		background-size: 1000px 60px;
 	}
 }
