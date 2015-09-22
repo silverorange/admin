@@ -119,11 +119,29 @@ class AdminApplication extends SiteWebApplication
 	 * This method can be used to load another page to replace the current
 	 * page. For example, this is used to load a confirmation page when
 	 * processing an admin index page.
+	 *
+	 * @param string $source the source of the page with which to replace the
+	 *                        current page. The source will be passed to the
+	 *                        {@link SiteWebApplication::resolvePage()} method.
+	 *
+	 * @param integer $maintain_vars bitwise argument of whether or not to reset
+	 *                           GET or POST vars when replacing the page. By
+	 *                           default, both are reset.
 	 */
-	public function replacePage($source)
+	public function replacePage($source, $reset_vars = null)
 	{
-		$_GET = array();
-		$_POST = array();
+		if ($reset_vars === null) {
+			$reset_vars = self::VAR_GET | self::VAR_POST;
+		}
+
+		if ($reset_vars & self::VAR_GET) {
+			$_GET = array();
+		}
+
+		if ($reset_vars & self::VAR_POST) {
+			$_POST = array();
+		}
+
 		parent::replacePage($source);
 	}
 
