@@ -124,7 +124,7 @@ class AdminApplication extends SiteWebApplication
 	 *                        current page. The source will be passed to the
 	 *                        {@link SiteWebApplication::resolvePage()} method.
 	 *
-	 * @param integer $maintain_vars bitwise argument of whether or not to reset
+	 * @param integer $reset_vars bitwise argument of whether or not to reset
 	 *                           GET or POST vars when replacing the page. By
 	 *                           default, both are reset.
 	 */
