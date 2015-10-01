@@ -22,10 +22,10 @@
   <email>mike@silverorange.com</email>
   <active>yes</active>
  </lead>
- <date>2015-09-04</date>
- <time>12:17:43</time>
+ <date>2015-10-01</date>
+ <time>16:44:12</time>
  <version>
-  <release>2.0.22</release>
+  <release>2.0.23</release>
   <api>0.0.1</api>
  </version>
  <stability>
@@ -264,10 +264,16 @@ see ChangeLog
      <file name="admin-dialog-question.png" role="data" />
      <file name="admin-dialog-question@2x.png" role="data" />
      <file name="admin-menu-help-arrow.png" role="data" />
+     <file name="admin-message-display-dismiss.png" role="data" />
+     <file name="admin-message-display-dismiss@2x.png" role="data" />
      <file name="admin-remove.png" role="data" />
      <file name="admin-remove@2x.png" role="data" />
      <file name="admin-swat-actions-arrow.png" role="data" />
      <file name="admin-swat-actions-arrow@2x.png" role="data" />
+     <file name="admin-swat-textarea-editor-icons-highlight.png" role="data" />
+     <file name="admin-swat-textarea-editor-icons-highlight@2x.png" role="data" />
+     <file name="admin-swat-textarea-editor-icons.png" role="data" />
+     <file name="admin-swat-textarea-editor-icons@2x.png" role="data" />
      <file name="admin-title-link-cell-renderer-icons.png" role="data" />
      <file name="admin-title-link-cell-renderer-icons@2x.png" role="data" />
      <file name="swat-tool-link-icons.png" role="data" />
@@ -327,14 +333,14 @@ see ChangeLog
  <changelog>
   <release>
    <version>
-    <release>2.0.22</release>
+    <release>2.0.23</release>
     <api>0.0.1</api>
    </version>
    <stability>
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2015-09-04</date>
+   <date>2015-10-01</date>
    <license uri="http://www.gnu.org/copyleft/lesser.html">LGPL</license>
    <notes>
 see ChangeLog
