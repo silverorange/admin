@@ -1,0 +1,48 @@
+{
+	"name": "silverorange/admin",
+	"description": "Framework for backend admin website.",
+	"type": "library",
+	"keywords": [ "framework", "admin", "management" ],
+	"homepage": "https://github.com/silverorange/admin",
+	"license": "LGPL-2.1",
+	"authors": [
+		{
+			"name": "Charles Waddell",
+			"email": "charles@silverorange.com"
+		},
+		{
+			"name": "Isaac Grant",
+			"email": "isaac@silverorange.com"
+		},
+		{
+			"name": "Michael Gauthier",
+			"email": "mike@silverorange.com"
+		},
+		{
+			"name": "Nathan Frederikson",
+			"email": "nathan@silverorange.com"
+		},
+		{
+			"name": "Nick Burka",
+			"email": "nick@silverorange.com"
+		},
+		{
+			"name": "Steven Garrity",
+			"email": "steven@silverorange.com"
+		}
+	],
+	"require": {
+		"php": ">=5.3.0",
+		"silverorange/net_notifier": "^0.4.1",
+		"silverorange/silverorange_autoloader": "*",
+		"silverorange/site": "^2.1.45",
+		"silverorange/swat": "^2.2.0",
+		"silverorange/xml_rpc_ajax": "^1.0.12"
+	},
+	"autoload": {
+		"file": [ "autoload.php" ]
+	},
+	"include-path": [
+		"./"
+	]
+}
