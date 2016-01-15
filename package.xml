@@ -22,10 +22,10 @@
   <email>mike@silverorange.com</email>
   <active>yes</active>
  </lead>
- <date>2015-10-01</date>
- <time>16:44:12</time>
+ <date>2016-01-15</date>
+ <time>17:32:37</time>
  <version>
-  <release>2.0.23</release>
+  <release>2.0.24</release>
   <api>0.0.1</api>
  </version>
  <stability>
@@ -296,6 +296,8 @@ see ChangeLog
      <file name="admin-title-link-cell-renderer.css" role="data" />
     </dir> <!-- /www/styles -->
    </dir> <!-- /www -->
+   <file name="autoload.php" role="data" />
+   <file name="composer.json" role="data" />
    <file name="README.md" role="data" />
   </dir> <!-- / -->
  </contents>
@@ -333,14 +335,14 @@ see ChangeLog
  <changelog>
   <release>
    <version>
-    <release>2.0.23</release>
+    <release>2.0.24</release>
     <api>0.0.1</api>
    </version>
    <stability>
     <release>stable</release>
     <api>stable</api>
    </stability>
-   <date>2015-10-01</date>
+   <date>2016-01-15</date>
    <license uri="http://www.gnu.org/copyleft/lesser.html">LGPL</license>
    <notes>
 see ChangeLog
