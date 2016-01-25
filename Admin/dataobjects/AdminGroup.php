@@ -10,7 +10,7 @@ require_once 'SwatDB/SwatDBDataObject.php';
  * users receive access to only certain components.
  *
  * @package   Admin
- * @copyright 2007-2015 silverorange
+ * @copyright 2007-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminGroup extends SwatDBDataObject

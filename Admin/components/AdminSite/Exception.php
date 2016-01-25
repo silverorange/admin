@@ -10,7 +10,7 @@ require_once 'Site/pages/SiteXhtmlExceptionPage.php';
  * Exception page in an admin application
  *
  * @package   Admin
- * @copyright 2006-2015 silverorange
+ * @copyright 2006-2016 silverorange
  */
 class AdminAdminSiteException extends SiteXhtmlExceptionPage
 {

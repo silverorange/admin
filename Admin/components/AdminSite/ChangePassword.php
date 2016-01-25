@@ -11,7 +11,7 @@ require_once 'Swat/SwatMessage.php';
  * Force change password page after initial login
  *
  * @package   Admin
- * @copyright 2005-2015 silverorange
+ * @copyright 2005-2016 silverorange
  */
 class AdminAdminSiteChangePassword extends AdminPage
 {

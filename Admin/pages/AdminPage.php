@@ -13,7 +13,7 @@ require_once 'Admin/layouts/AdminDefaultLayout.php';
  * Page of an administration application
  *
  * @package   Admin
- * @copyright 2004-2015 silverorange
+ * @copyright 2004-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminPage extends SitePage

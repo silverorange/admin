@@ -9,7 +9,7 @@ require_once 'Admin/exceptions/AdminException.php';
  * been reset
  *
  * @package   Admin
- * @copyright 2008-2015 silverorange
+ * @copyright 2008-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminResetPasswordSuccessMailMessage extends SiteMultipartMailMessage
