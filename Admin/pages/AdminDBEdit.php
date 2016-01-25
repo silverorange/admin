@@ -12,7 +12,7 @@ require_once 'SwatDB/exceptions/SwatDBException.php';
  * edit page, inherit directly from AdminPage instead.
  *
  * @package   Admin
- * @copyright 2005-2015 silverorange
+ * @copyright 2005-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminDBEdit extends AdminEdit

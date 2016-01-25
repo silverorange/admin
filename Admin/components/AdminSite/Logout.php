@@ -7,7 +7,7 @@ require_once 'Admin/exceptions/AdminNotFoundException.php';
  * Very simple administrator logout page
  *
  * @package   Admin
- * @copyright 2005-2015 silverorange
+ * @copyright 2005-2016 silverorange
  */
 class AdminAdminSiteLogout extends AdminPage
 {

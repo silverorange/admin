@@ -7,7 +7,7 @@ require_once 'Admin/dataobjects/AdminGroup.php';
  * Edit page for AdminGroups component
  *
  * @package   Admin
- * @copyright 2005-2015 silverorange
+ * @copyright 2005-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminGroupEdit extends AdminObjectEdit

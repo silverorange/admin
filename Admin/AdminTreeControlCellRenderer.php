@@ -11,7 +11,7 @@ require_once 'Admin/Admin.php';
  * link title attribute.
  *
  * @package   Admin
- * @copyright 2004-2015 silverorange
+ * @copyright 2004-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer

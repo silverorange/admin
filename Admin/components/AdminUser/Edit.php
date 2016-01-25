@@ -7,7 +7,7 @@ require_once 'Admin/dataobjects/AdminUser.php';
  * Edit page for AdminUsers component
  *
  * @package   Admin
- * @copyright 2005-2015 silverorange
+ * @copyright 2005-2016 silverorange
  */
 class AdminAdminUserEdit extends AdminObjectEdit
 {
