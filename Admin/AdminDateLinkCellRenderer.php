@@ -63,7 +63,7 @@ class AdminDateLinkCellRenderer extends AdminTitleLinkCellRenderer
 		$date_renderer->date = $this->date;
 		$date_renderer->format = $this->format;
 		$date_renderer->time_zone_format = $this->time_zone_format;
-		$date_rendeer->display_time_zone = $this->display_time_zone;
+		$date_renderer->display_time_zone = $this->display_time_zone;
 
 		ob_start();
 		$date_renderer->render();
