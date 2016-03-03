@@ -371,13 +371,11 @@ span.swat-checkbox-wrapper input {
 	z-index: 3;
 }
 
-.ie6 span.swat-checkbox-shim,
 .ie7 span.swat-checkbox-shim,
 .ie8 span.swat-checkbox-shim {
 	display: none;
 }
 
-.ie6 span.swat-checkbox-wrapper input,
 .ie7 span.swat-checkbox-wrapper input,
 .ie8 span.swat-checkbox-wrapper input{
 	opacity: 1;
@@ -479,13 +477,11 @@ span.swat-radio-wrapper input {
 	z-index: 3;
 }
 
-.ie6 span.swat-radio-shim,
 .ie7 span.swat-radio-shim,
 .ie8 span.swat-radio-shim {
 	display: none;
 }
 
-.ie6 span.swat-radio-wrapper input,
 .ie7 span.swat-radio-wrapper input,
 .ie8 span.swat-radio-wrapper input {
 	opacity: 1.0;
@@ -771,8 +767,6 @@ input.swat-entry.swat-insensitive {
 .swat-textarea-editor-container .swatSkin .mceButton {
 	border: 0;
 	border-radius: 0;
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
 	padding: 8px;
 }
 
@@ -974,7 +968,6 @@ ul.swat-toolbar {
 	display: inline-block;
 }
 
-.ie6 .swat-toolbar li,
 .ie7 .swat-toolbar li,
 .ie8 .swat-toolbar li {
 	display: inline;
