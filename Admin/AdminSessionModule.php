@@ -20,6 +20,19 @@ require_once 'Swat/SwatString.php';
  */
 class AdminSessionModule extends SiteSessionModule
 {
+	// {{{ class constants
+
+	/**
+	 * How many days an admin user account is considered active
+	 *
+	 * If an account has no sign-in activity for this many days, it will be
+	 * prevented from signing into the admin.
+	 *
+	 * @see AdminSessionModule::isActiveUser()
+	 */
+	const ACCOUNT_EXPIRY_DAYS = 90;
+
+	// }}}
 	// {{{ protected properties
 
 	/**
@@ -337,6 +350,10 @@ class AdminSessionModule extends SiteSessionModule
 	 * days from the creation of the account if the user has never logged in.
 	 *
 	 * @param AdminUser $user_id the user to record login history for.
+	 *
+	 * @return boolean
+	 *
+	 * @see AdminSessionModule::ACCOUNT_EXPIRY_DAYS
 	 */
 	protected function isActiveUser(AdminUser $user)
 	{
@@ -351,7 +368,7 @@ class AdminSessionModule extends SiteSessionModule
 		}
 
 		$threshold = new SwatDate();
-		$threshold->subtractDays(90);
+		$threshold->subtractDays(self::ACCOUNT_EXPIRY_DAYS);
 		if ($comparison_date instanceof SwatDate &&
 			$comparison_date->after($threshold)) {
 			$active_user = true;
