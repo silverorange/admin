@@ -112,6 +112,13 @@ class AdminUser extends SwatDBDataObject
 	 */
 	public $all_instances;
 
+	/**
+	 * Date when the user account was created.
+	 *
+	 * @var SwatDate
+	 */
+	public $createdate;
+
 	// }}}
 	// {{{ protected properties
 
@@ -340,6 +347,7 @@ class AdminUser extends SwatDBDataObject
 		$this->id_field = 'integer:id';
 
 		$this->registerDateProperty('password_tag_date');
+		$this->registerDateProperty('createdate');
 	}
 
 	// }}}
