@@ -382,6 +382,41 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
+	// {{{ protected function loadMostRecentLogin()
+
+	/**
+	 * Gets most recent login history for this user
+	 *
+	 * If instance is set with the {@link AdminUser::setInstance()} method,
+	 * history will be limited that that instance.
+	 *
+	 * @return AdminUserHistory a {@link AdminUserHistory} containing
+	 *                           this admin user's most recent login history.
+	 *
+	 * @see AdminUser::setInstance()
+	 */
+	protected function loadMostRecentLogin()
+	{
+		$instance_id = null;
+
+		if ($this->instance instanceof SiteInstance) {
+			$instance_id = $this->instance->getId();
+		}
+
+		$sql = sprintf(
+			'select * from AdminUserHistory
+			where usernum = %s and instance %s %s
+			order by createdate desc',
+			$this->db->quote($this->id, 'integer'),
+			SwatDB::equalityOperator($instance_id),
+			$this->db->quote($instance_id, 'integer')
+		);
+
+		$this->db->setLimit(1);
+		return SwatDB::query($this->db, $sql, 'AdminUserHistoryWrapper');
+	}
+
+	// }}}
 	// {{{ protected function loadInstances()
 
 	/**
