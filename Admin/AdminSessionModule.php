@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Admin/dataobjects/AdminUser.php';
+require_once 'Admin/dataobjects/AdminUserHistory.php';
 require_once 'Admin/dataobjects/AdminUserWrapper.php';
 require_once 'Admin/exceptions/AdminException.php';
 require_once 'Site/SiteSessionModule.php';
@@ -341,16 +342,18 @@ class AdminSessionModule extends SiteSessionModule
 	{
 		$active_user = false;
 
-		$threshold = new SwatDate();
-		$threshold->subtractDays(90);
+		$comparison_date = null;
 
-		if ($user->createdate instanceof SwatDate) {
+		if ($user->most_recent_history instanceof AdminUserHistory) {
+			$comparison_date = $user->most_recent_history->login_date;
+		} elseif ($user->createdate instanceof SwatDate) {
 			$comparison_date = $user->createdate;
-		} elseif ($user->most_recent_login instanceof AdminUserHistory) {
-			$comparison_date = $user->most_recent_login->login_date;
 		}
 
-		if ($comparison_date->after($threshold)) {
+		$threshold = new SwatDate();
+		$threshold->subtractDays(90);
+		if ($comparison_date instanceof SwatDate &&
+			$comparison_date->after($threshold)) {
 			$active_user = true;
 		}
 
