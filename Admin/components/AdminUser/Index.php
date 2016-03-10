@@ -1,10 +1,13 @@
 <?php
 
-require_once 'Admin/AdminUI.php';
 require_once 'SwatDB/SwatDB.php';
-require_once 'Admin/pages/AdminIndex.php';
+require_once 'SwatI18N/SwatI18NLocale.php';
+require_once 'Swat/SwatDetailsStore.php';
 require_once 'Swat/SwatTableStore.php';
+require_once 'Admin/AdminUI.php';
+require_once 'Admin/pages/AdminIndex.php';
 require_once 'include/HistoryCellRenderer.php';
+require_once 'include/AdminUserTableView.php';
 
 /**
  * Index page for AdminUsers component
@@ -40,6 +43,11 @@ class AdminAdminUserIndex extends AdminIndex
 		$message = null;
 
 		switch ($actions->selected->id) {
+		case 'reactivate':
+			$this->app->replacePage('AdminUser/Reactivate');
+			$this->app->getPage()->setItems($view->getSelection());
+			break;
+
 		case 'delete':
 			$this->app->replacePage('AdminUser/Delete');
 			$this->app->getPage()->setItems($view->getSelection());
@@ -88,6 +96,26 @@ class AdminAdminUserIndex extends AdminIndex
 
 		$date_renderer = $date_column->getRendererByPosition();
 		$date_renderer->display_time_zone = $this->app->default_time_zone;
+
+		$this->buildActiveNote();
+	}
+
+	// }}}
+	// {{{ protected function buildActiveNote()
+
+	protected function buildActiveNote()
+	{
+		$locale = SwatI18NLocale::get();
+
+		$note = $this->ui->getWidget('active_note');
+		$note->content = sprintf(
+			Admin::_(
+				'Users become inactive after %s days of inactivity. To '.
+				'reactivate a user, select the user and choose '.
+				'“reactivate…” from the menu below.'
+			),
+			$locale->formatNumber(AdminSessionModule::ACCOUNT_EXPIRY_DAYS)
+		);
 	}
 
 	// }}}
@@ -97,22 +125,101 @@ class AdminAdminUserIndex extends AdminIndex
 	{
 		$instance_id = $this->app->getInstanceId();
 
-		$sql = 'select AdminUser.id, AdminUser.email, AdminUser.name,
-					AdminUser.enabled, AdminUserLastLoginView.last_login
+		$sql = sprintf(
+			'select AdminUser.id, AdminUser.email, AdminUser.name,
+					AdminUser.createdate, AdminUser.enabled,
+					AdminUserLastLoginView.last_login
 				from AdminUser
 				left outer join AdminUserLastLoginView on
 					AdminUserLastLoginView.usernum = AdminUser.id and
 					AdminUserLastLoginView.instance %s %s
-				order by %s';
-
-		$sql = sprintf($sql,
+				order by %s',
 			SwatDB::equalityOperator($instance_id),
 			$this->app->db->quote($instance_id, 'integer'),
-			$this->getOrderByClause($view, 'AdminUser.email'));
+			$this->getOrderByClause($view, 'AdminUser.email')
+		);
 
 		$users = SwatDB::query($this->app->db, $sql);
+		$active_users = array();
+		$inactive_users = array();
 
-		return $users;
+		// Build row objects and separate based on active/inactive status.
+		foreach ($users as $user) {
+			$ds = new SwatDetailsStore($user);
+
+			if ($user->createdate !== null) {
+				$user->createdate = new SwatDate($user->createdate);
+			}
+
+			if ($user->last_login !== null) {
+				$user->last_login = new SwatDate($user->last_login);
+			}
+
+			$ds->is_active = $this->isActiveUser(
+				$user->createdate,
+				$user->last_login
+			);
+
+			if ($ds->is_active) {
+				$ds->active_title = Admin::_('Active')
+				$active_users[] = $ds;
+			} else {
+				$ds->active_title = Admin::_('Inactive');
+				$inactive_users[] = $ds;
+			}
+		}
+
+		// Build the resulting table store sorted by active/inactive.
+		$store = new SwatTableStore();
+
+		foreach ($active_users as $ds) {
+			$store->add($ds);
+		}
+
+		foreach ($inactive_users as $ds) {
+			$store->add($ds);
+		}
+
+		return $store;
+	}
+
+	// }}}
+	// {{{ protected function isActiveUser()
+
+	protected function isActiveUser(SwatDate $createdate = null,
+		SwatDate $last_login = null)
+	{
+		$active_user = false;
+
+		$comparison_date = null;
+
+		if ($last_login instanceof SwatDate) {
+			$comparison_date = $last_login;
+		} elseif ($createdate instanceof SwatDate) {
+			$comparison_date = $createdate;
+		}
+
+		$threshold = new SwatDate();
+		$threshold->subtractDays(AdminSessionModule::ACCOUNT_EXPIRY_DAYS);
+		if ($comparison_date instanceof SwatDate &&
+			$comparison_date->after($threshold)) {
+			$active_user = true;
+		}
+
+		return $active_user;
+	}
+
+	// }}}
+
+	// finalize phase
+	// {{{ public function finalize()
+
+	public function finalize()
+	{
+		parent::finalize();
+		$this->layout->addHtmlHeadEntry(
+			'packages/admin/styles/admin-user-index-page.css'
+		);
 	}
 
 	// }}}
