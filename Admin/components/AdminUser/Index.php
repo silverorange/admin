@@ -5,6 +5,7 @@ require_once 'SwatI18N/SwatI18NLocale.php';
 require_once 'Swat/SwatDetailsStore.php';
 require_once 'Swat/SwatTableStore.php';
 require_once 'Admin/AdminUI.php';
+require_once 'Admin/dataobjects/AdminUser.php';
 require_once 'Admin/pages/AdminIndex.php';
 require_once 'include/HistoryCellRenderer.php';
 require_once 'include/AdminUserTableView.php';
@@ -114,7 +115,7 @@ class AdminAdminUserIndex extends AdminIndex
 				'reactivate a user, select the user and choose '.
 				'“reactivate…” from the menu below.'
 			),
-			$locale->formatNumber(AdminSessionModule::ACCOUNT_EXPIRY_DAYS)
+			$locale->formatNumber(AdminUser::EXPIRY_DAYS)
 		);
 	}
 
@@ -139,29 +140,32 @@ class AdminAdminUserIndex extends AdminIndex
 			$this->getOrderByClause($view, 'AdminUser.email')
 		);
 
-		$users = SwatDB::query($this->app->db, $sql);
+		$rows = SwatDB::query($this->app->db, $sql);
 		$active_users = array();
 		$inactive_users = array();
 
 		// Build row objects and separate based on active/inactive status.
-		foreach ($users as $user) {
-			$ds = new SwatDetailsStore($user);
-
-			if ($user->createdate !== null) {
-				$user->createdate = new SwatDate($user->createdate);
+		foreach ($rows as $row) {
+			if ($row->createdate !== null) {
+				$row->createdate = new SwatDate($row->createdate);
 			}
 
-			if ($user->last_login !== null) {
-				$user->last_login = new SwatDate($user->last_login);
+			if ($row->last_login !== null) {
+				$row->last_login = new SwatDate($row->last_login);
 			}
 
-			$ds->is_active = $this->isActiveUser(
-				$user->createdate,
-				$user->last_login
-			);
+			$ds = new SwatDetailsStore($row);
 
+			$user = new AdminUser($row);
+			$user->setDatabase($this->app->db);
+			if ($row->last_login instanceof SwatDate) {
+				$user->most_recent_history = new AdminUserHistory();
+				$user->most_recent_history->login_date = $row->last_login;
+			}
+
+			$ds->is_active = $user->isActive();
 			if ($ds->is_active) {
-				$ds->active_title = Admin::_('Active')
+				$ds->active_title = Admin::_('Active');
 				$active_users[] = $ds;
 			} else {
 				$ds->active_title = Admin::_('Inactive');
@@ -181,32 +185,6 @@ class AdminAdminUserIndex extends AdminIndex
 		}
 
 		return $store;
-	}
-
-	// }}}
-	// {{{ protected function isActiveUser()
-
-	protected function isActiveUser(SwatDate $createdate = null,
-		SwatDate $last_login = null)
-	{
-		$active_user = false;
-
-		$comparison_date = null;
-
-		if ($last_login instanceof SwatDate) {
-			$comparison_date = $last_login;
-		} elseif ($createdate instanceof SwatDate) {
-			$comparison_date = $createdate;
-		}
-
-		$threshold = new SwatDate();
-		$threshold->subtractDays(AdminSessionModule::ACCOUNT_EXPIRY_DAYS);
-		if ($comparison_date instanceof SwatDate &&
-			$comparison_date->after($threshold)) {
-			$active_user = true;
-		}
-
-		return $active_user;
 	}
 
 	// }}}
