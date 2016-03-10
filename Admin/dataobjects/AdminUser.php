@@ -126,11 +126,11 @@ class AdminUser extends SwatDBDataObject
 	public $all_instances;
 
 	/**
-	 * Date when the user account was created.
+	 * Date when the user account was activated.
 	 *
 	 * @var SwatDate
 	 */
-	public $createdate;
+	public $activation_date;
 
 	// }}}
 	// {{{ protected properties
@@ -357,8 +357,8 @@ class AdminUser extends SwatDBDataObject
 	/**
 	 * Checks to see if this user is active
 	 *
-	 * Users are inactive if they haven't logged in the last 90 days, or 90
-	 * days from the creation of the user if the user has never logged in.
+	 * Users are inactive if they haven't logged in or been activated in the
+	 * last 90 days.
 	 *
 	 * @return boolean
 	 *
@@ -369,11 +369,21 @@ class AdminUser extends SwatDBDataObject
 		$is_active = false;
 
 		$comparison_date = null;
+		$comparison_dates = array();
 
 		if ($this->most_recent_history instanceof AdminUserHistory) {
-			$comparison_date = $this->most_recent_history->login_date;
-		} elseif ($this->createdate instanceof SwatDate) {
-			$comparison_date = $this->createdate;
+			$comparison_dates[] = $this->most_recent_history->login_date;
+		} elseif ($this->activation_date instanceof SwatDate) {
+			$comparison_dates[] = $this->activation_date;
+		}
+
+		// Get the most recent activity date (either user history or activation
+		// date)
+		foreach ($comparison_dates as $date) {
+			if (!$comparison_date instanceof SwatDate ||
+				$date->after($comparison_date)) {
+				$comparison_date = $date;
+			}
 		}
 
 		$threshold = new SwatDate();
@@ -395,7 +405,7 @@ class AdminUser extends SwatDBDataObject
 		$this->id_field = 'integer:id';
 
 		$this->registerDateProperty('password_tag_date');
-		$this->registerDateProperty('createdate');
+		$this->registerDateProperty('activation_date');
 	}
 
 	// }}}

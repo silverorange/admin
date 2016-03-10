@@ -38,7 +38,7 @@ class AdminAdminUserReactivate extends AdminDBConfirmation
 		$now->toUTC();
 
 		$sql = sprintf(
-			'update AdminUser set createdate = %s
+			'update AdminUser set activation_date = %s
 			where id in (%s)',
 			$this->app->db->quote($now->getDate(), 'date'),
 			$this->getItemList('integer')

@@ -128,7 +128,7 @@ class AdminAdminUserIndex extends AdminIndex
 
 		$sql = sprintf(
 			'select AdminUser.id, AdminUser.email, AdminUser.name,
-					AdminUser.createdate, AdminUser.enabled,
+					AdminUser.activation_date, AdminUser.enabled,
 					AdminUserLastLoginView.last_login
 				from AdminUser
 				left outer join AdminUserLastLoginView on
@@ -146,8 +146,8 @@ class AdminAdminUserIndex extends AdminIndex
 
 		// Build row objects and separate based on active/inactive status.
 		foreach ($rows as $row) {
-			if ($row->createdate !== null) {
-				$row->createdate = new SwatDate($row->createdate);
+			if ($row->activation_date !== null) {
+				$row->activation_date = new SwatDate($row->activation_date);
 			}
 
 			if ($row->last_login !== null) {

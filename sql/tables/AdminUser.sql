@@ -9,6 +9,6 @@ create table AdminUser (
 	force_change_password boolean not null default true,
 	enabled boolean not null default true,
 	all_instances boolean not null default false,
-	createdate timestamp,
+	activation_date timestamp,
 	primary key(id)
 );
