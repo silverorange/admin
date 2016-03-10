@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Admin/dataobjects/AdminUser.php';
+require_once 'Admin/dataobjects/AdminUserHistory.php';
 require_once 'Admin/dataobjects/AdminUserWrapper.php';
 require_once 'Admin/exceptions/AdminException.php';
 require_once 'Site/SiteSessionModule.php';
@@ -19,6 +20,19 @@ require_once 'Swat/SwatString.php';
  */
 class AdminSessionModule extends SiteSessionModule
 {
+	// {{{ class constants
+
+	/**
+	 * How many days an admin user account is considered active
+	 *
+	 * If an account has no sign-in activity for this many days, it will be
+	 * prevented from signing into the admin.
+	 *
+	 * @see AdminSessionModule::isActiveUser()
+	 */
+	const ACCOUNT_EXPIRY_DAYS = 90;
+
+	// }}}
 	// {{{ protected properties
 
 	/**
@@ -336,21 +350,27 @@ class AdminSessionModule extends SiteSessionModule
 	 * days from the creation of the account if the user has never logged in.
 	 *
 	 * @param AdminUser $user_id the user to record login history for.
+	 *
+	 * @return boolean
+	 *
+	 * @see AdminSessionModule::ACCOUNT_EXPIRY_DAYS
 	 */
 	protected function isActiveUser(AdminUser $user)
 	{
 		$active_user = false;
 
-		$threshold = new SwatDate();
-		$threshold->subtractDays(90);
+		$comparison_date = null;
 
-		if ($user->createdate instanceof SwatDate) {
+		if ($user->most_recent_history instanceof AdminUserHistory) {
+			$comparison_date = $user->most_recent_history->login_date;
+		} elseif ($user->createdate instanceof SwatDate) {
 			$comparison_date = $user->createdate;
-		} elseif ($user->most_recent_login instanceof AdminUserHistory) {
-			$comparison_date = $user->most_recent_login->login_date;
 		}
 
-		if ($comparison_date->after($threshold)) {
+		$threshold = new SwatDate();
+		$threshold->subtractDays(self::ACCOUNT_EXPIRY_DAYS);
+		if ($comparison_date instanceof SwatDate &&
+			$comparison_date->after($threshold)) {
 			$active_user = true;
 		}
 
