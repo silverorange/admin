@@ -1,0 +1,6 @@
+tr.inactive td.email,
+tr.inactive td.name,
+tr.inactive td.enabled,
+tr.inactive td.last-login {
+	opacity: 0.5;
+}

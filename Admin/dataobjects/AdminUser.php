@@ -16,6 +16,19 @@ require_once 'Site/dataobjects/SiteInstanceWrapper.php';
  */
 class AdminUser extends SwatDBDataObject
 {
+	// {{{ class constants
+
+	/**
+	 * The number of days after which a user is considered inactive
+	 *
+	 * If a user has no sign-in activity for this many days, it will be
+	 * prevented from signing into the admin.
+	 *
+	 * @see AdminUser::isActive()
+	 */
+	const EXPIRY_DAYS = 90;
+
+	// }}}
 	// {{{ public properties
 
 	/**
@@ -113,11 +126,11 @@ class AdminUser extends SwatDBDataObject
 	public $all_instances;
 
 	/**
-	 * Date when the user account was created.
+	 * Date when the user account was activated.
 	 *
 	 * @var SwatDate
 	 */
-	public $createdate;
+	public $activation_date;
 
 	// }}}
 	// {{{ protected properties
@@ -171,8 +184,11 @@ class AdminUser extends SwatDBDataObject
 			$authenticated = true;
 		}
 
-		if ($this->force_change_password)
-			$authenticated = false;
+		$authenticated = (
+			$authenticated &&
+			$this->isActive() &&
+			!$this->force_change_password
+		);
 
 		return $authenticated;
 	}
@@ -339,6 +355,51 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
+	// {{{ public function isActive()
+
+	/**
+	 * Checks to see if this user is active
+	 *
+	 * Users are inactive if they haven't logged in or been activated in the
+	 * last 90 days.
+	 *
+	 * @return boolean
+	 *
+	 * @see AdminUser::EXPIRY_DAYS
+	 */
+	public function isActive()
+	{
+		$is_active = false;
+
+		$comparison_date = null;
+		$comparison_dates = array();
+
+		if ($this->most_recent_history instanceof AdminUserHistory) {
+			$comparison_dates[] = $this->most_recent_history->login_date;
+		} elseif ($this->activation_date instanceof SwatDate) {
+			$comparison_dates[] = $this->activation_date;
+		}
+
+		// Get the most recent activity date (either user history or activation
+		// date)
+		foreach ($comparison_dates as $date) {
+			if (!$comparison_date instanceof SwatDate ||
+				$date->after($comparison_date)) {
+				$comparison_date = $date;
+			}
+		}
+
+		$threshold = new SwatDate();
+		$threshold->subtractDays(self::EXPIRY_DAYS);
+		if ($comparison_date instanceof SwatDate &&
+			$comparison_date->after($threshold)) {
+			$is_active = true;
+		}
+
+		return $is_active;
+	}
+
+	// }}}
 	// {{{ protected function init()
 
 	protected function init()
@@ -347,7 +408,7 @@ class AdminUser extends SwatDBDataObject
 		$this->id_field = 'integer:id';
 
 		$this->registerDateProperty('password_tag_date');
-		$this->registerDateProperty('createdate');
+		$this->registerDateProperty('activation_date');
 	}
 
 	// }}}

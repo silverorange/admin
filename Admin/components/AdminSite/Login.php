@@ -88,6 +88,21 @@ class AdminAdminSiteLogin extends AdminPage
 				if (isset($this->app->session->user) &&
 					$this->app->session->user->force_change_password) {
 					$this->app->replacePage('AdminSite/ChangePassword');
+				} elseif (isset($this->app->session->user) &&
+					!$this->app->session->user->isActive()) {
+					$message_display = $this->ui->getWidget('message_display');
+					$message = new SwatMessage(
+						Admin::_('Your account is inactive'),
+						'error'
+					);
+
+					$message->secondary_content = Admin::_(
+						'Please contact another administrator to reactivate '.
+						'your account.'
+					);
+
+					$message_display->add($message);
+					$this->login_error = true;
 				} else {
 					$message_display = $this->ui->getWidget('message_display');
 					$message = new SwatMessage(Admin::_('Login failed'),
