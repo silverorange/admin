@@ -11,7 +11,9 @@
 				<property name="stock_id">create</property>
 			</widget>
 		</widget>
-		<widget class="AdminNote" id="active_note" />
+		<widget class="AdminNote" id="active_note">
+			<property name="visible" type="boolean">false</property>
+		</widget>
 		<widget class="SwatForm" id="index_form">
 			<widget class="AdminUserTableView" id="index_view">
 				<object class="SwatTableViewCheckboxColumn" id="checkbox">

@@ -97,8 +97,6 @@ class AdminAdminUserIndex extends AdminIndex
 
 		$date_renderer = $date_column->getRendererByPosition();
 		$date_renderer->display_time_zone = $this->app->default_time_zone;
-
-		$this->buildActiveNote();
 	}
 
 	// }}}
@@ -109,6 +107,7 @@ class AdminAdminUserIndex extends AdminIndex
 		$locale = SwatI18NLocale::get();
 
 		$note = $this->ui->getWidget('active_note');
+		$note->visible = true;
 		$note->content = sprintf(
 			Admin::_(
 				'Users become inactive after %s days of inactivity. To '.
@@ -182,6 +181,11 @@ class AdminAdminUserIndex extends AdminIndex
 
 		foreach ($inactive_users as $ds) {
 			$store->add($ds);
+		}
+
+		// If there are inactive users, show a note with help text.
+		if (count($inactive_users) > 0) {
+			$this->buildActiveNote();
 		}
 
 		return $store;
