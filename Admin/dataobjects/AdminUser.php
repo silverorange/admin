@@ -184,8 +184,11 @@ class AdminUser extends SwatDBDataObject
 			$authenticated = true;
 		}
 
-		$authenticated = ($authenticated && $this->isActive());
-		$authenticated = ($authenticated && !$this->force_change_password);
+		$authenticated = (
+			$authenticated &&
+			$this->isActive() &&
+			!$this->force_change_password
+		);
 
 		return $authenticated;
 	}
