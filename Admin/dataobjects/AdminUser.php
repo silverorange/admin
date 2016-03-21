@@ -376,7 +376,9 @@ class AdminUser extends SwatDBDataObject
 
 		if ($this->most_recent_history instanceof AdminUserHistory) {
 			$comparison_dates[] = $this->most_recent_history->login_date;
-		} elseif ($this->activation_date instanceof SwatDate) {
+		}
+
+		if ($this->activation_date instanceof SwatDate) {
 			$comparison_dates[] = $this->activation_date;
 		}
 
