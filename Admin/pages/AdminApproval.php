@@ -40,9 +40,10 @@ abstract class AdminApproval extends AdminPage
 		}
 
 		$this->id = $this->app->initVar('id');
-
 		if ($this->id === null) {
 			$this->id = $this->getNextId();
+		} else {
+			$this->id = (integer)$this->id;
 		}
 
 		$this->initDataObject($this->id);
