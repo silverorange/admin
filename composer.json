@@ -40,7 +40,7 @@
 		"silverorange/xml_rpc_ajax": "^1.0.12"
 	},
 	"autoload": {
-		"file": [ "autoload.php" ]
+		"files": [ "autoload.php" ]
 	},
 	"include-path": [
 		"./"
