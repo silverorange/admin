@@ -392,7 +392,7 @@ class AdminUser extends SwatDBDataObject
 		}
 
 		$threshold = new SwatDate();
-		$threshold->subtractDays(self::EXPIRY_DAYS);
+		$threshold->subtractDays(static::EXPIRY_DAYS);
 		if ($comparison_date instanceof SwatDate &&
 			$comparison_date->after($threshold)) {
 			$is_active = true;
