@@ -50,9 +50,11 @@ class AdminSummaryDependency extends AdminDependency
 	public function getStatusLevelCount($status_level)
 	{
 		$count = 0;
-		foreach ($this->summaries as &$summary)
-			if ($summary->status_level === $status_level)
+		foreach ($this->summaries as &$summary) {
+			if ($summary->status_level == $status_level) {
 				$count += $summary->count;
+			}
+		}
 
 		return $count;
 	}
@@ -111,10 +113,12 @@ class AdminSummaryDependency extends AdminDependency
 	public function displayDependencies($parent, $status_level)
 	{
 		$count = 0;
-		foreach ($this->summaries as $summary)
+		foreach ($this->summaries as $summary) {
 			if ($summary->parent == $parent &&
-				$summary->status_level === $status_level)
+				$summary->status_level == $status_level) {
 				$count += $summary->count;
+			}
+		}
 
 		if ($count > 0) {
 			$span_tag = new SwatHtmlTag('span');
