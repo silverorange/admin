@@ -63,9 +63,11 @@ class AdminListDependency extends AdminDependency
 	public function getStatusLevelCount($status_level)
 	{
 		$count = 0;
-		foreach ($this->entries as &$entry)
-			if ($entry->status_level === $status_level)
+		foreach ($this->entries as &$entry) {
+			if ($entry->status_level == $status_level) {
 				$count++;
+			}
+		}
 
 		return $count;
 	}
