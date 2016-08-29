@@ -180,6 +180,9 @@ class AdminUser extends SwatDBDataObject
 					$authenticated = true;
 				}
 			}
+
+			// Make sure instance is set so activation check works properly.
+			$this->setInstance($app->getInstance());
 		} else {
 			$authenticated = true;
 		}
