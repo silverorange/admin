@@ -118,7 +118,7 @@ class AdminUser extends SwatDBDataObject
 	 * Whether or not this user has access to all instances
 	 *
 	 * Only relevent on a multiple instance site. This allows the user to login
-	 * to all instance admins reguradless of AdminUserInstanceBindings. Also
+	 * to all instance admins regardless of AdminUserInstanceBindings. Also
 	 * this user can login into a master admin loading with a null instance.
 	 *
 	 * @var boolean
@@ -419,12 +419,12 @@ class AdminUser extends SwatDBDataObject
 	/**
 	 * Gets user history for this user
 	 *
-	 * If instance is set with the {@link AdminUser::setInstance()} method,
-	 * history will be limited that that instance.
+	 * If account instance is set with the {@link AdminUser::setInstance()}
+	 * method, history will be limited to that instance.
 	 *
 	 * @return AdminUserHistoryWrapper a set of {@link AdminUserHistory}
-	 *                                  objects containing this admin user's
-	 *                                  login history.
+	 *                                 objects containing this admin user's
+	 *                                 login history.
 	 *
 	 * @see AdminUser::setInstance()
 	 */
@@ -450,11 +450,11 @@ class AdminUser extends SwatDBDataObject
 	/**
 	 * Gets most recent login history for this user
 	 *
-	 * If instance is set with the {@link AdminUser::setInstance()} method,
-	 * history will be limited that that instance.
+	 * If account instance is set with the {@link AdminUser::setInstance()}
+	 * method, history will be limited to that instance.
 	 *
 	 * @return AdminUserHistory a {@link AdminUserHistory} containing
-	 *                           this admin user's most recent login history.
+	 *                          this admin user's most recent login history.
 	 *
 	 * @see AdminUser::setInstance()
 	 */
