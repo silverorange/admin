@@ -182,7 +182,9 @@ class AdminUser extends SwatDBDataObject
 			}
 
 			// Make sure instance is set so activation check works properly.
-			$this->setInstance($app->getInstance());
+			if ($app->getInstance() instanceof SiteInstance) {
+				$this->setInstance($app->getInstance());
+			}
 		} else {
 			$authenticated = true;
 		}
