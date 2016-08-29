@@ -432,14 +432,18 @@ class AdminUser extends SwatDBDataObject
 	{
 		$instance_id = null;
 
-		if ($this->instance !== null)
+		if ($this->instance instanceof SiteInstance) {
 			$instance_id = $this->instance->getId();
+		}
 
-		$sql = sprintf('select * from AdminUserHistory
-			where usernum = %s and instance %s %s',
+		$sql = sprintf(
+			'select * from AdminUserHistory
+			where usernum = %s and instance %s %s
+			order by login_date desc',
 			$this->db->quote($this->id, 'integer'),
 			SwatDB::equalityOperator($instance_id),
-			$this->db->quote($instance_id, 'integer'));
+			$this->db->quote($instance_id, 'integer')
+		);
 
 		return SwatDB::query($this->db, $sql, 'AdminUserHistoryWrapper');
 	}
@@ -474,6 +478,8 @@ class AdminUser extends SwatDBDataObject
 			SwatDB::equalityOperator($instance_id),
 			$this->db->quote($instance_id, 'integer')
 		);
+
+		$this->db->setLimit(1);
 
 		return SwatDB::query(
 			$this->db,
