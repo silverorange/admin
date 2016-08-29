@@ -118,7 +118,7 @@ class AdminUser extends SwatDBDataObject
 	 * Whether or not this user has access to all instances
 	 *
 	 * Only relevent on a multiple instance site. This allows the user to login
-	 * to all instance admins reguradless of AdminUserInstanceBindings. Also
+	 * to all instance admins regardless of AdminUserInstanceBindings. Also
 	 * this user can login into a master admin loading with a null instance.
 	 *
 	 * @var boolean
@@ -179,6 +179,11 @@ class AdminUser extends SwatDBDataObject
 
 					$authenticated = true;
 				}
+			}
+
+			// Make sure instance is set so activation check works properly.
+			if ($app->getInstance() instanceof SiteInstance) {
+				$this->setInstance($app->getInstance());
 			}
 		} else {
 			$authenticated = true;
@@ -419,12 +424,12 @@ class AdminUser extends SwatDBDataObject
 	/**
 	 * Gets user history for this user
 	 *
-	 * If instance is set with the {@link AdminUser::setInstance()} method,
-	 * history will be limited that that instance.
+	 * If account instance is set with the {@link AdminUser::setInstance()}
+	 * method, history will be limited to that instance.
 	 *
 	 * @return AdminUserHistoryWrapper a set of {@link AdminUserHistory}
-	 *                                  objects containing this admin user's
-	 *                                  login history.
+	 *                                 objects containing this admin user's
+	 *                                 login history.
 	 *
 	 * @see AdminUser::setInstance()
 	 */
@@ -432,14 +437,18 @@ class AdminUser extends SwatDBDataObject
 	{
 		$instance_id = null;
 
-		if ($this->instance !== null)
+		if ($this->instance instanceof SiteInstance) {
 			$instance_id = $this->instance->getId();
+		}
 
-		$sql = sprintf('select * from AdminUserHistory
-			where usernum = %s and instance %s %s',
+		$sql = sprintf(
+			'select * from AdminUserHistory
+			where usernum = %s and instance %s %s
+			order by login_date desc',
 			$this->db->quote($this->id, 'integer'),
 			SwatDB::equalityOperator($instance_id),
-			$this->db->quote($instance_id, 'integer'));
+			$this->db->quote($instance_id, 'integer')
+		);
 
 		return SwatDB::query($this->db, $sql, 'AdminUserHistoryWrapper');
 	}
@@ -450,11 +459,11 @@ class AdminUser extends SwatDBDataObject
 	/**
 	 * Gets most recent login history for this user
 	 *
-	 * If instance is set with the {@link AdminUser::setInstance()} method,
-	 * history will be limited that that instance.
+	 * If account instance is set with the {@link AdminUser::setInstance()}
+	 * method, history will be limited to that instance.
 	 *
 	 * @return AdminUserHistory a {@link AdminUserHistory} containing
-	 *                           this admin user's most recent login history.
+	 *                          this admin user's most recent login history.
 	 *
 	 * @see AdminUser::setInstance()
 	 */
@@ -474,6 +483,8 @@ class AdminUser extends SwatDBDataObject
 			SwatDB::equalityOperator($instance_id),
 			$this->db->quote($instance_id, 'integer')
 		);
+
+		$this->db->setLimit(1);
 
 		return SwatDB::query(
 			$this->db,
