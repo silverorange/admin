@@ -106,6 +106,8 @@ class AdminAdminUserIndex extends AdminIndex
 	{
 		$locale = SwatI18NLocale::get();
 
+		$class_name = SwatDBClassMap::get('AdminUser');
+
 		$note = $this->ui->getWidget('active_note');
 		$note->visible = true;
 		$note->content = sprintf(
@@ -114,7 +116,7 @@ class AdminAdminUserIndex extends AdminIndex
 				'reactivate a user, select the user and choose '.
 				'“reactivate…” from the menu below.'
 			),
-			$locale->formatNumber(AdminUser::EXPIRY_DAYS)
+			$locale->formatNumber($class_name::EXPIRY_DAYS)
 		);
 	}
 
@@ -153,9 +155,10 @@ class AdminAdminUserIndex extends AdminIndex
 				$row->last_login = new SwatDate($row->last_login);
 			}
 
-			$ds = new SwatDetailsStore($row);
+			$class_name = SwatDBClassMap::get('AdminUser');
 
-			$user = new AdminUser($row);
+			$ds = new SwatDetailsStore($row);
+			$user = new $class_name($row);
 			$user->setDatabase($this->app->db);
 			if ($row->last_login instanceof SwatDate) {
 				$user->most_recent_history = new AdminUserHistory();
