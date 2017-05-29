@@ -1,13 +1,10 @@
 <?php
 
-require_once 'Swat/Swat.php';
-require_once 'Site/Site.php';
-
 /**
  * Container for package wide static methods
  *
  * @package   Admin
- * @copyright 2005-2016 silverorange
+ * @copyright 2005-2017 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class Admin
@@ -17,11 +14,21 @@ class Admin
 	const GETTEXT_DOMAIN = 'admin';
 
 	// }}}
+	// {{{ private properties
+
+	/**
+	 * Whether or not this package is initialized
+	 *
+	 * @var boolean
+	 */
+	private static $is_initialized = false;
+
+	// }}}
 	// {{{ public static function _()
 
 	public static function _($message)
 	{
-		return Admin::gettext($message);
+		return self::gettext($message);
 	}
 
 	// }}}
@@ -29,7 +36,7 @@ class Admin
 
 	public static function gettext($message)
 	{
-		return dgettext(Admin::GETTEXT_DOMAIN, $message);
+		return dgettext(self::GETTEXT_DOMAIN, $message);
 	}
 
 	// }}}
@@ -38,7 +45,7 @@ class Admin
 	public static function ngettext($singular_message,
 		$plural_message, $number)
 	{
-		return dngettext(Admin::GETTEXT_DOMAIN,
+		return dngettext(self::GETTEXT_DOMAIN,
 			$singular_message, $plural_message, $number);
 	}
 
@@ -47,8 +54,8 @@ class Admin
 
 	public static function setupGettext()
 	{
-		bindtextdomain(Admin::GETTEXT_DOMAIN, '@DATA-DIR@/Admin/locale');
-		bind_textdomain_codeset(Admin::GETTEXT_DOMAIN, 'UTF-8');
+		bindtextdomain(self::GETTEXT_DOMAIN, '@DATA-DIR@/Admin/locale');
+		bind_textdomain_codeset(self::GETTEXT_DOMAIN, 'UTF-8');
 	}
 
 	// }}}
@@ -72,9 +79,35 @@ class Admin
 	}
 
 	// }}}
-}
+	// {{{ public static function init()
 
-Admin::setupGettext();
-SwatUI::mapClassPrefixToPath('Admin', 'Admin');
+	public static function init()
+	{
+		if (self::$is_initialized) {
+			return;
+		}
+
+		Swat::init();
+		Site::init();
+
+		self::setupGettext();
+
+		SwatUI::mapClassPrefixToPath('Admin', 'Admin');
+
+		self::$is_initialized = true;
+	}
+
+	// }}}
+	// {{{ private function __construct()
+
+	/**
+	 * Prevent instantiation of this static class
+	 */
+	private function __construct()
+	{
+	}
+
+	// }}}
+}
 
 ?>
