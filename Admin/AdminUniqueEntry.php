@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Swat/SwatEntry.php';
-require_once 'Admin/Admin.php';
-
 /**
  * A unique text entry widget
  *

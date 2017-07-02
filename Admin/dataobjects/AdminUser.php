@@ -1,11 +1,5 @@
 <?php
 
-require_once 'Swat/SwatString.php';
-require_once 'SwatDB/SwatDBDataObject.php';
-require_once 'Admin/dataobjects/AdminUserHistoryWrapper.php';
-require_once 'Admin/AdminResetPasswordMailMessage.php';
-require_once 'Site/dataobjects/SiteInstanceWrapper.php';
-
 /**
  * User account for an admin
  *

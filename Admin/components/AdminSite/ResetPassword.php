@@ -1,11 +1,5 @@
 <?php
 
-require_once 'Swat/SwatUI.php';
-require_once 'Swat/SwatMessage.php';
-require_once 'Admin/pages/AdminPage.php';
-require_once 'Admin/layouts/AdminLoginLayout.php';
-require_once 'Admin/AdminResetPasswordSuccessMailMessage.php';
-
 /**
  * Page to reset the password for an admin user
  *

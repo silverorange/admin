@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminObjectEdit.php';
-require_once 'Admin/dataobjects/AdminUser.php';
-
 /**
  * Edit page for AdminUsers component
  *

@@ -1,11 +1,5 @@
 <?php
 
-require_once 'Admin/AdminDependency.php';
-require_once 'Admin/AdminDependencyEntry.php';
-require_once 'SwatDB/SwatDB.php';
-require_once 'SwatDB/SwatDBField.php';
-require_once 'Swat/SwatString.php';
-
 /**
  * A dependency that displays a list of entries
  *
@@ -226,8 +220,6 @@ class AdminListDependency extends AdminDependency
 		$where_clause = null,
 		$status_level = AdminDependency::NODELETE
 	) {
-		require_once 'AdminDependencyEntryWrapper.php';
-
 		$id_field = new SwatDBField($id_field, 'integer');
 		$title_field = new SwatDBField($title_field, 'text');
 

@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Admin/layouts/AdminLayout.php';
-
 /**
  * Layout for the login page
  *

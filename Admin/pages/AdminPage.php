@@ -1,14 +1,5 @@
 <?php
 
-require_once 'Site/pages/SitePage.php';
-require_once 'Swat/SwatForm.php';
-require_once 'Swat/exceptions/SwatCrossSiteRequestForgeryException.php';
-require_once 'Swat/exceptions/SwatWidgetNotFoundException.php';
-require_once 'Admin/AdminMenuStore.php';
-require_once 'Admin/AdminMenuView.php';
-require_once 'Admin/AdminUI.php';
-require_once 'Admin/layouts/AdminDefaultLayout.php';
-
 /**
  * Page of an administration application
  *

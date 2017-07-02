@@ -1,12 +1,5 @@
 <?php
 
-require_once 'Admin/AdminApplication.php';
-require_once 'Admin/dataobjects/AdminComponent.php';
-require_once 'Admin/dataobjects/AdminComponentWrapper.php';
-require_once 'Admin/exceptions/AdminNotFoundException.php';
-require_once 'Admin/exceptions/AdminNoAccessException.php';
-require_once 'Site/SiteObject.php';
-
 /**
  * Page request
  *

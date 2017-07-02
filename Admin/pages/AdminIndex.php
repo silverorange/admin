@@ -1,10 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminPage.php';
-require_once 'Swat/SwatView.php';
-require_once 'Swat/SwatViewSelector.php';
-require_once 'Swat/SwatActions.php';
-
 /**
  * Generic admin index page
  *

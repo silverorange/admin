@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Admin/exceptions/AdminUserException.php';
-
 /**
  * Thrown when access to a page is not allowed
  *

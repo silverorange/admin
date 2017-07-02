@@ -1,7 +1,5 @@
 <?php
 
-require_once 'AdminDependency.php';
-
 /**
  * An item in an admin dependency
  *

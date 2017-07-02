@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Admin/AdminDependencyItem.php';
-
 /**
  * A dependency summary that contains a count of items
  *

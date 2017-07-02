@@ -1,12 +1,5 @@
 <?php
 
-require_once 'Admin/AdminDependency.php';
-require_once 'Admin/AdminDependencySummary.php';
-require_once 'SwatDB/SwatDB.php';
-require_once 'SwatDB/SwatDBField.php';
-require_once 'Swat/SwatHtmlTag.php';
-require_once 'Swat/SwatString.php';
-
 /**
  * A dependency that displays a one line summary of dependent items
  *
@@ -144,8 +137,6 @@ class AdminSummaryDependency extends AdminDependency
 		$where_clause = null,
 		$status_level = 0
 	) {
-		require_once 'Admin/AdminDependencySummaryWrapper.php';
-
 		$id_field = new SwatDBField($id_field, 'integer');
 
 		if ($parent_field === null) {

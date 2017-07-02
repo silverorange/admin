@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Swat/SwatImageLinkCellRenderer.php';
-require_once 'Admin/Admin.php';
-
 /**
  * Details Control
  *

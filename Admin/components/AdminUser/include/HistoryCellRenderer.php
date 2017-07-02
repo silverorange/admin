@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Swat/SwatCellRenderer.php';
-require_once 'Swat/SwatHtmlTag.php';
-
 /**
  * Custom cell renderer for the history link on AdminUsers index page
  *

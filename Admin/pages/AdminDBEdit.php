@@ -1,10 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminEdit.php';
-require_once 'Swat/SwatMessage.php';
-require_once 'SwatDB/SwatDBTransaction.php';
-require_once 'SwatDB/exceptions/SwatDBException.php';
-
 /**
  * Generic admin database edit page
  *

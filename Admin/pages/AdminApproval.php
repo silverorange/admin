@@ -1,9 +1,5 @@
 <?php
 
-require_once 'Admin/Admin.php';
-require_once 'Admin/AdminUI.php';
-require_once 'Admin/pages/AdminPage.php';
-
 /**
  * Generic admin approval page
  *

@@ -1,8 +1,5 @@
 <?php
 
-require_once 'SwatDB/SwatDBDataObject.php';
-require_once 'Admin/dataobjects/AdminComponentWrapper.php';
-
 /**
  * Section to group multiple components together
  *

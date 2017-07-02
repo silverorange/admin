@@ -1,9 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminDBDelete.php';
-require_once 'Admin/pages/AdminConfirmation.php';
-require_once 'Admin/AdminListDependency.php';
-
 /**
  * Delete confirmation page for AdminSubComponents
  * @package   Admin

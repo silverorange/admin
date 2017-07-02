@@ -1,8 +1,5 @@
 <?php
 
-require_once 'SwatDB/SwatDBField.php';
-require_once 'Admin/exceptions/AdminException.php';
-
 /**
  * Object for building SQL search clauses
  *

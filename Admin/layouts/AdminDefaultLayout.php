@@ -1,14 +1,5 @@
 <?php
 
-require_once 'Admin/layouts/AdminLayout.php';
-require_once 'Admin/AdminNavBar.php';
-require_once 'Admin/AdminMenuStore.php';
-require_once 'Admin/AdminMenuView.php';
-require_once 'Swat/SwatButton.php';
-require_once 'Swat/SwatForm.php';
-require_once 'Swat/SwatFormField.php';
-require_once 'Swat/SwatString.php';
-
 /**
  * Default layout used for the majority of admin components
  *

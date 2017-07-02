@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Admin/exceptions/AdminException.php';
-
 /**
  * Base class for exceptions that are thrown in response to user input and
  * should be handled gracefully.

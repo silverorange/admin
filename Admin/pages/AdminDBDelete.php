@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminDBConfirmation.php';
-require_once 'SwatDB/exceptions/SwatDBException.php';
-
 /**
  * Generic admin database delete page
  *

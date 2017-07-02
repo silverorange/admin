@@ -1,9 +1,5 @@
 <?php
 
-require_once 'Swat/SwatNavBar.php';
-require_once 'Swat/SwatString.php';
-require_once 'Admin/AdminImportantNavBarEntry.php';
-
 /**
  * A navagational bar for the admin
  *

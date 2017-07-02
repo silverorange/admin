@@ -17,7 +17,6 @@
 
 <div id="doc3" class="yui-t1">
 
-
 <div id="bd">
 
 	<div id="yui-main">

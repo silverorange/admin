@@ -1,10 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminPage.php';
-require_once 'Admin/layouts/AdminLoginLayout.php';
-require_once 'Admin/dataobjects/AdminUser.php';
-require_once 'Swat/SwatMessage.php';
-
 /**
  * Administrator forgot password page
  *

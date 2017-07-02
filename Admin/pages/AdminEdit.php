@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminPage.php';
-require_once 'Swat/SwatString.php';
-
 /**
  * Generic admin edit page
  *

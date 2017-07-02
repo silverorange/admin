@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Swat/SwatContentBlock.php';
-require_once 'Swat/SwatHtmlTag.php';
-
 /**
  * A widget to display a formatted note in the widget tree
  *

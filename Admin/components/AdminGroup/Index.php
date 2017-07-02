@@ -1,10 +1,5 @@
 <?php
 
-require_once 'SwatDB/SwatDB.php';
-require_once 'Admin/AdminUI.php';
-require_once 'Admin/pages/AdminIndex.php';
-require_once 'Swat/SwatTableStore.php';
-
 /**
  * Index page for AdminGroups component
  *

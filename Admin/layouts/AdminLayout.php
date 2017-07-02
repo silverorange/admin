@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Swat/SwatYUI.php';
-require_once 'Site/layouts/SiteLayout.php';
-
 /**
  * Base class for admin layouts
  *

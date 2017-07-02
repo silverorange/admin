@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminDBDelete.php';
-
 /**
  * Admin delete page for SwatDBDataObjects
  *

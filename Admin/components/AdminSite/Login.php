@@ -1,10 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminPage.php';
-require_once 'Admin/layouts/AdminLoginLayout.php';
-require_once 'Admin/AdminUI.php';
-require_once 'Swat/SwatMessage.php';
-
 /**
  * Administrator login page
  *

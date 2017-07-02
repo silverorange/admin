@@ -1,11 +1,5 @@
 <?php
 
-require_once 'Swat/SwatContentBlock.php';
-require_once 'Swat/SwatContainer.php';
-require_once 'Swat/SwatFrame.php';
-require_once 'Admin/layouts/AdminDefaultLayout.php';
-require_once 'Site/pages/SiteXhtmlExceptionPage.php';
-
 /**
  * Exception page in an admin application
  *

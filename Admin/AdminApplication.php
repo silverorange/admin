@@ -1,23 +1,5 @@
 <?php
 
-require_once 'Site/SiteWebApplication.php';
-require_once 'Site/SiteDatabaseModule.php';
-require_once 'Site/SiteConfigModule.php';
-require_once 'Site/SiteCookieModule.php';
-require_once 'Site/SiteMessagesModule.php';
-require_once 'Site/SiteNotifierModule.php';
-require_once 'Site/SiteCryptModule.php';
-require_once 'MDB2.php';
-require_once 'SwatDB/SwatDB.php';
-require_once 'Admin/Admin.php';
-require_once 'Admin/AdminSessionModule.php';
-require_once 'Admin/AdminMenuView.php';
-require_once 'Admin/AdminPageRequest.php';
-require_once 'Admin/pages/AdminPage.php';
-require_once 'Admin/layouts/AdminDefaultLayout.php';
-require_once 'Admin/exceptions/AdminUserException.php';
-require_once 'Admin/exceptions/AdminNotFoundException.php';
-
 /**
  * Web application class for an administration application
  *
@@ -413,14 +395,12 @@ class AdminApplication extends SiteWebApplication
 		switch ($path[0]) {
 		case 'smil':
 			array_shift($path);
-			require_once 'Site/pages/SiteAmazonCdnMediaManifestPage.php';
 			$layout = new SiteLayout($this, 'Site/layouts/xhtml/smil.php');
 			$page = new SiteAmazonCdnMediaManifestPage($this, $layout);
 			$page->setMediaKey(substr(array_shift($path), 0, -5));
 			return $page;
 		case 'vtt':
 			array_shift($path);
-			require_once 'Site/pages/SiteVideoTextTracksPage.php';
 			$layout = new SiteLayout($this, 'Site/layouts/xhtml/vtt.php');
 			$page = new SiteVideoTextTracksPage($this, $layout);
 			$page->setMediaKey(substr(array_shift($path), 0, -4));
@@ -437,19 +417,15 @@ class AdminApplication extends SiteWebApplication
 	{
 		$request = new AdminPageRequest($this, $source);
 
-		$file = $request->getFilename();
-		if ($file === null)
-			throw new AdminNotFoundException(
-				sprintf(Admin::_("File not found for source '%s'."), $source));
-
-		require_once $file;
-
 		$classname = $request->getClassName();
-		if (!class_exists($classname))
+		if (!class_exists($classname)) {
 			throw new AdminNotFoundException(
-				sprintf(Admin::_(
-					"Class '%s' does not exist in the included file."),
-					$classname));
+				sprintf(
+					Admin::_("Class '%s' does not exist."),
+					$classname
+				)
+			);
+		}
 
 		$layout = $this->resolveLayout($source);
 		$page = new $classname($this, $layout);

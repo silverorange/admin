@@ -1,8 +1,5 @@
 <?php
 
-require_once 'SwatDB/SwatDBRecordsetWrapper.php';
-require_once 'Admin/dataobjects/AdminSubComponent.php';
-
 /**
  * A recordset wrapper class for AdminSubComponent objects
  *

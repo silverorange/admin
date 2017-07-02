@@ -1,9 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminObjectEdit.php';
-require_once 'Admin/dataobjects/AdminComponent.php';
-require_once 'Admin/dataobjects/AdminSubComponent.php';
-
 /**
  * Edit page for AdminSubComponents
  *
