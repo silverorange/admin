@@ -31,6 +31,20 @@
 			"email": "steven@silverorange.com"
 		}
 	],
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://composer",
+			"options": {
+				"ssl": {
+					"cafile": "/etc/nginx/tls.crt/composer.crt"
+				}
+			}
+		},
+		{
+			"packagist": false
+		}
+	],
 	"require": {
 		"php": ">=5.3.0",
 		"silverorange/net_notifier": "^0.4.1",
@@ -43,5 +57,12 @@
 	},
 	"include-path": [
 		"./"
-	]
+	],
+	"scripts": {
+		"post-install-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/silverorange/coding-standard",
+		"post-update-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/silverorange/coding-standard"
+	},
+	"require-dev": {
+		"silverorange/coding-standard": "^0.1.0"
+	}
 }
