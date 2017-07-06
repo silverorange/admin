@@ -30,7 +30,7 @@ abstract class AdminObjectDelete extends AdminDBDelete
 
 	protected function getUiXml()
 	{
-		return 'Admin/pages/confirmation.xml';
+		return __DIR__.'/confirmation.xml';
 	}
 
 	// }}}

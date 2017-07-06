@@ -14,7 +14,7 @@ abstract class AdminOrder extends AdminPage
 {
 	// {{{ protected properties
 
-	protected $ui_xml = 'Admin/pages/order.xml';
+	protected $ui_xml = __DIR__.'/order.xml';
 
 	// }}}
 

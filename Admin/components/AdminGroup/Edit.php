@@ -21,7 +21,7 @@ class AdminAdminGroupEdit extends AdminObjectEdit
 
 	protected function getUiXml()
 	{
-		return 'Admin/components/AdminGroup/edit.xml';
+		return __DIR__.'/edit.xml';
 	}
 
 	// }}}

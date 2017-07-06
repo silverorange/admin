@@ -21,7 +21,7 @@ class AdminAdminSectionEdit extends AdminObjectEdit
 
 	protected function getUiXml()
 	{
-		return 'Admin/components/AdminSection/edit.xml';
+		return __DIR__.'/edit.xml';
 	}
 
 	// }}}

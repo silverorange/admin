@@ -20,7 +20,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 
 	protected function getUiXml()
 	{
-		return 'Admin/components/AdminUser/edit.xml';
+		return __DIR__.'/edit.xml';
 	}
 
 	// }}}

@@ -97,7 +97,7 @@ abstract class AdminApproval extends AdminPage
 
 	protected function getUiXml()
 	{
-		return 'Admin/pages/approval.xml';
+		return __DIR__.'/approval.xml';
 	}
 
 	// }}}

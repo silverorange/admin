@@ -21,7 +21,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 
 	protected function getUiXml()
 	{
-		return 'Admin/components/AdminSite/profile.xml';
+		return __DIR__.'/profile.xml';
 	}
 
 	// }}}
