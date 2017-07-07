@@ -117,46 +117,26 @@ class AdminPageRequest extends SiteObject
 	}
 
 	// }}}
-	// {{{ public function getFilename()
-
-	/**
-	 * Finds the PHP file containing the class definition of the current
-	 * sub-component
-	 */
-	public function getFilename()
-	{
-		$classfile = $this->component.'/'.$this->subcomponent.'.php';
-		$file = null;
-		$path = $this->app->getDefaultComponentIncludePath();
-
-		if (file_exists($path.'/'.$classfile)) {
-			$file = $path.'/'.$classfile;
-		} else {
-			$include_paths = explode(':', ini_get('include_path'));
-			$component_include_paths = $this->app->getComponentIncludePaths();
-
-			foreach ($component_include_paths as $prefix => $path) {
-				foreach ($include_paths as $include_path) {
-					if (file_exists($include_path.'/'.$path.'/'.$classfile)) {
-						$file = $path.'/'.$classfile;
-						$this->class_prefix = $prefix;
-						break 2;
-					}
-				}
-			}
-		}
-
-		return $file;
-	}
-
-	// }}}
 	// {{{ public function getClassName()
 
 	public function getClassName()
 	{
-		$class_name = ($this->class_prefix === null) ?
-			$this->component.$this->subcomponent :
-			$this->class_prefix.$this->component.$this->subcomponent;
+		$class_name = null;
+
+		$prefixes = array_keys($this->app->getComponentIncludePaths());
+
+		// Try non-prefixed class first.
+		array_unshift($prefixes, null);
+
+		foreach ($prefixes as $prefix) {
+			$class_name = ($prefix === null)
+				? $this->component.$this->subcomponent
+				: $prefix.$this->component.$this->subcomponent;
+
+			if (class_exists($class_name)) {
+				break;
+			}
+		}
 
 		return $class_name;
 	}
