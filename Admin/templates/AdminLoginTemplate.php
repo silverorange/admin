@@ -19,17 +19,17 @@ class AdminLoginTemplate implements SiteTemplateInterface
 <!--[if (gte IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title><?=$data->title?></title>
-	<!--if IE]><base href="<?= $data->basehref ?>"></base><![endif]-->
-	<!--if !(IE)]><!--><base href="<?= $data->basehref ?>" /><!--<![endif]-->
+	<title>{$data->title}</title>
+	<!--if IE]><base href="{$data->basehref}"></base><![endif]-->
+	<!--if !(IE)]><!--><base href="{$data->basehref}" /><!--<![endif]-->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="icon" href="../favicon.ico" type="image/x-icon" />
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,800' rel='stylesheet' type='text/css' />
-	<?=$data->html_head_entries?>
+	{$data->html_head_entries}
 </head>
-<body <?=$data->body_classes?>>
+<body {$data->body_classes}>
 
-<?=$data->content?>
+{$data->content}
 
 </body>
 </html>

@@ -16,11 +16,14 @@ class AdminMSWordTemplate implements SiteTemplateInterface
 <html xmlns="http://www.w3.org/1999/xhtml">
 <body>
 
-<?php
-header('Content-Type: application/msword');
-header('Content-Disposition: attachment; filename='.$data->filename.'.doc');
-echo $data->content;
-?>
+HTML;
+
+		header('Content-Type: application/msword');
+		header(
+			'Content-Disposition: attachment; filename='.$data->filename.'.doc'
+		);
+		echo $data->content;
+		echo <<<'HTML'
 
 </body>
 </html>
