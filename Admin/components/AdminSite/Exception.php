@@ -20,8 +20,7 @@ class AdminAdminSiteException extends SiteXhtmlExceptionPage
 
 	protected function createLayout()
 	{
-		return new AdminDefaultLayout($this->app,
-			'Admin/layouts/xhtml/default.php');
+		return new AdminDefaultLayout($this->app, AdminDefaultTemplate::class);
 	}
 
 	// }}}

@@ -395,13 +395,13 @@ class AdminApplication extends SiteWebApplication
 		switch ($path[0]) {
 		case 'smil':
 			array_shift($path);
-			$layout = new SiteLayout($this, 'Site/layouts/xhtml/smil.php');
+			$layout = new SiteLayout($this, SiteSMILTemplate::class);
 			$page = new SiteAmazonCdnMediaManifestPage($this, $layout);
 			$page->setMediaKey(substr(array_shift($path), 0, -5));
 			return $page;
 		case 'vtt':
 			array_shift($path);
-			$layout = new SiteLayout($this, 'Site/layouts/xhtml/vtt.php');
+			$layout = new SiteLayout($this, SiteVTTTemplate::class);
 			$page = new SiteVideoTextTracksPage($this, $layout);
 			$page->setMediaKey(substr(array_shift($path), 0, -4));
 			return $page;

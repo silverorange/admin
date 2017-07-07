@@ -29,8 +29,7 @@ class AdminAdminSiteResetPassword extends AdminPage
 
 	protected function createLayout()
 	{
-		return new AdminLoginLayout($this->app,
-			'Admin/layouts/xhtml/login.php');
+		return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
 	}
 
 	// }}}
