@@ -5,7 +5,7 @@
  * @copyright 2017 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
-class AdminLoginTemplate implements SiteTemplate
+class AdminLoginTemplate implements SiteTemplateInterface
 {
 	// {{{ public function display()
 
