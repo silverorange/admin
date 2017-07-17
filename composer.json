@@ -52,17 +52,17 @@
 		"silverorange/swat": "^2.7.0",
 		"silverorange/xml_rpc_ajax": "^1.0.12"
 	},
+	"require-dev": {
+		"silverorange/coding-standard": "^0.1.0"
+	},
 	"autoload": {
 		"classmap": [ "Admin/" ]
 	},
-	"include-path": [
-		"./"
-	],
 	"scripts": {
 		"post-install-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/silverorange/coding-standard/src",
 		"post-update-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/silverorange/coding-standard/src"
 	},
-	"require-dev": {
-		"silverorange/coding-standard": "^0.1.0"
-	}
+	"include-path": [
+		"./"
+	]
 }
