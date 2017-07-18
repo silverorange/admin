@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <ruleset name="Admin">
-	<description>Coding standard for this package.</description>
-
 	<arg name="colors" />
 	<arg name="tab-width" value="4" />
 	<arg name="extensions" value="php" />
 	<arg name="encoding" value="utf-8" />
 	<arg name="warning-severity" value="0" />
+	<arg value="p" /><!-- show progress -->
 
 	<file>./Admin</file>
 
-	<rule src="SilverorangeLegacy" />
+	<exclude-pattern>*/layout/xhtml/*</exclude-pattern>
+
+	<rule ref="SilverorangeLegacy" />
 </ruleset>
