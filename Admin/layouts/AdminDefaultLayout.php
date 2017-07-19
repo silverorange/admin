@@ -73,7 +73,6 @@ class AdminDefaultLayout extends AdminLayout
 
 	protected function initLogoutForm()
 	{
-
 		$this->logout_form = new SwatForm('logout');
 		$this->logout_form->action = 'AdminSite/Logout';
 

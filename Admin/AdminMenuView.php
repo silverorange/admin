@@ -130,7 +130,6 @@ class AdminMenuView extends SwatControl
 		$section_content->id = sprintf('%s_section_%s', $this->id,
 			$section->id);
 
-
 		$section_content->open();
 
 		foreach ($section->components as $component)

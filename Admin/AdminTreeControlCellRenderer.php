@@ -27,7 +27,7 @@ class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
 
 	// }}}
 	// {{{ public function render()
-	
+
 	public function render()
 	{
 		if (!$this->visible)

@@ -172,7 +172,6 @@ class AdminResetPasswordSuccessMailMessage extends SiteMultipartMailMessage
 
 	protected function getFormattedBody($format_string)
 	{
-
 		return sprintf($format_string,
 			sprintf(Admin::_('Your password for your %s account has '.
 			'successfully been updated.'),

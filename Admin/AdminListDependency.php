@@ -167,9 +167,9 @@ class AdminListDependency extends AdminDependency
 	/**
 	 * Queries for dependency entries
 	 *
- 	 * Convenience method to query for an array of {@link AdminDependencyEntry}
+	 * Convenience method to query for an array of {@link AdminDependencyEntry}
 	 * objects. The returned entry array may be directly assigned to the
- 	 * {@link AdminListDependency::$entries} property.
+	 * {@link AdminListDependency::$entries} property.
 	 *
 	 * For example:
 	 * <code>
@@ -260,7 +260,7 @@ class AdminListDependency extends AdminDependency
 	/**
 	 * Builds an array of dependency entries
 	 *
- 	 * Convenience method to create a flat array of {@link AdminDependencyEntry}
+	 * Convenience method to create a flat array of {@link AdminDependencyEntry}
 	 * objects. The returned array of dependency entries may be directly
 	 * assigned to the {@link AdminListDependency::$entries} property of an
 	 * {@link AdminListDependency} object.

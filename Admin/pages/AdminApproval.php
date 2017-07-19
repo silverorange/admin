@@ -104,7 +104,6 @@ abstract class AdminApproval extends AdminPage
 		return 'Admin/pages/approval.xml';
 	}
 
-
 	// }}}
 
 	// process phase

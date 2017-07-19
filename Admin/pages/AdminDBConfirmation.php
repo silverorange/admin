@@ -86,8 +86,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 
 		$this->items = $items;
 
-	 	// Add a hidden field to this confirmation page's form to store the
-	 	// current items of this confirmation page across requests
+		// Add a hidden field to this confirmation page's form to store the
+		// current items of this confirmation page across requests
 		$form = $this->ui->getWidget('confirmation_form');
 		$form->addHiddenField('items', $this->items);
 		$form->addHiddenField('extended_selected', $this->extended_selected);

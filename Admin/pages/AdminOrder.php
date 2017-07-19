@@ -165,6 +165,7 @@ abstract class AdminOrder extends AdminPage
 		$button = $this->ui->getWidget('submit_button');
 		$button->title = Admin::_('Update Order');
 	}
+
 	// }}}
 	// {{{ protected function buildForm()
 

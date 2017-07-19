@@ -41,8 +41,14 @@ class AdminTreeTitleLinkCellRenderer extends AdminTitleLinkCellRenderer
 		if (intval($this->child_count) === 0)
 			return Admin::_('no sub-items');
 
-		return sprintf(Admin::ngettext('%d sub-item', '%d sub-items', 
-			$this->child_count), $this->child_count);
+		return sprintf(
+			Admin::ngettext(
+				'%d sub-item',
+				'%d sub-items',
+				$this->child_count
+			),
+			$this->child_count
+		);
 	}
 
 	// }}}

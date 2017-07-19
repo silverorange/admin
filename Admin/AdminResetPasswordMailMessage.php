@@ -198,7 +198,6 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 
 	protected function getFormattedBody($format_string, $formatted_link)
 	{
-
 		return sprintf($format_string,
 			sprintf(Admin::_('This email is in response to your recent '.
 			'request for a new password for your %s account. Your password '.

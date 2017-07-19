@@ -186,7 +186,7 @@ abstract class AdminIndex extends AdminPage
 			}
 
 			if ($add_direction === true)
-				$orderby .= ' '.$view->orderby_column->getDirectionAsString();
+				$orderby.= ' '.$view->orderby_column->getDirectionAsString();
 		}
 
 		return $orderby;

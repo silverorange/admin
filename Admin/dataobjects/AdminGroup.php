@@ -25,7 +25,7 @@ class AdminGroup extends SwatDBDataObject
 	public $id;
 
 	/**
-	 * Title of this group 
+	 * Title of this group
 	 *
 	 * @var string
 	 */

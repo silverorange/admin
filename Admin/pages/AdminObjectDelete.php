@@ -226,7 +226,7 @@ abstract class AdminObjectDelete extends AdminDBDelete
 		$message_content = $this->getConfirmationMessageContent();
 		if ($message_content != '') {
 			$message = $this->ui->getWidget('confirmation_message');
-			$message->content =  $message_content;
+			$message->content = $message_content;
 
 			$content_type = $this->getConfirmationMessageContentType();
 			if ($content_type != '') {

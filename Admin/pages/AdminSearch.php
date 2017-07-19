@@ -143,6 +143,7 @@ abstract class AdminSearch extends AdminIndex
 			$form->action = $this->source;
 			$form->autofocus = true;
 		} catch (SwatWidgetNotFoundException $e) {
+			// ignore
 		}
 	}
 

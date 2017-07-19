@@ -71,33 +71,33 @@ class AdminAdminComponentDetails extends AdminIndex
 		$message = null;
 
 		switch ($actions->selected->id) {
-			case 'delete':
-				$this->app->replacePage('AdminSubComponent/Delete');
-				$this->app->getPage()->setItems($view->checked_items);
-				$this->app->getPage()->setParent($this->id);
-				break;
+		case 'delete':
+			$this->app->replacePage('AdminSubComponent/Delete');
+			$this->app->getPage()->setItems($view->checked_items);
+			$this->app->getPage()->setParent($this->id);
+			break;
 
-			case 'show':
-				SwatDB::updateColumn($this->app->db, 'AdminSubComponent',
-					'boolean:visible', true, 'id', $view->checked_items);
+		case 'show':
+			SwatDB::updateColumn($this->app->db, 'AdminSubComponent',
+				'boolean:visible', true, 'id', $view->checked_items);
 
-				$message = new SwatMessage(sprintf(Admin::ngettext(
-					'One sub-component has been shown.',
-					'%s sub-components have been shown.', $num),
-					SwatString::numberFormat($num)));
+			$message = new SwatMessage(sprintf(Admin::ngettext(
+				'One sub-component has been shown.',
+				'%s sub-components have been shown.', $num),
+				SwatString::numberFormat($num)));
 
-				break;
+			break;
 
-			case 'hide':
-				SwatDB::updateColumn($this->app->db, 'AdminSubComponent',
-					'boolean:visible', false, 'id', $view->checked_items);
+		case 'hide':
+			SwatDB::updateColumn($this->app->db, 'AdminSubComponent',
+				'boolean:visible', false, 'id', $view->checked_items);
 
-				$message = new SwatMessage(sprintf(Admin::ngettext(
-					'One sub-component has been hidden.',
-					'%s sub-components have been hidden.', $num),
-					SwatString::numberFormat($num)));
+			$message = new SwatMessage(sprintf(Admin::ngettext(
+				'One sub-component has been hidden.',
+				'%s sub-components have been hidden.', $num),
+				SwatString::numberFormat($num)));
 
-				break;
+			break;
 		}
 
 		if ($message !== null)
