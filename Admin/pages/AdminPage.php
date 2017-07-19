@@ -288,6 +288,7 @@ abstract class AdminPage extends SitePage
 			foreach ($this->app->messages->getAll() as $message)
 				$message_display->add($message);
 		} catch (SwatWidgetNotFoundException $e) {
+			// ignore
 		}
 	}
 

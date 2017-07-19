@@ -34,32 +34,32 @@ class AdminAdminSectionIndex extends AdminIndex
 		$message = null;
 
 		switch ($actions->selected->id) {
-			case 'delete':
-				$this->app->replacePage('AdminSection/Delete');
-				$this->app->getPage()->setItems($view->getSelection());
-				break;
+		case 'delete':
+			$this->app->replacePage('AdminSection/Delete');
+			$this->app->getPage()->setItems($view->getSelection());
+			break;
 
-			case 'show':
-				SwatDB::updateColumn($this->app->db, 'AdminSection',
-					'boolean:visible', true, 'id', $view->getSelection());
+		case 'show':
+			SwatDB::updateColumn($this->app->db, 'AdminSection',
+				'boolean:visible', true, 'id', $view->getSelection());
 
-				$message = new SwatMessage(sprintf(Admin::ngettext(
-					'One section has been shown.',
-					'%s sections have been shown.', $num),
-					SwatString::numberFormat($num)));
+			$message = new SwatMessage(sprintf(Admin::ngettext(
+				'One section has been shown.',
+				'%s sections have been shown.', $num),
+				SwatString::numberFormat($num)));
 
-				break;
+			break;
 
-			case 'hide':
-				SwatDB::updateColumn($this->app->db, 'AdminSection',
-					'boolean:visible', false, 'id', $view->getSelection());
+		case 'hide':
+			SwatDB::updateColumn($this->app->db, 'AdminSection',
+				'boolean:visible', false, 'id', $view->getSelection());
 
-				$message = new SwatMessage(sprintf(Admin::ngettext(
-					'One section has been hidden.',
-					'%s sections have been hidden.', $num),
-					SwatString::numberFormat($num)));
+			$message = new SwatMessage(sprintf(Admin::ngettext(
+				'One section has been hidden.',
+				'%s sections have been hidden.', $num),
+				SwatString::numberFormat($num)));
 
-				break;
+			break;
 		}
 
 		if ($message !== null)

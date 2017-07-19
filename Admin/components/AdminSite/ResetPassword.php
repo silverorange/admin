@@ -68,7 +68,7 @@ class AdminAdminSiteResetPassword extends AdminPage
 		}
 
 		$confirm = $this->ui->getWidget('confirm_password');
-		$confirm->password_widget = $this->ui->getWidget('password');;
+		$confirm->password_widget = $this->ui->getWidget('password');
 	}
 
 	// }}}

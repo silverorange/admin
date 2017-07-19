@@ -91,16 +91,16 @@ class AdminControlCellRenderer extends SwatImageLinkCellRenderer
 
 		if ($overwrite_properties || ($this->title === null))
 			$this->title = $title;
-		
+
 		if ($overwrite_properties || ($this->alt === null))
 			$this->alt = $alt;
-		
+
 		if ($overwrite_properties || ($this->image === null))
 			$this->image = $image;
-		
+
 		if ($overwrite_properties || ($this->width === null))
 			$this->width = $width;
-		
+
 		if ($overwrite_properties || ($this->height === null))
 			$this->height = $height;
 	}

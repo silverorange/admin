@@ -30,10 +30,10 @@ class AdminAdminGroupIndex extends AdminIndex
 	protected function processActions(SwatView $view, SwatActions $actions)
 	{
 		switch ($actions->selected->id) {
-			case 'delete':
-				$this->app->replacePage('AdminGroup/Delete');
-				$this->app->getPage()->setItems($view->getSelection());
-				break;
+		case 'delete':
+			$this->app->replacePage('AdminGroup/Delete');
+			$this->app->getPage()->setItems($view->getSelection());
+			break;
 		}
 	}
 

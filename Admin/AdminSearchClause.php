@@ -69,7 +69,7 @@ class AdminSearchClause
 	public $operator = self::OP_EQUALS;
 
 	// }}}
-	// {{{ publuc function __construct()
+	// {{{ public function __construct()
 
 	/**
 	 * Creates a new search clause object
@@ -81,7 +81,7 @@ class AdminSearchClause
 	 *
 	 * @param mixed $value the value to search for.
 	 */
-	function __construct($field, $value = null)
+	public function __construct($field, $value = null)
 	{
 		$this->field = new SwatDBField($field);
 		$this->value = $value;
@@ -164,15 +164,22 @@ class AdminSearchClause
 		$operator = intval($operator);
 
 		switch ($operator) {
-		case self::OP_EQUALS:      return '=';
-		case self::OP_GT:          return '>';
-		case self::OP_GTE:         return '>=';
-		case self::OP_LT:          return '<';
-		case self::OP_LTE:         return '<=';
-		case self::OP_CONTAINS:    return 'like';
-		case self::OP_STARTS_WITH: return 'like';
-		case self::OP_ENDS_WITH:   return 'like';
-
+		case self::OP_EQUALS:
+			return '=';
+		case self::OP_GT:
+			return '>';
+		case self::OP_GTE:
+			return '>=';
+		case self::OP_LT:
+			return '<';
+		case self::OP_LTE:
+			return '<=';
+		case self::OP_CONTAINS:
+			return 'like';
+		case self::OP_STARTS_WITH:
+			return 'like';
+		case self::OP_ENDS_WITH:
+			return 'like';
 		default:
 			throw new AdminException('Unknown operator in clause: '.$operator);
 		}

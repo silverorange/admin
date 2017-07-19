@@ -101,4 +101,5 @@ class AdminAdminUserDetails extends AdminIndex
 
 	// }}}
 }
+
 ?>

@@ -65,7 +65,7 @@ class AdminPagination extends SwatPagination
 			$link = $this->link.'?';
 
 		foreach($vars as $name => $value)
-			$link .= $name.'='.urlencode($value).'&';
+			$link.= $name.'='.urlencode($value).'&';
 
 		$link.= urlencode($this->id).'=%s';
 
