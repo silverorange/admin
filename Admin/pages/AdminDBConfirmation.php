@@ -48,9 +48,11 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 * @param SiteApplication $app
 	 * @param SiteLayout $layout optional.
 	 */
-	public function __construct(SiteApplication $app, SiteLayout $layout = null,
-		array $arguments = array())
-	{
+	public function __construct(
+		SiteApplication $app,
+		SiteLayout $layout = null,
+		array $arguments = array()
+	) {
 		parent::__construct($app, $layout, $arguments);
 
 		// don't use setItems() here because the UI has not been constructed

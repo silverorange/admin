@@ -465,8 +465,9 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	// {{{ protected function assignUiValuesToObject()
 
 	protected function assignUiValuesToObject(
-		SwatDBDataObject $object, array $names)
-	{
+		SwatDBDataObject $object,
+		array $names
+	) {
 		foreach ($names as $name) {
 			$this->assignUiValueToObject($object, $name);
 		}
@@ -475,9 +476,10 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	// }}}
 	// {{{ protected function assignUiValueToObject()
 
-	protected function assignUiValueToObject(SwatDBDataObject $object,
-		$name)
-	{
+	protected function assignUiValueToObject(
+		SwatDBDataObject $object,
+		$name
+	) {
 		$widget = $this->ui->getWidget($name);
 
 		// only clone the value when its actually an object
@@ -535,8 +537,9 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	// {{{ protected function assignObjectValuesToUi()
 
 	protected function assignObjectValuesToUi(
-		SwatDBDataObject $object, array $names)
-	{
+		SwatDBDataObject $object,
+		array $names
+	) {
 		foreach ($names as $name) {
 			$this->assignObjectValueToUi($object, $name);
 		}

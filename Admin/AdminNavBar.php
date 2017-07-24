@@ -28,9 +28,11 @@ class AdminNavBar extends SwatNavBar
 	 *
 	 * @see SwatNavBar::displayEntry()
 	 */
-	protected function displayEntry(SwatNavBarEntry $entry, $link = true,
-		$first = false)
-	{
+	protected function displayEntry(
+		SwatNavBarEntry $entry,
+		$link = true,
+		$first = false
+	) {
 		if ($entry instanceof AdminImportantNavBarEntry &&
 			$entry->link !== null && $link) {
 

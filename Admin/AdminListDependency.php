@@ -216,10 +216,16 @@ class AdminListDependency extends AdminDependency
 	 *
 	 * @return array An array of {@link AdminDependencyEntry} objects.
 	 */
-	public static function queryEntries($db, $table, $id_field,
-		$parent_field, $title_field, $order_by_clause = null,
-		$where_clause = null, $status_level = AdminDependency::NODELETE)
-	{
+	public static function queryEntries(
+		$db,
+		$table,
+		$id_field,
+		$parent_field,
+		$title_field,
+		$order_by_clause = null,
+		$where_clause = null,
+		$status_level = AdminDependency::NODELETE
+	) {
 		require_once 'AdminDependencyEntryWrapper.php';
 
 		$id_field = new SwatDBField($id_field, 'integer');
@@ -282,9 +288,11 @@ class AdminListDependency extends AdminDependency
 	 * @return array a flat array of {@link AdminDependencyEntry} objects that
 	 *                contains dependency tree information.
 	 */
-	public function buildEntriesArray($items, $parents = null,
-		$status_level = AdminDependency::NODELETE)
-	{
+	public function buildEntriesArray(
+		$items,
+		$parents = null,
+		$status_level = AdminDependency::NODELETE
+	) {
 		$entries = array();
 
 		foreach ($items as $id => $title) {

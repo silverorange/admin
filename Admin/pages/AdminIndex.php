@@ -149,9 +149,12 @@ abstract class AdminIndex extends AdminPage
 	// }}}
 	// {{{ protected function getOrderByClause()
 
-	protected function getOrderByClause($view, $default_orderby,
-		$column_prefix = null, $column_map = array())
-	{
+	protected function getOrderByClause(
+		$view,
+		$default_orderby,
+		$column_prefix = null,
+		$column_map = array()
+	) {
 		$orderby = $default_orderby;
 		$add_direction = false;
 

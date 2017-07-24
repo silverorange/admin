@@ -55,9 +55,11 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 	 * @param string $password_link the URL of the application page that
 	 *                               performs the password reset.
 	 */
-	public function __construct(AdminApplication $app, AdminUser $user,
-		$password_link)
-	{
+	public function __construct(
+		AdminApplication $app,
+		AdminUser $user,
+		$password_link
+	) {
 		parent::__construct($app);
 
 		$this->password_link = $password_link;
