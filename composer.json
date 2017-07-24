@@ -53,7 +53,7 @@
 		"silverorange/xml_rpc_ajax": "^1.0.12"
 	},
 	"require-dev": {
-		"silverorange/coding-standard": "^0.2.0"
+		"silverorange/coding-standard": "^0.6.0"
 	},
 	"autoload": {
 		"classmap": [ "Admin/" ]

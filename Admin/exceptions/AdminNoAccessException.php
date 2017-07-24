@@ -30,9 +30,11 @@ class AdminNoAccessException extends AdminUserException
 	 * @param integer $code the code of the exception.
 	 * @param AdminUser $user optional. The user that was denied access.
 	 */
-	public function __construct($message = null, $code = 0,
-		AdminUser $user = null)
-	{
+	public function __construct(
+		$message = null,
+		$code = 0,
+		AdminUser $user = null
+	) {
 		parent::__construct($message, $code);
 		$this->user = $user;
 		$this->title = Admin::_('No Access');

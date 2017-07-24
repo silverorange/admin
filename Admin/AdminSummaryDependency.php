@@ -136,9 +136,14 @@ class AdminSummaryDependency extends AdminDependency
 	 *
 	 * @return
 	 */
-	public static function &querySummaries($db, $table, $id_field,
-		$parent_field, $where_clause = null, $status_level = 0)
-	{
+	public static function &querySummaries(
+		$db,
+		$table,
+		$id_field,
+		$parent_field,
+		$where_clause = null,
+		$status_level = 0
+	) {
 		require_once 'Admin/AdminDependencySummaryWrapper.php';
 
 		$id_field = new SwatDBField($id_field, 'integer');
