@@ -9,7 +9,5 @@
 
 	<file>./Admin</file>
 
-	<exclude-pattern>*/layouts/xhtml/*</exclude-pattern>
-
 	<rule ref="SilverorangeLegacy" />
 </ruleset>

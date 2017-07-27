@@ -11,6 +11,7 @@ class AdminLoginTemplate extends SiteAbstractTemplate
 
 	public function display(SiteLayoutData $data)
 	{
+		// @codingStandardsIgnoreStart
 		echo <<<HTML
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
@@ -35,6 +36,7 @@ class AdminLoginTemplate extends SiteAbstractTemplate
 </html>
 
 HTML;
+		// @codingStandardsIgnoreEnd
 	}
 
 	// }}}
