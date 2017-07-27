@@ -1,15 +1,5 @@
 <?php
 
-require_once 'SwatDB/SwatDB.php';
-require_once 'SwatI18N/SwatI18NLocale.php';
-require_once 'Swat/SwatDetailsStore.php';
-require_once 'Swat/SwatTableStore.php';
-require_once 'Admin/AdminUI.php';
-require_once 'Admin/dataobjects/AdminUser.php';
-require_once 'Admin/pages/AdminIndex.php';
-require_once 'include/HistoryCellRenderer.php';
-require_once 'include/AdminUserTableView.php';
-
 /**
  * Index page for AdminUsers component
  *

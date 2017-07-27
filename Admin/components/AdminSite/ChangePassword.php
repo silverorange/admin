@@ -1,12 +1,5 @@
 <?php
 
-require_once 'SwatDB/SwatDB.php';
-require_once 'Admin/exceptions/AdminNotFoundException.php';
-require_once 'Admin/dataobjects/AdminUser.php';
-require_once 'Admin/pages/AdminPage.php';
-require_once 'Admin/layouts/AdminLoginLayout.php';
-require_once 'Swat/SwatMessage.php';
-
 /**
  * Force change password page after initial login
  *
@@ -20,8 +13,7 @@ class AdminAdminSiteChangePassword extends AdminPage
 
 	protected function createLayout()
 	{
-		return new AdminLoginLayout($this->app,
-			'Admin/layouts/xhtml/login.php');
+		return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
 	}
 
 	// }}}

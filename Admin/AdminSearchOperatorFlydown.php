@@ -1,9 +1,5 @@
 <?php
 
-require_once 'Swat/SwatFlydown.php';
-require_once 'Admin/Admin.php';
-require_once 'Admin/AdminSearchClause.php';
-
 /**
  * A flydown selection widget for search operators.
  *

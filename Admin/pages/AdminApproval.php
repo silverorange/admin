@@ -1,9 +1,5 @@
 <?php
 
-require_once 'Admin/Admin.php';
-require_once 'Admin/AdminUI.php';
-require_once 'Admin/pages/AdminPage.php';
-
 /**
  * Generic admin approval page
  *
@@ -101,7 +97,7 @@ abstract class AdminApproval extends AdminPage
 
 	protected function getUiXml()
 	{
-		return 'Admin/pages/approval.xml';
+		return __DIR__.'/approval.xml';
 	}
 
 	// }}}

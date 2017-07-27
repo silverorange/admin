@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Swat/SwatLinkCellRenderer.php';
-
 /**
  * A title link cell renderer for Admin index pages
  *

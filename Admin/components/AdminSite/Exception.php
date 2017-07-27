@@ -1,11 +1,5 @@
 <?php
 
-require_once 'Swat/SwatContentBlock.php';
-require_once 'Swat/SwatContainer.php';
-require_once 'Swat/SwatFrame.php';
-require_once 'Admin/layouts/AdminDefaultLayout.php';
-require_once 'Site/pages/SiteXhtmlExceptionPage.php';
-
 /**
  * Exception page in an admin application
  *
@@ -26,8 +20,7 @@ class AdminAdminSiteException extends SiteXhtmlExceptionPage
 
 	protected function createLayout()
 	{
-		return new AdminDefaultLayout($this->app,
-			'Admin/layouts/xhtml/default.php');
+		return new AdminDefaultLayout($this->app, AdminDefaultTemplate::class);
 	}
 
 	// }}}

@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminObjectEdit.php';
-require_once 'Admin/dataobjects/AdminUser.php';
-
 /**
  * Edit page for the current admin user profile
  *
@@ -24,7 +21,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 
 	protected function getUiXml()
 	{
-		return 'Admin/components/AdminSite/profile.xml';
+		return __DIR__.'/profile.xml';
 	}
 
 	// }}}

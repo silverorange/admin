@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Site/layouts/SiteXMLRPCServerLayout.php';
-
 /**
  * @package   Admin
  * @copyright 2006-2016 silverorange

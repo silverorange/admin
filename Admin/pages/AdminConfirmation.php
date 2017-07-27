@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminPage.php';
-require_once 'Admin/AdminUI.php';
-
 /**
  * Generic admin confirmation page
  *
@@ -17,7 +14,7 @@ abstract class AdminConfirmation extends AdminPage
 {
 	// {{{ protected properties
 
-	protected $ui_xml = 'Admin/pages/confirmation.xml';
+	protected $ui_xml = __DIR__.'/confirmation.xml';
 
 	// }}}
 

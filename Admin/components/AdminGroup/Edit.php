@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminObjectEdit.php';
-require_once 'Admin/dataobjects/AdminGroup.php';
-
 /**
  * Edit page for AdminGroups component
  *
@@ -24,7 +21,7 @@ class AdminAdminGroupEdit extends AdminObjectEdit
 
 	protected function getUiXml()
 	{
-		return 'Admin/components/AdminGroup/edit.xml';
+		return __DIR__.'/edit.xml';
 	}
 
 	// }}}

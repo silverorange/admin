@@ -1,8 +1,5 @@
 <?php
 
-require_once 'SwatDB/SwatDBDataObject.php';
-require_once 'Admin/dataobjects/AdminSection.php';
-
 /**
  * Sub-Component to perform a particular administration task within a component
  *

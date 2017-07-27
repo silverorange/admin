@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Swat/SwatNavBarEntry.php';
-
 /**
  * An important entry for the admin navigation tool
  *

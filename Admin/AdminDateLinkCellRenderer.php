@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Admin/AdminTitleLinkCellRenderer.php';
-require_once 'Swat/SwatDateCellRenderer.php';
-
 /**
  * Hybrid swat date/admin title link cell renderer for dates
  *

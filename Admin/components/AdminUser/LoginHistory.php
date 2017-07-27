@@ -1,10 +1,5 @@
 <?php
 
-require_once 'SwatDB/SwatDB.php';
-require_once 'Admin/AdminUI.php';
-require_once 'Admin/components/AdminUser/include/HistoryCellRenderer.php';
-require_once 'Admin/pages/AdminIndex.php';
-
 /**
  * Login history page for AdminUsers component
  *

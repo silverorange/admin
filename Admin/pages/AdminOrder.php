@@ -1,9 +1,5 @@
 <?php
 
-require_once 'Admin/Admin.php';
-require_once 'Admin/AdminUI.php';
-require_once 'Admin/pages/AdminPage.php';
-
 /**
  * Generic admin ordering page
  *
@@ -18,7 +14,7 @@ abstract class AdminOrder extends AdminPage
 {
 	// {{{ protected properties
 
-	protected $ui_xml = 'Admin/pages/order.xml';
+	protected $ui_xml = __DIR__.'/order.xml';
 
 	// }}}
 

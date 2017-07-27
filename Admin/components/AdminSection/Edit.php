@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminObjectEdit.php';
-require_once 'Admin/dataobjects/AdminSection.php';
-
 /**
  * Edit page for AdminSections
  *
@@ -24,7 +21,7 @@ class AdminAdminSectionEdit extends AdminObjectEdit
 
 	protected function getUiXml()
 	{
-		return 'Admin/components/AdminSection/edit.xml';
+		return __DIR__.'/edit.xml';
 	}
 
 	// }}}

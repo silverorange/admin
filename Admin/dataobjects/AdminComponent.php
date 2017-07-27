@@ -1,10 +1,5 @@
 <?php
 
-require_once 'SwatDB/SwatDBDataObject.php';
-require_once 'Admin/dataobjects/AdminSection.php';
-require_once 'Admin/dataobjects/AdminGroupWrapper.php';
-require_once 'Admin/dataobjects/AdminSubComponentWrapper.php';
-
 /**
  * Component to perform a particular administration task
  *

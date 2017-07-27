@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Swat/SwatLinkCellRenderer.php';
-
 /**
  * A link cell renderer to display in group headers
  *

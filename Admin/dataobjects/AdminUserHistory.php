@@ -1,7 +1,5 @@
 <?php
 
-require_once 'SwatDB/SwatDBDataObject.php';
-
 /**
  * History record for an admin user
  *

@@ -1,16 +1,5 @@
 <?php
 
-require_once 'Admin/dataobjects/AdminUser.php';
-require_once 'Admin/dataobjects/AdminUserHistory.php';
-require_once 'Admin/dataobjects/AdminUserWrapper.php';
-require_once 'Admin/exceptions/AdminException.php';
-require_once 'Site/SiteSessionModule.php';
-require_once 'Site/SiteCookieModule.php';
-require_once 'SwatDB/SwatDB.php';
-require_once 'Swat/SwatDate.php';
-require_once 'Swat/SwatForm.php';
-require_once 'Swat/SwatString.php';
-
 /**
  * Web application module for sessions
  *

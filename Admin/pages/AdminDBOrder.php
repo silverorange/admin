@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminOrder.php';
-require_once 'SwatDB/SwatDBTransaction.php';
-
 /**
  * DB admin ordering page
  *

@@ -1,10 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminPage.php';
-require_once 'Admin/layouts/AdminLoginLayout.php';
-require_once 'Admin/AdminUI.php';
-require_once 'Swat/SwatMessage.php';
-
 /**
  * Administrator login page
  *
@@ -28,8 +23,7 @@ class AdminAdminSiteLogin extends AdminPage
 
 	protected function createLayout()
 	{
-		return new AdminLoginLayout($this->app,
-			'Admin/layouts/xhtml/login.php');
+		return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
 	}
 
 	// }}}

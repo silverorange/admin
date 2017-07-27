@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Swat/SwatTableView.php';
-
 /**
  * @package   Admin
  * @copyright 2016 silverorange

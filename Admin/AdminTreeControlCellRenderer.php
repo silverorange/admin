@@ -1,9 +1,5 @@
 <?php
 
-require_once 'Swat/SwatImageLinkCellRenderer.php';
-require_once 'Swat/SwatString.php';
-require_once 'Admin/Admin.php';
-
 /**
  * Cell renderer for renderering tree details links
  *

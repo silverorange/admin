@@ -1,11 +1,5 @@
 <?php
 
-require_once 'Swat/SwatHtmlTag.php';
-require_once 'Swat/SwatControl.php';
-require_once 'Swat/SwatYUI.php';
-require_once 'Site/SiteCommentFilter.php';
-require_once 'Admin/AdminMenuStore.php';
-
 /**
  * Displays the primary navigation menu
  *

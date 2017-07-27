@@ -47,10 +47,10 @@
 	],
 	"require": {
 		"php": ">=5.3.0",
-		"silverorange/net_notifier": "^0.4.1",
-		"silverorange/site": "^4.11.0",
-		"silverorange/swat": "^2.7.0",
-		"silverorange/xml_rpc_ajax": "^1.0.12"
+		"silverorange/net_notifier": "^1.0.0",
+		"silverorange/site": "^5.0.0",
+		"silverorange/swat": "^3.0.0",
+		"silverorange/xml_rpc_ajax": "^2.0.0"
 	},
 	"require-dev": {
 		"silverorange/coding-standard": "^0.6.0"
@@ -62,8 +62,5 @@
 		"lint": "./vendor/bin/phpcs",
 		"post-install-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/silverorange/coding-standard/src",
 		"post-update-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/silverorange/coding-standard/src"
-	},
-	"include-path": [
-		"./"
-	]
+	}
 }

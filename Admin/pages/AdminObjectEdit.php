@@ -1,8 +1,5 @@
 <?php
 
-require_once 'SwatDB/SwatDBDataObject.php';
-require_once 'Admin/pages/AdminDBEdit.php';
-
 /**
  * Admin edit page for SwatDBDataObjects
  *

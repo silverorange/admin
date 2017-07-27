@@ -1,8 +1,5 @@
 <?php
 
-require_once 'Admin/pages/AdminPage.php';
-require_once 'Admin/exceptions/AdminNotFoundException.php';
-
 /**
  * Very simple administrator logout page
  *

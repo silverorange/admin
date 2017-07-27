@@ -1,9 +1,5 @@
 <?php
 
-require_once 'Site/SiteMultipartMailMessage.php';
-require_once 'Admin/dataobjects/AdminUser.php';
-require_once 'Admin/exceptions/AdminException.php';
-
 /**
  * Email that is sent to an admin uuser when they request a new password
  *
