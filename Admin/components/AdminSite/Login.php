@@ -55,8 +55,6 @@ class AdminAdminSiteLogin extends AdminPage
 
 		if (!$this->app->config->admin->allow_reset_password) {
 			$this->ui->getWidget('forgot_container')->visible = false;
-			$this->ui->getWidget('password_container')->classes[] =
-				'no-reset-password';
 		}
 	}
 
