@@ -13,43 +13,14 @@
 	text-align: left;
 }
 
-
-#password_container.swat-displayable-container {
-	float: left;
-	width: 164px;
-}
-
-.swat-form-field-with-messages #password_container.swat-displayable-container {
-	width: 155px;
-}
-
-#password_container.no-reset-password {
-	float: none;
-	width: 314px;
-}
-
-#password_container.no-reset-password #password.swat-entry,
-#email.swat-entry {
-	width: 314px;
-}
-
-.swat-form-field-with-messages #password_container.no-reset-password #password.swat-entry,
-.swat-form-field-with-messages #email.swat-entry {
-	width: 296px;
-}
-
+#email.swat-entry,
 #password.swat-entry,
 #confirm_password.swat-entry {
-	width: 150px;
-}
-
-.swat-form-field-with-messages #password.swat-entry,
-.swat-form-field-with-messages #confirm_password.swat-entry {
-	width: 141px;
+	width: 314px;
 }
 
 #forgot_container.swat-displayable-container {
-	padding-top: 2px;
+	text-align: center;
 }
 
 #forgot.swat-tool-link,

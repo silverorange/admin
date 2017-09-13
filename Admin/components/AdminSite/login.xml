@@ -15,18 +15,17 @@
 			</widget>
 			<widget class="SwatFormField">
 				<property name="title" translatable="yes">Password</property>
-				<widget class="SwatDisplayableContainer" id="password_container">
-					<widget class="SwatPasswordEntry" id="password">
-						<property name="required" type="boolean">true</property>
-						<property name="size" type="integer">18</property>
-						<property name="tab_index" type="integer">2</property>
-					</widget>
+				<property name="required_status_display" type="constant">SHOW_OPTIONAL</property>
+				<widget class="SwatPasswordEntry" id="password">
+					<property name="required" type="boolean">true</property>
+					<property name="size" type="integer">18</property>
+					<property name="tab_index" type="integer">2</property>
 				</widget>
-				<widget class="SwatDisplayableContainer" id="forgot_container">
-					<widget class="SwatToolLink" id="forgot">
-						<property name="title" type="string">Forgot your password?</property>
-						<property name="link" type="string">AdminSite/ForgotPassword</property>
-					</widget>
+			</widget>
+			<widget class="SwatDisplayableContainer" id="forgot_container">
+				<widget class="SwatToolLink" id="forgot">
+					<property name="title" type="string">Forgot your password?</property>
+					<property name="link" type="string">AdminSite/ForgotPassword</property>
 				</widget>
 			</widget>
 			<widget class="SwatMessageDisplay" id="message_display">
