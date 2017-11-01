@@ -48,7 +48,7 @@
 	"require": {
 		"php": ">=5.3.0",
 		"silverorange/net_notifier": "^1.0.0",
-		"silverorange/site": "^5.8.0",
+		"silverorange/site": "^5.9.0",
 		"silverorange/swat": "^3.0.0",
 		"silverorange/xml_rpc_ajax": "^2.0.0"
 	},
