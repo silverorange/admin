@@ -483,14 +483,17 @@ class AdminApplication extends SiteWebApplication
 	 */
 	protected function getDefaultModuleList()
 	{
-		return array(
-			'cookie'   => 'SiteCookieModule',
-			'database' => 'SiteDatabaseModule',
-			'session'  => 'AdminSessionModule',
-			'messages' => 'SiteMessagesModule',
-			'config'   => 'SiteConfigModule',
-			'notifier' => 'SiteNotifierModule',
-			'crypt'    => 'SiteCryptModule',
+		return array_merge(
+			parent::getDefaultModuleList(),
+			[
+				'cookie' => SiteCookieModule::class,
+				'database' => SiteDatabaseModule::class,
+				'session' => AdminSessionModule::class,
+				'messages' => SiteMessagesModule::class,
+				'config' => SiteConfigModule::class,
+				'notifier' => SiteNotifierModule::class,
+				'crypt' => SiteCryptModule::class,
+			]
 		);
 	}
 
