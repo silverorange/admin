@@ -47,6 +47,7 @@
 	],
 	"require": {
 		"php": ">=5.3.0",
+		"ext-mbstring": "*",
 		"silverorange/net_notifier": "^1.0.0",
 		"silverorange/site": "^5.9.0",
 		"silverorange/swat": "^3.0.0",

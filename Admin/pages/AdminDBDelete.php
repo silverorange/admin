@@ -84,7 +84,7 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 		// if the component name is in the relocate url, relocate to the
 		// the component index page to prevent relocating to a details page that
 		// will no longer exist.
-		if (strpos($url, $component) === false ||
+		if (mb_strpos($url, $component) === false ||
 			$form->button->id == 'no_button') {
 			parent::relocate();
 		} else {

@@ -117,7 +117,7 @@ class AdminSearchClause
 
 			if (!$this->case_sensitive) {
 				$field = 'lower('.$field.')';
-				$value = strtolower($value);
+				$value = mb_strtolower($value);
 			}
 
 			if ($this->operator == self::OP_CONTAINS)

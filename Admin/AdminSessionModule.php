@@ -279,11 +279,11 @@ class AdminSessionModule extends SiteSessionModule
 
 		$remote_ip = $this->app->getRemoteIP();
 
-		if (strlen($login_agent) > 255) {
-			$login_agent = substr($login_agent, 0, 253).' …';
+		if (mb_strlen($login_agent) > 255) {
+			$login_agent = mb_substr($login_agent, 0, 253).' …';
 		}
-		if (strlen($remote_ip) > 15) {
-			$remote_ip = substr($remote_ip, 0, 13).' …';
+		if (mb_strlen($remote_ip) > 15) {
+			$remote_ip = mb_substr($remote_ip, 0, 13).' …';
 		}
 
 		$login_date = new SwatDate();

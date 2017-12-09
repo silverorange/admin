@@ -93,7 +93,7 @@ abstract class AdminPage extends SitePage
 			if ($name != 'source')
 				$url.= $name.'='.$value.'&';
 
-		$url = substr($url, 0, -1);
+		$url = mb_substr($url, 0, -1);
 
 		return $url;
 	}
