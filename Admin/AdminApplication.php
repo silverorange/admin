@@ -397,13 +397,13 @@ class AdminApplication extends SiteWebApplication
 			array_shift($path);
 			$layout = new SiteLayout($this, SiteSMILTemplate::class);
 			$page = new SiteAmazonCdnMediaManifestPage($this, $layout);
-			$page->setMediaKey(substr(array_shift($path), 0, -5));
+			$page->setMediaKey(mb_substr(array_shift($path), 0, -5));
 			return $page;
 		case 'vtt':
 			array_shift($path);
 			$layout = new SiteLayout($this, SiteVTTTemplate::class);
 			$page = new SiteVideoTextTracksPage($this, $layout);
-			$page->setMediaKey(substr(array_shift($path), 0, -4));
+			$page->setMediaKey(mb_substr(array_shift($path), 0, -4));
 			return $page;
 		default :
 			return $this->resolveAdminPage($source);
