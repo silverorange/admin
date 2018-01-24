@@ -56,9 +56,6 @@ abstract class AdminObjectDelete extends AdminDBDelete
 
 	protected function initInternal()
 	{
-		// AdminConfirmation still requires $ui_xml be set to load custom xml.
-		$this->ui_xml = $this->getUiXml();
-
 		parent::initInternal();
 
 		$this->initObjects();

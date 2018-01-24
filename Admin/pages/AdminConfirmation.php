@@ -12,20 +12,22 @@
  */
 abstract class AdminConfirmation extends AdminPage
 {
-	// {{{ protected properties
-
-	protected $ui_xml = __DIR__.'/confirmation.xml';
-
-	// }}}
-
 	// init phase
 	// {{{ protected function initInternal()
 
 	protected function initInternal()
 	{
 		parent::initInternal();
-		$this->ui->loadFromXML($this->ui_xml);
+		$this->ui->loadFromXML($this->getUiXml());
 		$this->navbar->createEntry(Admin::_('Confirmation'));
+	}
+
+	// }}}
+	// {{{ protected function getUiXml()
+
+	protected function getUiXml()
+	{
+		return __DIR__.'/confirmation.xml';
 	}
 
 	// }}}

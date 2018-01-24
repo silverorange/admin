@@ -12,12 +12,6 @@
  */
 abstract class AdminOrder extends AdminPage
 {
-	// {{{ protected properties
-
-	protected $ui_xml = __DIR__.'/order.xml';
-
-	// }}}
-
 	// init phase
 	// {{{ protected function initInternal()
 
@@ -29,7 +23,15 @@ abstract class AdminOrder extends AdminPage
 			'packages/admin/javascript/admin-order.js'
 		);
 
-		$this->ui->loadFromXML($this->ui_xml);
+		$this->ui->loadFromXML($this->getUiXml());
+	}
+
+	// }}}
+	// {{{ protected function getUiXml()
+
+	protected function getUiXml()
+	{
+		return __DIR__.'/order.xml';
 	}
 
 	// }}}
