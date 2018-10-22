@@ -442,11 +442,12 @@ class AdminApplication extends SiteWebApplication
 			$page->layout->navbar->addEntry($entry);
 
 			// Don't link the default sub-component navbar entry
-			if ($request->getSubComponent() == $this->getDefaultSubComponent())
+			if ($request->getSubComponent() == $this->getDefaultSubComponent()) {
 				$entry = new SwatNavBarEntry($request->getTitle(), null);
-			else
+			} else {
 				$entry = new SwatNavBarEntry($request->getTitle(),
 					$request->getComponent());
+			}
 
 			$page->layout->navbar->addEntry($entry);
 		}
