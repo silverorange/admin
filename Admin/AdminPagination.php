@@ -53,17 +53,21 @@ class AdminPagination extends SwatPagination
 		$this->unset_get_vars[] = $this->id;
 		$this->unset_get_vars[] = 'source';
 
-		foreach($vars as $name => $value)
-			if (in_array($name, $this->unset_get_vars))
+		foreach($vars as $name => $value) {
+			if (in_array($name, $this->unset_get_vars)) {
 				unset($vars[$name]);
+			}
+		}
 
-		if ($this->link === null)
+		if ($this->link === null) {
 			$link = '?';
-		else
+		} else {
 			$link = $this->link.'?';
+		}
 
-		foreach($vars as $name => $value)
+		foreach($vars as $name => $value) {
 			$link.= $name.'='.urlencode($value).'&';
+		}
 
 		$link.= urlencode($this->id).'=%s';
 
