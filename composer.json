@@ -45,8 +45,7 @@
 		"ext-mbstring": "*",
 		"silverorange/net_notifier": "^1.0.0",
 		"silverorange/site": "^7.0.0",
-		"silverorange/swat": "^4.0.0",
-		"silverorange/xml_rpc_ajax": "^3.0.0"
+		"silverorange/swat": "^4.0.0"
 	},
 	"require-dev": {
 		"silverorange/coding-standard": "^1.0.0"
