@@ -187,13 +187,14 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 
 	protected function generateMessage(Exception $e)
 	{
-		if ($e instanceof SwatDBException)
+		if ($e instanceof SwatDBException) {
 			$message = new SwatMessage(
 				Admin::_('A database error has occured.'),
 				SwatMessage::SYSTEM_ERROR);
-		else
+		} else {
 			$message = new SwatMessage(Admin::_('An error has occured.'),
 				SwatMessage::SYSTEM_ERROR);
+		}
 
 		$this->app->messages->add($message);
 	}
