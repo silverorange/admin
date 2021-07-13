@@ -134,6 +134,27 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	}
 
 	// }}}
+	// {{{ protected function getObjectTimeZone()
+
+	protected function getObjectTimeZone()
+	{
+		$object = $this->getObject();
+		$name = $this->getObjectTimeZonePropertyName();
+
+		return property_exists($object, $name) && $object->$name != ''
+			? new DateTimeZone($object->$name)
+			: $this->app->default_time_zone;
+	}
+
+	// }}}
+	// {{{ protected function getObjectTimeZonePropertyName()
+
+	protected function getObjectTimeZonePropertyName()
+	{
+		return 'time_zone';
+	}
+
+	// }}}
 
 	// init phase
 	// {{{ public function init()
@@ -160,6 +181,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		parent::initInternal();
 
 		$this->initObject();
+		$this->initTimeZoneWidget();
 	}
 
 	// }}}
@@ -179,6 +201,20 @@ abstract class AdminObjectEdit extends AdminDBEdit
 					)
 				);
 			}
+		}
+	}
+
+	// }}}
+	// {{{ protected function initTimeZoneWidget()
+
+	protected function initTimeZoneWidget()
+	{
+		try {
+			$name = $this->getObjectTimeZonePropertyName();
+			$widget = $this->ui->getWidget($name);
+			$widget->value = $this->getObjectTimeZone()->getName();
+		} catch (SwatWidgetNotFoundException $e) {
+			// Ignore time zones if there are none.
 		}
 	}
 
@@ -465,8 +501,17 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		SwatDBDataObject $object,
 		array $names
 	) {
+		$tz_name = $this->getObjectTimeZonePropertyName();
+
+		if (in_array($tz_name, $names)) {
+			$this->assignUiValueToObject($object, $tz_name);
+		}
+
 		foreach ($names as $name) {
-			$this->assignUiValueToObject($object, $name);
+			// Already processed the $tz_name property
+			if ($name !== $tz_name) {
+				$this->assignUiValueToObject($object, $name);
+			}
 		}
 	}
 
@@ -483,7 +528,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		if ($widget instanceof SwatDateEntry &&
 			$widget->value instanceof SwatDate) {
 			$value = clone $widget->value;
-			$value->setTZ($this->app->default_time_zone);
+			$value->setTZ($this->getObjectTimeZone());
 			$value->toUTC();
 		} else {
 			$value = $widget->value;
@@ -566,7 +611,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		if ($widget instanceof SwatDateEntry &&
 			$value instanceof SwatDate) {
 			$value = new SwatDate($value);
-			$value->convertTZ($this->app->default_time_zone);
+			$value->convertTZ($this->getObjectTimeZone());
 		}
 
 		$widget->value = $value;
