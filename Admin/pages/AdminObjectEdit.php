@@ -209,12 +209,10 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function initTimeZoneWidget()
 	{
-		try {
-			$name = $this->getObjectTimeZonePropertyName();
+		$name = $this->getObjectTimeZonePropertyName();
+		if ($this->ui->hasWidget($name) {
 			$widget = $this->ui->getWidget($name);
 			$widget->value = $this->getObjectTimeZone()->getName();
-		} catch (SwatWidgetNotFoundException $e) {
-			// Ignore time zones if there are none.
 		}
 	}
 
