@@ -4,7 +4,7 @@
  * Admin edit page for SwatDBDataObjects
  *
  * @package   Admin
- * @copyright 2014-2016 silverorange
+ * @copyright 2014-2021 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminObjectEdit extends AdminDBEdit
