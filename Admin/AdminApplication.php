@@ -489,7 +489,6 @@ class AdminApplication extends SiteWebApplication
 				'session' => AdminSessionModule::class,
 				'messages' => SiteMessagesModule::class,
 				'config' => SiteConfigModule::class,
-				'notifier' => SiteNotifierModule::class,
 				'crypt' => SiteCryptModule::class,
 			]
 		);
