@@ -274,7 +274,6 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		$this->postSaveObject();
 		$this->deleteOldObject();
 		$this->flushObjectsOnSave();
-		$this->addToSearchQueue();
 		$this->addSavedMessage();
 
 		// parent::saveDBData() expects to return true on success.
@@ -404,13 +403,6 @@ abstract class AdminObjectEdit extends AdminDBEdit
 				$object->flushCacheNamespaces();
 			}
 		}
-	}
-
-	// }}}
-	// {{{ protected function addToSearchQueue()
-
-	protected function addToSearchQueue()
-	{
 	}
 
 	// }}}
