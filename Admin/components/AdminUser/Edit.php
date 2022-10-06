@@ -33,6 +33,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 			'name',
 			'enabled',
 			'force_change_password',
+			'google_2fa_enabled',
 		);
 	}
 
@@ -48,6 +49,9 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		$this->initPasswordWidgets();
 		$this->initGroups();
 		$this->initInstances();
+
+		$this->ui->getWidget('google_2fa_enabled')->parent->visible =
+			$this->app->isGoogle2faEnabled();
 	}
 
 	// }}}

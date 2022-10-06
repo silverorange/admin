@@ -87,6 +87,9 @@ class AdminAdminUserIndex extends AdminIndex
 
 		$date_renderer = $date_column->getRendererByPosition();
 		$date_renderer->display_time_zone = $this->app->default_time_zone;
+
+		$this->ui->getWidget('index_view')->getColumn('google_2fa')->visible =
+			$this->app->isGoogle2faEnabled();
 	}
 
 	// }}}
@@ -120,7 +123,8 @@ class AdminAdminUserIndex extends AdminIndex
 		$sql = sprintf(
 			'select AdminUser.id, AdminUser.email, AdminUser.name,
 					AdminUser.activation_date, AdminUser.enabled,
-					AdminUserLastLoginView.last_login
+					AdminUserLastLoginView.last_login,
+					AdminUser.google_2fa_enabled
 				from AdminUser
 				left outer join AdminUserLastLoginView on
 					AdminUserLastLoginView.usernum = AdminUser.id and

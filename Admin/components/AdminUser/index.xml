@@ -48,6 +48,12 @@
 						<property name="value" type="data">enabled</property>
 					</object>
 				</object>
+				<object class="AdminTableViewOrderableColumn" id="google_2fa">
+					<property name="title" translatable="yes">2FA Enabled</property>
+					<object class="SwatBooleanCellRenderer">
+						<property name="value" type="data">google_2fa_enabled</property>
+					</object>
+				</object>
 				<object class="AdminTableViewOrderableColumn" id="last_login">
 					<property name="title" translatable="yes">Last Login</property>
 					<object class="SwatDateCellRenderer">
