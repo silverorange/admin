@@ -66,13 +66,17 @@ class AdminAdminSiteGoogle2fa extends AdminPage
 
 	protected function validate2fa()
 	{
+		// The timestamp is used to make sure this, or tokens before this,
+		// can't be used to authenticate again. There's a "window" of token
+		// use and without this, someone could capture the code, and re-use it.
 		$google2fa = new Google2FA();
-		$verified = $google2fa->verifyKey(
+		$time_stamp = $google2fa->verifyKeyNewer(
 			$this->app->session->user->google_2fa_secret,
-			$this->ui->getWidget('google_2fa')->value
+			$this->ui->getWidget('google_2fa')->value,
+			$this->app->session->user->google_2fa_timestamp
 		);
 
-		if (!$verified) {
+		if ($time_stamp === false) {
 			$this->ui->getWidget('google_2fa')->addMessage(
 				new SwatMessage(
 					Admin::_(
@@ -82,6 +86,9 @@ class AdminAdminSiteGoogle2fa extends AdminPage
 					'error'
 				)
 			);
+		} else {
+			$this->app->session->user->google_2fa_timestamp = $time_stamp;
+			$this->app->session->user->save();
 		}
 	}
 

@@ -140,6 +140,13 @@ class AdminUser extends SwatDBDataObject
 	 */
 	public $google_2fa_enabled = false;
 
+	/**
+	 * Google 2FA Timestamp
+	 *
+	 * @var integer
+	 */
+	public $google_2fa_timestamp;
+
 	// }}}
 	// {{{ protected properties
 
