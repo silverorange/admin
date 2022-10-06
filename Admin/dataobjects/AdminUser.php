@@ -577,16 +577,16 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
-    // {{{ protected function getSerializablePrivateProperties()
+	// {{{ protected function getSerializablePrivateProperties()
 
-    protected function getSerializablePrivateProperties()
-    {
+	protected function getSerializablePrivateProperties()
+	{
 		$properties = parent::getSerializablePrivateProperties();
 		$properties[] = 'google_2fa_authenticated';
 		return $properties;
-    }
+	}
 
-    // }}}
+	// }}}
 }
 
 ?>
