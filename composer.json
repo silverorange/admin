@@ -47,6 +47,9 @@
 	"require-dev": {
 		"silverorange/coding-standard": "^1.0.0"
 	},
+	"suggest": {
+		"pragmarx/google2fa": "required for the use of two factor authentication"
+	},
 	"autoload": {
 		"classmap": [ "Admin/" ]
 	},

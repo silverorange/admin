@@ -371,6 +371,19 @@ class AdminApplication extends SiteWebApplication
 	}
 
 	// }}}
+	// {{{ public function isGoogle2faEnabled()
+
+	public function isGoogle2faEnabled()
+	{
+		// Google2FA class is optional in composer, so make sure it's installed.
+		// Also make sure the config setting is enabled.
+		return (
+			class_exists('PragmaRX\Google2FA\Google2FA') &&
+			$this->config->admin->google_2fa_enabled
+		);
+	}
+
+	// }}}
 	// {{{ protected function normalizeSource()
 
 	protected function normalizeSource($source)

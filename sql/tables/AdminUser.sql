@@ -10,5 +10,7 @@ create table AdminUser (
 	enabled boolean not null default true,
 	all_instances boolean not null default false,
 	activation_date timestamp,
+	google_2fa_secret varchar(255),
+	google_2fa_enabled boolean not null default false,
 	primary key(id)
 );

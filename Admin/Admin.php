@@ -75,9 +75,11 @@ class Admin
 	 */
 	public static function getConfigDefinitions()
 	{
-		return array(
+		return [
 			'admin.allow_reset_password' => '0',
-		);
+			'admin.google_2fa_enabled' => false,
+			'admin.google_2fa_domain' => '',
+		];
 	}
 
 	// }}}

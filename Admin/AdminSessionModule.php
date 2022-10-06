@@ -114,6 +114,7 @@ class AdminSessionModule extends SiteSessionModule
 				}
 
 				$this->user = $user;
+				$this->user->setGoogle2faAuthenticated(false);
 
 				if ($user->isAuthenticated($this->app)) {
 					$this->insertUserHistory($user);

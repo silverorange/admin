@@ -91,6 +91,10 @@ class AdminPageRequest extends SiteObject
 				$this->subcomponent = 'ChangePassword';
 				break;
 
+			case 'AdminSite/Google2fa':
+				$this->subcomponent = 'Google2fa';
+				break;
+
 			case 'AdminSite/ForgotPassword':
 				if (!$allow_reset_password) {
 					throw new AdminNotFoundException(sprintf(Admin::_(
@@ -187,6 +191,7 @@ class AdminPageRequest extends SiteObject
 			'ChangePassword' => Admin::_('Change Password'),
 			'ResetPassword'  => Admin::_('Update Password'),
 			'ForgotPassword' => Admin::_('Reset Forgotten Password'),
+			'Google2fa'      => Admin::_('Two Factor Authentication'),
 			'MenuViewServer' => '',
 		);
 	}

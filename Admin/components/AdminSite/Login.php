@@ -78,6 +78,11 @@ class AdminAdminSiteLogin extends AdminPage
 				$this->app->relocate($this->app->getUri());
 			} else {
 				if (isset($this->app->session->user) &&
+					$this->app->isGoogle2faEnabled() &&
+					$this->app->session->user->google_2fa_enabled &&
+					!$this->app->session->user->isGoogle2faAuthenticated()) {
+					$this->app->replacePage('AdminSite/Google2fa');
+				} elseif (isset($this->app->session->user) &&
 					$this->app->session->user->force_change_password) {
 					$this->app->replacePage('AdminSite/ChangePassword');
 				} elseif (isset($this->app->session->user) &&

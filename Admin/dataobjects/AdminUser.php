@@ -126,6 +126,20 @@ class AdminUser extends SwatDBDataObject
 	 */
 	public $activation_date;
 
+	/**
+	 * Google 2FA Secret
+	 *
+	 * @var string
+	 */
+	public $google_2fa_secret;
+
+	/**
+	 * Google 2FA Enabled
+	 *
+	 * @var boolean
+	 */
+	public $google_2fa_enabled = false;
+
 	// }}}
 	// {{{ protected properties
 
@@ -133,6 +147,11 @@ class AdminUser extends SwatDBDataObject
 	 * @var SiteInstance
 	 */
 	protected $instance;
+
+	/**
+	 * @var boolean
+	 */
+	protected $google_2fa_authenticated = false;
 
 	// }}}
 	// {{{ public function isAuthenticated()
@@ -186,7 +205,13 @@ class AdminUser extends SwatDBDataObject
 		$authenticated = (
 			$authenticated &&
 			$this->isActive() &&
-			!$this->force_change_password
+			!$this->force_change_password &&
+			(
+				$app->isGoogle2faEnabled() && (
+					!$this->google_2fa_enabled ||
+					$this->google_2fa_authenticated
+				)
+			)
 		);
 
 		return $authenticated;
@@ -401,6 +426,22 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
+	// {{{ public function setGoogle2faAuthenticated()
+
+	public function setGoogle2faAuthenticated($authenticated = true)
+	{
+		$this->google_2fa_authenticated = $authenticated;
+	}
+
+	// }}}
+	// {{{ public function isGoogle2faAuthenticated()
+
+	public function isGoogle2faAuthenticated()
+	{
+		return $this->google_2fa_authenticated;
+	}
+
+	// }}}
 	// {{{ protected function init()
 
 	protected function init()
@@ -529,6 +570,16 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
+    // {{{ protected function getSerializablePrivateProperties()
+
+    protected function getSerializablePrivateProperties()
+    {
+		$properties = parent::getSerializablePrivateProperties();
+		$properties[] = 'google_2fa_authenticated';
+		return $properties;
+    }
+
+    // }}}
 }
 
 ?>

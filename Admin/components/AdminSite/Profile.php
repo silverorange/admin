@@ -1,5 +1,7 @@
 <?php
 
+use PragmaRX\Google2FA\Google2FA;
+
 /**
  * Edit page for the current admin user profile
  *
@@ -32,6 +34,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		return array(
 			'email',
 			'name',
+			'google_2fa_enabled'
 		);
 	}
 
@@ -163,6 +166,40 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 			$new_password->hasMessage() ||
 			$confirm_password->hasMessage()) {
 			$this->ui->getWidget('change_password')->open = true;
+		}
+
+		$this->buildGoogle2fa();
+	}
+
+	// }}}
+	// {{{ protected function buildGoogle2fa()
+
+	protected function buildGoogle2fa()
+	{
+		if ($this->app->isGoogle2faEnabled()) {
+			$google2fa = new Google2FA();
+			if ($this->data_object->google_2fa_secret === null) {
+				$google2fa_secret = $google2fa->generateSecretKey();
+				$this->data_object->google_2fa_secret = $google2fa_secret;
+				$this->data_object->save();
+			}
+
+			if ($this->data_object->google_2fa_enabled) {
+				$this->ui->getWidget('google_2fa_enabled_note')->visible = true;
+			} else {
+				$qr_code_url = $google2fa->getQRCodeUrl(
+					$this->app->config->admin->google_2fa_domain,
+					$this->data_object->email,
+					$this->data_object->google_2fa_secret
+				);
+
+				$img_tag = new SwatHtmlTag('img');
+				$img_tag->src = 'https://chart.googleapis.com/chart'.
+					'?chs=400x400&chld=M|0&cht=qr&chl='.urlencode($qr_code_url);
+
+				$this->ui->getWidget('google_2fa_image')->content = $img_tag;
+				$this->ui->getWidget('google_2fa')->visible = true;
+			}
 		}
 	}
 
