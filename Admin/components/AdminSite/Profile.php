@@ -1,6 +1,10 @@
 <?php
 
 use PragmaRX\Google2FA\Google2FA;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
 
 /**
  * Edit page for the current admin user profile
@@ -193,9 +197,21 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 					$this->data_object->google_2fa_secret
 				);
 
+				$writer = new Writer(
+					new ImageRenderer(
+						new RendererStyle(400),
+						new ImagickImageBackEnd()
+					)
+				);
+
 				$img_tag = new SwatHtmlTag('img');
-				$img_tag->src = 'https://chart.googleapis.com/chart'.
-					'?chs=400x400&chld=M|0&cht=qr&chl='.urlencode($qr_code_url);
+				$img_tag->alt = Admin::_('Two Factor Authentication QR Code');
+				$img_tag->src = 'data:image/png;base64, '.base64_encode(
+					$writer->writeString($qr_code_url)
+				);
+
+				// $img_tag->src = 'https://chart.googleapis.com/chart'.
+				//	'?chs=400x400&chld=M|0&cht=qr&chl='.urlencode($qr_code_url);
 
 				$this->ui->getWidget('google_2fa_image')->content = $img_tag;
 				$this->ui->getWidget('google_2fa')->visible = true;

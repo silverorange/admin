@@ -93,6 +93,20 @@ class AdminAdminSiteGoogle2fa extends AdminPage
 	}
 
 	// }}}
+
+	// finalize phase
+	// {{{ public function finalize
+
+	public function finalize()
+	{
+		parent::finalize();
+
+		$this->layout->addHtmlHeadEntry(
+			'packages/admin/styles/admin-google-2fa-page.css'
+		);
+	}
+
+	// }}}
 }
 
 ?>

@@ -48,7 +48,8 @@
 		"silverorange/coding-standard": "^1.0.0"
 	},
 	"suggest": {
-		"pragmarx/google2fa": "required for the use of two factor authentication"
+		"pragmarx/google2fa": "required for the use of two factor authentication",
+		"bacon/bacon-qr-code": "required to show QR codes for two factor auth"
 	},
 	"autoload": {
 		"classmap": [ "Admin/" ]

@@ -375,12 +375,20 @@ class AdminApplication extends SiteWebApplication
 
 	public function isGoogle2faEnabled()
 	{
-		// Google2FA class is optional in composer, so make sure it's installed.
-		// Also make sure the config setting is enabled.
-		return (
-			class_exists('PragmaRX\Google2FA\Google2FA') &&
-			$this->config->admin->google_2fa_enabled
-		);
+		$enabled = $this->config->admin->google_2fa_enabled;
+		if ($enabled) {
+			if (!class_exists('PragmaRX\Google2FA\Google2FA')) {
+				throw AdminException(
+					'pragmarx/google2fa is required for using Google 2FA'
+				);
+			} elseif (!class_exists('BaconQrCode\Writer')) {
+				throw AdminException(
+					'bacon/bacon-qr-code is required for using Google 2FA'
+				);
+			}
+		}
+
+		return $enabled;
 	}
 
 	// }}}
