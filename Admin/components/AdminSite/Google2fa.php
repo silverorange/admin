@@ -66,13 +66,21 @@ class AdminAdminSiteGoogle2fa extends AdminPage
 
 	protected function validate2fa()
 	{
+		// strip all non numeric characters like spaces and dashes that people
+		// might enter (e.g. Authy adds spaces for readability)
+		$token = preg_replace(
+			'/[^0-9]/',
+			'',
+			$this->ui->getWidget('google_2fa')->value
+		);
+
 		// The timestamp is used to make sure this, or tokens before this,
 		// can't be used to authenticate again. There's a "window" of token
 		// use and without this, someone could capture the code, and re-use it.
 		$google2fa = new Google2FA();
 		$time_stamp = $google2fa->verifyKeyNewer(
 			$this->app->session->user->google_2fa_secret,
-			$this->ui->getWidget('google_2fa')->value,
+			$token,
 			$this->app->session->user->google_2fa_timestamp
 		);
 
