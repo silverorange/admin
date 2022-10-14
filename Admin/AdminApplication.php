@@ -4,7 +4,7 @@
  * Web application class for an administration application
  *
  * @package   Admin
- * @copyright 2004-2016 silverorange
+ * @copyright 2004-2022 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminApplication extends SiteWebApplication
@@ -371,19 +371,19 @@ class AdminApplication extends SiteWebApplication
 	}
 
 	// }}}
-	// {{{ public function isGoogle2faEnabled()
+	// {{{ public function is2FaEnabled()
 
-	public function isGoogle2faEnabled()
+	public function is2FaEnabled()
 	{
-		$enabled = $this->config->admin->google_2fa_enabled;
+		$enabled = $this->config->admin->two_fa_enabled;
 		if ($enabled) {
-			if (!class_exists('PragmaRX\Google2FA\Google2FA')) {
+			if (!class_exists('RobThree\Auth\TwoFactorAuth')) {
 				throw AdminException(
-					'pragmarx/google2fa is required for using Google 2FA'
+					'robthree/twofactorauth is required for using 2FA'
 				);
 			} elseif (!class_exists('BaconQrCode\Writer')) {
 				throw AdminException(
-					'bacon/bacon-qr-code is required for using Google 2FA'
+					'bacon/bacon-qr-code is required for using 2FA'
 				);
 			}
 		}

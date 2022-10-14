@@ -1,6 +1,6 @@
 <?php
 
-use PragmaRX\Google2FA\Google2FA;
+use RobThree\Auth\TwoFactorAuth;
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
@@ -11,7 +11,7 @@ use BaconQrCode\Writer;
  *
  * @package   Admin
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
- * @copyright 2005-2016 silverorange
+ * @copyright 2005-2022 silverorange
  */
 class AdminAdminSiteProfile extends AdminObjectEdit
 {
@@ -38,7 +38,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		return array(
 			'email',
 			'name',
-			'google_2fa_enabled'
+			'two_fa_enabled'
 		);
 	}
 
@@ -172,29 +172,33 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 			$this->ui->getWidget('change_password')->open = true;
 		}
 
-		$this->buildGoogle2fa();
+		$this->build2fa();
 	}
 
 	// }}}
-	// {{{ protected function buildGoogle2fa()
+	// {{{ protected function build2Fa()
 
-	protected function buildGoogle2fa()
+	protected function build2Fa()
 	{
-		if ($this->app->isGoogle2faEnabled()) {
-			$google2fa = new Google2FA();
-			if ($this->data_object->google_2fa_secret === null) {
-				$google2fa_secret = $google2fa->generateSecretKey();
-				$this->data_object->google_2fa_secret = $google2fa_secret;
+		if ($this->app->is2FaEnabled()) {
+			$two_fa = new TwoFactorAuth();
+			if ($this->data_object->two_fa_secret === null) {
+				$two_fa_secret = $two_fa->createSecret();
+				$this->data_object->two_fa_secret = $two_fa_secret;
 				$this->data_object->save();
 			}
 
-			if ($this->data_object->google_2fa_enabled) {
-				$this->ui->getWidget('google_2fa_enabled_note')->visible = true;
+			if ($this->data_object->two_fa_enabled) {
+				$this->ui->getWidget('two_fa_enabled_note')->visible = true;
 			} else {
-				$qr_code_url = $google2fa->getQRCodeUrl(
-					$this->app->config->admin->google_2fa_domain,
-					$this->data_object->email,
-					$this->data_object->google_2fa_secret
+				$qr_code_url = $two_fa->getQRCodeImageAsDataUri(
+					sprintf(
+						'%s (%s)',
+						$this->app->config->site->title,
+						$this->data_object->email
+					),
+					$this->data_object->two_fa_secret,
+					400
 				);
 
 				$writer = new Writer(
@@ -206,15 +210,13 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 
 				$img_tag = new SwatHtmlTag('img');
 				$img_tag->alt = Admin::_('Two Factor Authentication QR Code');
-				$img_tag->src = 'data:image/png;base64, '.base64_encode(
+				$img_tag->src = $qr_code_url;
+				/*$img_tag->src = 'data:image/png;base64, '.base64_encode(
 					$writer->writeString($qr_code_url)
-				);
+				);*/
 
-				// $img_tag->src = 'https://chart.googleapis.com/chart'.
-				//	'?chs=400x400&chld=M|0&cht=qr&chl='.urlencode($qr_code_url);
-
-				$this->ui->getWidget('google_2fa_image')->content = $img_tag;
-				$this->ui->getWidget('google_2fa')->visible = true;
+				$this->ui->getWidget('two_fa_image')->content = $img_tag;
+				$this->ui->getWidget('two_fa')->visible = true;
 			}
 		}
 	}

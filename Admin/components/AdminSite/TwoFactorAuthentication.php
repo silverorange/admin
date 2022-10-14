@@ -1,14 +1,14 @@
 <?php
 
-use PragmaRX\Google2FA\Google2FA;
+use RobThree\Auth\TwoFactorAuth;
 
 /**
- * Authenticate Google 2FA Token
+ * Authenticate 2FA Token
  *
  * @package   Admin
  * @copyright 2022 silverorange
  */
-class AdminAdminSiteGoogle2fa extends AdminPage
+class AdminAdminSiteTwoFactorAuthentication extends AdminPage
 {
 	// init phase
 	// {{{ protected function createLayout()
@@ -25,16 +25,16 @@ class AdminAdminSiteGoogle2fa extends AdminPage
 	{
 		parent::initInternal();
 
-		$this->ui->loadFromXML(__DIR__.'/google_2fa.xml');
+		$this->ui->loadFromXML(__DIR__.'/two_factor_authentication.xml');
 
-		$form = $this->ui->getWidget('google_2fa_form');
-		$form->action = 'AdminSite/Google2fa';
+		$form = $this->ui->getWidget('two_fa_form');
+		$form->action = 'AdminSite/TwoFactorAuthentication';
 
 		// remember where we came from
 		$form->addHiddenField('relocate_uri', $this->app->getUri());
 
 		$user = $this->app->session->user;
-		if ($user->isGoogle2faAuthenticated()) {
+		if ($user->is2FaAuthenticated() || !$user->two_fa_enabled) {
 			$this->app->relocate('./');
 		}
 	}
@@ -48,11 +48,14 @@ class AdminAdminSiteGoogle2fa extends AdminPage
 	{
 		parent::processInternal();
 
-		$form = $this->ui->getWidget('google_2fa_form');
+		$form = $this->ui->getWidget('two_fa_form');
 		if ($form->isProcessed()) {
-			$this->validate2fa();
 			if (!$form->hasMessage()) {
-				$this->app->session->user->setGoogle2faAuthenticated();
+				$this->validate2Fa();
+			}
+
+			if (!$form->hasMessage()) {
+				$this->app->session->user->set2FaAuthenticated();
 
 				// go back where we came from
 				$uri = $form->getHiddenField('relocate_uri');
@@ -62,30 +65,35 @@ class AdminAdminSiteGoogle2fa extends AdminPage
 	}
 
 	// }}}
-	// {{{ protected function validate2fa()
+	// {{{ protected function validate2Fa()
 
-	protected function validate2fa()
+	protected function validate2Fa()
 	{
 		// strip all non numeric characters like spaces and dashes that people
 		// might enter (e.g. Authy adds spaces for readability)
 		$token = preg_replace(
 			'/[^0-9]/',
 			'',
-			$this->ui->getWidget('google_2fa')->value
+			$this->ui->getWidget('two_fa_token')->value
 		);
 
 		// The timestamp is used to make sure this, or tokens before this,
 		// can't be used to authenticate again. There's a "window" of token
 		// use and without this, someone could capture the code, and re-use it.
-		$google2fa = new Google2FA();
-		$time_stamp = $google2fa->verifyKeyNewer(
-			$this->app->session->user->google_2fa_secret,
+		$two_fa = new TwoFactorAuth();
+		$success = $two_fa->verifyCode(
+			$this->app->session->user->two_fa_secret,
 			$token,
-			$this->app->session->user->google_2fa_timestamp
+			1,
+			null,
+			$this->app->session->user->two_fa_timeslice
 		);
 
-		if ($time_stamp === false) {
-			$this->ui->getWidget('google_2fa')->addMessage(
+		if ($success) {
+			// save the new timestamp
+			$this->app->session->user->save();
+		} else {
+			$this->ui->getWidget('two_fa_token')->addMessage(
 				new SwatMessage(
 					Admin::_(
 						'Your two factor authentication token doesn’t '.
@@ -94,9 +102,6 @@ class AdminAdminSiteGoogle2fa extends AdminPage
 					'error'
 				)
 			);
-		} else {
-			$this->app->session->user->google_2fa_timestamp = $time_stamp;
-			$this->app->session->user->save();
 		}
 	}
 
@@ -110,7 +115,7 @@ class AdminAdminSiteGoogle2fa extends AdminPage
 		parent::finalize();
 
 		$this->layout->addHtmlHeadEntry(
-			'packages/admin/styles/admin-google-2fa-page.css'
+			'packages/admin/styles/admin-two-factor-authentication-page.css'
 		);
 	}
 

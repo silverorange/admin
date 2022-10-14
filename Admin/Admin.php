@@ -77,8 +77,7 @@ class Admin
 	{
 		return [
 			'admin.allow_reset_password' => '0',
-			'admin.google_2fa_enabled' => false,
-			'admin.google_2fa_domain' => '',
+			'admin.two_fa_enabled' => false,
 		];
 	}
 

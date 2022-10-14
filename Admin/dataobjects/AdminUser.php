@@ -4,7 +4,7 @@
  * User account for an admin
  *
  * @package   Admin
- * @copyright 2007-2016 silverorange
+ * @copyright 2007-2022 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  * @see       AdminGroup
  */
@@ -127,25 +127,25 @@ class AdminUser extends SwatDBDataObject
 	public $activation_date;
 
 	/**
-	 * Google 2FA Secret
+	 * 2FA Secret
 	 *
 	 * @var string
 	 */
-	public $google_2fa_secret;
+	public $two_fa_secret;
 
 	/**
-	 * Google 2FA Enabled
+	 * 2FA Enabled
 	 *
 	 * @var boolean
 	 */
-	public $google_2fa_enabled = false;
+	public $two_fa_enabled = false;
 
 	/**
-	 * Google 2FA Timestamp
+	 * 2FA Time-slice
 	 *
 	 * @var integer
 	 */
-	public $google_2fa_timestamp;
+	public $two_fa_timeslice;
 
 	// }}}
 	// {{{ protected properties
@@ -158,7 +158,7 @@ class AdminUser extends SwatDBDataObject
 	/**
 	 * @var boolean
 	 */
-	protected $google_2fa_authenticated = false;
+	protected $two_fa_authenticated = false;
 
 	// }}}
 	// {{{ public function isAuthenticated()
@@ -214,9 +214,9 @@ class AdminUser extends SwatDBDataObject
 			$this->isActive() &&
 			!$this->force_change_password &&
 			(
-				$app->isGoogle2faEnabled() && (
-					!$this->google_2fa_enabled ||
-					$this->google_2fa_authenticated
+				$app->is2FaEnabled() && (
+					!$this->two_fa_enabled ||
+					$this->two_fa_authenticated
 				)
 			)
 		);
@@ -433,19 +433,19 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
-	// {{{ public function setGoogle2faAuthenticated()
+	// {{{ public function set2FaAuthenticated()
 
-	public function setGoogle2faAuthenticated($authenticated = true)
+	public function set2FaAuthenticated($authenticated = true)
 	{
-		$this->google_2fa_authenticated = $authenticated;
+		$this->two_fa_authenticated = $authenticated;
 	}
 
 	// }}}
-	// {{{ public function isGoogle2faAuthenticated()
+	// {{{ public function is2FaAuthenticated()
 
-	public function isGoogle2faAuthenticated()
+	public function is2FaAuthenticated()
 	{
-		return $this->google_2fa_authenticated;
+		return $this->two_fa_authenticated;
 	}
 
 	// }}}
@@ -582,7 +582,7 @@ class AdminUser extends SwatDBDataObject
 	protected function getSerializablePrivateProperties()
 	{
 		$properties = parent::getSerializablePrivateProperties();
-		$properties[] = 'google_2fa_authenticated';
+		$properties[] = 'two_fa_authenticated';
 		return $properties;
 	}
 

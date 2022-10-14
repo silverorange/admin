@@ -2,15 +2,15 @@
 <!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
 <swatml>
 	<widget class="SwatMessageDisplay" id="message_display" />
-	<widget class="SwatFrame" id="google_2fa_frame">
+	<widget class="SwatFrame" id="two_fa_frame">
 		<property name="title" translatable="yes">Two Factor Authentication</property>
 		<widget class="AdminNote">
 			<property name="content" translatable="yes">You’ll need the six-digit code from your authenticator to continue.</property>
 		</widget>
-		<widget class="SwatForm" id="google_2fa_form">
-			<widget class="SwatFormField" id="google_2fa_token_field">
+		<widget class="SwatForm" id="two_fa_form">
+			<widget class="SwatFormField" id="two_fa_token_field">
 				<property name="title" translatable="yes">Verification code</property>
-				<widget class="SwatEntry" id="google_2fa">
+				<widget class="SwatEntry" id="two_fa_token">
 					<property name="autocomplete" type="boolean">false</property>
 					<property name="minlength" type="integer">6</property>
 					<property name="maxlength" type="integer">7</property>

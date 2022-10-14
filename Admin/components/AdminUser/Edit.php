@@ -4,7 +4,7 @@
  * Edit page for AdminUsers component
  *
  * @package   Admin
- * @copyright 2005-2016 silverorange
+ * @copyright 2005-2022 silverorange
  */
 class AdminAdminUserEdit extends AdminObjectEdit
 {
@@ -33,7 +33,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 			'name',
 			'enabled',
 			'force_change_password',
-			'google_2fa_enabled',
+			'two_fa_enabled',
 		);
 	}
 
@@ -50,8 +50,8 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		$this->initGroups();
 		$this->initInstances();
 
-		$this->ui->getWidget('google_2fa_enabled')->parent->visible =
-			$this->app->isGoogle2faEnabled();
+		$this->ui->getWidget('two_fa_enabled')->parent->visible =
+			$this->app->is2FaEnabled();
 	}
 
 	// }}}
