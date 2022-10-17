@@ -51,15 +51,25 @@
 				<property name="title" translatable="yes">Two Factor Authentication</property>
 				<property name="open" type="boolean">false</property>
 				<property name="visible" type="boolean">false</property>
-				<widget class="SwatFormField">
-					<property name="title" translatable="yes">Enable 2FA</property>
-					<property name="note" translatable="yes">Scan the QR code below using your authenticator app. After enabling 2FA, you will be logged out, and then asked to log in again using your password, followed by your 2FA code.</property>
-					<widget class="SwatCheckbox" id="two_fa_enabled">
-						<property name="value" type="boolean">false</property>
+				<widget class="SwatGroupingFormField">
+					<property name="title" translatable="yes">Step 1: Scan the QR code below using an authenticator app like 1Password, LastPass, Google Authenticator, or Authy.</property>
+					<widget class="SwatFormField">
+						<property name="title" translatable="yes">Scan QR Code</property>
+						<widget class="SwatContentBlock" id="two_fa_image">
+							<property name="content_type">text/xml</property>
+						</widget>
 					</widget>
 				</widget>
-				<widget class="SwatContentBlock" id="two_fa_image">
-					<property name="content_type">text/xml</property>
+				<widget class="SwatGroupingFormField">
+					<property name="title" translatable="yes">Step 2: After scanning the QR code, your app will display a verification code which you will enter below</property>
+					<widget class="SwatFormField" id="two_fa_token_field">
+						<property name="title" translatable="yes">Verification code</property>
+						<widget class="SwatEntry" id="two_fa_token">
+							<property name="autocomplete" type="boolean">false</property>
+							<property name="minlength" type="integer">6</property>
+							<property name="maxlength" type="integer">7</property>
+						</widget>
+					</widget>
 				</widget>
 			</widget>
 			<widget class="SwatFooterFormField">
