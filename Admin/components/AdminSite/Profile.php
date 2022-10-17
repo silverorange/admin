@@ -231,15 +231,17 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 	{
 		if ($this->app->is2FaEnabled()) {
 			$two_fa = new TwoFactorAuth();
-			if ($this->data_object->two_fa_secret === null) {
-				$two_fa_secret = $two_fa->createSecret();
-				$this->data_object->two_fa_secret = $two_fa_secret;
-				$this->data_object->save();
-			}
-
 			if ($this->data_object->two_fa_enabled) {
 				$this->ui->getWidget('two_fa_enabled_note')->visible = true;
 			} else {
+				// Generate a new secret key each time the page loads so that
+				// someone doesn't steal the secret code, then later this
+				// user turns on 2FA, and  then the intruder would have the
+				// secret key from before.
+				$two_fa_secret = $two_fa->createSecret();
+				$this->data_object->two_fa_secret = $two_fa_secret;
+				$this->data_object->save();
+
 				$qr_code_url = $two_fa->getQRCodeImageAsDataUri(
 					sprintf(
 						'%s (%s)',
