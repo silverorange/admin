@@ -83,8 +83,8 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		if ($new_password != '') {
 			$crypt = $this->app->getModule('SiteCryptModule');
 
-			$password_hash = $this->app->session->user->password;
-			$password_salt = $this->app->session->user->password_salt;
+			$password_hash = $this->data_object->password;
+			$password_salt = $this->data_object->password_salt;
 
 			if (!$crypt->verifyHash(
 					$old_password,
@@ -116,14 +116,14 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 	{
 		$two_factor_authentication = new AdminTwoFactorAuthentication();
 		$success = $two_factor_authentication->validateToken(
-			$this->app->session->user->two_fa_secret,
+			$this->data_object->two_fa_secret,
 			$this->ui->getWidget('two_fa_token')->value,
-			$this->app->session->user->two_fa_timeslice
+			$this->data_object->two_fa_timeslice
 		);
 
 		if ($success) {
 			// save the new timestamp
-			$this->app->session->user->save();
+			$this->data_object->save();
 		} else {
 			$this->ui->getWidget('two_fa_token')->addMessage(
 				new SwatMessage(
@@ -147,8 +147,8 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		$this->updatePassword();
 
 		if ($this->ui->getWidget('two_fa_token')->value !== null) {
-			$this->app->session->user->two_fa_enabled = true;
-			$this->app->session->user->set2FaAuthenticated();
+			$this->data_object->two_fa_enabled = true;
+			$this->data_object->set2FaAuthenticated();
 		}
 	}
 
