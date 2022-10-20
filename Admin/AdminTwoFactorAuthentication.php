@@ -31,13 +31,13 @@ class AdminTwoFactorAuthentication
 	// }}}
 	// {{{ public function validateToken()
 
-	public function validateToken($secret, $token, $timeslice)
+	public function validateToken($secret, $token, &$timeslice)
 	{
 		// strip all non numeric characters like spaces and dashes that people
 		// might enter (e.g. Authy adds spaces for readability)
 		$token = preg_replace('/[^0-9]/', '', $token);
 
-		// The timestamp is used to make sure this, or tokens before this,
+		// The timeslice is used to make sure tokens before this
 		// can't be used to authenticate again. There's a "window" of token
 		// use and without this, someone could capture the code, and re-use it.
 		$two_fa = new TwoFactorAuth();
