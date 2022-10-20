@@ -241,7 +241,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 				$img_tag->src = $qr_code_url;
 
 				$p_tag = new SwatHtmlTag('p');
-				$p_tag->class = 'two-factor-secret';
+				$p_tag->class = 'admin-two-factor-secret';
 				$p_tag->setContent($this->data_object->two_fa_secret);
 
 				ob_start();
