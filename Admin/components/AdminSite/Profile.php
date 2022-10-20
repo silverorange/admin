@@ -1,11 +1,5 @@
 <?php
 
-use RobThree\Auth\TwoFactorAuth;
-use BaconQrCode\Renderer\ImageRenderer;
-use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
-use BaconQrCode\Renderer\RendererStyle\RendererStyle;
-use BaconQrCode\Writer;
-
 /**
  * Edit page for the current admin user profile
  *
@@ -120,23 +114,10 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 
 	protected function validate2Fa()
 	{
-		// strip all non numeric characters like spaces and dashes that people
-		// might enter (e.g. Authy adds spaces for readability)
-		$token = preg_replace(
-			'/[^0-9]/',
-			'',
-			$this->ui->getWidget('two_fa_token')->value
-		);
-
-		// The timestamp is used to make sure this, or tokens before this,
-		// can't be used to authenticate again. There's a "window" of token
-		// use and without this, someone could capture the code, and re-use it.
-		$two_fa = new TwoFactorAuth();
-		$success = $two_fa->verifyCode(
+		$two_factor_authentication = new AdminTwoFactorAuthentication();
+		$success = $two_factor_authentication->validateToken(
 			$this->app->session->user->two_fa_secret,
-			$token,
-			1,
-			null,
+			$this->ui->getWidget('two_fa_token')->value,
 			$this->app->session->user->two_fa_timeslice
 		);
 
@@ -230,33 +211,29 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 	protected function build2Fa()
 	{
 		if ($this->app->is2FaEnabled()) {
-			$two_fa = new TwoFactorAuth();
 			if ($this->data_object->two_fa_enabled) {
 				$this->ui->getWidget('two_fa_enabled_note')->visible = true;
 			} else {
-				// Generate a new secret key each time the page loads so that
-				// someone doesn't steal the secret code, then later this
-				// user turns on 2FA, and  then the intruder would have the
-				// secret key from before.
-				$two_fa_secret = $two_fa->createSecret();
-				$this->data_object->two_fa_secret = $two_fa_secret;
-				$this->data_object->save();
+				$two_factor_authentication = new AdminTwoFactorAuthentication();
 
-				$qr_code_url = $two_fa->getQRCodeImageAsDataUri(
+				$form = $this->ui->getWidget('edit_form');
+				if (!$form->isSubmitted()) {
+					// Generate a new secret key each time the page loads so
+					// that someone doesn't steal the secret code, then later
+					// this user turns on 2FA, and  then the intruder would
+					// have the secret key from before.
+					$secret = $two_factor_authentication->getNewSecret();
+					$this->data_object->two_fa_secret = $secret;
+					$this->data_object->save();
+				}
+
+				$qr_code_url = $two_factor_authentication->getQrCodeDataUri(
 					sprintf(
 						'%s (%s)',
 						$this->app->config->site->title,
 						$this->data_object->email
 					),
-					$this->data_object->two_fa_secret,
-					400
-				);
-
-				$writer = new Writer(
-					new ImageRenderer(
-						new RendererStyle(400),
-						new ImagickImageBackEnd()
-					)
+					$this->data_object->two_fa_secret
 				);
 
 				$img_tag = new SwatHtmlTag('img');

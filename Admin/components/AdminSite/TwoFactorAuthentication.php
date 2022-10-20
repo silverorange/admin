@@ -1,7 +1,5 @@
 <?php
 
-use RobThree\Auth\TwoFactorAuth;
-
 /**
  * Authenticate 2FA Token
  *
@@ -69,23 +67,10 @@ class AdminAdminSiteTwoFactorAuthentication extends AdminPage
 
 	protected function validate2Fa()
 	{
-		// strip all non numeric characters like spaces and dashes that people
-		// might enter (e.g. Authy adds spaces for readability)
-		$token = preg_replace(
-			'/[^0-9]/',
-			'',
-			$this->ui->getWidget('two_fa_token')->value
-		);
-
-		// The timestamp is used to make sure this, or tokens before this,
-		// can't be used to authenticate again. There's a "window" of token
-		// use and without this, someone could capture the code, and re-use it.
-		$two_fa = new TwoFactorAuth();
-		$success = $two_fa->verifyCode(
+		$two_factor_authentication = new AdminTwoFactorAuthentication();
+		$success = $two_factor_authentication->validateToken(
 			$this->app->session->user->two_fa_secret,
-			$token,
-			1,
-			null,
+			$this->ui->getWidget('two_fa_token')->value,
 			$this->app->session->user->two_fa_timeslice
 		);
 
