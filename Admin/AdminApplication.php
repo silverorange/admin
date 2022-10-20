@@ -378,11 +378,11 @@ class AdminApplication extends SiteWebApplication
 		$enabled = $this->config->admin->two_fa_enabled;
 		if ($enabled) {
 			if (!class_exists('RobThree\Auth\TwoFactorAuth')) {
-				throw AdminException(
+				throw new AdminException(
 					'robthree/twofactorauth is required for using 2FA'
 				);
 			} elseif (!class_exists('BaconQrCode\Writer')) {
-				throw AdminException(
+				throw new AdminException(
 					'bacon/bacon-qr-code is required for using 2FA'
 				);
 			}
