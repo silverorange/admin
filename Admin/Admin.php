@@ -75,9 +75,10 @@ class Admin
 	 */
 	public static function getConfigDefinitions()
 	{
-		return array(
+		return [
 			'admin.allow_reset_password' => '0',
-		);
+			'admin.two_fa_enabled' => false,
+		];
 	}
 
 	// }}}

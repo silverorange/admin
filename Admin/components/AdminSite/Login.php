@@ -4,7 +4,7 @@
  * Administrator login page
  *
  * @package   Admin
- * @copyright 2005-2016 silverorange
+ * @copyright 2005-2022 silverorange
  */
 class AdminAdminSiteLogin extends AdminPage
 {
@@ -78,6 +78,13 @@ class AdminAdminSiteLogin extends AdminPage
 				$this->app->relocate($this->app->getUri());
 			} else {
 				if (isset($this->app->session->user) &&
+					$this->app->is2FaEnabled() &&
+					$this->app->session->user->two_fa_enabled &&
+					!$this->app->session->user->is2FaAuthenticated()) {
+					$this->app->replacePage(
+						'AdminSite/TwoFactorAuthentication'
+					);
+				} elseif (isset($this->app->session->user) &&
 					$this->app->session->user->force_change_password) {
 					$this->app->replacePage('AdminSite/ChangePassword');
 				} elseif (isset($this->app->session->user) &&

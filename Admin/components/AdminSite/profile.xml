@@ -18,6 +18,13 @@
 					<property name="required" type="boolean">true</property>
 				</widget>
 			</widget>
+			<widget class="SwatFormField" id="two_fa_enabled_note">
+				<property name="visible" type="boolean">false</property>
+				<property name="title" translatable="yes">2FA Enabled</property>
+				<widget class="SwatContentBlock">
+					<property name="content" translatable="yes">Yes, two factor authentication is enabled for this account.</property>
+				</widget>
+			</widget>
 			<widget class="SwatDisclosure" id="change_password">
 				<property name="title" translatable="yes">Change Password</property>
 				<property name="open" type="boolean">false</property>
@@ -38,6 +45,31 @@
 				<widget class="SwatFormField" id="confirm_password_field">
 					<property name="title" translatable="yes">Confirm New Password</property>
 					<widget class="SwatConfirmPasswordEntry" id="confirm_password" />
+				</widget>
+			</widget>
+			<widget class="SwatDisclosure" id="two_fa">
+				<property name="title" translatable="yes">Two Factor Authentication</property>
+				<property name="open" type="boolean">false</property>
+				<property name="visible" type="boolean">false</property>
+				<widget class="SwatGroupingFormField">
+					<property name="title" translatable="yes">Step 1: Scan the QR code below using an authenticator app like 1Password, LastPass, Google Authenticator, or Authy.</property>
+					<widget class="SwatFormField">
+						<property name="title" translatable="yes">Scan QR Code</property>
+						<widget class="SwatContentBlock" id="two_fa_image">
+							<property name="content_type">text/xml</property>
+						</widget>
+					</widget>
+				</widget>
+				<widget class="SwatGroupingFormField">
+					<property name="title" translatable="yes">Step 2: After scanning the QR code, your app will display a verification code which you will enter below</property>
+					<widget class="SwatFormField" id="two_fa_token_field">
+						<property name="title" translatable="yes">Verification code</property>
+						<widget class="SwatEntry" id="two_fa_token">
+							<property name="autocomplete" type="boolean">false</property>
+							<property name="minlength" type="integer">6</property>
+							<property name="maxlength" type="integer">7</property>
+						</widget>
+					</widget>
 				</widget>
 			</widget>
 			<widget class="SwatFooterFormField">

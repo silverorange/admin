@@ -4,7 +4,7 @@
  * Index page for AdminUsers component
  *
  * @package   Admin
- * @copyright 2005-2016 silverorange
+ * @copyright 2005-2022 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminUserIndex extends AdminIndex
@@ -87,6 +87,9 @@ class AdminAdminUserIndex extends AdminIndex
 
 		$date_renderer = $date_column->getRendererByPosition();
 		$date_renderer->display_time_zone = $this->app->default_time_zone;
+
+		$this->ui->getWidget('index_view')->getColumn('two_fa')->visible =
+			$this->app->is2FaEnabled();
 	}
 
 	// }}}
@@ -120,7 +123,8 @@ class AdminAdminUserIndex extends AdminIndex
 		$sql = sprintf(
 			'select AdminUser.id, AdminUser.email, AdminUser.name,
 					AdminUser.activation_date, AdminUser.enabled,
-					AdminUserLastLoginView.last_login
+					AdminUserLastLoginView.last_login,
+					AdminUser.two_fa_enabled
 				from AdminUser
 				left outer join AdminUserLastLoginView on
 					AdminUserLastLoginView.usernum = AdminUser.id and

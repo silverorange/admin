@@ -4,7 +4,7 @@
  * Page request
  *
  * @package   Admin
- * @copyright 2004-2016 silverorange
+ * @copyright 2004-2022 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminPageRequest extends SiteObject
@@ -89,6 +89,10 @@ class AdminPageRequest extends SiteObject
 			switch ($this->source) {
 			case 'AdminSite/ChangePassword':
 				$this->subcomponent = 'ChangePassword';
+				break;
+
+			case 'AdminSite/TwoFactorAuthentication':
+				$this->subcomponent = 'TwoFactorAuthentication';
 				break;
 
 			case 'AdminSite/ForgotPassword':
@@ -179,15 +183,16 @@ class AdminPageRequest extends SiteObject
 	public function getAdminSiteTitles()
 	{
 		return array(
-			'Profile'        => Admin::_('Edit User Profile'),
-			'Logout'         => Admin::_('Logout'),
-			'Login'          => Admin::_('Login'),
-			'Exception'      => Admin::_('Exception'),
-			'Front'          => Admin::_('Index'),
-			'ChangePassword' => Admin::_('Change Password'),
-			'ResetPassword'  => Admin::_('Update Password'),
-			'ForgotPassword' => Admin::_('Reset Forgotten Password'),
-			'MenuViewServer' => '',
+			'Profile'                 => Admin::_('Edit User Profile'),
+			'Logout'                  => Admin::_('Logout'),
+			'Login'                   => Admin::_('Login'),
+			'Exception'               => Admin::_('Exception'),
+			'Front'                   => Admin::_('Index'),
+			'ChangePassword'          => Admin::_('Change Password'),
+			'ResetPassword'           => Admin::_('Update Password'),
+			'ForgotPassword'          => Admin::_('Reset Forgotten Password'),
+			'TwoFactorAuthentication' => Admin::_('Two Factor Authentication'),
+			'MenuViewServer'          => '',
 		);
 	}
 

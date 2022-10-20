@@ -47,6 +47,10 @@
 	"require-dev": {
 		"silverorange/coding-standard": "^1.0.0"
 	},
+	"suggest": {
+		"robthree/twofactorauth": "required for the use of two factor authentication",
+		"bacon/bacon-qr-code": "required to show QR codes for two factor auth"
+	},
 	"autoload": {
 		"classmap": [ "Admin/" ]
 	},

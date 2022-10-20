@@ -4,7 +4,7 @@
  * Web application class for an administration application
  *
  * @package   Admin
- * @copyright 2004-2016 silverorange
+ * @copyright 2004-2022 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminApplication extends SiteWebApplication
@@ -368,6 +368,27 @@ class AdminApplication extends SiteWebApplication
 				$cache->setInstance($instance);
 			}
 		}
+	}
+
+	// }}}
+	// {{{ public function is2FaEnabled()
+
+	public function is2FaEnabled()
+	{
+		$enabled = $this->config->admin->two_fa_enabled;
+		if ($enabled) {
+			if (!class_exists('RobThree\Auth\TwoFactorAuth')) {
+				throw new AdminException(
+					'robthree/twofactorauth is required for using 2FA'
+				);
+			} elseif (!class_exists('BaconQrCode\Writer')) {
+				throw new AdminException(
+					'bacon/bacon-qr-code is required for using 2FA'
+				);
+			}
+		}
+
+		return $enabled;
 	}
 
 	// }}}

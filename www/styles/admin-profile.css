@@ -1,0 +1,10 @@
+/* Change Password Page Styles */
+
+.admin-two-factor-secret {
+	font-size: 10px;
+	color: #333;
+}
+
+#two_fa_token_field input {
+	width: 8rem;
+}

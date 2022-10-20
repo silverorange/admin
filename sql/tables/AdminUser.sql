@@ -10,5 +10,8 @@ create table AdminUser (
 	enabled boolean not null default true,
 	all_instances boolean not null default false,
 	activation_date timestamp,
+	two_fa_secret varchar(255),
+	two_fa_enabled boolean not null default false,
+	two_fa_timeslice integer not null default 0,
 	primary key(id)
 );

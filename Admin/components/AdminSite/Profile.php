@@ -5,7 +5,7 @@
  *
  * @package   Admin
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
- * @copyright 2005-2016 silverorange
+ * @copyright 2005-2022 silverorange
  */
 class AdminAdminSiteProfile extends AdminObjectEdit
 {
@@ -83,8 +83,8 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		if ($new_password != '') {
 			$crypt = $this->app->getModule('SiteCryptModule');
 
-			$password_hash = $this->app->session->user->password;
-			$password_salt = $this->app->session->user->password_salt;
+			$password_hash = $this->data_object->password;
+			$password_salt = $this->data_object->password_salt;
 
 			if (!$crypt->verifyHash(
 					$old_password,
@@ -103,6 +103,38 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 				);
 			}
 		}
+
+		if ($this->ui->getWidget('two_fa_token')->value !== null) {
+			$this->validate2Fa();
+		}
+	}
+
+	// }}}
+	// {{{ protected function validate2Fa()
+
+	protected function validate2Fa()
+	{
+		$two_factor_authentication = new AdminTwoFactorAuthentication();
+		$success = $two_factor_authentication->validateToken(
+			$this->data_object->two_fa_secret,
+			$this->ui->getWidget('two_fa_token')->value,
+			$this->data_object->two_fa_timeslice
+		);
+
+		if ($success) {
+			// save the new timestamp
+			$this->data_object->save();
+		} else {
+			$this->ui->getWidget('two_fa_token')->addMessage(
+				new SwatMessage(
+					Admin::_(
+						'Your two factor authentication token doesn’t '.
+						'match. Try again, or contact support for help.'
+					),
+					'error'
+				)
+			);
+		}
 	}
 
 	// }}}
@@ -113,6 +145,11 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		parent::updateObject();
 
 		$this->updatePassword();
+
+		if ($this->ui->getWidget('two_fa_token')->value !== null) {
+			$this->data_object->two_fa_enabled = true;
+			$this->data_object->set2FaAuthenticated();
+		}
 	}
 
 	// }}}
@@ -164,6 +201,56 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 			$confirm_password->hasMessage()) {
 			$this->ui->getWidget('change_password')->open = true;
 		}
+
+		$this->build2fa();
+	}
+
+	// }}}
+	// {{{ protected function build2Fa()
+
+	protected function build2Fa()
+	{
+		if ($this->app->is2FaEnabled()) {
+			if ($this->data_object->two_fa_enabled) {
+				$this->ui->getWidget('two_fa_enabled_note')->visible = true;
+			} else {
+				$two_factor_authentication = new AdminTwoFactorAuthentication();
+
+				$form = $this->ui->getWidget('edit_form');
+				if (!$form->isSubmitted()) {
+					// Generate a new secret key each time the page loads so
+					// that someone doesn't steal the secret code, then later
+					// this user turns on 2FA, and  then the intruder would
+					// have the secret key from before.
+					$secret = $two_factor_authentication->getNewSecret();
+					$this->data_object->two_fa_secret = $secret;
+					$this->data_object->save();
+				}
+
+				$qr_code_url = $two_factor_authentication->getQrCodeDataUri(
+					sprintf(
+						'%s (%s)',
+						$this->app->config->site->title,
+						$this->data_object->email
+					),
+					$this->data_object->two_fa_secret
+				);
+
+				$img_tag = new SwatHtmlTag('img');
+				$img_tag->alt = Admin::_('Two Factor Authentication QR Code');
+				$img_tag->src = $qr_code_url;
+
+				$p_tag = new SwatHtmlTag('p');
+				$p_tag->class = 'admin-two-factor-secret';
+				$p_tag->setContent($this->data_object->two_fa_secret);
+
+				ob_start();
+				$img_tag->display();
+				$p_tag->display();
+				$this->ui->getWidget('two_fa_image')->content = ob_get_clean();
+				$this->ui->getWidget('two_fa')->visible = true;
+			}
+		}
 	}
 
 	// }}}
@@ -181,6 +268,20 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 	{
 		$this->navbar->popEntry();
 		$this->navbar->createEntry(Admin::_('Login Settings'));
+	}
+
+	// }}}
+
+	// finalize phase
+	// {{{ public function finalize
+
+	public function finalize()
+	{
+		parent::finalize();
+
+		$this->layout->addHtmlHeadEntry(
+			'packages/admin/styles/admin-profile.css'
+		);
 	}
 
 	// }}}

@@ -1,0 +1,11 @@
+/* Change Password Page Styles */
+
+#two_fa_frame {
+	width: 28em;
+	margin: 4em auto 1em auto;
+	text-align: left;
+}
+
+#two_fa_token_field input {
+	width: 8rem;
+}

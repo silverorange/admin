@@ -4,7 +4,7 @@
  * User account for an admin
  *
  * @package   Admin
- * @copyright 2007-2016 silverorange
+ * @copyright 2007-2022 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  * @see       AdminGroup
  */
@@ -126,6 +126,27 @@ class AdminUser extends SwatDBDataObject
 	 */
 	public $activation_date;
 
+	/**
+	 * 2FA Secret
+	 *
+	 * @var string
+	 */
+	public $two_fa_secret;
+
+	/**
+	 * 2FA Enabled
+	 *
+	 * @var boolean
+	 */
+	public $two_fa_enabled = false;
+
+	/**
+	 * 2FA Time-slice
+	 *
+	 * @var integer
+	 */
+	public $two_fa_timeslice;
+
 	// }}}
 	// {{{ protected properties
 
@@ -133,6 +154,11 @@ class AdminUser extends SwatDBDataObject
 	 * @var SiteInstance
 	 */
 	protected $instance;
+
+	/**
+	 * @var boolean
+	 */
+	protected $two_fa_authenticated = false;
 
 	// }}}
 	// {{{ public function isAuthenticated()
@@ -186,7 +212,13 @@ class AdminUser extends SwatDBDataObject
 		$authenticated = (
 			$authenticated &&
 			$this->isActive() &&
-			!$this->force_change_password
+			!$this->force_change_password &&
+			(
+				$app->is2FaEnabled() && (
+					!$this->two_fa_enabled ||
+					$this->two_fa_authenticated
+				)
+			)
 		);
 
 		return $authenticated;
@@ -401,6 +433,22 @@ class AdminUser extends SwatDBDataObject
 	}
 
 	// }}}
+	// {{{ public function set2FaAuthenticated()
+
+	public function set2FaAuthenticated($authenticated = true)
+	{
+		$this->two_fa_authenticated = $authenticated;
+	}
+
+	// }}}
+	// {{{ public function is2FaAuthenticated()
+
+	public function is2FaAuthenticated()
+	{
+		return $this->two_fa_authenticated;
+	}
+
+	// }}}
 	// {{{ protected function init()
 
 	protected function init()
@@ -526,6 +574,16 @@ class AdminUser extends SwatDBDataObject
 				$this->db->quote($this->id, 'integer'));
 
 		return SwatDB::query($this->db, $sql, 'AdminGroupWrapper');
+	}
+
+	// }}}
+	// {{{ protected function getSerializablePrivateProperties()
+
+	protected function getSerializablePrivateProperties()
+	{
+		$properties = parent::getSerializablePrivateProperties();
+		$properties[] = 'two_fa_authenticated';
+		return $properties;
 	}
 
 	// }}}
