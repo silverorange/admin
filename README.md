@@ -18,20 +18,26 @@ Enabling 2FA (Two Factor Authentication)
 1. Install the Admin package ≥ `6.1.0`
 2. Add two composer packages:
 
-        "robthree/twofactorauth": "^1.8",
-        "bacon/bacon-qr-code": "^2.0"
+ ```
+ "robthree/twofactorauth": "^1.8",
+ "bacon/bacon-qr-code": "^2.0"
+ ```
 
 3. Run `composer install`
 
 4. Add the new database fields:
 
-        alter table adminuser add two_fa_secret varchar(255);
-        alter table adminuser add two_fa_enabled boolean not null default false;
-        alter table adminuser add two_fa_timeslice integer not null default 0;
+ ```
+ alter table adminuser add two_fa_secret varchar(255);
+ alter table adminuser add two_fa_enabled boolean not null default false;
+ alter table adminuser add two_fa_timeslice integer not null default 0;
+ ```
 
 5. Edit your `.ini` files (both stage and production) and add:
 
-        [admin]
-        two_fa_enabled = On
+ ```
+ [admin]
+ two_fa_enabled = On
+ ```
 
 6. Let your users know! They will now see 2FA setup in the “Login Settings” in the top-right corner.
