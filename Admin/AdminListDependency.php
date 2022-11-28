@@ -253,7 +253,7 @@ class AdminListDependency extends AdminDependency
 	}
 
 	// }}}
-	// {{{ public function buildEntriesArray()
+	// {{{ public static function buildEntriesArray()
 
 	/**
 	 * Builds an array of dependency entries
@@ -280,7 +280,7 @@ class AdminListDependency extends AdminDependency
 	 * @return array a flat array of {@link AdminDependencyEntry} objects that
 	 *                contains dependency tree information.
 	 */
-	public function buildEntriesArray(
+	public static function buildEntriesArray(
 		$items,
 		$parents = null,
 		$status_level = AdminDependency::NODELETE
