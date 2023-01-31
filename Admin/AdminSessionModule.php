@@ -243,7 +243,7 @@ class AdminSessionModule extends SiteSessionModule
 
 		if ($success) {
 			$this->user->save();
-			$this->insertUserHistory($user);
+			$this->insertUserHistory($this->user);
 			$this->runLoginCallbacks();
 		}
 
