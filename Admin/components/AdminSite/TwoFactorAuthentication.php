@@ -67,17 +67,11 @@ class AdminAdminSiteTwoFactorAuthentication extends AdminPage
 
 	protected function validate2Fa()
 	{
-		$two_factor_authentication = new AdminTwoFactorAuthentication();
-		$success = $two_factor_authentication->validateToken(
-			$this->app->session->user->two_fa_secret,
-			$this->ui->getWidget('two_fa_token')->value,
-			$this->app->session->user->two_fa_timeslice
+		$success = $this->app->session->loginWithTwoFactorAuthentication(
+			$this->ui->getWidget('two_fa_token')->value
 		);
 
-		if ($success) {
-			// save the new timestamp
-			$this->app->session->user->save();
-		} else {
+		if (!$success) {
 			$this->ui->getWidget('two_fa_token')->addMessage(
 				new SwatMessage(
 					Admin::_(
