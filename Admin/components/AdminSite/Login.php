@@ -78,17 +78,12 @@ class AdminAdminSiteLogin extends AdminPage
 				$this->app->relocate($this->app->getUri());
 			} else {
 				if (isset($this->app->session->user) &&
-					$this->app->is2FaEnabled() &&
-					$this->app->session->user->two_fa_enabled &&
-					!$this->app->session->user->is2FaAuthenticated()) {
-					$this->app->replacePage(
-						'AdminSite/TwoFactorAuthentication'
-					);
-				} elseif (isset($this->app->session->user) &&
 					$this->app->session->user->force_change_password) {
 					$this->app->replacePage('AdminSite/ChangePassword');
-				} elseif (isset($this->app->session->user) &&
-					!$this->app->session->user->isActive()) {
+				} elseif (
+					isset($this->app->session->user) &&
+					!$this->app->session->user->isActive()
+				) {
 					$message_display = $this->ui->getWidget('message_display');
 					$message = new SwatMessage(
 						Admin::_('Your account is inactive'),
@@ -102,6 +97,13 @@ class AdminAdminSiteLogin extends AdminPage
 
 					$message_display->add($message);
 					$this->login_error = true;
+				} elseif (isset($this->app->session->user) &&
+					$this->app->is2FaEnabled() &&
+					$this->app->session->user->two_fa_enabled &&
+					!$this->app->session->user->is2FaAuthenticated()) {
+					$this->app->replacePage(
+						'AdminSite/TwoFactorAuthentication'
+					);
 				} else {
 					$message_display = $this->ui->getWidget('message_display');
 					$message = new SwatMessage(Admin::_('Login failed'),

@@ -222,6 +222,35 @@ class AdminSessionModule extends SiteSessionModule
 	}
 
 	// }}}
+	// {{{ public function loginWithTwoFactorAuthentication()
+
+	/**
+	 * loginWithTwoFactorAuthentication
+	 *
+	 * @param string $token
+	 *
+	 * @return boolean true if the admin user was logged in is successfully and
+	 *                  false if the admin user could not log in.
+	 */
+	public function loginWithTwoFactorAuthentication($token)
+	{
+		$two_factor_authentication = new AdminTwoFactorAuthentication();
+		$success = $two_factor_authentication->validateToken(
+			$this->user->two_fa_secret,
+			$token,
+			$this->user->two_fa_timeslice
+		);
+
+		if ($success) {
+			$this->user->save();
+			$this->insertUserHistory($this->user);
+			$this->runLoginCallbacks();
+		}
+
+		return $success;
+	}
+
+	// }}}
 	// {{{ public function registerLoginCallback()
 
 	/**
