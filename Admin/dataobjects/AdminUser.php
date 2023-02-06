@@ -214,10 +214,9 @@ class AdminUser extends SwatDBDataObject
 			$this->isActive() &&
 			!$this->force_change_password &&
 			(
-				$app->is2FaEnabled() && (
-					!$this->two_fa_enabled ||
-					$this->two_fa_authenticated
-				)
+				!$app->is2FaEnabled() ||
+				!$this->two_fa_enabled ||
+				$this->two_fa_authenticated
 			)
 		);
 
