@@ -4,7 +4,7 @@
  * User account for an admin
  *
  * @package   Admin
- * @copyright 2007-2022 silverorange
+ * @copyright 2007-2023 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  * @see       AdminGroup
  */
@@ -194,9 +194,10 @@ class AdminUser extends SwatDBDataObject
 				$instance = $app->getModule('SiteMultipleInstanceModule');
 				$instance_id = $instance->getId();
 
-				if ($instance_id !== null &&
-					isset($this->instances[$instance_id])) {
-
+				if (
+					$instance_id !== null &&
+					isset($this->instances[$instance_id])
+				) {
 					$authenticated = true;
 				}
 			}
@@ -209,16 +210,19 @@ class AdminUser extends SwatDBDataObject
 			$authenticated = true;
 		}
 
-		$authenticated = (
+		$is_2fa_valid =
+			// Valid if 2Fa is disabled at app level
+			!$app->is2FaEnabled() ||
+			// Or if 2Fa disabled for this user
+			!$this->two_fa_enabled ||
+			// Or if the user is 2Fa authenticated
+			$this->two_fa_authenticated;
+
+		$authenticated =
 			$authenticated &&
 			$this->isActive() &&
 			!$this->force_change_password &&
-			(
-				!$app->is2FaEnabled() ||
-				!$this->two_fa_enabled ||
-				$this->two_fa_authenticated
-			)
-		);
+			$is_2fa_valid;
 
 		return $authenticated;
 	}
@@ -239,14 +243,16 @@ class AdminUser extends SwatDBDataObject
 	{
 		$this->checkDB();
 
-		$sql = sprintf('select %s in (
+		$sql = sprintf(
+			'select %s in (
 			select component from AdminComponentAdminGroupBinding
 				inner join AdminUserAdminGroupBinding on
 					AdminComponentAdminGroupBinding.groupnum =
 						AdminUserAdminGroupBinding.groupnum and
 							AdminUserAdminGroupBinding.usernum = %s)',
 			$this->db->quote($component->id, 'integer'),
-			$this->db->quote($this->id, 'integer'));
+			$this->db->quote($this->id, 'integer'),
+		);
 
 		return SwatDB::queryOne($this->db, $sql);
 	}
@@ -267,7 +273,8 @@ class AdminUser extends SwatDBDataObject
 	{
 		$this->checkDB();
 
-		$sql = sprintf('select id from AdminComponent
+		$sql = sprintf(
+			'select id from AdminComponent
 				inner join AdminComponentAdminGroupBinding on
 					AdminComponent.id =
 						AdminComponentAdminGroupBinding.component
@@ -277,7 +284,8 @@ class AdminUser extends SwatDBDataObject
 							AdminUserAdminGroupBinding.usernum = %s
 			where shortname = %s',
 			$this->db->quote($this->id, 'integer'),
-			$this->db->quote($shortname, 'text'));
+			$this->db->quote($shortname, 'text'),
+		);
 
 		return SwatDB::queryOne($this->db, $sql);
 	}
@@ -327,13 +335,15 @@ class AdminUser extends SwatDBDataObject
 		 * dataobject saving here in case other fields have changed.
 		 */
 		$id_field = new SwatDBField($this->id_field, 'integer');
-		$sql = sprintf('update %s set password_tag = %s, password_tag_date = %s
+		$sql = sprintf(
+			'update %s set password_tag = %s, password_tag_date = %s
 			where %s = %s',
 			$this->table,
 			$this->db->quote($password_tag, 'text'),
 			$this->db->quote($now->getDate(), 'date'),
 			$id_field->name,
-			$this->db->quote($this->{$id_field->name}, $id_field->type));
+			$this->db->quote($this->{$id_field->name}, $id_field->type),
+		);
 
 		SwatDB::exec($this->db, $sql);
 
@@ -357,15 +367,18 @@ class AdminUser extends SwatDBDataObject
 	{
 		$this->checkDB();
 
-		$sql = sprintf('select id from %s
+		$sql = sprintf(
+			'select id from %s
 			where lower(email) = lower(%s)',
 			$this->table,
-			$this->db->quote($email, 'text'));
+			$this->db->quote($email, 'text'),
+		);
 
 		$id = SwatDB::queryOne($this->db, $sql);
 
-		if ($id === null)
+		if ($id === null) {
 			return false;
+		}
 
 		return $this->load($id);
 	}
@@ -402,7 +415,7 @@ class AdminUser extends SwatDBDataObject
 		$is_active = false;
 
 		$comparison_date = null;
-		$comparison_dates = array();
+		$comparison_dates = [];
 
 		if ($this->most_recent_history instanceof AdminUserHistory) {
 			$comparison_dates[] = $this->most_recent_history->login_date;
@@ -415,16 +428,20 @@ class AdminUser extends SwatDBDataObject
 		// Get the most recent activity date (either user history or activation
 		// date)
 		foreach ($comparison_dates as $date) {
-			if (!$comparison_date instanceof SwatDate ||
-				$date->after($comparison_date)) {
+			if (
+				!$comparison_date instanceof SwatDate ||
+				$date->after($comparison_date)
+			) {
 				$comparison_date = $date;
 			}
 		}
 
 		$threshold = new SwatDate();
 		$threshold->subtractDays(static::EXPIRY_DAYS);
-		if ($comparison_date instanceof SwatDate &&
-			$comparison_date->after($threshold)) {
+		if (
+			$comparison_date instanceof SwatDate &&
+			$comparison_date->after($threshold)
+		) {
 			$is_active = true;
 		}
 
@@ -488,7 +505,7 @@ class AdminUser extends SwatDBDataObject
 			order by login_date desc',
 			$this->db->quote($this->id, 'integer'),
 			SwatDB::equalityOperator($instance_id),
-			$this->db->quote($instance_id, 'integer')
+			$this->db->quote($instance_id, 'integer'),
 		);
 
 		return SwatDB::query($this->db, $sql, 'AdminUserHistoryWrapper');
@@ -522,7 +539,7 @@ class AdminUser extends SwatDBDataObject
 			order by login_date desc',
 			$this->db->quote($this->id, 'integer'),
 			SwatDB::equalityOperator($instance_id),
-			$this->db->quote($instance_id, 'integer')
+			$this->db->quote($instance_id, 'integer'),
 		);
 
 		$this->db->setLimit(1);
@@ -530,7 +547,7 @@ class AdminUser extends SwatDBDataObject
 		return SwatDB::query(
 			$this->db,
 			$sql,
-			'AdminUserHistoryWrapper'
+			'AdminUserHistoryWrapper',
 		)->getFirst();
 	}
 
@@ -544,12 +561,14 @@ class AdminUser extends SwatDBDataObject
 	 */
 	protected function loadInstances()
 	{
-		$sql = sprintf('select Instance.*
+		$sql = sprintf(
+			'select Instance.*
 				from Instance
 				inner join AdminUserInstanceBinding on
 					AdminUserInstanceBinding.instance = Instance.id
 				where AdminUserInstanceBinding.usernum = %s',
-			$this->db->quote($this->id, 'integer'));
+			$this->db->quote($this->id, 'integer'),
+		);
 
 		$wrapper_class = SwatDBClassMap::get('SiteInstanceWrapper');
 		return SwatDB::query($this->db, $sql, $wrapper_class);
@@ -565,12 +584,14 @@ class AdminUser extends SwatDBDataObject
 	 */
 	protected function loadGroups()
 	{
-		$sql = sprintf('select AdminGroup.*
+		$sql = sprintf(
+			'select AdminGroup.*
 				from AdminGroup
 				inner join AdminUserAdminGroupBinding on
 					AdminUserAdminGroupBinding.groupnum = AdminGroup.id
 				where usernum = %s',
-				$this->db->quote($this->id, 'integer'));
+			$this->db->quote($this->id, 'integer'),
+		);
 
 		return SwatDB::query($this->db, $sql, 'AdminGroupWrapper');
 	}
