@@ -185,7 +185,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	// }}}
 	// {{{ protected function generateMessage()
 
-	protected function generateMessage(Exception $e)
+	protected function generateMessage(Throwable $e)
 	{
 		if ($e instanceof SwatDBException) {
 			$message = new SwatMessage(
