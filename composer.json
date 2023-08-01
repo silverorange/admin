@@ -39,10 +39,10 @@
 		}
 	],
 	"require": {
-		"php": ">=5.3.0",
+		"php": ">=8.1.0",
 		"ext-mbstring": "*",
-		"silverorange/site": "^13.0.0 || ^14.0.0",
-		"silverorange/swat": "^5.0.0 || ^6.0.0 || ^7.0.0"
+		"silverorange/site": "^14.5.0",
+		"silverorange/swat": "^7.1.0"
 	},
 	"require-dev": {
 		"silverorange/coding-standard": "^1.0.0"
