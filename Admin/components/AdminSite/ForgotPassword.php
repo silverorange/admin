@@ -166,7 +166,7 @@ class AdminAdminSiteForgotPassword extends AdminPage
 		$mail_message->smtp_port     = $this->app->config->email->smtp_port;
 		$mail_message->smtp_username = $this->app->config->email->smtp_username;
 		$mail_message->smtp_password = $this->app->config->email->smtp_password;
-		
+
 		$mail_message->from_address =
 			$this->app->config->email->service_address;
 
