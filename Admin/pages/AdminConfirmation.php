@@ -78,7 +78,7 @@ abstract class AdminConfirmation extends AdminPage
      *
      * @return bool true if processResponse was successful
      */
-    abstract protected function processResponse();
+    abstract protected function processResponse(): bool;
 
     /**
      * Relocates to the previous page after processsing confirmation response.
