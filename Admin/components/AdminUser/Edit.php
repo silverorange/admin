@@ -91,7 +91,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 
     // process phase
 
-    protected function validate()
+    protected function validate(): bool
     {
         $email = $this->ui->getWidget('email');
 
@@ -108,13 +108,18 @@ class AdminAdminUserEdit extends AdminObjectEdit
                 );
 
                 $email->addMessage($message);
+                return false;
             }
         }
 
-        if ($this->ui->getWidget('confirm_password_field')->hasMessage()
-            || $this->ui->getWidget('password')->hasMessage()) {
+        if (
+            $this->ui->getWidget('confirm_password_field')->hasMessage()
+            || $this->ui->getWidget('password')->hasMessage()
+        ) {
             $this->ui->getWidget('password_disclosure')->open = true;
         }
+
+        return true;
     }
 
     protected function updateObject()

@@ -52,9 +52,9 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 
     // process phase
 
-    protected function validate()
+    protected function validate(): bool
     {
-        parent::validate();
+        $is_valid = parent::validate();
 
         $new_password = $this->ui->getWidget('new_password')->value;
         $old_password = $this->ui->getWidget('old_password')->value;
@@ -73,21 +73,24 @@ class AdminAdminSiteProfile extends AdminObjectEdit
                 $this->ui->getWidget('old_password')->addMessage(
                     new SwatMessage(
                         Admin::_(
-                            '%1$s is incorrrect. Please check your %1$s and ' .
+                            '%1$s is incorrect. Please check your %1$s and ' .
                             'try again. Passwords are case sensitive.'
                         ),
                         'error'
                     )
                 );
+                $is_valid = false;
             }
         }
 
         if ($this->ui->getWidget('two_fa_token')->value !== null) {
-            $this->validate2Fa();
+            $is_valid = $is_valid && $this->validate2Fa();
         }
+
+        return $is_valid;
     }
 
-    protected function validate2Fa()
+    protected function validate2Fa(): bool
     {
         $two_factor_authentication = new AdminTwoFactorAuthentication();
         $success = $two_factor_authentication->validateToken(
@@ -99,17 +102,19 @@ class AdminAdminSiteProfile extends AdminObjectEdit
         if ($success) {
             // save the new timestamp
             $this->data_object->save();
-        } else {
-            $this->ui->getWidget('two_fa_token')->addMessage(
-                new SwatMessage(
-                    Admin::_(
-                        'Your two factor authentication token doesn’t ' .
-                        'match. Try again, or contact support for help.'
-                    ),
-                    'error'
-                )
-            );
+            return true;
         }
+
+        $this->ui->getWidget('two_fa_token')->addMessage(
+            new SwatMessage(
+                Admin::_(
+                    'Your two factor authentication token doesn’t ' .
+                    'match. Try again, or contact support for help.'
+                ),
+                'error'
+            )
+        );
+        return false;
     }
 
     protected function updateObject()

@@ -69,21 +69,25 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 
     // process phase
 
-    protected function validate()
+    protected function validate(): bool
     {
         $shortname_widget = $this->ui->getWidget('shortname');
         $shortname = $shortname_widget->value;
 
         $should_validate_shortname = (!$this->isNew() || $shortname != '');
-        if ($should_validate_shortname
-            && !$this->validateShortname($shortname)) {
+        if (
+            $should_validate_shortname
+            && !$this->validateShortname($shortname)
+        ) {
             $message = new SwatMessage(
                 Admin::_('Shortname already exists and must be unique.'),
                 'error'
             );
 
             $shortname_widget->addMessage($message);
+            return false;
         }
+        return true;
     }
 
     protected function updateObject()

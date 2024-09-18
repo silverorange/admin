@@ -71,7 +71,10 @@ abstract class AdminEdit extends AdminPage
      *
      * @return bool true if validation was successful
      */
-    protected function validate() {}
+    protected function validate(): bool
+    {
+        return true;
+    }
 
     /**
      * Save the data.
