@@ -10,7 +10,7 @@ class AdminAdminSectionDelete extends AdminDBDelete
 {
     // init phase
 
-    protected function processDBData()
+    protected function processDBData(): void
     {
         parent::processDBData();
 

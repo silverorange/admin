@@ -187,10 +187,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
      * This method is called to process data after an affirmative
      * confirmation response. Sub-classes should implement this method and
      * perform whatever actions are necessary to process the response.
-     *
-     * @return bool true if processDBData was successful
      */
-    protected function processDBData()
+    protected function processDBData(): void
     {
         $form = $this->ui->getWidget('confirmation_form');
         $this->setItems(
