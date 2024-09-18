@@ -132,8 +132,8 @@ class AdminAdminUserIndex extends AdminIndex
 		);
 
 		$rows = SwatDB::query($this->app->db, $sql);
-		$active_users = array();
-		$inactive_users = array();
+		$active_users = [];
+		$inactive_users = [];
 
 		// Build row objects and separate based on active/inactive status.
 		foreach ($rows as $row) {

@@ -32,8 +32,14 @@ class AdminAdminSectionOrder extends AdminDBOrder
 
 	protected function saveIndex($id, $index)
 	{
-		SwatDB::updateColumn($this->app->db, 'AdminSection',
-			'integer:displayorder', $index, 'integer:id', array($id));
+		SwatDB::updateColumn(
+            $this->app->db,
+            'AdminSection',
+			'integer:displayorder',
+            $index,
+            'integer:id',
+            [$id]
+        );
 	}
 
 

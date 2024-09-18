@@ -155,26 +155,17 @@ class AdminSearchClause
 	{
 		$operator = intval($operator);
 
-		switch ($operator) {
-		case self::OP_EQUALS:
-			return '=';
-		case self::OP_GT:
-			return '>';
-		case self::OP_GTE:
-			return '>=';
-		case self::OP_LT:
-			return '<';
-		case self::OP_LTE:
-			return '<=';
-		case self::OP_CONTAINS:
-			return 'like';
-		case self::OP_STARTS_WITH:
-			return 'like';
-		case self::OP_ENDS_WITH:
-			return 'like';
-		default:
-			throw new AdminException('Unknown operator in clause: '.$operator);
-		}
+        return match ($operator) {
+            self::OP_EQUALS => '=',
+            self::OP_GT => '>',
+            self::OP_GTE => '>=',
+            self::OP_LT => '<',
+            self::OP_LTE => '<=',
+            self::OP_CONTAINS => 'like',
+            self::OP_STARTS_WITH => 'like',
+            self::OP_ENDS_WITH => 'like',
+            default => throw new AdminException('Unknown operator in clause: '.$operator),
+        };
 	}
 
 }

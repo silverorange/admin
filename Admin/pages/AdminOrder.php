@@ -140,10 +140,10 @@ abstract class AdminOrder extends AdminPage
 	protected function buildOptionList()
 	{
 		$options_list = $this->ui->getWidget('options');
-		$options_list->addOptionsByArray(array(
-			'auto'   => Admin::_('Alphabetically'),
-			'custom' => Admin::_('Custom'))
-		);
+		$options_list->addOptionsByArray([
+            'auto'   => Admin::_('Alphabetically'),
+            'custom' => Admin::_('Custom')
+        ]);
 	}
 
 

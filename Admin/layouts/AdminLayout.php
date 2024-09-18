@@ -16,7 +16,7 @@ abstract class AdminLayout extends SiteLayout
 	{
 		parent::build();
 
-		$yui = new SwatYUI(array('fonts', 'grids'));
+		$yui = new SwatYUI(['fonts', 'grids']);
 		$this->addHtmlHeadEntrySet($yui->getHtmlHeadEntrySet());
 
 		$this->addHtmlHeadEntry('packages/admin/styles/admin-layout.css');

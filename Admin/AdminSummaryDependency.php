@@ -24,7 +24,7 @@ class AdminSummaryDependency extends AdminDependency
 	 * @var array
 	 * @see AdminDependencySummary, AdminDependencySummaryWrapper
 	 */
-	public $summaries = array();
+	public $summaries = [];
 
 
 
@@ -136,11 +136,11 @@ class AdminSummaryDependency extends AdminDependency
 
 		if ($parent_field === null) {
 			$parent_value = 'null';
-			$types = array($id_field->type, 'integer', 'integer');
+			$types = [$id_field->type, 'integer', 'integer'];
 		} else {
 			$parent_field = new SwatDBField($parent_field, 'integer');
 			$parent_value = $parent_field->name;
-			$types = array($id_field->type, $parent_field->type, 'integer');
+			$types = [$id_field->type, $parent_field->type, 'integer'];
 		}
 
 		$sql = sprintf('select count(%s) as count, %s as parent,

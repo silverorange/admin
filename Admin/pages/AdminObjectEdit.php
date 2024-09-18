@@ -35,7 +35,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	 *
 	 * @var array
 	 */
-	protected $data_objects_to_flush = array();
+	protected $data_objects_to_flush = [];
 
 	/**
 	 * The current time as a SwatDate in UTC.
@@ -109,7 +109,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function getObjectUiValueNames()
 	{
-		return array();
+		return [];
 	}
 
 
@@ -182,7 +182,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 				throw new AdminNotFoundException(
 					sprintf(
 						'A %s with the id of ‘%s’ does not exist',
-						get_class($this->data_object),
+						$this->data_object::class,
 						$this->id
 					)
 				);
@@ -365,7 +365,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 
 	protected function clearObjectsToFlush()
 	{
-		$this->data_objects_to_flush = array();
+		$this->data_objects_to_flush = [];
 	}
 
 
@@ -497,7 +497,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 			throw new SwatInvalidPropertyException(
 				sprintf(
 					'Specified “%s” object does not have a property “%s”.',
-					get_class($object),
+					$object::class,
 					$name
 				)
 			);
@@ -550,7 +550,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 			throw new SwatInvalidPropertyException(
 				sprintf(
 					'Specified “%s” record does not have a property “%s”.',
-					get_class($object),
+					$object::class,
 					$name
 				)
 			);

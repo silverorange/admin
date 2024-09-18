@@ -45,7 +45,7 @@ class AdminPageRequest extends SiteObject
 				$this->component = $this->source;
 				$this->subcomponent = $this->app->getDefaultSubComponent();
 			} elseif (count($source_exp) == 2) {
-				list($this->component, $this->subcomponent) = $source_exp;
+				[$this->component, $this->subcomponent] = $source_exp;
 			} else {
 				throw new AdminNotFoundException(sprintf(Admin::_(
 					"Invalid source '%s'."),
@@ -175,18 +175,7 @@ class AdminPageRequest extends SiteObject
 
 	public function getAdminSiteTitles()
 	{
-		return array(
-			'Profile'                 => Admin::_('Edit User Profile'),
-			'Logout'                  => Admin::_('Logout'),
-			'Login'                   => Admin::_('Login'),
-			'Exception'               => Admin::_('Exception'),
-			'Front'                   => Admin::_('Index'),
-			'ChangePassword'          => Admin::_('Change Password'),
-			'ResetPassword'           => Admin::_('Update Password'),
-			'ForgotPassword'          => Admin::_('Reset Forgotten Password'),
-			'TwoFactorAuthentication' => Admin::_('Two Factor Authentication'),
-			'MenuViewServer'          => '',
-		);
+		return ['Profile'                 => Admin::_('Edit User Profile'), 'Logout'                  => Admin::_('Logout'), 'Login'                   => Admin::_('Login'), 'Exception'               => Admin::_('Exception'), 'Front'                   => Admin::_('Index'), 'ChangePassword'          => Admin::_('Change Password'), 'ResetPassword'           => Admin::_('Update Password'), 'ForgotPassword'          => Admin::_('Reset Forgotten Password'), 'TwoFactorAuthentication' => Admin::_('Two Factor Authentication'), 'MenuViewServer'          => ''];
 	}
 
 }

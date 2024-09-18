@@ -24,7 +24,7 @@ class AdminListDependency extends AdminDependency
 	 * @var array
 	 * @see AdminDependencyEntry, AdminDependencyEntryWrapper
 	 */
-	public $entries = array();
+	public $entries = [];
 
 
 
@@ -219,13 +219,16 @@ class AdminListDependency extends AdminDependency
 
 		if ($parent_field === null) {
 			$parent_value = 'null';
-			$types = array($id_field->type, 'integer',
-				$title_field->type, 'integer');
+			$types = [$id_field->type, 'integer', $title_field->type, 'integer'];
 		} else {
 			$parent_field = new SwatDBField($parent_field, 'integer');
 			$parent_value = $parent_field->name;
-			$types = array($id_field->type, $parent_field->type,
-				$title_field->type, 'integer');
+			$types = [
+                $id_field->type,
+                $parent_field->type,
+                $title_field->type,
+                'integer'
+            ];
 		}
 
 		$sql = sprintf('select %s as id, %s as parent, %s as title,
@@ -278,7 +281,7 @@ class AdminListDependency extends AdminDependency
 		$parents = null,
 		$status_level = AdminDependency::NODELETE
 	) {
-		$entries = array();
+		$entries = [];
 
 		foreach ($items as $id => $title) {
 			if ($parents === null || array_key_exists($id, $parents)) {

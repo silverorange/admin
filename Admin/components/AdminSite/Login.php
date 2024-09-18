@@ -131,8 +131,7 @@ class AdminAdminSiteLogin extends AdminPage
 	private function displayJavaScript()
 	{
 		try {
-			$email = (isset($this->app->cookie->email)) ?
-				$this->app->cookie->email : '';
+			$email = $this->app->cookie->email ?? '';
 		} catch (SiteCookieException $e) {
 			$this->app->cookie->removeCookie('email', '/');
 			$email = '';

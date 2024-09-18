@@ -27,9 +27,7 @@ class AdminAdminGroupEdit extends AdminObjectEdit
 
 	protected function getObjectUiValueNames()
 	{
-		return array(
-			'title',
-		);
+		return ['title'];
 	}
 
 

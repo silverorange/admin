@@ -36,7 +36,7 @@ class AdminGroupLinkCellRenderer extends SwatLinkCellRenderer
 	 */
 	protected function getCSSClassNames()
 	{
-		$classes = array('admin-group-link-cell-renderer');
+		$classes = ['admin-group-link-cell-renderer'];
 
 		return array_merge($classes, $this->classes);
 	}

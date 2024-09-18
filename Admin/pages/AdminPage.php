@@ -68,7 +68,7 @@ abstract class AdminPage extends SitePage
 	public function __construct(
 		SiteApplication $app,
 		SiteLayout $layout = null,
-		array $arguments = array()
+		array $arguments = []
 	) {
 		parent::__construct($app, $layout, $arguments);
 

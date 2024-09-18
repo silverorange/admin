@@ -11,7 +11,8 @@ use Rector\Php81\Rector\FuncCall\NullToStrictStringFuncCallArgRector;
 return RectorConfig::configure()
     // Set the correct paths to all the PHP files in your project
     ->withPaths([
-        __DIR__ . '/src',
+        __DIR__ . '/Admin',
+        __DIR__ . '/po',
     ])
     // Choose the correct PHP version for your project
     ->withPhpSets(php82: true)

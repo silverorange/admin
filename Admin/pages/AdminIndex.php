@@ -141,7 +141,7 @@ abstract class AdminIndex extends AdminPage
 		$view,
 		$default_orderby,
 		$column_prefix = null,
-		$column_map = array()
+		$column_map = []
 	) {
 		$orderby = $default_orderby;
 		$add_direction = false;

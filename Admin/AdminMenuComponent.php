@@ -27,7 +27,7 @@ class AdminMenuComponent
 		$this->shortname = $shortname;
 		$this->title = $title;
 		$this->description = $description;
-		$this->subcomponents = array();
+		$this->subcomponents = [];
 	}
 
 }

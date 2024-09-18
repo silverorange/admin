@@ -130,7 +130,7 @@ abstract class AdminSearch extends AdminIndex
 		parent::buildInternal();
 
 		try {
-			$form = $this->ui->getWidget('search_form', true);
+			$form = $this->ui->getWidget('search_form');
 			$form->action = $this->source;
 			$form->autofocus = true;
 		} catch (SwatWidgetNotFoundException $e) {

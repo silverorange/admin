@@ -24,7 +24,7 @@ class AdminMenuSection
 	{
 		$this->id = $id;
 		$this->title = $title;
-		$this->components = array();
+		$this->components = [];
 		$this->show = true;
 	}
 

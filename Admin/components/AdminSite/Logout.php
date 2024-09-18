@@ -32,8 +32,7 @@ class AdminAdminSiteLogout extends AdminPage
 			$this->app->messages->add($message);
 
 			// go back where we came from
-			$url = (isset($_SERVER['HTTP_REFERER'])) ?
-				$_SERVER['HTTP_REFERER'] : 'Front';
+			$url = $_SERVER['HTTP_REFERER'] ?? 'Front';
 
 			$this->app->relocate($url);
 		}

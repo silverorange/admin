@@ -85,48 +85,22 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 
 		$class = null;
 
-		switch ($stock_id) {
-		case 'document':
-			$class = 'admin-title-link-cell-renderer-document';
-			break;
-
-		case 'document-with-contents':
-			$class = 'admin-title-link-cell-renderer-document-with-contents';
-			break;
-
-		case 'edit':
-			$class = 'admin-title-link-cell-renderer-edit';
-			break;
-
-		case 'file-save-as':
-			$class = 'admin-title-link-cell-renderer-file-save-as';
-			break;
-
-		case 'folder-with-contents':
-			$class = 'admin-title-link-cell-renderer-folder-with-contents';
-			break;
-
-		case 'folder':
-			$class = 'admin-title-link-cell-renderer-folder';
-			break;
-
-		case 'person':
-			$class = 'admin-title-link-cell-renderer-person';
-			break;
-
-		case 'product':
-			$class = 'admin-title-link-cell-renderer-product';
-			break;
-
-		case 'download':
-			$class = 'admin-title-link-cell-renderer-download';
-			break;
-
-		default:
-			throw new SwatUndefinedStockTypeException(
-				"Stock type with id of '{$stock_id}' not found.",
-				0, $stock_id);
-		}
+		$class = match ($stock_id) {
+            'document' => 'admin-title-link-cell-renderer-document',
+            'document-with-contents' => 'admin-title-link-cell-renderer-document-with-contents',
+            'edit' => 'admin-title-link-cell-renderer-edit',
+            'file-save-as' => 'admin-title-link-cell-renderer-file-save-as',
+            'folder-with-contents' => 'admin-title-link-cell-renderer-folder-with-contents',
+            'folder' => 'admin-title-link-cell-renderer-folder',
+            'person' => 'admin-title-link-cell-renderer-person',
+            'product' => 'admin-title-link-cell-renderer-product',
+            'download' => 'admin-title-link-cell-renderer-download',
+            default => throw new SwatUndefinedStockTypeException(
+              "Stock type with id of '{$stock_id}' not found.",
+              0,
+              $stock_id
+            ),
+        };
 
 		$this->stock_class = $class;
 		$this->last_stock_id = $stock_id;
@@ -263,7 +237,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 */
 	public function getDataSpecificCSSClassNames()
 	{
-		$classes = array();
+		$classes = [];
 
 		if ($this->stock_class !== null)
 			$classes[] = $this->stock_class;

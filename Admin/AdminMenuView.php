@@ -46,7 +46,7 @@ class AdminMenuView extends SwatControl
 
 		$this->requires_id = true;
 
-		$yui = new SwatYUI(array('dom', 'event', 'animation'));
+		$yui = new SwatYUI(['dom', 'event', 'animation']);
 		$this->html_head_entry_set->addEntrySet($yui->getHtmlHeadEntrySet());
 
 		$this->addStyleSheet('packages/admin/styles/admin-menu.css');

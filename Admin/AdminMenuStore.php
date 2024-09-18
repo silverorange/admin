@@ -33,7 +33,7 @@ class AdminMenuStore
 		if (MDB2::isError($rs))
 			throw new Exception($rs->getMessage());
 
-		$this->sections = array();
+		$this->sections = [];
 		$section = null;
 		$component = null;
 

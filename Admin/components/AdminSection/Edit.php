@@ -27,11 +27,11 @@ class AdminAdminSectionEdit extends AdminObjectEdit
 
 	protected function getObjectUiValueNames()
 	{
-		return array(
-			'title',
-			'visible',
-			'description',
-		);
+		return [
+            'title',
+            'visible',
+            'description'
+        ];
 	}
 
 

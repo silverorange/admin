@@ -42,13 +42,13 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	public function __construct(
 		SiteApplication $app,
 		SiteLayout $layout = null,
-		array $arguments = array()
+		array $arguments = []
 	) {
 		parent::__construct($app, $layout, $arguments);
 
 		// don't use setItems() here because the UI has not been constructed
 		// yet and the hidden value cannot be added to the form
-		$this->items = new SwatViewSelection(array());
+		$this->items = new SwatViewSelection([]);
 	}
 
 
@@ -97,7 +97,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 */
 	protected function getItemList($type = 'integer')
 	{
-		$list = array();
+		$list = [];
 
 		foreach ($this->items as $item)
 			$list[] = $this->app->db->quote($item, $type);
@@ -219,7 +219,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 
 		$id = SiteApplication::initVar('id', null, SiteApplication::VAR_GET);
 		if ($id !== null)
-			$this->setItems(new SwatViewSelection(array($id)));
+			$this->setItems(new SwatViewSelection([$id]));
 	}
 
 }

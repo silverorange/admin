@@ -31,7 +31,7 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 		$id = SiteApplication::initVar('id', null, SiteApplication::VAR_GET);
 
 		if ($id !== null) {
-			$this->setItems(array($id));
+			$this->setItems([$id]);
 			$this->single_delete = true;
 			$form = $this->ui->getWidget('confirmation_form');
 			$form->addHiddenField('single_delete', $this->single_delete);

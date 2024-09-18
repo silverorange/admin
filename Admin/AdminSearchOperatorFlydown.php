@@ -19,12 +19,12 @@ class AdminSearchOperatorFlydown extends SwatFlydown
 	 *
 	 * @var array
 	 */
-	public $operators = array(
-		AdminSearchClause::OP_CONTAINS,
-		AdminSearchClause::OP_STARTS_WITH,
-		AdminSearchClause::OP_ENDS_WITH,
-		AdminSearchClause::OP_EQUALS,
-	);
+	public $operators = [
+        AdminSearchClause::OP_CONTAINS,
+        AdminSearchClause::OP_STARTS_WITH,
+        AdminSearchClause::OP_ENDS_WITH,
+        AdminSearchClause::OP_EQUALS
+    ];
 
 
 
@@ -33,7 +33,7 @@ class AdminSearchOperatorFlydown extends SwatFlydown
 		if (!$this->visible)
 			return;
 
-		$this->options = array();
+		$this->options = [];
 		$this->show_blank = false;
 
 		foreach ($this->operators as $op) {
@@ -47,26 +47,17 @@ class AdminSearchOperatorFlydown extends SwatFlydown
 
 	private static function getOperatorTitle($id)
 	{
-		switch ($id) {
-		case AdminSearchClause::OP_EQUALS:
-			return Admin::_('is');
-		case AdminSearchClause::OP_GT:
-			return '>';
-		case AdminSearchClause::OP_GTE:
-			return '>=';
-		case AdminSearchClause::OP_LT:
-			return '<';
-		case AdminSearchClause::OP_LTE:
-			return '<=';
-		case AdminSearchClause::OP_CONTAINS:
-			return Admin::_('contains');
-		case AdminSearchClause::OP_STARTS_WITH:
-			return Admin::_('starts with');
-		case AdminSearchClause::OP_ENDS_WITH:
-			return Admin::_('ends with');
-		default:
-			throw new Exception('AdminSearchOperatorFlydown: unknown operator');
-		}
+		return match ($id) {
+            AdminSearchClause::OP_EQUALS => Admin::_('is'),
+            AdminSearchClause::OP_GT => '>',
+            AdminSearchClause::OP_GTE => '>=',
+            AdminSearchClause::OP_LT => '<',
+            AdminSearchClause::OP_LTE => '<=',
+            AdminSearchClause::OP_CONTAINS => Admin::_('contains'),
+            AdminSearchClause::OP_STARTS_WITH => Admin::_('starts with'),
+            AdminSearchClause::OP_ENDS_WITH => Admin::_('ends with'),
+            default => throw new Exception('AdminSearchOperatorFlydown: unknown operator'),
+        };
 	}
 
 }

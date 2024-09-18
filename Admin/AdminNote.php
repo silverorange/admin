@@ -78,7 +78,7 @@ class AdminNote extends SwatContentBlock
 	 */
 	protected function getCSSClassNames()
 	{
-		$classes = array('admin-note');
+		$classes = ['admin-note'];
 		$classes = array_merge($classes, $this->classes);
 		return $classes;
 	}

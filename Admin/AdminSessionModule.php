@@ -15,7 +15,7 @@ class AdminSessionModule extends SiteSessionModule
 	 * @var array
 	 * @see AdminSessionModule::registerLoginCallback()
 	 */
-	protected $login_callbacks = array();
+	protected $login_callbacks = [];
 
 
 
@@ -32,8 +32,7 @@ class AdminSessionModule extends SiteSessionModule
 	 */
 	public function __construct(SiteApplication $app)
 	{
-		$this->registerLoginCallback(
-			array($this, 'regenerateAuthenticationToken'));
+		$this->registerLoginCallback($this->regenerateAuthenticationToken(...));
 
 		parent::__construct($app);
 	}
@@ -50,7 +49,7 @@ class AdminSessionModule extends SiteSessionModule
 
 		if (!isset($this->user)) {
 			$this->user = null;
-			$this->history = array();
+			$this->history = [];
 		} elseif ($this->user !== null) {
 			$this->app->cookie->setCookie('email', $this->getEmailAddress(),
 				strtotime('+1 day'), '/');
@@ -255,7 +254,7 @@ class AdminSessionModule extends SiteSessionModule
 	 * @throws AdminException when the <i>$parameters</i> parameter is not an
 	 *                        array.
 	 */
-	public function registerLoginCallback($callback, $parameters = array())
+	public function registerLoginCallback($callback, $parameters = [])
 	{
 		if (!is_callable($callback))
 			throw new AdminException('Cannot register invalid callback.');
@@ -264,10 +263,10 @@ class AdminSessionModule extends SiteSessionModule
 			throw new AdminException('Callback parameters must be specified '.
 				'in an array.');
 
-		$this->login_callbacks[] = array(
-			'callback' => $callback,
-			'parameters' => $parameters
-		);
+		$this->login_callbacks[] = [
+            'callback' => $callback,
+            'parameters' => $parameters
+        ];
 	}
 
 
@@ -290,8 +289,7 @@ class AdminSessionModule extends SiteSessionModule
 	 */
 	protected function insertUserHistory(AdminUser $user)
 	{
-		$login_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ?
-			$_SERVER['HTTP_USER_AGENT'] : null;
+		$login_agent = $_SERVER['HTTP_USER_AGENT'] ?? null;
 
 		$remote_ip = $this->app->getRemoteIP();
 
@@ -305,16 +303,21 @@ class AdminSessionModule extends SiteSessionModule
 		$login_date = new SwatDate();
 		$login_date->toUTC();
 
-		$fields = array('integer:usernum','date:login_date',
-			'text:login_agent', 'text:remote_ip', 'integer:instance');
+		$fields = [
+            'integer:usernum',
+            'date:login_date',
+            'text:login_agent',
+            'text:remote_ip',
+            'integer:instance'
+        ];
 
-		$values = array(
-			'usernum'     => $user->id,
-			'login_date'  => $login_date->getDate(),
-			'login_agent' => $login_agent,
-			'remote_ip'   => $remote_ip,
-			'instance'    => $this->app->getInstanceId(),
-		);
+		$values = [
+            'usernum'     => $user->id,
+            'login_date'  => $login_date->getDate(),
+            'login_agent' => $login_agent,
+            'remote_ip'   => $remote_ip,
+            'instance'    => $this->app->getInstanceId()
+        ];
 
 		SwatDB::insertRow($this->app->db, 'AdminUserHistory', $fields,
 			$values);

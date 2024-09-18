@@ -27,10 +27,10 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 
 	protected function getObjectUiValueNames()
 	{
-		return array(
-			'email',
-			'name',
-		);
+		return [
+            'email',
+            'name'
+        ];
 	}
 
 

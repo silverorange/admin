@@ -85,7 +85,7 @@ abstract class AdminDependency
 	 *
 	 * @var array
 	 */
-	protected $dependencies = array();
+	protected $dependencies = [];
 
 
 
@@ -94,7 +94,7 @@ abstract class AdminDependency
 	 */
 	public function __construct()
 	{
-		$this->status_levels = array(self::DELETE, self::NODELETE);
+		$this->status_levels = [self::DELETE, self::NODELETE];
 	}
 
 

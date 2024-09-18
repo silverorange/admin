@@ -13,8 +13,8 @@ class AdminTableViewOrderableColumn extends SwatTableViewOrderableColumn
 
 	public function displayHeader()
 	{
-		$this->link = isset($_GET['source']) ? $_GET['source'] : '';
-		$this->unset_get_vars = array('source');
+		$this->link = $_GET['source'] ?? '';
+		$this->unset_get_vars = ['source'];
 		parent::displayHeader();
 	}
 

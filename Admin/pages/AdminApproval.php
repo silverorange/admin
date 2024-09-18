@@ -16,7 +16,7 @@ abstract class AdminApproval extends AdminPage
 
 	protected $id;
 	protected $data_object;
-	protected $pending_ids = array();
+	protected $pending_ids = [];
 
 
 	// init phase

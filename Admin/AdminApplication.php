@@ -59,7 +59,7 @@ class AdminApplication extends SiteWebApplication
 	 *
 	 * @see AdminApplication::addComponentIncludePath()
 	 */
-	protected $component_include_paths = array();
+	protected $component_include_paths = [];
 
 	/**
 	 * Source of the front page.
@@ -78,7 +78,7 @@ class AdminApplication extends SiteWebApplication
 	/*
 	 * @var array
 	 */
-	protected $has_component_cache = array();
+	protected $has_component_cache = [];
 
 
 
@@ -114,11 +114,11 @@ class AdminApplication extends SiteWebApplication
 		}
 
 		if ($reset_vars & self::VAR_GET) {
-			$_GET = array();
+			$_GET = [];
 		}
 
 		if ($reset_vars & self::VAR_POST) {
-			$_POST = array();
+			$_POST = [];
 		}
 
 		parent::replacePage($source);

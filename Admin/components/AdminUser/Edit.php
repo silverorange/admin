@@ -26,13 +26,13 @@ class AdminAdminUserEdit extends AdminObjectEdit
 
 	protected function getObjectUiValueNames()
 	{
-		return array(
-			'email',
-			'name',
-			'enabled',
-			'force_change_password',
-			'two_fa_enabled',
-		);
+		return [
+            'email',
+            'name',
+            'enabled',
+            'force_change_password',
+            'two_fa_enabled'
+        ];
 	}
 
 

@@ -319,7 +319,7 @@ class AdminUser extends SwatDBDataObject
 	{
 		$this->checkDB();
 
-		$password_tag = SwatString::hash(uniqid(rand(), true));
+		$password_tag = SwatString::hash(uniqid(random_int(0, mt_getrandmax()), true));
 		$now = new SwatDate();
 		$now->toUTC();
 

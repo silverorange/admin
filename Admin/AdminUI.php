@@ -31,7 +31,7 @@ class AdminUI extends SwatUI
 	 */
 	public function getValues(array $ids)
 	{
-		$values = array();
+		$values = [];
 
 		foreach ($ids as $widget_id)
 			$values[$widget_id] = $this->getWidget($widget_id)->value;
