@@ -1,146 +1,161 @@
 /* AdminTitleLinkCellRenderer Styles */
 
 .swat-table-view td.admin-title-link-cell-renderer {
-	padding: 0;
+  padding: 0;
 }
 
 .swat-table-view th.admin-title-link-cell-renderer {
-	padding-left: 36px;
+  padding-left: 36px;
 }
 
 td.admin-title-link-cell-renderer span.admin-title-link-cell-renderer,
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer,
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:link,
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:visited {
-	white-space: nowrap;
-	display: inline-block;
-	display: block;
-	padding: 3px 6px;
-	text-decoration: none;
+  white-space: nowrap;
+  display: inline-block;
+  display: block;
+  padding: 3px 6px;
+  text-decoration: none;
 }
 
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:hover {
-	background: #e5e5e5;
-	background: rgba(0,0,0,0.1);
+  background: #e5e5e5;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:link,
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:visited {
-	margin-right: 8px;
+  margin-right: 8px;
 }
 
 td.admin-title-link-cell-renderer a.admin-title-link-cell-renderer:active {
-	background: #f3efe5;
-	background: rgba(102,73,0,0.1);
+  background: #f3efe5;
+  background: rgba(102, 73, 0, 0.1);
 }
 
 span.admin-title-link-cell-renderer-contents {
-	vertical-align: middle;
-	padding-left: 8px;
-	display: block;
-	display: inline-block;
-	white-space: normal;
+  vertical-align: middle;
+  padding-left: 8px;
+  display: block;
+  display: inline-block;
+  white-space: normal;
 }
 
 a.admin-title-link-cell-renderer span.admin-title-link-cell-renderer-icon,
 a.admin-title-link-cell-renderer span.admin-title-link-cell-renderer-contents {
-	cursor: pointer; /* For IE6 */
+  cursor: pointer; /* For IE6 */
 }
 
 a.admin-title-link-cell-renderer span.admin-title-link-cell-renderer-contents {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 span.admin-title-link-cell-renderer-icon {
-	width: 22px;
-	height: 22px;
-	display: inline-block;
-	vertical-align: middle;
-	background-repeat: no-repeat;
-	background-position: 0 0;
-	background-image: url(../images/admin-title-link-cell-renderer-icons.png);
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-image: url(../images/admin-title-link-cell-renderer-icons.png);
 }
 
-a.admin-title-link-cell-renderer-document span.admin-title-link-cell-renderer-icon {
-	background-position: 0 0;
+a.admin-title-link-cell-renderer-document
+  span.admin-title-link-cell-renderer-icon {
+  background-position: 0 0;
 }
 
 a.admin-title-link-cell-renderer-edit span.admin-title-link-cell-renderer-icon {
-	background-position: 0 -22px;
+  background-position: 0 -22px;
 }
 
-a.admin-title-link-cell-renderer-document-with-contents span.admin-title-link-cell-renderer-icon {
-	background-position: 0 -44px;
+a.admin-title-link-cell-renderer-document-with-contents
+  span.admin-title-link-cell-renderer-icon {
+  background-position: 0 -44px;
 }
 
-a.admin-title-link-cell-renderer-folder span.admin-title-link-cell-renderer-icon {
-	background-position: 0 -66px;
+a.admin-title-link-cell-renderer-folder
+  span.admin-title-link-cell-renderer-icon {
+  background-position: 0 -66px;
 }
 
-a.admin-title-link-cell-renderer-folder-with-contents span.admin-title-link-cell-renderer-icon {
-	background-position: 0 -88px;
+a.admin-title-link-cell-renderer-folder-with-contents
+  span.admin-title-link-cell-renderer-icon {
+  background-position: 0 -88px;
 }
 
-a.admin-title-link-cell-renderer-person span.admin-title-link-cell-renderer-icon {
-	background-position: 0 -110px;
+a.admin-title-link-cell-renderer-person
+  span.admin-title-link-cell-renderer-icon {
+  background-position: 0 -110px;
 }
 
-a.admin-title-link-cell-renderer-product span.admin-title-link-cell-renderer-icon {
-	background-position: 0 -132px;
+a.admin-title-link-cell-renderer-product
+  span.admin-title-link-cell-renderer-icon {
+  background-position: 0 -132px;
 }
 
-a.admin-title-link-cell-renderer-file-save-as span.admin-title-link-cell-renderer-icon {
-	background-position: 0 -154px;
+a.admin-title-link-cell-renderer-file-save-as
+  span.admin-title-link-cell-renderer-icon {
+  background-position: 0 -154px;
 }
 
-a.admin-title-link-cell-renderer-download span.admin-title-link-cell-renderer-icon {
-	background-position: 0 -176px;
+a.admin-title-link-cell-renderer-download
+  span.admin-title-link-cell-renderer-icon {
+  background-position: 0 -176px;
 }
 
-span.admin-title-link-cell-renderer-document span.admin-title-link-cell-renderer-icon {
-	background-position: -22px 0;
+span.admin-title-link-cell-renderer-document
+  span.admin-title-link-cell-renderer-icon {
+  background-position: -22px 0;
 }
 
-span.admin-title-link-cell-renderer-edit span.admin-title-link-cell-renderer-icon {
-	background-position: -22px -22px;
+span.admin-title-link-cell-renderer-edit
+  span.admin-title-link-cell-renderer-icon {
+  background-position: -22px -22px;
 }
 
-span.admin-title-link-cell-renderer-document-with-contents span.admin-title-link-cell-renderer-icon {
-	background-position: -22px -44px;
+span.admin-title-link-cell-renderer-document-with-contents
+  span.admin-title-link-cell-renderer-icon {
+  background-position: -22px -44px;
 }
 
-span.admin-title-link-cell-renderer-folder span.admin-title-link-cell-renderer-icon {
-	background-position: -22px -66px;
+span.admin-title-link-cell-renderer-folder
+  span.admin-title-link-cell-renderer-icon {
+  background-position: -22px -66px;
 }
 
-span.admin-title-link-cell-renderer-folder-with-contents span.admin-title-link-cell-renderer-icon {
-	background-position: -22px -88px;
+span.admin-title-link-cell-renderer-folder-with-contents
+  span.admin-title-link-cell-renderer-icon {
+  background-position: -22px -88px;
 }
 
-span.admin-title-link-cell-renderer-person span.admin-title-link-cell-renderer-icon {
-	background-position: -22px -110px;
+span.admin-title-link-cell-renderer-person
+  span.admin-title-link-cell-renderer-icon {
+  background-position: -22px -110px;
 }
 
-span.admin-title-link-cell-renderer-product span.admin-title-link-cell-renderer-icon {
-	background-position: -22px -132px;
+span.admin-title-link-cell-renderer-product
+  span.admin-title-link-cell-renderer-icon {
+  background-position: -22px -132px;
 }
 
-span.admin-title-link-cell-renderer-file-save-as span.admin-title-link-cell-renderer-icon {
-	background-position: -22px -154px;
+span.admin-title-link-cell-renderer-file-save-as
+  span.admin-title-link-cell-renderer-icon {
+  background-position: -22px -154px;
 }
 
-span.admin-title-link-cell-renderer-download span.admin-title-link-cell-renderer-icon {
-	background-position: -22px -176px;
+span.admin-title-link-cell-renderer-download
+  span.admin-title-link-cell-renderer-icon {
+  background-position: -22px -176px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.5),
-	(min--moz-device-pixel-ratio: 1.5),
-	(-o-min-device-pixel-ratio: 3/2),
-	(min-resolution: 1.5dppx) {
-
-	span.admin-title-link-cell-renderer-icon {
-		background-image: url(../images/admin-title-link-cell-renderer-icons@2x.png);
-		background-size: 44px 198px
-	}
-
+  (min--moz-device-pixel-ratio: 1.5),
+  (-o-min-device-pixel-ratio: 3/2),
+  (min-resolution: 1.5dppx) {
+  span.admin-title-link-cell-renderer-icon {
+    background-image: url(../images/admin-title-link-cell-renderer-icons@2x.png);
+    background-size: 44px 198px;
+  }
 }

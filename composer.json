@@ -1,70 +1,78 @@
 {
-	"name": "silverorange/admin",
-	"description": "Framework for backend admin website.",
-	"type": "library",
-	"keywords": [ "framework", "admin", "management" ],
-	"homepage": "https://github.com/silverorange/admin",
-	"license": "LGPL-2.1",
-	"authors": [
-		{
-			"name": "Charles Waddell",
-			"email": "charles@silverorange.com"
-		},
-		{
-			"name": "Isaac Grant",
-			"email": "isaac@silverorange.com"
-		},
-		{
-			"name": "Michael Gauthier",
-			"email": "mike@silverorange.com"
-		},
-		{
-			"name": "Nathan Frederikson",
-			"email": "nathan@silverorange.com"
-		},
-		{
-			"name": "Nick Burka",
-			"email": "nick@silverorange.com"
-		},
-		{
-			"name": "Steven Garrity",
-			"email": "steven@silverorange.com"
-		}
-	],
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://composer.silverorange.com",
-			"only": ["silverorange/*"]
-		}
-	],
-	"autoload": {
-		"classmap": [ "Admin/" ]
-	},
-	"require": {
-		"php": ">=8.1.0",
-		"ext-mbstring": "*",
-		"silverorange/site": "^14.5.0",
-		"silverorange/swat": "^7.1.0"
-	},
-	"require-dev": {
-		"friendsofphp/php-cs-fixer": "^3.64",
-		"phpstan/phpstan": "^1.12",
-		"rector/rector": "^1.2",
-		"silverorange/php-coding-tools": "^1.4"
-	},
-	"suggest": {
-		"bacon/bacon-qr-code": "required to show QR codes for two factor auth",
-		"robthree/twofactorauth": "required for the use of two factor authentication"
-	},
-	"scripts": {
+  "name": "silverorange/admin",
+  "description": "Framework for backend admin website.",
+  "type": "library",
+  "keywords": [
+    "framework",
+    "admin",
+    "management"
+  ],
+  "homepage": "https://github.com/silverorange/admin",
+  "license": "LGPL-2.1",
+  "authors": [
+    {
+      "name": "Charles Waddell",
+      "email": "charles@silverorange.com"
+    },
+    {
+      "name": "Isaac Grant",
+      "email": "isaac@silverorange.com"
+    },
+    {
+      "name": "Michael Gauthier",
+      "email": "mike@silverorange.com"
+    },
+    {
+      "name": "Nathan Frederikson",
+      "email": "nathan@silverorange.com"
+    },
+    {
+      "name": "Nick Burka",
+      "email": "nick@silverorange.com"
+    },
+    {
+      "name": "Steven Garrity",
+      "email": "steven@silverorange.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://composer.silverorange.com",
+      "only": [
+        "silverorange/*"
+      ]
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "Admin/"
+    ]
+  },
+  "require": {
+    "php": ">=8.1.0",
+    "ext-mbstring": "*",
+    "silverorange/site": "^14.5.0",
+    "silverorange/swat": "^7.1.0"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.64",
+    "phpstan/phpstan": "^1.12",
+    "rector/rector": "^1.2",
+    "silverorange/php-coding-tools": "^1.4"
+  },
+  "suggest": {
+    "bacon/bacon-qr-code": "required to show QR codes for two factor auth",
+    "robthree/twofactorauth": "required for the use of two factor authentication"
+  },
+  "scripts": {
     "phpcs": "./vendor/bin/php-cs-fixer check -v",
     "phpcs:fix": "./vendor/bin/php-cs-fixer fix -v",
     "phpstan": "./vendor/bin/phpstan analyze",
     "rector": "./vendor/bin/rector --dry-run",
     "rector:fix": "./vendor/bin/rector"
   },
-	"config": {
-		"sort-packages": true
-	}
+  "config": {
+    "sort-packages": true
+  }
 }

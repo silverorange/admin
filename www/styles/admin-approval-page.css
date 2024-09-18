@@ -1,15 +1,15 @@
 ul#approval_toolbar input {
-	margin: 0 0.1em;
+  margin: 0 0.1em;
 }
 
 ul#approval_toolbar {
-	padding: 5px;
+  padding: 5px;
 }
 
 ul#approval_toolbar #approve_button {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 ul#approval_toolbar .pending {
-	margin-left: 0.5em;
+  margin-left: 0.5em;
 }
