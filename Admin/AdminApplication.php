@@ -110,7 +110,7 @@ class AdminApplication extends SiteWebApplication
             $_POST = [];
         }
 
-        parent::replacePage($source);
+        return parent::replacePage($source);
     }
 
     /**
