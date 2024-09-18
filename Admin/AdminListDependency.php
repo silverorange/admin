@@ -9,7 +9,7 @@
  */
 class AdminListDependency extends AdminDependency
 {
-	// {{{ public properties
+
 
 	/**
 	 * Array of {@link AdminDependencyEntry} objects to be displayed
@@ -26,8 +26,7 @@ class AdminListDependency extends AdminDependency
 	 */
 	public $entries = array();
 
-	// }}}
-	// {{{ public function addDependency()
+
 
 	/**
 	 * Adds a sub-dependency
@@ -43,8 +42,7 @@ class AdminListDependency extends AdminDependency
 		$this->dependencies[] = $dep;
 	}
 
-	// }}}
-	// {{{ public function getStatusLevelCount()
+
 
 	/**
 	 * Gets the number of entries in this dependency at a given status level
@@ -64,8 +62,7 @@ class AdminListDependency extends AdminDependency
 		return $count;
 	}
 
-	// }}}
-	// {{{ public function getItemCount()
+
 
 	/**
 	 * Gets the number of entries in this dependency
@@ -77,8 +74,7 @@ class AdminListDependency extends AdminDependency
 		return count($this->entries);
 	}
 
-	// }}}
-	// {{{ public function processItemStatuses()
+
 
 	/**
 	 * Processes the status level of entries in this dependency
@@ -104,8 +100,7 @@ class AdminListDependency extends AdminDependency
 		return $return;
 	}
 
-	// }}}
-	// {{{ public function displayDependencies()
+
 
 	/**
 	 * Displays a list of the dependency entries of this dependency for a given
@@ -155,8 +150,7 @@ class AdminListDependency extends AdminDependency
 			echo '</ul>';
 	}
 
-	// }}}
-	// {{{ public static function queryEntries()
+
 
 	/**
 	 * Queries for dependency entries
@@ -252,8 +246,7 @@ class AdminListDependency extends AdminDependency
 		return $entry_array;
 	}
 
-	// }}}
-	// {{{ public static function buildEntriesArray()
+
 
 	/**
 	 * Builds an array of dependency entries
@@ -303,8 +296,7 @@ class AdminListDependency extends AdminDependency
 		return $entries;
 	}
 
-	// }}}
-	// {{{ protected function getDependencyText()
+
 
 	/**
 	 * Gets the text for a dependency list for this dependency
@@ -327,7 +319,6 @@ class AdminListDependency extends AdminDependency
 		return $message;
 	}
 
-	// }}}
 }
 
 ?>

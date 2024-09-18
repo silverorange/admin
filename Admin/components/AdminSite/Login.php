@@ -8,7 +8,7 @@
  */
 class AdminAdminSiteLogin extends AdminPage
 {
-	// {{{ protected properties
+
 
 	/**
 	 * Whether or not there was an error in the login information entered by
@@ -18,18 +18,16 @@ class AdminAdminSiteLogin extends AdminPage
 	 */
 	protected $login_error = false;
 
-	// }}}
-	// {{{ protected function createLayout()
+
 
 	protected function createLayout()
 	{
 		return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
 	}
 
-	// }}}
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -58,10 +56,9 @@ class AdminAdminSiteLogin extends AdminPage
 		}
 	}
 
-	// }}}
 
 	// process phase
-	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -119,10 +116,9 @@ class AdminAdminSiteLogin extends AdminPage
 		}
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function display()
+
 
 	protected function display()
 	{
@@ -130,8 +126,7 @@ class AdminAdminSiteLogin extends AdminPage
 		$this->displayJavaScript();
 	}
 
-	// }}}
-	// {{{ private function displayJavaScript()
+
 
 	private function displayJavaScript()
 	{
@@ -155,10 +150,9 @@ class AdminAdminSiteLogin extends AdminPage
 		echo '</script>';
 	}
 
-	// }}}
 
 	// finalize phase
-	// {{{ public function finalize
+
 
 	public function finalize()
 	{
@@ -169,7 +163,6 @@ class AdminAdminSiteLogin extends AdminPage
 		);
 	}
 
-	// }}}
 }
 
 ?>

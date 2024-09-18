@@ -9,23 +9,21 @@
  */
 class AdminAdminSiteProfile extends AdminObjectEdit
 {
-	// {{{ protected function getObjectClass()
+
 
 	protected function getObjectClass()
 	{
 		return 'AdminUser';
 	}
 
-	// }}}
-	// {{{ protected function getUiXml()
+
 
 	protected function getUiXml()
 	{
 		return __DIR__.'/profile.xml';
 	}
 
-	// }}}
-	// {{{ protected function getObjectUiValueNames()
+
 
 	protected function getObjectUiValueNames()
 	{
@@ -35,10 +33,9 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		);
 	}
 
-	// }}}
 
 	// init phase
-	// {{{ protected function initObject()
+
 
 	protected function initObject()
 	{
@@ -49,8 +46,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		$this->data_object = $this->app->session->user;
 	}
 
-	// }}}
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -59,8 +55,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		$this->initPasswordWidgets();
 	}
 
-	// }}}
-	// {{{ protected function initPasswordWidgets()
+
 
 	protected function initPasswordWidgets()
 	{
@@ -68,10 +63,9 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		$confirm->password_widget = $this->ui->getWidget('new_password');
 	}
 
-	// }}}
 
 	// process phase
-	// {{{ protected function validate()
+
 
 	protected function validate()
 	{
@@ -109,8 +103,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function validate2Fa()
+
 
 	protected function validate2Fa()
 	{
@@ -137,8 +130,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function updateObject()
+
 
 	protected function updateObject()
 	{
@@ -152,8 +144,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function updatePassword()
+
 
 	protected function updatePassword()
 	{
@@ -167,26 +158,23 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function getSavedMessagePrimaryContent()
+
 
 	protected function getSavedMessagePrimaryContent()
 	{
 		return Admin::_('Your user profile has been updated.');
 	}
 
-	// }}}
-	// {{{ protected function relocate()
+
 
 	protected function relocate()
 	{
 		$this->app->relocate('.');
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -205,8 +193,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		$this->build2fa();
 	}
 
-	// }}}
-	// {{{ protected function build2Fa()
+
 
 	protected function build2Fa()
 	{
@@ -253,16 +240,14 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function buildFrame()
+
 
 	protected function buildFrame()
 	{
 		// skip the parent buildFrame()
 	}
 
-	// }}}
-	// {{{ protected function buildNavBar()
+
 
 	protected function buildNavBar()
 	{
@@ -270,10 +255,9 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		$this->navbar->createEntry(Admin::_('Login Settings'));
 	}
 
-	// }}}
 
 	// finalize phase
-	// {{{ public function finalize
+
 
 	public function finalize()
 	{
@@ -284,7 +268,6 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 		);
 	}
 
-	// }}}
 }
 
 ?>

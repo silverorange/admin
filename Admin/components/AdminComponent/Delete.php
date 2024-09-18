@@ -10,7 +10,7 @@
 class AdminAdminComponentDelete extends AdminDBDelete
 {
 	// process phase
-	// {{{ protected function processDBData()
+
 
 	protected function processDBData()
 	{
@@ -29,10 +29,9 @@ class AdminAdminComponentDelete extends AdminDBDelete
 		$this->app->messages->add($message);
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -66,7 +65,6 @@ class AdminAdminComponentDelete extends AdminDBDelete
 			$this->switchToCancelButton();
 	}
 
-	// }}}
 }
 
 ?>

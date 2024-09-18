@@ -10,7 +10,7 @@
 class AdminAdminUserDelete extends AdminDBDelete
 {
 	// process phase
-	// {{{ protected function processDBData
+
 
 	protected function processDBData()
 	{
@@ -31,10 +31,9 @@ class AdminAdminUserDelete extends AdminDBDelete
 		$this->app->messages->add($message);
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	public function buildInternal()
 	{
@@ -70,7 +69,6 @@ class AdminAdminUserDelete extends AdminDBDelete
 		}
 	}
 
-	// }}}
 }
 
 ?>

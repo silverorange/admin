@@ -12,22 +12,20 @@
  */
 abstract class AdminEdit extends AdminPage
 {
-	// {{{ protected variables
+
 
 	protected $id;
 
-	// }}}
-	// {{{ protected function isNew()
+
 
 	protected function isNew()
 	{
 		return ($this->id === null);
 	}
 
-	// }}}
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -40,10 +38,9 @@ abstract class AdminEdit extends AdminPage
 		}
 	}
 
-	// }}}
 
 	// process phase
-	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -78,8 +75,7 @@ abstract class AdminEdit extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function validate()
+
 
 	/**
 	 * Sub-classes should implement this method to perform validation.
@@ -90,8 +86,7 @@ abstract class AdminEdit extends AdminPage
 	{
 	}
 
-	// }}}
-	// {{{ abstract protected function saveData()
+
 
 	/**
 	 * Save the data
@@ -105,8 +100,7 @@ abstract class AdminEdit extends AdminPage
 	 */
 	abstract protected function saveData();
 
-	// }}}
-	// {{{ protected function generateShortname()
+
 
 	/**
 	 * Generate a shortname
@@ -135,8 +129,7 @@ abstract class AdminEdit extends AdminPage
 		return $shortname;
 	}
 
-	// }}}
-	// {{{ protected function validateShortname()
+
 
 	/**
 	 * Validate a shortname
@@ -153,8 +146,7 @@ abstract class AdminEdit extends AdminPage
 		return true;
 	}
 
-	// }}}
-	// {{{ protected function relocate()
+
 
 	/**
 	 * Relocate after process
@@ -166,10 +158,9 @@ abstract class AdminEdit extends AdminPage
 		$this->app->relocate($url);
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -181,8 +172,7 @@ abstract class AdminEdit extends AdminPage
 		$this->buildMessages();
 	}
 
-	// }}}
-	// {{{ protected function buildForm()
+
 
 	protected function buildForm()
 	{
@@ -209,8 +199,7 @@ abstract class AdminEdit extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ abstract protected function loadData()
+
 
 	/**
 	 * Load the data
@@ -224,8 +213,7 @@ abstract class AdminEdit extends AdminPage
 	 */
 	abstract protected function loadData();
 
-	// }}}
-	// {{{ protected function buildButton()
+
 
 	protected function buildButton()
 	{
@@ -240,8 +228,7 @@ abstract class AdminEdit extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function buildFrame()
+
 
 	protected function buildFrame()
 	{
@@ -260,8 +247,7 @@ abstract class AdminEdit extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function buildNavBar()
+
 
 	protected function buildNavBar()
 	{
@@ -274,7 +260,6 @@ abstract class AdminEdit extends AdminPage
 		$this->navbar->createEntry($title);
 	}
 
-	// }}}
 }
 
 ?>

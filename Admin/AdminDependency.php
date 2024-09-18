@@ -17,7 +17,7 @@
  */
 abstract class AdminDependency
 {
-	// {{{ constants
+
 
 	/**
 	 * Dependency items at this status level may be deleted
@@ -29,8 +29,7 @@ abstract class AdminDependency
 	 */
 	const NODELETE = 1;
 
-	// }}}
-	// {{{ public properties
+
 
 	/**
 	 * An array of possible status levels. Status levels are the categories
@@ -54,8 +53,7 @@ abstract class AdminDependency
 	 */
 	public $status_levels = null;
 
-	// }}}
-	// {{{ protected properties
+
 
 	/**
 	 * A visible title for the type of items this dependency object deals with
@@ -77,8 +75,7 @@ abstract class AdminDependency
 	 */
 	public $plural_title = null;
 
-	// }}}
-	// {{{ private properties
+
 
 	/**
 	 * An array of sub-dependencies of this dependency
@@ -90,8 +87,7 @@ abstract class AdminDependency
 	 */
 	protected $dependencies = array();
 
-	// }}}
-	// {{{ public function __construct()
+
 
 	/**
 	 * Creates a new dependency object
@@ -101,8 +97,7 @@ abstract class AdminDependency
 		$this->status_levels = array(self::DELETE, self::NODELETE);
 	}
 
-	// }}}
-	// {{{ public function setTitle()
+
 
 	/**
 	 * Sets the user-visible title of the type of items this dependency object
@@ -122,8 +117,7 @@ abstract class AdminDependency
 		$this->plural_title = $plural;
 	}
 
-	// }}}
-	// {{{ public function getMessage()
+
 
 	/**
 	 * Gets the dependency message
@@ -146,8 +140,7 @@ abstract class AdminDependency
 		return ob_get_clean();
 	}
 
-	// }}}
-	// {{{ public function display()
+
 
 	/**
 	 * Displays this dependency and all its sub-dependencies
@@ -158,8 +151,7 @@ abstract class AdminDependency
 			$this->displayStatusLevel($status_level);
 	}
 
-	// }}}
-	// {{{ public abstract function getStatusLevelCount()
+
 
 	/**
 	 * Gets the number of items in this dependency at a given status level
@@ -171,8 +163,7 @@ abstract class AdminDependency
 	 */
 	public abstract function getStatusLevelCount($status_level);
 
-	// }}}
-	// {{{ public abstract function getItemCount()
+
 
 	/**
 	 * Gets the number of items in this dependency
@@ -181,8 +172,7 @@ abstract class AdminDependency
 	 */
 	public abstract function getItemCount();
 
-	// }}}
-	// {{{ public abstract function displayDependencies()
+
 
 	/**
 	 * Displays the dependency items of this dependency for a given parent
@@ -195,8 +185,7 @@ abstract class AdminDependency
 	 */
 	public abstract function displayDependencies($parent, $status_level);
 
-	// }}}
-	// {{{ public abstract function processItemStatuses()
+
 
 	/**
 	 * Figures out the status level of all dependency items of this dependency
@@ -214,8 +203,7 @@ abstract class AdminDependency
 	 */
 	public abstract function processItemStatuses($parent = null);
 
-	// }}}
-	// {{{ protected function getStatusLevelText()
+
 
 	/**
 	 * Gets the text representing a status level of this dependency
@@ -260,8 +248,7 @@ abstract class AdminDependency
 		return $message;
 	}
 
-	// }}}
-	// {{{ protected function getTitle()
+
 
 	/**
 	 * Helper method to get an appropriate title for the type of item this
@@ -289,8 +276,7 @@ abstract class AdminDependency
 		}
 	}
 
-	// }}}
-	// {{{ protected function displayStatusLevel()
+
 
 	/**
 	 * Displays all the dependency entries at a single status level for this
@@ -330,8 +316,7 @@ abstract class AdminDependency
 			echo '</ul>';
 	}
 
-	// }}}
-	// {{{ protected function displayStatusLevelHeader()
+
 
 	protected function displayStatusLevelHeader($status_level, $count)
 	{
@@ -342,7 +327,6 @@ abstract class AdminDependency
 		$header_tag->display();
 	}
 
-	// }}}
 }
 
 ?>

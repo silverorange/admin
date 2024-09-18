@@ -10,7 +10,7 @@
  */
 abstract class AdminDependencyItem
 {
-	// {{{ public properties
+
 
 	/**
 	 * Initial status level of this entry (eg, DELETE, NODELETE).
@@ -31,7 +31,6 @@ abstract class AdminDependencyItem
 	 */
 	public $parent = null;
 
-	// }}}
 }
 
 ?>

@@ -10,7 +10,7 @@
 class AdminAdminUserIndex extends AdminIndex
 {
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -23,10 +23,9 @@ class AdminAdminUserIndex extends AdminIndex
 			SwatTableViewOrderableColumn::ORDER_BY_DIR_ASCENDING);
 	}
 
-	// }}}
 
 	// process phase
-	// {{{ protected function processActions()
+
 
 	protected function processActions(SwatView $view, SwatActions $actions)
 	{
@@ -72,10 +71,9 @@ class AdminAdminUserIndex extends AdminIndex
 			$this->app->messages->add($message);
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -92,8 +90,7 @@ class AdminAdminUserIndex extends AdminIndex
 			$this->app->is2FaEnabled();
 	}
 
-	// }}}
-	// {{{ protected function buildActiveNote()
+
 
 	protected function buildActiveNote()
 	{
@@ -113,8 +110,7 @@ class AdminAdminUserIndex extends AdminIndex
 		);
 	}
 
-	// }}}
-	// {{{ protected function getTableModel()
+
 
 	protected function getTableModel(SwatView $view)
 	{
@@ -188,10 +184,9 @@ class AdminAdminUserIndex extends AdminIndex
 		return $store;
 	}
 
-	// }}}
 
 	// finalize phase
-	// {{{ public function finalize()
+
 
 	public function finalize()
 	{
@@ -201,7 +196,6 @@ class AdminAdminUserIndex extends AdminIndex
 		);
 	}
 
-	// }}}
 }
 
 ?>

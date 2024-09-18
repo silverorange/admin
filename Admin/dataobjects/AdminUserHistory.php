@@ -9,7 +9,7 @@
  */
 class AdminUserHistory extends SwatDBDataObject
 {
-	// {{{ public properties
+
 
 	/**
 	 * Unique identifier
@@ -39,8 +39,7 @@ class AdminUserHistory extends SwatDBDataObject
 	 */
 	public $remote_ip;
 
-	// }}}
-	// {{{ protected function init()
+
 
 	protected function init()
 	{
@@ -50,7 +49,6 @@ class AdminUserHistory extends SwatDBDataObject
 		$this->registerInternalProperty('instance', 'Instance');
 	}
 
-	// }}}
 }
 
 ?>

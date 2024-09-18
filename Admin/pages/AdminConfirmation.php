@@ -13,7 +13,7 @@
 abstract class AdminConfirmation extends AdminPage
 {
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -22,18 +22,16 @@ abstract class AdminConfirmation extends AdminPage
 		$this->navbar->createEntry(Admin::_('Confirmation'));
 	}
 
-	// }}}
-	// {{{ protected function getUiXml()
+
 
 	protected function getUiXml()
 	{
 		return __DIR__.'/confirmation.xml';
 	}
 
-	// }}}
 
 	// process phase
-	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -77,8 +75,7 @@ abstract class AdminConfirmation extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function processResponse()
+
 
 	/**
 	 * Process the response
@@ -91,8 +88,7 @@ abstract class AdminConfirmation extends AdminPage
 	 */
 	abstract protected function processResponse();
 
-	// }}}
-	// {{{ protected function relocate()
+
 
 	/**
 	 * Relocates to the previous page after processsing confirmation response
@@ -104,10 +100,9 @@ abstract class AdminConfirmation extends AdminPage
 		$this->app->relocate($url);
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -116,8 +111,7 @@ abstract class AdminConfirmation extends AdminPage
 		$this->buildMessages();
 	}
 
-	// }}}
-	// {{{ protected function buildForm()
+
 
 	protected function buildForm()
 	{
@@ -130,8 +124,7 @@ abstract class AdminConfirmation extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function switchToCancelButton()
+
 
 	/**
 	 * Switches the default yes/no buttons to a cancel button
@@ -145,7 +138,6 @@ abstract class AdminConfirmation extends AdminPage
 		$this->ui->getWidget('no_button')->title = Admin::_('Cancel');
 	}
 
-	// }}}
 }
 
 ?>

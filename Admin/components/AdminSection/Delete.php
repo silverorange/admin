@@ -10,7 +10,7 @@
 class AdminAdminSectionDelete extends AdminDBDelete
 {
 	// init phase
-	// {{{ protected function processDBData()
+
 
 	protected function processDBData()
 	{
@@ -29,10 +29,9 @@ class AdminAdminSectionDelete extends AdminDBDelete
 		$this->app->messages->add($message);
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -74,7 +73,6 @@ class AdminAdminSectionDelete extends AdminDBDelete
 		$message->content_type = 'text/xml';
 	}
 
-	// }}}
 }
 
 ?>

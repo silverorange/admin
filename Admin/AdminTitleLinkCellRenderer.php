@@ -12,7 +12,7 @@
  */
 class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 {
-	// {{{ public properties
+
 
 	/**
 	 * The stock id of this AdminTitleCellRenderer
@@ -26,8 +26,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 */
 	public $stock_id = null;
 
-	// }}}
-	// {{{ protected properties
+
 
 	/**
 	 * A CSS class set by the stock_id of this title link cell renderer
@@ -43,8 +42,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 	 */
 	protected $last_stock_id = null;
 
-	// }}}
-	// {{{ public function __construct()
+
 
 	/**
 	 * Creates a title link cell renderer
@@ -57,8 +55,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		);
 	}
 
-	// }}}
-	// {{{ public function setFromStock()
+
 
 	/**
 	 * Sets the values of this title link cell renderer to a stock type
@@ -135,8 +132,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		$this->last_stock_id = $stock_id;
 	}
 
-	// }}}
-	// {{{ public function init()
+
 
 	/**
 	 * Initializes this admin title link cell renderer
@@ -151,8 +147,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 			$this->setFromStock($this->stock_id, false);
 	}
 
-	// }}}
-	// {{{ public function render()
+
 
 	/**
 	 * Renders the contents of this cell
@@ -169,8 +164,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		parent::render();
 	}
 
-	// }}}
-	// {{{ protected function setStockType()
+
 
 	/**
 	 * Applies the stock type specificed by the user
@@ -182,8 +176,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		}
 	}
 
-	// }}}
-	// {{{ protected function renderSensitive()
+
 
 	/**
 	 * Renders this link as sensitive
@@ -202,8 +195,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		$anchor->close();
 	}
 
-	// }}}
-	// {{{ protected function renderInsensitive()
+
 
 	/**
 	 * Renders this link as not sensitive
@@ -221,8 +213,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		$span_tag->close();
 	}
 
-	// }}}
-	// {{{ protected function renderContent()
+
 
 	/**
 	 * Renders this link as not sensitive
@@ -240,8 +231,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		$content_span->display();
 	}
 
-	// }}}
-	// {{{ protected function getCSSClassNames()
+
 
 	/**
 	 * Gets the array of CSS classes that are applied to this user-interface
@@ -264,8 +254,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		return $classes;
 	}
 
-	// }}}
-	// {{{ public function getDataSpecificCSSClassNames()
+
 
 	/**
 	 * Gets the data specific CSS class names for this cell renderer
@@ -285,8 +274,7 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		return $classes;
 	}
 
-	// }}}
-	// {{{ public function getBaseCSSClassNames()
+
 
 	/**
 	 * Gets the base CSS class names for this cell renderer
@@ -300,7 +288,6 @@ class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 		return $classes;
 	}
 
-	// }}}
 }
 
 ?>

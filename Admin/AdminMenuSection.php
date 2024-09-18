@@ -11,15 +11,14 @@
  */
 class AdminMenuSection
 {
-	// {{{ public properties
+
 
 	public $id;
 	public $title;
 	public $components;
 	public $show;
 
-	// }}}
-	// {{{ public function __construct()
+
 
 	public function __construct($id, $title)
 	{
@@ -29,7 +28,6 @@ class AdminMenuSection
 		$this->show = true;
 	}
 
-	// }}}
 }
 
 ?>

@@ -9,7 +9,7 @@
  */
 class AdminNote extends SwatContentBlock
 {
-	// {{{ public properties
+
 
 	/**
 	 * User visible title of this widget
@@ -18,8 +18,7 @@ class AdminNote extends SwatContentBlock
 	 */
 	public $title = '';
 
-	// }}}
-	// {{{ public function __construct()
+
 
 	/**
 	 * Creates a new note
@@ -34,8 +33,7 @@ class AdminNote extends SwatContentBlock
 		$this->addStyleSheet('packages/admin/styles/admin-note.css');
 	}
 
-	// }}}
-	// {{{ public function display()
+
 
 	/**
 	 * Displays this content
@@ -71,8 +69,7 @@ class AdminNote extends SwatContentBlock
 		$div->close();
 	}
 
-	// }}}
-	// {{{ protected function getCSSClassNames()
+
 
 	/**
 	 * Gets the array of CSS classes that are applied to this note
@@ -86,7 +83,6 @@ class AdminNote extends SwatContentBlock
 		return $classes;
 	}
 
-	// }}}
 }
 
 ?>

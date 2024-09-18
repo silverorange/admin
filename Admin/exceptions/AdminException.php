@@ -9,7 +9,7 @@
  */
 class AdminException extends SwatException
 {
-	// {{{ public function __construct()
+
 
 	public function __construct($message = null, $code = 0)
 	{
@@ -23,7 +23,6 @@ class AdminException extends SwatException
 		parent::__construct($message, $code);
 	}
 
-	// }}}
 }
 
 ?>

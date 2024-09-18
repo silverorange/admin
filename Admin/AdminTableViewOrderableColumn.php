@@ -9,7 +9,7 @@
  */
 class AdminTableViewOrderableColumn extends SwatTableViewOrderableColumn
 {
-	// {{{ public function displayHeader()
+
 
 	public function displayHeader()
 	{
@@ -18,7 +18,6 @@ class AdminTableViewOrderableColumn extends SwatTableViewOrderableColumn
 		parent::displayHeader();
 	}
 
-	// }}}
 }
 
 ?>

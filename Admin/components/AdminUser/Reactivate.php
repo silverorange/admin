@@ -10,7 +10,7 @@
 class AdminAdminUserReactivate extends AdminDBConfirmation
 {
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -19,10 +19,9 @@ class AdminAdminUserReactivate extends AdminDBConfirmation
 		$this->navbar->createEntry(Admin::_('Reactivate'));
 	}
 
-	// }}}
 
 	// process phase
-	// {{{ protected function processDBData
+
 
 	protected function processDBData()
 	{
@@ -57,10 +56,9 @@ class AdminAdminUserReactivate extends AdminDBConfirmation
 
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	public function buildInternal()
 	{
@@ -108,7 +106,6 @@ class AdminAdminUserReactivate extends AdminDBConfirmation
 		}
 	}
 
-	// }}}
 }
 
 ?>

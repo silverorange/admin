@@ -12,7 +12,7 @@
  */
 class AdminSubComponent extends SwatDBDataObject
 {
-	// {{{ public properties
+
 
 	/**
 	 * Unique identifier
@@ -74,8 +74,7 @@ class AdminSubComponent extends SwatDBDataObject
 	 */
 	public $visible;
 
-	// }}}
-	// {{{ public function loadByShortname()
+
 
 	/**
 	 * Loads an admin sub-component by its shortname
@@ -112,8 +111,7 @@ class AdminSubComponent extends SwatDBDataObject
 		return true;
 	}
 
-	// }}}
-	// {{{ public function loadFromShortname()
+
 
 	/**
 	 * Loads an admin sub-component by its shortname
@@ -131,8 +129,7 @@ class AdminSubComponent extends SwatDBDataObject
 		return $this->loadByShortname($shortname);
 	}
 
-	// }}}
-	// {{{ protected function init()
+
 
 	protected function init()
 	{
@@ -150,7 +147,6 @@ class AdminSubComponent extends SwatDBDataObject
 		);
 	}
 
-	// }}}
 }
 
 ?>

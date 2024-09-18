@@ -7,14 +7,13 @@
  */
 class AdminCustomTemplate extends SiteAbstractTemplate
 {
-	// {{{ public function display()
+
 
 	public function display(SiteLayoutData $data)
 	{
 		echo $data->content;
 	}
 
-	// }}}
 }
 
 ?>

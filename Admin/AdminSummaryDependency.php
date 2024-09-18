@@ -9,7 +9,7 @@
  */
 class AdminSummaryDependency extends AdminDependency
 {
-	// {{{ public properties
+
 
 	/**
 	 * Array of {@link AdminDependencySummary} objects to be displayed
@@ -26,8 +26,7 @@ class AdminSummaryDependency extends AdminDependency
 	 */
 	public $summaries = array();
 
-	// }}}
-	// {{{ public functions getStatusLevelCount()
+
 
 	/**
 	 * Gets the number of items in this dependency at a given status level
@@ -50,8 +49,7 @@ class AdminSummaryDependency extends AdminDependency
 		return $count;
 	}
 
-	// }}}
-	// {{{ public function getItemCount()
+
 
 	/**
 	 * Counts the number of items in this dependency
@@ -69,8 +67,7 @@ class AdminSummaryDependency extends AdminDependency
 		return $total;
 	}
 
-	// }}}
-	// {{{ public function processItemStatuses()
+
 
 	/**
 	 * Processes the status level of summaries in this dependency
@@ -90,8 +87,7 @@ class AdminSummaryDependency extends AdminDependency
 		return $return;
 	}
 
-	// }}}
-	// {{{ public function displayDependencies()
+
 
 	/**
 	 * Displays dependency summaries for the given parent at a given status
@@ -122,8 +118,7 @@ class AdminSummaryDependency extends AdminDependency
 		}
 	}
 
-	// }}}
-	// {{{ public static function &querySummaries()
+
 
 	/**
 	 *
@@ -165,8 +160,7 @@ class AdminSummaryDependency extends AdminDependency
 		return $entry_array;
 	}
 
-	// }}}
-	// {{{ protected function getDependencyText()
+
 
 	/**
 	 * Gets the text for a dependency list summary for this dependency
@@ -189,7 +183,6 @@ class AdminSummaryDependency extends AdminDependency
 		return $message;
 	}
 
-	// }}}
 }
 
 ?>

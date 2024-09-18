@@ -9,14 +9,13 @@
  */
 class AdminUserHistoryCellRenderer extends SwatCellRenderer
 {
-	// {{{ public properties
+
 
 	public $date;
 	public $user;
 	public $title;
 
-	// }}}
-	// {{{ public function render()
+
 
 	public function render()
 	{
@@ -30,7 +29,6 @@ class AdminUserHistoryCellRenderer extends SwatCellRenderer
 		}
 	}
 
-	// }}}
 }
 
 ?>

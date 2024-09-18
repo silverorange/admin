@@ -12,7 +12,7 @@
  */
 class AdminMenuView extends SwatControl
 {
-	// {{{ public properties
+
 
 	/**
 	 * The unique identifier of this menu-view
@@ -24,8 +24,7 @@ class AdminMenuView extends SwatControl
 	 */
 	public $id;
 
-	// }}}
-	// {{{ protected properties
+
 
 	/**
 	 * The menu-store this menu-view is viewing
@@ -34,8 +33,7 @@ class AdminMenuView extends SwatControl
 	 */
 	protected $store;
 
-	// }}}
-	// {{{ public function __construct()
+
 
 	/**
 	 * Creates a new menu-view control
@@ -55,8 +53,7 @@ class AdminMenuView extends SwatControl
 		$this->addJavaScript('packages/admin/javascript/admin-menu.js');
 	}
 
-	// }}}
-	// {{{ public function setModel()
+
 
 	/**
 	 * @param AdminMenuStore $store the menu-store this view will view.
@@ -66,8 +63,7 @@ class AdminMenuView extends SwatControl
 		$this->store = $store;
 	}
 
-	// }}}
-	// {{{ public function display()
+
 
 	/**
 	 * Displays this menu
@@ -94,8 +90,7 @@ class AdminMenuView extends SwatControl
 		Swat::displayInlineJavaScript($this->getInlineJavaScript());
 	}
 
-	// }}}
-	// {{{ public function displaySection()
+
 
 	/**
 	 * Displays a single menu section
@@ -134,8 +129,7 @@ class AdminMenuView extends SwatControl
 		$section_li_tag->close();
 	}
 
-	// }}}
-	// {{{ public function displayComponent()
+
 
 	/**
 	 * Displays a single menu component
@@ -182,8 +176,7 @@ class AdminMenuView extends SwatControl
 		echo '</li>';
 	}
 
-	// }}}
-	// {{{ public function displaySubcomponent()
+
 
 	/**
 	 * Displays a single menu subcomponent
@@ -203,8 +196,7 @@ class AdminMenuView extends SwatControl
 		echo '</li>';
 	}
 
-	// }}}
-	// {{{ protected function displayMenuContent()
+
 
 	/**
 	 * Displays the content of this menu-view
@@ -220,8 +212,7 @@ class AdminMenuView extends SwatControl
 		echo '</ul>';
 	}
 
-	// }}}
-	// {{{ protected function getInlineJavaScript()
+
 
 	protected function getInlineJavaScript()
 	{
@@ -232,7 +223,6 @@ class AdminMenuView extends SwatControl
 		);
 	}
 
-	// }}}
 }
 
 ?>

@@ -10,7 +10,7 @@
 class AdminAdminGroupDelete extends AdminDBDelete
 {
 	// process phase
-	// {{{ protected function processDBData()
+
 
 	protected function processDBData()
 	{
@@ -29,10 +29,9 @@ class AdminAdminGroupDelete extends AdminDBDelete
 		$this->app->messages->add($message);
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -51,7 +50,6 @@ class AdminAdminGroupDelete extends AdminDBDelete
 		$message->content_type = 'text/xml';
 	}
 
-	// }}}
 }
 
 ?>

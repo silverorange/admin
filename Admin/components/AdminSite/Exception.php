@@ -8,25 +8,23 @@
  */
 class AdminAdminSiteException extends SiteXhtmlExceptionPage
 {
-	// {{{ protected properties
+
 
 	/**
 	 * @var SwatContainer
 	 */
 	protected $container;
 
-	// }}}
-	// {{{ protected function createLayout()
+
 
 	protected function createLayout()
 	{
 		return new AdminDefaultLayout($this->app, AdminDefaultTemplate::class);
 	}
 
-	// }}}
 
 	// init phase
-	// {{{ public function init()
+
 
 	public function init()
 	{
@@ -36,10 +34,9 @@ class AdminAdminSiteException extends SiteXhtmlExceptionPage
 		$this->container->classes[] = 'admin-exception-container';
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ public function build()
+
 
 	public function build()
 	{
@@ -51,8 +48,7 @@ class AdminAdminSiteException extends SiteXhtmlExceptionPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function display()
+
 
 	protected function display()
 	{
@@ -74,10 +70,9 @@ class AdminAdminSiteException extends SiteXhtmlExceptionPage
 		$this->container->display();
 	}
 
-	// }}}
 
 	// finalize phase
-	// {{{ public function finalize()
+
 
 	public function finalize()
 	{
@@ -87,7 +82,6 @@ class AdminAdminSiteException extends SiteXhtmlExceptionPage
 		);
 	}
 
-	// }}}
 }
 
 ?>

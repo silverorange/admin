@@ -10,7 +10,7 @@
  */
 class AdminGroupWrapper extends SwatDBRecordsetWrapper
 {
-	// {{{ protected function init()
+
 
 	protected function init()
 	{
@@ -19,7 +19,6 @@ class AdminGroupWrapper extends SwatDBRecordsetWrapper
 		$this->index_field = 'id';
 	}
 
-	// }}}
 }
 
 ?>

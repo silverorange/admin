@@ -9,14 +9,13 @@
  */
 class AdminAdminUserDetails extends AdminIndex
 {
-	// {{{ private properties
+
 
 	private $id;
 
-	// }}}
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -32,8 +31,7 @@ class AdminAdminUserDetails extends AdminIndex
 			$index_view->getColumn('login_date'));
 	}
 
-	// }}}
-	// {{{ protected function initUser()
+
 
 	protected function initUser()
 	{
@@ -48,10 +46,9 @@ class AdminAdminUserDetails extends AdminIndex
 		}
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -72,8 +69,7 @@ class AdminAdminUserDetails extends AdminIndex
 		$date_renderer->display_time_zone = $this->app->default_time_zone;
 	}
 
-	// }}}
-	// {{{ protected function getTableModel()
+
 
 	protected function getTableModel(SwatView $view)
 	{
@@ -92,7 +88,6 @@ class AdminAdminUserDetails extends AdminIndex
 		return SwatDB::query($this->app->db, $sql, 'AdminUserHistoryWrapper');
 	}
 
-	// }}}
 }
 
 ?>

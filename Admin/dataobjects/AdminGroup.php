@@ -13,7 +13,7 @@
  */
 class AdminGroup extends SwatDBDataObject
 {
-	// {{{ public properties
+
 
 	/**
 	 * Unique identifier
@@ -29,8 +29,7 @@ class AdminGroup extends SwatDBDataObject
 	 */
 	public $title;
 
-	// }}}
-	// {{{ protected function init()
+
 
 	protected function init()
 	{
@@ -38,8 +37,7 @@ class AdminGroup extends SwatDBDataObject
 		$this->id_field = 'integer:id';
 	}
 
-	// }}}
-	// {{{ protected function loadComponents()
+
 
 	/**
 	 * Loads the components that this group has access to
@@ -61,7 +59,6 @@ class AdminGroup extends SwatDBDataObject
 		return SwatDB::query($this->db, $sql, 'AdminComponentWrapper');
 	}
 
-	// }}}
 }
 
 ?>

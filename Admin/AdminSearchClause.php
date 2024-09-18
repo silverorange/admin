@@ -9,7 +9,7 @@
  */
 class AdminSearchClause
 {
-	// {{{ constants
+
 
 	const OP_EQUALS      = 1;
 	const OP_GT          = 2;
@@ -20,8 +20,7 @@ class AdminSearchClause
 	const OP_STARTS_WITH = 7;
 	const OP_ENDS_WITH   = 8;
 
-	// }}}
-	// {{{ private properties
+
 
 	/**
 	 * Database field of this search clause
@@ -30,8 +29,7 @@ class AdminSearchClause
 	 */
 	private $field;
 
-	// }}}
-	// {{{ public properties
+
 
 	/**
 	 * Value of this search clause
@@ -65,8 +63,7 @@ class AdminSearchClause
 	 */
 	public $operator = self::OP_EQUALS;
 
-	// }}}
-	// {{{ public function __construct()
+
 
 	/**
 	 * Creates a new search clause object
@@ -84,8 +81,7 @@ class AdminSearchClause
 		$this->value = $value;
 	}
 
-	// }}}
-	// {{{ public function getClause()
+
 
 	/**
 	 * Gets this search clause as a string that can be included in a SQL
@@ -144,8 +140,7 @@ class AdminSearchClause
 		return $clause;
 	}
 
-	// }}}
-	// {{{ private static function getOperatorString()
+
 
 	/**
 	 * Gets a search clause operator constant as an SQL string
@@ -182,7 +177,6 @@ class AdminSearchClause
 		}
 	}
 
-	// }}}
 }
 
 ?>

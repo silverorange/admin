@@ -8,23 +8,21 @@
  */
 class AdminAdminUserEdit extends AdminObjectEdit
 {
-	// {{{ protected function getObjectClass()
+
 
 	protected function getObjectClass()
 	{
 		return 'AdminUser';
 	}
 
-	// }}}
-	// {{{ protected function getUiXml()
+
 
 	protected function getUiXml()
 	{
 		return __DIR__.'/edit.xml';
 	}
 
-	// }}}
-	// {{{ protected function getObjectUiValueNames()
+
 
 	protected function getObjectUiValueNames()
 	{
@@ -37,10 +35,9 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		);
 	}
 
-	// }}}
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -54,8 +51,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 			$this->app->is2FaEnabled();
 	}
 
-	// }}}
-	// {{{ protected function initPasswordWidgets()
+
 
 	protected function initPasswordWidgets()
 	{
@@ -72,8 +68,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function initGroups()
+
 
 	protected function initGroups()
 	{
@@ -89,8 +84,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		$group_list->addOptionsByArray($group_list_options);
 	}
 
-	// }}}
-	// {{{ protected function initInstances()
+
 
 	protected function initInstances()
 	{
@@ -110,10 +104,9 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		}
 	}
 
-	// }}}
 
 	// process phase
-	// {{{ protected function validate()
+
 
 	protected function validate()
 	{
@@ -141,8 +134,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function updateObject()
+
 
 	protected function updateObject()
 	{
@@ -151,8 +143,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		$this->updatePassword();
 	}
 
-	// }}}
-	// {{{ protected function updatePassword()
+
 
 	protected function updatePassword()
 	{
@@ -166,8 +157,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function postSaveObject()
+
 
 	protected function postSaveObject()
 	{
@@ -175,8 +165,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		$this->updateInstanceBindings();
 	}
 
-	// }}}
-	// {{{ protected function updateGroupBindings()
+
 
 	protected function updateGroupBindings()
 	{
@@ -194,8 +183,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		);
 	}
 
-	// }}}
-	// {{{ protected function updateInstanceBindings()
+
 
 	protected function updateInstanceBindings()
 	{
@@ -214,8 +202,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function getSavedMessagePrimaryContent()
+
 
 	protected function getSavedMessagePrimaryContent()
 	{
@@ -225,10 +212,9 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		);
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function loadObject()
+
 
 	protected function loadObject()
 	{
@@ -240,8 +226,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function loadGroupBindings()
+
 
 	protected function loadGroupBindings()
 	{
@@ -255,8 +240,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		);
 	}
 
-	// }}}
-	// {{{ protected function loadInstanceBindings()
+
 
 	protected function loadInstanceBindings()
 	{
@@ -272,7 +256,6 @@ class AdminAdminUserEdit extends AdminObjectEdit
 		}
 	}
 
-	// }}}
 }
 
 ?>

@@ -9,7 +9,7 @@
  */
 class AdminApplication extends SiteWebApplication
 {
-	// {{{ public properties
+
 
 	/**
 	 * A visble title for this admin
@@ -37,8 +37,7 @@ class AdminApplication extends SiteWebApplication
 	 */
 	public $default_locale = null;
 
-	// }}}
-	// {{{ protected properties
+
 
 	/**
 	 * The default path to include components from
@@ -81,8 +80,7 @@ class AdminApplication extends SiteWebApplication
 	 */
 	protected $has_component_cache = array();
 
-	// }}}
-	// {{{ public function run()
+
 
 	public function run()
 	{
@@ -92,8 +90,7 @@ class AdminApplication extends SiteWebApplication
 		parent::run();
 	}
 
-	// }}}
-	// {{{ public function replacePage()
+
 
 	/**
 	 * Replace the page object
@@ -127,8 +124,7 @@ class AdminApplication extends SiteWebApplication
 		parent::replacePage($source);
 	}
 
-	// }}}
-	// {{{ public function getDefaultSubComponent()
+
 
 	/**
 	 * Gets the name of the default sub-component of this application
@@ -141,8 +137,7 @@ class AdminApplication extends SiteWebApplication
 		return 'Index';
 	}
 
-	// }}}
-	// {{{ public function getFrontendBaseHref()
+
 
 	/**
 	 * Gets the base href of the frontend application administered by this
@@ -158,8 +153,7 @@ class AdminApplication extends SiteWebApplication
 		return $base_href;
 	}
 
-	// }}}
-	// {{{ public function getFrontSource()
+
 
 	/**
 	 * Gets the source of the front page
@@ -172,8 +166,7 @@ class AdminApplication extends SiteWebApplication
 		return $this->front_source;
 	}
 
-	// }}}
-	// {{{ public function setFrontSource()
+
 
 	/**
 	 * Sets the source of the front page
@@ -186,8 +179,7 @@ class AdminApplication extends SiteWebApplication
 		$this->front_source = $source;
 	}
 
-	// }}}
-	// {{{ public function setMenuViewClass()
+
 
 	/**
 	 * Sets the class to use for this admin application's menu-view
@@ -212,8 +204,7 @@ class AdminApplication extends SiteWebApplication
 		$this->menu_view_class = $class_name;
 	}
 
-	// }}}
-	// {{{ public function getMenuViewClass()
+
 
 	/**
 	 * Gets the class used for this admin application's menu-view
@@ -228,8 +219,7 @@ class AdminApplication extends SiteWebApplication
 		return $this->menu_view_class;
 	}
 
-	// }}}
-	// {{{ public function setDefaultComponentIncludePath()
+
 
 	/**
 	 * Sets the default a path to include components from
@@ -243,8 +233,7 @@ class AdminApplication extends SiteWebApplication
 		$this->default_component_include_path = $path;
 	}
 
-	// }}}
-	// {{{ public function getDeafultComponentIncludePath()
+
 
 	/**
 	 * Gets the default component include path
@@ -256,8 +245,7 @@ class AdminApplication extends SiteWebApplication
 		return $this->default_component_include_path;
 	}
 
-	// }}}
-	// {{{ public function addComponentIncludePath()
+
 
 	/**
 	 * Adds a path to the list of component include paths
@@ -277,8 +265,7 @@ class AdminApplication extends SiteWebApplication
 		$this->component_include_paths[$prefix] = $path;
 	}
 
-	// }}}
-	// {{{ public function getComponentIncludePaths()
+
 
 	/**
 	 * Gets the array of paths to check for components when finding the
@@ -296,8 +283,7 @@ class AdminApplication extends SiteWebApplication
 		return $this->component_include_paths;
 	}
 
-	// }}}
-	// {{{ public function hasComponent()
+
 
 	public function hasComponent($shortname)
 	{
@@ -312,8 +298,7 @@ class AdminApplication extends SiteWebApplication
 		return $this->has_component_cache[$shortname];
 	}
 
-	// }}}
-	// {{{ public function isMultipleInstanceAdmin()
+
 
 	/**
 	 * Helper method to check to see if this is the admin for all instances of a
@@ -328,16 +313,14 @@ class AdminApplication extends SiteWebApplication
 			$this->getInstanceId() === null);
 	}
 
-	// }}}
-	// {{{ public function userHasAccess()
+
 
 	public function userHasAccess($shortname)
 	{
 		return $this->session->user->hasAccessByShortname($shortname);
 	}
 
-	// }}}
-	// {{{ public function setMemcacheInstanceValues()
+
 
 	/**
 	 * Convience method to ensure the memcache module is configured correctly
@@ -370,8 +353,7 @@ class AdminApplication extends SiteWebApplication
 		}
 	}
 
-	// }}}
-	// {{{ public function is2FaEnabled()
+
 
 	public function is2FaEnabled()
 	{
@@ -391,8 +373,7 @@ class AdminApplication extends SiteWebApplication
 		return $enabled;
 	}
 
-	// }}}
-	// {{{ protected function normalizeSource()
+
 
 	protected function normalizeSource($source)
 	{
@@ -404,8 +385,7 @@ class AdminApplication extends SiteWebApplication
 		return $source;
 	}
 
-	// }}}
-	// {{{ protected function resolvePage()
+
 
 	protected function resolvePage($source)
 	{
@@ -428,8 +408,7 @@ class AdminApplication extends SiteWebApplication
 		}
 	}
 
-	// }}}
-	// {{{ protected function resolveAdminPage()
+
 
 	protected function resolveAdminPage($source)
 	{
@@ -473,8 +452,7 @@ class AdminApplication extends SiteWebApplication
 		return $page;
 	}
 
-	// }}}
-	// {{{ protected function resolveExceptionPage()
+
 
 	/**
 	 * Resolves an exception page for a particular source
@@ -491,8 +469,7 @@ class AdminApplication extends SiteWebApplication
 		return $this->resolvePage('AdminSite/Exception');
 	}
 
-	// }}}
-	// {{{ protected function getDefaultModuleList()
+
 
 	/**
 	 * Gets the list of default modules to load for this applicaiton
@@ -515,8 +492,7 @@ class AdminApplication extends SiteWebApplication
 		);
 	}
 
-	// }}}
-	// {{{ protected function initModules()
+
 
 	protected function initModules()
 	{
@@ -525,8 +501,7 @@ class AdminApplication extends SiteWebApplication
 		$this->db = $this->database->getConnection();
 	}
 
-	// }}}
-	// {{{ protected function configure()
+
 
 	protected function configure(SiteConfigModule $config)
 	{
@@ -535,8 +510,7 @@ class AdminApplication extends SiteWebApplication
 		$this->addComponentIncludePath('Admin/components', 'Admin');
 	}
 
-	// }}}
-	// {{{ protected function addConfigDefinitions()
+
 
 	/**
 	 * Adds configuration definitions to the config module of this application
@@ -550,7 +524,6 @@ class AdminApplication extends SiteWebApplication
 		$config->addDefinitions(Admin::getConfigDefinitions());
 	}
 
-	// }}}
 }
 
 ?>

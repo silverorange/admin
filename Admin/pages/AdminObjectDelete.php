@@ -9,7 +9,7 @@
  */
 abstract class AdminObjectDelete extends AdminDBDelete
 {
-	// {{{ protected properties
+
 
 	/**
 	 * The dataobjects instance we are deleting on the page.
@@ -20,39 +20,34 @@ abstract class AdminObjectDelete extends AdminDBDelete
 	 */
 	protected $objects;
 
-	// }}}
-	// {{{ abstract protected function getRecordsetWrapperClass()
+
 
 	abstract protected function getRecordsetWrapperClass();
 
-	// }}}
-	// {{{ protected function getUiXml()
+
 
 	protected function getUiXml()
 	{
 		return __DIR__.'/confirmation.xml';
 	}
 
-	// }}}
-	// {{{ protected function getResolvedRecordsetWrapperClass()
+
 
 	protected function getResolvedRecordsetWrapperClass()
 	{
 		return SwatDBClassMap::get($this->getRecordsetWrapperClass());
 	}
 
-	// }}}
-	// {{{ protected function getObjects()
+
 
 	protected function getObjects()
 	{
 		return $this->objects;
 	}
 
-	// }}}
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -61,8 +56,7 @@ abstract class AdminObjectDelete extends AdminDBDelete
 		$this->initObjects();
 	}
 
-	// }}}
-	// {{{ protected function initObjects()
+
 
 	protected function initObjects()
 	{
@@ -90,15 +84,13 @@ abstract class AdminObjectDelete extends AdminDBDelete
 		}
 	}
 
-	// }}}
-	// {{{ abstract protected function getObjectsSql()
+
 
 	abstract protected function getObjectsSql();
 
-	// }}}
 
 	// process phase
-	// {{{ protected function processDBData()
+
 
 	protected function processDBData()
 	{
@@ -116,8 +108,7 @@ abstract class AdminObjectDelete extends AdminDBDelete
 		}
 	}
 
-	// }}}
-	// {{{ protected function deleteObjects()
+
 
 	protected function deleteObjects(SwatDBRecordsetWrapper $objects)
 	{
@@ -126,16 +117,14 @@ abstract class AdminObjectDelete extends AdminDBDelete
 		}
 	}
 
-	// }}}
-	// {{{ protected function deleteObject()
+
 
 	protected function deleteObject(SwatDBDataObject $object)
 	{
 		$object->delete();
 	}
 
-	// }}}
-	// {{{ protected function getDeletedMessage()
+
 
 	protected function getDeletedMessage()
 	{
@@ -161,42 +150,37 @@ abstract class AdminObjectDelete extends AdminDBDelete
 		return $message;
 	}
 
-	// }}}
-	// {{{ protected function getDeletedMessagePrimaryContent()
+
 
 	protected function getDeletedMessagePrimaryContent()
 	{
 		return null;
 	}
 
-	// }}}
-	// {{{ protected function getDeletedMessageSecondaryContent()
+
 
 	protected function getDeletedMessageSecondaryContent()
 	{
 		return null;
 	}
 
-	// }}}
-	// {{{ protected function getDeletedMessageType()
+
 
 	protected function getDeletedMessageType()
 	{
 		return null;
 	}
 
-	// }}}
-	// {{{ protected function getDeletedMessageContentType()
+
 
 	protected function getDeletedMessageContentType()
 	{
 		return null;
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -205,8 +189,7 @@ abstract class AdminObjectDelete extends AdminDBDelete
 		$this->buildConfirmationMessage();
 	}
 
-	// }}}
-	// {{{ protected function buildConfirmationMessage()
+
 
 	/**
 	 * Allows building a default confirmation message including a header and
@@ -230,8 +213,7 @@ abstract class AdminObjectDelete extends AdminDBDelete
 		}
 	}
 
-	// }}}
-	// {{{ protected function getConfirmationMessageContent()
+
 
 	protected function getConfirmationMessageContent()
 	{
@@ -252,31 +234,27 @@ abstract class AdminObjectDelete extends AdminDBDelete
 		return $confirmation_message;
 	}
 
-	// }}}
-	// {{{ protected function getConfirmationMessageContentType()
+
 
 	protected function getConfirmationMessageContentType()
 	{
 		return 'text/xml';
 	}
 
-	// }}}
-	// {{{ protected function getConfirmationMessageHeader()
+
 
 	protected function getConfirmationMessageHeader()
 	{
 		return '';
 	}
 
-	// }}}
-	// {{{ protected function getConfirmationMessageBody()
+
 
 	protected function getConfirmationMessageBody()
 	{
 		return '';
 	}
 
-	// }}}
 }
 
 ?>

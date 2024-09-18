@@ -9,7 +9,7 @@
  */
 class AdminDependencySummary extends AdminDependencyItem
 {
-	// {{{ public properties
+
 
 	/**
 	 * The number of items in this summary
@@ -18,8 +18,7 @@ class AdminDependencySummary extends AdminDependencyItem
 	 */
 	public $count;
 
-	// }}}
-	// {{{ public function __construct()
+
 
 	/**
 	 * Creates a new AdminDependencySummary
@@ -39,7 +38,6 @@ class AdminDependencySummary extends AdminDependencyItem
 		}
 	}
 
-	// }}}
 
 }
 

@@ -10,7 +10,7 @@
  */
 class AdminUserWrapper extends SwatDBRecordsetWrapper
 {
-	// {{{ protected function init()
+
 
 	protected function init()
 	{
@@ -23,7 +23,6 @@ class AdminUserWrapper extends SwatDBRecordsetWrapper
 		$this->index_field = 'id';
 	}
 
-	// }}}
 }
 
 ?>

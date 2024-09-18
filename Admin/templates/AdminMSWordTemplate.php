@@ -7,7 +7,7 @@
  */
 class AdminMSWordTemplate extends SiteAbstractTemplate
 {
-	// {{{ public function display()
+
 
 	public function display(SiteLayoutData $data)
 	{
@@ -33,7 +33,6 @@ HTML;
 		// @codingStandardsIgnoreEnd
 	}
 
-	// }}}
 }
 
 ?>

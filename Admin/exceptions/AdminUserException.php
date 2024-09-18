@@ -10,11 +10,10 @@
  */
 class AdminUserException extends AdminException
 {
-	// {{{ public properties
+
 
 	public $title = null;
 
-	// }}}
 }
 
 ?>

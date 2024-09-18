@@ -7,7 +7,7 @@
  */
 class AdminUserTableView extends SwatTableView
 {
-	// {{{ protected function getRowClasses()
+
 
 	protected function getRowClasses($row, $count)
 	{
@@ -22,7 +22,6 @@ class AdminUserTableView extends SwatTableView
 		return $classes;
 	}
 
-	// }}}
 }
 
 ?>

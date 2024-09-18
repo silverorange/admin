@@ -9,7 +9,7 @@
 class AdminAdminSiteFront extends AdminPage
 {
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -17,10 +17,9 @@ class AdminAdminSiteFront extends AdminPage
 		$this->navbar->popEntry();
 	}
 
-	// }}}
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -32,7 +31,6 @@ class AdminAdminSiteFront extends AdminPage
 		$this->buildMessages();
 	}
 
-	// }}}
 }
 
 ?>

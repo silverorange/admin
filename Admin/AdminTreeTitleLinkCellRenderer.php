@@ -9,13 +9,12 @@
  */
 class AdminTreeTitleLinkCellRenderer extends AdminTitleLinkCellRenderer
 {
-	// {{{ public properties
+
 
 	public $child_count = 0;
 	public $base_stock_id = 'document';
 
-	// }}}
-	// {{{ protected function setStockType()
+
 
 	/**
 	 * Applies the stock type specificed by the user
@@ -31,8 +30,7 @@ class AdminTreeTitleLinkCellRenderer extends AdminTitleLinkCellRenderer
 		parent::setStockType();
 	}
 
-	// }}}
-	// {{{ protected function getTitle()
+
 
 	protected function getTitle()
 	{
@@ -49,7 +47,6 @@ class AdminTreeTitleLinkCellRenderer extends AdminTitleLinkCellRenderer
 		);
 	}
 
-	// }}}
 }
 
 ?>
