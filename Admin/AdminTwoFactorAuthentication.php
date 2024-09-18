@@ -1,5 +1,6 @@
 <?php
 
+use RobThree\Auth\Providers\Qr\BaconQrCodeProvider;
 use RobThree\Auth\TwoFactorAuth;
 
 /**
@@ -12,14 +13,14 @@ class AdminTwoFactorAuthentication
 {
     public function getNewSecret()
     {
-        $two_fa = new TwoFactorAuth();
+        $two_fa = new TwoFactorAuth(new BaconQrCodeProvider());
 
         return $two_fa->createSecret();
     }
 
     public function getQrCodeDataUri($title, $secret, $size = 400)
     {
-        $two_fa = new TwoFactorAuth();
+        $two_fa = new TwoFactorAuth(new BaconQrCodeProvider());
 
         return $two_fa->getQRCodeImageAsDataUri($title, $secret, $size);
     }
@@ -33,7 +34,7 @@ class AdminTwoFactorAuthentication
         // The timeslice is used to make sure tokens before this
         // can't be used to authenticate again. There's a "window" of token
         // use and without this, someone could capture the code, and re-use it.
-        $two_fa = new TwoFactorAuth();
+        $two_fa = new TwoFactorAuth(new BaconQrCodeProvider());
         $success = $two_fa->verifyCode($secret, $token, 1, null, $timeslice);
 
         return $success;
