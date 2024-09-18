@@ -17,13 +17,13 @@ abstract class AdminIndex extends AdminPage
     {
         parent::processInternal();
 
-        $forms = $this->ui->getRoot()->getDescendants('SwatForm');
+        $forms = $this->ui->getRoot()->getDescendants(SwatForm::class);
 
         foreach ($forms as $form) {
             if ($form->isProcessed()) {
-                $view = $form->getFirstDescendant('SwatView');
-                $actions = $form->getFirstDescendant('SwatActions');
-                $selector = $form->getFirstDescendant('SwatViewSelector');
+                $view = $form->getFirstDescendant(SwatView::class);
+                $actions = $form->getFirstDescendant(SwatActions::class);
+                $selector = $form->getFirstDescendant(SwatViewSelector::class);
 
                 if ($view instanceof SwatView
                     && $selector instanceof SwatViewSelector
@@ -68,7 +68,7 @@ abstract class AdminIndex extends AdminPage
     protected function buildViews()
     {
         $root = $this->ui->getRoot();
-        $views = $root->getDescendants('SwatView');
+        $views = $root->getDescendants(SwatView::class);
         foreach ($views as $view) {
             $this->buildView($view);
         }
@@ -87,15 +87,15 @@ abstract class AdminIndex extends AdminPage
     protected function buildForms()
     {
         $root = $this->ui->getRoot();
-        $forms = $root->getDescendants('SwatForm');
+        $forms = $root->getDescendants(SwatForm::class);
         foreach ($forms as $form) {
             $form->action = $this->getRelativeURL();
-            $view = $form->getFirstDescendant('SwatView');
-            $actions = $form->getFirstDescendant('SwatActions');
+            $view = $form->getFirstDescendant(SwatView::class);
+            $actions = $form->getFirstDescendant(SwatActions::class);
 
             if ($view !== null && $view->model !== null && $actions !== null) {
                 $input_row =
-                    $view->getFirstDescendant('SwatTableViewInputRow');
+                    $view->getFirstDescendant(SwatTableViewInputRow::class);
 
                 if (count($view->model) == 0) {
                     $actions->visible = false;

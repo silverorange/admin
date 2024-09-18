@@ -13,7 +13,7 @@ class AdminComponentWrapper extends SwatDBRecordsetWrapper
     protected function init()
     {
         parent::init();
-        $this->row_wrapper_class = 'AdminComponent';
+        $this->row_wrapper_class = AdminComponent::class;
         $this->index_field = 'id';
     }
 }

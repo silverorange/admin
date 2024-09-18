@@ -33,6 +33,6 @@ class AdminAdminGroupIndex extends AdminIndex
     {
         $sql = 'select id, title from AdminGroup order by title';
 
-        return SwatDB::query($this->app->db, $sql, 'AdminGroupWrapper');
+        return SwatDB::query($this->app->db, $sql, AdminGroupWrapper::class);
     }
 }

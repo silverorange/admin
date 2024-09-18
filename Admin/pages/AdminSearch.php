@@ -149,7 +149,7 @@ abstract class AdminSearch extends AdminIndex
         if ($form_found) {
             // set non-visible results frame views to have empty models
             if (!$results_frame->visible) {
-                $views = $results_frame->getDescendants('SwatTableView');
+                $views = $results_frame->getDescendants(SwatTableView::class);
                 foreach ($views as $view) {
                     $view->model = new SwatTableStore();
                 }

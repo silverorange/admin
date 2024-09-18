@@ -162,7 +162,7 @@ abstract class AdminPage extends SitePage
      */
     protected function formsAreAuthenticated()
     {
-        $forms = $this->ui->getRoot()->getDescendants('SwatForm');
+        $forms = $this->ui->getRoot()->getDescendants(SwatForm::class);
         foreach ($forms as $form) {
             if (!$form->isAuthenticated()) {
                 $message = new SwatMessage(Admin::_('There is a problem with ' .

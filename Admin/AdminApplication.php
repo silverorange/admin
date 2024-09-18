@@ -178,8 +178,7 @@ class AdminApplication extends SiteWebApplication
             ));
         }
 
-        if ($class_name !== 'AdminMenuView'
-            && !is_subclass_of($class_name, 'AdminMenuView')) {
+        if (!is_a($class_name, AdminMenuView::class, allow_string: true)) {
             throw new AdminException(sprintf(
                 "Class '%s' is not an AdminMenuView.",
                 $class_name

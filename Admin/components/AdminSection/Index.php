@@ -83,7 +83,7 @@ class AdminAdminSectionIndex extends AdminIndex
 			from AdminSection
 			order by displayorder';
 
-        $sections = SwatDB::query($this->app->db, $sql, 'AdminSectionWrapper');
+        $sections = SwatDB::query($this->app->db, $sql, AdminSectionWrapper::class);
 
         if (count($sections) == 0) {
             $this->ui->getWidget('order_tool')->visible = false;

@@ -15,7 +15,7 @@ class AdminUserWrapper extends SwatDBRecordsetWrapper
         parent::init();
 
         $admin_user_class =
-            SwatDBClassMap::get('AdminUser');
+            SwatDBClassMap::get(AdminUser::class);
 
         $this->row_wrapper_class = $admin_user_class;
         $this->index_field = 'id';

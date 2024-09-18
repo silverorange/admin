@@ -9,6 +9,6 @@ class AdminDependencyEntryWrapper extends SwatDBRecordsetWrapper
     protected function init()
     {
         parent::init();
-        $this->row_wrapper_class = 'AdminDependencyEntry';
+        $this->row_wrapper_class = AdminDependencyEntry::class;
     }
 }

@@ -77,7 +77,7 @@ class AdminDefaultLayout extends AdminLayout
                     $this->app->session->getUserId(),
                     'integer'
                 ),
-                'AdminMenuStore'
+                AdminMenuStore::class
             );
 
             $class = $this->app->getMenuViewClass();

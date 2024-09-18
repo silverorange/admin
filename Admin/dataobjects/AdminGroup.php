@@ -49,6 +49,6 @@ class AdminGroup extends SwatDBDataObject
             $this->db->quote($this->id, 'integer')
         );
 
-        return SwatDB::query($this->db, $sql, 'AdminComponentWrapper');
+        return SwatDB::query($this->db, $sql, AdminComponentWrapper::class);
     }
 }

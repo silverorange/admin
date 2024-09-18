@@ -30,7 +30,7 @@ class AdminAdminComponentDetails extends AdminIndex
 
     protected function initComponent()
     {
-        $class_name = SwatDBClassMap::get('AdminComponent');
+        $class_name = SwatDBClassMap::get(AdminComponent::class);
         $this->details_component = new $class_name();
         $this->details_component->setDatabase($this->app->db);
 

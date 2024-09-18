@@ -144,7 +144,7 @@ class AdminAdminSiteForgotPassword extends AdminPage
      */
     protected function getAccount($email)
     {
-        $class_name = SwatDBClassMap::get('AdminUser');
+        $class_name = SwatDBClassMap::get(AdminUser::class);
         $admin_user = new $class_name();
         $admin_user->setDatabase($this->app->db);
         $found = $admin_user->loadFromEmail($email);

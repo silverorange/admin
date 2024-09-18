@@ -109,7 +109,7 @@ class AdminAdminUserIndex extends AdminIndex
     {
         $locale = SwatI18NLocale::get();
 
-        $class_name = SwatDBClassMap::get('AdminUser');
+        $class_name = SwatDBClassMap::get(AdminUser::class);
 
         $note = $this->ui->getWidget('active_note');
         $note->visible = true;
@@ -156,7 +156,7 @@ class AdminAdminUserIndex extends AdminIndex
                 $row->last_login = new SwatDate($row->last_login);
             }
 
-            $class_name = SwatDBClassMap::get('AdminUser');
+            $class_name = SwatDBClassMap::get(AdminUser::class);
 
             $ds = new SwatDetailsStore($row);
             $user = new $class_name($row);

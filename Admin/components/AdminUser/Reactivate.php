@@ -65,7 +65,7 @@ class AdminAdminUserReactivate extends AdminDBConfirmation
 				order by name asc',
                 $this->getItemList('integer')
             ),
-            'AdminUserWrapper'
+            AdminUserWrapper::class
         );
 
         ob_start();

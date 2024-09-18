@@ -30,7 +30,7 @@ class AdminAdminUserDetails extends AdminIndex
 
     protected function initUser()
     {
-        $class_name = SwatDBClassMap::get('AdminUser');
+        $class_name = SwatDBClassMap::get(AdminUser::class);
         $this->user = new $class_name();
         $this->user->setDatabase($this->app->db);
 
@@ -81,6 +81,6 @@ class AdminAdminUserDetails extends AdminIndex
             $this->getOrderByClause($view, 'login_date desc')
         );
 
-        return SwatDB::query($this->app->db, $sql, 'AdminUserHistoryWrapper');
+        return SwatDB::query($this->app->db, $sql, AdminUserHistoryWrapper::class);
     }
 }
