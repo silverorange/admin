@@ -8,6 +8,7 @@
  */
 class AdminAdminUserDetails extends AdminIndex
 {
+    protected ?AdminUser $user = null;
     private $id;
 
     // init phase
