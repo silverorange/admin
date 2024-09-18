@@ -65,8 +65,8 @@
     "silverorange/php-coding-tools": "^1.4"
   },
   "scripts": {
-    "phpcs": "./vendor/bin/php-cs-fixer check -v",
-    "phpcs:fix": "./vendor/bin/php-cs-fixer fix -v",
+    "phpcs": "./vendor/bin/php-cs-fixer check --config=./.php-cs-fixer.php -v",
+    "phpcs:fix": "./vendor/bin/php-cs-fixer fix --config=./.php-cs-fixer.php -v",
     "phpstan": "./vendor/bin/phpstan analyze",
     "rector": "./vendor/bin/rector --dry-run",
     "rector:fix": "./vendor/bin/rector"
