@@ -1,128 +1,116 @@
 <?php
 
 /**
- * Force change password page after initial login
+ * Force change password page after initial login.
  *
- * @package   Admin
  * @copyright 2005-2016 silverorange
  */
 class AdminAdminSiteChangePassword extends AdminPage
 {
-	// init phase
+    // init phase
 
+    protected function createLayout()
+    {
+        return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
+    }
 
-	protected function createLayout()
-	{
-		return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
-	}
+    protected function initInternal()
+    {
+        parent::initInternal();
 
+        $this->ui->loadFromXML(__DIR__ . '/change-password.xml');
 
+        $confirm = $this->ui->getWidget('confirm_password');
+        $confirm->password_widget = $this->ui->getWidget('password');
 
-	protected function initInternal()
-	{
-		parent::initInternal();
+        $form = $this->ui->getWidget('change_password_form');
+        $form->action = 'AdminSite/ChangePassword';
 
-		$this->ui->loadFromXML(__DIR__.'/change-password.xml');
+        // remember where we came from
+        $form->addHiddenField('relocate_uri', $this->app->getUri());
+    }
 
-		$confirm = $this->ui->getWidget('confirm_password');
-		$confirm->password_widget = $this->ui->getWidget('password');
+    // process phase
 
-		$form = $this->ui->getWidget('change_password_form');
-		$form->action = 'AdminSite/ChangePassword';
+    protected function processInternal()
+    {
+        parent::processInternal();
 
-		// remember where we came from
-		$form->addHiddenField('relocate_uri', $this->app->getUri());
-	}
+        $crypt = $this->app->getModule('SiteCryptModule');
 
+        $form = $this->ui->getWidget('change_password_form');
+        if ($form->isProcessed()) {
+            $this->validatePasswords();
+            if (!$form->hasMessage()) {
+                $password = $this->ui->getWidget('password')->value;
 
-	// process phase
+                $user = $this->app->session->user;
+                $user->setPasswordHash($crypt->generateHash($password));
+                $user->force_change_password = false;
+                $user->save();
 
+                $this->app->session->login($user->email, $password);
 
-	protected function processInternal()
-	{
-		parent::processInternal();
+                $message = new SwatMessage(
+                    Admin::_('Your password has been updated.')
+                );
 
-		$crypt = $this->app->getModule('SiteCryptModule');
+                $this->app->messages->add($message);
 
-		$form = $this->ui->getWidget('change_password_form');
-		if ($form->isProcessed()) {
-			$this->validatePasswords();
-			if (!$form->hasMessage()) {
-				$password = $this->ui->getWidget('password')->value;
+                // go back where we came from
+                $uri = $form->getHiddenField('relocate_uri');
+                $this->app->relocate($uri);
+            }
+        }
+    }
 
-				$user = $this->app->session->user;
-				$user->setPasswordHash($crypt->generateHash($password));
-				$user->force_change_password = false;
-				$user->save();
+    protected function validatePasswords()
+    {
+        $user = $this->app->session->user;
 
-				$this->app->session->login($user->email, $password);
+        $old_password = $this->ui->getWidget('old_password')->value;
+        $new_password = $this->ui->getWidget('password')->value;
 
-				$message = new SwatMessage(
-					Admin::_('Your password has been updated.'));
+        if ($old_password === null || $new_password === null) {
+            return;
+        }
 
-				$this->app->messages->add($message);
+        // make sure old password is not the same as new password
+        if ($old_password == $new_password) {
+            $message = new SwatMessage(Admin::_('Your new password can not be ' .
+                'the same as your old password'), 'error');
 
-				// go back where we came from
-				$uri = $form->getHiddenField('relocate_uri');
-				$this->app->relocate($uri);
-			}
-		}
-	}
+            $this->ui->getWidget('password')->addMessage($message);
+        }
 
+        $crypt = $this->app->getModule('SiteCryptModule');
 
+        $password_hash = $user->password;
+        $password_salt = $user->password_salt;
 
-	protected function validatePasswords()
-	{
-		$user = $this->app->session->user;
+        // make sure old password is correct
+        if (!$crypt->verifyHash(
+            $old_password,
+            $password_hash,
+            $password_salt
+        )) {
+            $this->ui->getWidget('old_password')->addMessage(
+                new SwatMessage(
+                    Admin::_('Your old password is not correct'),
+                    'error'
+                )
+            );
+        }
+    }
 
-		$old_password = $this->ui->getWidget('old_password')->value;
-		$new_password = $this->ui->getWidget('password')->value;
+    // finalize phase
 
-		if ($old_password === null || $new_password === null)
-			return;
+    public function finalize()
+    {
+        parent::finalize();
 
-		// make sure old password is not the same as new password
-		if ($old_password == $new_password) {
-			$message = new SwatMessage(Admin::_('Your new password can not be '.
-				'the same as your old password'), 'error');
-
-			$this->ui->getWidget('password')->addMessage($message);
-		}
-
-		$crypt = $this->app->getModule('SiteCryptModule');
-
-		$password_hash = $user->password;
-		$password_salt = $user->password_salt;
-
-		// make sure old password is correct
-		if (!$crypt->verifyHash(
-				$old_password,
-				$password_hash,
-				$password_salt
-			)) {
-
-			$this->ui->getWidget('old_password')->addMessage(
-				new SwatMessage(
-					Admin::_('Your old password is not correct'),
-					'error'
-				)
-			);
-		}
-	}
-
-
-	// finalize phase
-
-
-	public function finalize()
-	{
-		parent::finalize();
-
-		$this->layout->addHtmlHeadEntry(
-			'packages/admin/styles/admin-change-password-page.css'
-		);
-	}
-
+        $this->layout->addHtmlHeadEntry(
+            'packages/admin/styles/admin-change-password-page.css'
+        );
+    }
 }
-
-?>

@@ -1,173 +1,162 @@
 <?php
 
 /**
- * Generic admin search page
+ * Generic admin search page.
  *
  * This class is intended to be a convenience base class. For a fully custom
  * search page, inherit directly from AdminPage instead.
  *
- * @package   Admin
  * @copyright 2005-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminSearch extends AdminIndex
 {
-	// process phase
+    // process phase
 
+    protected function processInternal()
+    {
+        parent::processInternal();
 
-	protected function processInternal()
-	{
-		parent::processInternal();
+        $form_found = true;
 
-		$form_found = true;
-		try {
-			$form = $this->ui->getWidget('search_form');
-		} catch (SwatWidgetNotFoundException $e) {
-			$form_found = false;
-		}
+        try {
+            $form = $this->ui->getWidget('search_form');
+        } catch (SwatWidgetNotFoundException $e) {
+            $form_found = false;
+        }
 
-		if ($form_found) {
-			$form->process();
+        if ($form_found) {
+            $form->process();
 
-			if ($form->isProcessed())
-				$this->saveState();
+            if ($form->isProcessed()) {
+                $this->saveState();
+            }
 
-			if ($this->hasState()) {
-				$this->loadState();
-				$frame = $this->ui->getWidget('results_frame');
-				$frame->visible = true;
-			}
-		}
-	}
+            if ($this->hasState()) {
+                $this->loadState();
+                $frame = $this->ui->getWidget('results_frame');
+                $frame->visible = true;
+            }
+        }
+    }
 
+    /**
+     * Clears a saved search state.
+     */
+    protected function clearState()
+    {
+        if ($this->hasState()) {
+            unset($this->app->session->{$this->getKey()});
+        }
+    }
 
+    protected function saveState()
+    {
+        $form_found = true;
 
-	/**
-	 * Clears a saved search state
-	 */
-	protected function clearState()
-	{
-		if ($this->hasState())
-			unset($this->app->session->{$this->getKey()});
-	}
+        try {
+            $search_form = $this->ui->getWidget('search_form');
+        } catch (SwatWidgetNotFoundException $e) {
+            $form_found = false;
+        }
 
+        if ($form_found) {
+            $search_state = $search_form->getDescendantStates();
+            $this->app->session->{$this->getKey()} = $search_state;
+        }
+    }
 
+    /**
+     * Loads a saved search state for this page.
+     *
+     * @return bool true if a saved state exists for this page and false if
+     *              it does not
+     *
+     * @see AdminSearchPage::hasState()
+     */
+    protected function loadState()
+    {
+        $return = false;
 
-	protected function saveState()
-	{
-		$form_found = true;
-		try {
-			$search_form = $this->ui->getWidget('search_form');
-		} catch (SwatWidgetNotFoundException $e) {
-			$form_found = false;
-		}
+        $form_found = true;
 
-		if ($form_found) {
-			$search_state = $search_form->getDescendantStates();
-			$this->app->session->{$this->getKey()} = $search_state;
-		}
-	}
+        try {
+            $search_form = $this->ui->getWidget('search_form');
+        } catch (SwatWidgetNotFoundException $e) {
+            $form_found = false;
+        }
 
+        if ($form_found) {
+            if ($this->hasState()) {
+                $search_form->setDescendantStates(
+                    $this->app->session->{$this->getKey()}
+                );
 
+                $return = true;
+            }
+        }
 
-	/**
-	 * Loads a saved search state for this page
-	 *
-	 * @return boolean true if a saved state exists for this page and false if
-	 *                  it does not.
-	 *
-	 * @see AdminSearchPage::hasState()
-	 */
-	protected function loadState()
-	{
-		$return = false;
+        return $return;
+    }
 
-		$form_found = true;
-		try {
-			$search_form = $this->ui->getWidget('search_form');
-		} catch (SwatWidgetNotFoundException $e) {
-			$form_found = false;
-		}
+    /**
+     * Checks if this search page has stored search information.
+     *
+     * @return bool true if this page has stored search information and
+     *              false if it does not
+     */
+    protected function hasState()
+    {
+        return isset($this->app->session->{$this->getKey()});
+    }
 
-		if ($form_found) {
-			if ($this->hasState()) {
-				$search_form->setDescendantStates(
-					$this->app->session->{$this->getKey()});
+    protected function getKey()
+    {
+        return $this->source . '_search_state';
+    }
 
-				$return = true;
-			}
-		}
+    // build phase
 
-		return $return;
-	}
+    protected function buildInternal()
+    {
+        parent::buildInternal();
 
+        try {
+            $form = $this->ui->getWidget('search_form');
+            $form->action = $this->source;
+            $form->autofocus = true;
+        } catch (SwatWidgetNotFoundException $e) {
+            // ignore
+        }
+    }
 
+    /**
+     * Builds views for this search page.
+     *
+     * View models are initialized to an empty table store unless a saved
+     * search state is available.
+     */
+    protected function buildViews()
+    {
+        $form_found = true;
 
-	/**
-	 * Checks if this search page has stored search information
-	 *
-	 * @return boolean true if this page has stored search information and
-	 *                  false if it does not.
-	 */
-	protected function hasState()
-	{
-		return isset($this->app->session->{$this->getKey()});
-	}
+        try {
+            $results_frame = $this->ui->getWidget('results_frame');
+        } catch (SwatWidgetNotFoundException $e) {
+            $form_found = false;
+        }
 
+        if ($form_found) {
+            // set non-visible results frame views to have empty models
+            if (!$results_frame->visible) {
+                $views = $results_frame->getDescendants('SwatTableView');
+                foreach ($views as $view) {
+                    $view->model = new SwatTableStore();
+                }
+            }
+        }
 
-
-	protected function getKey()
-	{
-		return $this->source.'_search_state';
-	}
-
-
-	// build phase
-
-
-	protected function buildInternal()
-	{
-		parent::buildInternal();
-
-		try {
-			$form = $this->ui->getWidget('search_form');
-			$form->action = $this->source;
-			$form->autofocus = true;
-		} catch (SwatWidgetNotFoundException $e) {
-			// ignore
-		}
-	}
-
-
-
-	/**
-	 * Builds views for this search page
-	 *
-	 * View models are initialized to an empty table store unless a saved
-	 * search state is available.
-	 */
-	protected function buildViews()
-	{
-		$form_found = true;
-		try {
-			$results_frame = $this->ui->getWidget('results_frame');
-		} catch (SwatWidgetNotFoundException $e) {
-			$form_found = false;
-		}
-
-		if ($form_found) {
-			// set non-visible results frame views to have empty models
-			if (!$results_frame->visible) {
-				$views = $results_frame->getDescendants('SwatTableView');
-				foreach ($views as $view)
-					$view->model = new SwatTableStore();
-			}
-		}
-
-		// build other views normally
-		parent::buildViews();
-	}
-
+        // build other views normally
+        parent::buildViews();
+    }
 }
-
-?>
