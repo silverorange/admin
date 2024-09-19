@@ -102,6 +102,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
         if ($success) {
             // save the new timestamp
             $this->data_object->save();
+
             return true;
         }
 
@@ -114,6 +115,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
                 'error'
             )
         );
+
         return false;
     }
 

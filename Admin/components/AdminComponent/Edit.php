@@ -86,6 +86,7 @@ class AdminAdminComponentEdit extends AdminObjectEdit
             );
 
             $shortname_widget->addMessage($message);
+
             return false;
         }
 

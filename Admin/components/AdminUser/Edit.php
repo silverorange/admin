@@ -108,6 +108,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
                 );
 
                 $email->addMessage($message);
+
                 return false;
             }
         }
