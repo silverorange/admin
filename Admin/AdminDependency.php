@@ -298,37 +298,8 @@ abstract class AdminDependency
 	 *
 	 * @param integer $status_level the status level to display dependency
 	 *                               entries for.
-	 *
-	 * TODO: this is in the wrong place.
 	 */
-	protected function displayStatusLevel($status_level)
-	{
-		$count = $this->getStatusLevelCount($status_level);
-		$first = true;
-		foreach ($this->entries as $entry) {
-			if ($entry->status_level == $status_level) {
-				if ($first) {
-					$this->displayStatusLevelHeader($status_level, $count);
-					echo '<ul>';
-					$first = false;
-				}
-
-				echo '<li>';
-
-				if ($entry->content_type == 'text/xml')
-					echo $entry->title;
-				else
-					echo SwatString::minimizeEntities($entry->title);
-
-				foreach ($this->dependencies as $dep)
-					$dep->displayDependencies($entry->id, $status_level);
-
-				echo '</li>';
-			}
-		}
-		if ($count > 0)
-			echo '</ul>';
-	}
+	abstract protected function displayStatusLevel($status_level);
 
 	// }}}
 	// {{{ protected function displayStatusLevelHeader()

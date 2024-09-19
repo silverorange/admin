@@ -123,6 +123,36 @@ class AdminSummaryDependency extends AdminDependency
 	}
 
 	// }}}
+	// {{{ protected function displayStatusLevel()
+
+	/**
+	 * Displays all the dependency entries at a single status level for this
+	 * dependency
+	 *
+	 * @param integer $status_level the status level to display dependency
+	 *                               entries for.
+	 */
+	protected function displayStatusLevel($status_level)
+	{
+		$count = $this->getStatusLevelCount($status_level);
+		if ($count > 0) {
+			$this->displayStatusLevelHeader($status_level, $count);
+
+			echo '<p>';
+			$span_tag = new SwatHtmlTag('span');
+			$span_tag->class = 'admin-light';
+			$span_tag->setContent($this->getDependencyText($count));
+
+			$span_tag->open();
+			echo ' (';
+			$span_tag->displayContent();
+			echo ')';
+			$span_tag->close();
+			echo '</p>';
+		}
+	}
+
+	// }}}
 	// {{{ public static function &querySummaries()
 
 	/**
