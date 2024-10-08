@@ -1,238 +1,209 @@
 <?php
 
 /**
- * Displays the primary navigation menu
+ * Displays the primary navigation menu.
  *
  * This is the default view. This class may be extended to provide completely
  * different menu styles.
  *
- * @package   Admin
  * @copyright 2005-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminMenuView extends SwatControl
 {
-	// {{{ public properties
+    /**
+     * The unique identifier of this menu-view.
+     *
+     * If not set explicitly, an id will be auto-generated after this menu-view
+     * is initialized.
+     *
+     * @var string
+     */
+    public $id;
 
-	/**
-	 * The unique identifier of this menu-view
-	 *
-	 * If not set explicitly, an id will be auto-generated after this menu-view
-	 * is initialized.
-	 *
-	 * @var string
-	 */
-	public $id;
+    /**
+     * The menu-store this menu-view is viewing.
+     *
+     * @var AdminMenuStore
+     */
+    protected $store;
 
-	// }}}
-	// {{{ protected properties
+    /**
+     * Creates a new menu-view control.
+     *
+     * @param string $id optional identifier for this menu-view
+     */
+    public function __construct($id = null)
+    {
+        parent::__construct($id);
 
-	/**
-	 * The menu-store this menu-view is viewing
-	 *
-	 * @var AdminMenuStore
-	 */
-	protected $store;
+        $this->requires_id = true;
 
-	// }}}
-	// {{{ public function __construct()
+        $yui = new SwatYUI(['dom', 'event', 'animation']);
+        $this->html_head_entry_set->addEntrySet($yui->getHtmlHeadEntrySet());
 
-	/**
-	 * Creates a new menu-view control
-	 *
-	 * @param string $id optional identifier for this menu-view.
-	 */
-	public function __construct($id = null)
-	{
-		parent::__construct($id);
+        $this->addStyleSheet('packages/admin/styles/admin-menu.css');
+        $this->addJavaScript('packages/admin/javascript/admin-menu.js');
+    }
 
-		$this->requires_id = true;
+    /**
+     * @param AdminMenuStore $store the menu-store this view will view
+     */
+    public function setModel(AdminMenuStore $store)
+    {
+        $this->store = $store;
+    }
 
-		$yui = new SwatYUI(array('dom', 'event', 'animation'));
-		$this->html_head_entry_set->addEntrySet($yui->getHtmlHeadEntrySet());
+    /**
+     * Displays this menu.
+     *
+     * Outputs the HTML of this menu.
+     */
+    public function display()
+    {
+        if (!$this->visible) {
+            return;
+        }
 
-		$this->addStyleSheet('packages/admin/styles/admin-menu.css');
-		$this->addJavaScript('packages/admin/javascript/admin-menu.js');
-	}
+        parent::display();
 
-	// }}}
-	// {{{ public function setModel()
+        $menu_div = new SwatHtmlTag('div');
+        $menu_div->id = $this->id;
+        $menu_div->class = 'admin-menu';
+        $menu_div->open();
 
-	/**
-	 * @param AdminMenuStore $store the menu-store this view will view.
-	 */
-	public function setModel(AdminMenuStore $store)
-	{
-		$this->store = $store;
-	}
+        $this->displayMenuContent();
 
-	// }}}
-	// {{{ public function display()
+        $menu_div->close();
 
-	/**
-	 * Displays this menu
-	 *
-	 * Outputs the HTML of this menu.
-	 */
-	public function display()
-	{
-		if (!$this->visible) {
-			return;
-		}
+        Swat::displayInlineJavaScript($this->getInlineJavaScript());
+    }
 
-		parent::display();
+    /**
+     * Displays a single menu section.
+     *
+     * @param AdminMenuSection $section the section to display
+     */
+    public function displaySection($section)
+    {
+        $section_title_tag = new SwatHtmlTag('span');
+        $section_title_tag->class = 'menu-section-title';
 
-		$menu_div = new SwatHtmlTag('div');
-		$menu_div->id = $this->id;
-		$menu_div->class = 'admin-menu';
-		$menu_div->open();
+        $section_title_span_tag = new SwatHtmlTag('span');
+        $section_title_span_tag->setContent($section->title);
 
-		$this->displayMenuContent();
+        $section_li_tag = new SwatHtmlTag('li');
+        if (!$section->show) {
+            $section_li_tag->class = 'hide-menu-section';
+        }
 
-		$menu_div->close();
+        $section_li_tag->open();
 
-		Swat::displayInlineJavaScript($this->getInlineJavaScript());
-	}
+        $section_title_tag->open();
+        $section_title_span_tag->display();
+        $section_title_tag->close();
 
-	// }}}
-	// {{{ public function displaySection()
+        $section_content = new SwatHtmlTag('ul');
+        $section_content->id = sprintf(
+            '%s_section_%s',
+            $this->id,
+            $section->id
+        );
 
-	/**
-	 * Displays a single menu section
-	 *
-	 * @param AdminMenuSection $section the section to display.
-	 */
-	public function displaySection($section)
-	{
-		$section_title_tag = new SwatHtmlTag('span');
-		$section_title_tag->class = 'menu-section-title';
+        $section_content->open();
 
-		$section_title_span_tag = new SwatHtmlTag('span');
-		$section_title_span_tag->setContent($section->title);
+        foreach ($section->components as $component) {
+            $this->displayComponent($component);
+        }
 
-		$section_li_tag = new SwatHtmlTag('li');
-		if (!$section->show)
-			$section_li_tag->class = 'hide-menu-section';
+        $section_content->close();
 
-		$section_li_tag->open();
+        $section_li_tag->close();
+    }
 
-		$section_title_tag->open();
-		$section_title_span_tag->display();
-		$section_title_tag->close();
+    /**
+     * Displays a single menu component.
+     *
+     * @param AdminMenuComponent $component the component to display
+     */
+    public function displayComponent($component)
+    {
+        echo '<li class="admin-menu-component">';
 
-		$section_content = new SwatHtmlTag('ul');
-		$section_content->id = sprintf('%s_section_%s', $this->id,
-			$section->id);
+        $anchor_tag = new SwatHtmlTag('a');
+        $anchor_tag->href = $component->shortname;
+        $anchor_tag->setContent($component->title);
+        $anchor_tag->display();
 
-		$section_content->open();
+        if ($component->description != '') {
+            echo '<span class="admin-menu-help">';
+            echo '<span class="admin-menu-help-arrow"></span>';
 
-		foreach ($section->components as $component)
-			$this->displayComponent($component);
+            $span_tag = new SwatHtmlTag('span');
+            $span_tag->class = 'admin-menu-help-content';
+            $span_tag->setContent(
+                SiteCommentFilter::toXhtml($component->description),
+                'text/xml'
+            );
+            $span_tag->display();
 
-		$section_content->close();
+            echo '</span>';
+        }
 
-		$section_li_tag->close();
-	}
+        $span_tag = new SwatHtmlTag('span');
+        $span_tag->class = 'admin-menu-help';
 
-	// }}}
-	// {{{ public function displayComponent()
+        if (count($component->subcomponents)) {
+            echo '<ul>';
 
-	/**
-	 * Displays a single menu component
-	 *
-	 * @param AdminMenuComponent $component the component to display.
-	 */
-	public function displayComponent($component)
-	{
-		echo '<li class="admin-menu-component">';
+            foreach ($component->subcomponents as $subcomponent) {
+                $this->displaySubcomponent($subcomponent, $component->shortname);
+            }
 
-		$anchor_tag = new SwatHtmlTag('a');
-		$anchor_tag->href = $component->shortname;
-		$anchor_tag->setContent($component->title);
-		$anchor_tag->display();
+            echo '</ul>';
+        }
 
-		if ($component->description != '') {
-			echo '<span class="admin-menu-help">';
-			echo '<span class="admin-menu-help-arrow"></span>';
+        echo '</li>';
+    }
 
-			$span_tag = new SwatHtmlTag('span');
-			$span_tag->class = 'admin-menu-help-content';
-			$span_tag->setContent(
-				SiteCommentFilter::toXhtml($component->description),
-				'text/xml'
-			);
-			$span_tag->display();
+    /**
+     * Displays a single menu subcomponent.
+     *
+     * @param AdminmenuSubcomponent $subcomponent        the subcomponent to display
+     * @param string                $component_shortname the short name of the component this
+     *                                                   subcomponent belongs to
+     */
+    public function displaySubcomponent($subcomponent, $component_shortname)
+    {
+        $anchor_tag = new SwatHtmlTag('a');
+        $anchor_tag->href = $component_shortname . '/' . $subcomponent->shortname;
+        $anchor_tag->setContent($subcomponent->title);
 
-			echo '</span>';
-		}
+        echo '<li>';
+        $anchor_tag->display();
+        echo '</li>';
+    }
 
-		$span_tag = new SwatHtmlTag('span');
-		$span_tag->class = 'admin-menu-help';
+    /**
+     * Displays the content of this menu-view.
+     */
+    protected function displayMenuContent()
+    {
+        echo '<ul>';
 
-		if (count($component->subcomponents)) {
-			echo '<ul>';
+        foreach ($this->store->sections as $section) {
+            $this->displaySection($section);
+        }
 
-			foreach ($component->subcomponents as $subcomponent) {
-				$this->displaySubcomponent($subcomponent, $component->shortname);
-			}
+        echo '</ul>';
+    }
 
-			echo '</ul>';
-		}
-
-		echo '</li>';
-	}
-
-	// }}}
-	// {{{ public function displaySubcomponent()
-
-	/**
-	 * Displays a single menu subcomponent
-	 *
-	 * @param AdminmenuSubcomponent $subcomponent the subcomponent to display.
-	 * @param string $component_shortname the short name of the component this
-	 *                                     subcomponent belongs to.
-	 */
-	public function displaySubcomponent($subcomponent, $component_shortname)
-	{
-		$anchor_tag = new SwatHtmlTag('a');
-		$anchor_tag->href = $component_shortname.'/'.$subcomponent->shortname;
-		$anchor_tag->setContent($subcomponent->title);
-
-		echo '<li>';
-		$anchor_tag->display();
-		echo '</li>';
-	}
-
-	// }}}
-	// {{{ protected function displayMenuContent()
-
-	/**
-	 * Displays the content of this menu-view
-	 */
-	protected function displayMenuContent()
-	{
-		echo '<ul>';
-
-		foreach ($this->store->sections as $section) {
-			$this->displaySection($section);
-		}
-
-		echo '</ul>';
-	}
-
-	// }}}
-	// {{{ protected function getInlineJavaScript()
-
-	protected function getInlineJavaScript()
-	{
-		return sprintf(
-			"%s_obj = new AdminMenu(%s);\n",
-			$this->id,
-			SwatString::quoteJavaScriptString($this->id)
-		);
-	}
-
-	// }}}
+    protected function getInlineJavaScript()
+    {
+        return sprintf(
+            "%s_obj = new AdminMenu(%s);\n",
+            $this->id,
+            SwatString::quoteJavaScriptString($this->id)
+        );
+    }
 }
-
-?>

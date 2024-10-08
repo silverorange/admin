@@ -24,7 +24,6 @@ Admin:
     - Site
 
   Provides:
-
     # JavaScript resources
     packages/admin/javascript/admin-login.js:
     packages/admin/javascript/admin-menu.js:
@@ -39,5 +38,3 @@ Admin:
     packages/admin/styles/admin-menu.css:
     packages/admin/styles/admin-note.css:
     packages/admin/styles/admin-title-link-cell-renderer.css:
-
-# vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2:

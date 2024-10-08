@@ -1,278 +1,229 @@
 <?php
 
 /**
- * Edit page for AdminUsers component
+ * Edit page for AdminUsers component.
  *
- * @package   Admin
  * @copyright 2005-2022 silverorange
  */
 class AdminAdminUserEdit extends AdminObjectEdit
 {
-	// {{{ protected function getObjectClass()
+    protected function getObjectClass()
+    {
+        return 'AdminUser';
+    }
 
-	protected function getObjectClass()
-	{
-		return 'AdminUser';
-	}
+    protected function getUiXml()
+    {
+        return __DIR__ . '/edit.xml';
+    }
 
-	// }}}
-	// {{{ protected function getUiXml()
+    protected function getObjectUiValueNames()
+    {
+        return [
+            'email',
+            'name',
+            'enabled',
+            'force_change_password',
+            'two_fa_enabled',
+        ];
+    }
 
-	protected function getUiXml()
-	{
-		return __DIR__.'/edit.xml';
-	}
+    // init phase
 
-	// }}}
-	// {{{ protected function getObjectUiValueNames()
+    protected function initInternal()
+    {
+        parent::initInternal();
 
-	protected function getObjectUiValueNames()
-	{
-		return array(
-			'email',
-			'name',
-			'enabled',
-			'force_change_password',
-			'two_fa_enabled',
-		);
-	}
+        $this->initPasswordWidgets();
+        $this->initGroups();
+        $this->initInstances();
 
-	// }}}
+        $this->ui->getWidget('two_fa_enabled')->parent->visible =
+            $this->app->is2FaEnabled();
+    }
 
-	// init phase
-	// {{{ protected function initInternal()
+    protected function initPasswordWidgets()
+    {
+        $confirm_widget = $this->ui->getWidget('confirm_password');
+        $confirm_widget->password_widget = $this->ui->getWidget('password');
 
-	protected function initInternal()
-	{
-		parent::initInternal();
+        if ($this->isNew()) {
+            $confirm_widget->required = true;
+            $this->ui->getWidget('password')->required = true;
+            $this->ui->getWidget('confirm_password_field')->note = null;
+            $this->ui->getWidget('password_disclosure')->open = true;
+            $this->ui->getWidget('password_disclosure')->title =
+                Admin::_('Set Password');
+        }
+    }
 
-		$this->initPasswordWidgets();
-		$this->initGroups();
-		$this->initInstances();
+    protected function initGroups()
+    {
+        $group_list = $this->ui->getWidget('groups');
+        $group_list_options = SwatDB::getOptionArray(
+            $this->app->db,
+            'AdminGroup',
+            'title',
+            'id',
+            'title'
+        );
 
-		$this->ui->getWidget('two_fa_enabled')->parent->visible =
-			$this->app->is2FaEnabled();
-	}
+        $group_list->addOptionsByArray($group_list_options);
+    }
 
-	// }}}
-	// {{{ protected function initPasswordWidgets()
+    protected function initInstances()
+    {
+        if ($this->app->isMultipleInstanceAdmin()) {
+            $this->ui->getWidget('instances')->parent->visible = true;
 
-	protected function initPasswordWidgets()
-	{
-		$confirm_widget = $this->ui->getWidget('confirm_password');
-		$confirm_widget->password_widget = $this->ui->getWidget('password');
+            $instance_list = $this->ui->getWidget('instances');
+            $instance_list_options = SwatDB::getOptionArray(
+                $this->app->db,
+                'Instance',
+                'title',
+                'id',
+                'shortname'
+            );
 
-		if ($this->isNew()) {
-			$confirm_widget->required = true;
-			$this->ui->getWidget('password')->required = true;
-			$this->ui->getWidget('confirm_password_field')->note = null;
-			$this->ui->getWidget('password_disclosure')->open = true;
-			$this->ui->getWidget('password_disclosure')->title =
-				Admin::_('Set Password');
-		}
-	}
+            $instance_list->addOptionsByArray($instance_list_options);
+        }
+    }
 
-	// }}}
-	// {{{ protected function initGroups()
+    // process phase
 
-	protected function initGroups()
-	{
-		$group_list = $this->ui->getWidget('groups');
-		$group_list_options = SwatDB::getOptionArray(
-			$this->app->db,
-			'AdminGroup',
-			'title',
-			'id',
-			'title'
-		);
+    protected function validate(): bool
+    {
+        $email = $this->ui->getWidget('email');
 
-		$group_list->addOptionsByArray($group_list_options);
-	}
+        $class_name = SwatDBClassMap::get(AdminUser::class);
+        $user = new $class_name();
+        $user->setDatabase($this->app->db);
 
-	// }}}
-	// {{{ protected function initInstances()
+        if ($user->loadFromEmail($email->value)) {
+            if ($user->id !== $this->getObject()->id) {
+                $message = new SwatMessage(
+                    Admin::_(
+                        'An account with this email address already exists.'
+                    )
+                );
 
-	protected function initInstances()
-	{
-		if ($this->app->isMultipleInstanceAdmin()) {
-			$this->ui->getWidget('instances')->parent->visible = true;
+                $email->addMessage($message);
 
-			$instance_list = $this->ui->getWidget('instances');
-			$instance_list_options = SwatDB::getOptionArray(
-				$this->app->db,
-				'Instance',
-				'title',
-				'id',
-				'shortname'
-			);
+                return false;
+            }
+        }
 
-			$instance_list->addOptionsByArray($instance_list_options);
-		}
-	}
+        if (
+            $this->ui->getWidget('confirm_password_field')->hasMessage()
+            || $this->ui->getWidget('password')->hasMessage()
+        ) {
+            $this->ui->getWidget('password_disclosure')->open = true;
+        }
 
-	// }}}
+        return true;
+    }
 
-	// process phase
-	// {{{ protected function validate()
+    protected function updateObject()
+    {
+        parent::updateObject();
 
-	protected function validate()
-	{
-		$email = $this->ui->getWidget('email');
+        $this->updatePassword();
+    }
 
-		$class_name = SwatDBClassMap::get('AdminUser');
-		$user = new $class_name();
-		$user->setDatabase($this->app->db);
+    protected function updatePassword()
+    {
+        $password = $this->ui->getWidget('password')->value;
 
-		if ($user->loadFromEmail($email->value)) {
-			if ($user->id !== $this->getObject()->id) {
-				$message = new SwatMessage(
-					Admin::_(
-						'An account with this email address already exists.'
-					)
-				);
+        if ($password != '') {
+            $crypt = $this->app->getModule('SiteCryptModule');
+            $this->getObject()->setPasswordHash(
+                $crypt->generateHash($password)
+            );
+        }
+    }
 
-				$email->addMessage($message);
-			}
-		}
+    protected function postSaveObject()
+    {
+        $this->updateGroupBindings();
+        $this->updateInstanceBindings();
+    }
 
-		if ($this->ui->getWidget('confirm_password_field')->hasMessage() ||
-			$this->ui->getWidget('password')->hasMessage()) {
-			$this->ui->getWidget('password_disclosure')->open = true;
-		}
-	}
+    protected function updateGroupBindings()
+    {
+        $group_list = $this->ui->getWidget('groups');
 
-	// }}}
-	// {{{ protected function updateObject()
+        SwatDB::updateBinding(
+            $this->app->db,
+            'AdminUserAdminGroupBinding',
+            'usernum',
+            $this->getObject()->id,
+            'groupnum',
+            $group_list->values,
+            'AdminGroup',
+            'id'
+        );
+    }
 
-	protected function updateObject()
-	{
-		parent::updateObject();
+    protected function updateInstanceBindings()
+    {
+        if ($this->app->isMultipleInstanceAdmin()) {
+            $instance_list = $this->ui->getWidget('instances');
+            SwatDB::updateBinding(
+                $this->app->db,
+                'AdminUserInstanceBinding',
+                'usernum',
+                $this->getObject()->id,
+                'instance',
+                $instance_list->values,
+                'Instance',
+                'id'
+            );
+        }
+    }
 
-		$this->updatePassword();
-	}
+    protected function getSavedMessagePrimaryContent()
+    {
+        return sprintf(
+            Admin::_('User “%s” has been saved.'),
+            $this->getObject()->email
+        );
+    }
 
-	// }}}
-	// {{{ protected function updatePassword()
+    // build phase
 
-	protected function updatePassword()
-	{
-		$password = $this->ui->getWidget('password')->value;
+    protected function loadObject()
+    {
+        parent::loadObject();
 
-		if ($password != '') {
-			$crypt = $this->app->getModule('SiteCryptModule');
-			$this->getObject()->setPasswordHash(
-				$crypt->generateHash($password)
-			);
-		}
-	}
+        if (!$this->isNew()) {
+            $this->loadGroupBindings();
+            $this->loadInstanceBindings();
+        }
+    }
 
-	// }}}
-	// {{{ protected function postSaveObject()
+    protected function loadGroupBindings()
+    {
+        $group_list = $this->ui->getWidget('groups');
+        $group_list->values = SwatDB::queryColumn(
+            $this->app->db,
+            'AdminUserAdminGroupBinding',
+            'groupnum',
+            'usernum',
+            $this->getObject()->id
+        );
+    }
 
-	protected function postSaveObject()
-	{
-		$this->updateGroupBindings();
-		$this->updateInstanceBindings();
-	}
-
-	// }}}
-	// {{{ protected function updateGroupBindings()
-
-	protected function updateGroupBindings()
-	{
-		$group_list = $this->ui->getWidget('groups');
-
-		SwatDB::updateBinding(
-			$this->app->db,
-			'AdminUserAdminGroupBinding',
-			'usernum',
-			$this->getObject()->id,
-			'groupnum',
-			$group_list->values,
-			'AdminGroup',
-			'id'
-		);
-	}
-
-	// }}}
-	// {{{ protected function updateInstanceBindings()
-
-	protected function updateInstanceBindings()
-	{
-		if ($this->app->isMultipleInstanceAdmin()) {
-			$instance_list = $this->ui->getWidget('instances');
-			SwatDB::updateBinding(
-				$this->app->db,
-				'AdminUserInstanceBinding',
-				'usernum',
-				$this->getObject()->id,
-				'instance',
-				$instance_list->values,
-				'Instance',
-				'id'
-			);
-		}
-	}
-
-	// }}}
-	// {{{ protected function getSavedMessagePrimaryContent()
-
-	protected function getSavedMessagePrimaryContent()
-	{
-		return sprintf(
-			Admin::_('User “%s” has been saved.'),
-			$this->getObject()->email
-		);
-	}
-
-	// }}}
-
-	// build phase
-	// {{{ protected function loadObject()
-
-	protected function loadObject()
-	{
-		parent::loadObject();
-
-		if (!$this->isNew()) {
-			$this->loadGroupBindings();
-			$this->loadInstanceBindings();
-		}
-	}
-
-	// }}}
-	// {{{ protected function loadGroupBindings()
-
-	protected function loadGroupBindings()
-	{
-		$group_list = $this->ui->getWidget('groups');
-		$group_list->values = SwatDB::queryColumn(
-			$this->app->db,
-			'AdminUserAdminGroupBinding',
-			'groupnum',
-			'usernum',
-			$this->getObject()->id
-		);
-	}
-
-	// }}}
-	// {{{ protected function loadInstanceBindings()
-
-	protected function loadInstanceBindings()
-	{
-		if ($this->app->isMultipleInstanceAdmin()) {
-			$instance_list = $this->ui->getWidget('instances');
-			$instance_list->values = SwatDB::queryColumn(
-				$this->app->db,
-				'AdminUserInstanceBinding',
-				'instance',
-				'usernum',
-				$this->getObject()->id
-			);
-		}
-	}
-
-	// }}}
+    protected function loadInstanceBindings()
+    {
+        if ($this->app->isMultipleInstanceAdmin()) {
+            $instance_list = $this->ui->getWidget('instances');
+            $instance_list->values = SwatDB::queryColumn(
+                $this->app->db,
+                'AdminUserInstanceBinding',
+                'instance',
+                'usernum',
+                $this->getObject()->id
+            );
+        }
+    }
 }
-
-?>

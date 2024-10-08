@@ -1,290 +1,241 @@
 <?php
 
 /**
- * Edit page for the current admin user profile
+ * Edit page for the current admin user profile.
  *
- * @package   Admin
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  * @copyright 2005-2022 silverorange
  */
 class AdminAdminSiteProfile extends AdminObjectEdit
 {
-	// {{{ protected function getObjectClass()
+    protected function getObjectClass()
+    {
+        return 'AdminUser';
+    }
 
-	protected function getObjectClass()
-	{
-		return 'AdminUser';
-	}
+    protected function getUiXml()
+    {
+        return __DIR__ . '/profile.xml';
+    }
 
-	// }}}
-	// {{{ protected function getUiXml()
+    protected function getObjectUiValueNames()
+    {
+        return [
+            'email',
+            'name',
+        ];
+    }
 
-	protected function getUiXml()
-	{
-		return __DIR__.'/profile.xml';
-	}
+    // init phase
 
-	// }}}
-	// {{{ protected function getObjectUiValueNames()
+    protected function initObject()
+    {
+        // Set the id so the edit page knows it's an edit.
+        $this->id = $this->app->session->getUserId();
 
-	protected function getObjectUiValueNames()
-	{
-		return array(
-			'email',
-			'name',
-		);
-	}
+        // Bypass all AdminObjectEdit loading.
+        $this->data_object = $this->app->session->user;
+    }
 
-	// }}}
+    protected function initInternal()
+    {
+        parent::initInternal();
 
-	// init phase
-	// {{{ protected function initObject()
+        $this->initPasswordWidgets();
+    }
 
-	protected function initObject()
-	{
-		// Set the id so the edit page knows it's an edit.
-		$this->id = $this->app->session->getUserId();
+    protected function initPasswordWidgets()
+    {
+        $confirm = $this->ui->getWidget('confirm_password');
+        $confirm->password_widget = $this->ui->getWidget('new_password');
+    }
 
-		// Bypass all AdminObjectEdit loading.
-		$this->data_object = $this->app->session->user;
-	}
+    // process phase
 
-	// }}}
-	// {{{ protected function initInternal()
+    protected function validate(): bool
+    {
+        $is_valid = parent::validate();
 
-	protected function initInternal()
-	{
-		parent::initInternal();
+        $new_password = $this->ui->getWidget('new_password')->value;
+        $old_password = $this->ui->getWidget('old_password')->value;
 
-		$this->initPasswordWidgets();
-	}
+        if ($new_password != '') {
+            $crypt = $this->app->getModule('SiteCryptModule');
 
-	// }}}
-	// {{{ protected function initPasswordWidgets()
+            $password_hash = $this->data_object->password;
+            $password_salt = $this->data_object->password_salt;
 
-	protected function initPasswordWidgets()
-	{
-		$confirm = $this->ui->getWidget('confirm_password');
-		$confirm->password_widget = $this->ui->getWidget('new_password');
-	}
+            if (!$crypt->verifyHash(
+                $old_password,
+                $password_hash,
+                $password_salt
+            )) {
+                $this->ui->getWidget('old_password')->addMessage(
+                    new SwatMessage(
+                        Admin::_(
+                            '%1$s is incorrect. Please check your %1$s and ' .
+                            'try again. Passwords are case sensitive.'
+                        ),
+                        'error'
+                    )
+                );
+                $is_valid = false;
+            }
+        }
 
-	// }}}
+        if ($this->ui->getWidget('two_fa_token')->value !== null) {
+            $is_valid = $is_valid && $this->validate2Fa();
+        }
 
-	// process phase
-	// {{{ protected function validate()
+        return $is_valid;
+    }
 
-	protected function validate()
-	{
-		parent::validate();
+    protected function validate2Fa(): bool
+    {
+        $two_factor_authentication = new AdminTwoFactorAuthentication();
+        $success = $two_factor_authentication->validateToken(
+            $this->data_object->two_fa_secret,
+            $this->ui->getWidget('two_fa_token')->value,
+            $this->data_object->two_fa_timeslice
+        );
 
-		$new_password = $this->ui->getWidget('new_password')->value;
-		$old_password = $this->ui->getWidget('old_password')->value;
+        if ($success) {
+            // save the new timestamp
+            $this->data_object->save();
 
-		if ($new_password != '') {
-			$crypt = $this->app->getModule('SiteCryptModule');
+            return true;
+        }
 
-			$password_hash = $this->data_object->password;
-			$password_salt = $this->data_object->password_salt;
+        $this->ui->getWidget('two_fa_token')->addMessage(
+            new SwatMessage(
+                Admin::_(
+                    'Your two factor authentication token doesn’t ' .
+                    'match. Try again, or contact support for help.'
+                ),
+                'error'
+            )
+        );
 
-			if (!$crypt->verifyHash(
-					$old_password,
-					$password_hash,
-					$password_salt
-				)) {
+        return false;
+    }
 
-				$this->ui->getWidget('old_password')->addMessage(
-					new SwatMessage(
-						Admin::_(
-							'%1$s is incorrrect. Please check your %1$s and '.
-							'try again. Passwords are case sensitive.'
-						),
-						'error'
-					)
-				);
-			}
-		}
+    protected function updateObject()
+    {
+        parent::updateObject();
 
-		if ($this->ui->getWidget('two_fa_token')->value !== null) {
-			$this->validate2Fa();
-		}
-	}
+        $this->updatePassword();
 
-	// }}}
-	// {{{ protected function validate2Fa()
+        if ($this->ui->getWidget('two_fa_token')->value !== null) {
+            $this->data_object->two_fa_enabled = true;
+            $this->data_object->set2FaAuthenticated();
+        }
+    }
 
-	protected function validate2Fa()
-	{
-		$two_factor_authentication = new AdminTwoFactorAuthentication();
-		$success = $two_factor_authentication->validateToken(
-			$this->data_object->two_fa_secret,
-			$this->ui->getWidget('two_fa_token')->value,
-			$this->data_object->two_fa_timeslice
-		);
+    protected function updatePassword()
+    {
+        $new_password = $this->ui->getWidget('new_password')->value;
 
-		if ($success) {
-			// save the new timestamp
-			$this->data_object->save();
-		} else {
-			$this->ui->getWidget('two_fa_token')->addMessage(
-				new SwatMessage(
-					Admin::_(
-						'Your two factor authentication token doesn’t '.
-						'match. Try again, or contact support for help.'
-					),
-					'error'
-				)
-			);
-		}
-	}
+        if ($new_password != '') {
+            $crypt = $this->app->getModule('SiteCryptModule');
+            $this->getObject()->setPasswordHash(
+                $crypt->generateHash($new_password)
+            );
+        }
+    }
 
-	// }}}
-	// {{{ protected function updateObject()
+    protected function getSavedMessagePrimaryContent()
+    {
+        return Admin::_('Your user profile has been updated.');
+    }
 
-	protected function updateObject()
-	{
-		parent::updateObject();
+    protected function relocate()
+    {
+        $this->app->relocate('.');
+    }
 
-		$this->updatePassword();
+    // build phase
 
-		if ($this->ui->getWidget('two_fa_token')->value !== null) {
-			$this->data_object->two_fa_enabled = true;
-			$this->data_object->set2FaAuthenticated();
-		}
-	}
+    protected function buildInternal()
+    {
+        parent::buildInternal();
 
-	// }}}
-	// {{{ protected function updatePassword()
+        $old_password = $this->ui->getWidget('old_password');
+        $new_password = $this->ui->getWidget('new_password');
+        $confirm_password = $this->ui->getWidget('confirm_password');
 
-	protected function updatePassword()
-	{
-		$new_password = $this->ui->getWidget('new_password')->value;
+        if ($old_password->hasMessage()
+            || $new_password->hasMessage()
+            || $confirm_password->hasMessage()) {
+            $this->ui->getWidget('change_password')->open = true;
+        }
 
-		if ($new_password != '') {
-			$crypt = $this->app->getModule('SiteCryptModule');
-			$this->getObject()->setPasswordHash(
-				$crypt->generateHash($new_password)
-			);
-		}
-	}
+        $this->build2fa();
+    }
 
-	// }}}
-	// {{{ protected function getSavedMessagePrimaryContent()
+    protected function build2Fa()
+    {
+        if ($this->app->is2FaEnabled()) {
+            if ($this->data_object->two_fa_enabled) {
+                $this->ui->getWidget('two_fa_enabled_note')->visible = true;
+            } else {
+                $two_factor_authentication = new AdminTwoFactorAuthentication();
 
-	protected function getSavedMessagePrimaryContent()
-	{
-		return Admin::_('Your user profile has been updated.');
-	}
+                $form = $this->ui->getWidget('edit_form');
+                if (!$form->isSubmitted()) {
+                    // Generate a new secret key each time the page loads so
+                    // that someone doesn't steal the secret code, then later
+                    // this user turns on 2FA, and  then the intruder would
+                    // have the secret key from before.
+                    $secret = $two_factor_authentication->getNewSecret();
+                    $this->data_object->two_fa_secret = $secret;
+                    $this->data_object->save();
+                }
 
-	// }}}
-	// {{{ protected function relocate()
+                $qr_code_url = $two_factor_authentication->getQrCodeDataUri(
+                    sprintf(
+                        '%s (%s)',
+                        $this->app->config->site->title,
+                        $this->data_object->email
+                    ),
+                    $this->data_object->two_fa_secret
+                );
 
-	protected function relocate()
-	{
-		$this->app->relocate('.');
-	}
+                $img_tag = new SwatHtmlTag('img');
+                $img_tag->alt = Admin::_('Two Factor Authentication QR Code');
+                $img_tag->src = $qr_code_url;
 
-	// }}}
+                $p_tag = new SwatHtmlTag('p');
+                $p_tag->class = 'admin-two-factor-secret';
+                $p_tag->setContent($this->data_object->two_fa_secret);
 
-	// build phase
-	// {{{ protected function buildInternal()
+                ob_start();
+                $img_tag->display();
+                $p_tag->display();
+                $this->ui->getWidget('two_fa_image')->content = ob_get_clean();
+                $this->ui->getWidget('two_fa')->visible = true;
+            }
+        }
+    }
 
-	protected function buildInternal()
-	{
-		parent::buildInternal();
+    protected function buildFrame()
+    {
+        // skip the parent buildFrame()
+    }
 
-		$old_password     = $this->ui->getWidget('old_password');
-		$new_password     = $this->ui->getWidget('new_password');
-		$confirm_password = $this->ui->getWidget('confirm_password');
+    protected function buildNavBar()
+    {
+        $this->navbar->popEntry();
+        $this->navbar->createEntry(Admin::_('Login Settings'));
+    }
 
-		if ($old_password->hasMessage() ||
-			$new_password->hasMessage() ||
-			$confirm_password->hasMessage()) {
-			$this->ui->getWidget('change_password')->open = true;
-		}
+    // finalize phase
 
-		$this->build2fa();
-	}
+    public function finalize()
+    {
+        parent::finalize();
 
-	// }}}
-	// {{{ protected function build2Fa()
-
-	protected function build2Fa()
-	{
-		if ($this->app->is2FaEnabled()) {
-			if ($this->data_object->two_fa_enabled) {
-				$this->ui->getWidget('two_fa_enabled_note')->visible = true;
-			} else {
-				$two_factor_authentication = new AdminTwoFactorAuthentication();
-
-				$form = $this->ui->getWidget('edit_form');
-				if (!$form->isSubmitted()) {
-					// Generate a new secret key each time the page loads so
-					// that someone doesn't steal the secret code, then later
-					// this user turns on 2FA, and  then the intruder would
-					// have the secret key from before.
-					$secret = $two_factor_authentication->getNewSecret();
-					$this->data_object->two_fa_secret = $secret;
-					$this->data_object->save();
-				}
-
-				$qr_code_url = $two_factor_authentication->getQrCodeDataUri(
-					sprintf(
-						'%s (%s)',
-						$this->app->config->site->title,
-						$this->data_object->email
-					),
-					$this->data_object->two_fa_secret
-				);
-
-				$img_tag = new SwatHtmlTag('img');
-				$img_tag->alt = Admin::_('Two Factor Authentication QR Code');
-				$img_tag->src = $qr_code_url;
-
-				$p_tag = new SwatHtmlTag('p');
-				$p_tag->class = 'admin-two-factor-secret';
-				$p_tag->setContent($this->data_object->two_fa_secret);
-
-				ob_start();
-				$img_tag->display();
-				$p_tag->display();
-				$this->ui->getWidget('two_fa_image')->content = ob_get_clean();
-				$this->ui->getWidget('two_fa')->visible = true;
-			}
-		}
-	}
-
-	// }}}
-	// {{{ protected function buildFrame()
-
-	protected function buildFrame()
-	{
-		// skip the parent buildFrame()
-	}
-
-	// }}}
-	// {{{ protected function buildNavBar()
-
-	protected function buildNavBar()
-	{
-		$this->navbar->popEntry();
-		$this->navbar->createEntry(Admin::_('Login Settings'));
-	}
-
-	// }}}
-
-	// finalize phase
-	// {{{ public function finalize
-
-	public function finalize()
-	{
-		parent::finalize();
-
-		$this->layout->addHtmlHeadEntry(
-			'packages/admin/styles/admin-profile.css'
-		);
-	}
-
-	// }}}
+        $this->layout->addHtmlHeadEntry(
+            'packages/admin/styles/admin-profile.css'
+        );
+    }
 }
-
-?>

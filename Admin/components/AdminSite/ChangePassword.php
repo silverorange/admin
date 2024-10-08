@@ -1,133 +1,116 @@
 <?php
 
 /**
- * Force change password page after initial login
+ * Force change password page after initial login.
  *
- * @package   Admin
  * @copyright 2005-2016 silverorange
  */
 class AdminAdminSiteChangePassword extends AdminPage
 {
-	// init phase
-	// {{{ protected function createLayout()
+    // init phase
 
-	protected function createLayout()
-	{
-		return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
-	}
+    protected function createLayout()
+    {
+        return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
+    }
 
-	// }}}
-	// {{{ protected function initInternal()
+    protected function initInternal()
+    {
+        parent::initInternal();
 
-	protected function initInternal()
-	{
-		parent::initInternal();
+        $this->ui->loadFromXML(__DIR__ . '/change-password.xml');
 
-		$this->ui->loadFromXML(__DIR__.'/change-password.xml');
+        $confirm = $this->ui->getWidget('confirm_password');
+        $confirm->password_widget = $this->ui->getWidget('password');
 
-		$confirm = $this->ui->getWidget('confirm_password');
-		$confirm->password_widget = $this->ui->getWidget('password');
+        $form = $this->ui->getWidget('change_password_form');
+        $form->action = 'AdminSite/ChangePassword';
 
-		$form = $this->ui->getWidget('change_password_form');
-		$form->action = 'AdminSite/ChangePassword';
+        // remember where we came from
+        $form->addHiddenField('relocate_uri', $this->app->getUri());
+    }
 
-		// remember where we came from
-		$form->addHiddenField('relocate_uri', $this->app->getUri());
-	}
+    // process phase
 
-	// }}}
+    protected function processInternal()
+    {
+        parent::processInternal();
 
-	// process phase
-	// {{{ protected function processInternal()
+        $crypt = $this->app->getModule('SiteCryptModule');
 
-	protected function processInternal()
-	{
-		parent::processInternal();
+        $form = $this->ui->getWidget('change_password_form');
+        if ($form->isProcessed()) {
+            $this->validatePasswords();
+            if (!$form->hasMessage()) {
+                $password = $this->ui->getWidget('password')->value;
 
-		$crypt = $this->app->getModule('SiteCryptModule');
+                $user = $this->app->session->user;
+                $user->setPasswordHash($crypt->generateHash($password));
+                $user->force_change_password = false;
+                $user->save();
 
-		$form = $this->ui->getWidget('change_password_form');
-		if ($form->isProcessed()) {
-			$this->validatePasswords();
-			if (!$form->hasMessage()) {
-				$password = $this->ui->getWidget('password')->value;
+                $this->app->session->login($user->email, $password);
 
-				$user = $this->app->session->user;
-				$user->setPasswordHash($crypt->generateHash($password));
-				$user->force_change_password = false;
-				$user->save();
+                $message = new SwatMessage(
+                    Admin::_('Your password has been updated.')
+                );
 
-				$this->app->session->login($user->email, $password);
+                $this->app->messages->add($message);
 
-				$message = new SwatMessage(
-					Admin::_('Your password has been updated.'));
+                // go back where we came from
+                $uri = $form->getHiddenField('relocate_uri');
+                $this->app->relocate($uri);
+            }
+        }
+    }
 
-				$this->app->messages->add($message);
+    protected function validatePasswords()
+    {
+        $user = $this->app->session->user;
 
-				// go back where we came from
-				$uri = $form->getHiddenField('relocate_uri');
-				$this->app->relocate($uri);
-			}
-		}
-	}
+        $old_password = $this->ui->getWidget('old_password')->value;
+        $new_password = $this->ui->getWidget('password')->value;
 
-	// }}}
-	// {{{ protected function validatePasswords()
+        if ($old_password === null || $new_password === null) {
+            return;
+        }
 
-	protected function validatePasswords()
-	{
-		$user = $this->app->session->user;
+        // make sure old password is not the same as new password
+        if ($old_password == $new_password) {
+            $message = new SwatMessage(Admin::_('Your new password can not be ' .
+                'the same as your old password'), 'error');
 
-		$old_password = $this->ui->getWidget('old_password')->value;
-		$new_password = $this->ui->getWidget('password')->value;
+            $this->ui->getWidget('password')->addMessage($message);
+        }
 
-		if ($old_password === null || $new_password === null)
-			return;
+        $crypt = $this->app->getModule('SiteCryptModule');
 
-		// make sure old password is not the same as new password
-		if ($old_password == $new_password) {
-			$message = new SwatMessage(Admin::_('Your new password can not be '.
-				'the same as your old password'), 'error');
+        $password_hash = $user->password;
+        $password_salt = $user->password_salt;
 
-			$this->ui->getWidget('password')->addMessage($message);
-		}
+        // make sure old password is correct
+        if (!$crypt->verifyHash(
+            $old_password,
+            $password_hash,
+            $password_salt
+        )) {
+            $this->ui->getWidget('old_password')->addMessage(
+                new SwatMessage(
+                    Admin::_('Your old password is not correct'),
+                    'error'
+                )
+            );
+        }
+    }
 
-		$crypt = $this->app->getModule('SiteCryptModule');
+    // finalize phase
 
-		$password_hash = $user->password;
-		$password_salt = $user->password_salt;
+    public function finalize()
+    {
+        parent::finalize();
 
-		// make sure old password is correct
-		if (!$crypt->verifyHash(
-				$old_password,
-				$password_hash,
-				$password_salt
-			)) {
-
-			$this->ui->getWidget('old_password')->addMessage(
-				new SwatMessage(
-					Admin::_('Your old password is not correct'),
-					'error'
-				)
-			);
-		}
-	}
-
-	// }}}
-
-	// finalize phase
-	// {{{ public function finalize
-
-	public function finalize()
-	{
-		parent::finalize();
-
-		$this->layout->addHtmlHeadEntry(
-			'packages/admin/styles/admin-change-password-page.css'
-		);
-	}
-
-	// }}}
+        $this->layout->addHtmlHeadEntry(
+            'packages/admin/styles/admin-change-password-page.css'
+        );
+    }
 }
-
-?>
