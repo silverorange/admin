@@ -87,7 +87,7 @@ abstract class AdminConfirmation extends AdminPage
 	 * response to the button clicked. It is called by the
 	 * {@link AdminConfirmation::process} method.
 	 *
-	 * @return boolean true if processResponse was successful.
+	 * @return bool true if processResponse was successful.
 	 */
 	abstract protected function processResponse();
 

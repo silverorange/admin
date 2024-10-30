@@ -83,10 +83,8 @@ abstract class AdminEdit extends AdminPage
 
 	/**
 	 * Sub-classes should implement this method to perform validation.
-	 *
-	 * @return boolean true if validation was successful.
 	 */
-	protected function validate()
+	protected function validate(): void
 	{
 	}
 

@@ -100,7 +100,7 @@ abstract class AdminObjectDelete extends AdminDBDelete
 	// process phase
 	// {{{ protected function processDBData()
 
-	protected function processDBData()
+	protected function processDBData(): void
 	{
 		parent::processDBData();
 
@@ -111,7 +111,7 @@ abstract class AdminObjectDelete extends AdminDBDelete
 		$objects = $this->getObjects();
 		$this->deleteObjects($objects);
 
-		if ($message instanceof SiteMessage) {
+		if ($message instanceof SwatMessage) {
 			$this->app->messages->add($message);
 		}
 	}
