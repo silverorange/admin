@@ -157,16 +157,14 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	// process phase
 	// {{{ protected function processResponse()
 
-	protected function processResponse()
+	protected function processResponse(): void
 	{
 		$form = $this->ui->getWidget('confirmation_form');
-		$relocate = true;
 
 		if ($this->ui->getWidget('yes_button')->hasBeenClicked()) {
 			try {
 				$transaction = new SwatDBTransaction($this->app->db);
 				$this->processDBData();
-				$relocate = false;
 				$transaction->commit();
 
 			} catch (SwatDBException $e) {
@@ -179,8 +177,6 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 				$e->processAndContinue();
 			}
 		}
-
-		return $relocate;
 	}
 
 	// }}}

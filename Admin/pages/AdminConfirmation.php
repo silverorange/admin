@@ -51,14 +51,11 @@ abstract class AdminConfirmation extends AdminPage
 				} elseif (!$form->hasMessage()) {
 					// only process the response if the form validated and we're
 					// not already relocating.
-					$relocate = $this->processResponse();
+					$this->processResponse();
 
 					// processResponse() is not historically expected to return
-					// a value, so set relocate to true if it does not return a
-					// boolean.
-					if (!is_bool($relocate)) {
-						$relocate = true;
-					}
+					// a value, so we set relocate to true
+					$relocate = true;
 				}
 			}
 
@@ -86,10 +83,8 @@ abstract class AdminConfirmation extends AdminPage
 	 * This method is called to perform whatever processing is required in
 	 * response to the button clicked. It is called by the
 	 * {@link AdminConfirmation::process} method.
-	 *
-	 * @return bool true if processResponse was successful.
 	 */
-	abstract protected function processResponse();
+	abstract protected function processResponse(): void;
 
 	// }}}
 	// {{{ protected function relocate()
