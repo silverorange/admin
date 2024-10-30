@@ -13,6 +13,8 @@ class AdminAdminUserDetails extends AdminIndex
 
 	private $id;
 
+	private AdminUser $user;
+
 	// }}}
 
 	// init phase
@@ -37,7 +39,7 @@ class AdminAdminUserDetails extends AdminIndex
 
 	protected function initUser()
 	{
-		$class_name = SwatDBClassMap::get('AdminUser');
+		$class_name = SwatDBClassMap::get(AdminUser::class);
 		$this->user = new $class_name();
 		$this->user->setDatabase($this->app->db);
 
