@@ -99,9 +99,9 @@ abstract class AdminEdit extends AdminPage
 	 * are necessary to store the data. Widgets can be accessed through the
 	 * $ui class variable.
 	 *
-	 * @return boolean true if save was successful.
+	 * @return bool true if save was successful.
 	 */
-	abstract protected function saveData();
+	abstract protected function saveData(): bool;
 
 	// }}}
 	// {{{ protected function generateShortname()

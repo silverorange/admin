@@ -133,7 +133,7 @@ class AdminAdminComponentDetails extends AdminIndex
 	// }}}
 	// {{{ protected function getTableModel()
 
-	protected function getTableModel(SwatView $view)
+	protected function getTableModel(SwatView $view): ?SwatTableModel
 	{
 		$sub_components = $this->details_component->sub_components;
 

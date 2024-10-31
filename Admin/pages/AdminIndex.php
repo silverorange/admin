@@ -136,10 +136,10 @@ abstract class AdminIndex extends AdminPage
 	 * Sub-classes should implement this method and perform whatever actions
 	 * are necessary to obtain the data.
 	 *
-	 * @return SwatTableModel A new SwatTableModel containing the data.
+	 * @return ?SwatTableModel A new SwatTableModel containing the data, or null.
 	 *
 	 */
-	abstract protected function getTableModel(SwatView $view);
+	abstract protected function getTableModel(SwatView $view): ?SwatTableModel;
 
 	// }}}
 	// {{{ protected function getOrderByClause()

@@ -116,7 +116,7 @@ class AdminAdminUserIndex extends AdminIndex
 	// }}}
 	// {{{ protected function getTableModel()
 
-	protected function getTableModel(SwatView $view)
+	protected function getTableModel(SwatView $view): SwatTableStore
 	{
 		$instance_id = $this->app->getInstanceId();
 

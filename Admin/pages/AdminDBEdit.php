@@ -15,21 +15,15 @@ abstract class AdminDBEdit extends AdminEdit
 	// process phase
 	// {{{ protected function saveData()
 
-	protected function saveData()
+	protected function saveData(): bool
 	{
 		$relocate = true;
 		$message = null;
 
 		try {
 			$transaction = new SwatDBTransaction($this->app->db);
-			$relocate = $this->saveDBData();
+			$this->saveDBData();
 			$transaction->commit();
-
-			// saveDBData() is not historically expected to return a value, so
-			// set relocate to true if it does not return a boolean.
-			if (!is_bool($relocate)) {
-				$relocate = true;
-			}
 		} catch (SwatDBException $e) {
 			$transaction->rollback();
 
@@ -71,10 +65,8 @@ abstract class AdminDBEdit extends AdminEdit
 	 * Sub-classes should implement this method and perform whatever actions
 	 * are necessary to store the data. Widgets can be accessed through the
 	 * $ui class variable.
-	 *
-	 * @return boolean true if saveDBData was successful.
 	 */
-	abstract protected function saveDBData();
+	abstract protected function saveDBData(): void;
 
 	// }}}
 

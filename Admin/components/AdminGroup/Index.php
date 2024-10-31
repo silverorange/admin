@@ -37,10 +37,10 @@ class AdminAdminGroupIndex extends AdminIndex
 	// build phase
 	// {{{ protected function getTableModel()
 
-	protected function getTableModel(SwatView $view)
+	protected function getTableModel(SwatView $view): AdminGroupWrapper
 	{
 		$sql = 'select id, title from AdminGroup order by title';
-		$groups = SwatDB::query($this->app->db, $sql, 'AdminGroupWrapper');
+		$groups = SwatDB::query($this->app->db, $sql, AdminGroupWrapper::class);
 
 		return $groups;
 	}

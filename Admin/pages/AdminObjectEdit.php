@@ -259,7 +259,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	// }}}
 	// {{{ protected function saveDBData()
 
-	protected function saveDBData()
+	protected function saveDBData(): void
 	{
 		$this->updateObject();
 		$this->updateModifiedDate();
@@ -275,9 +275,6 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		$this->deleteOldObject();
 		$this->flushObjectsOnSave();
 		$this->addSavedMessage();
-
-		// parent::saveDBData() expects to return true on success.
-		return true;
 	}
 
 	// }}}
