@@ -53,8 +53,6 @@ abstract class AdminConfirmation extends AdminPage
 					// not already relocating.
 					$this->processResponse();
 
-					// processResponse() is not historically expected to return
-					// a value, so we set relocate to true
 					$relocate = true;
 				}
 			}
