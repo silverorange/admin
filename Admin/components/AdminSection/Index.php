@@ -64,13 +64,13 @@ class AdminAdminSectionIndex extends AdminIndex
 	// build phase
 	// {{{ protected function getTableModel()
 
-	protected function getTableModel(SwatView $view)
+	protected function getTableModel(SwatView $view): AdminSectionWrapper
 	{
 		$sql = 'select id, title, visible
 			from AdminSection
 			order by displayorder';
 
-		$sections = SwatDB::query($this->app->db, $sql, 'AdminSectionWrapper');
+		$sections = SwatDB::query($this->app->db, $sql, AdminSectionWrapper::class);
 
 		if (count($sections) == 0)
 			$this->ui->getWidget('order_tool')->visible = false;

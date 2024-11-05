@@ -52,11 +52,11 @@ abstract class AdminEdit extends AdminPage
 		$form = $this->ui->getWidget('edit_form');
 
 		if ($form->isProcessed()) {
-			$validated = $this->validate();
+			$this->validate();
 
-			// validate() doesn't necessarily return true/false, often it
-			// will return null, so explicitly check false here
-			if ($validated === false || $form->hasMessage()) {
+			// validate() doesn't return anything, so explicitly
+			// check if the form has a message here
+			if ($form->hasMessage()) {
 				$message = new SwatMessage(
 					Admin::_(
 						'There is a problem with the information submitted.'
@@ -83,10 +83,8 @@ abstract class AdminEdit extends AdminPage
 
 	/**
 	 * Sub-classes should implement this method to perform validation.
-	 *
-	 * @return boolean true if validation was successful.
 	 */
-	protected function validate()
+	protected function validate(): void
 	{
 	}
 
@@ -101,9 +99,9 @@ abstract class AdminEdit extends AdminPage
 	 * are necessary to store the data. Widgets can be accessed through the
 	 * $ui class variable.
 	 *
-	 * @return boolean true if save was successful.
+	 * @return bool true if save was successful.
 	 */
-	abstract protected function saveData();
+	abstract protected function saveData(): bool;
 
 	// }}}
 	// {{{ protected function generateShortname()

@@ -107,7 +107,7 @@ class AdminAdminComponentIndex extends AdminIndex
 	// build phase
 	// {{{ protected function getTableModel()
 
-	protected function getTableModel(SwatView $view)
+	protected function getTableModel(SwatView $view): SwatTableStore
 	{
 		/*
 		 * Build a custom table-view store here so we can set the sensitivity

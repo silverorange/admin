@@ -73,7 +73,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 	// process phase
 	// {{{ protected function validate()
 
-	protected function validate()
+	protected function validate(): void
 	{
 		parent::validate();
 

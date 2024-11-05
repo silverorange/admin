@@ -90,7 +90,7 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 	// process phase
 	// {{{ protected function validate()
 
-	protected function validate()
+	protected function validate(): void
 	{
 		$shortname_widget = $this->ui->getWidget('shortname');
 		$shortname = $shortname_widget->value;

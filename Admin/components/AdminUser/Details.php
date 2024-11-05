@@ -13,6 +13,8 @@ class AdminAdminUserDetails extends AdminIndex
 
 	private $id;
 
+	private AdminUser $user;
+
 	// }}}
 
 	// init phase
@@ -37,7 +39,7 @@ class AdminAdminUserDetails extends AdminIndex
 
 	protected function initUser()
 	{
-		$class_name = SwatDBClassMap::get('AdminUser');
+		$class_name = SwatDBClassMap::get(AdminUser::class);
 		$this->user = new $class_name();
 		$this->user->setDatabase($this->app->db);
 
@@ -75,7 +77,7 @@ class AdminAdminUserDetails extends AdminIndex
 	// }}}
 	// {{{ protected function getTableModel()
 
-	protected function getTableModel(SwatView $view)
+	protected function getTableModel(SwatView $view): AdminUserHistoryWrapper
 	{
 		$instance_id = $this->app->getInstanceId();
 
@@ -89,7 +91,7 @@ class AdminAdminUserDetails extends AdminIndex
 			$this->app->db->quote($instance_id, 'integer'),
 			$this->getOrderByClause($view, 'login_date desc'));
 
-		return SwatDB::query($this->app->db, $sql, 'AdminUserHistoryWrapper');
+		return SwatDB::query($this->app->db, $sql, AdminUserHistoryWrapper::class);
 	}
 
 	// }}}
