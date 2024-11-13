@@ -65,7 +65,7 @@ class AdminAdminUserLoginHistory extends AdminIndex
 	// }}}
 	// {{{ protected function getTableModel()
 
-	protected function getTableModel(SwatView $view): SwatDBDefaultRecordsetWrapper
+	protected function getTableModel(SwatView $view): ?SwatTableModel
 	{
 		$pager = $this->ui->getWidget('pager');
 		$this->app->db->setLimit($pager->page_size, $pager->current_record);
