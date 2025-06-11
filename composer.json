@@ -1,71 +1,79 @@
 {
-	"name": "silverorange/admin",
-	"description": "Framework for backend admin website.",
-	"type": "library",
-	"keywords": [ "framework", "admin", "management" ],
-	"homepage": "https://github.com/silverorange/admin",
-	"license": "LGPL-2.1",
-	"authors": [
-		{
-			"name": "Charles Waddell",
-			"email": "charles@silverorange.com"
-		},
-		{
-			"name": "Isaac Grant",
-			"email": "isaac@silverorange.com"
-		},
-		{
-			"name": "Michael Gauthier",
-			"email": "mike@silverorange.com"
-		},
-		{
-			"name": "Nathan Frederikson",
-			"email": "nathan@silverorange.com"
-		},
-		{
-			"name": "Nick Burka",
-			"email": "nick@silverorange.com"
-		},
-		{
-			"name": "Steven Garrity",
-			"email": "steven@silverorange.com"
-		}
-	],
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://composer.silverorange.com",
-			"only": ["silverorange/*"]
-		}
-	],
-	"require": {
-		"php": ">=8.2.0",
-		"ext-mbstring": "*",
-		"silverorange/site": "^15.0.0",
-		"silverorange/swat": "^7.1.0"
-	},
-	"require-dev": {
-		"bacon/bacon-qr-code": "^3.0",
-		"friendsofphp/php-cs-fixer": "3.64.0",
-		"phpstan/phpstan": "^1.12",
-		"robthree/twofactorauth": "^3.0"
-	},
-	"suggest": {
-		"robthree/twofactorauth": "required for the use of two factor authentication",
-		"bacon/bacon-qr-code": "required to show QR codes for two factor auth"
-	},
-	"autoload": {
-		"classmap": [ "Admin/" ]
-	},
-	"scripts": {
-		"phpcs": "./vendor/bin/php-cs-fixer check -v",
-		"phpcs:ci": "./vendor/bin/php-cs-fixer check --config=.php-cs-fixer.php --no-interaction --show-progress=none --diff --using-cache=no -vvv",
-		"phpcs:write": "./vendor/bin/php-cs-fixer fix -v",
-		"phpstan": "./vendor/bin/phpstan analyze",
-		"phpstan:ci": "./vendor/bin/phpstan analyze -vvv --no-progress --memory-limit 2G",
-		"phpstan:baseline": "./vendor/bin/phpstan analyze --generate-baseline"
-	},
-	"config": {
-		"sort-packages": true
-	}
+  "name": "silverorange/admin",
+  "description": "Framework for backend admin website.",
+  "type": "library",
+  "keywords": [
+    "framework",
+    "admin",
+    "management"
+  ],
+  "homepage": "https://github.com/silverorange/admin",
+  "license": "LGPL-2.1",
+  "authors": [
+    {
+      "name": "Charles Waddell",
+      "email": "charles@silverorange.com"
+    },
+    {
+      "name": "Isaac Grant",
+      "email": "isaac@silverorange.com"
+    },
+    {
+      "name": "Michael Gauthier",
+      "email": "mike@silverorange.com"
+    },
+    {
+      "name": "Nathan Frederikson",
+      "email": "nathan@silverorange.com"
+    },
+    {
+      "name": "Nick Burka",
+      "email": "nick@silverorange.com"
+    },
+    {
+      "name": "Steven Garrity",
+      "email": "steven@silverorange.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://composer.silverorange.com",
+      "only": [
+        "silverorange/*"
+      ]
+    }
+  ],
+  "require": {
+    "php": ">=8.2.0",
+    "ext-mbstring": "*",
+    "silverorange/site": "^15.0.0",
+    "silverorange/swat": "^7.1.0"
+  },
+  "require-dev": {
+    "bacon/bacon-qr-code": "^3.0",
+    "friendsofphp/php-cs-fixer": "3.64.0",
+    "phpstan/phpstan": "^1.12",
+    "robthree/twofactorauth": "^3.0"
+  },
+  "suggest": {
+    "robthree/twofactorauth": "required for the use of two factor authentication",
+    "bacon/bacon-qr-code": "required to show QR codes for two factor auth"
+  },
+  "autoload": {
+    "classmap": [
+      "Admin/"
+    ]
+  },
+  "scripts": {
+    "phpcs": "./vendor/bin/php-cs-fixer check -v",
+    "phpcs:ci": "./vendor/bin/php-cs-fixer check --config=.php-cs-fixer.php --no-interaction --show-progress=none --diff --using-cache=no -vvv",
+    "phpcs:write": "./vendor/bin/php-cs-fixer fix -v",
+    "phpstan": "./vendor/bin/phpstan analyze",
+    "phpstan:ci": "./vendor/bin/phpstan analyze -vvv --no-progress --memory-limit 2G",
+    "phpstan:baseline": "./vendor/bin/phpstan analyze --generate-baseline"
+  },
+  "config": {
+    "sort-packages": true
+  }
 }
