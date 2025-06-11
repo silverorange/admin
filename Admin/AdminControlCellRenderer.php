@@ -14,7 +14,7 @@
  */
 class AdminControlCellRenderer extends SwatImageLinkCellRenderer
 {
-	// {{{ public properties
+
 
 	/**
 	 * The stock id of this AdminControlCellRenderer
@@ -28,8 +28,8 @@ class AdminControlCellRenderer extends SwatImageLinkCellRenderer
 	 */
 	public $stock_id = null;
 
-	// }}}
-	// {{{ public function render()
+
+
 
 	public function render()
 	{
@@ -44,8 +44,8 @@ class AdminControlCellRenderer extends SwatImageLinkCellRenderer
 		parent::render();
 	}
 
-	// }}}
-	// {{{ public function setFromStock()
+
+
 
 	/**
 	 * Sets the values of this control cell renderer to a stock type
@@ -102,7 +102,7 @@ class AdminControlCellRenderer extends SwatImageLinkCellRenderer
 			$this->height = $height;
 	}
 
-	// }}}
+
 }
 
 ?>

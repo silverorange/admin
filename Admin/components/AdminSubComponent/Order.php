@@ -9,14 +9,14 @@
  */
 class AdminAdminSubComponentOrder extends AdminDBOrder
 {
-	// {{{ private properties
+
 
 	private $parent;
 
-	// }}}
+
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -27,10 +27,10 @@ class AdminAdminSubComponentOrder extends AdminDBOrder
 		$form->addHiddenField('parent', $this->parent);
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function saveIndex()
+
 
 	protected function saveIndex($id, $index)
 	{
@@ -38,10 +38,10 @@ class AdminAdminSubComponentOrder extends AdminDBOrder
 			'integer:displayorder', $index, 'integer:id', array($id));
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -63,8 +63,8 @@ class AdminAdminSubComponentOrder extends AdminDBOrder
 		$this->navbar->createEntry('Order Sub-Components');
 	}
 
-	// }}}
-	// {{{ protected function loadData()
+
+
 
 	protected function loadData()
 	{
@@ -86,7 +86,7 @@ class AdminAdminSubComponentOrder extends AdminDBOrder
 		$radio_list->value = ($sum == 0) ? 'auto' : 'custom';
 	}
 
-	// }}}
+
 }
 
 ?>

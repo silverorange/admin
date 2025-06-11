@@ -9,12 +9,12 @@
  */
 class Admin
 {
-	// {{{ constants
+
 
 	const GETTEXT_DOMAIN = 'admin';
 
-	// }}}
-	// {{{ private properties
+
+
 
 	/**
 	 * Whether or not this package is initialized
@@ -23,24 +23,24 @@ class Admin
 	 */
 	private static $is_initialized = false;
 
-	// }}}
-	// {{{ public static function _()
+
+
 
 	public static function _($message)
 	{
 		return self::gettext($message);
 	}
 
-	// }}}
-	// {{{ public static function gettext()
+
+
 
 	public static function gettext($message)
 	{
 		return dgettext(self::GETTEXT_DOMAIN, $message);
 	}
 
-	// }}}
-	// {{{ public static function ngettext()
+
+
 
 	public static function ngettext(
 		$singular_message,
@@ -51,8 +51,8 @@ class Admin
 			$singular_message, $plural_message, $number);
 	}
 
-	// }}}
-	// {{{ public static function setupGettext()
+
+
 
 	public static function setupGettext()
 	{
@@ -60,8 +60,8 @@ class Admin
 		bind_textdomain_codeset(self::GETTEXT_DOMAIN, 'UTF-8');
 	}
 
-	// }}}
-	// {{{ public static function getConfigDefinitions()
+
+
 
 	/**
 	 * Gets configuration definitions used by the Admin package
@@ -81,8 +81,8 @@ class Admin
 		];
 	}
 
-	// }}}
-	// {{{ public static function init()
+
+
 
 	public static function init()
 	{
@@ -100,8 +100,8 @@ class Admin
 		self::$is_initialized = true;
 	}
 
-	// }}}
-	// {{{ private function __construct()
+
+
 
 	/**
 	 * Prevent instantiation of this static class
@@ -110,7 +110,7 @@ class Admin
 	{
 	}
 
-	// }}}
+
 }
 
 ?>

@@ -9,7 +9,7 @@
  */
 class AdminGroupLinkCellRenderer extends SwatLinkCellRenderer
 {
-	// {{{ public function __construct()
+
 
 	public function __construct()
 	{
@@ -20,8 +20,8 @@ class AdminGroupLinkCellRenderer extends SwatLinkCellRenderer
 		);
 	}
 
-	// }}}
-	// {{{ protected function getCSSClassNames()
+
+
 
 	/**
 	 * Gets the array of CSS classes that are applied to this user-interface
@@ -42,7 +42,7 @@ class AdminGroupLinkCellRenderer extends SwatLinkCellRenderer
 		return array_merge($classes, $this->classes);
 	}
 
-	// }}}
+
 }
 
 ?>

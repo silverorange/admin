@@ -12,7 +12,7 @@
  */
 class AdminAdminSiteResetPassword extends AdminPage
 {
-	// {{{ private properties
+
 
 	/**
 	 * @var string
@@ -24,18 +24,18 @@ class AdminAdminSiteResetPassword extends AdminPage
 	 */
 	private $user;
 
-	// }}}
-	// {{{ protected function createLayout()
+
+
 
 	protected function createLayout()
 	{
 		return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
 	}
 
-	// }}}
+
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -64,8 +64,8 @@ class AdminAdminSiteResetPassword extends AdminPage
 		$confirm->password_widget = $this->ui->getWidget('password');
 	}
 
-	// }}}
-	// {{{ protected function initUser()
+
+
 
 	/**
 	 * Initializes the admin user object associated with the password tag
@@ -91,10 +91,10 @@ class AdminAdminSiteResetPassword extends AdminPage
 		}
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -128,8 +128,8 @@ class AdminAdminSiteResetPassword extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function sendResetPasswordSuccessMailMessage()
+
+
 
 	protected function sendResetPasswordSuccessMailMessage()
 	{
@@ -153,10 +153,10 @@ class AdminAdminSiteResetPassword extends AdminPage
 		$mail_message->send();
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -185,7 +185,7 @@ class AdminAdminSiteResetPassword extends AdminPage
 		}
 	}
 
-	// }}}
+
 }
 
 ?>

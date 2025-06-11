@@ -9,12 +9,12 @@
  */
 abstract class AdminPage extends SitePage
 {
-	// {{{ class constants
+
 
 	const RELOCATE_URL_FIELD = '_admin_relocate_url';
 
-	// }}}
-	// {{{ public properties
+
+
 
 	/**
 	 * Source of this page
@@ -55,8 +55,8 @@ abstract class AdminPage extends SitePage
 	 */
 	public $navbar = null;
 
-	// }}}
-	// {{{ protected properties
+
+
 
 	/**
 	 * The user-interface of this page
@@ -65,8 +65,8 @@ abstract class AdminPage extends SitePage
 	 */
 	protected $ui = null;
 
-	// }}}
-	// {{{ public function __construct()
+
+
 
 	public function __construct(
 		SiteApplication $app,
@@ -82,8 +82,8 @@ abstract class AdminPage extends SitePage
 		$this->ui = new AdminUI();
 	}
 
-	// }}}
-	// {{{ public function getRelativeURL()
+
+
 
 	public function getRelativeURL()
 	{
@@ -98,8 +98,8 @@ abstract class AdminPage extends SitePage
 		return $url;
 	}
 
-	// }}}
-	// {{{ public function getRefererURL()
+
+
 
 	public function getRefererURL()
 	{
@@ -111,34 +111,34 @@ abstract class AdminPage extends SitePage
 		}
 	}
 
-	// }}}
-	// {{{ public function getComponentName()
+
+
 
 	public function getComponentName()
 	{
 		return $this->component;
 	}
 
-	// }}}
-	// {{{ public function getComponentTitle()
+
+
 
 	public function getComponentTitle()
 	{
 		return $this->title;
 	}
 
-	// }}}
-	// {{{ protected function createLayout()
+
+
 
 	protected function createLayout()
 	{
 		return new AdminDefaultLayout($this->app, AdminDefaultTemplate::class);
 	}
 
-	// }}}
+
 
 	// init phase
-	// {{{ public function init()
+
 
 	/**
 	 * Initialize the page
@@ -155,8 +155,8 @@ abstract class AdminPage extends SitePage
 		$this->ui->init();
 	}
 
-	// }}}
-	// {{{ protected function initInternal()
+
+
 
 	/**
 	 * Initialize the page
@@ -169,10 +169,10 @@ abstract class AdminPage extends SitePage
 	{
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ public function process()
+
 
 	/**
 	 * Process the page
@@ -191,8 +191,8 @@ abstract class AdminPage extends SitePage
 		}
 	}
 
-	// }}}
-	// {{{ protected function formsAreAuthenticated()
+
+
 
 	/**
 	 * Authenticate any forms on the page
@@ -220,8 +220,8 @@ abstract class AdminPage extends SitePage
 		return true;
 	}
 
-	// }}}
-	// {{{ protected function processInternal()
+
+
 
 	/**
 	 * Processes the page
@@ -233,10 +233,10 @@ abstract class AdminPage extends SitePage
 	{
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ public function build()
+
 
 	public function build()
 	{
@@ -253,8 +253,8 @@ abstract class AdminPage extends SitePage
 		$this->layout->endCapture();
 	}
 
-	// }}}
-	// {{{ protected function buildInternal()
+
+
 
 	/**
 	 * Build the page for display
@@ -270,8 +270,8 @@ abstract class AdminPage extends SitePage
 	{
 	}
 
-	// }}}
-	// {{{ protected function buildMessages()
+
+
 
 	protected function buildMessages()
 	{
@@ -284,8 +284,8 @@ abstract class AdminPage extends SitePage
 		}
 	}
 
-	// }}}
-	// {{{ protected function display()
+
+
 
 	/**
 	 * Display the page
@@ -300,10 +300,10 @@ abstract class AdminPage extends SitePage
 		}
 	}
 
-	// }}}
+
 
 	// finalize phase
-	// {{{ public function finalize()
+
 
 	public function finalize()
 	{
@@ -312,7 +312,7 @@ abstract class AdminPage extends SitePage
 			$this->ui->getRoot()->getHtmlHeadEntrySet());
 	}
 
-	// }}}
+
 }
 
 ?>

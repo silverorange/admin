@@ -12,7 +12,7 @@
 abstract class AdminDBOrder extends AdminOrder
 {
 	// process phase
-	// {{{ protected function saveData()
+
 
 	protected function saveData()
 	{
@@ -41,15 +41,15 @@ abstract class AdminDBOrder extends AdminOrder
 		}
 	}
 
-	// }}}
-	// {{{ protected function saveDBData()
+
+
 
 	protected function saveDBData()
 	{
 		$this->saveIndexes();
 	}
 
-	// }}}
+
 }
 
 ?>

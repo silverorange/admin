@@ -13,7 +13,7 @@
 abstract class AdminDBEdit extends AdminEdit
 {
 	// process phase
-	// {{{ protected function saveData()
+
 
 	protected function saveData(): bool
 	{
@@ -55,8 +55,8 @@ abstract class AdminDBEdit extends AdminEdit
 		return $relocate;
 	}
 
-	// }}}
-	// {{{ abstract protected function saveDBData()
+
+
 
 	/**
 	 * Save the data from the database
@@ -68,10 +68,10 @@ abstract class AdminDBEdit extends AdminEdit
 	 */
 	abstract protected function saveDBData(): void;
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function loadData()
+
 
 	protected function loadData()
 	{
@@ -79,8 +79,8 @@ abstract class AdminDBEdit extends AdminEdit
 		return true;
 	}
 
-	// }}}
-	// {{{ abstract protected function loadDBData()
+
+
 
 	/**
 	 * Load the data from the database
@@ -92,7 +92,7 @@ abstract class AdminDBEdit extends AdminEdit
 	 */
 	abstract protected function loadDBData();
 
-	// }}}
+
 }
 
 ?>

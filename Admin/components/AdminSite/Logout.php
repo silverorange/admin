@@ -9,7 +9,7 @@
 class AdminAdminSiteLogout extends AdminPage
 {
 	// process phase
-	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -39,7 +39,7 @@ class AdminAdminSiteLogout extends AdminPage
 		}
 	}
 
-	// }}}
+
 }
 
 ?>

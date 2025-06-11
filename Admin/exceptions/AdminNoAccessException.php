@@ -9,7 +9,7 @@
  */
 class AdminNoAccessException extends AdminUserException
 {
-	// {{{ protected properties
+
 
 	/**
 	 * The user that was denied access
@@ -18,8 +18,8 @@ class AdminNoAccessException extends AdminUserException
 	 */
 	protected $user;
 
-	// }}}
-	// {{{ public function __construct()
+
+
 
 	/**
 	 * Creates a new no access exception
@@ -38,8 +38,8 @@ class AdminNoAccessException extends AdminUserException
 		$this->title = Admin::_('No Access');
 	}
 
-	// }}}
-	// {{{ public function getUser()
+
+
 
 	/**
 	 * Gets the user that was denied access
@@ -51,7 +51,7 @@ class AdminNoAccessException extends AdminUserException
 		return $this->user;
 	}
 
-	// }}}
+
 }
 
 ?>

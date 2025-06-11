@@ -9,7 +9,7 @@
  */
 class AdminDependencyEntry extends AdminDependencyItem
 {
-	// {{{ public properties
+
 
 	/**
 	 * Identifier for this entry
@@ -37,8 +37,8 @@ class AdminDependencyEntry extends AdminDependencyItem
 	 */
 	public $content_type = 'text/plain';
 
-	// }}}
-	// {{{ public function __construct()
+
+
 
 	/**
 	 * Creates a new AdminDependencyEntry
@@ -59,7 +59,7 @@ class AdminDependencyEntry extends AdminDependencyItem
 		}
 	}
 
-	// }}}
+
 }
 
 ?>

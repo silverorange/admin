@@ -12,7 +12,7 @@ use RobThree\Auth\TwoFactorAuth;
  */
 class AdminTwoFactorAuthentication
 {
-	// {{{ public function getNewSecret()
+
 
 	public function getNewSecret()
 	{
@@ -20,8 +20,8 @@ class AdminTwoFactorAuthentication
 		return $two_fa->createSecret();
 	}
 
-	// }}}
-	// {{{ public function getQrCodeDataUri()
+
+
 
 	public function getQrCodeDataUri($title, $secret, $size = 400)
 	{
@@ -29,8 +29,8 @@ class AdminTwoFactorAuthentication
 		return $two_fa->getQRCodeImageAsDataUri($title, $secret, $size);
 	}
 
-	// }}}
-	// {{{ public function validateToken()
+
+
 
 	public function validateToken($secret, $token, &$timeslice)
 	{
@@ -46,7 +46,7 @@ class AdminTwoFactorAuthentication
 		return $success;
 	}
 
-	// }}}
+
 }
 
 ?>

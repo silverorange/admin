@@ -9,7 +9,7 @@
  */
 class AdminUniqueEntry extends SwatEntry
 {
-	// {{{ public properties
+
 
 	/**
 	 * Whether or not this entry is alphanumeric
@@ -22,8 +22,8 @@ class AdminUniqueEntry extends SwatEntry
 	 */
 	public $alphanum = true;
 
-	// }}}
-	// {{{ public function init()
+
+
 
 	public function init()
 	{
@@ -31,8 +31,8 @@ class AdminUniqueEntry extends SwatEntry
 		$this->size = 20;
 	}
 
-	// }}}
-	// {{{ public function process()
+
+
 
 	/**
 	 * Processes this unique entry
@@ -53,7 +53,7 @@ class AdminUniqueEntry extends SwatEntry
 		}
 	}
 
-	// }}}
+
 }
 
 ?>

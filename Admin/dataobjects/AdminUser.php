@@ -10,7 +10,7 @@
  */
 class AdminUser extends SwatDBDataObject
 {
-	// {{{ class constants
+
 
 	/**
 	 * The number of days after which a user is considered inactive
@@ -22,8 +22,8 @@ class AdminUser extends SwatDBDataObject
 	 */
 	const EXPIRY_DAYS = 90;
 
-	// }}}
-	// {{{ public properties
+
+
 
 	/**
 	 * Unique identifier
@@ -147,8 +147,8 @@ class AdminUser extends SwatDBDataObject
 	 */
 	public $two_fa_timeslice;
 
-	// }}}
-	// {{{ protected properties
+
+
 
 	/**
 	 * @var SiteInstance
@@ -160,8 +160,8 @@ class AdminUser extends SwatDBDataObject
 	 */
 	protected $two_fa_authenticated = false;
 
-	// }}}
-	// {{{ public function isAuthenticated()
+
+
 
 	/**
 	 * Checks if a user is authenticated for an admin application
@@ -227,8 +227,8 @@ class AdminUser extends SwatDBDataObject
 		return $authenticated;
 	}
 
-	// }}}
-	// {{{ public function hasAccess()
+
+
 
 	/**
 	 * Gets whether or not this user has access to the given component
@@ -257,8 +257,8 @@ class AdminUser extends SwatDBDataObject
 		return SwatDB::queryOne($this->db, $sql);
 	}
 
-	// }}}
-	// {{{ public function hasAccessByShortname()
+
+
 
 	/**
 	 * Gets whether or not this user has access to the given component
@@ -290,8 +290,8 @@ class AdminUser extends SwatDBDataObject
 		return SwatDB::queryOne($this->db, $sql);
 	}
 
-	// }}}
-	// {{{ public function setPasswordHash()
+
+
 
 	/**
 	 * Sets this account's password hash
@@ -307,8 +307,8 @@ class AdminUser extends SwatDBDataObject
 		$this->password_salt = null;
 	}
 
-	// }}}
-	// {{{ public function resetPassword()
+
+
 
 	/**
 	 * Resets this user's password
@@ -350,8 +350,8 @@ class AdminUser extends SwatDBDataObject
 		return $password_tag;
 	}
 
-	// }}}
-	// {{{ public function loadFromEmail()
+
+
 
 	/**
 	 * Loads a user from the database with just an email address
@@ -383,8 +383,8 @@ class AdminUser extends SwatDBDataObject
 		return $this->load($id);
 	}
 
-	// }}}
-	// {{{ public function setInstance()
+
+
 
 	/**
 	 * Sets the instance to use when loading instance-specific information for
@@ -397,8 +397,8 @@ class AdminUser extends SwatDBDataObject
 		$this->instance = $instance;
 	}
 
-	// }}}
-	// {{{ public function isActive()
+
+
 
 	/**
 	 * Checks to see if this user is active
@@ -448,24 +448,24 @@ class AdminUser extends SwatDBDataObject
 		return $is_active;
 	}
 
-	// }}}
-	// {{{ public function set2FaAuthenticated()
+
+
 
 	public function set2FaAuthenticated($authenticated = true)
 	{
 		$this->two_fa_authenticated = $authenticated;
 	}
 
-	// }}}
-	// {{{ public function is2FaAuthenticated()
+
+
 
 	public function is2FaAuthenticated()
 	{
 		return $this->two_fa_authenticated;
 	}
 
-	// }}}
-	// {{{ protected function init()
+
+
 
 	protected function init()
 	{
@@ -476,8 +476,8 @@ class AdminUser extends SwatDBDataObject
 		$this->registerDateProperty('activation_date');
 	}
 
-	// }}}
-	// {{{ protected function loadHistory()
+
+
 
 	/**
 	 * Gets user history for this user
@@ -511,8 +511,8 @@ class AdminUser extends SwatDBDataObject
 		return SwatDB::query($this->db, $sql, 'AdminUserHistoryWrapper');
 	}
 
-	// }}}
-	// {{{ protected function loadMostRecentHistory()
+
+
 
 	/**
 	 * Gets most recent login history for this user
@@ -551,8 +551,8 @@ class AdminUser extends SwatDBDataObject
 		)->getFirst();
 	}
 
-	// }}}
-	// {{{ protected function loadInstances()
+
+
 
 	/**
 	 * Load the Instances that this user has access to
@@ -574,8 +574,8 @@ class AdminUser extends SwatDBDataObject
 		return SwatDB::query($this->db, $sql, $wrapper_class);
 	}
 
-	// }}}
-	// {{{ protected function loadGroups()
+
+
 
 	/**
 	 * Loads the Groups that this user has access to
@@ -596,8 +596,8 @@ class AdminUser extends SwatDBDataObject
 		return SwatDB::query($this->db, $sql, 'AdminGroupWrapper');
 	}
 
-	// }}}
-	// {{{ protected function getSerializablePrivateProperties()
+
+
 
 	protected function getSerializablePrivateProperties()
 	{
@@ -606,7 +606,7 @@ class AdminUser extends SwatDBDataObject
 		return $properties;
 	}
 
-	// }}}
+
 }
 
 ?>

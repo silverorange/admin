@@ -14,7 +14,7 @@
  */
 class AdminUI extends SwatUI
 {
-	// {{{ public function getValues()
+
 
 	/**
 	 * Gets values from widgets
@@ -39,8 +39,8 @@ class AdminUI extends SwatUI
 		return $values;
 	}
 
-	// }}}
-	// {{{ public function setValues()
+
+
 
 	/**
 	 * Sets values of widgets
@@ -67,7 +67,7 @@ class AdminUI extends SwatUI
 		}
 	}
 
-	// }}}
+
 }
 
 ?>

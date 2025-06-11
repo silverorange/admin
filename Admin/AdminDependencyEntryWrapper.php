@@ -8,7 +8,7 @@
  */
 class AdminDependencyEntryWrapper extends SwatDBRecordsetWrapper
 {
-	// {{{ protected function init()
+
 
 	protected function init()
 	{
@@ -16,7 +16,7 @@ class AdminDependencyEntryWrapper extends SwatDBRecordsetWrapper
 		$this->row_wrapper_class = 'AdminDependencyEntry';
 	}
 
-	// }}}
+
 }
 
 ?>

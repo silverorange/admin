@@ -11,13 +11,13 @@
  */
 class AdminMenuSubcomponent
 {
-	// {{{ public properties
+
 
 	public $shortname;
 	public $title;
 
-	// }}}
-	// {{{ public function __construct()
+
+
 
 	public function __construct($shortname, $title)
 	{
@@ -25,7 +25,7 @@ class AdminMenuSubcomponent
 		$this->title = $title;
 	}
 
-	// }}}
+
 }
 
 ?>

@@ -9,7 +9,7 @@
  */
 abstract class AdminObjectEdit extends AdminDBEdit
 {
-	// {{{ protected properties
+
 
 	/**
 	 * The dataobject instance we are editing on this page.
@@ -49,42 +49,42 @@ abstract class AdminObjectEdit extends AdminDBEdit
 	 */
 	protected $current_time;
 
-	// }}}
-	// {{{ abstract protected function getObjectClass()
+
+
 
 	abstract protected function getObjectClass();
 
-	// }}}
-	// {{{ abstract protected function getUiXml()
+
+
 
 	abstract protected function getUiXml();
 
-	// }}}
-	// {{{ protected function getResolvedObjectClass()
+
+
 
 	protected function getResolvedObjectClass()
 	{
 		return SwatDBClassMap::get($this->getObjectClass());
 	}
 
-	// }}}
-	// {{{ protected function getObject()
+
+
 
 	protected function getObject()
 	{
 		return $this->data_object;
 	}
 
-	// }}}
-	// {{{ protected function setObject()
+
+
 
 	protected function setObject(SwatDBDataObject $object)
 	{
 		$this->data_object = $object;
 	}
 
-	// }}}
-	// {{{ protected function getOldObject()
+
+
 
 	protected function getOldObject()
 	{
@@ -95,8 +95,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		return $this->old_object;
 	}
 
-	// }}}
-	// {{{ protected function shouldReplaceObject()
+
+
 
 	/**
 	 * Whether or not to replace the object being edited with a new object.
@@ -112,16 +112,16 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		return false;
 	}
 
-	// }}}
-	// {{{ protected function getObjectUiValueNames()
+
+
 
 	protected function getObjectUiValueNames()
 	{
 		return array();
 	}
 
-	// }}}
-	// {{{ protected function getCurrentTime()
+
+
 
 	protected function getCurrentTime()
 	{
@@ -133,8 +133,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		return $this->current_time;
 	}
 
-	// }}}
-	// {{{ protected function getObjectTimeZone()
+
+
 
 	protected function getObjectTimeZone()
 	{
@@ -146,18 +146,18 @@ abstract class AdminObjectEdit extends AdminDBEdit
 			: $this->app->default_time_zone;
 	}
 
-	// }}}
-	// {{{ protected function getObjectTimeZonePropertyName()
+
+
 
 	protected function getObjectTimeZonePropertyName()
 	{
 		return 'time_zone';
 	}
 
-	// }}}
+
 
 	// init phase
-	// {{{ public function init()
+
 
 	public function init()
 	{
@@ -173,8 +173,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		$this->ui->init();
 	}
 
-	// }}}
-	// {{{ protected function initInternal()
+
+
 
 	protected function initInternal()
 	{
@@ -184,8 +184,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		$this->initTimeZoneWidget();
 	}
 
-	// }}}
-	// {{{ protected function initObject()
+
+
 
 	protected function initObject()
 	{
@@ -204,8 +204,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function initTimeZoneWidget()
+
+
 
 	protected function initTimeZoneWidget()
 	{
@@ -216,8 +216,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function getNewObjectInstance()
+
+
 
 	protected function getNewObjectInstance()
 	{
@@ -234,10 +234,10 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		return $data_object;
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function validateShortname()
+
 
 	protected function validateShortname($shortname)
 	{
@@ -256,8 +256,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		return $valid;
 	}
 
-	// }}}
-	// {{{ protected function saveDBData()
+
+
 
 	protected function saveDBData(): void
 	{
@@ -277,8 +277,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		$this->addSavedMessage();
 	}
 
-	// }}}
-	// {{{ protected function updateObject()
+
+
 
 	protected function updateObject()
 	{
@@ -323,8 +323,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function updateModifiedDate()
+
+
 
 	protected function updateModifiedDate()
 	{
@@ -340,16 +340,16 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function saveObject()
+
+
 
 	protected function saveObject()
 	{
 		$this->getObject()->save();
 	}
 
-	// }}}
-	// {{{ protected function deleteOldObject()
+
+
 
 	protected function deleteOldObject()
 	{
@@ -360,15 +360,15 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function postSaveObject()
+
+
 
 	protected function postSaveObject()
 	{
 	}
 
-	// }}}
-	// {{{ protected function addObjectToFlushOnSave()
+
+
 
 	protected function addObjectToFlushOnSave(SwatDBDataObject $object)
 	{
@@ -382,16 +382,16 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		$this->data_objects_to_flush[] = $object;
 	}
 
-	// }}}
-	// {{{ protected function clearObjectsToFlush()
+
+
 
 	protected function clearObjectsToFlush()
 	{
 		$this->data_objects_to_flush = array();
 	}
 
-	// }}}
-	// {{{ protected function flushObjectsOnSave()
+
+
 
 	protected function flushObjectsOnSave()
 	{
@@ -402,8 +402,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function addSavedMessage()
+
+
 
 	protected function addSavedMessage()
 	{
@@ -415,8 +415,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function getSavedMessage()
+
+
 
 	protected function getSavedMessage()
 	{
@@ -441,48 +441,48 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		return $message;
 	}
 
-	// }}}
-	// {{{ protected function getSavedMessagePrimaryContent()
+
+
 
 	protected function getSavedMessagePrimaryContent()
 	{
 		return null;
 	}
 
-	// }}}
-	// {{{ protected function getSavedMessageSecondaryContent()
+
+
 
 	protected function getSavedMessageSecondaryContent()
 	{
 		return null;
 	}
 
-	// }}}
-	// {{{ protected function getSavedMessageType()
+
+
 
 	protected function getSavedMessageType()
 	{
 		return null;
 	}
 
-	// }}}
-	// {{{ protected function getSavedMessageContentType()
+
+
 
 	protected function getSavedMessageContentType()
 	{
 		return null;
 	}
 
-	// }}}
-	// {{{ protected function assignUiValues()
+
+
 
 	protected function assignUiValues(array $names)
 	{
 		$this->assignUiValuesToObject($this->getObject(), $names);
 	}
 
-	// }}}
-	// {{{ protected function assignUiValuesToObject()
+
+
 
 	protected function assignUiValuesToObject(
 		SwatDBDataObject $object,
@@ -502,8 +502,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function assignUiValueToObject()
+
+
 
 	protected function assignUiValueToObject(
 		SwatDBDataObject $object,
@@ -536,34 +536,34 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		}
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function loadDBData()
+
 
 	protected function loadDBData()
 	{
 		$this->loadObject();
 	}
 
-	// }}}
-	// {{{ protected function loadObject()
+
+
 
 	protected function loadObject()
 	{
 		$this->assignValuesToUi($this->getObjectUiValueNames());
 	}
 
-	// }}}
-	// {{{ protected function assignValuesToUi()
+
+
 
 	protected function assignValuesToUi(array $names)
 	{
 		$this->assignObjectValuesToUi($this->getObject(), $names);
 	}
 
-	// }}}
-	// {{{ protected function assignObjectValuesToUi()
+
+
 
 	protected function assignObjectValuesToUi(
 		SwatDBDataObject $object,
@@ -574,8 +574,8 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function assignObjectValueToUi()
+
+
 
 	protected function assignObjectValueToUi(SwatDBDataObject $object, $name)
 	{
@@ -604,7 +604,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
 		$widget->value = $value;
 	}
 
-	// }}}
+
 }
 
 ?>

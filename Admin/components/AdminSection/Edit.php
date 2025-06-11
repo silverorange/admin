@@ -9,23 +9,23 @@
  */
 class AdminAdminSectionEdit extends AdminObjectEdit
 {
-	// {{{ protected function getObjectClass()
+
 
 	protected function getObjectClass()
 	{
 		return 'AdminSection';
 	}
 
-	// }}}
-	// {{{ protected function getUiXml()
+
+
 
 	protected function getUiXml()
 	{
 		return __DIR__.'/edit.xml';
 	}
 
-	// }}}
-	// {{{ protected function getObjectUiValueNames()
+
+
 
 	protected function getObjectUiValueNames()
 	{
@@ -36,10 +36,10 @@ class AdminAdminSectionEdit extends AdminObjectEdit
 		);
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function getSavedMessagePrimaryContent()
+
 
 	protected function getSavedMessagePrimaryContent()
 	{
@@ -49,7 +49,7 @@ class AdminAdminSectionEdit extends AdminObjectEdit
 		);
 	}
 
-	// }}}
+
 }
 
 ?>

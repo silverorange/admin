@@ -13,7 +13,7 @@
  */
 class AdminSection extends SwatDBDataObject
 {
-	// {{{ public properties
+
 
 	/**
 	 * Unique identifier
@@ -50,8 +50,8 @@ class AdminSection extends SwatDBDataObject
 	 */
 	public $visible;
 
-	// }}}
-	// {{{ protected function init()
+
+
 
 	protected function init()
 	{
@@ -59,8 +59,8 @@ class AdminSection extends SwatDBDataObject
 		$this->id_field = 'integer:id';
 	}
 
-	// }}}
-	// {{{ protected function loadComponents()
+
+
 
 	/**
 	 * @return AdminComponentWrapper
@@ -75,7 +75,7 @@ class AdminSection extends SwatDBDataObject
 		return SwatDB::query($this->db, $sql, 'AdminComponentWrapper');
 	}
 
-	// }}}
+
 }
 
 ?>

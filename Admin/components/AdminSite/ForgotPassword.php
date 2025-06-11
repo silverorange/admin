@@ -10,17 +10,17 @@
  */
 class AdminAdminSiteForgotPassword extends AdminPage
 {
-	// {{{ protected function createLayout()
+
 
 	protected function createLayout()
 	{
 		return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
 	}
 
-	// }}}
+
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -39,10 +39,10 @@ class AdminAdminSiteForgotPassword extends AdminPage
 		$form->action = $this->app->getUri();
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -55,8 +55,8 @@ class AdminAdminSiteForgotPassword extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function generatePasswordLink()
+
+
 
 	protected function generatePasswordLink()
 	{
@@ -127,8 +127,8 @@ class AdminAdminSiteForgotPassword extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function getAccount()
+
+
 
 	/**
 	 * Gets the user to which to send the forgot password email
@@ -150,8 +150,8 @@ class AdminAdminSiteForgotPassword extends AdminPage
 		return $admin_user;
 	}
 
-	// }}}
-	// {{{ protected function sendResetPasswordMailMessage()
+
+
 
 	protected function sendResetPasswordMailMessage(AdminUser $admin_user)
 	{
@@ -179,7 +179,7 @@ class AdminAdminSiteForgotPassword extends AdminPage
 		$mail_message->send();
 	}
 
-	// }}}
+
 }
 
 ?>

@@ -12,7 +12,7 @@
  */
 abstract class AdminDBConfirmation extends AdminConfirmation
 {
-	// {{{ protected properties
+
 
 	/**
 	 * The current items of this confirmation page
@@ -31,8 +31,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 	 */
 	protected $extended_selected;
 
-	// }}}
-	// {{{ public function __construct()
+
+
 
 	/**
 	 * Creates a new database-driven confirmation page
@@ -52,8 +52,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		$this->items = new SwatViewSelection(array());
 	}
 
-	// }}}
-	// {{{ public function setItems()
+
+
 
 	/**
 	 * Sets the items of this confirmation page
@@ -87,8 +87,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		$form->addHiddenField('extended_selected', $this->extended_selected);
 	}
 
-	// }}}
-	// {{{ protected function getItemList()
+
+
 
 	/**
 	 * Get the items of this confirmation page as a database-quoted list
@@ -108,8 +108,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		return implode(',', $list);
 	}
 
-	// }}}
-	// {{{ protected function getItemCount()
+
+
 
 	/**
 	 * Gets the number of items on this confirmation page
@@ -121,8 +121,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		return count($this->items);
 	}
 
-	// }}}
-	// {{{ protected function getFirstItem()
+
+
 
 	/**
 	 * Gets the first item on this confirmation page
@@ -137,10 +137,10 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		return $this->items->current();
 	}
 
-	// }}}
+
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -152,10 +152,10 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 			$this->setItems($items);
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function processResponse()
+
 
 	protected function processResponse(): void
 	{
@@ -179,8 +179,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		}
 	}
 
-	// }}}
-	// {{{ protected function generateMessage()
+
+
 
 	protected function generateMessage(Throwable $e)
 	{
@@ -196,8 +196,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 		$this->app->messages->add($message);
 	}
 
-	// }}}
-	// {{{ protected function processDBData()
+
+
 
 	/**
 	 * Processes data in the database
@@ -213,10 +213,10 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 			$form->getHiddenField('extended_selected'));
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -227,7 +227,7 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 			$this->setItems(new SwatViewSelection(array($id)));
 	}
 
-	// }}}
+
 }
 
 ?>

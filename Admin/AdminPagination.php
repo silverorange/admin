@@ -9,7 +9,7 @@
  */
 class AdminPagination extends SwatPagination
 {
-	// {{{ public properties
+
 
 	/**
 	 * HTTP GET varables that are not to be preserved
@@ -18,8 +18,8 @@ class AdminPagination extends SwatPagination
 	 */
 	public $unset_get_vars = array();
 
-	// }}}
-	// {{{ public function process()
+
+
 
 	/**
 	 * Processes this pagination widget
@@ -34,8 +34,8 @@ class AdminPagination extends SwatPagination
 			$this->setCurrentPage($_GET[$this->id]);
 	}
 
-	// }}}
-	// {{{ protected function getLink()
+
+
 
 	/**
 	 * Gets the base link for all page links
@@ -74,7 +74,7 @@ class AdminPagination extends SwatPagination
 		return $link;
 	}
 
-	// }}}
+
 }
 
 ?>

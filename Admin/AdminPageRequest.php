@@ -9,7 +9,7 @@
  */
 class AdminPageRequest extends SiteObject
 {
-	// {{{ protected properties
+
 
 	protected $source;
 	protected $component;
@@ -18,8 +18,8 @@ class AdminPageRequest extends SiteObject
 	protected $app;
 	protected $class_prefix;
 
-	// }}}
-	// {{{ public function __construct()
+
+
 
 	/**
 	 * Creates a new page request and resolves the component for the request
@@ -120,8 +120,8 @@ class AdminPageRequest extends SiteObject
 		}
 	}
 
-	// }}}
-	// {{{ public function getClassName()
+
+
 
 	public function getClassName()
 	{
@@ -145,40 +145,40 @@ class AdminPageRequest extends SiteObject
 		return $class_name;
 	}
 
-	// }}}
-	// {{{ public function getTitle()
+
+
 
 	public function getTitle()
 	{
 		return $this->title;
 	}
 
-	// }}}
-	// {{{ public function getComponent()
+
+
 
 	public function getComponent()
 	{
 		return $this->component;
 	}
 
-	// }}}
-	// {{{ public function getSubComponent()
+
+
 
 	public function getSubComponent()
 	{
 		return $this->subcomponent;
 	}
 
-	// }}}
-	// {{{ public function getSource()
+
+
 
 	public function getSource()
 	{
 		return $this->source;
 	}
 
-	// }}}
-	// {{{ protected function getAdminSiteTitles()
+
+
 
 	public function getAdminSiteTitles()
 	{
@@ -196,7 +196,7 @@ class AdminPageRequest extends SiteObject
 		);
 	}
 
-	// }}}
+
 }
 
 ?>

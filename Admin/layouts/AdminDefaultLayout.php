@@ -11,7 +11,7 @@
  */
 class AdminDefaultLayout extends AdminLayout
 {
-	// {{{ public properties
+
 
 	/**
 	 * Breadcrumb navigation
@@ -36,8 +36,8 @@ class AdminDefaultLayout extends AdminLayout
 	 */
 	public $menu = null;
 
-	// }}}
-	// {{{ public function __construct()
+
+
 
 	public function __construct($app, $filename = null)
 	{
@@ -46,10 +46,10 @@ class AdminDefaultLayout extends AdminLayout
 		$this->navbar->separator = ' › ';
 	}
 
-	// }}}
+
 
 	// init phase
-	// {{{ public function init()
+
 
 	public function init()
 	{
@@ -59,8 +59,8 @@ class AdminDefaultLayout extends AdminLayout
 		$this->initMenu();
 	}
 
-	// }}}
-	// {{{ protected function initLogoutForm()
+
+
 
 	protected function initLogoutForm()
 	{
@@ -76,8 +76,8 @@ class AdminDefaultLayout extends AdminLayout
 		$this->logout_form->add($form_field);
 	}
 
-	// }}}
-	// {{{ protected function initMenu()
+
+
 
 	/**
 	 * Initializes layout menu view
@@ -99,10 +99,10 @@ class AdminDefaultLayout extends AdminLayout
 		$this->menu->init();
 	}
 
-	// }}}
+
 
 	// finalize phase
-	// {{{ public function finalize()
+
 
 	public function finalize()
 	{
@@ -129,8 +129,8 @@ class AdminDefaultLayout extends AdminLayout
 		$this->addHtmlHeadEntrySet($this->menu->getHtmlHeadEntrySet());
 	}
 
-	// }}}
-	// {{{ protected function displayHeader()
+
+
 
 	/**
 	 * Display admin page header
@@ -151,16 +151,16 @@ class AdminDefaultLayout extends AdminLayout
 		echo '</div>';
 	}
 
-	// }}}
-	// {{{ protected function displayNavBar()
+
+
 
 	protected function displayNavBar()
 	{
 		$this->navbar->display();
 	}
 
-	// }}}
-	// {{{ protected function displayMenu()
+
+
 
 	/**
 	 * Display admin page menu
@@ -173,7 +173,7 @@ class AdminDefaultLayout extends AdminLayout
 		$this->menu->display();
 	}
 
-	// }}}
+
 }
 
 ?>

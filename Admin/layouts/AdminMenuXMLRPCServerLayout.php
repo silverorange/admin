@@ -7,7 +7,7 @@
  */
 class AdminMenuXMLRPCServerLayout extends SiteXMLRPCServerLayout
 {
-	// {{{ public properties
+
 
 	/**
 	 * This application's menu view
@@ -16,10 +16,10 @@ class AdminMenuXMLRPCServerLayout extends SiteXMLRPCServerLayout
 	 */
 	public $menu = null;
 
-	// }}}
+
 
 	// init phase
-	// {{{ public function init()
+
 
 	public function init()
 	{
@@ -27,8 +27,8 @@ class AdminMenuXMLRPCServerLayout extends SiteXMLRPCServerLayout
 		$this->initMenu();
 	}
 
-	// }}}
-	// {{{ protected function initMenu()
+
+
 
 	/**
 	 * Initializes layout menu view
@@ -49,7 +49,7 @@ class AdminMenuXMLRPCServerLayout extends SiteXMLRPCServerLayout
 		$this->menu->init();
 	}
 
-	// }}}
+
 }
 
 ?>

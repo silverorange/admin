@@ -9,7 +9,7 @@
  */
 class AdminSearchOperatorFlydown extends SwatFlydown
 {
-	// {{{ public properties
+
 
 	/**
 	 * Operators
@@ -26,8 +26,8 @@ class AdminSearchOperatorFlydown extends SwatFlydown
 		AdminSearchClause::OP_EQUALS,
 	);
 
-	// }}}
-	// {{{ public function display()
+
+
 
 	public function display()
 	{
@@ -44,8 +44,8 @@ class AdminSearchOperatorFlydown extends SwatFlydown
 		parent::display();
 	}
 
-	// }}}
-	// {{{ private static function getOperatorTitle()
+
+
 
 	private static function getOperatorTitle($id)
 	{
@@ -71,7 +71,7 @@ class AdminSearchOperatorFlydown extends SwatFlydown
 		}
 	}
 
-	// }}}
+
 }
 
 ?>

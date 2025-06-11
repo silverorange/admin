@@ -9,7 +9,7 @@
  */
 class AdminAdminComponentDetails extends AdminIndex
 {
-	// {{{ private properties
+
 
 	private $id;
 
@@ -18,10 +18,10 @@ class AdminAdminComponentDetails extends AdminIndex
 	 */
 	private $details_component;
 
-	// }}}
+
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -34,8 +34,8 @@ class AdminAdminComponentDetails extends AdminIndex
 		$this->initComponent();
 	}
 
-	// }}}
-	// {{{ protected function initComponent()
+
+
 
 	protected function initComponent()
 	{
@@ -50,10 +50,10 @@ class AdminAdminComponentDetails extends AdminIndex
 		}
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function processActions()
+
 
 	protected function processActions(SwatView $view, SwatActions $actions)
 	{
@@ -94,10 +94,10 @@ class AdminAdminComponentDetails extends AdminIndex
 			$this->app->messages->add($message);
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -130,8 +130,8 @@ class AdminAdminComponentDetails extends AdminIndex
 		$frame->subtitle = $this->details_component->title;
 	}
 
-	// }}}
-	// {{{ protected function getTableModel()
+
+
 
 	protected function getTableModel(SwatView $view): ?SwatTableModel
 	{
@@ -143,8 +143,8 @@ class AdminAdminComponentDetails extends AdminIndex
 		return $sub_components;
 	}
 
-	// }}}
-	// {{{ private function displayGroups()
+
+
 
 	private function displayGroups()
 	{
@@ -162,7 +162,7 @@ class AdminAdminComponentDetails extends AdminIndex
 		echo '<ul>';
 	}
 
-	// }}}
+
 }
 
 ?>

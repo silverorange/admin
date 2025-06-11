@@ -9,15 +9,15 @@
 class AdminAdminSiteTwoFactorAuthentication extends AdminPage
 {
 	// init phase
-	// {{{ protected function createLayout()
+
 
 	protected function createLayout()
 	{
 		return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
 	}
 
-	// }}}
-	// {{{ protected function initInternal()
+
+
 
 	protected function initInternal()
 	{
@@ -37,10 +37,10 @@ class AdminAdminSiteTwoFactorAuthentication extends AdminPage
 		}
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -62,8 +62,8 @@ class AdminAdminSiteTwoFactorAuthentication extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function validate2Fa()
+
+
 
 	protected function validate2Fa()
 	{
@@ -84,10 +84,10 @@ class AdminAdminSiteTwoFactorAuthentication extends AdminPage
 		}
 	}
 
-	// }}}
+
 
 	// finalize phase
-	// {{{ public function finalize
+
 
 	public function finalize()
 	{
@@ -98,7 +98,7 @@ class AdminAdminSiteTwoFactorAuthentication extends AdminPage
 		);
 	}
 
-	// }}}
+
 }
 
 ?>

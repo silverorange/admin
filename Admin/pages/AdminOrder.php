@@ -13,7 +13,7 @@
 abstract class AdminOrder extends AdminPage
 {
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -26,18 +26,18 @@ abstract class AdminOrder extends AdminPage
 		$this->ui->loadFromXML($this->getUiXml());
 	}
 
-	// }}}
-	// {{{ protected function getUiXml()
+
+
 
 	protected function getUiXml()
 	{
 		return __DIR__.'/order.xml';
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -52,8 +52,8 @@ abstract class AdminOrder extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function saveData()
+
+
 
 	/**
 	 * Saves ordering information
@@ -63,8 +63,8 @@ abstract class AdminOrder extends AdminPage
 		$this->saveIndexes();
 	}
 
-	// }}}
-	// {{{ protected function saveIndexes()
+
+
 
 	/**
 	 * Saves the updated ordering indexes of each option
@@ -85,8 +85,8 @@ abstract class AdminOrder extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function relocate()
+
+
 
 	/**
 	 * Relocates after processing is complete
@@ -98,8 +98,8 @@ abstract class AdminOrder extends AdminPage
 		$this->app->relocate($url);
 	}
 
-	// }}}
-	// {{{ protected function getUpdatedMessage()
+
+
 
 	/**
 	 * Gets the message to show the user when the order is successfully updated
@@ -113,8 +113,8 @@ abstract class AdminOrder extends AdminPage
 		return new SwatMessage(Admin::_('Order updated.'));
 	}
 
-	// }}}
-	// {{{ abstract protected function saveIndex()
+
+
 
 	/**
 	 * Save index
@@ -129,10 +129,10 @@ abstract class AdminOrder extends AdminPage
 	 */
 	abstract protected function saveIndex($id, $index);
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -143,8 +143,8 @@ abstract class AdminOrder extends AdminPage
 		$this->loadData();
 	}
 
-	// }}}
-	// {{{ protected function buildOptionList()
+
+
 
 	protected function buildOptionList()
 	{
@@ -155,8 +155,8 @@ abstract class AdminOrder extends AdminPage
 		);
 	}
 
-	// }}}
-	// {{{ protected function buildButton()
+
+
 
 	protected function buildButton()
 	{
@@ -164,8 +164,8 @@ abstract class AdminOrder extends AdminPage
 		$button->title = Admin::_('Update Order');
 	}
 
-	// }}}
-	// {{{ protected function buildForm()
+
+
 
 	protected function buildForm()
 	{
@@ -178,8 +178,8 @@ abstract class AdminOrder extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function buildNavBar()
+
+
 
 	protected function buildNavBar()
 	{
@@ -188,8 +188,8 @@ abstract class AdminOrder extends AdminPage
 		$this->navbar->createEntry(Admin::_('Change Order'));
 	}
 
-	// }}}
-	// {{{ protected function display()
+
+
 
 	protected function display()
 	{
@@ -197,8 +197,8 @@ abstract class AdminOrder extends AdminPage
 		Swat::displayInlineJavaScript($this->getInlineJavaScript());
 	}
 
-	// }}}
-	// {{{ abstract protected function loadData()
+
+
 
 	/**
 	 * Load the data
@@ -210,15 +210,15 @@ abstract class AdminOrder extends AdminPage
 	 */
 	abstract protected function loadData();
 
-	// }}}
-	// {{{ private function getInlineJavaScript()
+
+
 
 	private function getInlineJavaScript()
 	{
 		return "var admin_order = new AdminOrder('options_custom', order_obj);";
 	}
 
-	// }}}
+
 }
 
 ?>

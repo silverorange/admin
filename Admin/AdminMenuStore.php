@@ -11,7 +11,7 @@
  */
 class AdminMenuStore
 {
-	// {{{ public properties
+
 
 	/**
 	 * Sections in this menu
@@ -20,8 +20,8 @@ class AdminMenuStore
 	 */
 	public $sections;
 
-	// }}}
-	// {{{ public function __construct()
+
+
 
 	/**
 	 * @param MDB2_Result $rs A recordset containing the menu.
@@ -66,8 +66,8 @@ class AdminMenuStore
 		} while ($rs->nextResult());
 	}
 
-	// }}}
-	// {{{ public function getComponentByName()
+
+
 
 	public function getComponentByName($name)
 	{
@@ -79,7 +79,7 @@ class AdminMenuStore
 		return null;
 	}
 
-	// }}}
+
 }
 
 ?>

@@ -9,23 +9,23 @@
  */
 class AdminAdminComponentEdit extends AdminObjectEdit
 {
-	// {{{ protected function getObjectClass()
+
 
 	protected function getObjectClass()
 	{
 		return 'AdminComponent';
 	}
 
-	// }}}
-	// {{{ protected function getUiXml()
+
+
 
 	protected function getUiXml()
 	{
 		return __DIR__.'/edit.xml';
 	}
 
-	// }}}
-	// {{{ protected function getObjectUiValueNames()
+
+
 
 	protected function getObjectUiValueNames()
 	{
@@ -39,10 +39,10 @@ class AdminAdminComponentEdit extends AdminObjectEdit
 		);
 	}
 
-	// }}}
+
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -52,8 +52,8 @@ class AdminAdminComponentEdit extends AdminObjectEdit
 		$this->initGroups();
 	}
 
-	// }}}
-	// {{{ protected function initSections()
+
+
 
 	protected function initSections()
 	{
@@ -69,8 +69,8 @@ class AdminAdminComponentEdit extends AdminObjectEdit
 		$section_flydown->addOptionsByArray($section_flydown_options);
 	}
 
-	// }}}
-	// {{{ protected function initGroups()
+
+
 
 	protected function initGroups()
 	{
@@ -86,10 +86,10 @@ class AdminAdminComponentEdit extends AdminObjectEdit
 		$group_list->addOptionsByArray($group_list_options);
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function validate()
+
 
 	protected function validate(): void
 	{
@@ -108,16 +108,16 @@ class AdminAdminComponentEdit extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function postSaveObject()
+
+
 
 	protected function postSaveObject()
 	{
 		$this->updateGroupBindings();
 	}
 
-	// }}}
-	// {{{ protected function updateGroupBindings()
+
+
 
 	protected function updateGroupBindings()
 	{
@@ -135,8 +135,8 @@ class AdminAdminComponentEdit extends AdminObjectEdit
 		);
 	}
 
-	// }}}
-	// {{{ protected function getSavedMessagePrimaryContent()
+
+
 
 	protected function getSavedMessagePrimaryContent()
 	{
@@ -146,10 +146,10 @@ class AdminAdminComponentEdit extends AdminObjectEdit
 		);
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function loadObject()
+
 
 	protected function loadObject()
 	{
@@ -160,8 +160,8 @@ class AdminAdminComponentEdit extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function loadGroupBindings()
+
+
 
 	protected function loadGroupBindings()
 	{
@@ -175,7 +175,7 @@ class AdminAdminComponentEdit extends AdminObjectEdit
 		);
 	}
 
-	// }}}
+
 }
 
 ?>

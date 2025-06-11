@@ -8,22 +8,22 @@
  */
 class AdminAdminSubComponentDelete extends AdminDBDelete
 {
-	// {{{ private properties
+
 
 	private $parent;
 
-	// }}}
-	// {{{ public function setParent()
+
+
 
 	public function setParent($parent)
 	{
 		$this->parent = $parent;
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function processDBData()
+
 
 	protected function processDBData(): void
 	{
@@ -44,10 +44,10 @@ class AdminAdminSubComponentDelete extends AdminDBDelete
 		$this->app->messages->add($message);
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -84,7 +84,7 @@ class AdminAdminSubComponentDelete extends AdminDBDelete
 		$this->navbar->createEntry(Admin::_('Delete Sub-Component(s)'));
 	}
 
-	// }}}
+
 }
 
 ?>

@@ -11,7 +11,7 @@
  */
 class AdminMenuComponent
 {
-	// {{{ public properties
+
 
 	public $id;
 	public $shortname;
@@ -19,8 +19,8 @@ class AdminMenuComponent
 	public $title;
 	public $subcomponents;
 
-	// }}}
-	// {{{ public function __construct()
+
+
 
 	public function __construct($id, $shortname, $title, $description = null)
 	{
@@ -31,7 +31,7 @@ class AdminMenuComponent
 		$this->subcomponents = array();
 	}
 
-	// }}}
+
 }
 
 ?>

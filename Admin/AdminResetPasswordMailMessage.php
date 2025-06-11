@@ -23,7 +23,7 @@
  */
 class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 {
-	// {{{ protected properties
+
 
 	/**
 	 * The user this reset password mail message is intended for
@@ -40,8 +40,8 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 	 */
 	protected $password_link;
 
-	// }}}
-	// {{{ public function __construct()
+
+
 
 	/**
 	 * Creates a new reset password email
@@ -62,8 +62,8 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 		$this->admin_user = $user;
 	}
 
-	// }}}
-	// {{{ public function send()
+
+
 
 	/**
 	 * Sends this mail message
@@ -87,8 +87,8 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 		parent::send();
 	}
 
-	// }}}
-	// {{{ protected function getTextBody()
+
+
 
 	/**
 	 * Gets the plain-text content of this mail message
@@ -103,8 +103,8 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 			$this->getTextInstanceNote());
 	}
 
-	// }}}
-	// {{{ protected function getHtmlBody()
+
+
 
 	/**
 	 * Gets the HTML content of this mail message
@@ -119,8 +119,8 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 			$this->getHtmlInstanceNote());
 	}
 
-	// }}}
-	// {{{ protected function getHtmlInstanceNote()
+
+
 
 	protected function getHtmlInstanceNote()
 	{
@@ -156,8 +156,8 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 		return $instance_note;
 	}
 
-	// }}}
-	// {{{ protected function getTextInstanceNote()
+
+
 
 	protected function getTextInstanceNote()
 	{
@@ -191,8 +191,8 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 		return $instance_note;
 	}
 
-	// }}}
-	// {{{ protected function getFormattedBody()
+
+
 
 	protected function getFormattedBody($format_string, $formatted_link)
 	{
@@ -228,7 +228,7 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
 				$this->app->config->site->title));
 	}
 
-	// }}}
+
 }
 
 ?>

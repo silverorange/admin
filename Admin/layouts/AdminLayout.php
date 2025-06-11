@@ -10,7 +10,7 @@
 abstract class AdminLayout extends SiteLayout
 {
 	// build phase
-	// {{{ public function build()
+
 
 	public function build()
 	{
@@ -23,8 +23,8 @@ abstract class AdminLayout extends SiteLayout
 		$this->addHtmlHeadEntry('packages/admin/styles/admin-swat-local.css');
 	}
 
-	// }}}
-	// {{{ protected function getTagByFlagFile()
+
+
 
 	protected function getTagByFlagFile()
 	{
@@ -41,7 +41,7 @@ abstract class AdminLayout extends SiteLayout
 		return $tag;
 	}
 
-	// }}}
+
 }
 
 ?>

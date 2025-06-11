@@ -10,17 +10,17 @@
 class AdminAdminGroupIndex extends AdminIndex
 {
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
 		$this->ui->loadFromXML(__DIR__.'/index.xml');
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function processActions()
+
 
 	protected function processActions(SwatView $view, SwatActions $actions)
 	{
@@ -32,10 +32,10 @@ class AdminAdminGroupIndex extends AdminIndex
 		}
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function getTableModel()
+
 
 	protected function getTableModel(SwatView $view): AdminGroupWrapper
 	{
@@ -45,7 +45,7 @@ class AdminAdminGroupIndex extends AdminIndex
 		return $groups;
 	}
 
-	// }}}
+
 }
 
 ?>

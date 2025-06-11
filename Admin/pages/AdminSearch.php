@@ -13,7 +13,7 @@
 abstract class AdminSearch extends AdminIndex
 {
 	// process phase
-	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -40,8 +40,8 @@ abstract class AdminSearch extends AdminIndex
 		}
 	}
 
-	// }}}
-	// {{{ protected function clearState()
+
+
 
 	/**
 	 * Clears a saved search state
@@ -52,8 +52,8 @@ abstract class AdminSearch extends AdminIndex
 			unset($this->app->session->{$this->getKey()});
 	}
 
-	// }}}
-	// {{{ protected function saveState()
+
+
 
 	protected function saveState()
 	{
@@ -70,8 +70,8 @@ abstract class AdminSearch extends AdminIndex
 		}
 	}
 
-	// }}}
-	// {{{ protected function loadState()
+
+
 
 	/**
 	 * Loads a saved search state for this page
@@ -104,8 +104,8 @@ abstract class AdminSearch extends AdminIndex
 		return $return;
 	}
 
-	// }}}
-	// {{{ protected function hasState()
+
+
 
 	/**
 	 * Checks if this search page has stored search information
@@ -118,18 +118,18 @@ abstract class AdminSearch extends AdminIndex
 		return isset($this->app->session->{$this->getKey()});
 	}
 
-	// }}}
-	// {{{ protected function getKey()
+
+
 
 	protected function getKey()
 	{
 		return $this->source.'_search_state';
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -144,8 +144,8 @@ abstract class AdminSearch extends AdminIndex
 		}
 	}
 
-	// }}}
-	// {{{ protected function buildViews()
+
+
 
 	/**
 	 * Builds views for this search page
@@ -175,7 +175,7 @@ abstract class AdminSearch extends AdminIndex
 		parent::buildViews();
 	}
 
-	// }}}
+
 }
 
 ?>

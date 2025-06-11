@@ -9,7 +9,7 @@
  */
 class AdminSessionModule extends SiteSessionModule
 {
-	// {{{ protected properties
+
 
 	/**
 	 * @var array
@@ -17,8 +17,8 @@ class AdminSessionModule extends SiteSessionModule
 	 */
 	protected $login_callbacks = array();
 
-	// }}}
-	// {{{ public function __construct()
+
+
 
 	/**
 	 * Creates a admin session module
@@ -39,8 +39,8 @@ class AdminSessionModule extends SiteSessionModule
 		parent::__construct($app);
 	}
 
-	// }}}
-	// {{{ public function init()
+
+
 
 	public function init()
 	{
@@ -59,8 +59,8 @@ class AdminSessionModule extends SiteSessionModule
 		}
 	}
 
-	// }}}
-	// {{{ public function depends()
+
+
 
 	/**
 	 * Gets the module features this module depends on
@@ -80,8 +80,8 @@ class AdminSessionModule extends SiteSessionModule
 		return $depends;
 	}
 
-	// }}}
-	// {{{ public function login()
+
+
 
 	/**
 	 * Logs an admin user into an admin
@@ -126,8 +126,8 @@ class AdminSessionModule extends SiteSessionModule
 		return $this->isLoggedIn();
 	}
 
-	// }}}
-	// {{{ public function logout()
+
+
 
 	/**
 	 * Logs the current admin user out of an admin
@@ -138,8 +138,8 @@ class AdminSessionModule extends SiteSessionModule
 		$this->user = null;
 	}
 
-	// }}}
-	// {{{ public function isLoggedIn()
+
+
 
 	/**
 	 * Gets whether or not an admin user is logged in
@@ -153,8 +153,8 @@ class AdminSessionModule extends SiteSessionModule
 			$this->user->isAuthenticated($this->app));
 	}
 
-	// }}}
-	// {{{ public function getUser()
+
+
 
 	/**
 	 * Gets the current admin user
@@ -170,8 +170,8 @@ class AdminSessionModule extends SiteSessionModule
 		return $this->user;
 	}
 
-	// }}}
-	// {{{ public function getUserID()
+
+
 
 	/**
 	 * Gets the current admin user's user identifier
@@ -187,8 +187,8 @@ class AdminSessionModule extends SiteSessionModule
 		return $this->user->id;
 	}
 
-	// }}}
-	// {{{ public function getEmailAddress()
+
+
 
 	/**
 	 * Gets the current admin user's email address
@@ -204,8 +204,8 @@ class AdminSessionModule extends SiteSessionModule
 		return $this->user->email;
 	}
 
-	// }}}
-	// {{{ public function getName()
+
+
 
 	/**
 	 * Gets the current admin user's name
@@ -221,8 +221,8 @@ class AdminSessionModule extends SiteSessionModule
 		return $this->user->name;
 	}
 
-	// }}}
-	// {{{ public function loginWithTwoFactorAuthentication()
+
+
 
 	/**
 	 * loginWithTwoFactorAuthentication
@@ -250,8 +250,8 @@ class AdminSessionModule extends SiteSessionModule
 		return $success;
 	}
 
-	// }}}
-	// {{{ public function registerLoginCallback()
+
+
 
 	/**
 	 * Registers a callback function that is executed when a successful session
@@ -282,8 +282,8 @@ class AdminSessionModule extends SiteSessionModule
 		);
 	}
 
-	// }}}
-	// {{{ protected function startSession()
+
+
 
 	protected function startSession()
 	{
@@ -294,8 +294,8 @@ class AdminSessionModule extends SiteSessionModule
 		}
 	}
 
-	// }}}
-	// {{{ protected function insertUserHistory()
+
+
 
 	/**
 	 * Inserts login history for a user
@@ -334,8 +334,8 @@ class AdminSessionModule extends SiteSessionModule
 			$values);
 	}
 
-	// }}}
-	// {{{ protected function runLoginCallbacks()
+
+
 
 	protected function runLoginCallbacks()
 	{
@@ -346,7 +346,7 @@ class AdminSessionModule extends SiteSessionModule
 		}
 	}
 
-	// }}}
+
 }
 
 ?>

@@ -9,7 +9,7 @@
  */
 class AdminNotFoundException extends AdminUserException
 {
-	// {{{ public function __construct()
+
 
 	/**
 	 * Creates a new not found exception
@@ -23,7 +23,7 @@ class AdminNotFoundException extends AdminUserException
 		$this->title = Admin::_('Not Found');
 	}
 
-	// }}}
+
 }
 
 ?>

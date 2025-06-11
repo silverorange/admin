@@ -10,7 +10,7 @@
 class AdminAdminUserLoginHistory extends AdminIndex
 {
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -24,10 +24,10 @@ class AdminAdminUserLoginHistory extends AdminIndex
 		$this->navbar->createEntry(Admin::_('Login History'));
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -45,10 +45,10 @@ class AdminAdminUserLoginHistory extends AdminIndex
 		$pager->process();
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -62,8 +62,8 @@ class AdminAdminUserLoginHistory extends AdminIndex
 		$date_renderer->display_time_zone = $this->app->default_time_zone;
 	}
 
-	// }}}
-	// {{{ protected function getTableModel()
+
+
 
 	protected function getTableModel(SwatView $view): ?SwatTableModel
 	{
@@ -89,7 +89,7 @@ class AdminAdminUserLoginHistory extends AdminIndex
 		return $rs;
 	}
 
-	// }}}
+
 }
 
 ?>

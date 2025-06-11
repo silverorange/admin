@@ -13,14 +13,14 @@
  */
 abstract class AdminDBDelete extends AdminDBConfirmation
 {
-	// {{{ protected properties
+
 
 	protected $single_delete = false;
 
-	// }}}
+
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -48,10 +48,10 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 		$this->navbar->createEntry(Admin::_('Delete'));
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function generateMessage()
+
 
 	protected function generateMessage(Throwable $e)
 	{
@@ -68,8 +68,8 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 		$this->app->messages->add($message);
 	}
 
-	// }}}
-	// {{{ protected function relocate()
+
+
 
 	protected function relocate()
 	{
@@ -92,7 +92,7 @@ abstract class AdminDBDelete extends AdminDBConfirmation
 		}
 	}
 
-	// }}}
+
 }
 
 ?>

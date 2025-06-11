@@ -9,15 +9,15 @@
 class AdminAdminSiteChangePassword extends AdminPage
 {
 	// init phase
-	// {{{ protected function createLayout()
+
 
 	protected function createLayout()
 	{
 		return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
 	}
 
-	// }}}
-	// {{{ protected function initInternal()
+
+
 
 	protected function initInternal()
 	{
@@ -35,10 +35,10 @@ class AdminAdminSiteChangePassword extends AdminPage
 		$form->addHiddenField('relocate_uri', $this->app->getUri());
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -71,8 +71,8 @@ class AdminAdminSiteChangePassword extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function validatePasswords()
+
+
 
 	protected function validatePasswords()
 	{
@@ -113,10 +113,10 @@ class AdminAdminSiteChangePassword extends AdminPage
 		}
 	}
 
-	// }}}
+
 
 	// finalize phase
-	// {{{ public function finalize
+
 
 	public function finalize()
 	{
@@ -127,7 +127,7 @@ class AdminAdminSiteChangePassword extends AdminPage
 		);
 	}
 
-	// }}}
+
 }
 
 ?>

@@ -12,16 +12,16 @@
  */
 abstract class AdminApproval extends AdminPage
 {
-	// {{{ protected properties
+
 
 	protected $id;
 	protected $data_object;
 	protected $pending_ids = array();
 
-	// }}}
+
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -45,18 +45,18 @@ abstract class AdminApproval extends AdminPage
 		$this->initDataObject($this->id);
 	}
 
-	// }}}
-	// {{{ abstract protected function initDataObject()
+
+
 
 	abstract protected function initDataObject($id);
 
-	// }}}
-	// {{{ abstract protected function getPendingIds()
+
+
 
 	abstract protected function getPendingIds();
 
-	// }}}
-	// {{{ protected function getNextId()
+
+
 
 	protected function getNextId()
 	{
@@ -73,8 +73,8 @@ abstract class AdminApproval extends AdminPage
 		return null;
 	}
 
-	// }}}
-	// {{{ protected function getRemainingCount()
+
+
 
 	protected function getRemainingCount()
 	{
@@ -92,18 +92,18 @@ abstract class AdminApproval extends AdminPage
 		return $count;
 	}
 
-	// }}}
-	// {{{ protected function getUiXml()
+
+
 
 	protected function getUiXml()
 	{
 		return __DIR__.'/approval.xml';
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -117,8 +117,8 @@ abstract class AdminApproval extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function save()
+
+
 
 	protected function save()
 	{
@@ -129,21 +129,21 @@ abstract class AdminApproval extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ abstract protected function approve()
+
+
 
 	abstract protected function approve();
 
-	// }}}
-	// {{{ protected function delete()
+
+
 
 	protected function delete()
 	{
 		$this->data_object->delete();
 	}
 
-	// }}}
-	// {{{ protected function relocate()
+
+
 
 	protected function relocate()
 	{
@@ -161,10 +161,10 @@ abstract class AdminApproval extends AdminPage
 		$this->app->relocate($relocate_uri);
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -189,15 +189,15 @@ abstract class AdminApproval extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ abstract protected function displayContent()
+
+
 
 	abstract protected function displayContent();
 
-	// }}}
+
 
 	// finalize phase
-	// {{{ public function finalize()
+
 
 	public function finalize()
 	{
@@ -208,7 +208,7 @@ abstract class AdminApproval extends AdminPage
 		);
 	}
 
-	// }}}
+
 }
 
 ?>

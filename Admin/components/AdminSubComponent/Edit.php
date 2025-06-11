@@ -9,28 +9,28 @@
  */
 class AdminAdminSubComponentEdit extends AdminObjectEdit
 {
-	// {{{ protected properties
+
 
 	protected $admin_component;
 
-	// }}}
-	// {{{ protected function getObjectClass()
+
+
 
 	protected function getObjectClass()
 	{
 		return 'AdminSubComponent';
 	}
 
-	// }}}
-	// {{{ protected function getUiXml()
+
+
 
 	protected function getUiXml()
 	{
 		return __DIR__.'/edit.xml';
 	}
 
-	// }}}
-	// {{{ protected function getObjectUiValueNames()
+
+
 
 	protected function getObjectUiValueNames()
 	{
@@ -41,10 +41,10 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 		);
 	}
 
-	// }}}
+
 
 	// init phase
-	// {{{ protected function initInternal()
+
 
 	protected function initInternal()
 	{
@@ -53,8 +53,8 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 		$this->initAdminComponent();
 	}
 
-	// }}}
-	// {{{ protected function initAdminComponent()
+
+
 
 	protected function initAdminComponent()
 	{
@@ -85,10 +85,10 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 		}
 	}
 
-	// }}}
+
 
 	// process phase
-	// {{{ protected function validate()
+
 
 	protected function validate(): void
 	{
@@ -107,8 +107,8 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function updateObject()
+
+
 
 	protected function updateObject()
 	{
@@ -119,8 +119,8 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 		}
 	}
 
-	// }}}
-	// {{{ protected function getSavedMessagePrimaryContent()
+
+
 
 	protected function getSavedMessagePrimaryContent()
 	{
@@ -130,10 +130,10 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 		);
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function buildForm()
+
 
 	protected function buildForm()
 	{
@@ -143,8 +143,8 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 		$form->addHiddenField('parent', $this->admin_component->id);
 	}
 
-	// }}}
-	// {{{ protected function buildNavBar()
+
+
 
 	protected function buildNavBar()
 	{
@@ -170,7 +170,7 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 		);
 	}
 
-	// }}}
+
 }
 
 ?>

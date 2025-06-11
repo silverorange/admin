@@ -13,7 +13,7 @@
 abstract class AdminIndex extends AdminPage
 {
 	// process phase
-	// {{{ protected function processInternal()
+
 
 	protected function processInternal()
 	{
@@ -42,8 +42,8 @@ abstract class AdminIndex extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function processActions()
+
+
 
 	/**
 	 * Processes index actions
@@ -59,10 +59,10 @@ abstract class AdminIndex extends AdminPage
 	{
 	}
 
-	// }}}
+
 
 	// build phase
-	// {{{ protected function buildInternal()
+
 
 	protected function buildInternal()
 	{
@@ -73,8 +73,8 @@ abstract class AdminIndex extends AdminPage
 		$this->buildMessages();
 	}
 
-	// }}}
-	// {{{ protected function buildViews()
+
+
 
 	/**
 	 * Builds tables views for this index page
@@ -88,8 +88,8 @@ abstract class AdminIndex extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function buildView()
+
+
 
 	protected function buildView(SwatView $view)
 	{
@@ -98,8 +98,8 @@ abstract class AdminIndex extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ protected function buildForms()
+
+
 
 	/**
 	 * Builds forms for this index page
@@ -126,8 +126,8 @@ abstract class AdminIndex extends AdminPage
 		}
 	}
 
-	// }}}
-	// {{{ abstract protected function getTableModel()
+
+
 
 	/**
 	 * Retrieve data to display.
@@ -141,8 +141,8 @@ abstract class AdminIndex extends AdminPage
 	 */
 	abstract protected function getTableModel(SwatView $view): ?SwatTableModel;
 
-	// }}}
-	// {{{ protected function getOrderByClause()
+
+
 
 	protected function getOrderByClause(
 		$view,
@@ -190,7 +190,7 @@ abstract class AdminIndex extends AdminPage
 		return $orderby;
 	}
 
-	// }}}
+
 }
 
 ?>

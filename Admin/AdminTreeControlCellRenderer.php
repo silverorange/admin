@@ -12,7 +12,7 @@
  */
 class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
 {
-	// {{{ public properties
+
 
 	/**
 	 * The number of children the item this renderer is rendering for has
@@ -21,8 +21,8 @@ class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
 	 */
 	public $childcount = 0;
 
-	// }}}
-	// {{{ public function render()
+
+
 
 	public function render()
 	{
@@ -50,7 +50,7 @@ class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
 		parent::render();
 	}
 
-	// }}}
+
 }
 
 ?>

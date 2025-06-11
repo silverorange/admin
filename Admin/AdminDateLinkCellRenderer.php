@@ -9,7 +9,7 @@
  */
 class AdminDateLinkCellRenderer extends AdminTitleLinkCellRenderer
 {
-	// {{{ public properties
+
 
 	/**
 	 * Date to render
@@ -51,8 +51,8 @@ class AdminDateLinkCellRenderer extends AdminTitleLinkCellRenderer
 	 */
 	public $display_time_zone = null;
 
-	// }}}
-	// {{{ protected function getText()
+
+
 
 	protected function getText()
 	{
@@ -67,15 +67,15 @@ class AdminDateLinkCellRenderer extends AdminTitleLinkCellRenderer
 		return ob_get_clean();
 	}
 
-	// }}}
-	// {{{ protected function getTitle()
+
+
 
 	protected function getTitle()
 	{
 		return parent::getText();
 	}
 
-	// }}}
+
 }
 
 ?>
