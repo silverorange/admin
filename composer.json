@@ -46,9 +46,9 @@
 	},
 	"require-dev": {
 		"bacon/bacon-qr-code": "^3.0",
+		"friendsofphp/php-cs-fixer": "3.64.0",
 		"phpstan/phpstan": "^1.12",
-		"robthree/twofactorauth": "^3.0",
-		"silverorange/coding-standard": "^1.0.0"
+		"robthree/twofactorauth": "^3.0"
 	},
 	"suggest": {
 		"robthree/twofactorauth": "required for the use of two factor authentication",
@@ -58,10 +58,12 @@
 		"classmap": [ "Admin/" ]
 	},
 	"scripts": {
-		"lint": "./vendor/bin/phpcs",
+		"phpcs": "./vendor/bin/php-cs-fixer check -v",
+		"phpcs:ci": "./vendor/bin/php-cs-fixer check --config=.php-cs-fixer.php --no-interaction --show-progress=none --diff --using-cache=no -vvv",
+		"phpcs:write": "./vendor/bin/php-cs-fixer fix -v",
 		"phpstan": "./vendor/bin/phpstan analyze",
-		"post-install-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/silverorange/coding-standard/src",
-		"post-update-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/silverorange/coding-standard/src"
+		"phpstan:ci": "./vendor/bin/phpstan analyze -vvv --no-progress --memory-limit 2G",
+		"phpstan:baseline": "./vendor/bin/phpstan analyze --generate-baseline"
 	},
 	"config": {
 		"sort-packages": true
