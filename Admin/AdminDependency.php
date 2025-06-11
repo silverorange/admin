@@ -270,6 +270,7 @@ abstract class AdminDependency
         $count = $this->getStatusLevelCount($status_level);
         $first = true;
 
+        /** @phpstan-ignore property.notFound */
         foreach ($this->entries as $entry) {
             if ($entry->status_level == $status_level) {
                 if ($first) {
