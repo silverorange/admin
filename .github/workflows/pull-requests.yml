@@ -17,7 +17,7 @@ jobs:
         uses: silverorange/actions-setup-php@v2
         with:
           php-version: '8.2'
-          extensions: gd
+          extensions: gd   # required by silverorange/Site
 
       - name: Get composer cache directory
         id: composer-cache
