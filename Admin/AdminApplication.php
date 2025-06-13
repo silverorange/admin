@@ -68,7 +68,7 @@ class AdminApplication extends SiteWebApplication
      *
      * @var string the menu-view class name
      */
-    protected $menu_view_class = 'AdminMenuView';
+    protected $menu_view_class = AdminMenuView::class;
 
     // @var array
     protected $has_component_cache = [];
@@ -163,8 +163,8 @@ class AdminApplication extends SiteWebApplication
     /**
      * Sets the class to use for this admin application's menu-view.
      *
-     * @param string $class_name the class to use for this admin application's
-     *                           menu-view
+     * @param class-string $class_name the class to use for this admin application's
+     *                                 menu-view
      *
      * @throws AdminException if the menu-view class is not defined or if the
      *                        menu-view class is not an AdminMenuView
@@ -178,8 +178,8 @@ class AdminApplication extends SiteWebApplication
             ));
         }
 
-        if ($class_name !== 'AdminMenuView'
-            && !is_subclass_of($class_name, 'AdminMenuView')) {
+        if ($class_name !== AdminMenuView::class
+            && !is_subclass_of($class_name, AdminMenuView::class)) {
             throw new AdminException(sprintf(
                 "Class '%s' is not an AdminMenuView.",
                 $class_name
@@ -322,12 +322,12 @@ class AdminApplication extends SiteWebApplication
     {
         $enabled = $this->config->admin->two_fa_enabled;
         if ($enabled) {
-            if (!class_exists('RobThree\Auth\TwoFactorAuth')) {
+            if (!class_exists(RobThree\Auth\TwoFactorAuth::class)) {
                 throw new AdminException(
                     'robthree/twofactorauth is required for using 2FA'
                 );
             }
-            if (!class_exists('BaconQrCode\Writer')) {
+            if (!class_exists(BaconQrCode\Writer::class)) {
                 throw new AdminException(
                     'bacon/bacon-qr-code is required for using 2FA'
                 );

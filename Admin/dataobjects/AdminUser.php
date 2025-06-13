@@ -461,7 +461,7 @@ class AdminUser extends SwatDBDataObject
             $this->db->quote($instance_id, 'integer'),
         );
 
-        return SwatDB::query($this->db, $sql, 'AdminUserHistoryWrapper');
+        return SwatDB::query($this->db, $sql, AdminUserHistoryWrapper::class);
     }
 
     /**
@@ -497,7 +497,7 @@ class AdminUser extends SwatDBDataObject
         return SwatDB::query(
             $this->db,
             $sql,
-            'AdminUserHistoryWrapper',
+            AdminUserHistoryWrapper::class,
         )->getFirst();
     }
 
@@ -517,7 +517,7 @@ class AdminUser extends SwatDBDataObject
             $this->db->quote($this->id, 'integer'),
         );
 
-        $wrapper_class = SwatDBClassMap::get('SiteInstanceWrapper');
+        $wrapper_class = SwatDBClassMap::get(SiteInstanceWrapper::class);
 
         return SwatDB::query($this->db, $sql, $wrapper_class);
     }
@@ -538,7 +538,7 @@ class AdminUser extends SwatDBDataObject
             $this->db->quote($this->id, 'integer'),
         );
 
-        return SwatDB::query($this->db, $sql, 'AdminGroupWrapper');
+        return SwatDB::query($this->db, $sql, AdminGroupWrapper::class);
     }
 
     protected function getSerializablePrivateProperties()

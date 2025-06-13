@@ -131,7 +131,7 @@ class AdminComponent extends SwatDBDataObject
 
         $this->registerInternalProperty(
             'section',
-            SwatDBClassMap::get('AdminSection')
+            SwatDBClassMap::get(AdminSection::class)
         );
     }
 
@@ -148,7 +148,7 @@ class AdminComponent extends SwatDBDataObject
         return SwatDB::query(
             $this->db,
             $sql,
-            SwatDBClassMap::get('AdminSubComponentWrapper')
+            SwatDBClassMap::get(AdminSubComponentWrapper::class)
         );
     }
 
@@ -167,7 +167,7 @@ class AdminComponent extends SwatDBDataObject
         return SwatDB::query(
             $this->db,
             $sql,
-            SwatDBClassMap::get('AdminGroupWrapper')
+            SwatDBClassMap::get(AdminGroupWrapper::class)
         );
     }
 }

@@ -13,7 +13,7 @@ class AdminUserHistoryWrapper extends SwatDBRecordsetWrapper
     protected function init()
     {
         parent::init();
-        $this->row_wrapper_class = 'AdminUserHistory';
+        $this->row_wrapper_class = AdminUserHistory::class;
         $this->index_field = 'id';
     }
 }
