@@ -1,17 +1,20 @@
 <?php
 
+use BaconQrCode\Writer;
+use RobThree\Auth\TwoFactorAuth;
+
 /**
  * Web application class for an administration application.
  *
  * @copyright 2004-2022 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  *
- * @property SiteCookieModule $cookie
+ * @property SiteCookieModule   $cookie
  * @property SiteDatabaseModule $database
  * @property AdminSessionModule $session
  * @property SiteMessagesModule $messages
- * @property SiteConfigModule $config
- * @property SiteCryptModule $crypt
+ * @property SiteConfigModule   $config
+ * @property SiteCryptModule    $crypt
  */
 class AdminApplication extends SiteWebApplication
 {
@@ -329,12 +332,12 @@ class AdminApplication extends SiteWebApplication
     {
         $enabled = $this->config->admin->two_fa_enabled;
         if ($enabled) {
-            if (!class_exists(RobThree\Auth\TwoFactorAuth::class)) {
+            if (!class_exists(TwoFactorAuth::class)) {
                 throw new AdminException(
                     'robthree/twofactorauth is required for using 2FA'
                 );
             }
-            if (!class_exists(BaconQrCode\Writer::class)) {
+            if (!class_exists(Writer::class)) {
                 throw new AdminException(
                     'bacon/bacon-qr-code is required for using 2FA'
                 );

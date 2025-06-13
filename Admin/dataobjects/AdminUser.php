@@ -8,25 +8,25 @@
  *
  * @see       AdminGroup
  *
- * @property int $id
- * @property string $email
- * @property string $name
- * @property string $password
- * @property ?string $password_salt
- * @property ?string $password_tag
- * @property ?SwatDate $password_tag_date
- * @property bool $force_change_password
- * @property bool $enabled
- * @property string $menu_state
- * @property bool $all_instances
- * @property ?SwatDate $activation_date
- * @property ?string $two_fa_secret
- * @property int $two_fa_timeslice
- * @property SiteInstance $instance
+ * @property int                     $id
+ * @property string                  $email
+ * @property string                  $name
+ * @property string                  $password
+ * @property ?string                 $password_salt
+ * @property ?string                 $password_tag
+ * @property ?SwatDate               $password_tag_date
+ * @property bool                    $force_change_password
+ * @property bool                    $enabled
+ * @property string                  $menu_state
+ * @property bool                    $all_instances
+ * @property ?SwatDate               $activation_date
+ * @property ?string                 $two_fa_secret
+ * @property int                     $two_fa_timeslice
+ * @property SiteInstance            $instance
  * @property AdminUserHistoryWrapper $history
- * @property AdminUserHistory $most_recent_history
- * @property SiteInstanceWrapper $instances
- * @property AdminGroupWrapper $groups
+ * @property AdminUserHistory        $most_recent_history
+ * @property SiteInstanceWrapper     $instances
+ * @property AdminGroupWrapper       $groups
  */
 class AdminUser extends SwatDBDataObject
 {
