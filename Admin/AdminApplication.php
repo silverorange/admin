@@ -5,6 +5,13 @@
  *
  * @copyright 2004-2022 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
+ *
+ * @property SiteCookieModule $cookie
+ * @property SiteDatabaseModule $database
+ * @property AdminSessionModule $session
+ * @property SiteMessagesModule $messages
+ * @property SiteConfigModule $config
+ * @property SiteCryptModule $crypt
  */
 class AdminApplication extends SiteWebApplication
 {
