@@ -1,278 +1,230 @@
 <?php
 
 /**
- * Generic admin edit page
+ * Generic admin edit page.
  *
  * This class is intended to be a convenience base class. For a fully custom
  * edit page, inherit directly from AdminPage instead.
  *
- * @package   Admin
  * @copyright 2004-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 abstract class AdminEdit extends AdminPage
 {
-	// {{{ protected variables
+    protected $id;
 
-	protected $id;
+    protected function isNew()
+    {
+        return $this->id === null;
+    }
 
-	// }}}
-	// {{{ protected function isNew()
+    // init phase
 
-	protected function isNew()
-	{
-		return ($this->id === null);
-	}
+    protected function initInternal()
+    {
+        parent::initInternal();
 
-	// }}}
+        $this->id = SiteApplication::initVar('id');
 
-	// init phase
-	// {{{ protected function initInternal()
+        if (is_numeric($this->id)) {
+            $this->id = intval($this->id);
+        }
+    }
 
-	protected function initInternal()
-	{
-		parent::initInternal();
+    // process phase
 
-		$this->id = SiteApplication::initVar('id');
+    protected function processInternal()
+    {
+        parent::processInternal();
 
-		if (is_numeric($this->id)) {
-			$this->id = intval($this->id);
-		}
-	}
+        $form = $this->ui->getWidget('edit_form');
 
-	// }}}
+        if ($form->isProcessed()) {
+            $this->validate();
 
-	// process phase
-	// {{{ protected function processInternal()
+            // validate() doesn't return anything, so explicitly
+            // check if the form has a message here
+            if ($form->hasMessage()) {
+                $message = new SwatMessage(
+                    Admin::_(
+                        'There is a problem with the information submitted.'
+                    ),
+                    'error'
+                );
 
-	protected function processInternal()
-	{
-		parent::processInternal();
+                $message->secondary_content = Admin::_(
+                    'Please address the fields highlighted below and ' .
+                    're-submit the form.'
+                );
 
-		$form = $this->ui->getWidget('edit_form');
+                $this->app->messages->add($message);
+            } else {
+                if ($this->saveData()) {
+                    $this->relocate();
+                }
+            }
+        }
+    }
 
-		if ($form->isProcessed()) {
-			$this->validate();
+    /**
+     * Sub-classes should implement this method to perform validation.
+     */
+    protected function validate(): void {}
 
-			// validate() doesn't return anything, so explicitly
-			// check if the form has a message here
-			if ($form->hasMessage()) {
-				$message = new SwatMessage(
-					Admin::_(
-						'There is a problem with the information submitted.'
-					),
-					'error'
-				);
+    /**
+     * Save the data.
+     *
+     * This method is called to save data from the widgets after processing.
+     * Sub-classes should implement this method and perform whatever actions
+     * are necessary to store the data. Widgets can be accessed through the
+     * $ui class variable.
+     *
+     * @return bool true if save was successful
+     */
+    abstract protected function saveData(): bool;
 
-				$message->secondary_content = Admin::_(
-					'Please address the fields highlighted below and '.
-					're-submit the form.'
-				);
+    /**
+     * Generate a shortname.
+     *
+     * This method allows edit pages to easily generate a unique shortname by
+     * calling this method during their processing phase. The shortname is
+     * generated from the text provided using SwatString::condenseToName() and
+     * validated with AdminEdit::validateShortname().  If the initial shortname
+     * is not valid an integer is appended and incremented until the shortname
+     * is valid.  Sub-classes should override validateShortname() to perform
+     * whatever checks are necessary to validate the shortname.
+     *
+     * @param string $text text to generate the shortname from
+     *
+     * @return string a shortname
+     */
+    protected function generateShortname($text)
+    {
+        $shortname_base = SwatString::condenseToName($text);
+        $count = 1;
+        $shortname = $shortname_base;
 
-				$this->app->messages->add($message);
-			} else {
-				if ($this->saveData()) {
-					$this->relocate();
-				}
-			}
-		}
-	}
+        while ($this->validateShortname($shortname) === false) {
+            $shortname = $shortname_base . $count++;
+        }
 
-	// }}}
-	// {{{ protected function validate()
+        return $shortname;
+    }
 
-	/**
-	 * Sub-classes should implement this method to perform validation.
-	 */
-	protected function validate(): void
-	{
-	}
+    /**
+     * Validate a shortname.
+     *
+     * This method is called by AdminEdit::generateShortname().
+     * Sub-classes should override this method to perform
+     * whatever checks are necessary to validate the shortname.
+     *
+     * @param string $shortname the shortname to validate
+     *
+     * @return bool whether the shortname is valid
+     */
+    protected function validateShortname($shortname)
+    {
+        return true;
+    }
 
-	// }}}
-	// {{{ abstract protected function saveData()
+    /**
+     * Relocate after process.
+     */
+    protected function relocate()
+    {
+        $form = $this->ui->getWidget('edit_form');
+        $url = $form->getHiddenField(self::RELOCATE_URL_FIELD);
+        $this->app->relocate($url);
+    }
 
-	/**
-	 * Save the data
-	 *
-	 * This method is called to save data from the widgets after processing.
-	 * Sub-classes should implement this method and perform whatever actions
-	 * are necessary to store the data. Widgets can be accessed through the
-	 * $ui class variable.
-	 *
-	 * @return bool true if save was successful.
-	 */
-	abstract protected function saveData(): bool;
+    // build phase
 
-	// }}}
-	// {{{ protected function generateShortname()
+    protected function buildInternal()
+    {
+        parent::buildInternal();
 
-	/**
-	 * Generate a shortname
-	 *
-	 * This method allows edit pages to easily generate a unique shortname by
-	 * calling this method during their processing phase. The shortname is
-	 * generated from the text provided using SwatString::condenseToName() and
-	 * validated with AdminEdit::validateShortname().  If the initial shortname
-	 * is not valid an integer is appended and incremented until the shortname
-	 * is valid.  Sub-classes should override validateShortname() to perform
-	 * whatever checks are necessary to validate the shortname.
-	 *
-	 * @param string $text Text to generate the shortname from.
-	 * @return string A shortname.
-	 */
-	protected function generateShortname($text)
-	{
-		$shortname_base = SwatString::condenseToName($text);
-		$count = 1;
-		$shortname = $shortname_base;
+        $this->buildForm();
+        $this->buildFrame();
+        $this->buildButton();
+        $this->buildMessages();
+    }
 
-		while ($this->validateShortname($shortname) === false) {
-			$shortname = $shortname_base.$count++;
-		}
+    protected function buildForm()
+    {
+        $form_found = true;
 
-		return $shortname;
-	}
+        try {
+            $form = $this->ui->getWidget('edit_form');
+        } catch (SwatWidgetNotFoundException $e) {
+            $form_found = false;
+        }
 
-	// }}}
-	// {{{ protected function validateShortname()
+        if ($form_found) {
+            if (!$this->isNew() && !$form->isProcessed()) {
+                $this->loadData();
+            }
 
-	/**
-	 * Validate a shortname
-	 *
-	 * This method is called by AdminEdit::generateShortname().
-	 * Sub-classes should override this method to perform
-	 * whatever checks are necessary to validate the shortname.
-	 *
-	 * @param string $shortname The shortname to validate.
-	 * @return boolean Whether the shortname is valid.
-	 */
-	protected function validateShortname($shortname)
-	{
-		return true;
-	}
+            $form->action = $this->source;
+            $form->autofocus = true;
+            $form->addHiddenField('id', $this->id);
 
-	// }}}
-	// {{{ protected function relocate()
+            if ($form->getHiddenField(self::RELOCATE_URL_FIELD) === null) {
+                $url = $this->getRefererURL();
+                $form->addHiddenField(self::RELOCATE_URL_FIELD, $url);
+            }
+        }
+    }
 
-	/**
-	 * Relocate after process
-	 */
-	protected function relocate()
-	{
-		$form = $this->ui->getWidget('edit_form');
-		$url = $form->getHiddenField(self::RELOCATE_URL_FIELD);
-		$this->app->relocate($url);
-	}
+    /**
+     * Load the data.
+     *
+     * This method is called to load data to be edited into the widgets.
+     * Sub-classes should implement this method and perform whatever actions
+     * are necessary to obtain the data. Widgets can be accessed through the
+     * $ui class variable.
+     *
+     * @return bool true if load was successful
+     */
+    abstract protected function loadData();
 
-	// }}}
+    protected function buildButton()
+    {
+        $button = $this->ui->getWidget('submit_button');
 
-	// build phase
-	// {{{ protected function buildInternal()
+        if ($button->title == 'Submit') {
+            if ($this->isNew()) {
+                $button->setFromStock('create');
+            } else {
+                $button->setFromStock('apply');
+            }
+        }
+    }
 
-	protected function buildInternal()
-	{
-		parent::buildInternal();
+    protected function buildFrame()
+    {
+        $frame = $this->ui->getWidget('edit_frame');
 
-		$this->buildForm();
-		$this->buildFrame();
-		$this->buildButton();
-		$this->buildMessages();
-	}
+        if ($this->isNew()) {
+            $frame->title = sprintf(
+                Admin::_('New %s'),
+                $frame->title
+            );
+        } else {
+            $frame->title = sprintf(
+                Admin::_('Edit %s'),
+                $frame->title
+            );
+        }
+    }
 
-	// }}}
-	// {{{ protected function buildForm()
+    protected function buildNavBar()
+    {
+        if ($this->isNew()) {
+            $title = Admin::_('New');
+        } else {
+            $title = Admin::_('Edit');
+        }
 
-	protected function buildForm()
-	{
-		$form_found = true;
-		try {
-			$form = $this->ui->getWidget('edit_form');
-		} catch (SwatWidgetNotFoundException $e) {
-			$form_found = false;
-		}
-
-		if ($form_found) {
-			if (!$this->isNew() && !$form->isProcessed()) {
-				$this->loadData();
-			}
-
-			$form->action = $this->source;
-			$form->autofocus = true;
-			$form->addHiddenField('id', $this->id);
-
-			if ($form->getHiddenField(self::RELOCATE_URL_FIELD) === null) {
-				$url = $this->getRefererURL();
-				$form->addHiddenField(self::RELOCATE_URL_FIELD, $url);
-			}
-		}
-	}
-
-	// }}}
-	// {{{ abstract protected function loadData()
-
-	/**
-	 * Load the data
-	 *
-	 * This method is called to load data to be edited into the widgets.
-	 * Sub-classes should implement this method and perform whatever actions
-	 * are necessary to obtain the data. Widgets can be accessed through the
-	 * $ui class variable.
-	 *
-	 * @return boolean true if load was successful.
-	 */
-	abstract protected function loadData();
-
-	// }}}
-	// {{{ protected function buildButton()
-
-	protected function buildButton()
-	{
-		$button = $this->ui->getWidget('submit_button');
-
-		if ($button->title == 'Submit') {
-			if ($this->isNew()) {
-				$button->setFromStock('create');
-			} else {
-				$button->setFromStock('apply');
-			}
-		}
-	}
-
-	// }}}
-	// {{{ protected function buildFrame()
-
-	protected function buildFrame()
-	{
-		$frame = $this->ui->getWidget('edit_frame');
-
-		if ($this->isNew()) {
-			$frame->title = sprintf(
-				Admin::_('New %s'),
-				$frame->title
-			);
-		} else {
-			$frame->title = sprintf(
-				Admin::_('Edit %s'),
-				$frame->title
-			);
-		}
-	}
-
-	// }}}
-	// {{{ protected function buildNavBar()
-
-	protected function buildNavBar()
-	{
-		if ($this->isNew()) {
-			$title = Admin::_('New');
-		} else {
-			$title = Admin::_('Edit');
-		}
-
-		$this->navbar->createEntry($title);
-	}
-
-	// }}}
+        $this->navbar->createEntry($title);
+    }
 }
-
-?>

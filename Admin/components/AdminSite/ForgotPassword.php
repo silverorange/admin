@@ -1,185 +1,188 @@
 <?php
 
 /**
- * Administrator forgot password page
+ * Administrator forgot password page.
  *
- * @package   Admin
  * @copyright 2007-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
+ *
  * @see       AdminUser
  */
 class AdminAdminSiteForgotPassword extends AdminPage
 {
-	// {{{ protected function createLayout()
+    protected function createLayout()
+    {
+        return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
+    }
 
-	protected function createLayout()
-	{
-		return new AdminLoginLayout($this->app, AdminLoginTemplate::class);
-	}
+    // init phase
 
-	// }}}
+    protected function initInternal()
+    {
+        $this->ui->loadFromXML(__DIR__ . '/forgot-password.xml');
 
-	// init phase
-	// {{{ protected function initInternal()
+        $email = $this->ui->getWidget('email');
 
-	protected function initInternal()
-	{
-		$this->ui->loadFromXML(__DIR__.'/forgot-password.xml');
+        try {
+            if (isset($this->app->cookie->email)) {
+                $email->value = $this->app->cookie->email;
+            }
+        } catch (SiteCookieException $e) {
+            $this->app->cookie->removeCookie('email', '/');
+        }
 
-		$email = $this->ui->getWidget('email');
-		try {
-			if (isset($this->app->cookie->email))
-				$email->value = $this->app->cookie->email;
+        $form = $this->ui->getWidget('forgot_password_form');
+        $form->action = $this->app->getUri();
+    }
 
-		} catch (SiteCookieException $e) {
-			$this->app->cookie->removeCookie('email', '/');
-		}
+    // process phase
 
-		$form = $this->ui->getWidget('forgot_password_form');
-		$form->action = $this->app->getUri();
-	}
+    protected function processInternal()
+    {
+        parent::processInternal();
 
-	// }}}
+        $form = $this->ui->getWidget('forgot_password_form');
 
-	// process phase
-	// {{{ protected function processInternal()
+        if ($form->isProcessed() && !$form->hasMessage()) {
+            $this->generatePasswordLink();
+        }
+    }
 
-	protected function processInternal()
-	{
-		parent::processInternal();
+    protected function generatePasswordLink()
+    {
+        $email = $this->ui->getWidget('email')->value;
 
-		$form = $this->ui->getWidget('forgot_password_form');
+        $admin_user = $this->getAccount($email);
 
-		if ($form->isProcessed() && !$form->hasMessage()) {
-			$this->generatePasswordLink();
-		}
-	}
+        if ($admin_user === null) {
+            $message = new SwatMessage(
+                Admin::_(
+                    'There is no account with the specified email address'
+                ),
+                'error'
+            );
 
-	// }}}
-	// {{{ protected function generatePasswordLink()
+            $message->secondary_content = Admin::_(
+                'Make sure you entered the email address correctly.'
+            );
 
-	protected function generatePasswordLink()
-	{
-		$email = $this->ui->getWidget('email')->value;
+            $message->content_type = 'text/xml';
+            $this->ui->getWidget('email')->addMessage($message);
+        } else {
+            try {
+                $this->sendResetPasswordMailMessage($admin_user);
 
-		$admin_user = $this->getAccount($email);
+                $primary_text = Admin::_('Email has been sent');
+                $anchor_tag = new SwatHtmlTag('a');
+                $anchor_tag->href = 'mailto:' . $email;
+                $anchor_tag->setContent($email);
 
-		if ($admin_user === null) {
-			$message = new SwatMessage(Admin::_(
-				'There is no account with the specified email address'),
-				'error');
+                /*
+                 * Don't show other site instances here as it could violate the
+                 * user's privacy. Another user is resetting the password and may
+                 * have no knowledge of other instances the user belongs to.
+                 */
+                $strong_tag = new SwatHtmlTag('strong');
+                $strong_tag->setContent(sprintf(
+                    Admin::_('Reset Your %s Admin Password'),
+                    $this->app->config->site->title
+                ));
 
-			$message->secondary_content = Admin::_(
-				'Make sure you entered the email address correctly.');
+                $secondary_text = sprintf(
+                    Admin::_(
+                        '%sAn email has been sent to %s containing a link to ' .
+                        'create a new password for the %s admin.%s%sPlease check  ' .
+                        'your mail for a new message with the subject: %s.%s'
+                    ),
+                    '<p>',
+                    $anchor_tag,
+                    $this->app->config->site->title,
+                    '</p>',
+                    '<p>',
+                    $strong_tag,
+                    '</p>'
+                );
 
-			$message->content_type = 'text/xml';
-			$this->ui->getWidget('email')->addMessage($message);
-		} else {
-			try {
-				$this->sendResetPasswordMailMessage($admin_user);
+                $message_type = 'notice';
+            } catch (SiteException $exception) {
+                $exception->process(false);
 
-				$primary_text = Admin::_('Email has been sent');
-				$anchor_tag = new SwatHtmlTag('a');
-				$anchor_tag->href = 'mailto:'.$email;
-				$anchor_tag->setContent($email);
-
-				/*
-				 * Don't show other site instances here as it could violate the
-				 * user's privacy. Another user is resetting the password and may
-				 * have no knowledge of other instances the user belongs to.
-				 */
-				$strong_tag = new SwatHtmlTag('strong');
-				$strong_tag->setContent(sprintf(
-					Admin::_('Reset Your %s Admin Password'),
-					$this->app->config->site->title));
-
-				$secondary_text = sprintf(Admin::_(
-					'%sAn email has been sent to %s containing a link to '.
-					'create a new password for the %s admin.%s%sPlease check  '.
-					'your mail for a new message with the subject: %s.%s'),
-					'<p>', $anchor_tag, $this->app->config->site->title,
-					'</p>', '<p>', $strong_tag, '</p>');
-
-				$message_type = 'notice';
-			} catch (SiteException $exception) {
-				$exception->process(false);
-
-				$primary_text = Admin::_('Unable to send email');
-				$secondary_text = sprintf(Admin::_('%1$s
+                $primary_text = Admin::_('Unable to send email');
+                $secondary_text = sprintf(
+                    Admin::_('%1$s
 					%3$sThis problem has been reported.%4$s
 					%3$sPlease contact the site administrator if this problem
 						continues.%4$s
 					%2$s'),
-					'<ul>', '</ul>', '<li>', '</li>');
+                    '<ul>',
+                    '</ul>',
+                    '<li>',
+                    '</li>'
+                );
 
-				$message_type = 'error';
-			}
+                $message_type = 'error';
+            }
 
-			$message = new SwatMessage($primary_text, $message_type);
-			$message->content_type = 'text/xml';
-			$message->secondary_content = $secondary_text;
+            $message = new SwatMessage($primary_text, $message_type);
+            $message->content_type = 'text/xml';
+            $message->secondary_content = $secondary_text;
 
-			$message_display = $this->ui->getWidget('message_display');
-			$message_display->add($message, SwatMessageDisplay::DISMISS_OFF);
+            $message_display = $this->ui->getWidget('message_display');
+            $message_display->add($message, SwatMessageDisplay::DISMISS_OFF);
 
-			$container = $this->ui->getWidget('field_container');
-			$container->visible = false;
-		}
-	}
+            $container = $this->ui->getWidget('field_container');
+            $container->visible = false;
+        }
+    }
 
-	// }}}
-	// {{{ protected function getAccount()
+    /**
+     * Gets the user to which to send the forgot password email.
+     *
+     * @param string $email the email address of the admin user
+     *
+     * @return AdminUser the user or null if no such user exists
+     */
+    protected function getAccount($email)
+    {
+        $class_name = SwatDBClassMap::get('AdminUser');
+        $admin_user = new $class_name();
+        $admin_user->setDatabase($this->app->db);
+        $found = $admin_user->loadFromEmail($email);
 
-	/**
-	 * Gets the user to which to send the forgot password email
-	 *
-	 * @param string $email the email address of the admin user.
-	 *
-	 * @return AdminUser the user or null if no such user exists.
-	 */
-	protected function getAccount($email)
-	{
-		$class_name = SwatDBClassMap::get('AdminUser');
-		$admin_user = new $class_name();
-		$admin_user->setDatabase($this->app->db);
-		$found = $admin_user->loadFromEmail($email);
+        if ($found === false) {
+            $admin_user = null;
+        }
 
-		if ($found === false)
-			$admin_user = null;
+        return $admin_user;
+    }
 
-		return $admin_user;
-	}
+    protected function sendResetPasswordMailMessage(AdminUser $admin_user)
+    {
+        $password_tag = $admin_user->resetPassword();
+        $password_link = $this->app->getBaseHref() .
+            'AdminSite/ResetPassword?password_tag=' . $password_tag;
 
-	// }}}
-	// {{{ protected function sendResetPasswordMailMessage()
+        $mail_message = new AdminResetPasswordMailMessage(
+            $this->app,
+            $admin_user,
+            $password_link
+        );
 
-	protected function sendResetPasswordMailMessage(AdminUser $admin_user)
-	{
-		$password_tag = $admin_user->resetPassword();
-		$password_link = $this->app->getBaseHref().
-			'AdminSite/ResetPassword?password_tag='.$password_tag;
+        $mail_message->smtp_server = $this->app->config->email->smtp_server;
+        $mail_message->smtp_port = $this->app->config->email->smtp_port;
+        $mail_message->smtp_username = $this->app->config->email->smtp_username;
+        $mail_message->smtp_password = $this->app->config->email->smtp_password;
 
-		$mail_message = new AdminResetPasswordMailMessage($this->app,
-			$admin_user, $password_link);
+        $mail_message->from_address =
+            $this->app->config->email->service_address;
 
-		$mail_message->smtp_server   = $this->app->config->email->smtp_server;
-		$mail_message->smtp_port     = $this->app->config->email->smtp_port;
-		$mail_message->smtp_username = $this->app->config->email->smtp_username;
-		$mail_message->smtp_password = $this->app->config->email->smtp_password;
+        $mail_message->from_name = $this->app->config->site->title;
 
-		$mail_message->from_address =
-			$this->app->config->email->service_address;
+        $mail_message->subject = sprintf(
+            Admin::_('Reset Your %s Admin Password'),
+            $this->app->config->site->title
+        );
 
-		$mail_message->from_name = $this->app->config->site->title;
-
-		$mail_message->subject = sprintf(
-			Admin::_('Reset Your %s Admin Password'),
-			$this->app->config->site->title);
-
-		$mail_message->send();
-	}
-
-	// }}}
+        $mail_message->send();
+    }
 }
-
-?>

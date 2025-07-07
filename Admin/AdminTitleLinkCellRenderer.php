@@ -1,306 +1,271 @@
 <?php
 
 /**
- * A title link cell renderer for Admin index pages
+ * A title link cell renderer for Admin index pages.
  *
  * Links in the cell renderer are styled as block-level elements,
  * so other cell renderers in the same table cell may cause layout issues.
  *
- * @package   Admin
  * @copyright 2006-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminTitleLinkCellRenderer extends SwatLinkCellRenderer
 {
-	// {{{ public properties
+    /**
+     * The stock id of this AdminTitleCellRenderer.
+     *
+     * Specifying a stock id initializes this title link renderer with a set of
+     * stock values.
+     *
+     * @var string
+     *
+     * @see AdminTitleCellRenderer::setFromStock()
+     */
+    public $stock_id;
 
-	/**
-	 * The stock id of this AdminTitleCellRenderer
-	 *
-	 * Specifying a stock id initializes this title link renderer with a set of
-	 * stock values.
-	 *
-	 * @var string
-	 *
-	 * @see AdminTitleCellRenderer::setFromStock()
-	 */
-	public $stock_id = null;
+    /**
+     * A CSS class set by the stock_id of this title link cell renderer.
+     *
+     * @var string
+     */
+    protected $stock_class;
 
-	// }}}
-	// {{{ protected properties
+    /**
+     * The last stock_id used in a render call.
+     *
+     * @var string
+     */
+    protected $last_stock_id;
 
-	/**
-	 * A CSS class set by the stock_id of this title link cell renderer
-	 *
-	 * @var string
-	 */
-	protected $stock_class = null;
+    /**
+     * Creates a title link cell renderer.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addStyleSheet(
+            'packages/admin/styles/admin-title-link-cell-renderer.css'
+        );
+    }
 
-	/**
-	 * The last stock_id used in a render call
-	 *
-	 * @var string
-	 */
-	protected $last_stock_id = null;
+    /**
+     * Sets the values of this title link cell renderer to a stock type.
+     *
+     * Valid stock type ids are:
+     *
+     * - document (default)
+     * - document-with-contents
+     * - edit
+     * - file-save-as
+     * - folder
+     * - folder-with-contents
+     * - person
+     * - product
+     * - download
+     *
+     * @param string $stock_id             the identifier of the stock type to use
+     * @param bool   $overwrite_properties whether to overwrite properties if
+     *                                     they are already set
+     *
+     * @throws SwatUndefinedStockTypeException
+     */
+    public function setFromStock($stock_id, $overwrite_properties = true)
+    {
+        if ($stock_id === $this->last_stock_id) {
+            return;
+        }
 
-	// }}}
-	// {{{ public function __construct()
+        $class = null;
 
-	/**
-	 * Creates a title link cell renderer
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-		$this->addStyleSheet(
-			'packages/admin/styles/admin-title-link-cell-renderer.css'
-		);
-	}
+        switch ($stock_id) {
+            case 'document':
+                $class = 'admin-title-link-cell-renderer-document';
+                break;
 
-	// }}}
-	// {{{ public function setFromStock()
+            case 'document-with-contents':
+                $class = 'admin-title-link-cell-renderer-document-with-contents';
+                break;
 
-	/**
-	 * Sets the values of this title link cell renderer to a stock type
-	 *
-	 * Valid stock type ids are:
-	 *
-	 * - document (default)
-	 * - document-with-contents
-	 * - edit
-	 * - file-save-as
-	 * - folder
-	 * - folder-with-contents
-	 * - person
-	 * - product
-	 * - download
-	 *
-	 * @param string $stock_id the identifier of the stock type to use.
-	 * @param boolean $overwrite_properties whether to overwrite properties if
-	 *                                       they are already set.
-	 *
-	 * @throws SwatUndefinedStockTypeException
-	 */
-	public function setFromStock($stock_id, $overwrite_properties = true)
-	{
-		if ($stock_id === $this->last_stock_id)
-			return;
+            case 'edit':
+                $class = 'admin-title-link-cell-renderer-edit';
+                break;
 
-		$class = null;
+            case 'file-save-as':
+                $class = 'admin-title-link-cell-renderer-file-save-as';
+                break;
 
-		switch ($stock_id) {
-		case 'document':
-			$class = 'admin-title-link-cell-renderer-document';
-			break;
+            case 'folder-with-contents':
+                $class = 'admin-title-link-cell-renderer-folder-with-contents';
+                break;
 
-		case 'document-with-contents':
-			$class = 'admin-title-link-cell-renderer-document-with-contents';
-			break;
+            case 'folder':
+                $class = 'admin-title-link-cell-renderer-folder';
+                break;
 
-		case 'edit':
-			$class = 'admin-title-link-cell-renderer-edit';
-			break;
+            case 'person':
+                $class = 'admin-title-link-cell-renderer-person';
+                break;
 
-		case 'file-save-as':
-			$class = 'admin-title-link-cell-renderer-file-save-as';
-			break;
+            case 'product':
+                $class = 'admin-title-link-cell-renderer-product';
+                break;
 
-		case 'folder-with-contents':
-			$class = 'admin-title-link-cell-renderer-folder-with-contents';
-			break;
+            case 'download':
+                $class = 'admin-title-link-cell-renderer-download';
+                break;
 
-		case 'folder':
-			$class = 'admin-title-link-cell-renderer-folder';
-			break;
+            default:
+                throw new SwatUndefinedStockTypeException(
+                    "Stock type with id of '{$stock_id}' not found.",
+                    0,
+                    $stock_id
+                );
+        }
 
-		case 'person':
-			$class = 'admin-title-link-cell-renderer-person';
-			break;
+        $this->stock_class = $class;
+        $this->last_stock_id = $stock_id;
+    }
 
-		case 'product':
-			$class = 'admin-title-link-cell-renderer-product';
-			break;
+    /**
+     * Initializes this admin title link cell renderer.
+     */
+    public function init()
+    {
+        parent::init();
 
-		case 'download':
-			$class = 'admin-title-link-cell-renderer-download';
-			break;
+        if ($this->stock_id === null) {
+            $this->setFromStock('document', false);
+        } else {
+            $this->setFromStock($this->stock_id, false);
+        }
+    }
 
-		default:
-			throw new SwatUndefinedStockTypeException(
-				"Stock type with id of '{$stock_id}' not found.",
-				0, $stock_id);
-		}
+    /**
+     * Renders the contents of this cell.
+     *
+     * @see SwatCellRenderer::render()
+     */
+    public function render()
+    {
+        if (!$this->visible) {
+            return;
+        }
 
-		$this->stock_class = $class;
-		$this->last_stock_id = $stock_id;
-	}
+        $this->setStockType();
 
-	// }}}
-	// {{{ public function init()
+        parent::render();
+    }
 
-	/**
-	 * Initializes this admin title link cell renderer
-	 */
-	public function init()
-	{
-		parent::init();
+    /**
+     * Applies the stock type specificed by the user.
+     */
+    protected function setStockType()
+    {
+        if ($this->stock_id !== null) {
+            $this->setFromStock($this->stock_id, false);
+        }
+    }
 
-		if ($this->stock_id === null)
-			$this->setFromStock('document', false);
-		else
-			$this->setFromStock($this->stock_id, false);
-	}
+    /**
+     * Renders this link as sensitive.
+     */
+    protected function renderSensitive()
+    {
+        $anchor = new SwatHtmlTag('a');
+        $anchor->href = $this->getLink();
+        $anchor->class = $this->getCSSClassString();
+        $anchor->title = $this->getTitle();
 
-	// }}}
-	// {{{ public function render()
+        $anchor->open();
 
-	/**
-	 * Renders the contents of this cell
-	 *
-	 * @see SwatCellRenderer::render()
-	 */
-	public function render()
-	{
-		if (!$this->visible)
-			return;
+        $this->renderContent();
 
-		$this->setStockType();
+        $anchor->close();
+    }
 
-		parent::render();
-	}
+    /**
+     * Renders this link as not sensitive.
+     */
+    protected function renderInsensitive()
+    {
+        $span_tag = new SwatHtmlTag('span');
+        $span_tag->class = $this->getCSSClassString();
+        $span_tag->title = $this->getTitle();
 
-	// }}}
-	// {{{ protected function setStockType()
+        $span_tag->open();
 
-	/**
-	 * Applies the stock type specificed by the user
-	 */
-	protected function setStockType()
-	{
-		if ($this->stock_id !== null) {
-			$this->setFromStock($this->stock_id, false);
-		}
-	}
+        $this->renderContent();
 
-	// }}}
-	// {{{ protected function renderSensitive()
+        $span_tag->close();
+    }
 
-	/**
-	 * Renders this link as sensitive
-	 */
-	protected function renderSensitive()
-	{
-		$anchor = new SwatHtmlTag('a');
-		$anchor->href = $this->getLink();
-		$anchor->class = $this->getCSSClassString();
-		$anchor->title = $this->getTitle();
+    /**
+     * Renders this link as not sensitive.
+     */
+    protected function renderContent()
+    {
+        $icon_span = new SwatHtmlTag('span');
+        $icon_span->class = 'admin-title-link-cell-renderer-icon';
+        $icon_span->setContent('');
+        $icon_span->display();
 
-		$anchor->open();
+        $content_span = new SwatHtmlTag('span');
+        $content_span->class = 'admin-title-link-cell-renderer-contents';
+        $content_span->setContent($this->getText(), $this->content_type);
+        $content_span->display();
+    }
 
-		$this->renderContent();
+    /**
+     * Gets the array of CSS classes that are applied to this user-interface
+     * object.
+     *
+     * For AdminTitleLinkCellRenderer objects these classes are applied to the
+     * anchor tag.
+     *
+     * @return array the array of CSS classes that are applied to this
+     *               user-interface object
+     */
+    protected function getCSSClassNames()
+    {
+        $classes = parent::getCSSClassNames();
 
-		$anchor->close();
-	}
+        $classes[] = 'admin-title-link-cell-renderer';
+        if ($this->stock_class !== null) {
+            $classes[] = $this->stock_class;
+        }
 
-	// }}}
-	// {{{ protected function renderInsensitive()
+        return $classes;
+    }
 
-	/**
-	 * Renders this link as not sensitive
-	 */
-	protected function renderInsensitive()
-	{
-		$span_tag = new SwatHtmlTag('span');
-		$span_tag->class = $this->getCSSClassString();
-		$span_tag->title = $this->getTitle();
+    /**
+     * Gets the data specific CSS class names for this cell renderer.
+     *
+     * @return array the array of base CSS class names for this cell renderer
+     */
+    public function getDataSpecificCSSClassNames()
+    {
+        $classes = [];
 
-		$span_tag->open();
+        if ($this->stock_class !== null) {
+            $classes[] = $this->stock_class;
+        }
 
-		$this->renderContent();
+        return array_merge(
+            $classes,
+            parent::getDataSpecificCSSClassNames()
+        );
+    }
 
-		$span_tag->close();
-	}
+    /**
+     * Gets the base CSS class names for this cell renderer.
+     *
+     * @return array the array of base CSS class names for this cell renderer
+     */
+    public function getBaseCSSClassNames()
+    {
+        $classes = parent::getBaseCSSClassNames();
+        $classes[] = 'admin-title-link-cell-renderer';
 
-	// }}}
-	// {{{ protected function renderContent()
-
-	/**
-	 * Renders this link as not sensitive
-	 */
-	protected function renderContent()
-	{
-		$icon_span = new SwatHtmlTag('span');
-		$icon_span->class = 'admin-title-link-cell-renderer-icon';
-		$icon_span->setContent('');
-		$icon_span->display();
-
-		$content_span = new SwatHtmlTag('span');
-		$content_span->class = 'admin-title-link-cell-renderer-contents';
-		$content_span->setContent($this->getText(), $this->content_type);
-		$content_span->display();
-	}
-
-	// }}}
-	// {{{ protected function getCSSClassNames()
-
-	/**
-	 * Gets the array of CSS classes that are applied to this user-interface
-	 * object
-	 *
-	 * For AdminTitleLinkCellRenderer objects these classes are applied to the
-	 * anchor tag.
-	 *
-	 * @return array the array of CSS classes that are applied to this
-	 *                user-interface object
-	 */
-	protected function getCSSClassNames()
-	{
-		$classes = parent::getCSSClassNames();
-
-		$classes[] = 'admin-title-link-cell-renderer';
-		if ($this->stock_class !== null)
-			$classes[] = $this->stock_class;
-
-		return $classes;
-	}
-
-	// }}}
-	// {{{ public function getDataSpecificCSSClassNames()
-
-	/**
-	 * Gets the data specific CSS class names for this cell renderer
-	 *
-	 * @return array the array of base CSS class names for this cell renderer.
-	 */
-	public function getDataSpecificCSSClassNames()
-	{
-		$classes = array();
-
-		if ($this->stock_class !== null)
-			$classes[] = $this->stock_class;
-
-		$classes = array_merge($classes,
-			parent::getDataSpecificCSSClassNames());
-
-		return $classes;
-	}
-
-	// }}}
-	// {{{ public function getBaseCSSClassNames()
-
-	/**
-	 * Gets the base CSS class names for this cell renderer
-	 *
-	 * @return array the array of base CSS class names for this cell renderer.
-	 */
-	public function getBaseCSSClassNames()
-	{
-		$classes = parent::getBaseCSSClassNames();
-		$classes[] = 'admin-title-link-cell-renderer';
-		return $classes;
-	}
-
-	// }}}
+        return $classes;
+    }
 }
-
-?>

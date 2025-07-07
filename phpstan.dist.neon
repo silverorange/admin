@@ -1,8 +1,11 @@
+includes:
+  - phpstan-baseline.neon
+
 parameters:
   phpVersion: 80200
-  level: 0
+  level: 1
   paths:
     - Admin
-    - po/preprocess.php
+    - po
   editorUrl: '%%file%%:%%line%%'
   editorUrlTitle: '%%file%%:%%line%%'

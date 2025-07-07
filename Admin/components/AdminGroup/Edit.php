@@ -1,197 +1,154 @@
 <?php
 
 /**
- * Edit page for AdminGroups component
+ * Edit page for AdminGroups component.
  *
- * @package   Admin
  * @copyright 2005-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminGroupEdit extends AdminObjectEdit
 {
-	// {{{ protected function getObjectClass()
+    protected function getObjectClass()
+    {
+        return 'AdminGroup';
+    }
 
-	protected function getObjectClass()
-	{
-		return 'AdminGroup';
-	}
+    protected function getUiXml()
+    {
+        return __DIR__ . '/edit.xml';
+    }
 
-	// }}}
-	// {{{ protected function getUiXml()
+    protected function getObjectUiValueNames()
+    {
+        return [
+            'title',
+        ];
+    }
 
-	protected function getUiXml()
-	{
-		return __DIR__.'/edit.xml';
-	}
+    // init phase
 
-	// }}}
-	// {{{ protected function getObjectUiValueNames()
+    protected function initInternal()
+    {
+        parent::initInternal();
 
-	protected function getObjectUiValueNames()
-	{
-		return array(
-			'title',
-		);
-	}
+        $this->initUsers();
+        $this->initComponents();
+    }
 
-	// }}}
+    protected function initUsers()
+    {
+        $user_list = $this->ui->getWidget('users');
+        $user_list_options = SwatDB::getOptionArray(
+            $this->app->db,
+            'AdminUser',
+            'name',
+            'id',
+            'name'
+        );
 
-	// init phase
-	// {{{ protected function initInternal()
+        $user_list->addOptionsByArray($user_list_options);
+    }
 
-	protected function initInternal()
-	{
-		parent::initInternal();
+    protected function initComponents()
+    {
+        $component_list = $this->ui->getWidget('components');
+        $component_list_options = SwatDB::getGroupedOptionArray(
+            $this->app->db,
+            'AdminComponent',
+            'title',
+            'id',
+            'AdminSection',
+            'title',
+            'id',
+            'section',
+            'AdminSection.displayorder, AdminSection.title, ' .
+                'AdminComponent.displayorder,  AdminComponent.title'
+        );
 
-		$this->initUsers();
-		$this->initComponents();
-	}
+        $component_list->setTree($component_list_options);
+    }
 
-	// }}}
-	// {{{ protected function initUsers()
+    // process phase
 
-	protected function initUsers()
-	{
-		$user_list = $this->ui->getWidget('users');
-		$user_list_options = SwatDB::getOptionArray(
-			$this->app->db,
-			'AdminUser',
-			'name',
-			'id',
-			'name'
-		);
+    protected function postSaveObject()
+    {
+        $this->updateUserBindings();
+        $this->updateComponentBindings();
+    }
 
-		$user_list->addOptionsByArray($user_list_options);
-	}
+    protected function updateUserBindings()
+    {
+        $user_list = $this->ui->getWidget('users');
 
-	// }}}
-	// {{{ protected function initUsers()
+        SwatDB::updateBinding(
+            $this->app->db,
+            'AdminUserAdminGroupBinding',
+            'groupnum',
+            $this->getObject()->id,
+            'usernum',
+            $user_list->values,
+            'AdminUser',
+            'id'
+        );
+    }
 
-	protected function initComponents()
-	{
-		$component_list = $this->ui->getWidget('components');
-		$component_list_options = SwatDB::getGroupedOptionArray(
-			$this->app->db,
-			'AdminComponent',
-			'title',
-			'id',
-			'AdminSection',
-			'title',
-			'id',
-			'section',
-			'AdminSection.displayorder, AdminSection.title, '.
-				'AdminComponent.displayorder,  AdminComponent.title'
-		);
+    protected function updateComponentBindings()
+    {
+        $component_list = $this->ui->getWidget('components');
 
-		$component_list->setTree($component_list_options);
-	}
+        SwatDB::updateBinding(
+            $this->app->db,
+            'AdminComponentAdminGroupBinding',
+            'groupnum',
+            $this->getObject()->id,
+            'component',
+            $component_list->values,
+            'AdminComponent',
+            'id'
+        );
+    }
 
-	// }}}
+    protected function getSavedMessagePrimaryContent()
+    {
+        return sprintf(
+            Admin::_('Group “%s” has been saved.'),
+            $this->getObject()->title
+        );
+    }
 
-	// process phase
-	// {{{ protected function postSaveObject()
+    // build phase
 
-	protected function postSaveObject()
-	{
-		$this->updateUserBindings();
-		$this->updateComponentBindings();
-	}
+    protected function loadObject()
+    {
+        parent::loadObject();
 
-	// }}}
-	// {{{ protected function updateUserBindings()
+        if (!$this->isNew()) {
+            $this->loadUserBindings();
+            $this->loadComponentBindings();
+        }
+    }
 
-	protected function updateUserBindings()
-	{
-		$user_list = $this->ui->getWidget('users');
+    protected function loadUserBindings()
+    {
+        $user_list = $this->ui->getWidget('users');
+        $user_list->values = SwatDB::queryColumn(
+            $this->app->db,
+            'AdminUserAdminGroupBinding',
+            'usernum',
+            'groupnum',
+            $this->getObject()->id
+        );
+    }
 
-		SwatDB::updateBinding(
-			$this->app->db,
-			'AdminUserAdminGroupBinding',
-			'groupnum',
-			$this->getObject()->id,
-			'usernum',
-			$user_list->values,
-			'AdminUser',
-			'id'
-		);
-	}
-
-	// }}}
-	// {{{ protected function updateComponentBindings()
-
-	protected function updateComponentBindings()
-	{
-		$component_list = $this->ui->getWidget('components');
-
-		SwatDB::updateBinding(
-			$this->app->db,
-			'AdminComponentAdminGroupBinding',
-			'groupnum',
-			$this->getObject()->id,
-			'component',
-			$component_list->values,
-			'AdminComponent',
-			'id'
-		);
-	}
-
-	// }}}
-	// {{{ protected function getSavedMessagePrimaryContent()
-
-	protected function getSavedMessagePrimaryContent()
-	{
-		return sprintf(
-			Admin::_('Group “%s” has been saved.'),
-			$this->getObject()->title
-		);
-	}
-
-	// }}}
-
-	// build phase
-	// {{{ protected function loadObject()
-
-	protected function loadObject()
-	{
-		parent::loadObject();
-
-		if (!$this->isNew()) {
-			$this->loadUserBindings();
-			$this->loadComponentBindings();
-		}
-	}
-
-	// }}}
-	// {{{ protected function loadUserBindings()
-
-	protected function loadUserBindings()
-	{
-		$user_list = $this->ui->getWidget('users');
-		$user_list->values = SwatDB::queryColumn(
-			$this->app->db,
-			'AdminUserAdminGroupBinding',
-			'usernum',
-			'groupnum',
-			$this->getObject()->id
-		);
-	}
-
-	// }}}
-	// {{{ protected function loadComponentBindings()
-
-	protected function loadComponentBindings()
-	{
-		$component_list = $this->ui->getWidget('components');
-		$component_list->values = SwatDB::queryColumn(
-			$this->app->db,
-			'AdminComponentAdminGroupBinding',
-			'component',
-			'groupnum',
-			$this->getObject()->id
-		);
-	}
-
-	// }}}
+    protected function loadComponentBindings()
+    {
+        $component_list = $this->ui->getWidget('components');
+        $component_list->values = SwatDB::queryColumn(
+            $this->app->db,
+            'AdminComponentAdminGroupBinding',
+            'component',
+            'groupnum',
+            $this->getObject()->id
+        );
+    }
 }
-
-?>

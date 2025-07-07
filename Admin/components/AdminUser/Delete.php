@@ -1,76 +1,83 @@
 <?php
 
 /**
- * Delete confirmation page for AdminUsers component
+ * Delete confirmation page for AdminUsers component.
  *
- * @package   Admin
  * @copyright 2005-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminUserDelete extends AdminDBDelete
 {
-	// process phase
-	// {{{ protected function processDBData
+    // process phase
 
-	protected function processDBData(): void
-	{
-		parent::processDBData();
+    protected function processDBData(): void
+    {
+        parent::processDBData();
 
-		$item_list = $this->getItemList('integer');
-		$sql = sprintf('delete from AdminUser where id in (%s) and id != %s',
-			$item_list,
-			$this->app->db->quote($this->app->session->getUserId(), 'integer'));
+        $item_list = $this->getItemList('integer');
+        $sql = sprintf(
+            'delete from AdminUser where id in (%s) and id != %s',
+            $item_list,
+            $this->app->db->quote($this->app->session->getUserId(), 'integer')
+        );
 
-		$num = SwatDB::exec($this->app->db, $sql);
+        $num = SwatDB::exec($this->app->db, $sql);
 
-		$message = new SwatMessage(sprintf(Admin::ngettext(
-			'One admin user has been deleted.',
-			'%s admin users have been deleted.', $num),
-			SwatString::numberFormat($num)));
+        $message = new SwatMessage(sprintf(
+            Admin::ngettext(
+                'One admin user has been deleted.',
+                '%s admin users have been deleted.',
+                $num
+            ),
+            SwatString::numberFormat($num)
+        ));
 
-		$this->app->messages->add($message);
-	}
+        $this->app->messages->add($message);
+    }
 
-	// }}}
+    // build phase
 
-	// build phase
-	// {{{ protected function buildInternal()
+    public function buildInternal()
+    {
+        parent::buildInternal();
 
-	public function buildInternal()
-	{
-		parent::buildInternal();
+        $item_list = $this->getItemList('integer');
 
-		$item_list = $this->getItemList('integer');
+        $where_clause = sprintf(
+            'id in (%s) and id != %s',
+            $item_list,
+            $this->app->db->quote($this->app->session->getUserId(), 'integer')
+        );
 
-		$where_clause = sprintf('id in (%s) and id != %s',
-			$item_list,
-			$this->app->db->quote($this->app->session->getUserId(), 'integer'));
+        $dep = new AdminListDependency();
+        $dep->setTitle(Admin::_('admin user'), Admin::_('admin users'));
+        $dep->entries = AdminListDependency::queryEntries(
+            $this->app->db,
+            'AdminUser',
+            'integer:id',
+            null,
+            'text:name',
+            'name',
+            $where_clause,
+            AdminDependency::DELETE
+        );
 
-		$dep = new AdminListDependency();
-		$dep->setTitle(Admin::_('admin user'), Admin::_('admin users'));
-		$dep->entries = AdminListDependency::queryEntries($this->app->db,
-			'AdminUser', 'integer:id', null, 'text:name', 'name',
-			$where_clause, AdminDependency::DELETE);
+        $message = $this->ui->getWidget('confirmation_message');
+        $message->content = $dep->getMessage();
+        $message->content_type = 'text/xml';
 
-		$message = $this->ui->getWidget('confirmation_message');
-		$message->content = $dep->getMessage();
-		$message->content_type = 'text/xml';
+        if ($dep->getItemCount() == 0) {
+            $this->switchToCancelButton();
+        }
 
-		if ($dep->getItemCount() == 0) {
-			$this->switchToCancelButton();
-		}
+        // display can't delete self message if current account is in selection
+        if ($this->items->contains($this->app->session->getUserId())) {
+            $header = new SwatHtmlTag('h3');
+            $header->setContent(
+                Admin::_('You cannot delete your own account.')
+            );
 
-		// display can't delete self message if current account is in selection
-		if ($this->items->contains($this->app->session->getUserId())) {
-			$header = new SwatHtmlTag('h3');
-			$header->setContent(
-				Admin::_('You cannot delete your own account.'));
-
-			$message->content.= $header;
-		}
-	}
-
-	// }}}
+            $message->content .= $header;
+        }
+    }
 }
-
-?>

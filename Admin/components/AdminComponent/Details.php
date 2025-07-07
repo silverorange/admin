@@ -1,168 +1,171 @@
 <?php
 
 /**
- * Details page for AdminComponents
+ * Details page for AdminComponents.
  *
- * @package   Admin
  * @copyright 2005-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminComponentDetails extends AdminIndex
 {
-	// {{{ private properties
+    private $id;
 
-	private $id;
+    /**
+     * @var AdminComponent
+     */
+    private $details_component;
 
-	/**
-	 * @var AdminComponent
-	 */
-	private $details_component;
+    // init phase
 
-	// }}}
+    protected function initInternal()
+    {
+        parent::initInternal();
 
-	// init phase
-	// {{{ protected function initInternal()
+        $this->ui->loadFromXML(__DIR__ . '/details.xml');
 
-	protected function initInternal()
-	{
-		parent::initInternal();
+        $this->id = intval(SiteApplication::initVar('id'));
 
-		$this->ui->loadFromXML(__DIR__.'/details.xml');
+        $this->initComponent();
+    }
 
-		$this->id = intval(SiteApplication::initVar('id'));
+    protected function initComponent()
+    {
+        $class_name = SwatDBClassMap::get('AdminComponent');
+        $this->details_component = new $class_name();
+        $this->details_component->setDatabase($this->app->db);
 
-		$this->initComponent();
-	}
+        if (!$this->details_component->load($this->id)) {
+            throw new AdminNotFoundException(
+                sprintf(
+                    Admin::_('Component with id "%s" not found.'),
+                    $this->id
+                )
+            );
+        }
+    }
 
-	// }}}
-	// {{{ protected function initComponent()
+    // process phase
 
-	protected function initComponent()
-	{
-		$class_name = SwatDBClassMap::get('AdminComponent');
-		$this->details_component = new $class_name();
-		$this->details_component->setDatabase($this->app->db);
+    protected function processActions(SwatView $view, SwatActions $actions)
+    {
+        $num = count($view->checked_items);
+        $message = null;
 
-		if (!$this->details_component->load($this->id)) {
-			throw new AdminNotFoundException(
-				sprintf(Admin::_('Component with id "%s" not found.'),
-					$this->id));
-		}
-	}
+        switch ($actions->selected->id) {
+            case 'delete':
+                $this->app->replacePage('AdminSubComponent/Delete');
+                $this->app->getPage()->setItems($view->checked_items);
+                $this->app->getPage()->setParent($this->id);
+                break;
 
-	// }}}
+            case 'show':
+                SwatDB::updateColumn(
+                    $this->app->db,
+                    'AdminSubComponent',
+                    'boolean:visible',
+                    true,
+                    'id',
+                    $view->checked_items
+                );
 
-	// process phase
-	// {{{ protected function processActions()
+                $message = new SwatMessage(sprintf(
+                    Admin::ngettext(
+                        'One sub-component has been shown.',
+                        '%s sub-components have been shown.',
+                        $num
+                    ),
+                    SwatString::numberFormat($num)
+                ));
 
-	protected function processActions(SwatView $view, SwatActions $actions)
-	{
-		$num = count($view->checked_items);
-		$message = null;
+                break;
 
-		switch ($actions->selected->id) {
-		case 'delete':
-			$this->app->replacePage('AdminSubComponent/Delete');
-			$this->app->getPage()->setItems($view->checked_items);
-			$this->app->getPage()->setParent($this->id);
-			break;
+            case 'hide':
+                SwatDB::updateColumn(
+                    $this->app->db,
+                    'AdminSubComponent',
+                    'boolean:visible',
+                    false,
+                    'id',
+                    $view->checked_items
+                );
 
-		case 'show':
-			SwatDB::updateColumn($this->app->db, 'AdminSubComponent',
-				'boolean:visible', true, 'id', $view->checked_items);
+                $message = new SwatMessage(sprintf(
+                    Admin::ngettext(
+                        'One sub-component has been hidden.',
+                        '%s sub-components have been hidden.',
+                        $num
+                    ),
+                    SwatString::numberFormat($num)
+                ));
 
-			$message = new SwatMessage(sprintf(Admin::ngettext(
-				'One sub-component has been shown.',
-				'%s sub-components have been shown.', $num),
-				SwatString::numberFormat($num)));
+                break;
+        }
 
-			break;
+        if ($message !== null) {
+            $this->app->messages->add($message);
+        }
+    }
 
-		case 'hide':
-			SwatDB::updateColumn($this->app->db, 'AdminSubComponent',
-				'boolean:visible', false, 'id', $view->checked_items);
+    // build phase
 
-			$message = new SwatMessage(sprintf(Admin::ngettext(
-				'One sub-component has been hidden.',
-				'%s sub-components have been hidden.', $num),
-				SwatString::numberFormat($num)));
+    protected function buildInternal()
+    {
+        parent::buildInternal();
 
-			break;
-		}
+        $this->ui->getWidget('details_toolbar')->setToolLinkValues($this->id);
+        $this->ui->getWidget('sub_components_toolbar')->setToolLinkValues(
+            $this->id
+        );
 
-		if ($message !== null)
-			$this->app->messages->add($message);
-	}
+        $form = $this->ui->getWidget('index_form');
+        $form->addHiddenField('id', $this->id);
 
-	// }}}
+        $this->navbar->createEntry(Admin::_('Details'));
 
-	// build phase
-	// {{{ protected function buildInternal()
+        $ds = new SwatDetailsStore($this->details_component);
 
-	protected function buildInternal()
-	{
-		parent::buildInternal();
+        ob_start();
+        $this->displayGroups();
+        $ds->groups_summary = ob_get_clean();
 
-		$this->ui->getWidget('details_toolbar')->setToolLinkValues($this->id);
-		$this->ui->getWidget('sub_components_toolbar')->setToolLinkValues(
-			$this->id);
+        if ($this->details_component->description !== null) {
+            $ds->description = SwatString::condense(SwatString::toXHTML(
+                $this->details_component->description
+            ));
+        }
 
-		$form = $this->ui->getWidget('index_form');
-		$form->addHiddenField('id', $this->id);
+        $component_details = $this->ui->getWidget('component_details');
+        $component_details->data = $ds;
 
-		$this->navbar->createEntry(Admin::_('Details'));
+        $frame = $this->ui->getWidget('details_frame');
+        $frame->title = Admin::_('Component');
+        $frame->subtitle = $this->details_component->title;
+    }
 
-		$ds = new SwatDetailsStore($this->details_component);
+    protected function getTableModel(SwatView $view): ?SwatTableModel
+    {
+        $sub_components = $this->details_component->sub_components;
 
-		ob_start();
-		$this->displayGroups();
-		$ds->groups_summary = ob_get_clean();
+        if (count($sub_components) < 2) {
+            $this->ui->getWidget('order_tool')->sensitive = false;
+        }
 
-		if ($this->details_component->description !== null)
-			$ds->description = SwatString::condense(SwatString::toXHTML(
-				$this->details_component->description));
+        return $sub_components;
+    }
 
-		$component_details = $this->ui->getWidget('component_details');
-		$component_details->data = $ds;
+    private function displayGroups()
+    {
+        echo '<ul>';
 
-		$frame = $this->ui->getWidget('details_frame');
-		$frame->title = Admin::_('Component');
-		$frame->subtitle = $this->details_component->title;
-	}
+        foreach ($this->details_component->groups as $group) {
+            echo '<li>';
+            $anchor_tag = new SwatHtmlTag('a');
+            $anchor_tag->href = 'AdminGroup/Edit?id=' . $group->id;
+            $anchor_tag->setContent($group->title);
+            $anchor_tag->display();
+            echo '</li>';
+        }
 
-	// }}}
-	// {{{ protected function getTableModel()
-
-	protected function getTableModel(SwatView $view): ?SwatTableModel
-	{
-		$sub_components = $this->details_component->sub_components;
-
-		if (count($sub_components) < 2)
-			$this->ui->getWidget('order_tool')->sensitive = false;
-
-		return $sub_components;
-	}
-
-	// }}}
-	// {{{ private function displayGroups()
-
-	private function displayGroups()
-	{
-		echo '<ul>';
-
-		foreach ($this->details_component->groups as $group) {
-			echo '<li>';
-			$anchor_tag = new SwatHtmlTag('a');
-			$anchor_tag->href = 'AdminGroup/Edit?id='.$group->id;
-			$anchor_tag->setContent($group->title);
-			$anchor_tag->display();
-			echo '</li>';
-		}
-
-		echo '<ul>';
-	}
-
-	// }}}
+        echo '<ul>';
+    }
 }
-
-?>

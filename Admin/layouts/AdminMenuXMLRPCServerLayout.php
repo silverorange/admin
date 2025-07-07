@@ -1,55 +1,46 @@
 <?php
 
 /**
- * @package   Admin
  * @copyright 2006-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminMenuXMLRPCServerLayout extends SiteXMLRPCServerLayout
 {
-	// {{{ public properties
+    /**
+     * This application's menu view.
+     *
+     * @var AdminMenuView
+     */
+    public $menu;
 
-	/**
-	 * This application's menu view
-	 *
-	 * @var AdminMenuView
-	 */
-	public $menu = null;
+    // init phase
 
-	// }}}
+    public function init()
+    {
+        parent::init();
+        $this->initMenu();
+    }
 
-	// init phase
-	// {{{ public function init()
+    /**
+     * Initializes layout menu view.
+     */
+    protected function initMenu()
+    {
+        if ($this->menu === null) {
+            $menu_store = SwatDB::executeStoredProc(
+                $this->app->db,
+                'getAdminMenu',
+                $this->app->db->quote(
+                    $this->app->session->getUserId(),
+                    'integer'
+                ),
+                'AdminMenuStore'
+            );
 
-	public function init()
-	{
-		parent::init();
-		$this->initMenu();
-	}
+            $class = $this->app->getMenuViewClass();
+            $this->menu = new $class($menu_store, $this->app);
+        }
 
-	// }}}
-	// {{{ protected function initMenu()
-
-	/**
-	 * Initializes layout menu view
-	 */
-	protected function initMenu()
-	{
-		if ($this->menu === null) {
-			$menu_store = SwatDB::executeStoredProc($this->app->db,
-				'getAdminMenu',
-				$this->app->db->quote($this->app->session->getUserId(),
-					'integer'),
-				'AdminMenuStore');
-
-			$class = $this->app->getMenuViewClass();
-			$this->menu = new $class($menu_store, $this->app);
-		}
-
-		$this->menu->init();
-	}
-
-	// }}}
+        $this->menu->init();
+    }
 }
-
-?>

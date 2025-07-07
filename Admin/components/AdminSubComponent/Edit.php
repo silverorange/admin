@@ -1,176 +1,139 @@
 <?php
 
 /**
- * Edit page for AdminSubComponents
+ * Edit page for AdminSubComponents.
  *
- * @package   Admin
  * @copyright 2005-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminAdminSubComponentEdit extends AdminObjectEdit
 {
-	// {{{ protected properties
+    protected $admin_component;
 
-	protected $admin_component;
+    protected function getObjectClass()
+    {
+        return 'AdminSubComponent';
+    }
 
-	// }}}
-	// {{{ protected function getObjectClass()
+    protected function getUiXml()
+    {
+        return __DIR__ . '/edit.xml';
+    }
 
-	protected function getObjectClass()
-	{
-		return 'AdminSubComponent';
-	}
+    protected function getObjectUiValueNames()
+    {
+        return [
+            'title',
+            'shortname',
+            'visible',
+        ];
+    }
 
-	// }}}
-	// {{{ protected function getUiXml()
+    // init phase
 
-	protected function getUiXml()
-	{
-		return __DIR__.'/edit.xml';
-	}
+    protected function initInternal()
+    {
+        parent::initInternal();
 
-	// }}}
-	// {{{ protected function getObjectUiValueNames()
+        $this->initAdminComponent();
+    }
 
-	protected function getObjectUiValueNames()
-	{
-		return array(
-			'title',
-			'shortname',
-			'visible',
-		);
-	}
+    protected function initAdminComponent()
+    {
+        if ($this->isNew()) {
+            $parent_id = SiteApplication::initVar('parent');
 
-	// }}}
+            if ($parent_id === null) {
+                throw new AdminNotFoundException(
+                    'Must supply a Component ID for newly created ' .
+                    'Sub-Compoenets.'
+                );
+            }
 
-	// init phase
-	// {{{ protected function initInternal()
+            $class_name = SwatDBClassMap::get('AdminComponent');
+            $this->admin_component = new $class_name();
+            $this->admin_component->setDatabase($this->app->db);
 
-	protected function initInternal()
-	{
-		parent::initInternal();
+            if (!$this->admin_component->load($parent_id)) {
+                throw new AdminNotFoundException(
+                    sprintf(
+                        'Component with id "%s" not found.',
+                        $parent_id
+                    )
+                );
+            }
+        } else {
+            $this->admin_component = $this->getObject()->component;
+        }
+    }
 
-		$this->initAdminComponent();
-	}
+    // process phase
 
-	// }}}
-	// {{{ protected function initAdminComponent()
+    protected function validate(): void
+    {
+        $shortname_widget = $this->ui->getWidget('shortname');
+        $shortname = $shortname_widget->value;
 
-	protected function initAdminComponent()
-	{
-		if ($this->isNew()) {
-			$parent_id = SiteApplication::initVar('parent');
+        $should_validate_shortname = (!$this->isNew() || $shortname != '');
+        if ($should_validate_shortname
+            && !$this->validateShortname($shortname)) {
+            $message = new SwatMessage(
+                Admin::_('Shortname already exists and must be unique.'),
+                'error'
+            );
 
-			if ($parent_id === null) {
-				throw new AdminNotFoundException(
-					'Must supply a Component ID for newly created '.
-					'Sub-Compoenets.'
-				);
-			}
+            $shortname_widget->addMessage($message);
+        }
+    }
 
-			$class_name = SwatDBClassMap::get('AdminComponent');
-			$this->admin_component = new $class_name();
-			$this->admin_component->setDatabase($this->app->db);
+    protected function updateObject()
+    {
+        parent::updateObject();
 
-			if (!$this->admin_component->load($parent_id)) {
-				throw new AdminNotFoundException(
-					sprintf(
-						'Component with id "%s" not found.',
-						$parent_id
-					)
-				);
-			}
-		} else {
-			$this->admin_component = $this->getObject()->component;
-		}
-	}
+        if ($this->isNew()) {
+            $this->getObject()->component = $this->admin_component;
+        }
+    }
 
-	// }}}
+    protected function getSavedMessagePrimaryContent()
+    {
+        return sprintf(
+            Admin::_('Sub-Component “%s” has been saved.'),
+            $this->getObject()->title
+        );
+    }
 
-	// process phase
-	// {{{ protected function validate()
+    // build phase
 
-	protected function validate(): void
-	{
-		$shortname_widget = $this->ui->getWidget('shortname');
-		$shortname = $shortname_widget->value;
+    protected function buildForm()
+    {
+        parent::buildForm();
 
-		$should_validate_shortname = (!$this->isNew() || $shortname != '');
-		if ($should_validate_shortname &&
-			!$this->validateShortname($shortname)) {
-			$message = new SwatMessage(
-				Admin::_('Shortname already exists and must be unique.'),
-				'error'
-			);
+        $form = $this->ui->getWidget('edit_form');
+        $form->addHiddenField('parent', $this->admin_component->id);
+    }
 
-			$shortname_widget->addMessage($message);
-		}
-	}
+    protected function buildNavBar()
+    {
+        $this->navbar->popEntry();
 
-	// }}}
-	// {{{ protected function updateObject()
+        $this->navbar->createEntry(
+            Admin::_('Admin Components'),
+            'AdminComponent'
+        );
 
-	protected function updateObject()
-	{
-		parent::updateObject();
+        $this->navbar->createEntry(
+            $this->admin_component->title,
+            sprintf(
+                'AdminComponent/Details?id=%s',
+                $this->admin_component->id
+            )
+        );
 
-		if ($this->isNew()) {
-			$this->getObject()->component = $this->admin_component;
-		}
-	}
-
-	// }}}
-	// {{{ protected function getSavedMessagePrimaryContent()
-
-	protected function getSavedMessagePrimaryContent()
-	{
-		return sprintf(
-			Admin::_('Sub-Component “%s” has been saved.'),
-			$this->getObject()->title
-		);
-	}
-
-	// }}}
-
-	// build phase
-	// {{{ protected function buildForm()
-
-	protected function buildForm()
-	{
-		parent::buildForm();
-
-		$form = $this->ui->getWidget('edit_form');
-		$form->addHiddenField('parent', $this->admin_component->id);
-	}
-
-	// }}}
-	// {{{ protected function buildNavBar()
-
-	protected function buildNavBar()
-	{
-		$this->navbar->popEntry();
-
-		$this->navbar->createEntry(
-			Admin::_('Admin Components'),
-			'AdminComponent'
-		);
-
-		$this->navbar->createEntry(
-			$this->admin_component->title,
-			sprintf(
-				'AdminComponent/Details?id=%s',
-				$this->admin_component->id
-			)
-		);
-
-		$this->navbar->createEntry(
-			($this->isNew())
-				? Admin::_('Add Sub-Component')
-				: Admin::_('Edit Sub-Component')
-		);
-	}
-
-	// }}}
+        $this->navbar->createEntry(
+            ($this->isNew())
+                ? Admin::_('Add Sub-Component')
+                : Admin::_('Edit Sub-Component')
+        );
+    }
 }
-
-?>
