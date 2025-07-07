@@ -237,7 +237,7 @@ class AdminListDependency extends AdminDependency
         $entries = SwatDB::query(
             $db,
             $sql,
-            'AdminDependencyEntryWrapper',
+            AdminDependencyEntryWrapper::class,
             $types
         );
 

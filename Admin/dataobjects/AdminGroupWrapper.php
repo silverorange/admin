@@ -13,7 +13,7 @@ class AdminGroupWrapper extends SwatDBRecordsetWrapper
     protected function init()
     {
         parent::init();
-        $this->row_wrapper_class = 'AdminGroup';
+        $this->row_wrapper_class = AdminGroup::class;
         $this->index_field = 'id';
     }
 }

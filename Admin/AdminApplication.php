@@ -1,10 +1,20 @@
 <?php
 
+use BaconQrCode\Writer;
+use RobThree\Auth\TwoFactorAuth;
+
 /**
  * Web application class for an administration application.
  *
  * @copyright 2004-2022 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
+ *
+ * @property SiteCookieModule   $cookie
+ * @property SiteDatabaseModule $database
+ * @property AdminSessionModule $session
+ * @property SiteMessagesModule $messages
+ * @property SiteConfigModule   $config
+ * @property SiteCryptModule    $crypt
  */
 class AdminApplication extends SiteWebApplication
 {
@@ -68,7 +78,7 @@ class AdminApplication extends SiteWebApplication
      *
      * @var string the menu-view class name
      */
-    protected $menu_view_class = 'AdminMenuView';
+    protected $menu_view_class = AdminMenuView::class;
 
     // @var array
     protected $has_component_cache = [];
@@ -163,8 +173,8 @@ class AdminApplication extends SiteWebApplication
     /**
      * Sets the class to use for this admin application's menu-view.
      *
-     * @param string $class_name the class to use for this admin application's
-     *                           menu-view
+     * @param class-string $class_name the class to use for this admin application's
+     *                                 menu-view
      *
      * @throws AdminException if the menu-view class is not defined or if the
      *                        menu-view class is not an AdminMenuView
@@ -178,8 +188,8 @@ class AdminApplication extends SiteWebApplication
             ));
         }
 
-        if ($class_name !== 'AdminMenuView'
-            && !is_subclass_of($class_name, 'AdminMenuView')) {
+        if ($class_name !== AdminMenuView::class
+            && !is_subclass_of($class_name, AdminMenuView::class)) {
             throw new AdminException(sprintf(
                 "Class '%s' is not an AdminMenuView.",
                 $class_name
@@ -322,12 +332,12 @@ class AdminApplication extends SiteWebApplication
     {
         $enabled = $this->config->admin->two_fa_enabled;
         if ($enabled) {
-            if (!class_exists('RobThree\Auth\TwoFactorAuth')) {
+            if (!class_exists(TwoFactorAuth::class)) {
                 throw new AdminException(
                     'robthree/twofactorauth is required for using 2FA'
                 );
             }
-            if (!class_exists('BaconQrCode\Writer')) {
+            if (!class_exists(Writer::class)) {
                 throw new AdminException(
                     'bacon/bacon-qr-code is required for using 2FA'
                 );

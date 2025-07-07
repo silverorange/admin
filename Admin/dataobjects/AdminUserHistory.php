@@ -5,6 +5,12 @@
  *
  * @copyright 2007-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
+ *
+ * @property int           $id
+ * @property ?SwatDate     $login_date
+ * @property ?string       $login_agent
+ * @property ?string       $remote_ip
+ * @property ?SiteInstance $instance
  */
 class AdminUserHistory extends SwatDBDataObject
 {
@@ -41,6 +47,6 @@ class AdminUserHistory extends SwatDBDataObject
         $this->table = 'AdminUserHistory';
         $this->id_field = 'integer:id';
         $this->registerDateProperty('login_date');
-        $this->registerInternalProperty('instance', 'Instance');
+        $this->registerInternalProperty('instance', SiteInstance::class);
     }
 }

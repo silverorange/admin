@@ -9,7 +9,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
 {
     protected function getObjectClass()
     {
-        return 'AdminUser';
+        return AdminUser::class;
     }
 
     protected function getUiXml()
@@ -95,7 +95,7 @@ class AdminAdminUserEdit extends AdminObjectEdit
     {
         $email = $this->ui->getWidget('email');
 
-        $class_name = SwatDBClassMap::get('AdminUser');
+        $class_name = SwatDBClassMap::get(AdminUser::class);
         $user = new $class_name();
         $user->setDatabase($this->app->db);
 

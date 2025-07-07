@@ -7,6 +7,26 @@
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  *
  * @see       AdminGroup
+ *
+ * @property int                     $id
+ * @property string                  $email
+ * @property string                  $name
+ * @property string                  $password
+ * @property ?string                 $password_salt
+ * @property ?string                 $password_tag
+ * @property ?SwatDate               $password_tag_date
+ * @property bool                    $force_change_password
+ * @property bool                    $enabled
+ * @property string                  $menu_state
+ * @property bool                    $all_instances
+ * @property ?SwatDate               $activation_date
+ * @property ?string                 $two_fa_secret
+ * @property int                     $two_fa_timeslice
+ * @property SiteInstance            $instance
+ * @property AdminUserHistoryWrapper $history
+ * @property AdminUserHistory        $most_recent_history
+ * @property SiteInstanceWrapper     $instances
+ * @property AdminGroupWrapper       $groups
  */
 class AdminUser extends SwatDBDataObject
 {
@@ -130,10 +150,8 @@ class AdminUser extends SwatDBDataObject
 
     /**
      * 2FA Enabled.
-     *
-     * @var bool
      */
-    public $two_fa_enabled = false;
+    public bool $two_fa_enabled = false;
 
     /**
      * 2FA Time-slice.
@@ -147,10 +165,7 @@ class AdminUser extends SwatDBDataObject
      */
     protected $instance;
 
-    /**
-     * @var bool
-     */
-    protected $two_fa_authenticated = false;
+    protected bool $two_fa_authenticated = false;
 
     /**
      * Checks if a user is authenticated for an admin application.
@@ -461,7 +476,7 @@ class AdminUser extends SwatDBDataObject
             $this->db->quote($instance_id, 'integer'),
         );
 
-        return SwatDB::query($this->db, $sql, 'AdminUserHistoryWrapper');
+        return SwatDB::query($this->db, $sql, AdminUserHistoryWrapper::class);
     }
 
     /**
@@ -497,7 +512,7 @@ class AdminUser extends SwatDBDataObject
         return SwatDB::query(
             $this->db,
             $sql,
-            'AdminUserHistoryWrapper',
+            AdminUserHistoryWrapper::class,
         )->getFirst();
     }
 
@@ -517,7 +532,7 @@ class AdminUser extends SwatDBDataObject
             $this->db->quote($this->id, 'integer'),
         );
 
-        $wrapper_class = SwatDBClassMap::get('SiteInstanceWrapper');
+        $wrapper_class = SwatDBClassMap::get(SiteInstanceWrapper::class);
 
         return SwatDB::query($this->db, $sql, $wrapper_class);
     }
@@ -538,7 +553,7 @@ class AdminUser extends SwatDBDataObject
             $this->db->quote($this->id, 'integer'),
         );
 
-        return SwatDB::query($this->db, $sql, 'AdminGroupWrapper');
+        return SwatDB::query($this->db, $sql, AdminGroupWrapper::class);
     }
 
     protected function getSerializablePrivateProperties()

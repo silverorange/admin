@@ -10,7 +10,7 @@ class AdminAdminSiteProfile extends AdminObjectEdit
 {
     protected function getObjectClass()
     {
-        return 'AdminUser';
+        return AdminUser::class;
     }
 
     protected function getUiXml()

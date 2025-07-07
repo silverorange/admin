@@ -34,7 +34,7 @@ class AdminMenuXMLRPCServerLayout extends SiteXMLRPCServerLayout
                     $this->app->session->getUserId(),
                     'integer'
                 ),
-                'AdminMenuStore'
+                AdminMenuStore::class
             );
 
             $class = $this->app->getMenuViewClass();

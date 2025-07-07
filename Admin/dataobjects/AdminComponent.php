@@ -9,6 +9,17 @@
  *
  * @copyright 2007-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
+ *
+ * @property int                      $id
+ * @property ?string                  $shortname
+ * @property ?string                  $title
+ * @property ?string                  $description
+ * @property int                      $displayorder
+ * @property bool                     $enabled
+ * @property bool                     $visible
+ * @property AdminSection             $section
+ * @property AdminSubComponentWrapper $sub_components
+ * @property AdminGroupWrapper        $groups
  */
 class AdminComponent extends SwatDBDataObject
 {
@@ -46,7 +57,7 @@ class AdminComponent extends SwatDBDataObject
      * Order of display of this component relative to other components in this
      * component's section.
      *
-     * @var string
+     * @var int
      */
     public $displayorder;
 
@@ -131,7 +142,7 @@ class AdminComponent extends SwatDBDataObject
 
         $this->registerInternalProperty(
             'section',
-            SwatDBClassMap::get('AdminSection')
+            SwatDBClassMap::get(AdminSection::class)
         );
     }
 
@@ -148,7 +159,7 @@ class AdminComponent extends SwatDBDataObject
         return SwatDB::query(
             $this->db,
             $sql,
-            SwatDBClassMap::get('AdminSubComponentWrapper')
+            SwatDBClassMap::get(AdminSubComponentWrapper::class)
         );
     }
 
@@ -167,7 +178,7 @@ class AdminComponent extends SwatDBDataObject
         return SwatDB::query(
             $this->db,
             $sql,
-            SwatDBClassMap::get('AdminGroupWrapper')
+            SwatDBClassMap::get(AdminGroupWrapper::class)
         );
     }
 }

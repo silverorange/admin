@@ -73,7 +73,7 @@ class AdminAdminSiteResetPassword extends AdminPage
 
             $user_id = SwatDB::queryOne($this->app->db, $sql);
             if ($user_id !== null) {
-                $class_name = SwatDBClassMap::get('AdminUser');
+                $class_name = SwatDBClassMap::get(AdminUser::class);
                 $user = new $class_name();
                 $user->setDatabase($this->app->db);
                 if ($user->load($user_id)) {

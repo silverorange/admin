@@ -10,7 +10,7 @@ class AdminAdminComponentEdit extends AdminObjectEdit
 {
     protected function getObjectClass()
     {
-        return 'AdminComponent';
+        return AdminComponent::class;
     }
 
     protected function getUiXml()

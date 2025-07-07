@@ -12,7 +12,7 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 
     protected function getObjectClass()
     {
-        return 'AdminSubComponent';
+        return AdminSubComponent::class;
     }
 
     protected function getUiXml()
@@ -50,7 +50,7 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
                 );
             }
 
-            $class_name = SwatDBClassMap::get('AdminComponent');
+            $class_name = SwatDBClassMap::get(AdminComponent::class);
             $this->admin_component = new $class_name();
             $this->admin_component->setDatabase($this->app->db);
 

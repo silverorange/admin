@@ -10,7 +10,7 @@ class AdminAdminSectionEdit extends AdminObjectEdit
 {
     protected function getObjectClass()
     {
-        return 'AdminSection';
+        return AdminSection::class;
     }
 
     protected function getUiXml()

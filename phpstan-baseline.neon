@@ -1,21 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to an undefined property AdminApplication\\:\\:\\$config\\.$#"
-			count: 1
-			path: Admin/AdminApplication.php
-
-		-
-			message: "#^Access to an undefined property AdminApplication\\:\\:\\$database\\.$#"
-			count: 1
-			path: Admin/AdminApplication.php
-
-		-
-			message: "#^Access to an undefined property AdminApplication\\:\\:\\$session\\.$#"
-			count: 1
-			path: Admin/AdminApplication.php
-
-		-
 			message: "#^Access to an undefined property AdminSessionModule\\:\\:\\$history\\.$#"
 			count: 1
 			path: Admin/AdminSessionModule.php
@@ -24,11 +9,6 @@ parameters:
 			message: "#^Access to an undefined property AdminSessionModule\\:\\:\\$user\\.$#"
 			count: 10
 			path: Admin/AdminSessionModule.php
-
-		-
-			message: "#^Access to an undefined property AdminUser\\:\\:\\$most_recent_history\\.$#"
-			count: 1
-			path: Admin/dataobjects/AdminUser.php
 
 		-
 			message: "#^Variable \\$transaction might not be defined\\.$#"

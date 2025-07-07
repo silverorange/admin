@@ -9,6 +9,10 @@
  *
  * @copyright 2007-2016 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
+ *
+ * @property int                   $id
+ * @property ?string               $title
+ * @property AdminComponentWrapper $components
  */
 class AdminGroup extends SwatDBDataObject
 {
@@ -49,6 +53,6 @@ class AdminGroup extends SwatDBDataObject
             $this->db->quote($this->id, 'integer')
         );
 
-        return SwatDB::query($this->db, $sql, 'AdminComponentWrapper');
+        return SwatDB::query($this->db, $sql, AdminComponentWrapper::class);
     }
 }
