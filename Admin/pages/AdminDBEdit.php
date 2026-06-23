@@ -18,8 +18,9 @@ abstract class AdminDBEdit extends AdminEdit
         $relocate = true;
         $message = null;
 
+        $transaction = new SwatDBTransaction($this->app->db);
+
         try {
-            $transaction = new SwatDBTransaction($this->app->db);
             $this->saveDBData();
             $transaction->commit();
         } catch (SwatDBException $e) {

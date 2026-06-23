@@ -3,17 +3,21 @@
 /**
  * Web application module for sessions.
  *
- * @copyright 2005-2022 silverorange
+ * @copyright 2005-2026 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
  */
 class AdminSessionModule extends SiteSessionModule
 {
+    public ?AdminUser $user = null;
+
+    public array $history = [];
+
     /**
-     * @var array
+     * @var list<array{callback: callable, parameters: array}>
      *
      * @see AdminSessionModule::registerLoginCallback()
      */
-    protected $login_callbacks = [];
+    protected array $login_callbacks = [];
 
     /**
      * Creates a admin session module.
@@ -88,8 +92,7 @@ class AdminSessionModule extends SiteSessionModule
     {
         $this->logout(); // make sure user is logged out before logging in
 
-        $class_name = SwatDBClassMap::get(AdminUser::class);
-        $user = new $class_name();
+        $user = SwatDBClassMap::new(AdminUser::class);
         $user->setDatabase($this->app->db);
 
         if ($user->loadFromEmail($email)) {
@@ -246,8 +249,8 @@ class AdminSessionModule extends SiteSessionModule
         }
 
         if (!is_array($parameters)) {
-            throw new AdminException('Callback parameters must be specified ' .
-                'in an array.');
+            throw new AdminException('Callback parameters must be specified '
+                . 'in an array.');
         }
 
         $this->login_callbacks[] = [
@@ -270,8 +273,7 @@ class AdminSessionModule extends SiteSessionModule
      */
     protected function insertUserHistory(AdminUser $user)
     {
-        $login_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ?
-            $_SERVER['HTTP_USER_AGENT'] : null;
+        $login_agent = $_SERVER['HTTP_USER_AGENT'] ?? null;
 
         $remote_ip = $this->app->getRemoteIP();
 
@@ -285,8 +287,13 @@ class AdminSessionModule extends SiteSessionModule
         $login_date = new SwatDate();
         $login_date->toUTC();
 
-        $fields = ['integer:usernum', 'date:login_date',
-            'text:login_agent', 'text:remote_ip', 'integer:instance'];
+        $fields = [
+            'integer:usernum',
+            'date:login_date',
+            'text:login_agent',
+            'text:remote_ip',
+            'integer:instance',
+        ];
 
         $values = [
             'usernum'     => $user->id,

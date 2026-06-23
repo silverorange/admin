@@ -24,7 +24,6 @@ Admin:
     - Site
 
   Provides:
-
     # JavaScript resources
     packages/admin/javascript/admin-login.js:
     packages/admin/javascript/admin-menu.js:

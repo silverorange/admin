@@ -62,8 +62,8 @@ class AdminMenuStore
                         $row->subcomponent_title
                     );
 
-                    $component->subcomponents[$row->subcomponent_shortname] =
-                        $subcomponent;
+                    $component->subcomponents[$row->subcomponent_shortname]
+                        = $subcomponent;
                 }
             }
         } while ($rs->nextResult());

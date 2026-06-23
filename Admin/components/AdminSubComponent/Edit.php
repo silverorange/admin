@@ -45,8 +45,8 @@ class AdminAdminSubComponentEdit extends AdminObjectEdit
 
             if ($parent_id === null) {
                 throw new AdminNotFoundException(
-                    'Must supply a Component ID for newly created ' .
-                    'Sub-Compoenets.'
+                    'Must supply a Component ID for newly created '
+                    . 'Sub-Compoenets.'
                 );
             }
 

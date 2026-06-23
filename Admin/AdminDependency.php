@@ -223,8 +223,8 @@ abstract class AdminDependency
                 break;
 
             default:
-                throw new SwatException('Unknown status level text requested in ' .
-                    'AdminDependency.');
+                throw new SwatException('Unknown status level text requested in '
+                    . 'AdminDependency.');
         }
 
         return $message;

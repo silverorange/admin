@@ -95,14 +95,14 @@ class AdminAdminUserIndex extends AdminIndex
         parent::buildInternal();
 
         // set default time zone
-        $date_column =
-            $this->ui->getWidget('index_view')->getColumn('last_login');
+        $date_column
+            = $this->ui->getWidget('index_view')->getColumn('last_login');
 
         $date_renderer = $date_column->getRendererByPosition();
         $date_renderer->display_time_zone = $this->app->default_time_zone;
 
-        $this->ui->getWidget('index_view')->getColumn('two_fa')->visible =
-            $this->app->is2FaEnabled();
+        $this->ui->getWidget('index_view')->getColumn('two_fa')->visible
+            = $this->app->is2FaEnabled();
     }
 
     protected function buildActiveNote()
@@ -115,9 +115,9 @@ class AdminAdminUserIndex extends AdminIndex
         $note->visible = true;
         $note->content = sprintf(
             Admin::_(
-                'Users become inactive after %s days of inactivity. To ' .
-                'reactivate a user, select the user and choose ' .
-                '“reactivate…” from the menu below.'
+                'Users become inactive after %s days of inactivity. To '
+                . 'reactivate a user, select the user and choose '
+                . '“reactivate…” from the menu below.'
             ),
             $locale->formatNumber($class_name::EXPIRY_DAYS)
         );

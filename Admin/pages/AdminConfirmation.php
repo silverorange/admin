@@ -53,12 +53,12 @@ abstract class AdminConfirmation extends AdminPage
                 $this->relocate();
             }
         } else {
-            $message = new SwatMessage(Admin::_('There is a problem with the ' .
-                'information submitted.'), 'warning');
+            $message = new SwatMessage(Admin::_('There is a problem with the '
+                . 'information submitted.'), 'warning');
 
-            $message->secondary_content =
-                Admin::_('In order to ensure your security, we were unable to ' .
-                'process your request. Please try again.');
+            $message->secondary_content
+                = Admin::_('In order to ensure your security, we were unable to '
+                . 'process your request. Please try again.');
 
             $this->app->messages->add($message);
         }

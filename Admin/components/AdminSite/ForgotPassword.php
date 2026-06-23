@@ -90,9 +90,9 @@ class AdminAdminSiteForgotPassword extends AdminPage
 
                 $secondary_text = sprintf(
                     Admin::_(
-                        '%sAn email has been sent to %s containing a link to ' .
-                        'create a new password for the %s admin.%s%sPlease check  ' .
-                        'your mail for a new message with the subject: %s.%s'
+                        '%sAn email has been sent to %s containing a link to '
+                        . 'create a new password for the %s admin.%s%sPlease check  '
+                        . 'your mail for a new message with the subject: %s.%s'
                     ),
                     '<p>',
                     $anchor_tag,
@@ -159,8 +159,8 @@ class AdminAdminSiteForgotPassword extends AdminPage
     protected function sendResetPasswordMailMessage(AdminUser $admin_user)
     {
         $password_tag = $admin_user->resetPassword();
-        $password_link = $this->app->getBaseHref() .
-            'AdminSite/ResetPassword?password_tag=' . $password_tag;
+        $password_link = $this->app->getBaseHref()
+            . 'AdminSite/ResetPassword?password_tag=' . $password_tag;
 
         $mail_message = new AdminResetPasswordMailMessage(
             $this->app,
@@ -173,8 +173,8 @@ class AdminAdminSiteForgotPassword extends AdminPage
         $mail_message->smtp_username = $this->app->config->email->smtp_username;
         $mail_message->smtp_password = $this->app->config->email->smtp_password;
 
-        $mail_message->from_address =
-            $this->app->config->email->service_address;
+        $mail_message->from_address
+            = $this->app->config->email->service_address;
 
         $mail_message->from_name = $this->app->config->site->title;
 

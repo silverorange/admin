@@ -82,8 +82,8 @@ class AdminAdminSectionDelete extends AdminDBDelete
             'AdminSubComponent',
             'integer:id',
             'integer:component',
-            'component in (select id from AdminComponent where section in (' .
-            $item_list . '))',
+            'component in (select id from AdminComponent where section in ('
+            . $item_list . '))',
             AdminDependency::DELETE
         );
 

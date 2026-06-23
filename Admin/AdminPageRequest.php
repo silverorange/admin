@@ -31,8 +31,8 @@ class AdminPageRequest extends SiteObject
             $this->source = $this->app->getFrontSource();
         }
 
-        $allow_reset_password =
-            (bool) $app->config->admin->allow_reset_password;
+        $allow_reset_password
+            = (bool) $app->config->admin->allow_reset_password;
 
         if ($this->app->session->isLoggedIn()) {
             $source_exp = explode('/', $this->source);
@@ -81,8 +81,8 @@ class AdminPageRequest extends SiteObject
                     $user = $this->app->session->user;
 
                     throw new AdminNoAccessException(sprintf(Admin::_(
-                        'Access to the requested component is forbidden for ' .
-                        "user '%s'."
+                        'Access to the requested component is forbidden for '
+                        . "user '%s'."
                     ), $user->id), 0, $user);
                 }
             }

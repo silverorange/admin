@@ -77,8 +77,8 @@ class AdminAdminSiteChangePassword extends AdminPage
 
         // make sure old password is not the same as new password
         if ($old_password == $new_password) {
-            $message = new SwatMessage(Admin::_('Your new password can not be ' .
-                'the same as your old password'), 'error');
+            $message = new SwatMessage(Admin::_('Your new password can not be '
+                . 'the same as your old password'), 'error');
 
             $this->ui->getWidget('password')->addMessage($message);
         }

@@ -107,8 +107,8 @@ class AdminDefaultLayout extends AdminLayout
         $this->endCapture();
 
         $page_title = $this->navbar->getLastEntry()->title;
-        $this->data->title = SwatString::minimizeEntities($page_title) .
-            ' - ' . SwatString::minimizeEntities($this->app->title);
+        $this->data->title = SwatString::minimizeEntities($page_title)
+            . ' - ' . SwatString::minimizeEntities($this->app->title);
 
         $this->addHtmlHeadEntrySet($this->navbar->getHtmlHeadEntrySet());
         $this->addHtmlHeadEntrySet($this->logout_form->getHtmlHeadEntrySet());

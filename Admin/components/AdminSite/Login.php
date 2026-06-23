@@ -80,8 +80,8 @@ class AdminAdminSiteLogin extends AdminPage
                     );
 
                     $message->secondary_content = Admin::_(
-                        'Please contact another administrator to reactivate ' .
-                        'your account.'
+                        'Please contact another administrator to reactivate '
+                        . 'your account.'
                     );
 
                     $message_display->add($message);
@@ -100,8 +100,8 @@ class AdminAdminSiteLogin extends AdminPage
                         'error'
                     );
 
-                    $message->secondary_content =
-                        Admin::_('Check your password and try again.');
+                    $message->secondary_content
+                        = Admin::_('Check your password and try again.');
 
                     $message_display->add($message);
                     $this->login_error = true;
@@ -121,8 +121,8 @@ class AdminAdminSiteLogin extends AdminPage
     private function displayJavaScript()
     {
         try {
-            $email = (isset($this->app->cookie->email)) ?
-                $this->app->cookie->email : '';
+            $email = (isset($this->app->cookie->email))
+                ? $this->app->cookie->email : '';
         } catch (SiteCookieException $e) {
             $this->app->cookie->removeCookie('email', '/');
             $email = '';
@@ -134,8 +134,8 @@ class AdminAdminSiteLogin extends AdminPage
         $login_error = ($this->login_error) ? 'true' : 'false';
 
         echo '<script type="text/javascript">';
-        echo "\nAdminLogin('email', 'password', 'login_button', " .
-            "'{$email}', {$login_error});";
+        echo "\nAdminLogin('email', 'password', 'login_button', "
+            . "'{$email}', {$login_error});";
 
         echo '</script>';
     }

@@ -214,9 +214,9 @@ class AdminUser extends SwatDBDataObject
             $authenticated = true;
         }
 
-        $is_2fa_valid =
+        $is_2fa_valid
             // Valid if 2Fa is disabled at app level
-            !$app->is2FaEnabled()
+            = !$app->is2FaEnabled()
             // Or if 2Fa disabled for this user
             || !$this->two_fa_enabled
             // Or if the user is 2Fa authenticated

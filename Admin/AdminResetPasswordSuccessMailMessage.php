@@ -34,14 +34,14 @@ class AdminResetPasswordSuccessMailMessage extends SiteMultipartMailMessage
     public function send()
     {
         if ($this->admin_user->email === null) {
-            throw new AdminException('User requires an email address to ' .
-                'send message. Make sure email is loaded on the user ' .
-                'object.');
+            throw new AdminException('User requires an email address to '
+                . 'send message. Make sure email is loaded on the user '
+                . 'object.');
         }
 
         if ($this->admin_user->name === null) {
-            throw new AdminException('User requires a fullname to send ' .
-                'message. Make sure name is loaded on the user object.');
+            throw new AdminException('User requires a fullname to send '
+                . 'message. Make sure name is loaded on the user object.');
         }
 
         $this->to_address = $this->admin_user->email;
@@ -87,16 +87,16 @@ class AdminResetPasswordSuccessMailMessage extends SiteMultipartMailMessage
         $instance_note = '';
 
         if ($this->app->hasModule('SiteMultipleInstanceModule')) {
-            $site_instance =
-                $this->app->getModule('SiteMultipleInstanceModule');
+            $site_instance
+                = $this->app->getModule('SiteMultipleInstanceModule');
 
             if (count($this->admin_user->instances) > 1) {
                 $instance_note .= '<p>' . Admin::_(
-                    'Notice: Your admin password was also updated ' .
-                    'for the following sites on which your admin account is ' .
-                    'used:'
-                ) .
-                    '</p><p><ul>';
+                    'Notice: Your admin password was also updated '
+                    . 'for the following sites on which your admin account is '
+                    . 'used:'
+                )
+                    . '</p><p><ul>';
 
                 foreach ($this->admin_user->instances as $instance) {
                     if ($instance->id !== $site_instance->getId()) {
@@ -107,8 +107,8 @@ class AdminResetPasswordSuccessMailMessage extends SiteMultipartMailMessage
                         );
 
                         $title = SwatDB::queryOne($this->app->db, $sql, 'text');
-                        $instance_note .=
-                            '<li>' . SwatString::minimizeEntities($title) . '</li>';
+                        $instance_note
+                            .= '<li>' . SwatString::minimizeEntities($title) . '</li>';
                     }
                 }
 
@@ -124,14 +124,14 @@ class AdminResetPasswordSuccessMailMessage extends SiteMultipartMailMessage
         $instance_note = '';
 
         if ($this->app->hasModule('SiteMultipleInstanceModule')) {
-            $site_instance =
-                $this->app->getModule('SiteMultipleInstanceModule');
+            $site_instance
+                = $this->app->getModule('SiteMultipleInstanceModule');
 
             if (count($this->admin_user->instances) > 1) {
                 $instance_note .= Admin::_(
-                    'Notice: Your admin password was also updated ' .
-                    'for the following sites on which your admin account is ' .
-                    'used:'
+                    'Notice: Your admin password was also updated '
+                    . 'for the following sites on which your admin account is '
+                    . 'used:'
                 ) . "\n\n";
 
                 foreach ($this->admin_user->instances as $instance) {
@@ -159,21 +159,21 @@ class AdminResetPasswordSuccessMailMessage extends SiteMultipartMailMessage
         return sprintf(
             $format_string,
             sprintf(
-                Admin::_('Your password for your %s account has ' .
-            'successfully been updated.'),
+                Admin::_('Your password for your %s account has '
+            . 'successfully been updated.'),
                 $this->app->config->site->title
             ),
             Admin::_('Why did I get this email?'),
             sprintf(
-                Admin::_('This email confirms your password was ' .
-            'successfully updated after requesting a new password.'),
+                Admin::_('This email confirms your password was '
+            . 'successfully updated after requesting a new password.'),
                 $this->app->config->site->title
             ),
             Admin::_('I did not request a new password:'),
             sprintf(
-                Admin::_('If you did not request a new password from %s ' .
-            'someone else has gained access to your account. If this is the ' .
-            'case, please contact your system administrator immediately.'),
+                Admin::_('If you did not request a new password from %s '
+            . 'someone else has gained access to your account. If this is the '
+            . 'case, please contact your system administrator immediately.'),
                 $this->app->config->site->title
             )
         );
