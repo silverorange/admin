@@ -1,6 +1,3 @@
-includes:
-  - phpstan-baseline.neon
-
 parameters:
   phpVersion: 80200
   level: 1
@@ -9,3 +6,4 @@ parameters:
     - po
   editorUrl: '%%file%%:%%line%%'
   editorUrlTitle: '%%file%%:%%line%%'
+  errorFormat: table

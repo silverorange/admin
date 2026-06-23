@@ -8,29 +8,33 @@ pipeline {
             }
         }
 
-        stage('Check Code Style for Modified Files') {
-            when {
-                not {
-                    branch 'master'
-                }
+        stage('Install NPM Dependencies') {
+            environment {
+                PNPM_CACHE_FOLDER = "${env.WORKSPACE}/pnpm-cache/${env.BUILD_NUMBER}"
             }
             steps {
-                sh '''
-                    files=$(git diff-tree --diff-filter=ACRM --no-commit-id --name-only -r HEAD)
-                    if [ -n "$files" ]; then
-                        composer run phpcs:ci $files
-                    fi
-                '''
+                sh 'n -d exec engine corepack enable pnpm'
+                sh 'n -d exec engine pnpm install'
             }
         }
 
-        stage('Check Code Style for Entire Project') {
-            when {
-                branch 'master'
-            }
+        stage('Check PHP Coding Style') {
             steps {
                 sh 'composer run phpcs:ci'
             }
         }
+
+        stage('Check Formating') {
+            steps {
+                sh 'n -d exec engine pnpm format'
+            }
+        }
+
+        stage('Check PHP Static Analysis') {
+            steps {
+                sh 'composer run phpstan:ci'
+            }
+        }
+
     }
 }
