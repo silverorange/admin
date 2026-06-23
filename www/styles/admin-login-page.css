@@ -2,25 +2,25 @@
 
 #login_frame,
 #forgot_password_frame {
-	width: 360px;
-	margin: 4em auto 1em auto;
-	text-align: left;
+  width: 360px;
+  margin: 4em auto 1em auto;
+  text-align: left;
 }
 
 #reset_password_frame {
-	width: 40em;
-	margin: 4em auto 1em auto;
-	text-align: left;
+  width: 40em;
+  margin: 4em auto 1em auto;
+  text-align: left;
 }
 
 #email.swat-entry,
 #password.swat-entry,
 #confirm_password.swat-entry {
-	width: 314px;
+  width: 314px;
 }
 
 #forgot_container.swat-displayable-container {
-	text-align: center;
+  text-align: center;
 }
 
 #forgot.swat-tool-link,
@@ -28,28 +28,28 @@
 #forgot.swat-tool-link:visited,
 #forgot.swat-tool-link:active,
 #forgot.swat-tool-link:hover {
-	color: #1976d2;
-	font-size: 11px;
-	border: 0;
-	background: transparent;
-	text-decoration: underline;
-	padding: 4px 8px;
-	margin: 1px 0 0 0;
-	display: inline-block;
-	cursor: pointer;
-	text-shadow: none;
-	border-radius: 0;
-	box-shadow: none;
+  color: #1976d2;
+  font-size: 11px;
+  border: 0;
+  background: transparent;
+  text-decoration: underline;
+  padding: 4px 8px;
+  margin: 1px 0 0 0;
+  display: inline-block;
+  cursor: pointer;
+  text-shadow: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 #forgot.swat-tool-link .swat-tool-link-title {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 #forgot.swat-tool-link:active,
 #forgot.swat-tool-link:hover {
-	position: static;
-	top: 0;
-	left: 0;
-	color: #666;
+  position: static;
+  top: 0;
+  left: 0;
+  color: #666;
 }
