@@ -14,8 +14,9 @@ abstract class AdminDBOrder extends AdminOrder
 
     protected function saveData()
     {
+        $transaction = new SwatDBTransaction($this->app->db);
+
         try {
-            $transaction = new SwatDBTransaction($this->app->db);
             $this->saveDBData();
             $transaction->commit();
         } catch (SwatDBException $e) {
