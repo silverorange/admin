@@ -62,14 +62,14 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
     public function send()
     {
         if ($this->admin_user->email === null) {
-            throw new AdminException('User requires an email address to ' .
-                'reset password. Make sure email is loaded on the user ' .
-                'object.');
+            throw new AdminException('User requires an email address to '
+                . 'reset password. Make sure email is loaded on the user '
+                . 'object.');
         }
 
         if ($this->admin_user->name === null) {
-            throw new AdminException('User requires a fullname to reset ' .
-                'password. Make sure name is loaded on the user object.');
+            throw new AdminException('User requires a fullname to reset '
+                . 'password. Make sure name is loaded on the user object.');
         }
 
         $this->to_address = $this->admin_user->email;
@@ -117,16 +117,16 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
         $instance_note = '';
 
         if ($this->app->hasModule('SiteMultipleInstanceModule')) {
-            $site_instance =
-                $this->app->getModule('SiteMultipleInstanceModule');
+            $site_instance
+                = $this->app->getModule('SiteMultipleInstanceModule');
 
             if (count($this->admin_user->instances) > 1) {
                 $instance_note .= '<p>' . Admin::_(
-                    'Notice: Your admin password will also be updated ' .
-                    'for the following sites on which your admin account is ' .
-                    'used:'
-                ) .
-                    '</p><p><ul>';
+                    'Notice: Your admin password will also be updated '
+                    . 'for the following sites on which your admin account is '
+                    . 'used:'
+                )
+                    . '</p><p><ul>';
 
                 foreach ($this->admin_user->instances as $instance) {
                     if ($instance->id !== $site_instance->getId()) {
@@ -137,8 +137,8 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
                         );
 
                         $title = SwatDB::queryOne($this->app->db, $sql, 'text');
-                        $instance_note .=
-                            '<li>' . SwatString::minimizeEntities($title) . '</li>';
+                        $instance_note
+                            .= '<li>' . SwatString::minimizeEntities($title) . '</li>';
                     }
                 }
 
@@ -154,14 +154,14 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
         $instance_note = '';
 
         if ($this->app->hasModule('SiteMultipleInstanceModule')) {
-            $site_instance =
-                $this->app->getModule('SiteMultipleInstanceModule');
+            $site_instance
+                = $this->app->getModule('SiteMultipleInstanceModule');
 
             if (count($this->admin_user->instances) > 1) {
                 $instance_note .= Admin::_(
-                    'Notice: Your admin password will also be updated ' .
-                    'for the following sites on which your admin account is ' .
-                    'used:'
+                    'Notice: Your admin password will also be updated '
+                    . 'for the following sites on which your admin account is '
+                    . 'used:'
                 ) . "\n\n";
 
                 foreach ($this->admin_user->instances as $instance) {
@@ -189,30 +189,30 @@ class AdminResetPasswordMailMessage extends SiteMultipartMailMessage
         return sprintf(
             $format_string,
             sprintf(
-                Admin::_('This email is in response to your recent ' .
-            'request for a new password for your %s account. Your password ' .
-            'has not yet been changed. Please click on the following link ' .
-            'and follow the steps to change your account password:'),
+                Admin::_('This email is in response to your recent '
+            . 'request for a new password for your %s account. Your password '
+            . 'has not yet been changed. Please click on the following link '
+            . 'and follow the steps to change your account password:'),
                 $this->app->config->site->title
             ),
             $formatted_link,
-            Admin::_('Clicking on the above link will take you to a page that ' .
-            'requires you to enter in and confirm a new password. Once you ' .
-            'have chosen and confirmed your new password you will be taken to ' .
-            'your account page.'),
+            Admin::_('Clicking on the above link will take you to a page that '
+            . 'requires you to enter in and confirm a new password. Once you '
+            . 'have chosen and confirmed your new password you will be taken to '
+            . 'your account page.'),
             Admin::_('Why did I get this email?'),
-            Admin::_('When someone forgets their password the best way ' .
-            'for us to verify their identity is to send an email to the ' .
-            'address listed in their account. By clicking on the link above ' .
-            'you are verifying that you requested a new password for your ' .
-            'account.'),
+            Admin::_('When someone forgets their password the best way '
+            . 'for us to verify their identity is to send an email to the '
+            . 'address listed in their account. By clicking on the link above '
+            . 'you are verifying that you requested a new password for your '
+            . 'account.'),
             Admin::_('I did not request a new password:'),
             sprintf(
-                Admin::_('If you did not request a new password from %s ' .
-            'then someone may have accidentally entered your email when ' .
-            'requesting a new password. Have no fear! Your account ' .
-            'information is safe. Simply ignore this email and continue ' .
-            'using your existing password.'),
+                Admin::_('If you did not request a new password from %s '
+            . 'then someone may have accidentally entered your email when '
+            . 'requesting a new password. Have no fear! Your account '
+            . 'information is safe. Simply ignore this email and continue '
+            . 'using your existing password.'),
                 $this->app->config->site->title
             )
         );

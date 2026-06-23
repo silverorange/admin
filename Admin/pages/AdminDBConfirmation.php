@@ -67,8 +67,8 @@ abstract class AdminDBConfirmation extends AdminConfirmation
 
         if (!$items instanceof SwatViewSelection) {
             throw new SwatInvalidClassException(
-                'The $items parameter must be either a SwatViewSelection or ' .
-                'an array.',
+                'The $items parameter must be either a SwatViewSelection or '
+                . 'an array.',
                 0,
                 $items
             );

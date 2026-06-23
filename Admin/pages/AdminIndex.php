@@ -94,8 +94,8 @@ abstract class AdminIndex extends AdminPage
             $actions = $form->getFirstDescendant('SwatActions');
 
             if ($view !== null && $view->model !== null && $actions !== null) {
-                $input_row =
-                    $view->getFirstDescendant('SwatTableViewInputRow');
+                $input_row
+                    = $view->getFirstDescendant('SwatTableViewInputRow');
 
                 if (count($view->model) == 0) {
                     $actions->visible = false;
@@ -151,8 +151,8 @@ abstract class AdminIndex extends AdminPage
                 }
             } elseif ($column_prefix !== null) {
                 $add_direction = true;
-                $orderby = $column_prefix . '.' .
-                    $this->app->db->escape($view->orderby_column->id);
+                $orderby = $column_prefix . '.'
+                    . $this->app->db->escape($view->orderby_column->id);
             } else {
                 $add_direction = true;
                 $orderby = $this->app->db->escape($view->orderby_column->id);

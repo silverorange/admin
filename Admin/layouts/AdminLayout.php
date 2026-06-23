@@ -26,8 +26,8 @@ abstract class AdminLayout extends SiteLayout
         $tag = null;
 
         $www_root = dirname($_SERVER['SCRIPT_FILENAME']);
-        $filename = $www_root . DIRECTORY_SEPARATOR .
-            '..' . DIRECTORY_SEPARATOR . '.resource-tag';
+        $filename = $www_root . DIRECTORY_SEPARATOR
+            . '..' . DIRECTORY_SEPARATOR . '.resource-tag';
 
         if (file_exists($filename) && is_readable($filename)) {
             $tag = trim(file_get_contents($filename));

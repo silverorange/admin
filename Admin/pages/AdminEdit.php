@@ -53,8 +53,8 @@ abstract class AdminEdit extends AdminPage
                 );
 
                 $message->secondary_content = Admin::_(
-                    'Please address the fields highlighted below and ' .
-                    're-submit the form.'
+                    'Please address the fields highlighted below and '
+                    . 're-submit the form.'
                 );
 
                 $this->app->messages->add($message);

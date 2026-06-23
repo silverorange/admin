@@ -131,8 +131,8 @@ class AdminAdminSiteResetPassword extends AdminPage
         $mail_message->smtp_username = $this->app->config->email->smtp_username;
         $mail_message->smtp_password = $this->app->config->email->smtp_password;
 
-        $mail_message->from_address =
-            $this->app->config->email->service_address;
+        $mail_message->from_address
+            = $this->app->config->email->service_address;
 
         $mail_message->from_name = $this->app->config->site->title;
 
@@ -153,19 +153,19 @@ class AdminAdminSiteResetPassword extends AdminPage
         if ($this->user === null) {
             $text = sprintf(
                 '<p>%s</p><ul><li>%s</li><li>%s</li><li>%s</li></ul>',
-                Admin::_('Please verify that the link is exactly the same as ' .
-                    'the one emailed to you.'),
-                Admin::_('If you requested an email more than once, only the ' .
-                    'most recent link will work.'),
+                Admin::_('Please verify that the link is exactly the same as '
+                    . 'the one emailed to you.'),
+                Admin::_('If you requested an email more than once, only the '
+                    . 'most recent link will work.'),
                 sprintf(
-                    Admin::_('The emailed link expires after one hour. ' .
-                    'If the link has expired, %shave the email sent again%s.'),
+                    Admin::_('The emailed link expires after one hour. '
+                    . 'If the link has expired, %shave the email sent again%s.'),
                     '<a href="AdminSite/ForgotPassword">',
                     '</a>'
                 ),
                 sprintf(
-                    Admin::_('If you have lost the link sent in the ' .
-                    'email, you may %shave the email sent again%s.'),
+                    Admin::_('If you have lost the link sent in the '
+                    . 'email, you may %shave the email sent again%s.'),
                     '<a href="AdminSite/ForgotPassword">',
                     '</a>'
                 )

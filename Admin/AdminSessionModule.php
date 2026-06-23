@@ -246,8 +246,8 @@ class AdminSessionModule extends SiteSessionModule
         }
 
         if (!is_array($parameters)) {
-            throw new AdminException('Callback parameters must be specified ' .
-                'in an array.');
+            throw new AdminException('Callback parameters must be specified '
+                . 'in an array.');
         }
 
         $this->login_callbacks[] = [
@@ -270,8 +270,8 @@ class AdminSessionModule extends SiteSessionModule
      */
     protected function insertUserHistory(AdminUser $user)
     {
-        $login_agent = (isset($_SERVER['HTTP_USER_AGENT'])) ?
-            $_SERVER['HTTP_USER_AGENT'] : null;
+        $login_agent = (isset($_SERVER['HTTP_USER_AGENT']))
+            ? $_SERVER['HTTP_USER_AGENT'] : null;
 
         $remote_ip = $this->app->getRemoteIP();
 

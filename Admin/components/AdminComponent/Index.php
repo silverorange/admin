@@ -226,8 +226,8 @@ class AdminAdminComponentIndex extends AdminIndex
             // set section-specific info
             $ds->section = $current_section->id;
             $ds->section_title = $current_section->title;
-            $ds->section_order_sensitive =
-                ($current_section->num_components > 1);
+            $ds->section_order_sensitive
+                = ($current_section->num_components > 1);
 
             $store->add($ds);
         }

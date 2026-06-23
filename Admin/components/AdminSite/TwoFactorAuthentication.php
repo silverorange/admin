@@ -64,8 +64,8 @@ class AdminAdminSiteTwoFactorAuthentication extends AdminPage
             $this->ui->getWidget('two_fa_token')->addMessage(
                 new SwatMessage(
                     Admin::_(
-                        'Your two factor authentication token doesn’t ' .
-                        'match. Try again, or contact support for help.'
+                        'Your two factor authentication token doesn’t '
+                        . 'match. Try again, or contact support for help.'
                     ),
                     'error'
                 )

@@ -73,8 +73,8 @@ class AdminAdminSiteProfile extends AdminObjectEdit
                 $this->ui->getWidget('old_password')->addMessage(
                     new SwatMessage(
                         Admin::_(
-                            '%1$s is incorrrect. Please check your %1$s and ' .
-                            'try again. Passwords are case sensitive.'
+                            '%1$s is incorrrect. Please check your %1$s and '
+                            . 'try again. Passwords are case sensitive.'
                         ),
                         'error'
                     )
@@ -103,8 +103,8 @@ class AdminAdminSiteProfile extends AdminObjectEdit
             $this->ui->getWidget('two_fa_token')->addMessage(
                 new SwatMessage(
                     Admin::_(
-                        'Your two factor authentication token doesn’t ' .
-                        'match. Try again, or contact support for help.'
+                        'Your two factor authentication token doesn’t '
+                        . 'match. Try again, or contact support for help.'
                     ),
                     'error'
                 )

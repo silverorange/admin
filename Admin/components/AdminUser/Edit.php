@@ -38,8 +38,8 @@ class AdminAdminUserEdit extends AdminObjectEdit
         $this->initGroups();
         $this->initInstances();
 
-        $this->ui->getWidget('two_fa_enabled')->parent->visible =
-            $this->app->is2FaEnabled();
+        $this->ui->getWidget('two_fa_enabled')->parent->visible
+            = $this->app->is2FaEnabled();
     }
 
     protected function initPasswordWidgets()
@@ -52,8 +52,8 @@ class AdminAdminUserEdit extends AdminObjectEdit
             $this->ui->getWidget('password')->required = true;
             $this->ui->getWidget('confirm_password_field')->note = null;
             $this->ui->getWidget('password_disclosure')->open = true;
-            $this->ui->getWidget('password_disclosure')->title =
-                Admin::_('Set Password');
+            $this->ui->getWidget('password_disclosure')->title
+                = Admin::_('Set Password');
         }
     }
 

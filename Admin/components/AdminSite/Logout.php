@@ -25,15 +25,15 @@ class AdminAdminSiteLogout extends AdminPage
                 'warning'
             );
 
-            $message->secondary_content =
-                Admin::_('In order to ensure your security, we were ' .
-                'unable to process your logout request. Please try again.');
+            $message->secondary_content
+                = Admin::_('In order to ensure your security, we were '
+                . 'unable to process your logout request. Please try again.');
 
             $this->app->messages->add($message);
 
             // go back where we came from
-            $url = (isset($_SERVER['HTTP_REFERER'])) ?
-                $_SERVER['HTTP_REFERER'] : 'Front';
+            $url = (isset($_SERVER['HTTP_REFERER']))
+                ? $_SERVER['HTTP_REFERER'] : 'Front';
 
             $this->app->relocate($url);
         }

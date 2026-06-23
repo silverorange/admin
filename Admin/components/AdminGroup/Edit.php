@@ -61,8 +61,8 @@ class AdminAdminGroupEdit extends AdminObjectEdit
             'title',
             'id',
             'section',
-            'AdminSection.displayorder, AdminSection.title, ' .
-                'AdminComponent.displayorder,  AdminComponent.title'
+            'AdminSection.displayorder, AdminSection.title, '
+                . 'AdminComponent.displayorder,  AdminComponent.title'
         );
 
         $component_list->setTree($component_list_options);

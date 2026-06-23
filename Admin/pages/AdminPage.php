@@ -165,12 +165,12 @@ abstract class AdminPage extends SitePage
         $forms = $this->ui->getRoot()->getDescendants('SwatForm');
         foreach ($forms as $form) {
             if (!$form->isAuthenticated()) {
-                $message = new SwatMessage(Admin::_('There is a problem with ' .
-                    'the information submitted.'), 'warning');
+                $message = new SwatMessage(Admin::_('There is a problem with '
+                    . 'the information submitted.'), 'warning');
 
-                $message->secondary_content =
-                    Admin::_('In order to ensure your security, we were ' .
-                    'unable to process your request. Please try again.');
+                $message->secondary_content
+                    = Admin::_('In order to ensure your security, we were '
+                    . 'unable to process your request. Please try again.');
 
                 $this->app->messages->add($message);
 
@@ -198,9 +198,9 @@ abstract class AdminPage extends SitePage
 
         $this->buildInternal();
 
-        $this->layout->data->title =
-            SwatString::minimizeEntities($this->title) . ' - ' .
-            SwatString::minimizeEntities($this->app->title);
+        $this->layout->data->title
+            = SwatString::minimizeEntities($this->title) . ' - '
+            . SwatString::minimizeEntities($this->app->title);
 
         $this->layout->startCapture('content');
         $this->display();

@@ -42,8 +42,8 @@ class AdminTreeControlCellRenderer extends SwatImageLinkCellRenderer
             );
 
             $this->alt = Admin::_('Details');
-            $this->image =
-                'packages/admin/images/admin-document-with-contents.png';
+            $this->image
+                = 'packages/admin/images/admin-document-with-contents.png';
         }
 
         parent::render();

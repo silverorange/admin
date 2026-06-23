@@ -51,8 +51,8 @@ class AdminApplication extends SiteWebApplication
      *
      * @see AdminApplication::setDefaultComponentIncludePath()
      */
-    protected $default_component_include_path =
-        '../../include/admin/components';
+    protected $default_component_include_path
+        = '../../include/admin/components';
 
     /**
      * An array of paths to check for components when finding the filename of
@@ -274,8 +274,8 @@ class AdminApplication extends SiteWebApplication
             $component = new AdminComponent();
             $component->setDatabase($this->db);
 
-            $this->has_component_cache[$shortname] =
-                $component->loadFromShortname($shortname);
+            $this->has_component_cache[$shortname]
+                = $component->loadFromShortname($shortname);
         }
 
         return $this->has_component_cache[$shortname];
