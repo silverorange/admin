@@ -4,6 +4,6 @@ parameters:
   paths:
     - Admin
     - po
-  editorUrl: '%%file%%:%%line%%'
-  editorUrlTitle: '%%file%%:%%line%%'
+  editorUrl: '%%relfile%%:%%line%%'
+  editorUrlTitle: '%%relfile%%:%%line%%'
   errorFormat: table
