@@ -151,7 +151,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
                 throw new AdminNotFoundException(
                     sprintf(
                         'A %s with the id of ‘%s’ does not exist',
-                        get_class($this->data_object),
+                        $this->data_object::class,
                         $this->id
                     )
                 );
@@ -417,7 +417,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
             throw new SwatInvalidPropertyException(
                 sprintf(
                     'Specified “%s” object does not have a property “%s”.',
-                    get_class($object),
+                    $object::class,
                     $name
                 )
             );
@@ -460,7 +460,7 @@ abstract class AdminObjectEdit extends AdminDBEdit
             throw new SwatInvalidPropertyException(
                 sprintf(
                     'Specified “%s” record does not have a property “%s”.',
-                    get_class($object),
+                    $object::class,
                     $name
                 )
             );
