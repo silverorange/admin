@@ -41,37 +41,37 @@ AdminMenu.FADE_OUT_PERIOD = 200;
 
 AdminMenu.prototype.preloadImages = function () {
   var arrow = new Image();
-  arrow.src = "packages/admin/images/admin-menu-help-arrow.png";
+  arrow.src = 'packages/admin/images/admin-menu-help-arrow.png';
 };
 
 AdminMenu.prototype.init = function () {
   this.el = document.getElementById(this.id);
   this.components = YAHOO.util.Dom.getElementsByClassName(
-    "admin-menu-component",
-    "li",
+    'admin-menu-component',
+    'li',
     this.el,
     function (n) {
       YAHOO.util.Event.on(
         n,
-        "mouseover",
+        'mouseover',
         function (e) {
           this.componentMouseOver(e, n);
         },
         this,
-        true,
+        true
       );
       YAHOO.util.Event.on(
         n,
-        "mouseout",
+        'mouseout',
         function (e) {
           this.componentMouseOut(e, n);
         },
         this,
-        true,
+        true
       );
     },
     this,
-    true,
+    true
   );
 };
 
@@ -82,9 +82,9 @@ AdminMenu.prototype.showHelp = function (li) {
     if (help._animation && help._animation.isAnimated()) {
       help._animation.stop(false);
     }
-    help.style.right = "-186px";
-    YAHOO.util.Dom.setStyle(help, "opacity", 1);
-    help.style.display = "block";
+    help.style.right = '-186px';
+    YAHOO.util.Dom.setStyle(help, 'opacity', 1);
+    help.style.display = 'block';
   }
 };
 
@@ -100,11 +100,11 @@ AdminMenu.prototype.hideHelp = function (li) {
       help,
       { opacity: { to: 0 }, right: { to: -201 } },
       AdminMenu.FADE_OUT_PERIOD / 1000,
-      YAHOO.util.Easing.easeOut,
+      YAHOO.util.Easing.easeOut
     );
 
     help._animation.onComplete.subscribe(function () {
-      help.style.display = "none";
+      help.style.display = 'none';
     });
 
     help._animation.animate();
@@ -115,8 +115,8 @@ AdminMenu.prototype.getHelp = function (li) {
   return YAHOO.util.Dom.getNextSiblingBy(
     YAHOO.util.Dom.getFirstChild(li),
     function (n) {
-      return YAHOO.util.Dom.hasClass(n, "admin-menu-help");
-    },
+      return YAHOO.util.Dom.hasClass(n, 'admin-menu-help');
+    }
   );
 };
 
@@ -175,12 +175,12 @@ AdminMenu.prototype.componentMouseOut = function (e, li) {
     }
   }
 
-  if (YAHOO.util.Dom.hasClass(all_target, "admin-menu-component")) {
+  if (YAHOO.util.Dom.hasClass(all_target, 'admin-menu-component')) {
     all_out = false;
   } else if (all_target !== null) {
     while (all_target.parentNode) {
       all_target = all_target.parentNode;
-      if (YAHOO.util.Dom.hasClass(all_target, "admin-menu-component")) {
+      if (YAHOO.util.Dom.hasClass(all_target, 'admin-menu-component')) {
         all_out = false;
         break;
       }

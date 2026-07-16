@@ -3,7 +3,7 @@ body {
   color: #333;
   margin: 0;
   padding: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* turn off 10px left/right margins from default YUI grid  */
@@ -209,7 +209,7 @@ address {
 }
 
 .clearfix:after {
-  content: ".";
+  content: '.';
   display: block;
   height: 0;
   clear: both;
