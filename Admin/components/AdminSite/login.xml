@@ -1,41 +1,40 @@
-<?xml version="1.0" standalone="no"?>
+<?xml version="1.0" standalone="no" ?>
 <!DOCTYPE swatml SYSTEM "http://swat.silverorange.com/swatml1.dtd">
 <swatml>
-	<widget class="SwatFrame" id="login_frame">
-		<property name="title" translatable="yes">Login</property>
-		<widget class="SwatForm" id="login_form">
-			<widget class="SwatFormField">
-				<property name="title" translatable="yes">Email</property>
-				<property name="required_status_display" type="constant">SHOW_OPTIONAL</property>
-				<widget class="SwatEmailEntry" id="email">
-					<property name="required" type="boolean">true</property>
-					<property name="size" type="integer">25</property>
-					<property name="tab_index" type="integer">1</property>
-				</widget>
-			</widget>
-			<widget class="SwatFormField">
-				<property name="title" translatable="yes">Password</property>
-				<property name="required_status_display" type="constant">SHOW_OPTIONAL</property>
-				<widget class="SwatPasswordEntry" id="password">
-					<property name="required" type="boolean">true</property>
-					<property name="size" type="integer">18</property>
-					<property name="tab_index" type="integer">2</property>
-				</widget>
-			</widget>
-			<widget class="SwatDisplayableContainer" id="forgot_container">
-				<widget class="SwatToolLink" id="forgot">
-					<property name="title" type="string">Forgot your password?</property>
-					<property name="link" type="string">AdminSite/ForgotPassword</property>
-				</widget>
-			</widget>
-			<widget class="SwatMessageDisplay" id="message_display">
-			</widget>
-			<widget class="SwatFooterFormField">
-				<widget class="SwatButton" id="login_button">
-					<property name="title" translatable="yes">Login</property>
-					<property name="tab_index" type="integer">3</property>
-				</widget>
-			</widget>
-		</widget>
-	</widget>
+    <widget class="SwatFrame" id="login_frame">
+        <property name="title" translatable="yes">Login</property>
+        <widget class="SwatForm" id="login_form">
+            <widget class="SwatFormField">
+                <property name="title" translatable="yes">Email</property>
+                <property name="required_status_display" type="constant">SHOW_OPTIONAL</property>
+                <widget class="SwatEmailEntry" id="email">
+                    <property name="required" type="boolean">true</property>
+                    <property name="size" type="integer">25</property>
+                    <property name="tab_index" type="integer">1</property>
+                </widget>
+            </widget>
+            <widget class="SwatFormField">
+                <property name="title" translatable="yes">Password</property>
+                <property name="required_status_display" type="constant">SHOW_OPTIONAL</property>
+                <widget class="SwatPasswordEntry" id="password">
+                    <property name="required" type="boolean">true</property>
+                    <property name="size" type="integer">18</property>
+                    <property name="tab_index" type="integer">2</property>
+                </widget>
+            </widget>
+            <widget class="SwatDisplayableContainer" id="forgot_container">
+                <widget class="SwatToolLink" id="forgot">
+                    <property name="title" type="string">Forgot your password?</property>
+                    <property name="link" type="string">AdminSite/ForgotPassword</property>
+                </widget>
+            </widget>
+            <widget class="SwatMessageDisplay" id="message_display" />
+            <widget class="SwatFooterFormField">
+                <widget class="SwatButton" id="login_button">
+                    <property name="title" translatable="yes">Login</property>
+                    <property name="tab_index" type="integer">3</property>
+                </widget>
+            </widget>
+        </widget>
+    </widget>
 </swatml>
