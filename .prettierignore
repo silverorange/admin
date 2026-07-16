@@ -1,2 +1,5 @@
 /composer.lock
 /pnpm-lock.yaml
+
+# SVG files will be optimized/prettified with other tools
+**/*.svg
