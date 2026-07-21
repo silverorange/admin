@@ -8,7 +8,7 @@ function AdminLogin(
   password_id,
   submit_name,
   user_email,
-  login_error,
+  login_error
 ) {
   setTimeout(
     "email = document.getElementById('" +
@@ -20,25 +20,25 @@ function AdminLogin(
       "submit = document.getElementById('" +
       submit_name +
       "');" +
-      "if (" +
+      'if (' +
       login_error +
-      ") {" +
+      ') {' +
       "	if (email.value.length && email.value == '" +
       user_email +
       "') {" +
-      "		password.focus();" +
-      "	} else {" +
-      "		email.focus();" +
-      "	}" +
-      "} else {" +
-      "	if (email.value.length > 0 && password.value.length > 0) {" +
-      "		submit.focus();" +
-      "	} else if (email.value.length > 0 && password.value.length == 0) {" +
-      "		password.focus();" +
-      "	} else {" +
-      "		email.focus();" +
-      "	}" +
-      "}",
-    100,
+      '		password.focus();' +
+      '	} else {' +
+      '		email.focus();' +
+      '	}' +
+      '} else {' +
+      '	if (email.value.length > 0 && password.value.length > 0) {' +
+      '		submit.focus();' +
+      '	} else if (email.value.length > 0 && password.value.length == 0) {' +
+      '		password.focus();' +
+      '	} else {' +
+      '		email.focus();' +
+      '	}' +
+      '}',
+    100
   );
 }

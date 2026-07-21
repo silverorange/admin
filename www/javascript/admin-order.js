@@ -12,7 +12,7 @@ function AdminOrder(radio_button_id, change_order) {
     change_order.orderChangeEvent.subscribe(
       this.orderChangeHandler,
       this,
-      true,
+      true
     );
 }
 

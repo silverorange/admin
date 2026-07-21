@@ -6,7 +6,7 @@ use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 
 $finder = (new Finder())
     ->in(__DIR__)
-    ->name(['*.php', '*.inc']);
+    ->append([__FILE__]);
 
 return (new Config())
     ->setParallelConfig(ParallelConfigFactory::detect(null, null, 2 ** 18 - 1))

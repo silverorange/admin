@@ -345,7 +345,7 @@ input:focus + span.swat-checkbox-shim::before {
   display: block;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.1);
-  content: ".";
+  content: '.';
   text-indent: -100%;
   overflow: hidden;
   width: 28px;
@@ -450,7 +450,7 @@ input:focus + span.swat-radio-shim::before {
   display: block;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.1);
-  content: ".";
+  content: '.';
   text-indent: -100%;
   overflow: hidden;
   width: 28px;
@@ -520,7 +520,7 @@ span.swat-radio-wrapper input {
 }
 
 .swat-frame .swat-actions:before {
-  content: ".";
+  content: '.';
   overflow: hidden;
   text-indent: 100%;
   width: 16px;
@@ -583,7 +583,7 @@ span.swat-radio-wrapper input {
   margin: -2px -8px -2px 0;
 }
 
-.swat-change-order-buttons input[type="button"],
+.swat-change-order-buttons input[type='button'],
 .swat-change-order-buttons input.swat-change-order-top,
 .swat-change-order-buttons input.swat-change-order-bottom {
   font-size: 13px;
@@ -851,14 +851,14 @@ input.swat-entry.swat-insensitive {
 
 /* SwatButton, SwatToolLink */
 
-input[type="button"],
+input[type='button'],
 a.swat-tool-link,
 span.swat-tool-link,
 input.swat-button {
   color: #fff;
   background: #009688;
   font-weight: 700;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   padding: 6px 12px;
   text-transform: uppercase;
@@ -870,14 +870,14 @@ input.swat-button {
   transition: box-shadow 0.2s ease;
 }
 
-input[type="button"]::-moz-focus-inner,
+input[type='button']::-moz-focus-inner,
 input.swat-button::-moz-focus-inner {
   outline: none;
   padding: 0;
   border: 0;
 }
 
-input[type="button"]:hover,
+input[type='button']:hover,
 a.swat-tool-link:hover,
 input.swat-button:hover {
   background: #00897b;
@@ -899,7 +899,7 @@ a.swat-tool-link:hover .swat-tool-link-title {
   line-height: 1;
 }
 
-input[type="button"]:focus,
+input[type='button']:focus,
 a.swat-tool-link:focus,
 input.swat-button:focus {
   outline: none;
@@ -909,7 +909,7 @@ input.swat-button:focus {
     0 4px 4px rgba(0, 0, 0, 0.24);
 }
 
-input[type="button"]:active,
+input[type='button']:active,
 a.swat-tool-link:active,
 input.swat-button:active {
   background: #26a69a;

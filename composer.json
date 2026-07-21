@@ -1,14 +1,13 @@
 {
   "name": "silverorange/admin",
   "description": "Framework for backend admin website.",
+  "license": "LGPL-2.1",
   "type": "library",
   "keywords": [
     "framework",
     "admin",
     "management"
   ],
-  "homepage": "https://github.com/silverorange/admin",
-  "license": "LGPL-2.1",
   "authors": [
     {
       "name": "Charles Waddell",
@@ -35,11 +34,12 @@
       "email": "steven@silverorange.com"
     }
   ],
+  "homepage": "https://github.com/silverorange/admin",
   "require": {
     "php": ">=8.2.0",
     "ext-mbstring": "*",
-    "silverorange/site": "^15.3.2 || ^16.0.0",
-    "silverorange/swat": "^7.9.2"
+    "silverorange/site": "^15.3.2 || ^16.1.0",
+    "silverorange/swat": "^7.10.0"
   },
   "require-dev": {
     "bacon/bacon-qr-code": "^3.0",
@@ -49,28 +49,28 @@
     "robthree/twofactorauth": "^3.0"
   },
   "suggest": {
-    "robthree/twofactorauth": "required for the use of two factor authentication",
-    "bacon/bacon-qr-code": "required to show QR codes for two factor auth"
+    "bacon/bacon-qr-code": "required to show QR codes for two factor auth",
+    "robthree/twofactorauth": "required for the use of two factor authentication"
   },
   "autoload": {
     "classmap": [
       "Admin/"
     ]
   },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
+    },
+    "sort-packages": true
+  },
   "scripts": {
     "phpcs": "./vendor/bin/php-cs-fixer check -v",
     "phpcs:ci": "./vendor/bin/php-cs-fixer check --config=.php-cs-fixer.php --no-interaction --show-progress=none --diff --using-cache=no -vvv",
     "phpcs:fix": "./vendor/bin/php-cs-fixer fix -v",
     "phpstan": "./vendor/bin/phpstan analyze",
-    "phpstan:ci": "./vendor/bin/phpstan analyze -vvv --no-progress --memory-limit 2G",
     "phpstan:baseline": "./vendor/bin/phpstan analyze --generate-baseline",
+    "phpstan:ci": "./vendor/bin/phpstan analyze -vvv --no-progress --memory-limit 2G",
     "rector": "./vendor/bin/rector --dry-run",
     "rector:fix": "./vendor/bin/rector"
-  },
-  "config": {
-    "sort-packages": true,
-    "allow-plugins": {
-      "php-http/discovery": true
-    }
   }
 }
