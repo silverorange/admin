@@ -5,13 +5,11 @@
  *
  * @copyright 2005-2026 silverorange
  * @license   http://www.gnu.org/copyleft/lesser.html LGPL License 2.1
+ *
+ * @property ?AdminUser $user
  */
 class AdminSessionModule extends SiteSessionModule
 {
-    public ?AdminUser $user = null;
-
-    public array $history = [];
-
     /**
      * @var list<array{callback: callable, parameters: array}>
      *
@@ -49,7 +47,6 @@ class AdminSessionModule extends SiteSessionModule
 
         if (!isset($this->user)) {
             $this->user = null;
-            $this->history = [];
         } elseif ($this->user !== null) {
             $this->app->cookie->setCookie(
                 'email',
